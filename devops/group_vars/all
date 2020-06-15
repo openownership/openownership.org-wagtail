@@ -1,0 +1,43 @@
+
+---
+
+redis_password: "{{ lookup('envkey','REDIS_PASSWORD') }}"
+redis_bind: 127.0.0.1
+
+hactar_postgres:
+  install_postgis: false
+  install_uuid: false
+  databases:
+    -
+      name: "{{ lookup('envkey','POSTGRES_DB') }}"
+      user: "{{ lookup('envkey','POSTGRES_USER') }}"
+      pass: "{{ lookup('envkey','POSTGRES_PASSWORD') }}"
+      priv: ALL
+      uuid: false
+
+security:
+  deploy_password: ''
+  ip_whitelist:
+    - 80.87.31.82  # Stephen Mews
+    - 78.46.204.131  # Hactar VPN
+
+hactar_python3_apt_extra:
+  - zlib1g-dev
+  - libmagickwand-dev
+
+
+####################################################################################################
+# Redis
+####################################################################################################
+
+redis_version: 5.0.8
+redis_maxmemory_policy: allkeys-lru
+redis_maxmemory: 1gb
+
+
+####################################################################################################
+# MeiliSearch
+####################################################################################################
+
+meilisearch_master_key: "{{ lookup('envkey', 'MEILISEARCH_MASTER_KEY') }}"
+

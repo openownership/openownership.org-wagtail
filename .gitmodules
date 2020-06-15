@@ -1,0 +1,6 @@
+[submodule "fabfile"]
+	path = fabfile
+	url = git@github.com:hactar-is/fabfile.git
+[submodule "devops/roles"]
+	path = devops/roles
+	url = git@github.com:hactar-is/ansible-roles.git

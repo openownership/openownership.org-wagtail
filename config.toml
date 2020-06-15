@@ -1,0 +1,26 @@
+[meta]
+PROJECT_NAME = "TEMPLATEPROJECT"
+
+# [hexstatic]
+# SOURCE = './app/static'
+# DEST = 'assets/'
+# CACHES = ['keycdn', 'cloudflare']
+
+[aws]
+REGION = "eu-west-1"
+ENDPOINT = "s3-eu-west-1.amazonaws.com"
+
+[envs.remote]
+ROOT = "/srv/www/app"
+
+[envs.stage]
+HOSTS = ['', ]
+TAG = "staging"
+BUCKET = "cdn-TEMPLATEPROJECT-staging"
+GIT_DEPLOY = "This server can only be deployed with Git. Speak to Andy."
+
+[envs.prod]
+HOSTS = ['', ]
+TAG = "production"
+BUCKET = "cdn-TEMPLATEPROJECT-production"
+GIT_DEPLOY = "This server can only be deployed with Git. Speak to Andy."

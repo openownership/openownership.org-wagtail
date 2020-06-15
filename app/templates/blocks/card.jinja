@@ -1,0 +1,11 @@
+<li class="card-group__card {% if thumbnail %}card-group__card--with-thumbnail{% endif %}">
+    {% if link_href %}<a href="{{link_href}}">{% endif %}
+        {% if thumbnail %}
+            {{image(thumbnail,'fill-415x300')}}
+        {% endif %}
+        <div class="card-group__text">
+            <h2>{{title}}</h2>
+            {% if blurb %}<p>{{blurb}}</p>{% endif %}
+        </div>
+    {% if link_href %}</a>{% endif %}
+</li>

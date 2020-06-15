@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+
+        {% include '_partials/head_meta.jinja' %}
+        {% block analytics %}{% include '_partials/analytics.jinja' %}{% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{static('css/main.min.css')}}">
+        {%- block extra_css -%}
+            {# Override this in templates to add extra stylesheets #}
+        {%- endblock -%}
+        <meta name="csrf-token" content="{{csrf_token}}">
+
+    </head>
+    <body class="{% block body_class %}{% if body_classes %}{{body_classes}}{% endif %}{% endblock %}">
+        {{ wagtailuserbar() }}
+        {% block primary_nav %}
+            {% include '_partials/navigation.jinja' %}
+        {% endblock %}
+        {% block hero %}
+            {% if has_hero %}{% include '_partials/hero.jinja' %}{% endif %}
+        {% endblock %}
+            <main>
+            {% block content %}
+                {{render_stream(page.body)}}
+            {% endblock %}
+            </main>
+        {% block footer %}
+            {% include '_partials/footer.jinja' %}
+        {% endblock %}
+        {% block js_prepend %}{% endblock %}
+        <script type="text/javascript" src="{{static('js/main.js')}}"></script>
+        {% block js_append %}{% endblock %}
+    </body>
+</html>

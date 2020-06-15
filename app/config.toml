@@ -1,0 +1,5 @@
+settings.virtualenvs.create = false
+settings.virtualenvs.in-project = false
+settings.virtualenvs.path = "/root/.cache/pypoetry/virtualenvs"
+repositories = {}
+

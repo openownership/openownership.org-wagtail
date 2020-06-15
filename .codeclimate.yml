@@ -1,0 +1,36 @@
+---
+
+version: "2"
+
+plugins:
+  bandit:
+    enabled: true
+
+exclude_patterns:
+  - "docs/**/*"
+  - "redis/**/*"
+  - "data/**/*"
+  - "guide/**/*"
+  - "devops/**/*"
+  - "fabfile/**/*"
+  - "**/tests/**/*"
+  - "**/migrations/**/*"
+  - "app/assets/_dev/js/lib/**/*"
+  - "app/assets/_dev/js/lib/*.js"
+  - "app/assets/_dev/js/lib/*"
+  - "app/assets/_dev/scss/lib/**/*"
+  - "app/assets/_dev/scss/lib/*"
+  - "app/modules/*/migrations/*.py"
+  - "app/modules/*/*/migrations/*.py"
+  - "app/assets/js/main.min.js"
+  - "app/tests/**/*"
+  - "app/tests/*.py"
+  - "app/modules/*/tests/*.py"
+  - "app/modules/*/*/tests/*.py"
+  - "app/htmlcov/**/*"
+  - "app/middleware/tests/*.py"
+  - "app/helpers/tests/*.py"
+  - "app/data_migration/tests/*.py"
+  - "app/static/**/*"
+  - "app/assets/"
+  - "app/data_migration/"

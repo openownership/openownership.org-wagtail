@@ -1,0 +1,57 @@
+import os
+
+from .base import DJANGO_ROOT
+
+
+DEBUG = False
+
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'TEMPLATEPROJECT.org',
+    'staging.TEMPLATEPROJECT.org',
+    'www.TEMPLATEPROJECT.org'
+]
+
+ASSETS_DEBUG = False
+
+ASSETS_AUTO_BUILD = False
+
+DEFAULT_FILE_STORAGE = 'helpers.storages.MediaRootS3BotoStorage'
+
+COLLECTFAST_ENABLED = False
+
+GZIP_CONTENT_TYPES = [
+    'text/css',
+    'application/javascript',
+    'application/x-javascript',
+    'text/javascript',
+    'application/vnd.ms-fontobject',
+    'application/font-sfnt',
+    'application/font-woff',
+    'image/x-icon'
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+}
+
+WHITENOISE_MAX_AGE = 31557600
+
+
+####################################################################################################
+# Bugsnag
+####################################################################################################
+
+BUGSNAG = {
+    "api_key": os.environ['BUGSNAG_API_KEY'],
+    "project_root": DJANGO_ROOT,
+    "release_stage": os.environ.get('SERVER_ENV', 'development'),
+    "ignore_classes": [
+        'django.http.Http404', 'django.http.response.Http404',
+        'django.core.exceptions.PermissionDenied'
+    ],
+    "notify_release_stages": ["production", "staging"]
+}

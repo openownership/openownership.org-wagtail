@@ -1,0 +1,140 @@
+---
+
+user: deploy
+ansible_python_interpreter: /usr/bin/python3
+
+
+####################################################################################################
+# Envkey
+####################################################################################################
+
+env_path: /srv/www/app/
+envkey: "{{ lookup('envkey', 'ENVKEY_PRODUCTION') }}"
+
+####################################################################################################
+# Python
+####################################################################################################
+
+
+hactar_python3_app_dir: /srv/www/TEMPLATEPROJECT/app/
+hactar_python3_reqs_path: ../../../app/
+hactar_python3_use_poetry: true
+hactar_python3_no_gunicorn: true
+hactar_python3_venv_name: .venv
+hactar_python3_poetry_dir: /srv/www/TEMPLATEPROJECT/app/
+
+
+####################################################################################################
+# Git deploys
+####################################################################################################
+
+server_env: production
+gitdeploys_server_env: production
+gitdeploys_work_tree: /srv/www/TEMPLATEPROJECT/
+gitdeploys_repo_name: TEMPLATEPROJECT
+gitdeploys_migrate_cmd: /srv/www/TEMPLATEPROJECT/app/.venv/bin/python manage.py migrate
+gitdeploys_reqs_cmd: cd /srv/www/TEMPLATEPROJECT/app && /usr/local/bin/poetry install --no-dev
+gitdeploys_wsgi_restart: supervisorctl restart TEMPLATEPROJECT
+
+authorized_keys:
+  -
+    user: deploy
+    key: "{{ lookup('envkey','CODEBASE_PUBLIC_KEY') }}"
+
+private_keys:
+  -
+    user: deploy
+    name: codebase_key
+    key: "{{ lookup('envkey','CODEBASE_PRIVATE_KEY') }}"
+
+
+####################################################################################################
+# Firewall
+####################################################################################################
+
+hactar_firewall_allow:
+  -
+    name: ssh
+    port: 22
+    protocol: tcp
+  -
+    name: http
+    port: 80
+    protocol: tcp
+  -
+    name: https
+    port: 443
+    protocol: tcp
+  -
+    name: et
+    port: 2022
+    protocol: tcp
+
+
+####################################################################################################
+# Caddy
+####################################################################################################
+
+hactar_caddy_sites:
+  -
+    domains: https://TEMPLATEPROJECT.org
+    proxy: 127.0.0.1:8000
+    tls: "systems@hactar.is"
+    features:
+      - gzip
+      - expires
+
+hactar_caddy_fail2ban: true
+hactar_caddy_force_build: true
+
+####################################################################################################
+# oh my zsh
+####################################################################################################
+
+
+hactar_ohmyzsh:
+  app_path: /srv/www/TEMPLATEPROJECT/app
+  venv_name: .venv
+  gunicorn_env: SERVER_ENV="production"
+  flask_script: false
+  django_script: true
+
+hactar_ohmyzsh_aliases:
+  -
+    name: manpy
+    cmd: /srv/www/TEMPLATEPROJECT/app/.venv/bin/python manage.py
+  -
+    name: sp
+    cmd: /srv/www/TEMPLATEPROJECT/app/.venv/bin/python manage.py shell_plus
+
+
+####################################################################################################
+# Supervisor
+####################################################################################################
+
+
+hactar_supervisor:
+  env: SERVER_ENV="production"
+  user: deploy
+  group: deploy
+  gunicorn_env: SERVER_ENV="production"
+  apps:
+    -
+      name: TEMPLATEPROJECT
+      command: "/srv/www/.venv/bin/gunicorn -c /etc/gunicorn.py --env SERVER_ENV=production config.wsgi:application"
+      directory: "/srv/www/TEMPLATEPROJECT/app"
+      env: SERVER_ENV="production"
+
+####################################################################################################
+# Gunicorn
+####################################################################################################
+
+gunicorn:
+  bind: 127.0.0.1:8000
+  workers: 3
+  worker_class: sync
+  worker_connections: 1000
+  timeout: 30
+  keepalive: 2
+  spew: "False"
+  daemon: "False"

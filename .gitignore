@@ -1,0 +1,51 @@
+.env
+
+_db/
+docker/db/**/*
+docker/redis/**/*
+
+
+# Compiled static assets
+app/static/**/*
+app/assets/css/*.css
+app/assets/css/
+app/assets/js/*.js
+**/.webassets-cache
+**/.webassets-cache/**/*
+app/assets/.webassets-cache
+app/assets/.webassets-cache/*
+app/assets/dist/css/**/*.css
+app/assets/dist/js/**/*.js
+
+**/node_modules/
+**/node_modules/**/*
+# UGC
+app/media/**/*
+
+# virtual env packages
+**/venv/**/*
+
+# Vagrant
+.vagrant
+.vagrant/**/*
+
+# Misc files
+*.scssc
+*.pyc
+.DS_Store
+*.sublime-workspace
+*.sublime-project
+
+# Coverage
+.coverage
+coverage.xml
+htmlcov/**/*
+
+# Tests
+app/tests/.cache/*
+app/tests/__pycache__/*
+
+
+# Devops
+devops/webserver.retry
+devops/roles/**/*
