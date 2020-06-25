@@ -9,7 +9,6 @@ from django.conf import settings
 from django.shortcuts import reverse
 from django.template.defaultfilters import slugify
 from django.contrib.staticfiles.storage import staticfiles_storage
-from wagtail_app_pages.templatetags.app_pages_tags import app_page_url
 from wagtail.contrib.routable_page.templatetags.wagtailroutablepage_tags import routablepageurl
 
 
@@ -153,8 +152,7 @@ class TemplateGlobalsExtension(Extension):
             'absolutepath': isabsolutepath,
             'routablepageurl': jinja2.contextfunction(routablepageurl),
             'now': time_now,
-            'today': date_now,
-            'app_page_url': jinja2.contextfunction(app_page_url),
+            'today': date_now
         })
         environment.tests.update({
             'absolutepath': isabsolutepath

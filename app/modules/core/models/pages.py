@@ -30,7 +30,7 @@ from wagtail.utils.decorators import cached_classmethod
 
 from config.template import url_from_path
 from modules.core.blocks import (
-    home_page_blocks, people_index_page_blocks, landing_page_blocks
+    home_page_blocks, landing_page_blocks
 )
 
 from .page_types import BasePage, LandingPageType, ContentPageType, ArticlePageWithContentsType

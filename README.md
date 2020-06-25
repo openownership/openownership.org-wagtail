@@ -24,7 +24,7 @@ You'll probably want to do `sudo nano /etc/hosts` and add:
 1. `git submodule update --init --recursive`
 2. `goenv`
 3. `gofab` (and then probably `cd ..`)
-4. `docker-compose up --build`
+4. `docker-compose up --build -d`
 5. `fab docker.fish`
 6. `manpy migrate`
 7. `manpy site_scaffold`

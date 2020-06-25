@@ -6,7 +6,7 @@ from wagtail.core.models import Site, Page
 from helpers.console import console
 
 from modules.core.models.pages import (
-    LandingPage, ArticlePage, HomePage, SearchPage, SearchPageSuggestedSearch
+    LandingPage, ArticlePage, HomePage, SearchPage
 )
 
 from modules.core.models.navigation import (
@@ -14,72 +14,14 @@ from modules.core.models.navigation import (
     FooterNavigationMenu, FooterNavItem
 )
 
-from modules.taxonomy.models import (
-    PriorityAreaTag
-)
 
+DEFAULT_PAGES: list = []
 
-DEFAULT_PAGES: list = [
-    # ('About Esmée', LandingPage,
-    #     [
-    #         ('About us', LandingPage),
-    #         ('Strategy', ArticlePage),
-    #         ('Investments', ArticlePage),
-    #         ('Open data', ArticlePage),
-    #         ('Reports', LandingPage),
-    #         ('News', NewsIndexPage),
-    #         ('Funding strategy', LandingPage),
-    #         ('Governance', LandingPage),
-    #         ('Chief Executive\'s report', LandingPage),
-    #         ('Our people', PeopleIndexPage)
-    #     ]),
-    # ('What we do', LandingPage,
-    #     [
-    #         ('Our natural world', LandingPage),
-    #         ('A fairer future', LandingPage),
-    #         ('Creative, confident communities', LandingPage),
-    #     ]),
-    # ('Our support', LandingPage, []),
-    # ('Applications', ApplicationGuidancePage, []),
-    # ('Partners', LandingPage, []),
-    # ('Privacy policy', ArticlePage, []),
-    # ('Search', SearchPage, [])
-]
+PRIMARY_NAV_PAGES: dict = {}
 
+FOOTER_NAV_PAGES: list = []
 
-SUGGESTED_SEARCHES: list = [
-    # ('url', '/quiz/', 'Take the Esmeé quiz'),
-    # ('page', 'Applications', 'Guidance for applicants'),
-]
-
-PRIMARY_NAV_PAGES: dict = {
-    # 'About Esmée': [
-    #     'About us',
-    #     'Strategy',
-    #     'Investments',
-    #     'Open data',
-    #     'Reports',
-    #     'News'
-    # ],
-    # 'What we do': [
-    #     'Our natural world',
-    #     'A fairer future',
-    #     'Creative, confident communities'
-    # ],
-    # 'Our support': [],
-    # 'Applications': [],
-}
-
-FOOTER_NAV_PAGES: list = [
-    # 'About Esmée',
-    # 'What we do',
-    # 'Our support',
-    # 'Applications',
-    # 'Partners',
-    # 'Privacy policy',
-]
-
-PRIMARY_NAV_HIGHLIGHT: str = ''  # 'Partners'
+PRIMARY_NAV_HIGHLIGHT: str = ''
 
 
 class Scaffold(object):
@@ -90,7 +32,6 @@ class Scaffold(object):
         home = self._create_home_page(site)
         self._create_default_pages(home)
         self._create_nav_menus(site, purge=True)
-        self._create_default_taxonomy()
         self._create_suggested_searches()
 
         console.info("SCAFFOLD COMPLETE")
@@ -177,22 +118,6 @@ class Scaffold(object):
 
         console.info('Done: _create_default_pages')
 
-    def _create_default_taxonomy(self):
-
-        default_tags = [
-            (PriorityAreaTag, [
-                'Our natural world'
-                'A fairer future',
-                'Creative, confident communities'
-            ]),
-        ]
-
-        for Model, tags in default_tags:
-            for tag in tags:
-                Model.objects.get_or_create(name=tag)
-
-        console.info('Done: _create_default_taxonomy')
-
     def _process_nav_items(self, objects, nav_item_class=PrimaryNavItem):
         items = []
 
@@ -271,30 +196,3 @@ class Scaffold(object):
             )
 
         console.info('Done: _create_nav_menus')
-
-    def _create_suggested_searches(self):
-        search_page = SearchPage.objects.first()
-
-        for index, item in enumerate(SUGGESTED_SEARCHES, 1):
-            link_type = item[0]
-            link_text = item[2]
-
-            if link_type == 'page':
-                SearchPageSuggestedSearch.objects.get_or_create(
-                    text=link_text,
-                    search_page_id=search_page.id,
-                    defaults={
-                        'sort_order': index,
-                        'link_page': Page.objects.get(title=item[1]),
-                    }
-                )
-
-            if link_type == 'url':
-                SearchPageSuggestedSearch.objects.get_or_create(
-                    text=link_text,
-                    search_page_id=search_page.id,
-                    link_url=item[1],
-                    defaults={
-                        'sort_order': index,
-                    }
-                )
