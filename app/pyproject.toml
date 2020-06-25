@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "TEMPLATEPROJECT"
+name = "TEMPLATEPROJECT_SHORT_NAME"
 version = "0.1.0"
-description = "TEMPLATEPROJECT"
+description = "TEMPLATEPROJECT_FULL_NAME"
 authors = ["systems@hactar.is"]
 
 

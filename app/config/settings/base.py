@@ -24,7 +24,7 @@ MODULES_DIR = os.path.join(DJANGO_ROOT, PROJECT_DIR_NAME)
 
 
 the_future = datetime.now() + timedelta(days=365 * 1)
-guru.add("/var/log/TEMPLATEPROJECT/output.log", rotation="100 MB", backtrace=True)
+guru.add("/var/log/TEMPLATEPROJECT_SHORT_NAME/output.log", rotation="100 MB", backtrace=True)
 
 
 ####################################################################################################
@@ -107,7 +107,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
-BASE_URL = 'https://TEMPLATEPROJECT.org'
+BASE_URL = 'https://TEMPLATEPROJECT_DOMAIN'
 LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'Europe/London'
 USE_I18N = True
@@ -322,7 +322,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = ''
 
-WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = 'wagtail@TEMPLATEPROJECT.org'
+WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = 'wagtail@TEMPLATEPROJECT_DOMAIN'
 
 
 ####################################################################################################

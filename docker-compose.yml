@@ -29,7 +29,7 @@ services:
 
   # Application
   web:
-    image: TEMPLATEPROJECT:latest
+    image: TEMPLATEPROJECT_SHORT_NAME:latest
     environment:
       - SERVER_ENV=development
       - ENVKEY=${ENVKEY}
@@ -51,12 +51,8 @@ services:
     links:
       - db
       - redis
-      
-      
     depends_on:
       - db
       - redis
-      
-      
 
     command: sleep 1000000

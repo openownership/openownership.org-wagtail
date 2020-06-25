@@ -10,28 +10,28 @@ echo "Post Receive Hook is running..." >> /var/log/git.log
 
 # Check out the working tree to the right place
 header "Checking out git repo"
-mkdir -p /srv/www/TEMPLATEPROJECT/
-git --work-tree=/srv/www/TEMPLATEPROJECT/ --git-dir=/srv/repos/TEMPLATEPROJECT.git checkout staging -f
+mkdir -p /srv/www/TEMPLATEPROJECT_SHORT_NAME/
+git --work-tree=/srv/www/TEMPLATEPROJECT_SHORT_NAME/ --git-dir=/srv/repos/TEMPLATEPROJECT_SHORT_NAME.git checkout staging -f
 
 header "Ensuring various files exist"
 # Make sure we have a log file
-mkdir -p /var/log/TEMPLATEPROJECT
-touch /var/log/TEMPLATEPROJECT/output.log
-chown -R deploy:deploy /var/log/TEMPLATEPROJECT
+mkdir -p /var/log/TEMPLATEPROJECT_SHORT_NAME
+touch /var/log/TEMPLATEPROJECT_SHORT_NAME/output.log
+chown -R deploy:deploy /var/log/TEMPLATEPROJECT_SHORT_NAME
 
 # Make sure the webassets cache directory exists
-mkdir -p /srv/www/TEMPLATEPROJECT/app/static/.webassets-cache
-chown -R deploy:deploy /srv/www/TEMPLATEPROJECT/app/static/.webassets-cache
+mkdir -p /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/static/.webassets-cache
+chown -R deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/static/.webassets-cache
 
 # Make sure these stupid files exist for no good sodding reason
-mkdir -p /srv/www/TEMPLATEPROJECT/app/assets/css/
-touch /srv/www/TEMPLATEPROJECT/app/assets/css/main.min.css
-chown deploy:deploy /srv/www/TEMPLATEPROJECT/app/assets/css/main.min.css
-mkdir -p /srv/www/TEMPLATEPROJECT/app/assets/js/
-touch /srv/www/TEMPLATEPROJECT/app/assets/js/main.min.js
-chown deploy:deploy /srv/www/TEMPLATEPROJECT/app/assets/js/main.min.js
-touch /srv/www/TEMPLATEPROJECT/app/assets/css/admin.min.css
-chown deploy:deploy /srv/www/TEMPLATEPROJECT/app/assets/css/admin.min.css
+mkdir -p /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/css/
+touch /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/css/main.min.css
+chown deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/css/main.min.css
+mkdir -p /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/js/
+touch /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/js/main.min.js
+chown deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/js/main.min.js
+touch /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/css/admin.min.css
+chown deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/css/admin.min.css
 
 header "Clearing pyc files"
 find /srv/www -name "*.pyc" -type f -delete
@@ -39,37 +39,37 @@ find /srv/www -name "__pycache__" -type d -ls -exec rm -rv {} +
 
 # Remove files we don't want on the remote server
 header "Removing unwanted files and folders"
-rm -rf /srv/www/TEMPLATEPROJECT/ansible.cfg \
-    /srv/www/TEMPLATEPROJECT/.codacy.yaml \
-    /srv/www/TEMPLATEPROJECT/config.toml \
-    /srv/www/TEMPLATEPROJECT/_data \
-    /srv/www/TEMPLATEPROJECT/_db \
-    /srv/www/TEMPLATEPROJECT/devops \
-    /srv/www/TEMPLATEPROJECT/docker \
-    /srv/www/TEMPLATEPROJECT/docker-compose.test.yml \
-    /srv/www/TEMPLATEPROJECT/docker-compose.yml \
-    /srv/www/TEMPLATEPROJECT/.dockerignore \
-    /srv/www/TEMPLATEPROJECT/fabfile \
-    /srv/www/TEMPLATEPROJECT/.github \
-    /srv/www/TEMPLATEPROJECT/.gitignore \
-    /srv/www/TEMPLATEPROJECT/.gitmodules \
-    /srv/www/TEMPLATEPROJECT/README.md \
-    /srv/www/TEMPLATEPROJECT/setup.cfg \
-    /srv/www/TEMPLATEPROJECT/app/_db
+rm -rf /srv/www/TEMPLATEPROJECT_SHORT_NAME/ansible.cfg \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/.codacy.yaml \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/config.toml \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/_data \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/_db \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/devops \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/docker \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/docker-compose.test.yml \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/docker-compose.yml \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/.dockerignore \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/fabfile \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/.github \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/.gitignore \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/.gitmodules \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/README.md \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/setup.cfg \
+    /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/_db
 
 # Ensure envkey is set
 header "Setting envkey"
-echo 'ENVKEY='$ENVKEY > /srv/www/TEMPLATEPROJECT/.env
-echo 'ENVKEY='$ENVKEY > /srv/www/TEMPLATEPROJECT/app/.env
-chown deploy:deploy /srv/www/TEMPLATEPROJECT/.env
-chown deploy:deploy /srv/www/TEMPLATEPROJECT/app/.env
+echo 'ENVKEY='$ENVKEY > /srv/www/TEMPLATEPROJECT_SHORT_NAME/.env
+echo 'ENVKEY='$ENVKEY > /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.env
+chown deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/.env
+chown deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.env
 export SERVER_ENV=staging
 
 header "Running poetry install"
-cd /srv/www/TEMPLATEPROJECT/app && poetry install --no-dev
+cd /srv/www/TEMPLATEPROJECT_SHORT_NAME/app && poetry install --no-dev
 
 header "Running migrations"
-/srv/www/TEMPLATEPROJECT/app/.venv/bin/python manage.py migrate
+/srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.venv/bin/python manage.py migrate
 
 # Restart supervisor apps
 header "Restarting the supervisor app"

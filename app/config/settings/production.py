@@ -4,11 +4,11 @@ from .remote import *  # NOQA
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-BASE_URL = 'https://TEMPLATEPROJECT.org'
-DOMAIN_NAME = 'TEMPLATEPROJECT.org'
+DOMAIN_NAME = 'TEMPLATEPROJECT_DOMAIN'
+BASE_URL = f'https://{DOMAIN_NAME}'
 
 AWS_S3_CUSTOM_DOMAIN = ''
-AWS_STORAGE_BUCKET_NAME = "cdn-TEMPLATEPROJECT-production"
+AWS_STORAGE_BUCKET_NAME = "cdn-TEMPLATEPROJECT_SHORT_NAME-production"
 
 MEDIA_ROOT = 'media/'
 
