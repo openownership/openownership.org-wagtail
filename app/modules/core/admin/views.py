@@ -67,7 +67,7 @@ class DocumentDownloadsView(ListView):
         return context
 
 
-def register_admin_menus(request, menu_items):
+def admin_menus(request, menu_items):
 
     menus = [
         MenuItem(
@@ -82,7 +82,7 @@ def register_admin_menus(request, menu_items):
     return menu_items
 
 
-def register_admin_urls():
+def admin_urls():
     from .views import DocumentDownloadsView
     return [
         path('document-downloads/', DocumentDownloadsView.as_view(), name='document_downloads'),

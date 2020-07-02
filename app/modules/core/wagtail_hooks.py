@@ -15,7 +15,7 @@ from wagtail.admin.rich_text.converters.html_to_contentstate import InlineStyleE
 from modules.core.models import DocumentDownload
 
 # Module
-from .admin.views import register_admin_menus
+from .admin.views import admin_menus, admin_urls
 
 
 ####################################################################################################
@@ -88,7 +88,8 @@ def check_group_restrictions(page, request, serve_args, serve_kwargs):
                     raise exceptions.PermissionDenied
 
 
-hooks.register('construct_main_menu', register_admin_menus)
+hooks.register('construct_main_menu', admin_menus)
+hooks.register('register_admin_urls', admin_urls)
 
 
 ####################################################################################################

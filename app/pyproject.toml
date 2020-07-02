@@ -32,7 +32,7 @@ consoler = "^0.1.2"
 whitenoise = "^5.0.1"
 wagtail-cache = "^1.0.0"
 django_select2 = "^7.4.2"
-
+click = "^7.1.2"
 
 
 
