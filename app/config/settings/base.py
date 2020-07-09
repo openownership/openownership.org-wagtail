@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Django settings for the Esmée Fairbairn Foundation project.
+Django settings for the TEMPLATEPROJECT_FULL_NAME project.
 """
 
 from __future__ import absolute_import, unicode_literals
@@ -345,7 +345,7 @@ IMAGE_MODEL = WAGTAILIMAGES_IMAGE_MODEL
 DOCUMENT_MODEL = 'core.SiteDocument'
 
 
-SITE_NAME = 'Esmée Fairbairn Foundation'
+SITE_NAME = 'TEMPLATEPROJECT_FULL_NAME'
 WAGTAIL_SITE_NAME = SITE_NAME
 
 slideshare = {
