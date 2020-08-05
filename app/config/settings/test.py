@@ -19,12 +19,18 @@ ALLOWED_HOSTS = ['*']
 ASSETS_DEBUG = True
 ASSETS_AUTO_BUILD = True
 
+WAGTAIL_CACHE = False
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': ':memory:'
     }
 }
+
+STATICFILES_STORAGE = (
+    'django.contrib.staticfiles.storage.StaticFilesStorage'
+)
 
 WAGTAILSEARCH_BACKENDS = {
     'default': {
