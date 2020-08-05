@@ -20,6 +20,8 @@ class ViewCountMiddleware:
     def _find_page_from_path(self, request, path):
         site = Site.find_for_request(request)
         path_components = [component for component in path.split('/') if component]
+        if len(path_components) == 0:
+            return
         if path_components[0] in self.skip:
             return
         page, args, kwargs = site.root_page.specific.route(request, path_components)
