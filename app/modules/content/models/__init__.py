@@ -12,7 +12,7 @@ from .pages import (  # NOQA
     LandingPage, HomePage, ArticlePage
 )
 
-from .inlines import FeaturedNewsArticle, PageFAQList
+from .inlines import FeaturedNewsArticle, PageFAQList  # NOQA
 
 from .snippets import FAQList, FAQItem  # NOQA
 

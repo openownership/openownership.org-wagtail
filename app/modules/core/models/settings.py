@@ -228,6 +228,7 @@ class NavigationSettings(BaseSetting):
             return data
         return cached
 
+
 @register_setting(icon="fa-exclamation-circle")
 class UpdateBannerSettings(CachedSetting):
 

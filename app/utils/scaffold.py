@@ -6,22 +6,19 @@ from wagtail.core.models import Site, Page
 from utils.console import console
 
 from modules.content.models.pages import (
-    HomePage, SearchPage
+    LandingPage, HomePage, UtilityPage, NewsIndexPage, FAQPage, SearchPage
 )
 
-from modules.core.models.navigation import (
-    PrimaryNavigationMenu, PrimaryNavItem, PrimaryNavSubItem,
-    FooterNavigationMenu, FooterNavItem
-)
+from modules.content.models.taxonomy import NewsCategory
 
 
 DEFAULT_PAGES: list = []
 
+DEFAULT_TAXONOMY: list = []
+
 PRIMARY_NAV_PAGES: dict = {}
 
 FOOTER_NAV_PAGES: list = []
-
-PRIMARY_NAV_HIGHLIGHT: str = ''
 
 
 class Scaffold(object):
@@ -31,8 +28,7 @@ class Scaffold(object):
         site = self._create_site()
         home = self._create_home_page(site)
         self._create_default_pages(home)
-        self._create_nav_menus(site, purge=True)
-        self._create_suggested_searches()
+        self._create_taxonomy()
 
         console.info("SCAFFOLD COMPLETE")
 
@@ -118,81 +114,6 @@ class Scaffold(object):
 
         console.info('Done: _create_default_pages')
 
-    def _process_nav_items(self, objects, nav_item_class=PrimaryNavItem):
-        items = []
-
-        for index, item in enumerate(DEFAULT_PAGES, 1):
-            kwargs = {'sort_order': index}
-            kwargs.update({
-                'link_page': item[1].objects.get(title=item[0]),
-                'text': item.get('text') or item.get('page')
-            })
-
-            items.append(nav_item_class(**kwargs))
-
-        return items
-
-    def _create_nav_menus(self, site, purge=False):
-
-        primary_nav_pages = PRIMARY_NAV_PAGES
-
-        footer_nav_pages = FOOTER_NAV_PAGES
-
-        primary_nav_highlight = PRIMARY_NAV_HIGHLIGHT
-
-        if purge:
-            PrimaryNavSubItem.objects.all().delete()
-            PrimaryNavItem.objects.all().delete()
-            FooterNavItem.objects.all().delete()
-
-        # Primary nav
-        primary_nav = PrimaryNavigationMenu.objects.first()
-
-        for index, item in enumerate(primary_nav_pages.items(), 1):
-            title, children = item
-
-            parent_page = Page.objects.get(title=title)
-
-            parent_item, created = PrimaryNavItem.objects.get_or_create(
-                link_page=parent_page,
-                nav_menu=primary_nav,
-                defaults={
-                    'sort_order': index,
-                    'text': title
-                }
-            )
-
-            for child_index, child_title in enumerate(children, 1):
-                child_page = Page.objects.get(
-                    title=child_title,
-                )
-
-                PrimaryNavSubItem.objects.get_or_create(
-                    link_page=child_page,
-                    parent_id=parent_item.id,
-                    defaults={
-                        'sort_order': child_index,
-                        'text': child_title
-                    }
-                )
-
-        if primary_nav_highlight:
-            primary_nav.highlighted_link_page = Page.objects.get(title=primary_nav_highlight)
-            primary_nav.highlighted_item_text = primary_nav_highlight
-            primary_nav.save()
-
-        # Footer nav
-        footer_nav = FooterNavigationMenu.objects.first()
-
-        for index, title in enumerate(footer_nav_pages, 1):
-            page = Page.objects.get(title=title)
-            FooterNavItem.objects.get_or_create(
-                link_page=page,
-                nav_menu_id=footer_nav.id,
-                defaults={
-                    'sort_order': index,
-                    'text': title
-                }
-            )
-
-        console.info('Done: _create_nav_menus')
+    def _create_taxonomy(self):
+        for name, model in DEFAULT_TAXONOMY:
+            model.objects.get_or_create(name=name)

@@ -34,3 +34,10 @@ You'll probably want to do `sudo nano /etc/hosts` and add:
 Site should now be accessible at `http://TEMPLATEPROJECT_SHORT_NAME.test:5000` (or http://0.0.0.0.test:5000)
 
 
+# Static assets
+
+1. `cd app/asset/`
+2. `npm install`
+3. `npm run build`
+
+By default, the admin JS and CSS will be output to `assets/dist/`

@@ -86,6 +86,9 @@ class AppPageContextMixin(object):
 
 class PageHeroImage(Orderable):
 
+    """
+    Use this if we need a carousel of images
+    """
     image = models.ForeignKey(
         settings.IMAGE_MODEL,
         null=True,
@@ -116,14 +119,6 @@ class PageHeroMixin(PageMixinBase):
     class Meta:
         abstract = True
 
-    hero_eyebrow = models.CharField(
-        max_length=255,
-        blank=True,
-        null=True,
-        verbose_name="Eyebrow",
-        help_text="Small text that appears above the headline"
-    )
-
     hero_headline = models.CharField(
         max_length=255,
         blank=True,
@@ -131,18 +126,20 @@ class PageHeroMixin(PageMixinBase):
         verbose_name="Headline",
     )
 
-    hero_subheading = models.CharField(
-        max_length=255,
-        blank=True,
-        null=True,
-        verbose_name="Subheading"
-    )
-
     hero_body = fields.RichTextField(
         blank=True,
         null=True,
         features=['bold', 'italic', 'underline', 'link', 'document-link'],
         verbose_name="Body text"
+    )
+
+    hero_image = models.ForeignKey(
+        settings.IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="Background image"
     )
 
     hero_theme = models.CharField(
@@ -157,22 +154,11 @@ class PageHeroMixin(PageMixinBase):
         verbose_name="Theme"
     )
 
-    hero_cta_text = models.CharField(
-        max_length=255,
-        blank=True,
-        null=True,
-        verbose_name="CTA text"
-    )
-
     hero_panels = [
         MultiFieldPanel([
-            FieldPanel('hero_eyebrow'),
             FieldPanel('hero_headline', classname="title"),
-            FieldPanel('hero_subheading'),
             FieldPanel('hero_body'),
-            FieldPanel('hero_cta_text'),
-            FieldPanel('hero_theme'),
-            InlinePanel('hero_images', heading="Images", label="Images"),
+            ImageChooserPanel('hero_image'),
         ], heading="Hero"),
     ]
 

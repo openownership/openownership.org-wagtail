@@ -243,8 +243,8 @@ class LogoListBlock(EyebrowTitleBodyMixin):
 
 class BannerBlock(EyebrowTitleMixin):
     class Meta:
-        icon = 'fa-quote-left'
-        template = 'blocks/slim_banner.jinja'
+        icon = 'fa-minus'
+        template = 'blocks/banner.jinja'
 
     cta = CTABlock(required=False)
 
