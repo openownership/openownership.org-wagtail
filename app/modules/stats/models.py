@@ -33,7 +33,7 @@ class ViewCountManager(models.Manager):
         """
         shift = days * -1
         date = arrow.now().shift(days=shift).datetime.date()
-        q = self.filter(date__gt=date).order_by('-count').values('id', 'count')[:limit]
+        q = self.filter(date__gt=date).order_by('-count').values('page_id', 'count')[:limit]
         return q
 
     def popular(self, days: Optional[int] = 7, limit: Optional[int] = 100) -> models.QuerySet:
@@ -47,7 +47,7 @@ class ViewCountManager(models.Manager):
         """
         shift = days * -1
         date = arrow.now().shift(days=shift).datetime.date()
-        q = self.filter(date__gt=date).order_by('-count').values_list('id', flat=True)[:limit]
+        q = self.filter(date__gt=date).order_by('-count').values_list('page_id', flat=True)[:limit]
         return q
 
     def find(self, page_id: int, date: Optional[datetime.date] = None) -> models.Model:

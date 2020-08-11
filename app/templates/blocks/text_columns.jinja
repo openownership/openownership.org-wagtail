@@ -1,0 +1,13 @@
+<div class="text-columns {% if value.theme %}text-columns--theme-{{value.theme}}{% endif %} {% if value.speech_bubble_theme %}text-columns--bubble-theme-{{value.speech_bubble_theme}}{% endif %}">
+    {% include 'svg/bg_bubbles/yellow--small.jinja' %}
+    <div class="contained-width text-columns__items">
+        {% for object in value.objects %}
+            <div class="text-columns__item">
+                {% if object.title %}<h2 class="text-columns__title">{{object.title}}</h2>{% endif %}
+                {% if object.body %}{{object.body|rich_text}}{% endif %}
+                {{render_cta(object.cta, "contained-width__cta")}}
+            </div>
+        {% endfor %}
+    </div>
+    {% include 'svg/bg_bubbles/blue--right.jinja' %}
+</div>

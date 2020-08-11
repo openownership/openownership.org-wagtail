@@ -1,0 +1,15 @@
+<div class="cta-group cta-group--theme-{{value.theme}}{% if value.speech_bubble_theme %} cta-group--bubble-theme-{{value.speech_bubble_theme}}{% endif %}">
+    {% if value.speech_bubble_theme %}{% include 'svg/bg_bubbles/options.jinja' %}{% endif %}
+    <div class="contained-width">
+        <span class="cta-group__eyebrow">{{value.eyebrow}}</span>
+        <h2 class="cta-group__title">{{value.title}}</h2>
+        <ul class="cta-group__items list--{% if value.objects|length is divisibleby 3 %}three-col{% else %}four-col{% endif %}">
+            {% for obj in value.objects %}
+                <li class="cta-group__item">
+                    {{render_cta(obj, 'cta-group__cta')}}
+                </li>
+            {% endfor %}
+        </ul>
+        {{render_cta(value.cta, 'cta-group__link')}}
+    </div>
+</div>

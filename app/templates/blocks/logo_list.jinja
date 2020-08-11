@@ -1,0 +1,12 @@
+<div class="logo-list logo-list--{{value.align}} logo-list--{{value.width}} contained-width">
+    {% if value.title %}<h2 class="logo-list__title">{{value.title}}</h2>{% endif %}
+    <ul class="logo-list__items">
+    {% for object in value.objects %}
+        <li class="logo-list__item">
+            {% if object.url %}<a href="{{object.url}}">{% endif %}
+                {{image(object.image, 'height-150')}}</a>
+            {% if object.url %}</a>{% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</div>

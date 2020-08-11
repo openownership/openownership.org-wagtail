@@ -1,0 +1,16 @@
+{% set bg_image = image(value.image, 'fill-695x420') %}
+
+<div class="speech-bubble-panel speech-bubble-panel--with-btn">
+    {% include 'svg/masks/wide.jinja' %}
+    <div class="contained-width">
+        <div class="speech-bubble-panel__wrapper">
+            {% include 'svg/bg_bubbles/indigo.jinja' %}
+            <div style="background-image: url('{{bg_image.url}}')" class="speech-bubble-panel__content">
+                {% if value.eyebrow %}<span class="speech-bubble-panel__eyebrow">{{value.eyebrow}}</span>{% endif %}
+                {% if value.title %}<h2 class="speech-bubble-panel__title">{{value.title}}</h2>{% endif %}
+                {% if value.body %}{{value.body|richtext}}{% endif %}
+            </div>
+            {% include 'svg/bg_bubbles/coral.jinja' %}
+        </div>
+    </div>
+</div>

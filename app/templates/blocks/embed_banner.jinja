@@ -1,0 +1,52 @@
+{% if value.image %}
+    {% set bg_image = image(value.image, 'fill-1600x500') %}
+{% endif %}
+
+<div class="video-banner video-banner--with-copy video-banner--{{value.layout}}">
+
+  <div class="contained-width">
+  
+    <div class="video-banner__text">
+      {% if value.title %}
+        <h2 class="video-banner__title">{{value.title}}</h2>
+      {% endif %}
+      {% if value.description %}
+        <p class="video-banner__description">{{value.description}}</p>
+      {% endif %}
+    </div>
+
+    {% include 'svg/masks/regular--left.jinja' %}
+
+    <div class="video-banner__image">
+      {% if value.layout == 'left' %}{% include 'svg/bg_bubbles/coral--small.jinja' %}{% else %}{% include 'svg/bg_bubbles/green.jinja' %}{% endif %}
+      <div class="video-banner__thumbnail" {% if bg_image %} style="background-image:url('{{bg_image.url}}')"{% endif %}>
+        <button data-micromodal-trigger="modal-{{embed_id}}" role="button" class="video-banner__button">
+          <svg width="54" height="54" xmlns="http://www.w3.org/2000/svg"><path d="M54 27L0 54V0z" fill="#FFF" fill-rule="evenodd"/></svg>
+          <span>Play Video</span>
+        </button>
+      </div>
+      {% if value.layout == 'left' %}{% include 'svg/bg_bubbles/yellow.jinja' %}{% else %}{% include 'svg/bg_bubbles/blue.jinja' %}{% endif %}
+    </div>
+    
+  </div>
+
+  <div class="modal" id="modal-{{embed_id}}" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+      <div role="dialog" class="modal__content" aria-modal="true" data-micromodal-close>
+        <header class="modal__header">
+          <button aria-label="Close modal" data-micromodal-close>Close</button>
+        </header>
+          {% if ratio %}
+            <div class="modal__responsive-embed">
+              {{embed_html|safe}}
+            </div>
+          {% else %}
+            {{embed_html|safe}}
+          {% endif %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

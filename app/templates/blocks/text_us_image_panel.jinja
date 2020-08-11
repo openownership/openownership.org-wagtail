@@ -1,0 +1,7 @@
+<div class="layout-{{value.layout}} shape-{{value.image_shape}}">
+    {% if value.eyebrow %}{{value.eyebrow}}{% endif %}
+    {% if value.title %}{{value.title}}{% endif %}
+    {% if value.body %}{{value.body|richtext}}{% endif %}
+    {{render_cta(value.cta)}}
+    {{image(value.image, 'fill-695x420')}}
+</div>

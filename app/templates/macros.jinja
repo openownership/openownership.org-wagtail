@@ -1,0 +1,60 @@
+{% macro render_stream(stream) %}
+{% for stream_block in stream %}
+{% with block_id = stream_block.id %}
+    {% include_block stream_block %}
+{% endwith %}
+{% endfor %}
+{% endmacro %}
+
+{% macro render_field(field, hide_label=False) %}
+    {% if field|fieldtype == 'RadioSelect' %}
+        <ul id="{{field.auto_id}}" class="field-type__{{field.field.widget.__class__.__name__|slugify}} radio-group {% if field.field.required %}required{% endif %}">
+        {% if not hide_label %}<li>{{field.label_tag()}}</li>{% endif %}
+        {% for choice in field %}
+        <li>
+            <label class="radio-button" for="{{field.auto_id}}_{{loop.index0}}">
+                {{ choice.tag() }}
+                <span>{{choice.choice_label}}</span>
+            </label>
+        </li>
+        {% endfor %}
+        </ul>
+    {% elif field|fieldtype == 'CheckboxSelectMultiple' %}
+        <ul id="{{field.auto_id}}" class="field-type__{{field.field.widget.__class__.__name__|slugify}} checkbox-group {% if field.field.required %}required{% endif %}">
+        <li>{{field.label_tag()}}</li>
+        {% for choice in field %}
+        <li>
+            <label class="checkbox-input" for="{{field.auto_id}}_{{loop.index0}}">
+                {{ choice.tag() }}
+                <span>{{choice.choice_label}}</span>
+            </label>
+        </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+    <div class="field-type__{{field.field.widget.__class__.__name__|slugify}} {% if field.field.required %}required{% endif %} {% if field.errors %}error{% endif %}">
+    {% if not hide_label %}
+        {{field.label_tag()}}
+    {% endif %}
+    {{field}}
+    </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro render_cta(obj, classes=None) %}
+    {% if obj.href %}<a href="{{obj.href}}"{% if classes %} class="{{classes}}"{% endif %}{% for attr_key, attr_value in obj.attrs.items() %} data-{{attr_key}}="{{attr_value}}"{% endfor %}{% if obj.link_type == 'sms' %} data-sms-href="{{sms_href}}" data-fallback-href="{{sms_fallback_href}}"{% endif %}>{{obj.label or 'Find out more'}}</a>{% endif %}
+{% endmacro %}
+
+{% macro share_tools(url_to_share) %}
+<ul>
+    <li>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{url_to_share}}" target="_blank" aria-label="Share on LinkedIn">Share on LinkedIn</a>
+    </li>
+    <li>
+        <a href="https://www.twitter.com/share?url={{url_to_share}}" target="_blank" aria-label="Share on Twitter">Share on Twitter</a>
+    </li>
+    <li>
+         <a href="https://www.facebook.com/sharer/sharer.php?u={{url_to_share}}" aria-label="Share on Facebook" target="_blank">Share on Facebook</a>
+    </li>
+</ul>
+{% endmacro %}

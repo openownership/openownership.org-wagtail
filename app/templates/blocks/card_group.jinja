@@ -1,0 +1,7 @@
+<div class="card-group card-group--theme-{{value.theme}} contained-width">
+    <ul class="list--{% if object_count is divisibleby 3 %}three-col{% else %}two-col{% endif %}">
+        {% for card in value.objects %}
+            {% include_block card %}
+        {% endfor %}
+    </ul>
+</div>

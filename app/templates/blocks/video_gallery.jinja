@@ -1,0 +1,46 @@
+<div class="video-banner video-banner--gallery">
+  {% include 'svg/masks/regular--left.jinja' %}
+  <div class="contained-width video-banner--gallery__items">
+
+    {% for obj in value.objects %}
+      {% if obj.image %}
+          {% set bg_image = image(value.image, 'fill-1600x500') %}
+      {% endif %}
+      <div class="relative">
+        {% if loop.index is divisibleby 2 %}{% include 'svg/bg_bubbles/coral--small.jinja' %}{% else %}{% include 'svg/bg_bubbles/green.jinja' %}{% endif %}
+        <div class="video-banner--gallery__item">
+
+          <div class="video-banner__thumbnail" style="background-color: #808080">
+            <button data-micromodal-trigger="modal-{{obj.embed.pk}}" role="button" class="video-banner__button">
+              <svg width="54" height="54" xmlns="http://www.w3.org/2000/svg"><path d="M54 27L0 54V0z" fill="#FFF" fill-rule="evenodd"/></svg>
+            </button>
+            {% if obj.title %}
+              <h2 class="video-banner__title">{{obj.title}}</h2>
+            {% endif %}
+          </div>
+
+          <div class="modal" id="modal-{{obj.embed.pk}}" aria-hidden="true">
+            <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+              <div role="dialog" class="modal__content" aria-modal="true" data-micromodal-close>
+                <header>
+                  <button aria-label="Close modal" data-micromodal-close></button>
+                </header>
+                  {% if obj.embed.ratio %}
+                    <div class="modal__responsive-embed">
+                      {{obj.embed.html|safe}}
+                    </div>
+                  {% else %}
+                    {{obj.embed.html|safe}}
+                  {% endif %}
+              </div>
+            </div>
+          </div>
+          {% if loop.index is divisibleby 2 %}{% include 'svg/bg_bubbles/yellow.jinja' %}{% else %}{% include 'svg/bg_bubbles/blue.jinja' %}{% endif %}
+        </div>
+
+      </div>
+    {% endfor %}
+
+
+  </div>
+</div>

@@ -1,0 +1,40 @@
+{% if value.image %}
+    {% set bg_image = image(value.image, 'fill-1600x500') %}
+{% endif %}
+
+<div class="video-banner video-banner--centered">
+
+  {% include 'svg/masks/wide.jinja' %}
+
+  <div class="contained-width">
+    {% include 'svg/bg_bubbles/indigo.jinja' %}
+    <div class="video-banner__thumbnail" {% if bg_image %} style="background-image:url('{{bg_image.url}}')"{% endif %}>
+      <button data-micromodal-trigger="modal-{{embed_id}}" role="button" class="video-banner__button">
+        <svg width="54" height="54" xmlns="http://www.w3.org/2000/svg"><path d="M54 27L0 54V0z" fill="#FFF" fill-rule="evenodd"/></svg>
+          <span>Play Video</span>
+      </button>
+      {% if value.body %}
+        {{value.body|richtext}}
+      {% endif %}
+    </div>
+    {% include 'svg/bg_bubbles/coral.jinja' %}
+  </div>
+
+  <div class="modal" id="modal-{{embed_id}}" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+      <div role="dialog" class="modal__content" aria-modal="true" data-micromodal-close>
+        <header>
+          <button aria-label="Close modal" data-micromodal-close></button>
+        </header>
+          {% if ratio %}
+            <div class="modal__responsive-embed">
+              {{embed_html|safe}}
+            </div>
+          {% else %}
+            {{embed_html|safe}}
+          {% endif %}
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -22,8 +22,9 @@ PROJECT_DIR_NAME = 'app'
 DJANGO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 MODULES_DIR = os.path.join(DJANGO_ROOT, PROJECT_DIR_NAME)
 
+MONTH_IN_SECONDS = 2628000
 
-the_future = datetime.now() + timedelta(days=365 * 1)
+TIME_IN_A_YEAR = datetime.now() + timedelta(days=365 * 1)
 guru.add("/var/log/TEMPLATEPROJECT_SHORT_NAME/output.log", rotation="100 MB", backtrace=True)
 
 
@@ -74,6 +75,7 @@ WAGTAIL_APPS = [
 SITE_APPS = [
     'modules.users',
     'modules.core',
+    'modules.content',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + WAGTAIL_APPS + SITE_APPS
@@ -289,12 +291,12 @@ STATICFILES_FINDERS = [
 ####################################################################################################
 
 AWS_HEADERS = {
-    'Expires': the_future.strftime('%a, %d %b %Y %H:%M:%S'),
+    'Expires': TIME_IN_A_YEAR.strftime('%a, %d %b %Y %H:%M:%S'),
     'Cache-Control': 'max-age=2628000',
 }
 
 AWS_S3_OBJECT_PARAMETERS = {
-    'Expires': the_future.strftime('%a, %d %b %Y %H:%M:%S'),
+    'Expires': TIME_IN_A_YEAR.strftime('%a, %d %b %Y %H:%M:%S'),
     'CacheControl': 'max-age=2628000',
 }
 
@@ -382,6 +384,10 @@ ERROR_500_TEMPLATE_NAME = 'errors/500.html'
 
 PRIVATE_FOLDER = '/srv/private/'
 
-THEME_CHOICES = [
+THEME_CHOICES = []
 
+ICON_CHOICES = []
+
+SOCIAL_MEDIA_CHOICES = [
+    'Facebook', 'Twitter', 'LinkedIn'
 ]

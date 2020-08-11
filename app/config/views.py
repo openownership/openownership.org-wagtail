@@ -9,7 +9,7 @@ from django.shortcuts import render
 
 def error_context():
     from wagtail.core.models import Site
-    from modules.core.models.settings import (
+    from modules.content.models.settings import (
         SocialMediaSettings, AnalyticsSettings
     )
 

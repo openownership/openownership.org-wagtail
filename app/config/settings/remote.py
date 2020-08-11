@@ -17,7 +17,7 @@ ASSETS_DEBUG = False
 
 ASSETS_AUTO_BUILD = False
 
-DEFAULT_FILE_STORAGE = 'helpers.storages.MediaRootS3BotoStorage'
+DEFAULT_FILE_STORAGE = 'utils.storages.MediaRootS3BotoStorage'
 
 COLLECTFAST_ENABLED = False
 

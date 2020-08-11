@@ -1,0 +1,17 @@
+<div class="news-listing contained-width">
+    <header class="news-listing__header">
+        {% if value.title %}<h2 class="news-listing__header-title">{{value.title}}</h2>{% endif %}
+    </header>
+    <ul class="news-listing__items list--three-col">
+        {% for obj in objects %}
+            <li class="news-item">
+                <a href="{{obj.url_path|url_from_path}}">
+                    {% if obj.thumbnail %}<div class="news-item__thumbnail">{{image(obj.thumbnail, 'fill-280x140')}}</div>{% endif %}
+                    <span class="news-item__eyebrow">{% if obj.category %}{{obj.category.name}}{% else %}News{% endif %}</span>
+                    <h3 class="news-item__title">{{obj.title}}</h3>
+                    <time class="news-item__date">{{obj.human_display_date}}</time>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

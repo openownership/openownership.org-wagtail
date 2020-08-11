@@ -1,0 +1,14 @@
+<div class="content-image-panel content-image-panel--{{value.layout}} content-image-panel--{{value.image_shape}} contained-width">
+    <div class="content-image-panel__text">
+        {% if value.eyebrow %}<span class="content-image-panel__eyebrow">{{value.eyebrow}}</span>{% endif %}
+        {% if value.title %}<h2 class="content-image-panel__title">{{value.title}}</h2>{% endif %}
+        {% if value.body %}{{value.body|richtext}}{% endif %}
+        {{render_cta(value.cta, 'btn')}}
+    </div>
+    <div class="content-image-panel__image">
+        {% include 'svg/masks/regular--left.jinja' %}
+        {% if value.layout == 'left' %}{% include 'svg/bg_bubbles/coral--small.jinja' %}{% else %}{% include 'svg/bg_bubbles/green.jinja' %}{% endif %}
+        {{image(value.image, 'fill-695x421', class='shape-' ~ value.image_shape)}}
+        {% if value.layout == 'left' %}{% include 'svg/bg_bubbles/yellow.jinja' %}{% else %}{% include 'svg/bg_bubbles/blue.jinja' %}{% endif %}
+    </div>
+</div>

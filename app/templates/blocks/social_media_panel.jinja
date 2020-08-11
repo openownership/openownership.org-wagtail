@@ -1,0 +1,22 @@
+<div class="social-media-panel contained-width">
+    <div class="social-media-panel__header">
+        {% if value.title %}<h2 class="social-media-panel__title">{{value.title}}</h2>{% endif %}
+        {% if value.body %}{{value.body|richtext}}{% endif %}
+    </div>
+
+    <ul class="social-links">
+        {% for service, link in social_links.items() %}
+        <li>
+            <a
+                rel="noopener noreferrer"
+                target="_blank"
+                class="social-links__link {{service|lower}}"
+                href="{{link}}"
+                aria-label="Visit our {{service|title}}"
+                >
+                {{service}}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
