@@ -25,7 +25,7 @@ services:
 
   # Application
   web:
-    image: template_project:latest
+    image: TEMPLATEPROJECT_SHORT_NAME:latest
     environment:
       - SERVER_ENV=development
       - ENVKEY=${ENVKEY}

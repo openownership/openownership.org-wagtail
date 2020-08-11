@@ -5,6 +5,7 @@ You'll want to find/replace the following variables across the project before st
 * `TEMPLATEPROJECT_FULL_NAME` - ie. "London Anti-Fascists Alliance"
 * `TEMPLATEPROJECT_SHORT_NAME` - ie. "lafa"
 * `TEMPLATEPROJECT_DOMAIN` - ie. "londonantifa.org.uk"
+* `TEMPLATEPROJECT_REPO` - ie. "git@github.com:hactar-is/londonantifa.org.uk.git"
 
 Then you can delete everything above and use the below for your Readme
 
