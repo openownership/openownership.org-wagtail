@@ -27,12 +27,14 @@ from modules.content.blocks import (
     additional_content_blocks
 )
 
+from modules.content.models.mixins import PageHeroMixin
+
 
 ####################################################################################################
 # Core / general page types
 ####################################################################################################
 
-class BasePage(WagtailCacheMixin, Page):
+class BasePage(WagtailCacheMixin, PageHeroMixin, Page):
 
     class Meta:
         abstract = True
@@ -58,7 +60,7 @@ class BasePage(WagtailCacheMixin, Page):
 
     # Panels
     content_panels = Page.content_panels
-    thumbnail_panels = [
+    thumbnail_panels = PageHeroMixin.hero_panels + [
         ImageChooserPanel('thumbnail'),
         FieldPanel('blurb'),
     ]

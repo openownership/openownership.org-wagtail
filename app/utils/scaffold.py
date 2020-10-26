@@ -6,19 +6,28 @@ from wagtail.core.models import Site, Page
 from utils.console import console
 
 from modules.content.models.pages import (
-    LandingPage, HomePage, UtilityPage, NewsIndexPage, FAQPage, SearchPage
+    LandingPage, HomePage, UtilityPage, NewsIndexPage, FAQPage, SearchPage, ProjectsIndexPage
 )
 
 from modules.content.models.taxonomy import NewsCategory
 
 
-DEFAULT_PAGES: list = []
+DEFAULT_PAGES: list = [
+    ('Latest', NewsIndexPage, []),
+    ('Search', SearchPage, []),
+    ('Terms & Conditions', UtilityPage, []),
+    ('Privacy', UtilityPage, []),
+    ('Accessibility', UtilityPage, []),
+    ('Terms and conditions', UtilityPage, []),
+]
 
 DEFAULT_TAXONOMY: list = []
 
 PRIMARY_NAV_PAGES: dict = {}
 
 FOOTER_NAV_PAGES: list = []
+
+PRIMARY_NAV_HIGHLIGHT: str = ''
 
 
 class Scaffold(object):

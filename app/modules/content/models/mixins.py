@@ -9,7 +9,6 @@
 from collections import OrderedDict
 
 # 3rd party
-from django import forms
 from django.db import models
 from django.conf import settings
 from django.utils.functional import cached_property
@@ -21,7 +20,7 @@ from modelcluster.models import ClusterableModel
 
 from wagtail.core import fields
 from wagtail.core.models import Orderable
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, InlinePanel
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from modelcluster.fields import ParentalManyToManyField
 

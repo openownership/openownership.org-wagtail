@@ -68,6 +68,21 @@ class NotificationBlock(blocks.StructBlock):
     cta = CTABlock(required=True)
 
 
+class HeadlineBannerBlock(blocks.StructBlock):
+
+    class Meta:
+        icon = 'title'
+        template = 'blocks/headline_banner.jinja'
+
+    body = blocks.CharBlock(
+        required=True
+    )
+
+    show_social_icons = blocks.BooleanBlock(
+        required=False
+    )
+
+
 class _StepsBlockItem(blocks.StructBlock):
 
     body = blocks.RichTextBlock(

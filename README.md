@@ -22,15 +22,25 @@ You'll probably want to do `sudo nano /etc/hosts` and add:
 
 `0.0.0.0    TEMPLATEPROJECT_SHORT_NAME.test`
 
-1. `git submodule update --init --recursive`
-2. `goenv`
-3. `gofab` (and then probably `cd ..`)
-4. `docker-compose up --build -d`
-5. `fab docker.fish`
-6. `manpy migrate`
-7. `manpy site_scaffold`
-8. `manpy createsuperuser`
-9. `runserver`
+If you are setting up from scratch:
+`git submodule add git@github.com:hactar-is/fabfile.git fabfile`
+`git submodule add git@github.com:hactar-is/ansible-roles.git devops/roles`
+
+If you are working on an existing project:
+
+`git submodule update --init --recursive`
+
+Then...
+
+1. `goenv`
+2. `gofab` (and then probably `cd ..`)
+3. `docker-compose up --build -d`
+4. `fab docker.fish`
+5. `manpy migrate`
+6. `manpy site_scaffold`
+7. `manpy createsuperuser`
+8. `runserver`
+
 
 Site should now be accessible at `http://TEMPLATEPROJECT_SHORT_NAME.test:5000` (or http://0.0.0.0.test:5000)
 
