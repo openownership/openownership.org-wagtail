@@ -177,26 +177,9 @@ class CTABlockStructValue(blocks.StructValue):
         elif self.link_type == 'url':
             return self.get('link_url')
 
-        elif self.link_type == 'sms':
-            number = self.get('link_sms', '85258')
-            return f'sms:{number}'
-
-        elif self.link_type == 'faq':
-            faq_pk = self.get('link_faq')
-            obj = get_faq(faq_pk)
-            if type(obj) is dict:
-                return obj.get('url')
-
     @property
     def attrs(self):
         attrs = {}
-
-        if self.link_type == 'sms':
-            attrs.update({
-                'sms-label': self.get('link_sms_label', 'Text us now'),
-                'fallback-label': self.get('link_sms_label', 'Get help'),
-            })
-
         return attrs
 
 

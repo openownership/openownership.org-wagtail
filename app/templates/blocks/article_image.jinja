@@ -1,3 +1,4 @@
 <div class="image--with-caption">
-    {{image_}}
+   {{image(value.image, 'original')}}
+   {% if value.caption %}{{value.caption|richtext}}{% endif %}
 </div>

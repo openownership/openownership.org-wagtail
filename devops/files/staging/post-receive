@@ -19,19 +19,6 @@ mkdir -p /var/log/TEMPLATEPROJECT_SHORT_NAME
 touch /var/log/TEMPLATEPROJECT_SHORT_NAME/output.log
 chown -R deploy:deploy /var/log/TEMPLATEPROJECT_SHORT_NAME
 
-# Make sure the webassets cache directory exists
-mkdir -p /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/static/.webassets-cache
-chown -R deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/static/.webassets-cache
-
-# Make sure these stupid files exist for no good sodding reason
-mkdir -p /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/css/
-touch /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/css/main.min.css
-chown deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/css/main.min.css
-mkdir -p /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/js/
-touch /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/js/main.min.js
-chown deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/js/main.min.js
-touch /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/css/admin.min.css
-chown deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/assets/css/admin.min.css
 
 header "Clearing pyc files"
 find /srv/www -name "*.pyc" -type f -delete
@@ -59,9 +46,7 @@ rm -rf /srv/www/TEMPLATEPROJECT_SHORT_NAME/ansible.cfg \
 
 # Ensure envkey is set
 header "Setting envkey"
-echo 'ENVKEY='$ENVKEY > /srv/www/TEMPLATEPROJECT_SHORT_NAME/.env
 echo 'ENVKEY='$ENVKEY > /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.env
-chown deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/.env
 chown deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.env
 export SERVER_ENV=staging
 
@@ -70,6 +55,12 @@ cd /srv/www/TEMPLATEPROJECT_SHORT_NAME/app && poetry install --no-dev
 
 header "Running migrations"
 /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.venv/bin/python manage.py migrate
+
+header "Collecting static"
+/srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.venv/bin/python /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/manage.py collectstatic --no-input
+
+header "Clearing cache"
+/srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.venv/bin/python /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/manage.py clear_wagtail_cache
 
 # Restart supervisor apps
 header "Restarting the supervisor app"

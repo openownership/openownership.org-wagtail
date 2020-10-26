@@ -1,0 +1,16 @@
+<div class="block--stats vertical-padding">
+    <div class="max-width">
+        <div class="max-text-width">
+            {% if value.title %}<h2 class="no-top-margin">{{value.title}}</h2>{% endif %}
+            {% if value.body %}<div class="h4">{{value.body|rich_text}}</div>{% endif %}
+        </div>
+        <ul class="unlist grid--{% if value.objects|length % 2 == 0%}two-col{% else %}three-col{% endif %}">
+            {% for object in value.objects %}
+            <li>
+                <h2 class="stat">{{object.stat_text }}</h2>
+                {% if object.description %}<p>{{object.description}}</p>{% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

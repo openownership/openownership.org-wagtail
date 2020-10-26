@@ -23,10 +23,10 @@ from .admin.views import admin_menus, admin_urls
 @hooks.register('insert_global_admin_js')
 def admin_js():
     js_files = [
-        'js/admin.js',
+        'js/admin.min.js',
     ]
     js_includes = format_html_join(
-        '\n', '<script src="{0}{1}?v=3"></script>',
+        '\n', '<script src="{0}{1}"></script>',
         ((settings.STATIC_URL, filename) for filename in js_files)
     )
     return js_includes
@@ -34,7 +34,7 @@ def admin_js():
 
 @hooks.register('insert_global_admin_css')
 def admin_css():
-    css_files = ['css/admin.css?v=2']
+    css_files = ['css/admin.min.css']
 
     css_includes = format_html_join(
         '\n', '<link rel="stylesheet" href="{0}{1}?v=3">',

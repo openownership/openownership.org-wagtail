@@ -1,0 +1,50 @@
+<nav class="navigation">
+    <a href="/" aria-label="Home" class="navigation__home-link">
+        Home
+    </a>
+    <div class="navigation__navigation-toggle-wrapper mobile-only--navigation">
+        <button class="navigation__navigation-toggle" aria-expanded="false" aria-label="Toggle navigation">
+            <svg width="41" height="38" xmlns="http://www.w3.org/2000/svg">
+                <g stroke="#000000" stroke-width="4" fill="none" fill-rule="evenodd" stroke-linecap="round">
+                    <path d="M2 2.5h37M2 19.5h37M2 35.5h37"/>
+                </g>
+            </svg>
+        </button>
+    </div>
+    <ul class="navigation__level-one">
+        {% for obj in primary_nav recursive %}
+            <li class="navigation__item">
+                <ul>
+                    {% if obj.type == 'nav_item' %}
+                        {% set href, label = obj.value %}
+                        <li>
+                            <a href="{{href}}" class="navigation__link {% if href|string in request.path %}{% endif %}">{{label}}</a>
+                        </li>
+                    {% elif obj.type == 'highlight_nav_link' %}
+                        {% set href, label = obj.value %}
+                        <li class="navigation__link--highlight-wrapper">
+                            <a href="{{href}}" class="navigation__link--highlight">{{label}}</a>
+                        </li>
+                    {% elif obj.type == 'sub_nav' %}
+                        <li>
+                            <p class="navigation__header h6 mobile-only--navigation">{{obj.text}}</p>
+                            <button class="navigation__subnav-toggle desktop-only--navigation" aria-expanded="false" aria-label="Toggle subnav">
+                                {{obj.text}}
+                                <svg width="13" height="7" xmlns="http://www.w3.org/2000/svg" class="navigation__subnav-icon">
+                                    <path d="M1 1l5.156 5.156L11.313 1" stroke="#000000" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <ul class="navigation__level-two">
+                                {% for href, label in obj.value %}
+                                <li>
+                                    <a href="{{href}}">{{label}}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

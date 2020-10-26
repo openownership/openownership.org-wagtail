@@ -1,0 +1,11 @@
+<section class="embed">
+    {% if ratio %}
+    <div class="embed__wrapper--responsive">
+        {{embed_html|safe}}
+    </div>
+    {% else %}
+    <div class="embed__wrapper--unresponsive">
+        {{embed_html|safe}}
+    </div>
+    {% endif %}
+</section>

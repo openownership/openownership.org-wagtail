@@ -1,5 +1,4 @@
-<div class="steps-panel steps-panel--theme-{{value.theme}} {% if value.speech_bubble_theme %}steps-panel--bubble-theme-{{value.speech_bubble_theme}}{% endif %}">
-    {% if value.speech_bubble_theme %}{% include 'svg/bg_bubbles/options.jinja' %}{% endif %}
+<div class="steps-panel steps-panel--theme-{{value.theme}}">
     <div class="contained-width">
         {% if value.eyebrow %}<span class="steps-panel__eyebrow">{{value.eyebrow}}</span>{% endif %}
         {% if value.title %}<h2 class="steps-panel__title">{{value.title}}</h2>{% endif %}

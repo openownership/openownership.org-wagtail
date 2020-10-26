@@ -47,7 +47,7 @@ class SubNavigationMenu(blocks.StructBlock):
 class TwoTieredNavigationMenu(blocks.StructBlock):
 
     objects = blocks.StreamBlock([
-        ('nav_link', NavigationItem()),
+        ('nav_item', NavigationItem()),
         ('sub_nav', SubNavigationMenu()),
     ])
 
@@ -69,12 +69,12 @@ class SocialMediaItem(blocks.StructBlock):
 
 
 single_tiered_navigation_menu_blocks = [
-    ('nav_link', NavigationItem())
+    ('nav_item', NavigationItem())
 ]
 
 
 two_tiered_navigation_menu_blocks = [
-    ('nav_link', NavigationItem()),
+    ('nav_item', NavigationItem()),
     ('sub_nav', SubNavigationMenu()),
 ]
 

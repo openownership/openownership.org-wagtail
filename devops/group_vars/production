@@ -8,18 +8,17 @@ ansible_python_interpreter: /usr/bin/python3
 # Envkey
 ####################################################################################################
 
-env_path: /srv/www/app/
+env_path: /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/
 envkey: "{{ lookup('envkey', 'ENVKEY_PRODUCTION') }}"
 
 ####################################################################################################
 # Python
 ####################################################################################################
 
-
+hactar_python3_version: python3
 hactar_python3_app_dir: /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/
 hactar_python3_reqs_path: ../../../app/
 hactar_python3_use_poetry: true
-hactar_python3_no_gunicorn: true
 hactar_python3_venv_name: .venv
 hactar_python3_poetry_dir: /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/
 
@@ -77,7 +76,7 @@ hactar_firewall_allow:
 
 hactar_caddy_sites:
   -
-    domains: https://TEMPLATEPROJECT_SHORT_NAME.org
+    domains: https://TEMPLATEPROJECT_DOMAIN
     proxy: 127.0.0.1:8000
     tls: "systems@hactar.is"
     features:
@@ -93,7 +92,7 @@ hactar_caddy_force_build: true
 
 
 hactar_ohmyzsh:
-  app_path: /srv/www/TEMPLATEPROJECT_SHORT_NAME/app
+  app_path: /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/
   venv_name: .venv
   gunicorn_env: SERVER_ENV="production"
   flask_script: false
@@ -121,7 +120,7 @@ hactar_supervisor:
   apps:
     -
       name: TEMPLATEPROJECT_SHORT_NAME
-      command: "/srv/www/.venv/bin/gunicorn -c /etc/gunicorn.py --env SERVER_ENV=production config.wsgi:application"
+      command: "/srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.venv/bin/gunicorn -c /etc/gunicorn.py --env SERVER_ENV=production config.wsgi:application"
       directory: "/srv/www/TEMPLATEPROJECT_SHORT_NAME/app"
       env: SERVER_ENV="production"
 

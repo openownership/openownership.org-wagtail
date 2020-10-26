@@ -1,0 +1,11 @@
+{% if value.background_image %}
+    {% set bg_image = image(value.background_image, 'fill-1600x500') %}
+{% endif %}
+
+<div class="banner" {% if bg_image %}style="background-image: url('{{bg_image.url }}')"{% endif %}>
+  <div class="banner__content contained-width vertical-padding max-text-width">
+    {% if value.eyebrow %}<p class="banner__eyebrow">{{value.eyebrow}}</p>{% endif %}
+    <div class="banner__body h3">{{value.body|richtext}}</div>
+    {% if value.cta %}{{render_cta(value.cta, 'btn')}}{% endif %}
+  </div>
+</div>

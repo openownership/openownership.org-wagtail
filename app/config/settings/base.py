@@ -97,7 +97,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     'wagtailcache.cache.FetchFromCacheMiddleware',
 ]
@@ -186,13 +185,9 @@ CACHEOPS_REDIS = {
 CACHEOPS = {
     'users.User': {'ops': 'all', 'timeout': 60 * 60},
     'auth.Group': {'ops': 'all', 'timeout': 60 * 60},
-    'wagtailimages.Image': {'ops': 'all', 'timeout': 60 * 60},
-    'wagtailimages.Rendition': {'ops': 'all', 'timeout': 60 * 60},
+    'core.SiteImage': {'ops': 'all', 'timeout': 60 * 60},
+    'core.SiteimageRendition': {'ops': 'all', 'timeout': 60 * 60},
     'migrations.*': {'ops': (), 'timeout': 0},
-    'core.MetaTagSettings': {'ops': 'all', 'timeout': 60 * 60 * 24 * 7},
-    'core.SocialMediaSettings': {'ops': 'all', 'timeout': 60 * 60 * 24 * 7},
-    'core.NavItem': {'ops': 'all', 'timeout': 60 * 60 * 24 * 7},
-    'core.NavigationMenu': {'ops': 'all', 'timeout': 60 * 60 * 24 * 7},
     '*.*': {'ops': (), 'timeout': 60 * 60},
 }
 

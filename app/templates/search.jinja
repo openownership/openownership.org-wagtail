@@ -1,0 +1,68 @@
+{% set body_classes = "search-page" %}
+{% extends 'base.jinja' %}
+
+{% block content %}
+    {% if page.hero_image %}{% set hero_image = image(page.hero_image, 'fill-1440x360') %}{% endif %}
+    <div class="hero hero--search"{% if hero_image %} style="background-image:url('{{hero_image.url}}')"{% endif %}>
+        <div class="contained-width">
+            <div class="hero__content">
+                <h1 class="hero__title">{{page.headline}}</h1>
+                <form action="/search/" method="GET" class="hero__form">
+                    <div class="relative max-w-sixcol">
+                        <label for="q" class="sr-only">Search</label>
+                        <input type="text" id="q" name="q" value="{{search_query or ''}}" placeholder="Type your search using keywords">
+                        <button type="submit" class="btn">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="search-page__body contained-width">
+        {% if suggested_searches %}
+            <h2 class="search__title">{{page.suggested_searches_title}}</h2>
+            <ul class="cta-group__items grid--{% if suggested_searches|length is divisibleby 3 %}three-col{% else %}four-col{% endif %}">
+                {% for suggested_search in suggested_searches %}
+                    <li class="cta-group__item">
+                        <a href="{{suggested_search.url}}" class="cta-group__cta">{{suggested_search.text}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if results %}
+            <div class="search-results">
+                <h2 class="search__title">Results for: {{search_query}}</h2>
+                <ul class="search-results__items">
+                    {% for result in results %}
+                        <li class="search-results__item">
+                            <a href="{{result.url}}">
+                                <div class="search-results__image">
+                                    {% if result.thumbnail %}
+                                        {{image(result.thumbnail, 'fill-280x165')}}
+                                    {% endif %}
+                                </div>
+                                <div class="search-results__text">
+                                    <h3>{{result.title}}</h3>
+                                    {% if result.blurb %}<p>{{result.blurb}}</p>{% endif %}
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% if results.paginator.num_pages > 1 %}
+                <nav class="pagination">
+                    {% if results.has_previous() %}
+                        <a href="?q={{search_query}}&amp;page={{ results.previous_page_number() }}" class="btn">Previous</a>
+                        {% else %}
+                        <div></div>
+                    {% endif %}
+                    {% if results.has_next() %}
+                        <a href="?q={{search_query}}&amp;page={{ results.next_page_number() }}" class="btn">Next</a>
+                    {% endif %}
+                </nav>
+            {% endif %}
+        {% elif search_query %}
+            <h2 class="search__title">No results found for {{search_query}}</h2>
+        {% endif %}
+    </div>
+{% endblock %}

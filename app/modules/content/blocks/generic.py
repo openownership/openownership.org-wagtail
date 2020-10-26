@@ -10,7 +10,6 @@ from wagtail.documents.blocks import DocumentChooserBlock
 
 from wagtail.images.blocks import ImageChooserBlock
 
-from modules.content.utils import get_faq_choices
 from .mixins import (
     PageLinkMixin, DocumentLinkMixin, URLLinkMixin, LinkStructValue, CTABlockStructValue
 )
@@ -132,9 +131,7 @@ class LinkBlock(blocks.StructBlock):
             ('none', 'None'),
             ('page', 'Page'),
             ('document', 'Document'),
-            ('url', 'URL'),
-            ('sms', 'SMS'),
-            ('faq', 'FAQ'),
+            ('url', 'URL')
         ],
         widget=forms.RadioSelect,
         required=True,

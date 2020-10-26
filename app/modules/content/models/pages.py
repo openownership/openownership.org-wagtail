@@ -151,6 +151,10 @@ class NewsArticlePage(ContentPageType):
     )
 
     @cached_property
+    def category(self):
+        return ', '.join([cat.name for cat in self.categories.all()])
+
+    @cached_property
     def human_display_date(self):
         if self.display_date:
             return self.display_date.strftime('%d %B %Y')

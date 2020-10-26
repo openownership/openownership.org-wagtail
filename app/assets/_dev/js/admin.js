@@ -1,5 +1,8 @@
 import '../css/admin.css';
 
+import $ from 'jquery';
+
+
 function toggle_link_type($el) {
     var $container = $el.closest('.cta-block-form'),
         prefix = $container.data('prefix'),
@@ -13,10 +16,7 @@ function toggle_link_type($el) {
     else {
         $(link_syntax, $container).hide();
         $('li[class^="cta-block-link_' + link_choice + '"]', $container).show();
-        if(link_choice != 'sms') {
-            $('.cta-block-link_label', $container).show();
-        }
-
+        $('.cta-block-link_label', $container).show();
     }
 }
 

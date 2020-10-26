@@ -28,6 +28,10 @@ from .generic import LinkBlock, CTABlock, CardStreamBlock  # NOQA
 RICHTEXT_INLINE_FEATURES = ['bold', 'italic', 'underline', 'small', 'link', 'document-link']
 
 
+####################################################################################################
+# Embeds
+####################################################################################################
+
 class EmbedBlockMixin(WagtailEmbedBlock):
 
     def get_context(self, value, parent_context={}):
@@ -53,11 +57,15 @@ class EmbedBlock(EmbedBlockMixin):
         template = "blocks/embed.jinja"
 
 
+####################################################################################################
+# Notifications / update banners
+####################################################################################################
+
 class NotificationBlock(blocks.StructBlock):
 
     class Meta:
         icon = 'fa-bell-o'
-        template = 'blocks/update_banner.jinja'
+        template = 'blocks/notification.jinja'
 
     body = blocks.RichTextBlock(
         required=True,
@@ -68,20 +76,9 @@ class NotificationBlock(blocks.StructBlock):
     cta = CTABlock(required=True)
 
 
-class HeadlineBannerBlock(blocks.StructBlock):
-
-    class Meta:
-        icon = 'title'
-        template = 'blocks/headline_banner.jinja'
-
-    body = blocks.CharBlock(
-        required=True
-    )
-
-    show_social_icons = blocks.BooleanBlock(
-        required=False
-    )
-
+####################################################################################################
+# Steps
+####################################################################################################
 
 class _StepsBlockItem(blocks.StructBlock):
 
@@ -103,12 +100,22 @@ class StepsBlock(TitleMixin):
     cta = CTABlock(required=False)
 
 
-class SocialMediaPanelBlock(TitleBodyMixin):
+####################################################################################################
+# Social media
+####################################################################################################
+
+
+class SocialMediaBlock(TitleBodyMixin):
 
     class Meta:
         label = 'Share banner'
         icon = 'fa-share-alt'
-        template = "blocks/social_media_panel.jinja"
+        template = "blocks/social_media.jinja"
+
+
+####################################################################################################
+# Icon list
+####################################################################################################
 
 
 class _IconListBlockItem(blocks.StructBlock):
@@ -133,6 +140,44 @@ class IconListBlock(blocks.StructBlock):
         icon = 'fa-font-awesome'
 
     objects = blocks.ListBlock(_IconListBlockItem(), label="Blocks", required=True)
+
+
+####################################################################################################
+# Stats
+####################################################################################################
+
+class _StatBlock(blocks.StructBlock):
+
+    """Add a stat, with Image, Text and CTA
+
+    Attributes:
+        image (ImageChooserBlock): The image to show
+    """
+
+    stat_text = blocks.CharBlock(
+        required=True,
+        help_text="Text version of this stat"
+    )
+
+    description = blocks.CharBlock(
+        max_length=255,
+        required=False
+    )
+
+
+class StatsBlock(TitleBodyMixin):
+    class Meta:
+        label = 'Stats'
+        icon = 'fa-external-link-square'
+        template = "blocks/stats.jinja"
+
+    objects = blocks.ListBlock(
+        _StatBlock(
+            required=True,
+            label="Stat"
+        ),
+        required=True
+    )
 
 
 ####################################################################################################
@@ -170,7 +215,11 @@ class NewsletterBlock(blocks.StructBlock):
         return context
 
 
-class VideoPanelBlock(EyebrowTitleBodyMixin):
+####################################################################################################
+# Video panel
+####################################################################################################
+
+class EmbedBannerBlock(EyebrowTitleBodyMixin):
 
     class Meta:
         icon = 'fa-play-circle'
@@ -204,14 +253,18 @@ class VideoPanelBlock(EyebrowTitleBodyMixin):
         return context
 
 
-class _VideoGalleryPanelItem(blocks.StructBlock):
+####################################################################################################
+# Video gallery
+####################################################################################################
+
+class _VideoGalleryItem(blocks.StructBlock):
 
     title = blocks.CharBlock(required=True)
     embed = EmbedBlock(required=True)
     image = ImageChooserBlock(required=True)
 
 
-class VideoGalleryPanelBlock(blocks.StructBlock):
+class VideoGalleryBlock(blocks.StructBlock):
     class Meta:
         icon = 'fa-quote-left'
         template = 'blocks/video_gallery.jinja'
@@ -223,15 +276,29 @@ class VideoGalleryPanelBlock(blocks.StructBlock):
     )
 
 
-class QuoteBlock(blocks.StructBlock):
+####################################################################################################
+# Quotes
+####################################################################################################
+
+class PullQuoteBlock(blocks.StructBlock):
     class Meta:
         icon = 'fa-quote-left'
-        template = 'blocks/quote.jinja'
+        template = 'blocks/pull_quote.jinja'
 
     quote = blocks.TextBlock(required=True)
-    source_name = blocks.CharBlock(required=False)
-    source_description = blocks.CharBlock(required=False)
 
+
+class BlockQuoteBlock(blocks.StructBlock):
+    class Meta:
+        icon = 'fa-indent'
+        template = 'blocks/block_quote.jinja'
+
+    quote = blocks.TextBlock(required=True)
+
+
+####################################################################################################
+# Logo list
+####################################################################################################
 
 class _LogoListItem(blocks.StructBlock):
 
@@ -256,23 +323,14 @@ class LogoListBlock(EyebrowTitleBodyMixin):
     )
 
 
+####################################################################################################
+# Banner
+####################################################################################################
+
 class BannerBlock(EyebrowTitleMixin):
     class Meta:
         icon = 'fa-minus'
         template = 'blocks/banner.jinja'
-
-    cta = CTABlock(required=False)
-
-
-class CTAGroupBlock(EyebrowTitleMixin):
-
-    class Meta:
-        icon = 'fa-external-link'
-        template = "blocks/cta_group.jinja"
-
-    objects = blocks.ListBlock(
-        CTABlock(required=True)
-    )
 
     cta = CTABlock(required=False)
 
@@ -312,7 +370,7 @@ class LatestNewsBlock(TitleMixin):
             query = query.filter(categories__id__in=categories)
 
         objects = list(
-            query.distinct()[:value.get('limit', self.DEFAULT_LIMIT)]
+            query.distinct().order_by('-display_date')[:value.get('limit', self.DEFAULT_LIMIT)]
         )
 
         context.update({
@@ -322,6 +380,10 @@ class LatestNewsBlock(TitleMixin):
 
         return context
 
+
+####################################################################################################
+# Card groups
+####################################################################################################
 
 class CardGroupBlock(TitleMixin):
 
@@ -343,6 +405,10 @@ class CardGroupBlock(TitleMixin):
 
         return context
 
+
+####################################################################################################
+# Text columns
+####################################################################################################
 
 class _TextColumnBlockItem(TitleBodyMixin):
 

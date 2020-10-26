@@ -88,6 +88,7 @@ class PageHeroImage(Orderable):
     """
     Use this if we need a carousel of images
     """
+
     image = models.ForeignKey(
         settings.IMAGE_MODEL,
         null=True,
@@ -158,17 +159,14 @@ class PageHeroMixin(PageMixinBase):
             FieldPanel('hero_headline', classname="title"),
             FieldPanel('hero_body'),
             ImageChooserPanel('hero_image'),
+            FieldPanel('hero_theme')
         ], heading="Hero"),
     ]
-
-    @cached_property
-    def images_for_hero(self):
-        return [obj.image for obj in self.hero_images.select_related('image').all()]
 
     @property
     def has_hero(self):
         has_body = self.hero_body and self.hero_body != '<p></p>'
-        if any([self.hero_headline, has_body, self.hero_images.exists()]):
+        if any([self.hero_headline, has_body, self.hero_image]):
             return True
         return False
 
@@ -176,11 +174,9 @@ class PageHeroMixin(PageMixinBase):
 
         context = {
             'has_hero': self.has_hero,
-            'hero_eyebrow': self.hero_eyebrow,
             'hero_headline': self.hero_headline,
-            'hero_subheading': self.hero_subheading,
             'hero_body': self.hero_body,
-            'hero_images': self.images_for_hero,
+            'hero_image': self.hero_image,
             'hero_theme': self.hero_theme
         }
 

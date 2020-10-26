@@ -14,4 +14,4 @@
     - {role: 'hactar.postgresql', tags: 'postgresql'}
     - {role: 'hactar.python3', tags: 'python'}
     - {role: 'hactar.supervisor', tags: 'supervisor'}
-    - {role: 'hactar.proxies', tags: 'proxies'}
+    - {role: 'hactar.caddy', tags: 'caddy'}

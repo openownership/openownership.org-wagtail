@@ -1,0 +1,14 @@
+<div class="icon-list icon-list--{{value.align}}contained-width">
+    {% if value.eyebrow %}<h2 class="icon-list__eyebrow">{{value.eyebrow}}</h2>{% endif %}
+    {% if value.title %}<h2 class="icon-list__title">{{value.title}}</h2>{% endif %}
+    <ul class="icon-list__items">
+    {% for object in value.objects %}
+        <li class="icon-list__item">
+            {% if obj.title %}{{obj.title}}{% endif %}
+            {{image(object.icon, 'height-150')}}</a>
+            {% if obj.title %}{{obj.title}}{% endif %}
+            {% if obj.body %}{{obj.body|richtext}}{% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</div>

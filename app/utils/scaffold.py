@@ -5,21 +5,10 @@ from django.utils.text import slugify
 from wagtail.core.models import Site, Page
 from utils.console import console
 
-from modules.content.models.pages import (
-    LandingPage, HomePage, UtilityPage, NewsIndexPage, FAQPage, SearchPage, ProjectsIndexPage
-)
-
-from modules.content.models.taxonomy import NewsCategory
+from modules.content.models.pages import HomePage
 
 
-DEFAULT_PAGES: list = [
-    ('Latest', NewsIndexPage, []),
-    ('Search', SearchPage, []),
-    ('Terms & Conditions', UtilityPage, []),
-    ('Privacy', UtilityPage, []),
-    ('Accessibility', UtilityPage, []),
-    ('Terms and conditions', UtilityPage, []),
-]
+DEFAULT_PAGES: list = []
 
 DEFAULT_TAXONOMY: list = []
 

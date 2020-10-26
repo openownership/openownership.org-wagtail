@@ -1,0 +1,16 @@
+<div class="newsletter">
+    <div class="newsletter__content contained-width vertical-padding">
+        <div class="newsletter__text theme--{{value.theme}}">
+            {% if value.eyebrow %}<p class="newsletter__eyebrow">{{value.eyebrow}}</p>{% endif %}
+            {% if value.title %}<p class="newsletter__title h2">{{value.title}}</p>{% endif %}
+            {% if value.intro %}<div class="newsletter__intro rich-text">{{value.intro|rich_text}}</div>{% endif %}
+        </div>
+
+        <form class="newsletter__signup" method="post">
+            <input type="text" value="" placeholder="First name" name="first_name">
+            <input type="text" value="" placeholder="Last name" name="last_name">
+            <input type="email" placeholder="Email address">
+            <button type="submit">{{value.cta_text or 'Join our mailing list'}}</button>
+        </form>
+    </div>
+</div>

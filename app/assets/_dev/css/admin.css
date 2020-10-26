@@ -12,8 +12,13 @@
     }
 
     &.nav-settings {
-        .cta-block-link_page, .cta-block-link_label {
+        ul.fields li.cta-block-link_page, ul.fields li.cta-block-link_label {
             display: block;
         }
+    }
+
+    .input ul li input[type="radio"] {
+        padding: 0;
+        background-color: transparent;
     }
 }

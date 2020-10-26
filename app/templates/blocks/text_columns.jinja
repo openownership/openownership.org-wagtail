@@ -1,5 +1,4 @@
-<div class="text-columns {% if value.theme %}text-columns--theme-{{value.theme}}{% endif %} {% if value.speech_bubble_theme %}text-columns--bubble-theme-{{value.speech_bubble_theme}}{% endif %}">
-    {% include 'svg/bg_bubbles/yellow--small.jinja' %}
+<div class="text-columns {% if value.theme %}text-columns--theme-{{value.theme}}{% endif %}">
     <div class="contained-width text-columns__items">
         {% for object in value.objects %}
             <div class="text-columns__item">
@@ -9,5 +8,4 @@
             </div>
         {% endfor %}
     </div>
-    {% include 'svg/bg_bubbles/blue--right.jinja' %}
 </div>

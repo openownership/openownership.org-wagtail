@@ -8,27 +8,36 @@ from .generic import (
 from .stream import (
     EmbedBlock,
     StepsBlock,
-    QuoteBlock,
-    VideoPanelBlock,
+    StatsBlock,
+    PullQuoteBlock,
+    BlockQuoteBlock,
+    EmbedBannerBlock,
     LogoListBlock,
     BannerBlock,
     LatestNewsBlock,
     CardGroupBlock,
-    CTAGroupBlock,
     TextColumnsBlock,
-    NotificationBlock
+    NotificationBlock,
+    SocialMediaBlock,
+    IconListBlock,
+    NewsletterBlock,
+    VideoGalleryBlock,
 )
 
 landing_page_blocks: list = [
     ('steps', StepsBlock()),
-    ('video_panel', VideoPanelBlock()),
+    ('stats', StatsBlock()),
+    ('embed_banner', EmbedBannerBlock()),
     ('logo_list', LogoListBlock()),
     ('slim_banner', BannerBlock()),
     ('latest_news', LatestNewsBlock()),
     ('card_group', CardGroupBlock()),
-    ('cta_group', CTAGroupBlock()),
     ('text_columns', TextColumnsBlock()),
-    ('notification', NotificationBlock())
+    ('notification', NotificationBlock()),
+    ('social_media', SocialMediaBlock()),
+    ('icon_list', IconListBlock()),
+    ('newsletter', NewsletterBlock()),
+    ('video_gallery', VideoGalleryBlock()),
 ]
 
 
@@ -49,6 +58,7 @@ article_page_body_blocks: list = [
     ),
     ('embed', EmbedBlock()),
     ('table', TableBlock()),
-    ('quote', QuoteBlock()),
+    ('pull_quote', PullQuoteBlock()),
+    ('block_quote', BlockQuoteBlock()),
     ('image', ArticleImageBlock()),
 ]
