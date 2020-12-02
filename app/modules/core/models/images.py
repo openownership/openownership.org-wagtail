@@ -6,6 +6,7 @@
 """
 
 from django.db import models
+from django.utils.functional import cached_property
 from wagtail.images.models import Image as WagtailImage, AbstractImage, AbstractRendition
 
 
@@ -21,6 +22,16 @@ class SiteImage(AbstractImage):
         blank=True,
         null=True
     )
+
+    @cached_property
+    def social_url(self):
+        """Return a URL for this image rendered to the correct size for open graph tags etc.
+
+        Returns:
+            str: The URL
+        """
+        rend = self.get_rendition(filter="fill-1200x628")
+        return rend.url
 
 
 class SiteImageRendition(AbstractRendition):
