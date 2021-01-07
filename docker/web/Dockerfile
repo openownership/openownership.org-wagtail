@@ -1,4 +1,4 @@
-FROM quay.io/hactar/django-base:latest AS builder
+FROM quay.io/hactar/python-base-alpine:3.8 AS builder
 
 # Create our working directory
 RUN mkdir -p /usr/srv/app/

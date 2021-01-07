@@ -90,6 +90,7 @@ WAGTAIL_APPS = [
 ]
 
 SITE_APPS = [
+    'modules.cli',
     'modules.users',
     'modules.core',
     'modules.content',
