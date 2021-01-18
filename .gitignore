@@ -1,5 +1,10 @@
 .env
 
+devops/files/cloud-init.yml
+devops/keys/deploy_key
+devops/keys/deploy_key.pub
+
+
 _db/
 docker/db/**/*
 docker/redis/**/*
