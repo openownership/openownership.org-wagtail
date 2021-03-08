@@ -50,7 +50,7 @@ COPY ./pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./poetry.lock /usr/srv/app/poetry.lock
 RUN source $HOME/.poetry/env && \
     poetry self update 1.0.10 && \
-    poetry install
+    poetry install  --no-root
 
 
 RUN whoami

@@ -1,11 +1,30 @@
 # Meta: Setup
 
-You'll want to find/replace the following variables across the project before starting
+Firstly, set all this stuff up and make a note of all the API tokens:
+
+1. AWS/Spaces
+2. Bugsnag
+3. Postmark
+
+You'll then want to find/replace the following variables across the project before starting:
 
 * `TEMPLATEPROJECT_FULL_NAME` - ie. `London Anti-Fascists Alliance`
 * `TEMPLATEPROJECT_SHORT_NAME` - ie. `lafa`
 * `TEMPLATEPROJECT_DOMAIN` - ie. `londonantifa.org.uk`
 * `TEMPLATEPROJECT_REPO` - ie. `git@github.com:hactar-is/londonantifa.org.uk.git`
+
+Then you'll probably need to replace the contents of `poetry.lock` with this:
+
+```
+[metadata]
+lock-version = "1.0"
+python-versions = ">=3.6,<3.9"
+```
+
+Other helpful stuff to get started after you've run `gofab`:
+
+* `fab envkey.variables` gets you setup with Envkey defaults
+* `fab utils.make_key` will generate deploy keys - if you've set up a `DEPLOY_USER_PASSWORD` in the step above and it's in your terminal session it will use that by default
 
 Then you can delete everything above and use the below for your Readme
 

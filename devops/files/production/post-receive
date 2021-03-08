@@ -51,7 +51,7 @@ chown deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.env
 export SERVER_ENV=production
 
 header "Running poetry install"
-cd /srv/www/TEMPLATEPROJECT_SHORT_NAME/app && poetry install --no-dev
+cd /srv/www/TEMPLATEPROJECT_SHORT_NAME/app && poetry install --no-dev  --no-root
 
 header "Running migrations"
 /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.venv/bin/python manage.py migrate
