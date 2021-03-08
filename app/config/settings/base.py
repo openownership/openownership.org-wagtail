@@ -29,6 +29,23 @@ guru.add("/var/log/TEMPLATEPROJECT_SHORT_NAME/output.log", rotation="100 MB", ba
 
 
 ####################################################################################################
+# I18N
+####################################################################################################
+
+
+WAGTAIL_I18N_ENABLED = True
+LANGUAGE_CODE = 'en'
+TIME_ZONE = 'Europe/London'
+USE_L10N = True
+USE_I18N = True
+USE_TZ = True
+
+WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
+    ('en', "English"),
+]
+
+
+####################################################################################################
 # Installed Apps
 ####################################################################################################
 
@@ -73,6 +90,7 @@ WAGTAIL_APPS = [
 ]
 
 SITE_APPS = [
+    'modules.cli',
     'modules.users',
     'modules.core',
     'modules.content',
@@ -109,11 +127,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
 BASE_URL = 'https://TEMPLATEPROJECT_DOMAIN'
-LANGUAGE_CODE = 'en-gb'
-TIME_ZONE = 'Europe/London'
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 INTERNAL_IPS = ['127.0.0.1']
 APPEND_SLASH = True

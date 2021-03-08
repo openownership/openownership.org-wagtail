@@ -1,10 +1,16 @@
 # 3rd party
+import pytest
+import arrow
 from consoler import console  # NOQA
 from django.apps import apps
-from wagtail.core.models import Page, Site, Collection
+from django.conf import settings
+from wagtail.core.models import Page, Site, Collection, Locale
 from mixer.backend.django import mixer  # NOQA
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
+
+
+pytestmark = pytest.mark.django_db
 
 
 def fake_initial_migration():
@@ -26,6 +32,13 @@ def fake_initial_migration():
     # Assign it to Editors and Moderators groups
     for group in Group.objects.filter(name__in=['Editors', 'Moderators']):
         group.permissions.add(admin_permission)
+
+    # And because Wagtail creates data in a migration file AGAIN
+    for item in settings.WAGTAIL_CONTENT_LANGUAGES:
+        code = item[0]
+        loc = Locale()
+        loc.language_code = code
+        loc.save()
 
 
 def fake_group_collection_migration():
@@ -67,7 +80,10 @@ def add_root_collection():
 
 
 def setup():
+    """Use this one if you're doing a single language site.
+    """
     console.warn('SETTING UP')
+    fake_initial_migration()
     root = Page.objects.create(
         path='0001',
         depth=1,
@@ -83,6 +99,37 @@ def setup():
         is_default_site=True
     )
 
+    fake_group_collection_migration()
+    add_root_collection()
+
+
+def setup_multilingual():
+    """Use this one if you're doing a multi-language site.
+    """
+    console.warn('SETTING UP')
+    from modules.content.models.pages import HomePage
     fake_initial_migration()
+    root = Page.objects.create(
+        path='0001',
+        depth=1,
+        slug='root',
+        title='root'
+    )
+
+    p = HomePage()
+    p.first_published_at = arrow.now().datetime
+    p.title = 'Test Site Home EN'
+    p.slug = 'en'
+    root.add_child(instance=p)
+    p.save_revision().publish()
+    p.save()
+
+    Site.objects.create(
+        root_page_id=p.id,
+        hostname='localhost',
+        port=80,
+        site_name="Test Site",
+        is_default_site=True
+    )
     fake_group_collection_migration()
     add_root_collection()
