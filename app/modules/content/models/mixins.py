@@ -11,18 +11,14 @@ from collections import OrderedDict
 # 3rd party
 from django.db import models
 from django.conf import settings
-from django.utils.functional import cached_property
-
 from django_extensions.db.fields import AutoSlugField
 
-from modelcluster.fields import ParentalKey
+from modelcluster.fields import ParentalManyToManyField
 from modelcluster.models import ClusterableModel
 
 from wagtail.core import fields
-from wagtail.core.models import Orderable
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
-from modelcluster.fields import ParentalManyToManyField
 
 
 class PageMixinBase(models.Model):
@@ -65,51 +61,9 @@ class PageMixinBase(models.Model):
         return cls.panels + panels
 
 
-class AppPageContextMixin(object):
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        if hasattr(self, 'parent_page'):
-            try:
-                context.update(self.parent_page.get_context(self.request, **kwargs))
-            except Exception:
-                pass
-
-        return context
-
-
 ####################################################################################################
 # Page Hero mixin
 ####################################################################################################
-
-class PageHeroImage(Orderable):
-
-    """
-    Use this if we need a carousel of images
-    """
-
-    image = models.ForeignKey(
-        settings.IMAGE_MODEL,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        verbose_name="Background image"
-    )
-
-    page = ParentalKey(
-        'wagtailcore.Page',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='hero_images'
-    )
-
-    panels = [
-        ImageChooserPanel('image')
-    ]
-
 
 class PageHeroMixin(PageMixinBase):
     """
@@ -142,24 +96,11 @@ class PageHeroMixin(PageMixinBase):
         verbose_name="Background image"
     )
 
-    hero_theme = models.CharField(
-        choices=[
-            ('standard', 'Standard'),
-            ('inverse', 'Inverse'),
-        ],
-        max_length=255,
-        blank=True,
-        null=True,
-        default='standard',
-        verbose_name="Theme"
-    )
-
     hero_panels = [
         MultiFieldPanel([
             FieldPanel('hero_headline', classname="title"),
             FieldPanel('hero_body'),
             ImageChooserPanel('hero_image'),
-            FieldPanel('hero_theme')
         ], heading="Hero"),
     ]
 
@@ -176,8 +117,7 @@ class PageHeroMixin(PageMixinBase):
             'has_hero': self.has_hero,
             'hero_headline': self.hero_headline,
             'hero_body': self.hero_body,
-            'hero_image': self.hero_image,
-            'hero_theme': self.hero_theme
+            'hero_image': self.hero_image
         }
 
         return context

@@ -10,31 +10,32 @@
 # 3rd party
 from django.db import models
 from django.conf import settings
-from wagtail.core import fields
-from wagtail.search import index
-from django.utils.html import strip_tags
-from django.utils.text import slugify
-from wagtailcache.cache import WagtailCacheMixin
-from wagtail.core.models import Page
 from django.utils.functional import cached_property
-from wagtail.utils.decorators import cached_classmethod
+from django.utils.html import strip_tags
+
 from wagtail.admin.edit_handlers import FieldPanel, ObjectList, TabbedInterface, StreamFieldPanel
+from wagtail.core import fields
+from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.search import index
+from wagtail.utils.decorators import cached_classmethod
+
+from wagtailcache.cache import WagtailCacheMixin
 
 # Project
+from modules.core.models import UpdateBannerSettings
+from modules.core.utils import get_site_context
 from modules.content.blocks import (
     landing_page_blocks, article_page_body_blocks, contents_page_body_blocks,
     additional_content_blocks
 )
-
-from modules.content.models.mixins import PageHeroMixin
 
 
 ####################################################################################################
 # Core / general page types
 ####################################################################################################
 
-class BasePage(WagtailCacheMixin, PageHeroMixin, Page):
+class BasePage(WagtailCacheMixin, Page):
 
     class Meta:
         abstract = True
@@ -58,14 +59,12 @@ class BasePage(WagtailCacheMixin, PageHeroMixin, Page):
         help_text="If blank, this will be set to the date the page was first published"
     )
 
-    # Panels
     content_panels = Page.content_panels
-    thumbnail_panels = PageHeroMixin.hero_panels + [
+
+    promote_panels = [
         ImageChooserPanel('thumbnail'),
         FieldPanel('blurb'),
-    ]
-
-    promote_panels = Page.promote_panels
+    ] + Page.promote_panels
 
     settings_panels = [
         FieldPanel('display_date'),
@@ -75,37 +74,6 @@ class BasePage(WagtailCacheMixin, PageHeroMixin, Page):
         index.SearchField('blurb'),
         index.SearchField('search_description'),
     ]
-
-    @cached_classmethod
-    def get_admin_tabs(cls):
-        tabs = [
-            (cls.content_panels, 'Content'),
-            (cls.thumbnail_panels, 'Thumbnail'),
-            (cls.promote_panels, 'Promote'),
-            (cls.settings_panels, 'Settings'),
-        ]
-        return tabs
-
-    @cached_classmethod
-    def get_edit_handler(cls):  # NOQA
-
-        tabs = cls.get_admin_tabs()
-
-        edit_handler = TabbedInterface([
-            ObjectList(tab[0], heading=tab[1], classname=slugify(tab[1])) for tab in tabs
-        ])
-
-        return edit_handler.bind_to(model=cls)
-
-    def get_context(self, request, *args, **kwargs):
-        context = super().get_context(request, *args, **kwargs)
-        context.update(**BasePage.get_site_settings(self))
-
-        context.update({
-            'site_name': settings.SITE_NAME
-        })
-
-        return context
 
     @cached_property
     def breadcrumbs(self):
@@ -119,24 +87,40 @@ class BasePage(WagtailCacheMixin, PageHeroMixin, Page):
             breadcrumbs.append({'url': url, 'title': page.get('title')})
         return breadcrumbs
 
-    @classmethod
-    def get_site_settings(cls, page):
-        from modules.core.models import (
-            SocialMediaSettings, AnalyticsSettings, NavigationSettings,
-            UpdateBannerSettings
-        )
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
 
-        site = page.get_site()
+        site = self.get_site()
         context = {}
 
         context.update(
-            **NavigationSettings.get_for_context(site),
-            **SocialMediaSettings.get_for_context(site),
-            **AnalyticsSettings.get_for_context(site),
-            **UpdateBannerSettings.get_for_context(site, page),
-            **cls.get_metadata_settings(page)
+            site_name=settings.SITE_NAME,
+            **get_site_context(site),
+            **UpdateBannerSettings.get_for_context(site, page=self),
+            **self.get_metadata_settings(site)
         )
+
         return context
+
+    @cached_classmethod
+    def get_admin_tabs(cls):
+        tabs = [
+            (cls.content_panels, 'Content'),
+            (cls.promote_panels, 'Promote'),
+            (cls.settings_panels, 'Settings'),
+        ]
+        return tabs
+
+    @cached_classmethod
+    def get_edit_handler(cls):  # NOQA
+
+        tabs = cls.get_admin_tabs()
+
+        edit_handler = TabbedInterface([
+            ObjectList(tab[0], heading=tab[1]) for tab in tabs
+        ])
+
+        return edit_handler.bind_to(model=cls)
 
     def get_meta_title(self):
         if self.seo_title:
@@ -157,12 +141,14 @@ class BasePage(WagtailCacheMixin, PageHeroMixin, Page):
             pass
         return None
 
-    def get_metadata_settings(self):
+    def get_metadata_settings(self, site):
         from modules.core.models import (
             MetaTagSettings
         )
 
-        site = self.get_site()
+        if not site:
+            site = self.get_site()
+
         default_meta = MetaTagSettings.get_for_context(site)
         title = self.get_meta_title() or default_meta.get('meta_title')
         description = self.get_meta_description() or default_meta.get('meta_description')
@@ -195,9 +181,11 @@ class LandingPageType(BasePage):
 
     body = fields.StreamField(landing_page_blocks, blank=True)
 
-    content_panels = BasePage.content_panels + [
+    model_content_panels = [
         StreamFieldPanel('body')
     ]
+
+    content_panels = BasePage.content_panels + model_content_panels
 
     search_fields = BasePage.search_fields + [
         index.SearchField('body')
@@ -234,13 +222,13 @@ class ContentPageType(BasePage):
         related_name='+',
     )
 
-    base_blocks = [
+    model_content_panels = [
         ImageChooserPanel('hero_image'),
         StreamFieldPanel('body'),
         StreamFieldPanel('additional_content'),
     ]
 
-    content_panels = BasePage.content_panels + base_blocks
+    content_panels = BasePage.content_panels + model_content_panels
 
     search_fields = BasePage.search_fields + [
         index.SearchField('body'),
@@ -254,7 +242,6 @@ class ContentPageType(BasePage):
 ####################################################################################################
 # Content Page Type
 ####################################################################################################
-
 
 class ArticlePageWithContentsType(ContentPageType):
     """

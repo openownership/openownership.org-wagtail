@@ -28,9 +28,7 @@ from wagtail_app_pages.models import AppPageMixin
 # Project
 
 from config.template import url_from_path
-from modules.content.blocks import (
-    home_page_blocks
-)
+from modules.content.blocks import home_page_blocks
 
 from .mixins import PageHeroMixin
 from .page_types import BasePage, LandingPageType, ContentPageType
@@ -105,7 +103,7 @@ class UtilityPage(ContentPageType):
     content_panels = BasePage.content_panels + [
         FieldPanel('headline'),
         FieldPanel('intro')
-    ] + ContentPageType.base_blocks
+    ] + ContentPageType.model_content_panels
 
 
 ####################################################################################################
