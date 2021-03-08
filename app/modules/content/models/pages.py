@@ -41,7 +41,7 @@ from .page_types import BasePage, LandingPageType, ContentPageType
 ####################################################################################################
 
 
-class HomePage(PageHeroMixin, LandingPageType):
+class HomePage(LandingPageType):
 
     class Meta:
         verbose_name = 'Home page'

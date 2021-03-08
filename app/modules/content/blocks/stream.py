@@ -270,7 +270,7 @@ class VideoGalleryBlock(blocks.StructBlock):
         template = 'blocks/video_gallery.jinja'
 
     objects = blocks.ListBlock(
-        _VideoGalleryPanelItem,
+        VideoGalleryBlock,
         required=True,
         label="Videos"
     )
