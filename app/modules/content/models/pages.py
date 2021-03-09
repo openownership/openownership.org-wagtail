@@ -159,54 +159,6 @@ class NewsArticlePage(ContentPageType):
 
 
 ####################################################################################################
-# FAQ Pages
-####################################################################################################
-
-class FAQPage(BasePage):
-    template = 'content/faq_page.jinja'
-
-    headline = models.CharField(
-        help_text=(
-            "If blank, the page title will be used",
-        ),
-        null=True,
-        blank=True,
-        max_length=255
-    )
-
-    intro = fields.RichTextField(
-        blank=True,
-        null=True,
-    )
-
-    content_panels = BasePage.content_panels + [
-        InlinePanel('faq_lists', heading='FAQs')
-    ]
-
-    def get_context(self, request, *args, **kwargs) -> dict:
-        from modules.content.models import FAQItem
-        context = super().get_context(request, *args, **kwargs)
-
-        faqs = []
-        for obj in self.faq_lists.select_related('faq_list'):
-            items = FAQItem.objects.filter(
-                faq_list_id=obj.faq_list_id
-            ).order_by(
-                'sort_order'
-            ).values('id', 'question', 'answer')
-            faqs.append({
-                'name': obj.faq_list.name,
-                'slug': obj.faq_list.slug,
-                'faqs': [item for item in items]
-            })
-
-        context.update({
-            'faq_lists': faqs
-        })
-        return context
-
-
-####################################################################################################
 # Search
 ####################################################################################################
 

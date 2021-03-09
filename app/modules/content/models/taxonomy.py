@@ -27,4 +27,7 @@ class TaxonomyObjectMixin(ClusterableModel):
 
 
 class NewsCategory(TaxonomyObjectMixin):
-    pass
+    class Meta():
+        ordering = ['name', ]
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'

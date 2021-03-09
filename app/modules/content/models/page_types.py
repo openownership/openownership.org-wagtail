@@ -10,6 +10,7 @@
 # 3rd party
 from django.db import models
 from django.conf import settings
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils.functional import cached_property
 from django.utils.html import strip_tags
 
@@ -239,10 +240,6 @@ class ContentPageType(BasePage):
         return self.display_date
 
 
-####################################################################################################
-# Content Page Type
-####################################################################################################
-
 class ArticlePageWithContentsType(ContentPageType):
     """
     An article page which as a long body requiring a contents listing
@@ -279,3 +276,208 @@ class ArticlePageWithContentsType(ContentPageType):
         })
 
         return context
+
+
+####################################################################################################
+# Index Page Type
+####################################################################################################
+
+class IndexPageType(BasePage):
+
+    objects_model = None
+    subpage_types: list = [objects_model, ]
+    objects_per_page = 20
+
+    headline = models.CharField(
+        max_length=255,
+        help_text="Displayed at the top of the page",
+        null=True,
+        blank=False,
+        default="Latest from Working Chance"
+    )
+
+    additional_content = fields.StreamField(
+        additional_content_blocks,
+        blank=True,
+        help_text="The blocks you create here will be displayed below the listing"
+    )
+
+    child_page_stream = fields.StreamField(
+        additional_content_blocks,
+        blank=True,
+        help_text="The blocks you create here will be displayed below all child pages"
+    )
+
+    content_panels = BasePage.content_panels + [
+        FieldPanel('headline'),
+        StreamFieldPanel('additional_content'),
+        StreamFieldPanel('child_page_stream')
+    ]
+
+    def get_filter_options(self) -> dict:
+        """
+        This method should return a dict of valid filters for the child pages, in the format:
+
+        {filterable_attribute: (value_field, label_field)}
+
+        For example, given the objects_model model:
+
+            NewsArticlePage(Page):
+                ...
+                categories = ParentalManyToManyField(
+                    'taxonomy.NewsCategory',
+                    related_name="news",
+                    blank=True
+                )
+
+        returning {'categories': ('slug', 'name')}
+
+        Means that you could create a series of checkboxes for each `NewsCategory`,
+        where `slug` is the value, and `name` is label.
+        """
+
+        return {
+            'categories': ('slug', 'name')
+        }
+
+    def get_filter_label(self, model):
+
+        """
+        A simple method for getting the friendly name of a filter, in the case that you are
+        setting up a loop in the template. Easily overridable with some "if field ==" logic,
+        or just ignore it altogether and put a custom title on the template. You can do whatever
+        you want. This is life.
+        """
+
+        return model._meta.verbose_name
+
+    def get_filters_for_template(self, request) -> dict:
+        """
+        This method return a list of dicts for constructing filter menus in the template.
+
+        Each dict has a field_name, label and an is_active boolean to say whether this filter
+        is currently being used on the queryset. Example:
+
+
+        return [
+            {
+                'field_name': 'categories',
+                'label': 'Category',
+                'choices': <QuerySet [
+                    {
+                        'name': 'Blog',
+                        'slug': 'blog',
+                        'selected': True
+                    },
+                    {
+                        'name': 'Press release',
+                        'slug': 'press-release',
+                        'selected': False
+                    },
+
+                    {
+                        'name': 'Research Papers',
+                        'slug': 'research',
+                        'selected': False
+                    },
+                ]>
+            }
+        ]
+        """
+
+        filters = []
+        query_string = request.GET.copy()
+
+        for key, values in self.get_filter_options():
+            filter_model = getattr(self.objects_model, key).field.related_model
+            active_filters = query_string.getlist(key)
+
+            value_key = values[0]
+
+            choices = (
+                filter_model
+                .objects
+                .values(*values)
+                .annotate(
+                    is_active=models.Case(
+                        *[models.When(**{
+                            value_key: active_filter,
+                            'then': True
+                        }) for active_filter in active_filters],
+                        default=models.Value(False),
+                        output_field=models.BooleanField()
+                    )
+                ).values(*values, 'is_active')
+            )
+
+            filters.append({
+                'field_name': key,
+                'label': self.get_filter_label(filter_model),
+                'choices': choices
+            })
+
+        return filters
+
+    def get_order_by(self):
+        return ['-display_date', '-last_published_at']
+
+    def base_queryset(self):
+        return (
+            self.objects_model
+            .objects
+            .live()
+            .select_related('thumbnail')
+        )
+
+    def get_queryset(self, request):
+
+        """
+        This returns the queryset needed to paginate the objects on the page. It pulls all the
+        valid filters from get_filters and carries out the respective logic on the queryset.
+        """
+
+        query = self.base_queryset()
+        filters = self.get_filters()
+
+        for key, values in filters:
+            query = query.prefetch_related(key)
+            filter_value = request.GET.get(key, None)
+            if filter_value:
+                filters.update({
+                    f'{key}__{values[0]}': filter_value
+                })
+
+        if filters:
+            query = query.filter(filters)
+
+        return query.distinct().order_by(*self.get_order_by())
+
+    def paginate_objects(self, request):
+        query = self.get_queryset(request)
+        paginator = Paginator(query, self.objects_per_page)
+        current_page = request.GET.get('page', 1)
+        try:
+            return paginator.page(current_page)
+        except PageNotAnInteger:
+            return paginator.page(1)
+        except EmptyPage:
+            return paginator.page(paginator.num_pages)
+
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+
+        query_string = request.GET.copy()
+        pagination_params = query_string.pop('page', None) and query_string.urlencode()
+
+        context.update({
+            'filters': self.get_filters_for_template(request),
+            'page_obj': self.paginate_objects(request),
+            'pagination_params': pagination_params,
+            'object_filters': self.get_filters_for_template()
+        })
+
+        return context
+
+    @classmethod
+    def can_create_at(cls, parent) -> bool:
+        return super().can_create_at(parent) and not cls.objects.exists()
