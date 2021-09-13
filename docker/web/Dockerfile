@@ -1,4 +1,4 @@
-FROM quay.io/hactar/python-base-alpine:3.8 AS builder
+FROM repo.treescale.com/hactar/ubuntu-20:latest AS builder
 
 # Create our working directory
 RUN mkdir -p /usr/srv/app/
@@ -48,9 +48,9 @@ WORKDIR /usr/srv/app/
 COPY ./config.toml /usr/srv/app/config.toml
 COPY ./pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./poetry.lock /usr/srv/app/poetry.lock
-RUN source $HOME/.poetry/env && \
-    poetry self update 1.0.10 && \
-    poetry install  --no-root
+RUN export PATH="$HOME/.poetry/bin:$PATH" && \
+    poetry self update && \
+    poetry install
 
 
 RUN whoami

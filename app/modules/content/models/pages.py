@@ -12,6 +12,7 @@ from itertools import chain
 from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
+from django.forms import CheckboxSelectMultiple
 from django.utils.functional import cached_property
 
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
@@ -23,15 +24,13 @@ from wagtail.core import fields
 from wagtail.core.models import Orderable, Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search.models import Query
-from wagtail_app_pages.models import AppPageMixin
 
 # Project
 
 from config.template import url_from_path
 from modules.content.blocks import home_page_blocks
 
-from .mixins import PageHeroMixin
-from .page_types import BasePage, LandingPageType, ContentPageType
+from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageType
 
 
 ####################################################################################################
@@ -49,7 +48,7 @@ class HomePage(LandingPageType):
 
     body = fields.StreamField(home_page_blocks, blank=True)
 
-    content_panels = BasePage.content_panels + PageHeroMixin.hero_panels + [
+    content_panels = BasePage.content_panels + [
         StreamFieldPanel('body')
     ]
 
@@ -110,32 +109,11 @@ class UtilityPage(ContentPageType):
 # News (Latest) pages
 ####################################################################################################
 
-class NewsIndexPage(AppPageMixin, BasePage):
+class NewsIndexPage(IndexPageType):
+
+    objects_model = 'content.NewsArticlePage'
+    subpage_types = [objects_model, ]
     template = 'content/news_index_page.jinja'
-    subpage_types: list = ['content.NewsArticlePage', ]
-    url_config: str = 'modules.content.urls.news'
-
-    eyebrow = models.CharField(
-        max_length=255,
-        help_text="Displayed at the top of the page",
-        null=True,
-        blank=False,
-        default="Latest"
-    )
-
-    headline = models.CharField(
-        max_length=255,
-        help_text="Displayed at the top of the page",
-        null=True,
-        blank=False,
-        default="In the news"
-    )
-
-    content_panels = BasePage.content_panels + [
-        FieldPanel('eyebrow'),
-        FieldPanel('headline'),
-        InlinePanel('featured_articles', heading="Featured articles")
-    ]
 
 
 class NewsArticlePage(ContentPageType):
@@ -147,6 +125,10 @@ class NewsArticlePage(ContentPageType):
         related_name="news",
         blank=True
     )
+
+    content_panels = BasePage.content_panels + [
+        FieldPanel('categories', widget=CheckboxSelectMultiple)
+    ] + ContentPageType.model_content_panels
 
     @cached_property
     def category(self):

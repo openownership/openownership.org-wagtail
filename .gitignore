@@ -12,18 +12,14 @@ docker/redis/**/*
 
 # Compiled static assets
 app/static/**/*
-app/assets/css/*.css
-app/assets/css/
-app/assets/js/*.js
+
 **/.webassets-cache
 **/.webassets-cache/**/*
 app/assets/.webassets-cache
 app/assets/.webassets-cache/*
-app/assets/dist/css/**/*.css
-app/assets/dist/js/**/*.js
-
 **/node_modules/
 **/node_modules/**/*
+
 # UGC
 app/media/**/*
 

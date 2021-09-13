@@ -8,6 +8,7 @@
 """
 
 # 3rd party
+from django.apps import apps
 from django.db import models
 from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -90,9 +91,7 @@ class BasePage(WagtailCacheMixin, Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-
         site = self.get_site()
-        context = {}
 
         context.update(
             site_name=settings.SITE_NAME,
@@ -285,7 +284,6 @@ class ArticlePageWithContentsType(ContentPageType):
 class IndexPageType(BasePage):
 
     objects_model = None
-    subpage_types: list = [objects_model, ]
     objects_per_page = 20
 
     headline = models.CharField(
@@ -293,7 +291,6 @@ class IndexPageType(BasePage):
         help_text="Displayed at the top of the page",
         null=True,
         blank=False,
-        default="Latest from Working Chance"
     )
 
     additional_content = fields.StreamField(
@@ -313,6 +310,12 @@ class IndexPageType(BasePage):
         StreamFieldPanel('additional_content'),
         StreamFieldPanel('child_page_stream')
     ]
+
+    def get_objects_model(self):
+        if type(self.objects_model) is str:
+            return apps.get_model(self.objects_model)
+
+        return self.objects_model
 
     def get_filter_options(self) -> dict:
         """
@@ -341,7 +344,6 @@ class IndexPageType(BasePage):
         }
 
     def get_filter_label(self, model):
-
         """
         A simple method for getting the friendly name of a filter, in the case that you are
         setting up a loop in the template. Easily overridable with some "if field ==" logic,
@@ -350,6 +352,14 @@ class IndexPageType(BasePage):
         """
 
         return model._meta.verbose_name
+
+    def get_filter_data(self, request=None) -> dict:
+
+        """
+        Where to retrieve the filter data from. This is usually going to be from the query string
+        but if you are passing via the url like /category/news/ then you could return view kwargs
+        """
+        return request.GET.copy()
 
     def get_filters_for_template(self, request) -> dict:
         """
@@ -387,9 +397,10 @@ class IndexPageType(BasePage):
 
         filters = []
         query_string = request.GET.copy()
+        objects_model = self.get_objects_model()
 
-        for key, values in self.get_filter_options():
-            filter_model = getattr(self.objects_model, key).field.related_model
+        for key, values in self.get_filter_options().items():
+            filter_model = getattr(objects_model, key).field.related_model
             active_filters = query_string.getlist(key)
 
             value_key = values[0]
@@ -423,7 +434,7 @@ class IndexPageType(BasePage):
 
     def base_queryset(self):
         return (
-            self.objects_model
+            self.get_objects_model()
             .objects
             .live()
             .select_related('thumbnail')
@@ -433,13 +444,14 @@ class IndexPageType(BasePage):
 
         """
         This returns the queryset needed to paginate the objects on the page. It pulls all the
-        valid filters from get_filters and carries out the respective logic on the queryset.
+        valid filters from get_filter_options and carries out the respective logic on the queryset.
         """
 
         query = self.base_queryset()
-        filters = self.get_filters()
+        filter_options = self.get_filter_options()
+        filters = {}
 
-        for key, values in filters:
+        for key, values in filter_options.items():
             query = query.prefetch_related(key)
             filter_value = request.GET.get(key, None)
             if filter_value:
@@ -448,7 +460,7 @@ class IndexPageType(BasePage):
                 })
 
         if filters:
-            query = query.filter(filters)
+            query = query.filter(**filters)
 
         return query.distinct().order_by(*self.get_order_by())
 
@@ -469,11 +481,11 @@ class IndexPageType(BasePage):
         query_string = request.GET.copy()
         pagination_params = query_string.pop('page', None) and query_string.urlencode()
 
+        print(context)
         context.update({
-            'filters': self.get_filters_for_template(request),
+            'object_filters': self.get_filters_for_template(request),
             'page_obj': self.paginate_objects(request),
-            'pagination_params': pagination_params,
-            'object_filters': self.get_filters_for_template()
+            'pagination_params': pagination_params
         })
 
         return context
