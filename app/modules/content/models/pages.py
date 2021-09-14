@@ -56,7 +56,8 @@ class HomePage(LandingPageType):
         context = super().get_context(request, *args, **kwargs)
         context['body_classes'] = 'home-page'
         context['is_home'] = True
-        context.update(self.get_hero_context())
+        if hasattr(self, 'hero_panels'):
+            context.update(self.get_hero_context())
         return context
 
     def get_meta_title(self) -> str:
