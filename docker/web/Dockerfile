@@ -1,4 +1,4 @@
-FROM repo.treescale.com/hactar/ubuntu-20:latest AS builder
+FROM repo.treescale.com/hactar/ubuntu-20-arm:latest AS builder
 
 # Create our working directory
 RUN mkdir -p /usr/srv/app/
@@ -51,6 +51,11 @@ COPY ./poetry.lock /usr/srv/app/poetry.lock
 RUN export PATH="$HOME/.poetry/bin:$PATH" && \
     poetry self update && \
     poetry install
+
+# Install envkey-fetch at /usr/local/lib/python3.8/dist-packages/envkey/ext/envkey-fetch_1.2.9_linux_arm64/envkey-fetch
+RUN curl -s https://raw.githubusercontent.com/envkey/envkey-fetch/master/install.sh | bash  && \
+    mkdir -p /usr/local/lib/python3.8/dist-packages/envkey/ext/envkey-fetch_1.2.9_linux_arm64/ && \
+    cp /usr/local/bin/envkey-fetch /usr/local/lib/python3.8/dist-packages/envkey/ext/envkey-fetch_1.2.9_linux_arm64/envkey-fetch
 
 
 RUN whoami
