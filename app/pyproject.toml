@@ -6,7 +6,7 @@ authors = ["systems@hactar.is"]
 
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.9"
+python = ">=3.8,<3.10"
 boto = "*"
 boto3 = "*"
 bugsnag = "*"
