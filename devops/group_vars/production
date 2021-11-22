@@ -8,7 +8,7 @@ ansible_python_interpreter: /usr/bin/python3
 # Envkey
 ####################################################################################################
 
-env_path: /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/
+env_path: /srv/www/openownership.org/app/
 envkey: "{{ lookup('envkey', 'ENVKEY_PRODUCTION') }}"
 
 ####################################################################################################
@@ -16,11 +16,11 @@ envkey: "{{ lookup('envkey', 'ENVKEY_PRODUCTION') }}"
 ####################################################################################################
 
 hactar_python3_version: python3
-hactar_python3_app_dir: /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/
+hactar_python3_app_dir: /srv/www/openownership.org/app/
 hactar_python3_reqs_path: ../../../app/
 hactar_python3_use_poetry: true
 hactar_python3_venv_name: .venv
-hactar_python3_poetry_dir: /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/
+hactar_python3_poetry_dir: /srv/www/openownership.org/app/
 
 
 ####################################################################################################
@@ -29,11 +29,11 @@ hactar_python3_poetry_dir: /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/
 
 server_env: production
 gitdeploys_server_env: production
-gitdeploys_work_tree: /srv/www/TEMPLATEPROJECT_SHORT_NAME/
-gitdeploys_repo_name: TEMPLATEPROJECT_SHORT_NAME
-gitdeploys_migrate_cmd: /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.venv/bin/python manage.py migrate
-gitdeploys_reqs_cmd: cd /srv/www/TEMPLATEPROJECT_SHORT_NAME/app && /usr/local/bin/poetry install --no-dev
-gitdeploys_wsgi_restart: supervisorctl restart TEMPLATEPROJECT_SHORT_NAME
+gitdeploys_work_tree: /srv/www/openownership.org/
+gitdeploys_repo_name: openownership.org
+gitdeploys_migrate_cmd: /srv/www/openownership.org/app/.venv/bin/python manage.py migrate
+gitdeploys_reqs_cmd: cd /srv/www/openownership.org/app && /usr/local/bin/poetry install --no-dev
+gitdeploys_wsgi_restart: supervisorctl restart openownership.org
 
 authorized_keys:
   -
@@ -76,7 +76,7 @@ hactar_firewall_allow:
 
 hactar_caddy_sites:
   -
-    domains: https://TEMPLATEPROJECT_DOMAIN
+    domains: https://openownership.org
     proxy: 127.0.0.1:8000
     tls: "systems@hactar.is"
     features:
@@ -92,7 +92,7 @@ hactar_caddy_force_build: true
 
 
 hactar_ohmyzsh:
-  app_path: /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/
+  app_path: /srv/www/openownership.org/app/
   venv_name: .venv
   gunicorn_env: SERVER_ENV="production"
   flask_script: false
@@ -101,10 +101,10 @@ hactar_ohmyzsh:
 hactar_ohmyzsh_aliases:
   -
     name: manpy
-    cmd: /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.venv/bin/python manage.py
+    cmd: /srv/www/openownership.org/app/.venv/bin/python manage.py
   -
     name: sp
-    cmd: /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.venv/bin/python manage.py shell_plus
+    cmd: /srv/www/openownership.org/app/.venv/bin/python manage.py shell_plus
 
 
 ####################################################################################################
@@ -119,9 +119,9 @@ hactar_supervisor:
   gunicorn_env: SERVER_ENV="production"
   apps:
     -
-      name: TEMPLATEPROJECT_SHORT_NAME
-      command: "/srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.venv/bin/gunicorn -c /etc/gunicorn.py --env SERVER_ENV=production config.wsgi:application"
-      directory: "/srv/www/TEMPLATEPROJECT_SHORT_NAME/app"
+      name: openownership.org
+      command: "/srv/www/openownership.org/app/.venv/bin/gunicorn -c /etc/gunicorn.py --env SERVER_ENV=production config.wsgi:application"
+      directory: "/srv/www/openownership.org/app"
       env: SERVER_ENV="production"
 
 ####################################################################################################

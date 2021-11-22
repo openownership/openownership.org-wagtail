@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Django settings for the TEMPLATEPROJECT_FULL_NAME project.
+Django settings for the openownership.org project.
 """
 
 from __future__ import absolute_import, unicode_literals
@@ -25,7 +25,7 @@ MODULES_DIR = os.path.join(DJANGO_ROOT, PROJECT_DIR_NAME)
 MONTH_IN_SECONDS = 2628000
 
 TIME_IN_A_YEAR = datetime.now() + timedelta(days=365 * 1)
-guru.add("/var/log/TEMPLATEPROJECT_SHORT_NAME/output.log", rotation="100 MB", backtrace=True)
+guru.add("/var/log/openownership.org/output.log", rotation="100 MB", backtrace=True)
 
 
 ####################################################################################################
@@ -126,7 +126,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
-BASE_URL = 'https://TEMPLATEPROJECT_DOMAIN'
+BASE_URL = 'https://openownership.org'
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 INTERNAL_IPS = ['127.0.0.1']
 APPEND_SLASH = True
@@ -332,7 +332,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = ''
 
-WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = 'wagtail@TEMPLATEPROJECT_DOMAIN'
+WAGTAILADMIN_NOTIFICATION_FROM_EMAIL = 'wagtail@openownership.org'
 
 
 ####################################################################################################
@@ -355,7 +355,7 @@ IMAGE_MODEL = WAGTAILIMAGES_IMAGE_MODEL
 DOCUMENT_MODEL = 'core.SiteDocument'
 
 
-SITE_NAME = 'TEMPLATEPROJECT_FULL_NAME'
+SITE_NAME = 'openownership.org'
 WAGTAIL_SITE_NAME = SITE_NAME
 
 slideshare = {

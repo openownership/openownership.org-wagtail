@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "TEMPLATEPROJECT_SHORT_NAME"
+name = "openownership.org"
 version = "0.1.0"
-description = "TEMPLATEPROJECT_FULL_NAME"
+description = "openownership.org"
 authors = ["systems@hactar.is"]
 
 

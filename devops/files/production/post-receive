@@ -10,14 +10,14 @@ echo "Post Receive Hook is running..." >> /var/log/git.log
 
 # Check out the working tree to the right place
 header "Checking out git repo"
-mkdir -p /srv/www/TEMPLATEPROJECT_SHORT_NAME/
-git --work-tree=/srv/www/TEMPLATEPROJECT_SHORT_NAME/ --git-dir=/srv/repos/TEMPLATEPROJECT_SHORT_NAME.git checkout main -f
+mkdir -p /srv/www/openownership.org/
+git --work-tree=/srv/www/openownership.org/ --git-dir=/srv/repos/openownership.org.git checkout main -f
 
 header "Ensuring various files exist"
 # Make sure we have a log file
-mkdir -p /var/log/TEMPLATEPROJECT_SHORT_NAME
-touch /var/log/TEMPLATEPROJECT_SHORT_NAME/output.log
-chown -R deploy:deploy /var/log/TEMPLATEPROJECT_SHORT_NAME
+mkdir -p /var/log/openownership.org
+touch /var/log/openownership.org/output.log
+chown -R deploy:deploy /var/log/openownership.org
 
 
 header "Clearing pyc files"
@@ -26,41 +26,41 @@ find /srv/www -name "__pycache__" -type d -ls -exec rm -rv {} +
 
 # Remove files we don't want on the remote server
 header "Removing unwanted files and folders"
-rm -rf /srv/www/TEMPLATEPROJECT_SHORT_NAME/ansible.cfg \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/.codacy.yaml \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/config.toml \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/_data \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/_db \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/devops \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/docker \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/docker-compose.test.yml \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/docker-compose.yml \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/.dockerignore \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/fabfile \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/.github \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/.gitignore \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/.gitmodules \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/README.md \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/setup.cfg \
-    /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/_db
+rm -rf /srv/www/openownership.org/ansible.cfg \
+    /srv/www/openownership.org/.codacy.yaml \
+    /srv/www/openownership.org/config.toml \
+    /srv/www/openownership.org/_data \
+    /srv/www/openownership.org/_db \
+    /srv/www/openownership.org/devops \
+    /srv/www/openownership.org/docker \
+    /srv/www/openownership.org/docker-compose.test.yml \
+    /srv/www/openownership.org/docker-compose.yml \
+    /srv/www/openownership.org/.dockerignore \
+    /srv/www/openownership.org/fabfile \
+    /srv/www/openownership.org/.github \
+    /srv/www/openownership.org/.gitignore \
+    /srv/www/openownership.org/.gitmodules \
+    /srv/www/openownership.org/README.md \
+    /srv/www/openownership.org/setup.cfg \
+    /srv/www/openownership.org/app/_db
 
 # Ensure envkey is set
 header "Setting envkey"
-echo 'ENVKEY='$ENVKEY > /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.env
-chown deploy:deploy /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.env
+echo 'ENVKEY='$ENVKEY > /srv/www/openownership.org/app/.env
+chown deploy:deploy /srv/www/openownership.org/app/.env
 export SERVER_ENV=production
 
 header "Running poetry install"
-cd /srv/www/TEMPLATEPROJECT_SHORT_NAME/app && poetry install --no-dev  --no-root
+cd /srv/www/openownership.org/app && poetry install --no-dev  --no-root
 
 header "Running migrations"
-/srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.venv/bin/python manage.py migrate
+/srv/www/openownership.org/app/.venv/bin/python manage.py migrate
 
 header "Collecting static"
-/srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.venv/bin/python /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/manage.py collectstatic --no-input
+/srv/www/openownership.org/app/.venv/bin/python /srv/www/openownership.org/app/manage.py collectstatic --no-input
 
 header "Clearing cache"
-/srv/www/TEMPLATEPROJECT_SHORT_NAME/app/.venv/bin/python /srv/www/TEMPLATEPROJECT_SHORT_NAME/app/manage.py clear_wagtail_cache
+/srv/www/openownership.org/app/.venv/bin/python /srv/www/openownership.org/app/manage.py clear_wagtail_cache
 
 # Restart supervisor apps
 header "Restarting the supervisor app"

@@ -4,7 +4,7 @@ from .remote import *  # NOQA
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-BASE_URL = 'https://staging.TEMPLATEPROJECT_DOMAIN'
+BASE_URL = 'https://staging.openownership.org'
 DOMAIN_NAME = f'staging.{BASE_URL}'
 
 MEDIA_ROOT = 'staging/media/'

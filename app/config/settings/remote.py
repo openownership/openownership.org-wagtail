@@ -8,9 +8,9 @@ DEBUG = False
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'TEMPLATEPROJECT_DOMAIN',
-    'staging.TEMPLATEPROJECT_DOMAIN',
-    'www.TEMPLATEPROJECT_DOMAIN'
+    'openownership.org',
+    'staging.openownership.org',
+    'www.openownership.org'
 ]
 
 ASSETS_DEBUG = False
@@ -41,7 +41,7 @@ REST_FRAMEWORK = {
 WHITENOISE_MAX_AGE = 31557600
 
 AWS_S3_CUSTOM_DOMAIN = ''
-AWS_STORAGE_BUCKET_NAME = "TEMPLATEPROJECT_SHORT_NAME"
+AWS_STORAGE_BUCKET_NAME = "openownership.org"
 
 ####################################################################################################
 # Bugsnag

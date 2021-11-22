@@ -41,3 +41,5 @@ redis_maxmemory: 1gb
 
 meilisearch_master_key: "{{ lookup('envkey', 'MEILISEARCH_MASTER_KEY') }}"
 
+security:
+  deploy_password: '$5$rounds=535000$ImmlMoTpmp6C2fJP$1Xnvn//P/3jsdhgSQ9Ea19SOv3du8GZXbfbFrrycue.'

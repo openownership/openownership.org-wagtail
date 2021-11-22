@@ -4,7 +4,7 @@ from .base import *  # NOQA
 
 DEBUG = True
 
-BASE_URL = 'http://TEMPLATEPROJECT_SHORT_NAME.test:5000'
+BASE_URL = 'http://openownership.org.test:5000'
 
 COLLECTFAST_ENABLED = False
 

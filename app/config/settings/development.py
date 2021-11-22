@@ -28,7 +28,7 @@ PRIVATE_FOLDER = '/usr/srv/private/'
 #     'djdev_panel.middleware.DebugMiddleware',
 # ]
 
-DOMAIN_NAME = 'TEMPLATEPROJECT_SHORT_NAME.test'
+DOMAIN_NAME = 'openownership.org.test'
 SITE_PORT = 5000
 
 WAGTAIL_CACHE = False

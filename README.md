@@ -6,12 +6,6 @@ Firstly, set all this stuff up and make a note of all the API tokens:
 2. Bugsnag
 3. Postmark
 
-You'll then want to find/replace the following variables across the project before starting:
-
-* `TEMPLATEPROJECT_FULL_NAME` - ie. `London Anti-Fascists Alliance`
-* `TEMPLATEPROJECT_SHORT_NAME` - ie. `lafa`
-* `TEMPLATEPROJECT_DOMAIN` - ie. `londonantifa.org.uk`
-* `TEMPLATEPROJECT_REPO` - ie. `git@github.com:hactar-is/londonantifa.org.uk.git`
 
 Then you'll probably need to replace the contents of `poetry.lock` with this:
 
@@ -30,7 +24,7 @@ Then you can delete everything above and use the below for your Readme
 
 ---
 
-# TEMPLATEPROJECT_FULL_NAME
+# openownership.org
 
 This is a Wagtail site.
 
@@ -39,7 +33,7 @@ This is a Wagtail site.
 
 You'll probably want to do `sudo nano /etc/hosts` and add:
 
-`0.0.0.0    TEMPLATEPROJECT_SHORT_NAME.test`
+`0.0.0.0    openownership.org.test`
 
 If you are setting up from scratch:
 `git submodule add git@github.com:hactar-is/fabfile.git fabfile`
@@ -61,7 +55,7 @@ Then...
 8. `runserver`
 
 
-Site should now be accessible at `http://TEMPLATEPROJECT_SHORT_NAME.test:5000` (or http://0.0.0.0.test:5000)
+Site should now be accessible at `http://openownership.org.test:5000` (or http://0.0.0.0.test:5000)
 
 
 # Static assets

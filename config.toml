@@ -1,5 +1,5 @@
 [meta]
-PROJECT_NAME = "TEMPLATEPROJECT_SHORT_NAME"
+PROJECT_NAME = "openownership.org"
 
 # [hexstatic]
 # SOURCE = './app/static'
@@ -16,11 +16,11 @@ ROOT = "/srv/www/app"
 [envs.stage]
 HOSTS = ['', ]
 TAG = "staging"
-BUCKET = "cdn-TEMPLATEPROJECT_SHORT_NAME-staging"
+BUCKET = "cdn-openownership.org-staging"
 GIT_DEPLOY = "This server can only be deployed with Git. Speak to Andy."
 
 [envs.prod]
 HOSTS = ['', ]
 TAG = "production"
-BUCKET = "cdn-TEMPLATEPROJECT_SHORT_NAME-production"
+BUCKET = "cdn-openownership.org-production"
 GIT_DEPLOY = "This server can only be deployed with Git. Speak to Andy."
