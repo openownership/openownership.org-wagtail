@@ -1,29 +1,3 @@
-# Meta: Setup
-
-Firstly, set all this stuff up and make a note of all the API tokens:
-
-1. AWS/Spaces
-2. Bugsnag
-3. Postmark
-
-
-Then you'll probably need to replace the contents of `poetry.lock` with this:
-
-```
-[metadata]
-lock-version = "1.0"
-python-versions = ">=3.6,<3.9"
-```
-
-Other helpful stuff to get started after you've run `gofab`:
-
-* `fab envkey.variables` gets you setup with Envkey defaults
-* `fab utils.make_key` will generate deploy keys - if you've set up a `DEPLOY_USER_PASSWORD` in the step above and it's in your terminal session it will use that by default
-
-Then you can delete everything above and use the below for your Readme
-
----
-
 # openownership.org
 
 This is a Wagtail site.
@@ -33,27 +7,31 @@ This is a Wagtail site.
 
 You'll probably want to do `sudo nano /etc/hosts` and add:
 
-`0.0.0.0    openownership.org.test`
+`0.0.0.0    openownership.test`
 
-If you are setting up from scratch:
-`git submodule add git@github.com:hactar-is/fabfile.git fabfile`
-`git submodule add git@github.com:hactar-is/ansible-roles.git devops/roles`
+## If you have access to the Hactar tooling
 
-If you are working on an existing project:
+Make sure you have developer access to the EnvKey project and generate yourself an EnvKey. Save this to a `.env` file at the root of the project.
 
-`git submodule update --init --recursive`
+1. `git submodule update --init --recursive`
+2. `goenv`
+3. `gofab` (and then probably `cd ..`)
+4. `docker-compose up --build -d`
+5. `fab docker.fish` to get a shell inside the running web container
 
-Then...
 
-1. `goenv`
-2. `gofab` (and then probably `cd ..`)
-3. `docker-compose up --build -d`
-4. `fab docker.fish`
-5. `manpy migrate`
-6. `manpy site_scaffold`
-7. `manpy createsuperuser`
-8. `runserver`
+## If you don't have access to Hactar tooling...
 
+You'll need all the project's environment variables in a .env file expanded into the shell session.
+
+1. `docker-compose up --build -d`
+2. `docker exec -it openownershiporg_web_1 fish` or `docker exec -it openownershiporg_web_1 zsh` depending on your preference
+
+## Once you have a shell inside the web container
+
+1. `manpy migrate`
+2. `manpy createsuperuser`
+3. `runserver`
 
 Site should now be accessible at `http://openownership.org.test:5000` (or http://0.0.0.0.test:5000)
 
