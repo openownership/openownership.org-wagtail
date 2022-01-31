@@ -1,4 +1,4 @@
-FROM repo.treescale.com/hactar/ubuntu-20-arm:latest AS builder
+FROM ghcr.io/hactar-is/ubuntu-20-multi:latest AS builder
 
 # Create our working directory
 RUN mkdir -p /usr/srv/app/
