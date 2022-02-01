@@ -5,7 +5,6 @@ from consoler import console  # NOQA
 from django.apps import apps
 from django.conf import settings
 from wagtail.core.models import Page, Site, Collection, Locale
-from mixer.backend.django import mixer  # NOQA
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 
