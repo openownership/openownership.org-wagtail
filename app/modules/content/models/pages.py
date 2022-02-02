@@ -30,6 +30,7 @@ from wagtail.search.models import Query
 from config.template import url_from_path
 from modules.content.blocks import home_page_blocks
 
+from .mixins import PageHeroMixin
 from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageType
 
 
@@ -38,7 +39,7 @@ from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageTyp
 ####################################################################################################
 
 
-class HomePage(LandingPageType):
+class HomePage(PageHeroMixin, LandingPageType):
 
     class Meta:
         verbose_name = 'Home page'
@@ -69,6 +70,14 @@ class HomePage(LandingPageType):
     @classmethod
     def can_create_at(cls, parent) -> bool:
         return super().can_create_at(parent) and not cls.objects.exists()
+
+    @classmethod
+    def get_admin_tabs(cls):
+        """Add the hero tab to the tabbed interface
+        """
+        tabs = super().get_admin_tabs()
+        tabs.insert(1, (cls.hero_panels, "Hero"))
+        return tabs
 
 
 class LandingPage(LandingPageType):

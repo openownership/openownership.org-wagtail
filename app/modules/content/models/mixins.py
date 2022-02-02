@@ -73,10 +73,10 @@ class PageHeroMixin(PageMixinBase):
     class Meta:
         abstract = True
 
-    hero_headline = models.CharField(
-        max_length=255,
+    hero_headline = fields.RichTextField(
         blank=True,
         null=True,
+        features=['bold', 'italic'],
         verbose_name="Headline",
     )
 
@@ -87,27 +87,17 @@ class PageHeroMixin(PageMixinBase):
         verbose_name="Body text"
     )
 
-    hero_image = models.ForeignKey(
-        settings.IMAGE_MODEL,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        verbose_name="Background image"
-    )
-
     hero_panels = [
         MultiFieldPanel([
             FieldPanel('hero_headline', classname="title"),
             FieldPanel('hero_body'),
-            ImageChooserPanel('hero_image'),
         ], heading="Hero"),
     ]
 
     @property
     def has_hero(self):
         has_body = self.hero_body and self.hero_body != '<p></p>'
-        if any([self.hero_headline, has_body, self.hero_image]):
+        if any([self.hero_headline, has_body]):
             return True
         return False
 
@@ -117,7 +107,6 @@ class PageHeroMixin(PageMixinBase):
             'has_hero': self.has_hero,
             'hero_headline': self.hero_headline,
             'hero_body': self.hero_body,
-            'hero_image': self.hero_image
         }
 
         return context
