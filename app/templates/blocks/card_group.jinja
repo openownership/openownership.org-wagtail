@@ -1,7 +1,17 @@
 <div class="card-group card-group--theme-{{value.theme}} contained-width">
     <ul class="list--{% if object_count is divisibleby 3 %}three-col{% else %}two-col{% endif %}">
-        {% for card in value.objects %}
-            {% include_block card %}
-        {% endfor %}
+        {% if value.is_list %}
+            {# This is a list of data, not an actual Block. #}
+            {% for card in value.objects %}
+                {% with thumbnail=card.thumbnail, link_href=card.link_href, title=card.title, blurb=card.blurb %}
+                    {% include "blocks/card.jinja" %}
+                {% endwith %}
+            {% endfor %}
+        {% else %}
+            {# It's data from an actual Block. #}
+            {% for card in value.objects %}
+                {% include_block card %}
+            {% endfor %}
+        {% endif %}
     </ul>
 </div>

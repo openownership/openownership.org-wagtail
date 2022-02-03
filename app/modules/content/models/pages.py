@@ -47,6 +47,11 @@ class HomePage(PageHeroMixin, LandingPageType):
     template: str = 'content/home.jinja'
 
     parent_page_types: list = []
+    child_page_types: list = [
+        "content.SectionPage",
+        "content.SectoinListingPage",
+        "content.UtilityPage",
+    ]
 
     search_fields: list = []
 
@@ -82,6 +87,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
     template: str = 'content/section_page.jinja'
 
     parent_page_types: list = ['content.HomePage']
+    child_page_types: list = ["content.ArticlePage"]
 
     search_fields: list = []
 
@@ -102,9 +108,49 @@ class SectionListingPage(SectionPage):
     class Meta:
         verbose_name = 'Section listing page'
 
-    template: str = 'content/section_page.jinja'
+    template: str = 'content/section_listing_page.jinja'
 
-    content_panels = BasePage.content_panels
+    parent_page_types: list = ["content.HomePage"]
+    child_page_types: list = ["content.ArticlePage"]
+
+    show_child_pages = models.BooleanField(
+        default=True, help_text="Display cards linking to all the child pages"
+    )
+
+    content_panels = BasePage.content_panels + [
+        FieldPanel('show_child_pages'),
+    ]
+
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+        context['child_cards'] = self.get_child_cards()
+        return context
+
+    def get_child_cards(self):
+        """Returns data about all child pages suitable for rendering as Cards
+        Is this an odd way to do things? I don't know.
+        """
+
+        objects = []
+
+        if self.show_child_pages:
+            for p in self.get_children().live().public():
+                objects.append({
+                    "title": p.title,
+                    "blurb": p.specific.blurb,
+                    "thumbnail": p.specific.thumbnail,
+                    "link_href": p.url,
+                    "link_label": p.title,
+                })
+
+        return {
+            # This value is used in the template to differentiate
+            # the data from that output by an actual Block:
+            "is_list": True,
+            "objects": objects,
+            "theme": "default"
+        }
+
 
 
 ####################################################################################################
@@ -112,11 +158,20 @@ class SectionListingPage(SectionPage):
 ####################################################################################################
 
 class ArticlePage(ContentPageType):
+    """Basic page of content, used for things like About pages.
+    """
     template = 'content/article_page.jinja'
+
+    parent_page_types: list = ['content.SectionListingPage']
 
 
 class UtilityPage(ContentPageType):
+    """Used, I think, for pages like Privacy, Terms, etc.
+    """
     template = 'content/utility_page.jinja'
+
+    parent_page_types: list = ['content.HomePage']
+    child_page_types: list = []
 
     headline = models.CharField(
         help_text=(
@@ -142,35 +197,35 @@ class UtilityPage(ContentPageType):
 # News (Latest) pages
 ####################################################################################################
 
-class NewsIndexPage(IndexPageType):
+# class NewsIndexPage(IndexPageType):
 
-    objects_model = 'content.NewsArticlePage'
-    subpage_types = [objects_model, ]
-    template = 'content/news_index_page.jinja'
+#     objects_model = 'content.NewsArticlePage'
+#     subpage_types = [objects_model, ]
+#     template = 'content/news_index_page.jinja'
 
 
-class NewsArticlePage(ContentPageType):
-    template = 'content/news_article_page.jinja'
-    parent_page_types: list = ['content.NewsIndexPage', ]
+# class NewsArticlePage(ContentPageType):
+#     template = 'content/news_article_page.jinja'
+#     parent_page_types: list = ['content.NewsIndexPage', ]
 
-    categories = ParentalManyToManyField(
-        'content.NewsCategory',
-        related_name="news",
-        blank=True
-    )
+#     categories = ParentalManyToManyField(
+#         'content.NewsCategory',
+#         related_name="news",
+#         blank=True
+#     )
 
-    content_panels = BasePage.content_panels + [
-        FieldPanel('categories', widget=CheckboxSelectMultiple)
-    ] + ContentPageType.model_content_panels
+#     content_panels = BasePage.content_panels + [
+#         FieldPanel('categories', widget=CheckboxSelectMultiple)
+#     ] + ContentPageType.model_content_panels
 
-    @cached_property
-    def category(self):
-        return ', '.join([cat.name for cat in self.categories.all()])
+#     @cached_property
+#     def category(self):
+#         return ', '.join([cat.name for cat in self.categories.all()])
 
-    @cached_property
-    def human_display_date(self):
-        if self.display_date:
-            return self.display_date.strftime('%d %B %Y')
+#     @cached_property
+#     def human_display_date(self):
+#         if self.display_date:
+#             return self.display_date.strftime('%d %B %Y')
 
 
 ####################################################################################################

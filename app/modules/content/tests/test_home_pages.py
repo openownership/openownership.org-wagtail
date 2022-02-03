@@ -15,8 +15,8 @@ def test_home_page_gets_created(home_page):
 
 def test_home_page_200s(home_page):
     assert home_page.url == "/test-site-home/"
-    response = client.get(home_page.url)
-    assert response.status_code == 200
+    rv = client.get(home_page.url)
+    assert rv.status_code == 200
 
 
 def test_home_page_context(home_page):
@@ -24,10 +24,10 @@ def test_home_page_context(home_page):
     home_page.hero_headline = "<p>Hi</p>"
     home_page.save_revision().publish()
 
-    response = client.get(home_page.url)
-    assert response.context_data["body_classes"] == "home-page"
-    assert response.context_data["is_home"] is True
-    assert response.context_data["has_hero"] is True
+    rv = client.get(home_page.url)
+    assert rv.context_data["body_classes"] == "home-page"
+    assert rv.context_data["is_home"] is True
+    assert rv.context_data["has_hero"] is True
 
 
 def test_home_page_hero(home_page):
@@ -38,6 +38,6 @@ def test_home_page_hero(home_page):
     home_page.hero_body = body
     home_page.save_revision().publish()
 
-    response = client.get(home_page.url)
-    assert headline in response.rendered_content
-    assert body in response.rendered_content
+    rv = client.get(home_page.url)
+    assert headline in rv.rendered_content
+    assert body in rv.rendered_content

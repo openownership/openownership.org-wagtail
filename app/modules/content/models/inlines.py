@@ -114,23 +114,23 @@ class PageFAQList(Orderable):
         return f'<{self.__class__.__name__}> {self.page}: {self.faq_list}'
 
 
-class FeaturedNewsArticle(Orderable):
+# class FeaturedNewsArticle(Orderable):
 
-    news_index_page = ParentalKey(
-        'content.NewsIndexPage',
-        related_name='featured_articles',
-        null=True,
-        on_delete=models.CASCADE
-    )
+#     news_index_page = ParentalKey(
+#         'content.NewsIndexPage',
+#         related_name='featured_articles',
+#         null=True,
+#         on_delete=models.CASCADE
+#     )
 
-    link_page = models.ForeignKey(
-        'wagtailcore.Page',
-        null=True,
-        blank=False,
-        related_name='+',
-        on_delete=models.SET_NULL
-    )
+#     link_page = models.ForeignKey(
+#         'wagtailcore.Page',
+#         null=True,
+#         blank=False,
+#         related_name='+',
+#         on_delete=models.SET_NULL
+#     )
 
-    panels = [
-        PageChooserPanel('link_page', page_type='content.NewsArticlePage')
-    ]
+#     panels = [
+#         PageChooserPanel('link_page', page_type='content.NewsArticlePage')
+#     ]

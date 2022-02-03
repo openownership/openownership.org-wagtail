@@ -212,20 +212,11 @@ class ContentPageType(BasePage):
     template = 'content/article_page.jinja'
 
     body = fields.StreamField(article_page_body_blocks, blank=True)
-    additional_content = fields.StreamField(additional_content_blocks, blank=True)
-
-    hero_image = models.ForeignKey(
-        settings.IMAGE_MODEL,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-    )
+    # additional_content = fields.StreamField(additional_content_blocks, blank=True)
 
     model_content_panels = [
-        ImageChooserPanel('hero_image'),
         StreamFieldPanel('body'),
-        StreamFieldPanel('additional_content'),
+        # StreamFieldPanel('additional_content'),
     ]
 
     content_panels = BasePage.content_panels + model_content_panels
@@ -282,6 +273,9 @@ class ArticlePageWithContentsType(ContentPageType):
 ####################################################################################################
 
 class IndexPageType(BasePage):
+
+    class Meta:
+        abstract = True
 
     objects_model = None
     objects_per_page = 20

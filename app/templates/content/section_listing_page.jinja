@@ -1,0 +1,10 @@
+{% extends 'content/section_page.jinja' %}
+
+
+{% block content %}
+
+  {% with value=child_cards, object_count=child_cards|length %}
+    {% include "blocks/card_group.jinja" %}
+  {% endwith %}
+
+{% endblock %}

@@ -8,11 +8,11 @@
 
 from .pages import (  # NOQA
     HomePage, SearchPage, UtilityPage,
-    SearchPageSuggestedSearch, NewsIndexPage, NewsArticlePage,
+    SearchPageSuggestedSearch,
     SectionListingPage, ArticlePage
 )
 
-from .inlines import FeaturedNewsArticle, PageFAQList  # NOQA
+from .inlines import PageFAQList  # NOQA
 
 from .snippets import FAQList, FAQItem  # NOQA
 
