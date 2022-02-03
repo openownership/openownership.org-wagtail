@@ -92,7 +92,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
     ]
 
 
-class IndexSectionPage(SectionPage):
+class SectionListingPage(SectionPage):
     """A top-level section page, but the body only lists its child
     pages - it has no other configurable body content.
 
@@ -100,7 +100,7 @@ class IndexSectionPage(SectionPage):
     """
 
     class Meta:
-        verbose_name = 'Index section page'
+        verbose_name = 'Section listing page'
 
     template: str = 'content/section_page.jinja'
 
