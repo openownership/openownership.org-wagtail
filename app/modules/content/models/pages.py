@@ -28,7 +28,7 @@ from wagtail.search.models import Query
 # Project
 
 from config.template import url_from_path
-from modules.content.blocks import home_page_blocks
+from modules.content.blocks import home_page_blocks, section_page_blocks
 
 from .mixins import PageHeroMixin
 from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageType
@@ -45,6 +45,9 @@ class HomePage(PageHeroMixin, LandingPageType):
         verbose_name = 'Home page'
 
     template: str = 'content/home.jinja'
+
+    parent_page_types: list = []
+
     search_fields: list = []
 
     body = fields.StreamField(home_page_blocks, blank=True)
@@ -57,8 +60,6 @@ class HomePage(PageHeroMixin, LandingPageType):
         context = super().get_context(request, *args, **kwargs)
         context['body_classes'] = 'home-page'
         context['is_home'] = True
-        if hasattr(self, 'hero_panels'):
-            context.update(self.get_hero_context())
         return context
 
     def get_meta_title(self) -> str:
@@ -71,17 +72,39 @@ class HomePage(PageHeroMixin, LandingPageType):
     def can_create_at(cls, parent) -> bool:
         return super().can_create_at(parent) and not cls.objects.exists()
 
-    @classmethod
-    def get_admin_tabs(cls):
-        """Add the hero tab to the tabbed interface
-        """
-        tabs = super().get_admin_tabs()
-        tabs.insert(1, (cls.hero_panels, "Hero"))
-        return tabs
+
+class SectionPage(PageHeroMixin, LandingPageType):
+    """For the top-level section pages, like Impact, Insight, Implement.
+    """
+    class Meta:
+        verbose_name = 'Section page'
+
+    template: str = 'content/section_page.jinja'
+
+    parent_page_types: list = ['content.HomePage']
+
+    search_fields: list = []
+
+    body = fields.StreamField(section_page_blocks, blank=True)
+
+    content_panels = BasePage.content_panels + [
+        StreamFieldPanel('body')
+    ]
 
 
-class LandingPage(LandingPageType):
-    template = 'content/landing_page.jinja'
+class IndexSectionPage(SectionPage):
+    """A top-level section page, but the body only lists its child
+    pages - it has no other configurable body content.
+
+    Used for the About section page.
+    """
+
+    class Meta:
+        verbose_name = 'Index section page'
+
+    template: str = 'content/section_page.jinja'
+
+    content_panels = BasePage.content_panels
 
 
 ####################################################################################################

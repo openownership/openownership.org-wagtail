@@ -43,6 +43,8 @@ landing_page_blocks: list = [
 
 home_page_blocks: list = landing_page_blocks + []
 
+section_page_blocks: list = landing_page_blocks + []
+
 additional_content_blocks: list = landing_page_blocks
 contents_page_body_blocks: list = landing_page_blocks
 

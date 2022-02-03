@@ -111,6 +111,20 @@ class PageHeroMixin(PageMixinBase):
 
         return context
 
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+        if hasattr(self, 'hero_panels'):
+            context.update(self.get_hero_context())
+        return context
+
+    @classmethod
+    def get_admin_tabs(cls):
+        """Add the hero tab to the tabbed interface
+        """
+        tabs = super().get_admin_tabs()
+        tabs.insert(1, (cls.hero_panels, "Hero"))
+        return tabs
+
 
 ####################################################################################################
 # Taxonomy mixin

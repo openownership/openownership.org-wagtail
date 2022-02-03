@@ -9,7 +9,7 @@
 from .pages import (  # NOQA
     HomePage, SearchPage, UtilityPage,
     SearchPageSuggestedSearch, NewsIndexPage, NewsArticlePage,
-    LandingPage, HomePage, ArticlePage
+    IndexSectionPage, ArticlePage
 )
 
 from .inlines import FeaturedNewsArticle, PageFAQList  # NOQA
