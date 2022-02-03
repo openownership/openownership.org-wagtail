@@ -1,0 +1,11 @@
+{# A list of pages in a menu at the side of a page. #}
+
+{% if pages %}
+    <ul>
+        {% for p in pages %}
+            <li class="{% if p.pk == page.pk %} current {% endif %}">
+                <a href="{{ p.url }}">{{ p.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

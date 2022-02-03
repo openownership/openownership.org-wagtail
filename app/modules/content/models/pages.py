@@ -47,9 +47,9 @@ class HomePage(PageHeroMixin, LandingPageType):
     template: str = 'content/home.jinja'
 
     parent_page_types: list = []
-    child_page_types: list = [
+    subpage_types: list = [
         "content.SectionPage",
-        "content.SectoinListingPage",
+        "content.SectionListingPage",
         "content.UtilityPage",
     ]
 
@@ -87,7 +87,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
     template: str = 'content/section_page.jinja'
 
     parent_page_types: list = ['content.HomePage']
-    child_page_types: list = ["content.ArticlePage"]
+    subpage_types: list = ["content.ArticlePage"]
 
     search_fields: list = []
 
@@ -111,7 +111,7 @@ class SectionListingPage(SectionPage):
     template: str = 'content/section_listing_page.jinja'
 
     parent_page_types: list = ["content.HomePage"]
-    child_page_types: list = ["content.ArticlePage"]
+    subpage_types: list = ["content.ArticlePage"]
 
     show_child_pages = models.BooleanField(
         default=True, help_text="Display cards linking to all the child pages"
@@ -157,12 +157,18 @@ class SectionListingPage(SectionPage):
 # Content type pages
 ####################################################################################################
 
+
 class ArticlePage(ContentPageType):
     """Basic page of content, used for things like About pages.
     """
     template = 'content/article_page.jinja'
 
     parent_page_types: list = ['content.SectionListingPage']
+
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+        context['section_menu_pages'] = self.get_parent().get_children().live().public()
+        return context
 
 
 class UtilityPage(ContentPageType):
@@ -171,7 +177,7 @@ class UtilityPage(ContentPageType):
     template = 'content/utility_page.jinja'
 
     parent_page_types: list = ['content.HomePage']
-    child_page_types: list = []
+    subpage_types: list = []
 
     headline = models.CharField(
         help_text=(

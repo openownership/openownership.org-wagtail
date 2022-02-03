@@ -3,7 +3,7 @@ import pytest
 import arrow
 from wagtail.core.models import Page
 
-from modules.content.models import HomePage, SectionListingPage
+from modules.content.models import ArticlePage, HomePage, SectionListingPage
 
 
 pytestmark = pytest.mark.django_db
@@ -29,6 +29,17 @@ def _create_section_listing_page(
     return p
 
 
+def _create_article_page(
+    title: str, parent: Page, modifier: int = 1
+) -> ArticlePage:
+    p = ArticlePage()
+    p.title = title
+    p.first_published_at = arrow.now().shift(days=modifier * -1).datetime
+    parent.add_child(instance=p)
+    p.save_revision().publish()
+    return p
+
+
 @pytest.fixture(scope="function")
 def site_root():
     return Page.objects.filter(path="0001").first()
@@ -43,4 +54,10 @@ def home_page(site_root):
 @pytest.fixture(scope="function")
 def section_listing_page(home_page):
     p = _create_section_listing_page("Section Listing", home_page)
+    return p
+
+
+@pytest.fixture(scope="function")
+def article_page(section_listing_page):
+    p = _create_article_page("Article", section_listing_page)
     return p
