@@ -76,7 +76,7 @@ class PageHeroMixin(PageMixinBase):
     hero_headline = fields.RichTextField(
         blank=True,
         null=True,
-        features=['bold', 'italic'],
+        features=['bold'],
         verbose_name="Headline",
     )
 
