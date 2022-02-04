@@ -28,7 +28,10 @@ from wagtail.search.models import Query
 # Project
 
 from config.template import url_from_path
-from modules.content.blocks import home_page_blocks, section_page_blocks
+from modules.content.blocks import (
+    home_page_blocks, section_page_blocks
+)
+from modules.content.blocks.stream import GlossaryItemBlock
 
 from .mixins import PageHeroMixin
 from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageType
@@ -46,12 +49,14 @@ class HomePage(PageHeroMixin, LandingPageType):
 
     template: str = 'content/home.jinja'
 
-    parent_page_types: list = []
+    # Only allow at root level:
+    parent_page_types: list = ['wagtailcore.Page']
     subpage_types: list = [
         "content.SectionPage",
         "content.SectionListingPage",
         "content.UtilityPage",
     ]
+    max_count = 1
 
     search_fields: list = []
 
@@ -87,7 +92,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
     template: str = 'content/section_page.jinja'
 
     parent_page_types: list = ['content.HomePage']
-    subpage_types: list = ["content.ArticlePage"]
+    subpage_types: list = ['content.ArticlePage', 'content.GlossaryPage']
 
     search_fields: list = []
 
@@ -96,7 +101,6 @@ class SectionPage(PageHeroMixin, LandingPageType):
     content_panels = BasePage.content_panels + [
         StreamFieldPanel('body')
     ]
-
 
 class SectionListingPage(SectionPage):
     """A top-level section page, but the body only lists its child
@@ -152,7 +156,6 @@ class SectionListingPage(SectionPage):
         }
 
 
-
 ####################################################################################################
 # Content type pages
 ####################################################################################################
@@ -169,6 +172,24 @@ class ArticlePage(ContentPageType):
         context = super().get_context(request, *args, **kwargs)
         context['section_menu_pages'] = self.get_parent().get_children().live().public()
         return context
+
+
+class GlossaryPage(ContentPageType):
+    """The one page that lists all of the Glossary items.
+    """
+    template = 'content/glossary_page.jinja'
+
+    parent_page_types: list = ['content.SectionPage']
+    subpage_types: list = []
+    max_count = 1
+
+    glossary = fields.StreamField([
+        ('glossary_item', GlossaryItemBlock()),
+    ])
+
+    content_panels = ContentPageType.content_panels + [
+        StreamFieldPanel('glossary')
+    ]
 
 
 class UtilityPage(ContentPageType):

@@ -6,6 +6,7 @@ from .generic import (
 )
 
 from .stream import (
+    GlossaryItemBlock,
     EmbedBlock,
     StepsBlock,
     StatsBlock,

@@ -86,6 +86,8 @@ WAGTAIL_APPS = [
     'wagtail.contrib.table_block',
     'wagtail.contrib.routable_page',
     'wagtail.contrib.search_promotions',
+    # Enable styleguide to see icons available for use in blocks etc:
+    # 'wagtail.contrib.styleguide',
     'wagtailfontawesome',
 ]
 

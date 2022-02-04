@@ -28,6 +28,25 @@ from .generic import LinkBlock, CTABlock, CardStreamBlock  # NOQA
 RICHTEXT_INLINE_FEATURES = ['bold', 'italic', 'underline', 'small', 'link', 'document-link']
 
 
+
+####################################################################################################
+# Glossary
+####################################################################################################
+
+class GlossaryItemBlock(blocks.StructBlock):
+
+    class Meta:
+        label = 'Glossary item'
+        icon = 'fa-help'
+        template = 'blocks/glossary_item.jinja'
+
+    title = blocks.CharBlock(required=True)
+    body = blocks.RichTextBlock(
+        required=True,
+        features=RICHTEXT_INLINE_FEATURES
+    )
+
+
 ####################################################################################################
 # Embeds
 ####################################################################################################
