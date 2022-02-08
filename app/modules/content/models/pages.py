@@ -227,7 +227,7 @@ class JobPage(ContentPageType):
 class JobsIndexPage(IndexPageType):
     objects_model = JobPage
 
-    template = 'content/job_index_page.jinja'
+    template = 'content/jobs_index_page.jinja'
     parent_page_types: list = ['content.HomePage']
     subpage_types: list = ['content.JobPage']
     max_count = 1
