@@ -23,13 +23,14 @@ from wagtail.admin.edit_handlers import (
 from wagtail.core import fields
 from wagtail.core.models import Orderable, Page
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.search import index
 from wagtail.search.models import Query
 
 # Project
 
 from config.template import url_from_path
 from modules.content.blocks import (
-    home_page_blocks, section_page_blocks
+    article_page_body_blocks, home_page_blocks, section_page_blocks
 )
 from modules.content.blocks.stream import GlossaryItemBlock
 
@@ -155,7 +156,6 @@ class SectionListingPage(SectionPage):
             "theme": "default"
         }
 
-
 ####################################################################################################
 # Content type pages
 ####################################################################################################
@@ -172,24 +172,6 @@ class ArticlePage(ContentPageType):
         context = super().get_context(request, *args, **kwargs)
         context['section_menu_pages'] = self.get_parent().get_children().live().public()
         return context
-
-
-class GlossaryPage(ContentPageType):
-    """The one page that lists all of the Glossary items.
-    """
-    template = 'content/glossary_page.jinja'
-
-    parent_page_types: list = ['content.SectionPage']
-    subpage_types: list = []
-    max_count = 1
-
-    glossary = fields.StreamField([
-        ('glossary_item', GlossaryItemBlock()),
-    ])
-
-    content_panels = ContentPageType.content_panels + [
-        StreamFieldPanel('glossary')
-    ]
 
 
 class UtilityPage(ContentPageType):
@@ -218,6 +200,40 @@ class UtilityPage(ContentPageType):
         FieldPanel('headline'),
         FieldPanel('intro')
     ] + ContentPageType.model_content_panels
+
+
+
+
+####################################################################################################
+# Other pages
+####################################################################################################
+
+
+class GlossaryPage(BasePage):
+    """The one page that lists all of the Glossary items.
+    """
+    template = 'content/glossary_page.jinja'
+
+    parent_page_types: list = ['content.SectionPage']
+    subpage_types: list = []
+    max_count = 1
+
+    body = fields.StreamField(article_page_body_blocks, blank=True)
+
+    glossary = fields.StreamField([
+        ('glossary_item', GlossaryItemBlock()),
+    ])
+
+    content_panels = BasePage.content_panels + [
+        StreamFieldPanel('body'),
+        StreamFieldPanel('glossary')
+    ]
+
+    search_fields = BasePage.search_fields + [
+        index.SearchField('body'),
+        index.SearchField('glossary'),
+    ]
+
 
 
 ####################################################################################################
