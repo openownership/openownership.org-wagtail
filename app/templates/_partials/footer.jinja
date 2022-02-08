@@ -1,0 +1,42 @@
+
+
+<div class="contained-width">
+  <footer class="footer">
+    {% if footer_nav %}
+      <nav class="footer__item footer__item--nav">
+        <ul>
+          {% for obj in footer_nav %}
+            {% set href, label = obj.value %}
+            <li><a href="{{ href }}">{{ label }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+
+    <div>
+        <h2>Contact us</h2>
+
+    </div>
+
+    </div>
+    <div>
+      {% if social_links %}
+        <h2>Follow Us</h2>
+        <ul>
+          {% for service, link in social_links.items() %}
+            <li>
+              <a rel="noopener noreferrer" href="{{ link }}" aria-label="Visit our {{ service|title }}">
+                {{ service|title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    <div>
+      <h2>Content rights</h2>
+      <p>This work by Open Ownership, unless otherwise noted, is licensed under a Creative Commons Attribution 4.0 International License</p>
+    </div>
+  </footer>
+</div>
