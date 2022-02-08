@@ -51,18 +51,18 @@ additional_content_blocks: list = landing_page_blocks
 contents_page_body_blocks: list = landing_page_blocks
 
 article_page_body_blocks: list = [
-    # (
-    #     "rich_text",
-    #     blocks.RichTextBlock(
-    #         features=[
-    #             "h2", "h3", "h4", "h5", "h6", "bold",
-    #             "italic", "small", "ol", "ul", "link", "document-link",
-    #         ]
-    #     ),
-    # ),
-    # ('embed', EmbedBlock()),
-    # ('table', TableBlock()),
-    # ('pull_quote', PullQuoteBlock()),
-    # ('block_quote', BlockQuoteBlock()),
-    # ('image', ArticleImageBlock()),
+    (
+        "rich_text",
+        blocks.RichTextBlock(
+            features=[
+                "h2", "h3", "h4", "h5", "h6", "bold",
+                "italic", "small", "ol", "ul", "link", "document-link",
+            ]
+        ),
+    ),
+    ('embed', EmbedBlock()),
+    ('table', TableBlock()),
+    ('pull_quote', PullQuoteBlock()),
+    ('block_quote', BlockQuoteBlock()),
+    ('image', ArticleImageBlock()),
 ]
