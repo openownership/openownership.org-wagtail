@@ -7,9 +7,14 @@
 """
 
 from .pages import (  # NOQA
-    HomePage, SearchPage, UtilityPage,
+    ArticlePage,
+    HomePage,
+    JobPage,
+    JobsIndexPage,
+    SearchPage,
     SearchPageSuggestedSearch,
-    SectionListingPage, ArticlePage
+    SectionListingPage,
+    UtilityPage,
 )
 
 from .inlines import PageFAQList  # NOQA

@@ -205,7 +205,7 @@ class JobPage(ContentPageType):
         help_text="URL of the page where people can apply for the job",
         verbose_name="Application URL"
     )
-    application_deadline = models.DateField(blank=True)
+    application_deadline = models.DateField(blank=True, null=True)
 
     content_panels = ContentPageType.content_panels + [
         MultiFieldPanel(

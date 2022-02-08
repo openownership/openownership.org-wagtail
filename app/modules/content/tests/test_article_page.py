@@ -10,7 +10,7 @@ pytestmark = pytest.mark.django_db
 client = Client()
 
 
-def test_section_menu_pages_live(article_page):
+def test_menu_pages_live(article_page):
     "Should only include live sibling pages, not draft ones"
 
     section_page = article_page.get_parent()
@@ -23,13 +23,13 @@ def test_section_menu_pages_live(article_page):
 
     rv = client.get(article_page.url)
 
-    pages = [p.specific for p in rv.context_data["section_menu_pages"]]
+    pages = [p.specific for p in rv.context_data["menu_pages"]]
     assert article_page in pages
     assert live_sibling in pages
     assert draft_sibling not in pages
 
 
-def test_section_menu_pages_only_siblings(article_page):
+def test_menu_pages_only_siblings(article_page):
     "Should only include sibling pages, not other ArticlePages"
 
     home_page = article_page.get_parent().get_parent()
@@ -44,5 +44,5 @@ def test_section_menu_pages_only_siblings(article_page):
 
     rv = client.get(article_page.url)
 
-    pages = [p.specific for p in rv.context_data["section_menu_pages"]]
+    pages = [p.specific for p in rv.context_data["menu_pages"]]
     assert non_sibling not in pages
