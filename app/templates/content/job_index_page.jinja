@@ -3,7 +3,8 @@
 {% block content %}
     <h1>{{ page.title }}</h1>
 
-    {{render_stream(page.body)}}
+    {{ page.intro|richtext }}
+
 {% endblock content %}
 
 {% block menu %}

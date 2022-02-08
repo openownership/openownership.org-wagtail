@@ -187,6 +187,7 @@ class UtilityPage(ContentPageType):
     intro = fields.RichTextField(
         blank=True,
         null=True,
+        features=["bold", "italic", "small", "ol", "ul", "link", "document-link"],
     )
 
     content_panels = BasePage.content_panels + [

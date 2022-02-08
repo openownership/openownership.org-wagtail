@@ -29,7 +29,6 @@ from modules.core.models import UpdateBannerSettings
 from modules.core.utils import get_site_context
 from modules.content.blocks import (
     landing_page_blocks, article_page_body_blocks, contents_page_body_blocks,
-    additional_content_blocks
 )
 
 
@@ -280,21 +279,21 @@ class IndexPageType(BasePage):
     objects_model = None
     objects_per_page = 20
 
-    additional_content = fields.StreamField(
-        additional_content_blocks,
+    intro = fields.RichTextField(
         blank=True,
-        help_text="The blocks you create here will be displayed below the listing"
+        null=True,
+        features=["bold", "italic", "small", "ol", "ul", "link", "document-link"],
     )
 
-    child_page_stream = fields.StreamField(
-        additional_content_blocks,
-        blank=True,
-        help_text="The blocks you create here will be displayed below all child pages"
-    )
+    # child_page_stream = fields.StreamField(
+    #     additional_content_blocks,
+    #     blank=True,
+    #     help_text="The blocks you create here will be displayed below all child pages"
+    # )
 
     content_panels = BasePage.content_panels + [
-        StreamFieldPanel('additional_content'),
-        StreamFieldPanel('child_page_stream')
+        FieldPanel('intro')
+        # StreamFieldPanel('child_page_stream')
     ]
 
     def get_objects_model(self):
