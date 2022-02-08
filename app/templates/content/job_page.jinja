@@ -1,0 +1,26 @@
+{% extends 'base.jinja' %}
+
+{% block breadcrumbs %}
+    <a href="{{ page.get_parent().url }}">Back to Careers at OO</a>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+
+    <ul>
+        <li>
+            Publication date: {{ page.date }}
+        </li>
+        {% if page.application_deadline %}
+            <li>Application deadline: {{ page.application_deadline }}</li>
+        {% endif %}
+    </ul>
+
+    {{render_stream(page.body)}}
+
+    {% if page.application_url %}
+        <p>
+            <a href="{{ page.application_url }}">Apply</a>
+        </p>
+    {% endif %}
+{% endblock content %}

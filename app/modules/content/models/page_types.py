@@ -280,13 +280,6 @@ class IndexPageType(BasePage):
     objects_model = None
     objects_per_page = 20
 
-    headline = models.CharField(
-        max_length=255,
-        help_text="Displayed at the top of the page",
-        null=True,
-        blank=False,
-    )
-
     additional_content = fields.StreamField(
         additional_content_blocks,
         blank=True,
@@ -300,7 +293,6 @@ class IndexPageType(BasePage):
     )
 
     content_panels = BasePage.content_panels + [
-        FieldPanel('headline'),
         StreamFieldPanel('additional_content'),
         StreamFieldPanel('child_page_stream')
     ]
@@ -355,73 +347,73 @@ class IndexPageType(BasePage):
         """
         return request.GET.copy()
 
-    def get_filters_for_template(self, request) -> dict:
-        """
-        This method return a list of dicts for constructing filter menus in the template.
+    # def get_filters_for_template(self, request) -> dict:
+    #     """
+    #     This method return a list of dicts for constructing filter menus in the template.
 
-        Each dict has a field_name, label and an is_active boolean to say whether this filter
-        is currently being used on the queryset. Example:
+    #     Each dict has a field_name, label and an is_active boolean to say whether this filter
+    #     is currently being used on the queryset. Example:
 
 
-        return [
-            {
-                'field_name': 'categories',
-                'label': 'Category',
-                'choices': <QuerySet [
-                    {
-                        'name': 'Blog',
-                        'slug': 'blog',
-                        'selected': True
-                    },
-                    {
-                        'name': 'Press release',
-                        'slug': 'press-release',
-                        'selected': False
-                    },
+    #     return [
+    #         {
+    #             'field_name': 'categories',
+    #             'label': 'Category',
+    #             'choices': <QuerySet [
+    #                 {
+    #                     'name': 'Blog',
+    #                     'slug': 'blog',
+    #                     'selected': True
+    #                 },
+    #                 {
+    #                     'name': 'Press release',
+    #                     'slug': 'press-release',
+    #                     'selected': False
+    #                 },
 
-                    {
-                        'name': 'Research Papers',
-                        'slug': 'research',
-                        'selected': False
-                    },
-                ]>
-            }
-        ]
-        """
+    #                 {
+    #                     'name': 'Research Papers',
+    #                     'slug': 'research',
+    #                     'selected': False
+    #                 },
+    #             ]>
+    #         }
+    #     ]
+    #     """
 
-        filters = []
-        query_string = request.GET.copy()
-        objects_model = self.get_objects_model()
+    #     filters = []
+    #     query_string = request.GET.copy()
+    #     objects_model = self.get_objects_model()
 
-        for key, values in self.get_filter_options().items():
-            filter_model = getattr(objects_model, key).field.related_model
-            active_filters = query_string.getlist(key)
+    #     for key, values in self.get_filter_options().items():
+    #         filter_model = getattr(objects_model, key).field.related_model
+    #         active_filters = query_string.getlist(key)
 
-            value_key = values[0]
+    #         value_key = values[0]
 
-            choices = (
-                filter_model
-                .objects
-                .values(*values)
-                .annotate(
-                    is_active=models.Case(
-                        *[models.When(**{
-                            value_key: active_filter,
-                            'then': True
-                        }) for active_filter in active_filters],
-                        default=models.Value(False),
-                        output_field=models.BooleanField()
-                    )
-                ).values(*values, 'is_active')
-            )
+    #         choices = (
+    #             filter_model
+    #             .objects
+    #             .values(*values)
+    #             .annotate(
+    #                 is_active=models.Case(
+    #                     *[models.When(**{
+    #                         value_key: active_filter,
+    #                         'then': True
+    #                     }) for active_filter in active_filters],
+    #                     default=models.Value(False),
+    #                     output_field=models.BooleanField()
+    #                 )
+    #             ).values(*values, 'is_active')
+    #         )
 
-            filters.append({
-                'field_name': key,
-                'label': self.get_filter_label(filter_model),
-                'choices': choices
-            })
+    #         filters.append({
+    #             'field_name': key,
+    #             'label': self.get_filter_label(filter_model),
+    #             'choices': choices
+    #         })
 
-        return filters
+    #     return filters
 
     def get_order_by(self):
         return ['-display_date', '-last_published_at']
@@ -477,7 +469,7 @@ class IndexPageType(BasePage):
 
         print(context)
         context.update({
-            'object_filters': self.get_filters_for_template(request),
+            # 'object_filters': self.get_filters_for_template(request),
             'page_obj': self.paginate_objects(request),
             'pagination_params': pagination_params
         })

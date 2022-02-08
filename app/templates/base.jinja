@@ -24,11 +24,15 @@
         {% block hero %}
             {% if has_hero %}{% include '_partials/hero.jinja' %}{% endif %}
         {% endblock %}
+        {% block breadcrumbs %}
+        {% endblock %}
             <main>
             {% block content %}
                 {{render_stream(page.body)}}
             {% endblock %}
             </main>
+        {% block menu %}
+        {% endblock %}
         {% block footer %}
             {% include '_partials/footer.jinja' %}
         {% endblock %}

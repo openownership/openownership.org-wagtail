@@ -18,7 +18,7 @@ from django.utils.functional import cached_property
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 
 from wagtail.admin.edit_handlers import (
-    FieldPanel, InlinePanel, PageChooserPanel, StreamFieldPanel
+    FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
 )
 from wagtail.core import fields
 from wagtail.core.models import Orderable, Page
@@ -53,6 +53,7 @@ class HomePage(PageHeroMixin, LandingPageType):
     # Only allow at root level:
     parent_page_types: list = ['wagtailcore.Page']
     subpage_types: list = [
+        "content.JobsIndexPage",
         "content.SectionPage",
         "content.SectionListingPage",
         "content.UtilityPage",
@@ -158,6 +159,7 @@ class SectionListingPage(SectionPage):
 
 ####################################################################################################
 # Content type pages
+# All sharing the same kinds of tags etc.
 ####################################################################################################
 
 
@@ -170,7 +172,7 @@ class ArticlePage(ContentPageType):
 
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)
-        context['section_menu_pages'] = self.get_parent().get_children().live().public()
+        context['menu_pages'] = self.get_parent().get_children().live().public()
         return context
 
 
@@ -182,26 +184,57 @@ class UtilityPage(ContentPageType):
     parent_page_types: list = ['content.HomePage']
     subpage_types: list = []
 
-    headline = models.CharField(
-        help_text=(
-            "If blank, the page title will be used",
-        ),
-        null=True,
-        blank=True,
-        max_length=255
-    )
-
     intro = fields.RichTextField(
         blank=True,
         null=True,
     )
 
     content_panels = BasePage.content_panels + [
-        FieldPanel('headline'),
         FieldPanel('intro')
     ] + ContentPageType.model_content_panels
 
 
+class JobPage(ContentPageType):
+    template = 'content/job_page.jinja'
+    parent_page_types: list = ['content.JobsIndexPage']
+    subpage_types: list = []
+
+    application_url = models.URLField(
+        blank=True,
+        max_length=255,
+        help_text="URL of the page where people can apply for the job",
+        verbose_name="Application URL"
+    )
+    application_deadline = models.DateField(blank=True)
+
+    content_panels = ContentPageType.content_panels + [
+        MultiFieldPanel(
+            [
+                FieldPanel('application_deadline'),
+                FieldPanel('application_url')
+            ],
+            heading='Application details'
+        )
+    ]
+
+####################################################################################################
+# Index type pages
+# No heros, just a bit of content, then cards linking to child pages.
+####################################################################################################
+
+
+class JobsIndexPage(IndexPageType):
+    objects_model = JobPage
+
+    template = 'content/job_index_page.jinja'
+    parent_page_types: list = ['content.HomePage']
+    subpage_types: list = ['content.JobPage']
+    max_count = 1
+
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+        context['menu_pages'] = [self] + list(JobPage.objects.live().public())
+        return context
 
 
 ####################################################################################################
@@ -233,7 +266,6 @@ class GlossaryPage(BasePage):
         index.SearchField('body'),
         index.SearchField('glossary'),
     ]
-
 
 
 ####################################################################################################
@@ -319,21 +351,6 @@ class SearchPage(BasePage):
     parent_page_types = ['content.HomePage', ]
     objects_per_page = 10
 
-    headline = models.CharField(
-        null=True,
-        blank=False,
-        max_length=255,
-        default="Search all our content"
-    )
-
-    hero_image = models.ForeignKey(
-        settings.IMAGE_MODEL,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-    )
-
     suggested_searches_title = models.CharField(
         null=True,
         blank=False,
@@ -342,8 +359,6 @@ class SearchPage(BasePage):
     )
 
     content_panels = BasePage.content_panels + [
-        FieldPanel('headline'),
-        ImageChooserPanel('hero_image'),
         FieldPanel('suggested_searches_title'),
         InlinePanel('suggested_search_items', heading="Suggested pages")
     ]

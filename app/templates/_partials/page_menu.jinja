@@ -1,10 +1,17 @@
 {# A list of pages in a menu at the side of a page. #}
 
-{% if pages %}
+{% if menu_pages %}
+    {% if title %}
+        <h2>{{ title }}</h2>
+    {% endif %}
     <ul>
-        {% for p in pages %}
-            <li class="{% if p.pk == page.pk %} current {% endif %}">
-                <a href="{{ p.url }}">{{ p.title }}</a>
+        {% for p in menu_pages %}
+            <li class="{% if p.pk == page.pk %}current{% endif %}">
+                {% if p.pk == page.pk %}
+                    {{ p.title }}
+                {% else %}
+                    <a href="{{ p.url }}">{{ p.title }}</a>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>

@@ -23,9 +23,10 @@
         </div>
         {{render_stream(page.additional_content)}}
     </div>
+{% endblock %}
 
-    {% with pages=section_menu_pages %}
+{% block menu %}
+    {% with %}
         {% include "_partials/page_menu.jinja" %}
     {% endwith %}
-
 {% endblock %}
