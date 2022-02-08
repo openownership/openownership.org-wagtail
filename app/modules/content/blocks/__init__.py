@@ -3,6 +3,7 @@ from wagtail.contrib.table_block.blocks import TableBlock
 
 from .generic import (
     ArticleImageBlock,
+    CTABlock,
 )
 
 from .stream import (
@@ -65,4 +66,5 @@ article_page_body_blocks: list = [
     ('pull_quote', PullQuoteBlock()),
     ('block_quote', BlockQuoteBlock()),
     ('image', ArticleImageBlock()),
+    ('cta_block_form', CTABlock()),
 ]
