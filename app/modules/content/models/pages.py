@@ -145,7 +145,7 @@ class SectionListingPage(SectionPage):
                     "title": p.title,
                     "blurb": p.specific.blurb,
                     "thumbnail": p.specific.thumbnail,
-                    "link_href": p.url,
+                    "link_href": p.get_url(),
                     "link_label": p.title,
                 })
 
