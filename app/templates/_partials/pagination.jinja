@@ -1,0 +1,23 @@
+{# Ana - just some dummy example HTML! Phil. #}
+
+{% if page_obj.paginator.num_pages > 1 %}
+    <ul>
+        {% if page_obj.has_previous() %}
+            <li><a href="?page={{ page_obj.previous_page_number }}">Back</a></li>
+        {% else %}
+            <li>Back</li>
+        {% endif %}
+        {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+                <li>{{ i }}</li>
+            {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next() %}
+            <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+        {% else %}
+            <li>Next</li>
+        {% endif %}
+    </ul>
+{% endif %}

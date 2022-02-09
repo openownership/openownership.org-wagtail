@@ -1,0 +1,15 @@
+{# For rendering a group of cards that come as a list/PageQuerySet, not in a Block
+
+Expects:
+
+* pages - The list of Pages
+* theme - optional, the default is "default"
+#}
+
+<div class="card-group card-group--theme-{{theme|default("default", true)}} contained-width">
+    <ul class="list--{% if pages|length is divisibleby 3 %}three-col{% else %}two-col{% endif %}">
+        {% for page in pages %}
+            {% include "_partials/card.jinja" %}
+        {% endfor %}
+    </ul>
+</div>

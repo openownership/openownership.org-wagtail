@@ -3,8 +3,10 @@
 
 {% block content %}
 
-  {% with value=child_cards, object_count=child_cards|length %}
-    {% include "blocks/card_group.jinja" %}
-  {% endwith %}
+    {% if child_pages %}
+        {% with pages=child_pages %}
+            {% include "_partials/card_group.jinja" %}
+        {% endwith %}
+    {% endif %}
 
 {% endblock %}

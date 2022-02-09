@@ -94,7 +94,12 @@ class SectionPage(PageHeroMixin, LandingPageType):
     template: str = 'content/section_page.jinja'
 
     parent_page_types: list = ['content.HomePage']
-    subpage_types: list = ['content.ArticlePage', 'content.GlossaryPage']
+    subpage_types: list = [
+        'content.ArticlePage',
+        'content.BlogIndexPage',
+        'content.GlossaryPage',
+        'content.NewsIndexPage',
+    ]
 
     search_fields: list = []
 
@@ -103,6 +108,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
     content_panels = BasePage.content_panels + [
         StreamFieldPanel('body')
     ]
+
 
 class SectionListingPage(SectionPage):
     """A top-level section page, but the body only lists its child
@@ -129,33 +135,12 @@ class SectionListingPage(SectionPage):
 
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)
-        context['child_cards'] = self.get_child_cards()
+        if self.show_child_pages:
+            context['child_pages'] = self.get_children().live().public()
+        else:
+            context['child_pages'] = self.get_children().none()
         return context
 
-    def get_child_cards(self):
-        """Returns data about all child pages suitable for rendering as Cards
-        Is this an odd way to do things? I don't know.
-        """
-
-        objects = []
-
-        if self.show_child_pages:
-            for p in self.get_children().live().public():
-                objects.append({
-                    "title": p.title,
-                    "blurb": p.specific.blurb,
-                    "thumbnail": p.specific.thumbnail,
-                    "link_href": p.get_url(),
-                    "link_label": p.title,
-                })
-
-        return {
-            # This value is used in the template to differentiate
-            # the data from that output by an actual Block:
-            "is_list": True,
-            "objects": objects,
-            "theme": "default"
-        }
 
 ####################################################################################################
 # Content type pages
@@ -174,6 +159,22 @@ class ArticlePage(ContentPageType):
         context = super().get_context(request, *args, **kwargs)
         context['menu_pages'] = self.get_parent().get_children().live().public()
         return context
+
+
+class NewsArticlePage(ContentPageType):
+    """An article in the Insight > News section.
+    """
+    template = 'content/news_article_page.jinja'
+    parent_page_types: list = ['content.NewsIndexPage']
+    subpage_types: list = []
+
+
+class BlogArticlePage(ContentPageType):
+    """An article in the Insight > Blog section.
+    """
+    template = 'content/blog_article_page.jinja'
+    parent_page_types: list = ['content.BlogIndexPage']
+    subpage_types: list = []
 
 
 class UtilityPage(ContentPageType):
@@ -218,6 +219,11 @@ class JobPage(ContentPageType):
         )
     ]
 
+    @cached_property
+    def human_application_deadline(self):
+        if self.application_deadline:
+            return self.application_deadline.strftime('%d %B %Y')
+
 ####################################################################################################
 # Index type pages
 # No heros, just a bit of content, then cards linking to child pages.
@@ -225,6 +231,8 @@ class JobPage(ContentPageType):
 
 
 class JobsIndexPage(IndexPageType):
+    """The one page that lists all of the jobs.
+    """
     objects_model = JobPage
 
     template = 'content/jobs_index_page.jinja'
@@ -236,6 +244,33 @@ class JobsIndexPage(IndexPageType):
         context = super().get_context(request, *args, **kwargs)
         context['menu_pages'] = [self] + list(JobPage.objects.live().public())
         return context
+
+
+class NewsIndexPage(IndexPageType):
+
+    objects_model = NewsArticlePage
+
+    template = 'content/news_index_page.jinja'
+    parent_page_types: list = ['content.SectionPage']
+    subpage_types: list = ['content.NewsArticlePage']
+    max_count = 1
+
+
+class BlogIndexPage(IndexPageType):
+
+    objects_model = BlogArticlePage
+
+    template = 'content/blog_index_page.jinja'
+    parent_page_types: list = ['content.SectionPage']
+    subpage_types: list = ['content.BlogArticlePage']
+    max_count = 1
+
+
+class ThemePage(IndexPageType):
+
+    template = 'content/theme_page.jinja'
+    parent_page_types: list = ['content.SectionPage']
+    subpage_types: list = []
 
 
 ####################################################################################################
@@ -267,41 +302,6 @@ class GlossaryPage(BasePage):
         index.SearchField('body'),
         index.SearchField('glossary'),
     ]
-
-
-####################################################################################################
-# News (Latest) pages
-####################################################################################################
-
-# class NewsIndexPage(IndexPageType):
-
-#     objects_model = 'content.NewsArticlePage'
-#     subpage_types = [objects_model, ]
-#     template = 'content/news_index_page.jinja'
-
-
-# class NewsArticlePage(ContentPageType):
-#     template = 'content/news_article_page.jinja'
-#     parent_page_types: list = ['content.NewsIndexPage', ]
-
-#     categories = ParentalManyToManyField(
-#         'content.NewsCategory',
-#         related_name="news",
-#         blank=True
-#     )
-
-#     content_panels = BasePage.content_panels + [
-#         FieldPanel('categories', widget=CheckboxSelectMultiple)
-#     ] + ContentPageType.model_content_panels
-
-#     @cached_property
-#     def category(self):
-#         return ', '.join([cat.name for cat in self.categories.all()])
-
-#     @cached_property
-#     def human_display_date(self):
-#         if self.display_date:
-#             return self.display_date.strftime('%d %B %Y')
 
 
 ####################################################################################################

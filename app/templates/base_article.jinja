@@ -1,0 +1,42 @@
+{% extends 'base.jinja' %}
+{# Used for an "article" page with date, author, and tags. e.g. a Job Description, Blog Post, News Article. But not an "Article" in About! #}
+
+
+{% block breadcrumbs %}
+    {% with parent=page.get_parent() %}
+        <a href="{{ parent.get_url() }}">Back to {{ parent.title }}</a>
+    {% endwith %}
+{% endblock %}
+
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+
+    <ul>
+        <li>
+            Publication date: {{ page.human_display_date }}
+        </li>
+        {% block byline %}
+            <li>Authors: TODO</li>
+            {# TODO
+            <li>
+
+                {% trans count=page.authors|length %}
+                    Author
+                {% pluralize %}
+                    Authors
+                {% endtrans %}
+                {% for author in page.authors %}
+                    {{ author }}
+                {% endfor %}
+            </li>
+            #}
+        {% endblock %}
+    </ul>
+
+    {{render_stream(page.body)}}
+
+    {% block article_content_end %}
+    {% endblock %}
+
+{% endblock content %}

@@ -228,43 +228,48 @@ class ContentPageType(BasePage):
     def date(self):
         return self.display_date
 
+    @cached_property
+    def human_display_date(self):
+        if self.display_date:
+            return self.display_date.strftime('%d %B %Y')
 
-class ArticlePageWithContentsType(ContentPageType):
-    """
-    An article page which as a long body requiring a contents listing
-    """
 
-    class Meta:
-        abstract = True
+# class ArticlePageWithContentsType(ContentPageType):
+#     """
+#     An article page which as a long body requiring a contents listing
+#     """
 
-    template = 'content/article_page_with_contents.jinja'
+#     class Meta:
+#         abstract = True
 
-    body = fields.StreamField(contents_page_body_blocks, blank=True)
+#     template = 'content/article_page_with_contents.jinja'
 
-    def build_contents_menu(self):
-        menu = []
-        for block in self.body:
-            if block.block_type == 'contents_menu_item':
-                menu.append({
-                    'slug': block.value.slug,
-                    'title': block.value.get('title'),
-                    'children': []
-                })
-            if block.block_type == 'contents_menu_sub_item':
-                menu[-1]['children'].append({
-                    'slug': block.value.slug,
-                    'title': block.value.get('title')
-                })
-        return menu
+#     body = fields.StreamField(contents_page_body_blocks, blank=True)
 
-    def get_context(self, request, *args, **kwargs):
-        context = super().get_context(request, *args, **kwargs)
+#     def build_contents_menu(self):
+#         menu = []
+#         for block in self.body:
+#             if block.block_type == 'contents_menu_item':
+#                 menu.append({
+#                     'slug': block.value.slug,
+#                     'title': block.value.get('title'),
+#                     'children': []
+#                 })
+#             if block.block_type == 'contents_menu_sub_item':
+#                 menu[-1]['children'].append({
+#                     'slug': block.value.slug,
+#                     'title': block.value.get('title')
+#                 })
+#         return menu
 
-        context.update({
-            'contents_menu': self.build_contents_menu()
-        })
+#     def get_context(self, request, *args, **kwargs):
+#         context = super().get_context(request, *args, **kwargs)
 
-        return context
+#         context.update({
+#             'contents_menu': self.build_contents_menu()
+#         })
+
+#         return context
 
 
 ####################################################################################################
@@ -277,7 +282,7 @@ class IndexPageType(BasePage):
         abstract = True
 
     objects_model = None
-    objects_per_page = 20
+    objects_per_page = 10
 
     intro = fields.RichTextField(
         blank=True,
@@ -302,49 +307,49 @@ class IndexPageType(BasePage):
 
         return self.objects_model
 
-    def get_filter_options(self) -> dict:
-        """
-        This method should return a dict of valid filters for the child pages, in the format:
+    # def get_filter_options(self) -> dict:
+    #     """
+    #     This method should return a dict of valid filters for the child pages, in the format:
 
-        {filterable_attribute: (value_field, label_field)}
+    #     {filterable_attribute: (value_field, label_field)}
 
-        For example, given the objects_model model:
+    #     For example, given the objects_model model:
 
-            NewsArticlePage(Page):
-                ...
-                categories = ParentalManyToManyField(
-                    'taxonomy.NewsCategory',
-                    related_name="news",
-                    blank=True
-                )
+    #         NewsArticlePage(Page):
+    #             ...
+    #             categories = ParentalManyToManyField(
+    #                 'taxonomy.NewsCategory',
+    #                 related_name="news",
+    #                 blank=True
+    #             )
 
-        returning {'categories': ('slug', 'name')}
+    #     returning {'categories': ('slug', 'name')}
 
-        Means that you could create a series of checkboxes for each `NewsCategory`,
-        where `slug` is the value, and `name` is label.
-        """
+    #     Means that you could create a series of checkboxes for each `NewsCategory`,
+    #     where `slug` is the value, and `name` is label.
+    #     """
 
-        return {
-            'categories': ('slug', 'name')
-        }
+    #     return {
+    #         'categories': ('slug', 'name')
+    #     }
 
-    def get_filter_label(self, model):
-        """
-        A simple method for getting the friendly name of a filter, in the case that you are
-        setting up a loop in the template. Easily overridable with some "if field ==" logic,
-        or just ignore it altogether and put a custom title on the template. You can do whatever
-        you want. This is life.
-        """
+    # def get_filter_label(self, model):
+    #     """
+    #     A simple method for getting the friendly name of a filter, in the case that you are
+    #     setting up a loop in the template. Easily overridable with some "if field ==" logic,
+    #     or just ignore it altogether and put a custom title on the template. You can do whatever
+    #     you want. This is life.
+    #     """
 
-        return model._meta.verbose_name
+    #     return model._meta.verbose_name
 
-    def get_filter_data(self, request=None) -> dict:
+    # def get_filter_data(self, request=None) -> dict:
 
-        """
-        Where to retrieve the filter data from. This is usually going to be from the query string
-        but if you are passing via the url like /category/news/ then you could return view kwargs
-        """
-        return request.GET.copy()
+    #     """
+    #     Where to retrieve the filter data from. This is usually going to be from the query string
+    #     but if you are passing via the url like /category/news/ then you could return view kwargs
+    #     """
+    #     return request.GET.copy()
 
     # def get_filters_for_template(self, request) -> dict:
     #     """
@@ -433,19 +438,19 @@ class IndexPageType(BasePage):
         """
 
         query = self.base_queryset()
-        filter_options = self.get_filter_options()
-        filters = {}
+        # filter_options = self.get_filter_options()
+        # filters = {}
 
-        for key, values in filter_options.items():
-            query = query.prefetch_related(key)
-            filter_value = request.GET.get(key, None)
-            if filter_value:
-                filters.update({
-                    f'{key}__{values[0]}': filter_value
-                })
+        # for key, values in filter_options.items():
+        #     query = query.prefetch_related(key)
+        #     filter_value = request.GET.get(key, None)
+        #     if filter_value:
+        #         filters.update({
+        #             f'{key}__{values[0]}': filter_value
+        #         })
 
-        if filters:
-            query = query.filter(**filters)
+        # if filters:
+        #     query = query.filter(**filters)
 
         return query.distinct().order_by(*self.get_order_by())
 
@@ -466,7 +471,6 @@ class IndexPageType(BasePage):
         query_string = request.GET.copy()
         pagination_params = query_string.pop('page', None) and query_string.urlencode()
 
-        print(context)
         context.update({
             # 'object_filters': self.get_filters_for_template(request),
             'page_obj': self.paginate_objects(request),
