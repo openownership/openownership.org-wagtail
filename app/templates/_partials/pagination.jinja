@@ -1,23 +1,40 @@
 {# Ana - just some dummy example HTML! Phil. #}
 
+
 {% if page_obj.paginator.num_pages > 1 %}
-    <ul>
-        {% if page_obj.has_previous() %}
-            <li><a href="?page={{ page_obj.previous_page_number }}">Back</a></li>
-        {% else %}
-            <li>Back</li>
-        {% endif %}
-        {% for i in page_obj.paginator.page_range %}
-            {% if page_obj.number == i %}
-                <li>{{ i }}</li>
-            {% else %}
-                <li><a href="?page={{ i }}">{{ i }}</a></li>
+    <nav>
+        <ul class="nav nav--pagination">
+            {% if page_obj.has_previous() %}
+                <li>
+                    <a href="?page={{ page_obj.previous_page_number }}">
+                        Back
+                    </a>
+                </li>
             {% endif %}
-        {% endfor %}
-        {% if page_obj.has_next() %}
-            <li><a href="?page={{ page_obj.next_page_number }}">Next</a></li>
-        {% else %}
-            <li>Next</li>
-        {% endif %}
-    </ul>
+
+            {% for p in page_obj.page_range %}
+                {% if not p %}
+                    <li>
+                        ...
+                    </li>
+                {% elif p == page_obj.number %}
+                    <li>
+                        {{ p }} (current)
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="?page={{ p }}">{{ p }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next() %}
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}">
+                        Next
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
 {% endif %}

@@ -11,7 +11,7 @@
 from django.apps import apps
 from django.db import models
 from django.conf import settings
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.core.paginator import EmptyPage, PageNotAnInteger
 from django.utils.functional import cached_property
 from django.utils.html import strip_tags
 
@@ -26,6 +26,7 @@ from wagtailcache.cache import WagtailCacheMixin
 
 # Project
 from modules.core.models import UpdateBannerSettings
+from modules.core.paginator import DiggPaginator
 from modules.core.utils import get_site_context
 from modules.content.blocks import (
     landing_page_blocks, article_page_body_blocks, contents_page_body_blocks,
@@ -282,7 +283,15 @@ class IndexPageType(BasePage):
         abstract = True
 
     objects_model = None
-    objects_per_page = 10
+    objects_per_page = 10 
+
+    paginator_class = DiggPaginator
+
+    # See modules.core.paginator for what these mean:
+    paginator_body = 5
+    paginator_margin = 2
+    paginator_padding = 2
+    paginator_tail = 2
 
     intro = fields.RichTextField(
         blank=True,
@@ -455,8 +464,15 @@ class IndexPageType(BasePage):
         return query.distinct().order_by(*self.get_order_by())
 
     def paginate_objects(self, request):
-        query = self.get_queryset(request)
-        paginator = Paginator(query, self.objects_per_page)
+        queryset = self.get_queryset(request)
+        paginator = self.paginator_class(
+            queryset,
+            self.objects_per_page,
+            body=self.paginator_body,
+            margin=self.paginator_margin,
+            padding=self.paginator_padding,
+            tail=self.paginator_tail,
+        )
         current_page = request.GET.get('page', 1)
         try:
             return paginator.page(current_page)
