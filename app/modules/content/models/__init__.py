@@ -17,8 +17,8 @@ from .pages import (  # NOQA
     UtilityPage,
 )
 
-from .inlines import PageFAQList  # NOQA
+# from .inlines import PageFAQList  # NOQA
 
-from .snippets import FAQList, FAQItem  # NOQA
+# from .snippets import FAQList, FAQItem  # NOQA
 
-from .taxonomy import NewsCategory  # NOQA
+# from .taxonomy import NewsCategory  # NOQA

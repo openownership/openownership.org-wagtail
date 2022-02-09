@@ -90,30 +90,6 @@ class ImageLink(Orderable):
     ]
 
 
-class PageFAQList(Orderable):
-    faq_list = models.OneToOneField(
-        'content.FAQList',
-        null=True,
-        blank=True,
-        related_name='page_faq_list',
-        on_delete=models.SET_NULL
-    )
-
-    page = ParentalKey(
-        'wagtailcore.Page',
-        related_name='faq_lists',
-        null=True,
-        on_delete=models.CASCADE
-    )
-
-    panels = [
-        FieldPanel('faq_list')
-    ]
-
-    def __repr__(self):
-        return f'<{self.__class__.__name__}> {self.page}: {self.faq_list}'
-
-
 # class FeaturedNewsArticle(Orderable):
 
 #     news_index_page = ParentalKey(
