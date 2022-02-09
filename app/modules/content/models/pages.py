@@ -25,16 +25,20 @@ from wagtail.core.models import Orderable, Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.search.models import Query
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 # Project
 
 from config.template import url_from_path
 from modules.content.blocks import (
-    article_page_body_blocks, home_page_blocks, section_page_blocks
+    article_page_body_blocks,
+    home_page_blocks,
+    section_page_blocks,
+    team_profile_page_body_blocks,
 )
 from modules.content.blocks.stream import GlossaryItemBlock
 
-from .mixins import PageHeroMixin
+from .mixins import PageAuthorsMixin, PageHeroMixin
 from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageType
 
 
@@ -123,7 +127,7 @@ class SectionListingPage(SectionPage):
     template: str = 'content/section_listing_page.jinja'
 
     parent_page_types: list = ["content.HomePage"]
-    subpage_types: list = ["content.ArticlePage"]
+    subpage_types: list = ["content.ArticlePage", "content.TeamPage"]
 
     show_child_pages = models.BooleanField(
         default=True, help_text="Display cards linking to all the child pages"
@@ -161,20 +165,31 @@ class ArticlePage(ContentPageType):
         return context
 
 
-class NewsArticlePage(ContentPageType):
+class NewsArticlePage(PageAuthorsMixin, ContentPageType):
     """An article in the Insight > News section.
     """
     template = 'content/news_article_page.jinja'
     parent_page_types: list = ['content.NewsIndexPage']
     subpage_types: list = []
 
+    # Also has:
+    # author_relationships from NewsArticleAuthorRelationship
+    # authors from PageAuthorsMixin
 
-class BlogArticlePage(ContentPageType):
+
+class BlogArticlePage(PageAuthorsMixin, ContentPageType):
     """An article in the Insight > Blog section.
     """
     template = 'content/blog_article_page.jinja'
     parent_page_types: list = ['content.BlogIndexPage']
     subpage_types: list = []
+
+    # Also has:
+    # author_relationships from BlogArticleAuthorRelationship
+    # authors from PageAuthorsMixin
+
+    class Meta:
+        verbose_name = 'Blog post page'
 
 
 class UtilityPage(ContentPageType):
@@ -224,6 +239,67 @@ class JobPage(ContentPageType):
         if self.application_deadline:
             return self.application_deadline.strftime('%d %B %Y')
 
+
+####################################################################################################
+# TeamProfilePage
+####################################################################################################
+
+
+class TeamProfilePage(BasePage):
+
+    template = 'content/team_profile_page.jinja'
+    parent_page_types: list = ['content.TeamPage']
+    subpage_types: list = []
+
+    authorship = models.OneToOneField(
+        'content.Author',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='team_profile',
+        help_text='Link team member to their authorship of articles on the site'
+    )
+
+    role = models.CharField(max_length=255, blank=True)
+
+    portrait_image = models.ForeignKey(
+            settings.IMAGE_MODEL,
+            null=True,
+            blank=True,
+            on_delete=models.SET_NULL,
+            related_name='+'
+    )
+
+    location = models.CharField(
+        max_length=255, blank=True, help_text="e.g. ‘London, England’"
+    )
+
+    email_address = models.EmailField(blank=True)
+
+    body = fields.StreamField(team_profile_page_body_blocks, blank=True)
+
+    content_panels = BasePage.content_panels + [
+        FieldPanel('role'),
+        ImageChooserPanel('portrait_image'),
+        MultiFieldPanel(
+            [
+                FieldPanel('location'),
+                FieldPanel('email_address'),
+            ],
+            heading="Details"
+        ),
+        SnippetChooserPanel('authorship'),
+        StreamFieldPanel('body'),
+    ]
+
+    search_fields = BasePage.search_fields + [
+        index.SearchField('role'),
+        index.SearchField('body'),
+        index.SearchField('location'),
+        index.SearchField('email_address'),
+    ]
+
+
 ####################################################################################################
 # Index type pages
 # No heros, just a bit of content, then cards linking to child pages.
@@ -247,6 +323,7 @@ class JobsIndexPage(IndexPageType):
 
 
 class NewsIndexPage(IndexPageType):
+    """The one page listing all NewsArticlePages"""
 
     objects_model = NewsArticlePage
 
@@ -257,6 +334,7 @@ class NewsIndexPage(IndexPageType):
 
 
 class BlogIndexPage(IndexPageType):
+    """The one page listing all BlogArticlePages (blog posts)"""
 
     objects_model = BlogArticlePage
 
@@ -271,6 +349,17 @@ class ThemePage(IndexPageType):
     template = 'content/theme_page.jinja'
     parent_page_types: list = ['content.SectionPage']
     subpage_types: list = []
+
+
+class TeamPage(IndexPageType):
+    """The one page listing all TeamProfilePages"""
+
+    objects_model = TeamProfilePage
+
+    template = 'content/team_page.jinja'
+    parent_page_types: list = ['content.SectionListingPage']
+    subpage_types: list = ['content.TeamProfilePage']
+    max_count = 1
 
 
 ####################################################################################################
@@ -302,6 +391,9 @@ class GlossaryPage(BasePage):
         index.SearchField('body'),
         index.SearchField('glossary'),
     ]
+
+
+
 
 
 ####################################################################################################

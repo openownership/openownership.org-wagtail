@@ -17,7 +17,7 @@ from modelcluster.fields import ParentalManyToManyField
 from modelcluster.models import ClusterableModel
 
 from wagtail.core import fields
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 
@@ -124,6 +124,38 @@ class PageHeroMixin(PageMixinBase):
         tabs = super().get_admin_tabs()
         tabs.insert(1, (cls.hero_panels, "Hero"))
         return tabs
+
+
+####################################################################################################
+# Page Authors mixin
+####################################################################################################
+
+
+class PageAuthorsMixin(PageMixinBase):
+
+    class Meta:
+        abstract = True
+
+    about_panels = [
+        MultiFieldPanel(
+            [InlinePanel('author_relationships', label='Authors')], heading='Authors'
+        )
+    ]
+
+    @classmethod
+    def get_admin_tabs(cls):
+        """Add the about tab to the tabbed interface
+        """
+        tabs = super().get_admin_tabs()
+        tabs.insert(1, (cls.about_panels, "About"))
+        return tabs
+
+    @property
+    def authors(self):
+        """Returns a list of Author objects associated with this article.
+        """
+        authors = self.author_relationships.all().order_by("sort_order")
+        return [a.author for a in authors]
 
 
 ####################################################################################################

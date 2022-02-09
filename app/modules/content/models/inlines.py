@@ -6,6 +6,7 @@ from modelcluster.fields import ParentalKey
 from wagtail.core.models import Orderable
 from wagtail.admin.edit_handlers import InlinePanel, PageChooserPanel, FieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 
 class NestedInlinePanel(InlinePanel):
@@ -110,3 +111,62 @@ class ImageLink(Orderable):
 #     panels = [
 #         PageChooserPanel('link_page', page_type='content.NewsArticlePage')
 #     ]
+
+
+####################################################################################################
+# Authors
+####################################################################################################
+
+
+class BlogArticleAuthorRelationship(Orderable, models.Model):
+    """
+    Linking BlogArticlePage with one or more Authors.
+    """
+    page = ParentalKey(
+        'content.BlogArticlePage',
+        on_delete=models.CASCADE,
+        related_name='author_relationships'
+    )
+    author = models.ForeignKey(
+        'content.Author',
+        on_delete=models.CASCADE,
+        related_name='blog_articles'
+    )
+
+    class Meta(Orderable.Meta):
+        verbose_name = 'Post author'
+        verbose_name_plural = 'Post authors'
+
+    panels = [
+        SnippetChooserPanel('author'),
+    ]
+
+    def __str__(self):
+        return self.page.title + " -> " + self.author.name
+
+
+class NewsArticleAuthorRelationship(Orderable, models.Model):
+    """
+    Linking NewsArticlePage with one or more Authors.
+    """
+    page = ParentalKey(
+        'content.NewsArticlePage',
+        on_delete=models.CASCADE,
+        related_name='author_relationships'
+    )
+    author = models.ForeignKey(
+        'content.Author',
+        on_delete=models.CASCADE,
+        related_name='news_articles'
+    )
+
+    class Meta(Orderable.Meta):
+        verbose_name = 'Article author'
+        verbose_name_plural = 'Article authors'
+
+    panels = [
+        SnippetChooserPanel('author'),
+    ]
+
+    def __str__(self):
+        return self.page.title + " -> " + self.author.name

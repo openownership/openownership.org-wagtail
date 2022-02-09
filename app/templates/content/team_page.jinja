@@ -1,0 +1,20 @@
+{% extends 'base.jinja' %}
+
+{% block content %}
+    <h1>{{ page.title }}</h1>
+
+    {{ page.intro|richtext }}
+
+    {% if page_obj %}
+        {% with pages=page_obj %}
+            {% include "_partials/card_group.jinja" %}
+        {% endwith %}
+
+        {% include "_partials/pagination.jinja" %}
+    {% endif %}
+
+{% endblock %}
+
+{% block menu %}
+    {# TODO #}
+{% endblock %}

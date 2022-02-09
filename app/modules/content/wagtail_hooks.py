@@ -1,7 +1,8 @@
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin, modeladmin_register
 )
-# from .models import NewsCategory
+from .models import Author
+
 
 
 # class NewsCategoryModelAdmin(ModelAdmin):
@@ -16,3 +17,11 @@ from wagtail.contrib.modeladmin.options import (
 
 
 # modeladmin_register(NewsCategoryModelAdmin)
+
+
+class AuthorModelAdmin(ModelAdmin):
+    "Add 'Authors' item to admin sidebar"
+    model = Author
+    menu_icon = 'fa-user'
+    list_display = ('name',)
+    ordering = ('name',)

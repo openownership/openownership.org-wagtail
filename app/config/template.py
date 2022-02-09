@@ -3,13 +3,48 @@ import os
 
 # 3rd party
 import arrow
+from consoler import console
 import jinja2
 from jinja2.ext import Extension
 from django.conf import settings
 from django.shortcuts import reverse
 from django.template.defaultfilters import slugify
 from django.contrib.staticfiles.storage import staticfiles_storage
+from django.utils import translation
+from django.utils.safestring import mark_safe
 from wagtail.contrib.routable_page.templatetags.wagtailroutablepage_tags import routablepageurl
+
+from modules.core.models import SiteImage
+
+
+def picture(img: SiteImage, w: int, h: int, style: str = "fill", alt: str = '') -> str:
+    """Try to output something like this...
+        <picture>
+            <source srcset="/media/cc0-images/surfer-240-200.jpg"
+                    media="(min-width: 800px)">
+            <img src="/media/cc0-images/painted-hand-298-332.jpg" alt="" />
+        </picture>
+    """
+    if img is None:
+        return ''
+    sm = img.get_rendition(f"{style}-{int(w/2)}x{int(h/2)}")
+    x1 = img.get_rendition(f"{style}-{w}x{h}")
+    x2 = img.get_rendition(f"{style}-{w*2}x{h*2}")
+    sm_url = sm.url  # Faster if we only access this once
+    x1_url = x1.url  # Faster if we only access this once
+    x2_url = x2.url  # Faster if we only access this once
+    if not len(alt):
+        try:
+            alt = img.alt
+        except Exception as e:
+            console.error(e)
+    rv = f"""
+        <picture>
+            <source srcset="{x1_url}, {x2_url} 2x" media="(min-width: 800px)">
+            <img src="{sm_url}" srcset="{sm_url}, {x1_url} 2x" alt="{alt}">
+        </picture>
+    """
+    return mark_safe(rv)
 
 
 def contains_filter(haystack, needle):
@@ -150,6 +185,7 @@ class TemplateGlobalsExtension(Extension):
             'url': reverse,
             'static': staticfiles_storage.url,
             'absolutepath': isabsolutepath,
+            'picture': picture,
             'routablepageurl': jinja2.contextfunction(routablepageurl),
             'now': time_now,
             'today': date_now
@@ -157,3 +193,4 @@ class TemplateGlobalsExtension(Extension):
         environment.tests.update({
             'absolutepath': isabsolutepath
         })
+        environment.install_gettext_translations(translation)

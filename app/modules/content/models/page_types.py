@@ -283,7 +283,7 @@ class IndexPageType(BasePage):
         abstract = True
 
     objects_model = None
-    objects_per_page = 10 
+    objects_per_page = 10
 
     paginator_class = DiggPaginator
 

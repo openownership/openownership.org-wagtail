@@ -8,17 +8,24 @@
 
 from .pages import (  # NOQA
     ArticlePage,
+    BlogArticlePage,
+    BlogIndexPage,
     HomePage,
     JobPage,
     JobsIndexPage,
+    NewsArticlePage,
+    NewsIndexPage,
     SearchPage,
     SearchPageSuggestedSearch,
     SectionListingPage,
     UtilityPage,
 )
 
-# from .inlines import PageFAQList  # NOQA
+from .inlines import (  # NOQA
+    BlogArticleAuthorRelationship,
+    NewsArticleAuthorRelationship,
+)
 
-# from .snippets import FAQList, FAQItem  # NOQA
+from .snippets import Author  # NOQA
 
 # from .taxonomy import NewsCategory  # NOQA

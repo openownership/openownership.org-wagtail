@@ -17,20 +17,21 @@
             Publication date: {{ page.human_display_date }}
         </li>
         {% block byline %}
-            <li>Authors: TODO</li>
-            {# TODO
-            <li>
-
-                {% trans count=page.authors|length %}
-                    Author
-                {% pluralize %}
-                    Authors
-                {% endtrans %}
-                {% for author in page.authors %}
-                    {{ author }}
-                {% endfor %}
-            </li>
-            #}
+            {% with authors=page.specific.authors %}
+                {% if authors and authors|length %}
+                    <li>
+                        {% trans count=page.authors|length %}
+                            Author
+                        {% pluralize %}
+                            Authors
+                        {% endtrans %}
+                        Author{% if authors|length > 1 %}s{% endif %}:
+                        {% for author in authors %}
+                            {% if author.team_profile %}<a href="{{ author.team_profile.get_url() }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </li>
+                {% endif %}
+            {% endwith %}
         {% endblock %}
     </ul>
 
