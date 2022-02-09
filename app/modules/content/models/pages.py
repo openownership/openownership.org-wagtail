@@ -276,6 +276,12 @@ class TeamProfilePage(BasePage):
 
     email_address = models.EmailField(blank=True)
 
+    intro = fields.RichTextField(
+        blank=True,
+        null=True,
+        features=["bold", "italic", "small", "ol", "ul", "link", "document-link"],
+    )
+
     body = fields.StreamField(team_profile_page_body_blocks, blank=True)
 
     content_panels = BasePage.content_panels + [
@@ -289,11 +295,13 @@ class TeamProfilePage(BasePage):
             heading="Details"
         ),
         SnippetChooserPanel('authorship'),
+        FieldPanel('intro'),
         StreamFieldPanel('body'),
     ]
 
     search_fields = BasePage.search_fields + [
         index.SearchField('role'),
+        index.SearchField('intro'),
         index.SearchField('body'),
         index.SearchField('location'),
         index.SearchField('email_address'),

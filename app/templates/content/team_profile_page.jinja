@@ -18,6 +18,10 @@
         {{ picture(page.portrait_image, 200, 300, alt="Portrait of "+page.title) }}
     {% endif %}
 
+    {% if page.intro %}
+        {{ page.intro|richtext }}
+    {% endif %}
+
     {{render_stream(page.body)}}
 
     {% if page.authorship %}
