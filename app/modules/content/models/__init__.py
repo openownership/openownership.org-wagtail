@@ -18,6 +18,7 @@ from .pages import (  # NOQA
     SearchPage,
     SearchPageSuggestedSearch,
     SectionListingPage,
+    SectionPage,
     UtilityPage,
 )
 
