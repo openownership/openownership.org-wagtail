@@ -5,6 +5,8 @@ from modules.content.models import (
     BlogArticlePage,
     NewsArticleAuthorRelationship,
     NewsArticlePage,
+    PublicationFrontPage,
+    PublicationAuthorRelationship,
 )
 
 
@@ -68,6 +70,37 @@ def test_get_news_articles_live_only(author, news_index_page):
     assert len(author.get_news_articles()) == 0
 
 
+
+########################################################################
+# Author.get_publiations()
+
+
+def test_get_publications_num_default(author_with_publications):
+    "It should return the 5 most recent publications by default"
+    publications = author_with_publications.get_publications()
+    assert len(publications) == 5
+    assert publications[0].title == "Publication 1"
+    assert publications[1].title == "Publication 2"
+    assert publications[2].title == "Publication 3"
+    assert publications[3].title == "Publication 4"
+    assert publications[4].title == "Publication 5"
+
+
+def test_get_news_publications_num_specified(author_with_publications):
+    "It should return the number of publications requested"
+    publications = author_with_publications.get_publications(num=3)
+    assert len(publications) == 3
+
+
+def test_get_news_publications_live_only(author, section_page):
+    "It should not return non-live publications"
+    p = PublicationFrontPage(live=False, title="Publication")
+    section_page.add_child(instance=p)
+    p.save_revision()
+    PublicationAuthorRelationship(page=p, author=author).save()
+    assert len(author.get_publications()) == 0
+
+
 ########################################################################
 # Author.get_content_pages()
 
@@ -78,9 +111,9 @@ def test_get_content_pages(author_with_content_pages):
     assert len(pages) == 5
     assert pages[0].title == "Blog Article 1"
     assert pages[1].title == "Blog Article 2"
-    assert pages[2].title == "Blog Article 3"
-    assert pages[3].title == "News Article 1"
-    assert pages[4].title == "News Article 2"
+    assert pages[2].title == "News Article 1"
+    assert pages[3].title == "News Article 2"
+    assert pages[4].title == "Publication 1"
 
 
 def test_get_content_pages_num_specified(author_with_content_pages):
@@ -89,7 +122,7 @@ def test_get_content_pages_num_specified(author_with_content_pages):
     assert len(articles) == 3
 
 
-def test_get_content_pages_live_only(author, blog_index_page, news_index_page):
+def test_get_content_pages_live_only(author, blog_index_page, news_index_page, section_page):
     "It should not return non-live content pages"
     p = BlogArticlePage(live=False, title="Blog Article")
     blog_index_page.add_child(instance=p)
@@ -100,5 +133,10 @@ def test_get_content_pages_live_only(author, blog_index_page, news_index_page):
     news_index_page.add_child(instance=p)
     p.save_revision()
     NewsArticleAuthorRelationship(page=p, author=author).save()
+
+    p = PublicationFrontPage(live=False, title="Publication")
+    section_page.add_child(instance=p)
+    p.save_revision()
+    PublicationAuthorRelationship(page=p, author=author).save()
 
     assert len(author.get_content_pages()) == 0

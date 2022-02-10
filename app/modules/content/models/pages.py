@@ -14,14 +14,17 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
 from django.forms import CheckboxSelectMultiple
 from django.utils.functional import cached_property
+from django.utils.translation import gettext_lazy as _
 
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 
 from wagtail.admin.edit_handlers import (
-    FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
+    FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
 )
+from wagtail.admin.forms import WagtailAdminPageForm
 from wagtail.core import fields
 from wagtail.core.models import Orderable, Page
+from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.search.models import Query
@@ -36,8 +39,11 @@ from modules.content.blocks import (
     section_page_blocks,
     team_profile_page_body_blocks,
 )
-from modules.content.blocks.stream import GlossaryItemBlock
-
+from modules.content.blocks.stream import (
+    GlossaryItemBlock,
+    RICHTEXT_BODY_FEATURES,
+    RICHTEXT_INLINE_FEATURES,
+)
 from .mixins import PageAuthorsMixin, PageHeroMixin
 from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageType
 
@@ -103,6 +109,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
         'content.BlogIndexPage',
         'content.GlossaryPage',
         'content.NewsIndexPage',
+        'content.PublicationFrontPage',
     ]
 
     search_fields: list = []
@@ -121,13 +128,13 @@ class SectionListingPage(SectionPage):
     Used for the About section page.
     """
 
-    class Meta:
-        verbose_name = 'Section listing page'
-
     template: str = 'content/section_listing_page.jinja'
-
     parent_page_types: list = ["content.HomePage"]
-    subpage_types: list = ["content.ArticlePage", "content.TeamPage"]
+    subpage_types: list = [
+        "content.ArticlePage",
+        "content.PublicationFrontPage",
+        "content.TeamPage",
+    ]
 
     show_child_pages = models.BooleanField(
         default=True, help_text="Display cards linking to all the child pages"
@@ -200,11 +207,7 @@ class UtilityPage(ContentPageType):
     parent_page_types: list = ['content.HomePage']
     subpage_types: list = []
 
-    intro = fields.RichTextField(
-        blank=True,
-        null=True,
-        features=["bold", "italic", "small", "ol", "ul", "link", "document-link"],
-    )
+    intro = fields.RichTextField(blank=True, null=True, features=RICHTEXT_INLINE_FEATURES)
 
     content_panels = BasePage.content_panels + [
         FieldPanel('intro')
@@ -238,6 +241,201 @@ class JobPage(ContentPageType):
     def human_application_deadline(self):
         if self.application_deadline:
             return self.application_deadline.strftime('%d %B %Y')
+
+
+####################################################################################################
+# PublicationPages
+####################################################################################################
+
+
+class PublicationFrontPageForm(WagtailAdminPageForm):
+    "So that we can re-name the default title field."
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        title = self.fields['title']
+        title.label = _('Publication title')
+        title.help_text = _("The publication title as you'd like it to be seen by the public")
+
+
+class PublicationFrontPage(PageAuthorsMixin, BasePage):
+    """The front and main page of a Publication.
+
+    This defines all the information about the Publication as a whole.
+    Its child pages (PublicationInnerPage) contain any subsequent pages
+    of content within it.
+    """
+
+    base_form_class = PublicationFrontPageForm
+
+    template = 'content/publication_front_page.jinja'
+    parent_page_types: list = ['content.SectionPage', 'content.SectionListingPage']
+    subpage_types: list = ['content.PublicationInnerPage']
+
+    page_title = models.CharField(
+        max_length=255, blank=True, help_text="e.g. ‘Introduction’"
+    )
+
+    cover_image = models.ForeignKey(
+        settings.IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    download_document = models.ForeignKey(
+        settings.WAGTAILDOCS_DOCUMENT_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    summary = fields.RichTextField(
+        blank=True,
+        null=True,
+        features=RICHTEXT_INLINE_FEATURES
+    )
+
+    outcomes = fields.RichTextField(
+        blank=True,
+        null=True,
+        features=RICHTEXT_BODY_FEATURES,
+        verbose_name="Key Learning Outcomes"
+    )
+
+    impact = fields.RichTextField(
+        blank=True,
+        null=True,
+        features=RICHTEXT_INLINE_FEATURES,
+        verbose_name="Benefit / Impact"
+    )
+
+    # Also has:
+    # author_relationships from PublicationAuthorRelationship
+    # authors from PageAuthorsMixin
+
+    content_panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('title'),
+                FieldPanel('page_title'),
+            ],
+            heading="Titles"
+        ),
+        MultiFieldPanel(
+            [
+                ImageChooserPanel('cover_image'),
+                DocumentChooserPanel('download_document'),
+            ],
+            heading="Cover and document"
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('summary'),
+                FieldPanel('outcomes'),
+                FieldPanel('impact'),
+            ],
+            heading='Content'
+        )
+    ]
+
+    search_fields = BasePage.search_fields + [
+        index.SearchField('summary'),
+        index.SearchField('outcomes'),
+        index.SearchField('impact'),
+    ]
+
+    @property
+    def date(self):
+        return self.display_date
+
+    @cached_property
+    def human_display_date(self):
+        if self.display_date:
+            return self.display_date.strftime('%d %B %Y')
+
+    @property
+    def display_title(self):
+        "Title of the publication"
+        return self.title
+
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+        # This seems odd, but it works.
+
+        # We want to use the page title for the `title` in the menu, so:
+        first_page = self
+        first_page.title = first_page.specific.page_title
+        context['menu_pages'] = [first_page] + list(self.get_children().live().public())
+
+        return context
+
+
+class PublicationInnerPageForm(WagtailAdminPageForm):
+    "So that we can re-name the default title field."
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        title = self.fields['title']
+        title.label = _('Page title')
+        title.help_text = _("Short title of this page within the publication e.g. 'Overview', 'Comprehensive coverage', etc.")
+
+
+class PublicationInnerPage(ContentPageType):
+    """A page within a Publication.
+
+    A Publication has a PublicationFrontPage as its first page, which
+    defines all the general info about the publication.
+    """
+
+    base_form_class = PublicationInnerPageForm
+
+    template = 'content/publication_inner_page.jinja'
+    parent_page_types: list = ['content.PublicationFrontPage']
+    subpage_types: list = []
+
+    content_panels = [
+        FieldPanel('title'),
+        StreamFieldPanel('body'),
+    ]
+
+    def __str__(self):
+        return f"{self.get_parent().title}: {self.title}"
+
+    @property
+    def display_title(self):
+        "Use the actual Publication title for display title"
+        return self.get_parent().specific.title
+
+    @property
+    def authors(self):
+        "Only the front page of the publication has the authors"
+        return self.get_parent().specific.authors
+
+    @property
+    def date(self):
+        "For consistency, use the front page's date"
+        return self.get_parent().specific.date
+
+    @cached_property
+    def human_display_date(self):
+        "For consistency, use the front page's date"
+        return self.get_parent().specific.human_display_date
+
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+        # This seems odd, but it works.
+
+        # We want to use the page title for the `title` in the menu, so:
+        first_page = self.get_parent()
+        first_page.title = first_page.specific.page_title
+        context['menu_pages'] = [first_page] + list(first_page.get_children().live().public())
+
+        return context
 
 
 ####################################################################################################
@@ -276,11 +474,7 @@ class TeamProfilePage(BasePage):
 
     email_address = models.EmailField(blank=True)
 
-    intro = fields.RichTextField(
-        blank=True,
-        null=True,
-        features=["bold", "italic", "small", "ol", "ul", "link", "document-link"],
-    )
+    intro = fields.RichTextField(blank=True, null=True, features=RICHTEXT_INLINE_FEATURES)
 
     body = fields.StreamField(team_profile_page_body_blocks, blank=True)
 
@@ -399,9 +593,6 @@ class GlossaryPage(BasePage):
         index.SearchField('body'),
         index.SearchField('glossary'),
     ]
-
-
-
 
 
 ####################################################################################################

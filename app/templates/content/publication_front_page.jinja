@@ -1,0 +1,39 @@
+{% extends 'base_article.jinja' %}
+
+{% block article_content %}
+
+    <p>{{ page.page_title }}</p>
+
+    {% if page.cover_image %}
+        {{ picture(page.cover_image, 200, 300, alt="Cover") }}
+    {% endif %}
+
+    {% if page.download_document %}
+        <p><a href="{{ page.download_document.url }}">Download document</a></p>
+    {% endif %}
+
+    {% if page.summary %}
+        <h2>Summary</h2>
+        {{ page.summary|richtext }}
+    {% endif %}
+
+    {% if page.outcomes %}
+        <h2>Key Learning Outcomes</h2>
+        {{ page.outcomes|richtext }}
+    {% endif %}
+
+    {% if page.impact %}
+        <h2>Benefit / Impact</h2>
+        {{ page.impact|richtext }}
+    {% endif %}
+
+    <p>TODO: Next page link</p>
+
+{% endblock article_content %}
+
+
+{% block menu %}
+    {% with title="Report contents" %}
+        {% include "_partials/page_menu.jinja" %}
+    {% endwith %}
+{% endblock %}

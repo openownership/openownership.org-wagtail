@@ -5,14 +5,6 @@
 {% endblock %}
 
 
-{% block byline %}
-    {# No authors on Job Applications, but we do have this: #}
-    {% if page.application_deadline %}
-        <li>Application deadline: {{ page.human_application_deadline }}</li>
-    {% endif %}
-{% endblock %}
-
-
 {% block article_content_end %}
     {% if page.application_url %}
         <p>

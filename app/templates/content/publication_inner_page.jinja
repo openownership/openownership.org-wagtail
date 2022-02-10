@@ -1,0 +1,18 @@
+{% extends 'base_article.jinja' %}
+
+{% block article_content %}
+
+    <h2>{{ page.title }}</h2>
+
+    {{render_stream(page.body)}}
+
+    <p>TODO: Next page link</p>
+
+{% endblock article_content %}
+
+
+{% block menu %}
+    {% with title="Report contents" %}
+        {% include "_partials/page_menu.jinja" %}
+    {% endwith %}
+{% endblock %}

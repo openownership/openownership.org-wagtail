@@ -24,6 +24,7 @@ from .stream import (
     IconListBlock,
     NewsletterBlock,
     VideoGalleryBlock,
+    RICHTEXT_BODY_FEATURES,
 )
 
 landing_page_blocks: list = [
@@ -54,12 +55,7 @@ contents_page_body_blocks: list = landing_page_blocks
 article_page_body_blocks: list = [
     (
         "rich_text",
-        blocks.RichTextBlock(
-            features=[
-                "h2", "h3", "h4", "h5", "h6", "bold",
-                "italic", "small", "ol", "ul", "link", "document-link",
-            ]
-        ),
+        blocks.RichTextBlock(features=RICHTEXT_BODY_FEATURES),
     ),
     ('embed', EmbedBlock()),
     ('table', TableBlock()),

@@ -27,6 +27,10 @@ from .generic import LinkBlock, CTABlock, CardStreamBlock  # NOQA
 
 RICHTEXT_INLINE_FEATURES = ['bold', 'italic', 'underline', 'small', 'link', 'document-link']
 
+RICHTEXT_BODY_FEATURES = [
+    "h2", "h3", "h4", "h5", "h6", "bold",
+    "italic", "small", "ol", "ul", "link", "document-link",
+]
 
 
 ####################################################################################################

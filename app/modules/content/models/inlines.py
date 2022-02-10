@@ -170,3 +170,30 @@ class NewsArticleAuthorRelationship(Orderable, models.Model):
 
     def __str__(self):
         return self.page.title + " -> " + self.author.name
+
+
+class PublicationAuthorRelationship(Orderable, models.Model):
+    """
+    Linking PublicationFrontPage with one or more Authors.
+    """
+    page = ParentalKey(
+        'content.PublicationFrontPage',
+        on_delete=models.CASCADE,
+        related_name='author_relationships'
+    )
+    author = models.ForeignKey(
+        'content.Author',
+        on_delete=models.CASCADE,
+        related_name='publications'
+    )
+
+    class Meta(Orderable.Meta):
+        verbose_name = 'Publication author'
+        verbose_name_plural = 'Publication authors'
+
+    panels = [
+        SnippetChooserPanel('author'),
+    ]
+
+    def __str__(self):
+        return self.page.title + " -> " + self.author.name

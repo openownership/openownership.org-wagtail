@@ -1,41 +1,48 @@
 {% extends 'base.jinja' %}
-{# Used for an "article" page with date, author, and tags. e.g. a Job Description, Blog Post, News Article. But not an "Article" in About! #}
+{# Used for an "article" page with date, author, and tags. e.g. a JobPage, BlogArticlePage, NewsArticlePage, PublicationFrontPage, PublicationInnerPage. But not an "ArticlePage" in About! #}
 
 
 {% block breadcrumbs %}
-    {% with parent=page.get_parent() %}
-        <a href="{{ parent.get_url() }}">Back to {{ parent.title }}</a>
+    {% with ancestors=page.get_ancestors() %}
+        {# ancestors will be like: Root, HomePage, SectionPage, etc. #}
+        {% if ancestors|length >= 3 %}
+            {# There is at least a section page above this, so use its title. #}
+            <a href="{{ ancestors[2].get_url() }}">Back to {{ ancestors[2].title }}</a>
+        {% endif %}
     {% endwith %}
 {% endblock %}
 
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
+
+    <h1>{{ page.specific.display_title }}</h1>
 
     <ul>
         <li>
             Publication date: {{ page.human_display_date }}
         </li>
-        {% block byline %}
-            {% with authors=page.specific.authors %}
-                {% if authors and authors|length %}
-                    <li>
-                        {% trans count=page.authors|length %}
-                            Author
-                        {% pluralize %}
-                            Authors
-                        {% endtrans %}
-                        Author{% if authors|length > 1 %}s{% endif %}:
-                        {% for author in authors %}
-                            {% if author.team_profile %}<a href="{{ author.team_profile.get_url() }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}{% if not loop.last %}, {% endif %}
-                        {% endfor %}
-                    </li>
-                {% endif %}
-            {% endwith %}
-        {% endblock %}
+
+        {# Job Applications don't have authors; other articles do #}
+        {% with authors=page.specific.authors %}
+            {% if authors and authors|length %}
+                <li>
+                    {% trans count=page.authors|length %}Author{% pluralize %}Authors{% endtrans %}:
+                    {% for author in authors %}
+                        {% if author.team_profile %}<a href="{{ author.team_profile.get_url() }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </li>
+            {% endif %}
+        {% endwith %}
+
+        {# On Job Applications #}
+        {% if page.application_deadline %}
+            <li>Application deadline: {{ page.human_application_deadline }}</li>
+        {% endif %}
     </ul>
 
-    {{render_stream(page.body)}}
+    {% block article_content %}
+        {{render_stream(page.body)}}
+    {% endblock %}
 
     {% block article_content_end %}
     {% endblock %}

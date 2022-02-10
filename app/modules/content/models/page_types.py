@@ -234,6 +234,11 @@ class ContentPageType(BasePage):
         if self.display_date:
             return self.display_date.strftime('%d %B %Y')
 
+    @property
+    def display_title(self):
+        "Allows us to override it for special cases"
+        return self.title
+
 
 # class ArticlePageWithContentsType(ContentPageType):
 #     """

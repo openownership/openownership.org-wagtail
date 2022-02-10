@@ -15,6 +15,8 @@ from .pages import (  # NOQA
     JobsIndexPage,
     NewsArticlePage,
     NewsIndexPage,
+    PublicationFrontPage,
+    PublicationInnerPage,
     SearchPage,
     SearchPageSuggestedSearch,
     SectionListingPage,
@@ -25,6 +27,7 @@ from .pages import (  # NOQA
 from .inlines import (  # NOQA
     BlogArticleAuthorRelationship,
     NewsArticleAuthorRelationship,
+    PublicationAuthorRelationship,
 )
 
 from .snippets import Author  # NOQA

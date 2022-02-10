@@ -15,6 +15,9 @@ from modules.content.models import (
     NewsArticlePage,
     NewsArticleAuthorRelationship,
     NewsIndexPage,
+    PublicationFrontPage,
+    PublicationAuthorRelationship,
+    PublicationInnerPage,
     SectionListingPage,
     SectionPage,
 )
@@ -113,6 +116,28 @@ def _create_news_index_page(
     return p
 
 
+def _create_publication_front_page(
+    title: str, parent: Page, modifier: int = 1
+) -> PublicationFrontPage:
+    p = PublicationFrontPage()
+    p.title = title
+    p.first_published_at = arrow.now().shift(days=modifier * -1).datetime
+    parent.add_child(instance=p)
+    p.save_revision().publish()
+    return p
+
+
+def _create_publication_inner_page(
+    title: str, parent: Page, modifier: int = 1
+) -> PublicationInnerPage:
+    p = PublicationInnerPage()
+    p.title = title
+    p.first_published_at = arrow.now().shift(days=modifier * -1).datetime
+    parent.add_child(instance=p)
+    p.save_revision().publish()
+    return p
+
+
 def _create_section_listing_page(
     title: str, parent: Page, modifier: int = 1
 ) -> SectionListingPage:
@@ -188,6 +213,18 @@ def news_index_page(section_page):
 
 
 @pytest.fixture(scope="function")
+def publication_front_page(section_page):
+    p = _create_publication_front_page("Publication", section_page)
+    return p
+
+
+@pytest.fixture(scope="function")
+def publication_inner_page(publication_front_page):
+    p = _create_publication_inner_page("Publication Inner", publication_front_page)
+    return p
+
+
+@pytest.fixture(scope="function")
 def section_listing_page(home_page):
     p = _create_section_listing_page("Section Listing", home_page)
     return p
@@ -242,22 +279,44 @@ def author_with_news_articles(author, news_index_page):
 
 
 @pytest.fixture(scope="function")
-def author_with_content_pages(author, blog_index_page, news_index_page):
-    "An author with three live blog articles and three live news articles"
+def author_with_publications(author, section_page):
+    "An author with six live publications"
 
-    for n in range(1, 4):
+    for n in range(1, 7):
+        p = PublicationFrontPage(live=True, title=f"Publication {n}")
+        p.first_published_at = arrow.now().shift(days=-n).datetime
+        section_page.add_child(instance=p)
+        p.save_revision().publish()
+        PublicationAuthorRelationship(page=p, author=author).save()
+
+    return author
+
+
+@pytest.fixture(scope="function")
+def author_with_content_pages(author, blog_index_page, news_index_page, section_page):
+    "An author with 2 live blog articles, 2 live news articles and 2 live publications"
+
+    for n in range(1, 3):
         p = BlogArticlePage(live=True, title=f"Blog Article {n}")
         p.first_published_at = arrow.now().shift(days=-n).datetime
         blog_index_page.add_child(instance=p)
         p.save_revision().publish()
         BlogArticleAuthorRelationship(page=p, author=author).save()
 
-    for n in range(1, 4):
+    for n in range(1, 3):
         p = NewsArticlePage(live=True, title=f"News Article {n}")
         # Timed to be after the last blog article:
-        p.first_published_at = arrow.now().shift(days=-(3 + n)).datetime
+        p.first_published_at = arrow.now().shift(days=-(2 + n)).datetime
         news_index_page.add_child(instance=p)
         p.save_revision().publish()
         NewsArticleAuthorRelationship(page=p, author=author).save()
+
+    for n in range(1, 3):
+        p = PublicationFrontPage(live=True, title=f"Publication {n}")
+        # Timed to be after the last news article:
+        p.first_published_at = arrow.now().shift(days=-(4 + n)).datetime
+        section_page.add_child(instance=p)
+        p.save_revision().publish()
+        PublicationAuthorRelationship(page=p, author=author).save()
 
     return author
