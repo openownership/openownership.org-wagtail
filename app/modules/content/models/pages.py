@@ -390,18 +390,18 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
 
         return context
 
-    # def get_publication_type_choices(cls):
-    #     """Get the only PublicationType allowd for this kind of Page.
-    #     Used by PublicationTypeFieldPanel() for the list of choices.
-    #     """
-    #     publication_types = (
-    #         'Briefing',
-    #         'Case study',
-    #         'Consultation',
-    #         'Guidance',
-    #         'Report',
-    #     )
-    #     return PublicationType.objects.filter(name__in=publication_types)
+    def get_publication_type_choices(cls):
+        """Get the only PublicationType allowd for this kind of Page.
+        Used by PublicationTypeFieldPanel() for the list of choices.
+        """
+        publication_types = (
+            'Briefing',
+            'Case study',
+            'Consultation',
+            'Guidance',
+            'Report',
+        )
+        return PublicationType.objects.filter(name__in=publication_types)
 
 
 class PublicationInnerPageForm(WagtailAdminPageForm):
