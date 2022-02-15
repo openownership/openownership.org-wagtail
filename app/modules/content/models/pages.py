@@ -40,7 +40,8 @@ from modules.content.blocks import (
     team_profile_page_body_blocks,
 )
 from modules.content.blocks.stream import GlossaryItemBlock
-from .mixins import PageAuthorsMixin, PageHeroMixin
+from modules.taxonomy.models import PublicationType
+from .mixins import TaggedAuthorsPageMixin, TaggedPageMixin, PageHeroMixin
 from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageType
 
 
@@ -168,7 +169,7 @@ class ArticlePage(ContentPageType):
         return context
 
 
-class NewsArticlePage(PageAuthorsMixin, ContentPageType):
+class NewsArticlePage(TaggedAuthorsPageMixin, ContentPageType):
     """An article in the Insight > News section.
     """
     template = 'content/news_article_page.jinja'
@@ -177,10 +178,16 @@ class NewsArticlePage(PageAuthorsMixin, ContentPageType):
 
     # Also has:
     # author_relationships from NewsArticleAuthorRelationship
-    # authors from PageAuthorsMixin
+    # authors from AuthorsPageMixin
+
+    def get_publication_type_choices(cls):
+        """Get the only PublicationType allowd for this kind of Page.
+        Used by PublicationTypeFieldPanel() for the list of choices.
+        """
+        return PublicationType.objects.filter(name='News article')
 
 
-class BlogArticlePage(PageAuthorsMixin, ContentPageType):
+class BlogArticlePage(TaggedAuthorsPageMixin, ContentPageType):
     """An article in the Insight > Blog section.
     """
     template = 'content/blog_article_page.jinja'
@@ -189,10 +196,16 @@ class BlogArticlePage(PageAuthorsMixin, ContentPageType):
 
     # Also has:
     # author_relationships from BlogArticleAuthorRelationship
-    # authors from PageAuthorsMixin
+    # authors from AuthorsPageMixin
 
     class Meta:
         verbose_name = 'Blog post page'
+
+    def get_publication_type_choices(cls):
+        """Get the only PublicationType allowd for this kind of Page.
+        Used by PublicationTypeFieldPanel() for the list of choices.
+        """
+        return PublicationType.objects.filter(name='Blog post')
 
 
 class UtilityPage(ContentPageType):
@@ -212,7 +225,7 @@ class UtilityPage(ContentPageType):
     ] + ContentPageType.model_content_panels
 
 
-class JobPage(ContentPageType):
+class JobPage(TaggedPageMixin, ContentPageType):
     template = 'content/job_page.jinja'
     parent_page_types: list = ['content.JobsIndexPage']
     subpage_types: list = []
@@ -240,6 +253,12 @@ class JobPage(ContentPageType):
         if self.application_deadline:
             return self.application_deadline.strftime('%d %B %Y')
 
+    def get_publication_type_choices(cls):
+        """Get the only PublicationType allowd for this kind of Page.
+        Used by PublicationTypeFieldPanel() for the list of choices.
+        """
+        return PublicationType.objects.filter(name='Job')
+
 
 ####################################################################################################
 # PublicationPages
@@ -257,7 +276,7 @@ class PublicationFrontPageForm(WagtailAdminPageForm):
         title.help_text = _("The publication title as you'd like it to be seen by the public")
 
 
-class PublicationFrontPage(PageAuthorsMixin, BasePage):
+class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
     """The front and main page of a Publication.
 
     This defines all the information about the Publication as a whole.
@@ -313,7 +332,7 @@ class PublicationFrontPage(PageAuthorsMixin, BasePage):
 
     # Also has:
     # author_relationships from PublicationAuthorRelationship
-    # authors from PageAuthorsMixin
+    # authors from AuthorsPageMixin
 
     content_panels = [
         MultiFieldPanel(
@@ -370,6 +389,19 @@ class PublicationFrontPage(PageAuthorsMixin, BasePage):
         context['menu_pages'] = [first_page] + list(self.get_children().live().public())
 
         return context
+
+    # def get_publication_type_choices(cls):
+    #     """Get the only PublicationType allowd for this kind of Page.
+    #     Used by PublicationTypeFieldPanel() for the list of choices.
+    #     """
+    #     publication_types = (
+    #         'Briefing',
+    #         'Case study',
+    #         'Consultation',
+    #         'Guidance',
+    #         'Report',
+    #     )
+    #     return PublicationType.objects.filter(name__in=publication_types)
 
 
 class PublicationInnerPageForm(WagtailAdminPageForm):

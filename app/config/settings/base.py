@@ -95,6 +95,7 @@ SITE_APPS = [
     'modules.cli',
     'modules.users',
     'modules.core',
+    'modules.taxonomy',
     'modules.content',
 ]
 

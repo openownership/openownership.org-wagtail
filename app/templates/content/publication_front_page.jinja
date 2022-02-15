@@ -8,9 +8,7 @@
         {{ picture(page.cover_image, 200, 300, alt="Cover") }}
     {% endif %}
 
-    {% if page.download_document %}
-        <p><a href="{{ page.download_document.url }}">Download document</a></p>
-    {% endif %}
+    {% include "_partials/taxonomies.py" %}
 
     {% if page.summary %}
         <h2>Summary</h2>

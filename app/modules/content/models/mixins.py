@@ -12,6 +12,7 @@ from collections import OrderedDict
 from django.db import models
 from django.conf import settings
 from django_extensions.db.fields import AutoSlugField
+from django.utils.translation import gettext_lazy as _
 
 from modelcluster.fields import ParentalManyToManyField
 from modelcluster.models import ClusterableModel
@@ -19,6 +20,9 @@ from modelcluster.models import ClusterableModel
 from wagtail.core import fields
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
+
+from modules.taxonomy.models import PublicationType
+from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
 
 
 class PageMixinBase(models.Model):
@@ -127,18 +131,21 @@ class PageHeroMixin(PageMixinBase):
 
 
 ####################################################################################################
-# Page Authors mixin
+# Authors and Tags mixins
 ####################################################################################################
 
 
-class PageAuthorsMixin(PageMixinBase):
+class AuthorsPageMixin(PageMixinBase):
+    """
+    For a page that can be assigned one or more Authors.
+    """
 
     class Meta:
         abstract = True
 
     about_panels = [
         MultiFieldPanel(
-            [InlinePanel('author_relationships', label='Authors')], heading='Authors'
+            [InlinePanel('author_relationships', label=_('Authors'))], heading=_('Authors')
         )
     ]
 
@@ -147,7 +154,7 @@ class PageAuthorsMixin(PageMixinBase):
         """Add the about tab to the tabbed interface
         """
         tabs = super().get_admin_tabs()
-        tabs.insert(1, (cls.about_panels, "About"))
+        tabs.insert(1, (cls.about_panels, _("About")))
         return tabs
 
     @property
@@ -156,6 +163,73 @@ class PageAuthorsMixin(PageMixinBase):
         """
         authors = self.author_relationships.all().order_by("sort_order")
         return [a.author for a in authors]
+
+
+class TaggedPageMixin(PageMixinBase):
+    """
+    For a page that has the several category / tags:
+
+    * Publication type
+    * Area of focus
+    * Region
+    * Sector
+    """
+
+    class Meta():
+        abstract = True
+
+    publication_type = models.ForeignKey(
+        'taxonomy.PublicationType',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='pages_%(class)s',
+    )
+
+    about_panels = [
+        PublicationTypeFieldPanel('publication_type', _('Publication type')),
+    ]
+
+    @classmethod
+    def get_admin_tabs(cls):
+        """Add the about tab to the tabbed interface
+        """
+        tabs = super().get_admin_tabs()
+        tabs.insert(1, (cls.about_panels, _("About")))
+        return tabs
+
+    # def get_publication_type_choices(cls):
+    #     """
+    #     Child classes can override this to restrict which PublicationTypes
+    #     are available.
+    #     """
+    #     return PublicationType.objects.all()
+
+
+class TaggedAuthorsPageMixin(TaggedPageMixin, AuthorsPageMixin):
+    """
+    For a page that has both Authors AND the categories/tags.
+
+    Because I'm not sure how best to easily combine them into one admin panel.
+    """
+
+    class Meta():
+        abstract = True
+
+    about_panels = [
+        MultiFieldPanel(
+            [InlinePanel('author_relationships', label=_('Authors'))], heading=_('Authors')
+        ),
+        PublicationTypeFieldPanel('publication_type', _('Publication type')),
+    ]
+
+    @classmethod
+    def get_admin_tabs(cls):
+        """Remove one of the TWO about tabs that the two combined mixins added.
+        """
+        tabs = super().get_admin_tabs()
+        del tabs[1]
+        return tabs
 
 
 ####################################################################################################

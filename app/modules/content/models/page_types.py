@@ -299,9 +299,7 @@ class IndexPageType(BasePage):
     paginator_tail = 2
 
     intro = fields.RichTextField(
-        blank=True,
-        null=True,
-        features=["bold", "italic", "small", "ol", "ul", "link", "document-link"],
+        blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
     # child_page_stream = fields.StreamField(

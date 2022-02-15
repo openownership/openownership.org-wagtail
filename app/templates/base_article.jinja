@@ -42,6 +42,8 @@
 
     {% block article_content %}
         {{render_stream(page.body)}}
+
+        {% include "_partials/taxonomies.py" %}
     {% endblock %}
 
     {% block article_content_end %}
