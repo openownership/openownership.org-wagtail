@@ -14,6 +14,7 @@ from django.conf import settings
 from django_extensions.db.fields import AutoSlugField
 from django.utils.translation import gettext_lazy as _
 
+from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalManyToManyField
 from modelcluster.models import ClusterableModel
 
@@ -186,8 +187,18 @@ class TaggedPageMixin(PageMixinBase):
         related_name='pages_%(class)s',
     )
 
+    areas_of_focus = ClusterTaggableManager(
+        through='taxonomy.FocusAreaTaggedPage', blank=True
+    )
+
+    sectors = ClusterTaggableManager(
+        through='taxonomy.SectorTaggedPage', blank=True
+    )
+
     about_panels = [
         PublicationTypeFieldPanel('publication_type', _('Publication type')),
+        FieldPanel('areas_of_focus', _('Areas of focus')),
+        FieldPanel('sectors', _('Sectors')),
     ]
 
     @classmethod
@@ -216,12 +227,7 @@ class TaggedAuthorsPageMixin(TaggedPageMixin, AuthorsPageMixin):
     class Meta():
         abstract = True
 
-    about_panels = [
-        MultiFieldPanel(
-            [InlinePanel('author_relationships', label=_('Authors'))], heading=_('Authors')
-        ),
-        PublicationTypeFieldPanel('publication_type', _('Publication type')),
-    ]
+    about_panels = AuthorsPageMixin.about_panels + TaggedPageMixin.about_panels
 
     @classmethod
     def get_admin_tabs(cls):

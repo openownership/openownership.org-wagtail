@@ -6,6 +6,29 @@
 	</p>
 {% endif %}
 
+{% with areas=page.areas_of_focus.all() %}
+	{% if areas|length > 0 %}
+		<p>
+			<strong>Areas of focus</strong><br>
+			{% for area in areas %}
+				{{ area.name }}{% if not loop.last %}, {% endif %}
+			{% endfor %}
+		</p>
+	{% endif %}
+{% endwith %}
+
+{% with sectors=page.sectors.all() %}
+	{% if sectors|length > 0 %}
+		<p>
+			<strong>Sectors</strong><br>
+			{% for sector in sectors %}
+				{{ sector.name }}{% if not loop.last %}, {% endif %}
+			{% endfor %}
+		</p>
+	{% endif %}
+{% endwith %}
+
+
 
 {% if page.download_document %}
 	<p><a href="{{ page.download_document.url }}">Download document</a></p>
