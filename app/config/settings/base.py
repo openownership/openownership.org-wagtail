@@ -401,3 +401,14 @@ ICON_CHOICES = []
 SOCIAL_MEDIA_CHOICES = [
     'Facebook', 'Twitter', 'LinkedIn'
 ]
+
+
+# Which features do we allow in which kinds of richtext fields?
+RICHTEXT_INLINE_FEATURES = [
+    'bold', 'italic', 'underline', 'small', 'link', 'document-link'
+]
+
+RICHTEXT_BODY_FEATURES = [
+    "h2", "h3", "h4", "h5", "h6", "bold",
+    "italic", "small", "ol", "ul", "link", "document-link",
+]

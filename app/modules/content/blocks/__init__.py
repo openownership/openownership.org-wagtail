@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from wagtail.core import blocks
 from wagtail.contrib.table_block.blocks import TableBlock
 
@@ -24,7 +26,6 @@ from .stream import (
     IconListBlock,
     NewsletterBlock,
     VideoGalleryBlock,
-    RICHTEXT_BODY_FEATURES,
 )
 
 landing_page_blocks: list = [
@@ -55,7 +56,7 @@ contents_page_body_blocks: list = landing_page_blocks
 article_page_body_blocks: list = [
     (
         "rich_text",
-        blocks.RichTextBlock(features=RICHTEXT_BODY_FEATURES),
+        blocks.RichTextBlock(features=settings.RICHTEXT_BODY_FEATURES),
     ),
     ('embed', EmbedBlock()),
     ('table', TableBlock()),

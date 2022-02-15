@@ -39,11 +39,7 @@ from modules.content.blocks import (
     section_page_blocks,
     team_profile_page_body_blocks,
 )
-from modules.content.blocks.stream import (
-    GlossaryItemBlock,
-    RICHTEXT_BODY_FEATURES,
-    RICHTEXT_INLINE_FEATURES,
-)
+from modules.content.blocks.stream import GlossaryItemBlock
 from .mixins import PageAuthorsMixin, PageHeroMixin
 from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageType
 
@@ -207,7 +203,9 @@ class UtilityPage(ContentPageType):
     parent_page_types: list = ['content.HomePage']
     subpage_types: list = []
 
-    intro = fields.RichTextField(blank=True, null=True, features=RICHTEXT_INLINE_FEATURES)
+    intro = fields.RichTextField(
+        blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES
+    )
 
     content_panels = BasePage.content_panels + [
         FieldPanel('intro')
@@ -296,20 +294,20 @@ class PublicationFrontPage(PageAuthorsMixin, BasePage):
     summary = fields.RichTextField(
         blank=True,
         null=True,
-        features=RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES
     )
 
     outcomes = fields.RichTextField(
         blank=True,
         null=True,
-        features=RICHTEXT_BODY_FEATURES,
+        features=settings.RICHTEXT_BODY_FEATURES,
         verbose_name="Key Learning Outcomes"
     )
 
     impact = fields.RichTextField(
         blank=True,
         null=True,
-        features=RICHTEXT_INLINE_FEATURES,
+        features=settings.RICHTEXT_INLINE_FEATURES,
         verbose_name="Benefit / Impact"
     )
 
@@ -474,7 +472,9 @@ class TeamProfilePage(BasePage):
 
     email_address = models.EmailField(blank=True)
 
-    intro = fields.RichTextField(blank=True, null=True, features=RICHTEXT_INLINE_FEATURES)
+    intro = fields.RichTextField(
+        blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES
+    )
 
     body = fields.StreamField(team_profile_page_body_blocks, blank=True)
 

@@ -25,14 +25,6 @@ from .mixins import (  # NOQA
 from .generic import LinkBlock, CTABlock, CardStreamBlock  # NOQA
 
 
-RICHTEXT_INLINE_FEATURES = ['bold', 'italic', 'underline', 'small', 'link', 'document-link']
-
-RICHTEXT_BODY_FEATURES = [
-    "h2", "h3", "h4", "h5", "h6", "bold",
-    "italic", "small", "ol", "ul", "link", "document-link",
-]
-
-
 ####################################################################################################
 # Glossary
 ####################################################################################################
@@ -47,7 +39,7 @@ class GlossaryItemBlock(blocks.StructBlock):
     title = blocks.CharBlock(required=True)
     body = blocks.RichTextBlock(
         required=True,
-        features=RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES
     )
 
 
@@ -93,7 +85,7 @@ class NotificationBlock(blocks.StructBlock):
     body = blocks.RichTextBlock(
         required=True,
         help_text="Body text",
-        features=RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES
     )
 
     cta = CTABlock(required=True)
@@ -107,7 +99,7 @@ class _StepsBlockItem(blocks.StructBlock):
 
     body = blocks.RichTextBlock(
         required=True,
-        features=RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES
     )
 
 
@@ -151,7 +143,7 @@ class _IconListBlockItem(blocks.StructBlock):
     title = blocks.CharBlock(required=True)
     body = blocks.RichTextBlock(
         required=False,
-        features=RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES
     )
 
 
@@ -224,7 +216,7 @@ class NewsletterBlock(blocks.StructBlock):
 
     intro = blocks.RichTextBlock(
         required=False,
-        features=RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES
     )
 
     def get_context(self, value, parent_context={}):
@@ -487,7 +479,7 @@ class FormAssemblyBlock(blocks.StructBlock):
 
     intro = blocks.RichTextBlock(
         required=False,
-        features=RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES
     )
 
     formassembly_form = SnippetChooserBlock('crm.FormAssemblyForm', required=True)
