@@ -43,7 +43,7 @@
     {% block article_content %}
         {{render_stream(page.body)}}
 
-        {% include "_partials/taxonomies.py" %}
+        {% include "_partials/taxonomies.jinja" %}
     {% endblock %}
 
     {% block article_content_end %}
