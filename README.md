@@ -31,6 +31,7 @@ You'll need all the project's environment variables in a .env file expanded into
 
 1. `manpy migrate`
 2. `manpy createsuperuser`
+3. `manpy populate_taxonomies`  # To create tags
 3. `runserver`
 
 Site should now be accessible at `http://openownership.org.test:5000` (or http://0.0.0.0.test:5000)
