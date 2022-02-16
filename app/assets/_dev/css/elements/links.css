@@ -1,0 +1,15 @@
+a {
+    @apply underline;
+
+    &:hover, &:focus, &:active {
+        @apply no-underline;
+    }
+}
+
+.reverse-underline {
+    @apply no-underline;
+
+    &:hover, &:focus, &:active {
+        @apply underline;
+    }
+}

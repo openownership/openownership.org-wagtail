@@ -1,0 +1,84 @@
+/*    
+.btn {
+    @apply bg-green-dark;
+    @apply text-white;
+    @apply border border-green-dark;
+    @apply text-center;
+    @apply inline-block;
+    @apply no-underline;
+    @apply py-4 px-6;
+    @apply text-18 font-display font-bold;
+    @apply rounded-full;
+}
+
+.btn {
+    &:hover, &:active, &:focus {
+        @apply bg-purple-mid;
+        @apply text-white;
+        @apply border border-purple-mid;
+    }
+}
+
+@include max-width(lg) {
+    .btn {
+        @apply py-2;
+    }
+}
+
+/*------------------------------------*\
+  #BUTTON-ALT
+\*------------------------------------*/
+
+/* .btn--alt {
+    @apply bg-transparent;
+    @apply text-purple-mid;
+    @apply border border-white;
+}
+
+.btn--alt {
+    &:hover, &:active, &:focus {
+        @apply bg-transparent;
+        @apply text-purple-mid;
+        @apply border-white;
+    }
+} */
+
+/*------------------------------------*\
+  #BUTTON-SECONDARY
+\*------------------------------------*/
+
+/* .btn--secondary {
+    @apply bg-white;
+    @apply text-purple-mid;
+    @apply border border-black;
+}
+
+.btn--secondary {
+    &:hover, &:active, &:focus {
+        @apply bg-purple-mid;
+        @apply text-white;
+        @apply border-purple-mid;
+    }
+} */
+
+/*------------------------------------*\
+  #TAGS
+\*------------------------------------*/
+/* 
+.tag {
+    @apply bg-green-light;
+    @apply rounded-full;
+    @apply text-green-dark;
+    @apply text-center;
+    @apply inline-block;
+    @apply no-underline;
+    @apply py-4 px-6;
+    @apply text-16 font-body font-normal;
+}
+
+.tag {
+    &:hover, &:active, &:focus {
+        @apply bg-green-dark;
+        @apply text-white;
+    }
+} */ 

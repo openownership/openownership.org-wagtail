@@ -1,0 +1,55 @@
+/*------------------------------------*\
+  #BREAKPOINT-MIXINS
+\*------------------------------------*/
+
+@mixin min-width($breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @media (min-width: $breakpoint-value) {
+        @content;
+    }
+}
+
+@mixin max-width($breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @media (max-width: $breakpoint-value) {
+        @content;
+    }
+}
+
+@mixin between-widths($lower, $upper) {
+    $lower-breakpoint: map-get($breakpoints, $lower);
+    $upper-breakpoint: map-get($breakpoints, $upper);
+
+    @media (min-width: $lower-breakpoint) and (max-width: $upper-breakpoint) {
+        @content;
+    }
+}
+
+/*------------------------------------*\
+  #TAILWIND-MIXINS
+\*------------------------------------*/
+
+/**
+ * As it contains a media query, contained-width can't be added to Tailwind as a custom utility.
+ * Instead, we have to create it as a mixin that can be used in our CSS.
+ */
+
+@mixin contained-width($max-width) {
+    max-width: $max-width;
+    padding-left: rem(10px);
+	padding-right: rem(10px);
+	margin-left: auto;
+	margin-right: auto;
+
+    @include min-width(md) {
+        padding-left: rem(20px);
+        padding-right: rem(20px);
+    }
+
+    @include min-width(xl) {
+        padding-left: rem(155px);
+        padding-right: rem(155px);
+    }
+};

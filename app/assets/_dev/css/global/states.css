@@ -1,0 +1,11 @@
+.mobile-only {
+    @include min-width(lg) {
+        @apply hidden;
+    }
+}
+
+.desktop-only {
+    @include max-width(lg) {
+        @apply hidden;
+    }
+}

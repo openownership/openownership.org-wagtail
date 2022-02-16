@@ -1,0 +1,56 @@
+/*------------------------------------*\
+  #TAILWIND-IMPORTS
+\*------------------------------------*/
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+
+/*------------------------------------*\
+  #LIB-IMPORTS
+\*------------------------------------*/
+
+/*------------------------------------*\
+  #GLOBAL-IMPORTS
+\*------------------------------------*/
+
+@import "global/variables";
+@import "global/mixins";
+@import "global/fonts";
+@import "global/base";
+@import "global/states";
+@import "global/layout";
+
+/*------------------------------------*\
+  #ELEMENT-IMPORTS
+\*------------------------------------*/
+
+@import "elements/embeds";
+@import "elements/grids";
+@import "elements/inputs";
+@import "elements/links";
+@import "elements/rich-text";
+@import "elements/typography";
+@import "elements/buttons";
+
+/*------------------------------------*\
+  #COMPONENT-IMPORTS
+\*------------------------------------*/
+
+
+/*------------------------------------*\
+  #PAGE-IMPORTS
+\*------------------------------------*/
+
+/*------------------------------------*\
+  #TAILWIND-IMPORTS
+\*------------------------------------*/
+
+@import "tailwindcss/utilities";
+
+/*------------------------------------*\
+  #FALLBACK-IMPORTS
+\*------------------------------------*/
+
+@import "global/fallbacks";
+
+

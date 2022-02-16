@@ -1,0 +1,40 @@
+html, body {
+    @apply h-full;
+    scroll-padding-top: $nav-height;
+}
+
+body {
+    @apply flex flex-col;
+    @apply overflow-x-hidden;
+
+    padding-top: $nav-height;
+}
+
+.footer {
+    @apply flex-shrink-0;
+}
+
+.content {
+
+    flex: 1 0 auto;
+    justify-self: flex-start;
+}
+
+.contained-width {
+	@include contained-width($max-width);
+}
+
+.contained-text-width {
+	@include contained-width($max-text-width);
+}
+
+.full-width {
+    @apply w-full;
+    @apply relative;
+    @apply left-1/2;
+    @apply transform -translate-x-1/2;
+}
+
+.max-width {
+    max-width: $max-width;
+}

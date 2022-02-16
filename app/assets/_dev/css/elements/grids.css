@@ -1,0 +1,7 @@
+@for $i from 1 through 5 {
+    .grid--#{$i}-col {
+        @apply grid;
+        @apply grid-cols-#{$i};
+        @apply gap-8;
+    }
+}

@@ -4,7 +4,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   context: __dirname,
   entry: {
-    admin: './_dev/js/admin.js'
+    admin: './_dev/js/admin.js',
+    main: './_dev/js/main.js'
   },
   output: {
     filename: 'js/[name].min.js',
@@ -41,7 +42,8 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1
+              importLoaders: 1,
+              url: false
             }
           },
           'postcss-loader'

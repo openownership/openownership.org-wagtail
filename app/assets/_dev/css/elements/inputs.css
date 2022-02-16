@@ -1,0 +1,6 @@
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    @apply p-2;
+}
