@@ -1,14 +1,15 @@
 # 3rd party
 from django.conf import settings
+from django.conf.urls import url, include
+from django.conf.urls.i18n import i18n_patterns
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.http import HttpResponse
 from django.urls import path
-from wagtail.core import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
-from django.conf.urls import url, include
-from wagtail.documents import urls as wagtaildocs_urls
-from django.conf.urls.static import static
 from wagtail.contrib.sitemaps.views import sitemap
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from wagtail.core import urls as wagtail_urls
+from wagtail.documents import urls as wagtaildocs_urls
 
 # Module
 from .views import (
@@ -42,7 +43,7 @@ handler403 = error_403_view
 handler404 = error_404_view
 handler500 = error_500_view
 
-urlpatterns += [
+urlpatterns = urlpatterns + i18n_patterns(
     path(
         '<slug:section_slug>/focus-area/<str:tag_slug>/',
         FocusAreaView.as_view(),
@@ -54,4 +55,4 @@ urlpatterns += [
         name="sector-tag"
     ),
     url(r'', include(wagtail_urls)),
-]
+)

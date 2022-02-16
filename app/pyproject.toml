@@ -29,6 +29,7 @@ wagtail-autocomplete = "*"
 wagtail-cache = "*"
 wagtailfontawesome = "*"
 whitenoise = "*"
+wagtail-localize = "^1.0.1"
 
 
 [tool.poetry.dev-dependencies]

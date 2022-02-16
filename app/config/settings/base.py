@@ -42,6 +42,12 @@ USE_TZ = True
 
 WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
     ('en', "English"),
+    ('fr', 'French'),
+    ('es', 'Spanish'),
+    ('id', 'Bahasa Indonesia'),
+    ('de', 'German'),
+    ('ru', 'Russian'),
+    ('hy', 'Armenian'),
 ]
 
 
@@ -81,6 +87,8 @@ WAGTAIL_APPS = [
     'wagtail.contrib.postgres_search',
     'wagtail.admin',
     'wagtail.core',
+    "wagtail_localize",
+    "wagtail_localize.locales",
     'wagtail.contrib.forms',
     'wagtail.contrib.modeladmin',
     'wagtail.contrib.settings',
@@ -120,6 +128,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     'wagtailcache.cache.FetchFromCacheMiddleware',
 ]
