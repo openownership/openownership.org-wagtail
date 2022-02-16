@@ -39,11 +39,13 @@ class Command(BaseCommand):
     help = 'Populates PublicationType, FocusAreaTag and SectorTag with required data.'
 
     def handle(self, *args, **options):
-        self._populate(FocusAreaTag, AREAS_OF_FOCUS)
-        self._populate(PublicationType, PUBLICATION_TYPES)
-        self._populate(SectorTag, SECTORS)
+        verbosity = int(options['verbosity'])
 
-    def _populate(self, tag_class, names):
+        self._populate(FocusAreaTag, AREAS_OF_FOCUS, verbosity)
+        self._populate(PublicationType, PUBLICATION_TYPES, verbosity)
+        self._populate(SectorTag, SECTORS, verbosity)
+
+    def _populate(self, tag_class, names, verbosity):
         num_created = 0
 
         for name in names:
@@ -52,7 +54,8 @@ class Command(BaseCommand):
             if created:
                 num_created += 1
 
-        self.stdout.write(
-            f' ✓ {tag_class.__name__}: {num_created} created and '
-            f'{len(names) - num_created} not touched'
-        )
+        if verbosity > 0:
+            self.stdout.write(
+                f' ✓ {tag_class.__name__}: {num_created} created and '
+                f'{len(names) - num_created} not touched'
+            )

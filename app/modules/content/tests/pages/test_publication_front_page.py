@@ -1,9 +1,16 @@
 import arrow
 import pytest
 
+from django.core.management import call_command
 from django.test import Client
 
-from modules.content.models import Author, PublicationAuthorRelationship, PublicationInnerPage
+from modules.content.models import (
+    Author,
+    PublicationAuthorRelationship,
+    PublicationFrontPage,
+    PublicationInnerPage,
+)
+from modules.taxonomy.models import PublicationType
 
 
 pytestmark = pytest.mark.django_db
@@ -87,3 +94,20 @@ def test_menu_pages_children(publication_front_page):
     assert pages[0].specific == parent
     assert pages[1].specific == p1
     assert pages[2].specific == p2
+
+
+def test_publication_type_choices(publication_front_page):
+    "It should return the only PublicationTypes availeble to this page"
+    call_command('populate_taxonomies', verbosity=0)
+    valid_names = [
+        'Briefing',
+        'Case study',
+        'Consultation',
+        'Guidance',
+        'Report',
+    ]
+    types = publication_front_page.get_publication_type_choices()
+
+    assert len(types) == 5
+    assert isinstance(types[0], PublicationType)
+    assert valid_names == [t.name for t in types]

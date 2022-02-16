@@ -80,24 +80,24 @@ class BaseTag(TagBase):
         ObjectList(panels, heading=_('Tag')),
     ])
 
-    @property
-    def pages(self):
-        rel = getattr(self, self.rel_name)
-        ids = [item.content_object.id for item in rel.all()]
-        pages = Page.objects.filter(
-            id__in=ids).order_by('-first_published_at').specific().all()
-        return pages
+    # @property
+    # def pages(self):
+    #     rel = getattr(self, self.rel_name)
+    #     ids = [item.content_object.id for item in rel.all()]
+    #     pages = Page.objects.filter(
+    #         id__in=ids).order_by('-first_published_at').specific().all()
+    #     return pages
 
-    def latest(self, count=1):
-        pages = self.pages[:count]
-        return pages
+    # def latest(self, count=1):
+    #     pages = self.pages[:count]
+    #     return pages
 
-    @cached_property
-    def url(self):
-        """Here we need to return the url for either a TopicPage if one exists for this tag,
-        or the root tag view.
-        """
-        try:
-            return self.topic_page.url
-        except Exception:
-            return reverse('tagged', kwargs={'slug': self.slug})
+    # @cached_property
+    # def url(self):
+    #     """Here we need to return the url for either a TopicPage if one exists for this tag,
+    #     or the root tag view.
+    #     """
+    #     try:
+    #         return self.topic_page.url
+    #     except Exception:
+    #         return reverse('tagged', kwargs={'slug': self.slug})

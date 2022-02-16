@@ -413,3 +413,14 @@ RICHTEXT_BODY_FEATURES = [
     "h2", "h3", "h4", "h5", "h6", "bold",
     "italic", "small", "ol", "ul", "link", "document-link",
 ]
+
+
+# One place for the settings for pagination:
+PAGINATOR = {
+    "objects_per_page": 10,
+    # See modules.core.paginator for what these mean:
+    "body": 5,
+    "margin": 2,
+    "padding": 2,
+    "tail": 2
+}

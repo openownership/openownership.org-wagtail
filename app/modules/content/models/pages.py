@@ -180,7 +180,7 @@ class NewsArticlePage(TaggedAuthorsPageMixin, ContentPageType):
     # author_relationships from NewsArticleAuthorRelationship
     # authors from AuthorsPageMixin
 
-    def get_publication_type_choices(cls):
+    def get_publication_type_choices(self):
         """Get the only PublicationType allowd for this kind of Page.
         Used by PublicationTypeFieldPanel() for the list of choices.
         """
@@ -201,7 +201,7 @@ class BlogArticlePage(TaggedAuthorsPageMixin, ContentPageType):
     class Meta:
         verbose_name = 'Blog post page'
 
-    def get_publication_type_choices(cls):
+    def get_publication_type_choices(self):
         """Get the only PublicationType allowd for this kind of Page.
         Used by PublicationTypeFieldPanel() for the list of choices.
         """
@@ -253,7 +253,7 @@ class JobPage(TaggedPageMixin, ContentPageType):
         if self.application_deadline:
             return self.application_deadline.strftime('%d %B %Y')
 
-    def get_publication_type_choices(cls):
+    def get_publication_type_choices(self):
         """Get the only PublicationType allowd for this kind of Page.
         Used by PublicationTypeFieldPanel() for the list of choices.
         """
@@ -390,7 +390,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
 
         return context
 
-    def get_publication_type_choices(cls):
+    def get_publication_type_choices(self):
         """Get the only PublicationType allowd for this kind of Page.
         Used by PublicationTypeFieldPanel() for the list of choices.
         """

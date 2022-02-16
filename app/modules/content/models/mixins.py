@@ -209,6 +209,7 @@ class TaggedPageMixin(PageMixinBase):
         tabs.insert(1, (cls.about_panels, _("About")))
         return tabs
 
+    @classmethod
     def get_publication_type_choices(cls):
         """
         Child classes can override this to restrict which PublicationTypes

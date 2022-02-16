@@ -13,7 +13,7 @@ class PublicationTypeFieldPanel(FieldPanel):
 
     then the Page model should also include a method like this:
 
-        def get_publication_type_choices(cls):
+        def get_publication_type_choices(self):
             return PublicationType.objects.filter(name='foo')
 
     From https://www.mashandgravy.co.uk/blog/querysets-wagtail-field-panels/

@@ -1,6 +1,7 @@
 # 3rd party
 from django.conf import settings
 from django.http import HttpResponse
+from django.urls import path
 from wagtail.core import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from django.conf.urls import url, include
@@ -13,6 +14,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from .views import (
     robots, error_400_view, error_403_view, error_404_test, error_404_view, error_500_view
 )
+from modules.taxonomy.views import FocusAreaView, SectorView
 
 
 urlpatterns = [
@@ -41,5 +43,15 @@ handler404 = error_404_view
 handler500 = error_500_view
 
 urlpatterns += [
+    path(
+        '<slug:section_slug>/focus-area/<str:tag_slug>/',
+        FocusAreaView.as_view(),
+        name="focusarea-tag"
+    ),
+    path(
+        '<slug:section_slug>/sector/<str:tag_slug>/',
+        SectorView.as_view(),
+        name="sector-tag"
+    ),
     url(r'', include(wagtail_urls)),
 ]

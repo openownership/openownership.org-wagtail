@@ -288,15 +288,8 @@ class IndexPageType(BasePage):
         abstract = True
 
     objects_model = None
-    objects_per_page = 10
 
     paginator_class = DiggPaginator
-
-    # See modules.core.paginator for what these mean:
-    paginator_body = 5
-    paginator_margin = 2
-    paginator_padding = 2
-    paginator_tail = 2
 
     intro = fields.RichTextField(
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
@@ -468,13 +461,16 @@ class IndexPageType(BasePage):
 
     def paginate_objects(self, request):
         queryset = self.get_queryset(request)
+
+        sp = settings.PAGINATOR
+
         paginator = self.paginator_class(
             queryset,
-            self.objects_per_page,
-            body=self.paginator_body,
-            margin=self.paginator_margin,
-            padding=self.paginator_padding,
-            tail=self.paginator_tail,
+            sp['objects_per_page'],
+            body=sp['body'],
+            margin=sp['margin'],
+            padding=sp['padding'],
+            tail=sp['tail'],
         )
         current_page = request.GET.get('page', 1)
         try:
