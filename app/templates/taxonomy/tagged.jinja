@@ -5,6 +5,8 @@
 
 	<h1>{{ tag.name }}</h1>
 
+	{{render_stream(tag.body)}}
+
 	{% with pages=object_list %}
 		{% include "_partials/card_group.jinja" %}
 	{% endwith %}

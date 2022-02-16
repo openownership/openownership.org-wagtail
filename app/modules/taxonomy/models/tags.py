@@ -2,6 +2,7 @@ from django.db import models
 
 from modelcluster.fields import ParentalKey
 from taggit.models import ItemBase
+from wagtail.snippets.models import register_snippet
 
 from .core import BaseTag
 
@@ -9,6 +10,7 @@ from .core import BaseTag
 ####################################################################
 # AREAS OF FOCUS
 
+@register_snippet
 class FocusAreaTag(BaseTag):
 
     free_tagging = False
@@ -34,6 +36,7 @@ class FocusAreaTaggedPage(ItemBase):
 ####################################################################
 # SECTORS
 
+@register_snippet
 class SectorTag(BaseTag):
 
     free_tagging = False

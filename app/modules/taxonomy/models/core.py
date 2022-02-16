@@ -6,10 +6,13 @@ from django.utils.translation import gettext_lazy as _
 
 from django_extensions.db.fields import AutoSlugField
 from taggit.models import TagBase
+from wagtail.core import fields
 from wagtail.admin.edit_handlers import (
-    FieldPanel, ObjectList, MultiFieldPanel, TabbedInterface
+    FieldPanel, ObjectList, MultiFieldPanel, StreamFieldPanel, TabbedInterface
 )
 from wagtail.core.models import Page
+
+from modules.content.blocks import tag_page_body_blocks
 
 
 ####################################################################################################
@@ -67,9 +70,12 @@ class BaseTag(TagBase):
 
     objects = TagManager()
 
+    body = fields.StreamField(tag_page_body_blocks, blank=True)
+
     panels = [
         MultiFieldPanel([
             FieldPanel('name'),
+            StreamFieldPanel('body')
         ], heading="Public fields"),
         # MultiFieldPanel([
         #     FieldPanel('slug'),
@@ -79,6 +85,9 @@ class BaseTag(TagBase):
     edit_handler = TabbedInterface([
         ObjectList(panels, heading=_('Tag')),
     ])
+
+    def __str__(self):
+        return self.name
 
     # @property
     # def pages(self):

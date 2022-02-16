@@ -67,3 +67,5 @@ article_page_body_blocks: list = [
 ]
 
 team_profile_page_body_blocks: list = article_page_body_blocks
+
+tag_page_body_blocks: list = article_page_body_blocks
