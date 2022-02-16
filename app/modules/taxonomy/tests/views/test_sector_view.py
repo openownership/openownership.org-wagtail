@@ -59,6 +59,10 @@ def test_context_data(section_page):
     data = rv.context_data
     assert data['tag'] == tag
     assert data['meta_title'] == 'Cats'
+    assert data['site_name'] == 'openownership.org'
+    assert 'footer_nav' in data
+    assert 'navbar_blocks' in data
+    assert 'social_links' in data
 
 
 def test_queryset_tagged_pages(blog_index_page):
