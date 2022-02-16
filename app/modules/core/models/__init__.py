@@ -8,7 +8,3 @@
 
 from .documents import DocumentDownload, SiteDocument  # NOQA
 from .images import SiteImage  # NOQA
-from .settings import (  # NOQA
-    MetaTagSettings, AnalyticsSettings, SocialMediaSettings,
-    NavigationSettings, UpdateBannerSettings
-)

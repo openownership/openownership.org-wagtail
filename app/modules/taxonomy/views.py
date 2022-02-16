@@ -1,6 +1,7 @@
 from django.http import Http404
-from wagtail.core.models import Page
+from wagtail.core.models import Page, Site
 
+from modules.core.utils import get_site_context
 from modules.core.views import PaginatedListView
 from .models import FocusAreaTag, SectorTag
 
@@ -55,8 +56,16 @@ class TaggedView(PaginatedListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        site = self._get_site()
+
+        context.update(
+            **get_site_context(site),
+        )
+
         context['tag'] = self.tag
         context['meta_title'] = self.tag.name
+
         return context
 
     def get_queryset(self):
@@ -71,6 +80,9 @@ class TaggedView(PaginatedListView):
         )
 
         return pages
+
+    def _get_site(self):
+        return Site.find_for_request(self.request)
 
     def _get_section_page(self, slug):
         try:

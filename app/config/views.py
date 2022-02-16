@@ -9,14 +9,16 @@ from django.shortcuts import render
 
 def error_context():
     from wagtail.core.models import Site
-    from modules.core.models.settings import (
-        SocialMediaSettings, AnalyticsSettings
-    )
+    from modules.settings.models import NavigationSettings, SiteSettings
 
     context = {}
     site = Site.objects.get(is_default_site=True)
-    context.update(**SocialMediaSettings.get_for_context(site))
-    context.update(**AnalyticsSettings.get_for_context(site))
+    context.update(
+        **SiteSettings.get_analytics_context(site),
+        **SiteSettings.get_metatag_context(site),
+        **SiteSettings.get_social_context(site),
+        **NavigationSettings.get_nav_context(site),
+    )
     context.update({
         'site_name': settings.SITE_NAME,
         'error_page': True
