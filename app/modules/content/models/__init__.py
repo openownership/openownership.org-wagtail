@@ -31,5 +31,3 @@ from .inlines import (  # NOQA
 )
 
 from .snippets import Author  # NOQA
-
-# from .taxonomy import NewsCategory  # NOQA

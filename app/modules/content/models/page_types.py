@@ -14,6 +14,7 @@ from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger
 from django.utils.functional import cached_property
 from django.utils.html import strip_tags
+from django.utils.translation import gettext_lazy as _
 
 from wagtail.admin.edit_handlers import FieldPanel, ObjectList, TabbedInterface, StreamFieldPanel
 from wagtail.core import fields
@@ -55,7 +56,7 @@ class BasePage(WagtailCacheMixin, Page):
     display_date = models.DateField(
         blank=True,
         null=True,
-        help_text="If blank, this will be set to the date the page was first published"
+        help_text=_("If blank, this will be set to the date the page was first published")
     )
 
     content_panels = Page.content_panels
@@ -102,9 +103,9 @@ class BasePage(WagtailCacheMixin, Page):
     @cached_classmethod
     def get_admin_tabs(cls):
         tabs = [
-            (cls.content_panels, 'Content'),
-            (cls.promote_panels, 'Promote'),
-            (cls.settings_panels, 'Settings'),
+            (cls.content_panels, _('Content')),
+            (cls.promote_panels, _('Promote')),
+            (cls.settings_panels, _('Settings')),
         ]
         return tabs
 

@@ -24,8 +24,8 @@ class Category(models.Model):
 
     class Meta:
         abstract = True
-        verbose_name = "Category"
-        verbose_name_plural = "Categories"
+        verbose_name = _("Category")
+        verbose_name_plural = _("Categories")
 
     name = models.CharField(blank=False, null=False, max_length=255)
     slug = AutoSlugField(populate_from='name')
@@ -33,7 +33,7 @@ class Category(models.Model):
     panels = [
         MultiFieldPanel([
             FieldPanel('name'),
-        ], heading="Public fields"),
+        ], heading=_("Public fields")),
         # MultiFieldPanel([
         #     FieldPanel('slug'),
         # ], heading="Internal fields")
@@ -65,8 +65,8 @@ class BaseTag(TagBase):
 
     class Meta:
         abstract = True
-        verbose_name = "Tag"
-        verbose_name_plural = "Tags"
+        verbose_name = _("Tag")
+        verbose_name_plural = _("Tags")
 
     objects = TagManager()
 
@@ -76,7 +76,7 @@ class BaseTag(TagBase):
         MultiFieldPanel([
             FieldPanel('name'),
             StreamFieldPanel('body')
-        ], heading="Public fields"),
+        ], heading=_("Public fields")),
         # MultiFieldPanel([
         #     FieldPanel('slug'),
         # ], heading="Internal fields")

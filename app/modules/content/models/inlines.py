@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from modelcluster.fields import ParentalKey
 
@@ -35,7 +36,7 @@ class InlinePage(models.Model):
 
     class Meta:
         abstract = True
-        verbose_name = 'Page collection'
+        verbose_name = _('Page collection')
         ordering = ['sort_order']
 
     link_page = models.ForeignKey(
@@ -73,7 +74,7 @@ class ImageLink(Orderable):
 
     class Meta:
         abstract = True
-        verbose_name = 'Image collection'
+        verbose_name = _('Image collection')
         ordering = ['sort_order']
 
     image = models.ForeignKey(
@@ -134,8 +135,8 @@ class BlogArticleAuthorRelationship(Orderable, models.Model):
     )
 
     class Meta(Orderable.Meta):
-        verbose_name = 'Post author'
-        verbose_name_plural = 'Post authors'
+        verbose_name = _('Post author')
+        verbose_name_plural = _('Post authors')
 
     panels = [
         SnippetChooserPanel('author'),
@@ -161,8 +162,8 @@ class NewsArticleAuthorRelationship(Orderable, models.Model):
     )
 
     class Meta(Orderable.Meta):
-        verbose_name = 'Article author'
-        verbose_name_plural = 'Article authors'
+        verbose_name = _('Article author')
+        verbose_name_plural = _('Article authors')
 
     panels = [
         SnippetChooserPanel('author'),
@@ -188,8 +189,8 @@ class PublicationAuthorRelationship(Orderable, models.Model):
     )
 
     class Meta(Orderable.Meta):
-        verbose_name = 'Publication author'
-        verbose_name_plural = 'Publication authors'
+        verbose_name = _('Publication author')
+        verbose_name_plural = _('Publication authors')
 
     panels = [
         SnippetChooserPanel('author'),

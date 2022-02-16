@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from modelcluster.fields import ParentalKey
 from taggit.models import ItemBase
@@ -16,8 +17,8 @@ class FocusAreaTag(BaseTag):
     free_tagging = False
 
     class Meta:
-        verbose_name = "Area of Focus"
-        verbose_name_plural = "Areas of Focus"
+        verbose_name = _("Area of Focus")
+        verbose_name_plural = _("Areas of Focus")
 
 
 class FocusAreaTaggedPage(ItemBase):
@@ -42,8 +43,8 @@ class SectorTag(BaseTag):
     free_tagging = False
 
     class Meta:
-        verbose_name = "Sector"
-        verbose_name_plural = "Sectors"
+        verbose_name = _("Sector")
+        verbose_name_plural = _("Sectors")
 
 
 class SectorTaggedPage(ItemBase):
