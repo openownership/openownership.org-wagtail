@@ -25,12 +25,9 @@ from wagtail.utils.decorators import cached_classmethod
 from wagtailcache.cache import WagtailCacheMixin
 
 # Project
-from modules.core.models import UpdateBannerSettings
 from modules.core.paginator import DiggPaginator
 from modules.core.utils import get_site_context
-from modules.content.blocks import (
-    landing_page_blocks, article_page_body_blocks, contents_page_body_blocks,
-)
+from modules.content.blocks import landing_page_blocks, article_page_body_blocks
 
 
 ####################################################################################################
@@ -94,9 +91,9 @@ class BasePage(WagtailCacheMixin, Page):
         site = self.get_site()
 
         context.update(
-            site_name=settings.SITE_NAME,
             **get_site_context(site),
-            **UpdateBannerSettings.get_for_context(site, page=self),
+        )
+        context.update(
             **self.get_metadata_settings(site)
         )
 
@@ -142,16 +139,14 @@ class BasePage(WagtailCacheMixin, Page):
         return None
 
     def get_metadata_settings(self, site):
-        from modules.core.models import (
-            MetaTagSettings
-        )
+        from modules.settings.models import SiteSettings
 
         if not site:
             site = self.get_site()
 
-        default_meta = MetaTagSettings.get_for_context(site)
+        default_meta = SiteSettings.get_metatag_context(site)
         title = self.get_meta_title() or default_meta.get('meta_title')
-        description = self.get_meta_description() or default_meta.get('meta_description')
+        description = default_meta.get('meta_description')
         image = self.thumbnail or default_meta.get('meta_image')
 
         return {

@@ -67,6 +67,7 @@ DJANGO_APPS = [
 ]
 
 WAGTAIL_APPS = [
+    'wagtailautocomplete',
     'wagtailcache',
     'wagtail.api.v2',
     'wagtail.contrib.redirects',
@@ -93,6 +94,7 @@ WAGTAIL_APPS = [
 
 SITE_APPS = [
     'modules.cli',
+    'modules.settings',
     'modules.users',
     'modules.core',
     'modules.taxonomy',

@@ -19,7 +19,7 @@ except Exception:
 from tests.init import setup
 from tests.fixtures import *  # NOQA
 from modules.content.tests.fixtures import *  # NOQA
-
+from modules.settings.tests.fixtures import *  # NOQA
 
 pytestmark = pytest.mark.django_db
 
