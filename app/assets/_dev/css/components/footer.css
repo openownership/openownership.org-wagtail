@@ -1,0 +1,15 @@
+footer {
+    @apply bg-blue-dark;
+    @apply text-white;
+    @apply py-12;
+    
+    h2 {
+        @apply font-bold;
+        @apply mb-5;
+    }
+}
+
+.footer__horizontal-links {
+    @apply flex;
+    @apply gap-3;
+}

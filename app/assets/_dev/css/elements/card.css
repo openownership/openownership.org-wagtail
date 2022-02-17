@@ -1,0 +1,25 @@
+.card-group__card {
+    @apply bg-white;
+    @apply p-6;
+    @apply border-r-2 border-b-2;
+    @apply border-blue-medium;
+
+    &.card-group__card--with-thumbnail {
+
+    }
+
+    a {
+        @apply no-underline;
+    }
+}
+
+.card-group__title {
+    @apply font-display text-blue-medium font-bold text-21;
+
+
+}
+
+.card-group__blurb {
+    @apply mt-6;
+    @apply font-body text-16;
+}

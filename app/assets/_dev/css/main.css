@@ -31,12 +31,14 @@
 @import "elements/rich-text";
 @import "elements/typography";
 @import "elements/buttons";
+@import "elements/card";
 
 /*------------------------------------*\
   #COMPONENT-IMPORTS
 \*------------------------------------*/
 
 @import "components/hero";
+@import "components/footer";
 
 /*------------------------------------*\
   #PAGE-IMPORTS

@@ -31,6 +31,9 @@ module.exports = {
           cloud: '#4A576B',
           medium: '#3C31D5',
           dark: '#363F4E'
+        },
+        grey: {
+          light: '#F7F7F7'
         }
 
       },
@@ -71,6 +74,7 @@ module.exports = {
         18: ['1.125rem', '1.5rem'],
         19: ['1.188rem', '1.75rem'],
         20: ['1.25rem', '1.625rem'],
+        21: ['1.313rem', '1.813rem'],
         25: ['1.563rem', '1.875rem'],
         35: ['2.188rem', '2.813rem'],
         36: ['2.25rem', '3.75rem'],

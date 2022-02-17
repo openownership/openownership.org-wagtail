@@ -7,7 +7,7 @@ Expects:
 #}
 
 <div class="card-group card-group--theme-{{theme|default("default", true)}} contained-width">
-    <ul class="list--{% if pages|length is divisibleby 3 %}three-col{% else %}two-col{% endif %}">
+    <ul class="grid--{% if pages|length is divisibleby 3 %}3-col{% else %}two-col{% endif %}">
         {% for page in pages %}
             {% include "_partials/card.jinja" %}
         {% endfor %}
