@@ -80,9 +80,9 @@
 
 @font-face {
     font-family: 'PlayfairDisplay';
-    src: url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-Italic.woff') format('woff'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-Italic.woff2') format('woff2'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-Italic.ttf') format('ttf');
+    src: url('/static/fonts/Playfair_Display/static/PlayfairDisplay-Italic.woff') format('woff'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-Italic.woff2') format('woff2'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-Italic.ttf') format('ttf');
     font-weight: 400;
     font-style: normal;
 }
@@ -90,63 +90,63 @@
 
 @font-face {
     font-family: 'PlayfairDisplay';
-    src: url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-Medium.woff') format('woff'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-Medium.woff2') format('woff2'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-Medium.ttf') format('ttf');
+    src: url('/static/fonts/Playfair_Display/static/PlayfairDisplay-Medium.woff') format('woff'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-Medium.woff2') format('woff2'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-Medium.ttf') format('ttf');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PlayfairDisplay';
-    src: url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-MediumItalic.woff') format('woff'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-MediumItalic.woff2') format('woff2'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-MediumItalic.ttf') format('ttf');
+    src: url('/static/fonts/Playfair_Display/static/PlayfairDisplay-MediumItalic.woff') format('woff'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-MediumItalic.woff2') format('woff2'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-MediumItalic.ttf') format('ttf');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PlayfairDisplay';
-    src: url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-SemiBold.woff') format('woff'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-SemiBold.woff2') format('woff2'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-SemiBold.ttf') format('ttf');
+    src: url('/static/fonts/Playfair_Display/static/PlayfairDisplay-SemiBold.woff') format('woff'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-SemiBold.woff2') format('woff2'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-SemiBold.ttf') format('ttf');
     font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PlayfairDisplay';
-    src: url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-SemiBoldItalic.woff') format('woff'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-SemiBoldItalic.woff2') format('woff2'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-SemiBoldItalic.ttf') format('ttf');
+    src: url('/static/fonts/Playfair_Display/static/PlayfairDisplay-SemiBoldItalic.woff') format('woff'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-SemiBoldItalic.woff2') format('woff2'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-SemiBoldItalic.ttf') format('ttf');
     font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PlayfairDisplay';
-    src: url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-Bold.woff') format('woff'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-Bold.woff2') format('woff2'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-Bold.ttf') format('ttf');
+    src: url('/static/fonts/Playfair_Display/static/PlayfairDisplay-Bold.woff') format('woff'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-Bold.woff2') format('woff2'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-Bold.ttf') format('ttf');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PlayfairDisplay';
-    src: url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-BoldItalic.woff') format('woff'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-BoldItalic.woff2') format('woff2'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-BoldItalic.ttf') format('ttf');
+    src: url('/static/fonts/Playfair_Display/static/PlayfairDisplay-BoldItalic.woff') format('woff'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-BoldItalic.woff2') format('woff2'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-BoldItalic.ttf') format('ttf');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PlayfairDisplay';
-    src: url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-Bold.woff') format('woff'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-Bold.woff2') format('woff2'),
-         url('/static/fonts/PlayfairDisplay/static/PlayfairDisplay-Bold.ttf') format('ttf');
+    src: url('/static/fonts/Playfair_Display/static/PlayfairDisplay-Bold.woff') format('woff'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-Bold.woff2') format('woff2'),
+         url('/static/fonts/Playfair_Display/static/PlayfairDisplay-Bold.ttf') format('ttf');
     font-weight: 700;
     font-style: normal;
 }

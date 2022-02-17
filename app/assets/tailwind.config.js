@@ -25,6 +25,12 @@ module.exports = {
         },
         error: {
             main: '#CA4D2B'
+        },
+        blue: {
+          light: '#DCEEFF',
+          cloud: '#4A576B',
+          medium: '#3C31D5',
+          dark: '#363F4E'
         }
 
       },
@@ -66,6 +72,7 @@ module.exports = {
         20: ['1.25rem', '1.625rem'],
         25: ['1.563rem', '1.875rem'],
         35: ['2.188rem', '2.813rem'],
+        36: ['2.25rem', '3.75rem'],
         45: ['2.813rem', '3.125rem'],
         50: ['3.125rem', '3.563rem']
       }
