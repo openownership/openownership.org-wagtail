@@ -1,12 +1,12 @@
 {# For displaying a single Page as a card. #}
 <li class="card-group__card {% if page.thumbnail %}card-group__card--with-thumbnail{% endif %}">
-    <a href="{{ page.get_url() }}">
+    <a href="{{ page.get_url() }}" aria-label="{{page.title}}">
         {% if page.thumbnail %}
             {{image(page.thumbnail,'fill-415x300')}}
         {% endif %}
         <div class="card-group__text">
-            <h2>{{page.title}}</h2>
-            {% if page.blurb %}<p>{{page.blurb}}</p>{% endif %}
+            <h2 class="card-group__title">{{page.title}}</h2>
+            {% if page.blurb %}<p class="card-group__blurb">{{page.blurb}}</p>{% endif %}
         </div>
     </a>
 </li>
