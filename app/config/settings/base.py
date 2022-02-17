@@ -107,6 +107,7 @@ SITE_APPS = [
     'modules.core',
     'modules.taxonomy',
     'modules.content',
+    'modules.notion',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + WAGTAIL_APPS + SITE_APPS

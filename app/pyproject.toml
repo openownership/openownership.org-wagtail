@@ -30,6 +30,7 @@ wagtail-cache = "*"
 wagtailfontawesome = "*"
 whitenoise = "*"
 wagtail-localize = "^1.0.1"
+notion-client = "^0.9.0"
 
 
 [tool.poetry.dev-dependencies]
