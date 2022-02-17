@@ -111,3 +111,31 @@ def test_publication_type_choices(publication_front_page):
     assert len(types) == 5
     assert isinstance(types[0], PublicationType)
     assert valid_names == [t.name for t in types]
+
+
+def test_get_next_page(publication_front_page):
+    "get_next_page() should return the first live inner page"
+    parent = publication_front_page
+
+    last_child = PublicationInnerPage(live=True, title="Last")
+    parent.add_child(instance=last_child)
+
+    # Add before the last child:
+    first_child = PublicationInnerPage(live=True, title="First")
+    last_child.add_sibling(pos="left", instance=first_child)
+
+    # Add very first; but it's not live, so shouldn't be included:
+    draft_child = PublicationInnerPage(live=False, title="Draft")
+    first_child.add_sibling(pos="left", instance=draft_child)
+
+    assert publication_front_page.get_next_page().specific == first_child
+
+
+def test_get_next_page_none(publication_front_page):
+    "get_next_page() should return None if there are no live inner pages"
+    parent = publication_front_page
+
+    draft_child = PublicationInnerPage(live=False, title="Draft")
+    parent.add_child(instance=draft_child)
+
+    assert publication_front_page.get_next_page() is None

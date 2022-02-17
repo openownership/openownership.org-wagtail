@@ -80,3 +80,57 @@ def test_menu_pages_children(publication_inner_page):
     assert pages[0].specific == parent
     assert pages[1].specific == p1
     assert pages[2].specific == p2
+
+
+def test_get_next_page(publication_inner_page):
+    "get_next_page() should return the first live next sibling page"
+
+    last = PublicationInnerPage(live=True, title="Last")
+    publication_inner_page.add_sibling(instance=last)
+
+    first = PublicationInnerPage(live=True, title="First")
+    last.add_sibling(pos="left", instance=first)
+
+    # Add very first; but it's not live, so shouldn't be included:
+    draft = PublicationInnerPage(live=False, title="Draft")
+    first.add_sibling(pos="left", instance=draft)
+
+    assert publication_inner_page.get_next_page().specific == first
+
+
+def test_get_next_page_none(publication_inner_page):
+    "get_next_page() should return None if there are no live next sibling pages"
+
+    # Add very first; but it's not live, so shouldn't be included:
+    draft = PublicationInnerPage(live=False, title="Draft")
+    publication_inner_page.add_sibling(instance=draft)
+
+    assert publication_inner_page.get_next_page() is None
+
+
+def test_get_previous_page(publication_front_page):
+    "get_previous_page() should return the first live previous sibling page"
+
+    first = PublicationInnerPage(live=True, title="First")
+    publication_front_page.add_child(instance=first)
+
+    draft = PublicationInnerPage(live=False, title="Draft")
+    publication_front_page.add_child(instance=draft)
+
+    last = PublicationInnerPage(live=True, title="Last")
+    publication_front_page.add_child(instance=last)
+
+    assert last.get_previous_page().specific == first
+
+
+def test_get_previous_page_parent(publication_front_page):
+    "get_next_page() should return parent Front page if there are no live prev siblings"
+
+    # Add very first; but it's not live, so shouldn't be included:
+    draft = PublicationInnerPage(live=False, title="Draft")
+    publication_front_page.add_child(instance=draft)
+
+    last = PublicationInnerPage(live=True, title="Last")
+    publication_front_page.add_child(instance=last)
+
+    assert last.get_previous_page() == publication_front_page
