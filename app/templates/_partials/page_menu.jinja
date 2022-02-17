@@ -12,11 +12,10 @@ Expects:
     {% if title %}
         <h2>{{ title }}</h2>
     {% else %}
-        {% with ancestors=page.get_ancestors() %}
-            {# ancestors will be like: Root, HomePage, SectionPage, etc. #}
-            {% if ancestors|length >= 3 %}
-                {# There is at least a section page above this, so use its title. #}
-                <h2>{{ ancestors[2].title }}</h2>
+
+        {% with section_page=page.section_page() %}
+            {% if section_page %}
+                <h2>{{ section_page.title }}</h2>
             {% endif %}
         {% endwith %}
     {% endif %}

@@ -160,6 +160,26 @@ class BasePage(WagtailCacheMixin, Page):
     def page_type(self):
         return str(self.__class__.__name__)
 
+    @cached_property
+    def section_page(cls):
+        """Get the top-level page this page is within, or *is*.
+        e.g. About, Insight, Implmentation, etc.
+
+        e.g. a page that's a child or grandchild of "Insight" will return "Insight" page.
+
+        But the "Insight" page will return itself.
+
+        Ignores root and home when calculating "top-level page".
+        """
+        ancestors = cls.get_ancestors()
+        if len(ancestors) == 2:
+            # Top-level section page itself.
+            return cls
+        elif len(ancestors) > 2:
+            return ancestors[2]
+        else:
+            return None
+
 
 ####################################################################################################
 # Landing Page Type

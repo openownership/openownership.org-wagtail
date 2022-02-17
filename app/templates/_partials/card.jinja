@@ -20,7 +20,7 @@
     {% with areas=page.areas_of_focus.all() %}
         {% if areas|length > 0 %}
             {% for area in areas %}
-                {{ area.name }}
+                <a href="{{ url('focusarea-tag', kwargs={'section_slug': page.section_page().slug, 'tag_slug': area.slug}) }}">{{ area.name }}</a>
             {% endfor %}
         {% endif %}
     {% endwith %}
@@ -28,7 +28,7 @@
     {% with sectors=page.sectors.all() %}
         {% if sectors|length > 0 %}
             {% for sector in sectors %}
-                {{ sector.name }}
+                <a href="{{ url('sector-tag', kwargs={'section_slug': page.section_page().slug, 'tag_slug': sector.slug}) }}">{{ sector.name }}</a>
             {% endfor %}
         {% endif %}
     {% endwith %}

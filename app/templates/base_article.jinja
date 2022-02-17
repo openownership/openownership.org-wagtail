@@ -3,11 +3,9 @@
 
 
 {% block breadcrumbs %}
-    {% with ancestors=page.get_ancestors() %}
-        {# ancestors will be like: Root, HomePage, SectionPage, etc. #}
-        {% if ancestors|length >= 3 %}
-            {# There is at least a section page above this, so use its title. #}
-            <a href="{{ ancestors[2].get_url() }}">Back to {{ ancestors[2].title }}</a>
+    {% with section_page=page.get_section_page() %}
+        {% if section_page %}
+            <a href="{{ section_page.get_url() }}">Back to {{ section_page.title }}</a>
         {% endif %}
     {% endwith %}
 {% endblock %}
