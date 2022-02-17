@@ -6,7 +6,13 @@
 
     {{render_stream(page.body)}}
 
-    <p>TODO: Next page link</p>
+    {% with next_page=page.get_next_page() %}
+        {% if next_page %}
+            <p>
+                <a href="{{ next_page.url }}">{% trans %}Next page{% endtrans %}: {{ next_page.title }}</a>
+            </p>
+        {% endif %}
+    {% endwith %}
 
 {% endblock article_content %}
 

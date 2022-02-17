@@ -403,6 +403,10 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
         )
         return PublicationType.objects.filter(name__in=publication_types)
 
+    def get_next_page(self):
+        "Returns the first InnerPage in this publication"
+        return self.get_children().live().public().first()
+
 
 class PublicationInnerPageForm(WagtailAdminPageForm):
     "So that we can re-name the default title field."
@@ -469,6 +473,22 @@ class PublicationInnerPage(ContentPageType):
         context['menu_pages'] = [first_page] + list(first_page.get_children().live().public())
 
         return context
+
+    def get_next_page(self):
+        """Returns the next page, according to the order set in Admin.
+        Or None if there is no next page.
+        """
+        return self.get_next_siblings().live().first()
+
+    def get_previous_page(self):
+        """Returns the previous page, according to the order set in Admin.
+        If there is no previous sibling, it returns the parent, Front page.
+        """
+        prev = self.get_prev_siblings().live().first()
+        if prev is None:
+            return self.get_parent().live()
+        else:
+            return prev
 
 
 ####################################################################################################
