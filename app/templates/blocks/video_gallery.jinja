@@ -8,7 +8,7 @@
         <div class="video-banner--gallery__item">
           <div class="video-banner__thumbnail">
             <button data-micromodal-trigger="modal-{{obj.embed.pk}}" role="button" class="video-banner__button">
-              Play
+              {% trans %}Play{% endtrans %}
             </button>
             {% if obj.title %}
               <h2 class="video-banner__title">{{obj.title}}</h2>

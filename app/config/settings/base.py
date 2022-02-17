@@ -428,7 +428,7 @@ RICHTEXT_BODY_FEATURES = [
 
 # One place for the settings for pagination:
 PAGINATOR = {
-    "objects_per_page": 10,
+    "objects_per_page": 1,
     # See modules.core.paginator for what these mean:
     "body": 5,
     "margin": 2,

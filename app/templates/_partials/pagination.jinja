@@ -7,7 +7,7 @@
             {% if page_obj.has_previous() %}
                 <li>
                     <a href="?page={{ page_obj.previous_page_number }}">
-                        Back
+                        {% trans %}Back{% endtrans %}
                     </a>
                 </li>
             {% endif %}
@@ -19,7 +19,7 @@
                     </li>
                 {% elif p == page_obj.number %}
                     <li>
-                        {{ p }} (current)
+                        {{ p }} {% trans %}(current){% endtrans %}
                     </li>
                 {% else %}
                     <li>
@@ -31,7 +31,7 @@
             {% if page_obj.has_next() %}
                 <li>
                     <a href="?page={{ page_obj.next_page_number }}">
-                        Next
+                        {% trans %}Next{% endtrans %}
                     </a>
                 </li>
             {% endif %}
