@@ -9,4 +9,42 @@
             {% if page.blurb %}<p class="card-group__blurb">{{page.blurb}}</p>{% endif %}
         </div>
     </a>
+
+
+    {# I don't know if cards should display all kinds of categories/tags or only some kinds. But here's what we've got. Phil. #}
+
+    {% if page.publication_type %}
+        {{ page.publication_type }}
+    {% endif %}
+
+    {% with areas=page.areas_of_focus.all() %}
+        {% if areas|length > 0 %}
+            {% for area in areas %}
+                {{ area.name }}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% with sectors=page.sectors.all() %}
+        {% if sectors|length > 0 %}
+            {% for sector in sectors %}
+                {{ sector.name }}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+    {% with authors=page.specific.authors %}
+        {% if authors and authors|length %}
+            <p>
+                {% trans %}Written by{% endtrans %}
+                {% for author in authors %}
+                    {% if author.team_profile %}<a href="{{ author.team_profile.get_url() }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        {% endif %}
+    {% endwith %}
+
+    <p>{% trans %}Published{% endtrans %}: {{ page.human_display_date }}</p>
+
 </li>

@@ -14,7 +14,7 @@ def test_home_page_gets_created(home_page):
 
 
 def test_home_page_200s(home_page):
-    assert home_page.url == "/test-site-home/"
+    assert home_page.url == "/en/test-site-home/"
     rv = client.get(home_page.url)
     assert rv.status_code == 200
 
