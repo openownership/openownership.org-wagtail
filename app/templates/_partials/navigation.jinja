@@ -36,4 +36,13 @@ For mega menu containing nav items:
         </ul>
     </nav>
 
+    {% if page.translations %}
+        <nav class="navbar-language">
+            <ul>
+                {% for item in page.translations %}
+                    <a href="{{item.url}}">{{ item.language }}</a>
+                {% endfor %}
+            </ul>
+        </nav>
+    {% endif %}
 </div>
