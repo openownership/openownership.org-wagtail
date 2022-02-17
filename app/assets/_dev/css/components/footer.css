@@ -1,15 +1,29 @@
 footer {
-    @apply bg-blue-dark;
     @apply text-white;
-    @apply py-12;
     
     h2 {
         @apply font-bold;
         @apply mb-5;
     }
+
+    .logo {
+        @apply mb-6;
+    }
+}
+
+.footer__container {
+    @apply py-6;
+    @apply bg-blue-dark;
 }
 
 .footer__horizontal-links {
     @apply flex;
     @apply gap-3;
 }
+
+.footer__newsletter {
+    @apply bg-blue-cloud;
+    @apply text-white;
+    @apply py-6;
+}
+
