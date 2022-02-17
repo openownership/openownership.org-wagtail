@@ -9,11 +9,15 @@ Nav items:
 
 #}
 
-<div class="contained-width">
-    <footer class="footer">
+
+
+<footer class="footer">
+    <div class="contained-width">
+        <div class="grid--4-col">
         {% if footer_nav %}
             <nav class="footer__item footer__item--nav">
-                <ul>
+                <h2>{% trans %}Legal{% endtrans %}</h2>
+                <ul class="footer__horizontal-links">
                     {% for obj in footer_nav recursive %}
                         {% if obj.type == 'nav_item' %}
                             {% set href, label = obj.value %}
@@ -26,29 +30,32 @@ Nav items:
         {% endif %}
 
         <div>
-                <h2>{% trans %}Contact us{% endtrans %}</h2>
-
+            <h2>{% trans %}Contact us{% endtrans %}</h2>
         </div>
 
-        </div>
+        {% if social_links %}
         <div>
-            {% if social_links %}
-                <h2>{% trans %}Follow Us{% endtrans %}</h2>
-                <ul>
-                    {% for service, link in social_links.items() %}
-                        <li>
-                            <a rel="noopener noreferrer" href="{{ link }}" aria-label="{% trans s=service|title %}Visit our {{ s }}{% endtrans %}">
-                                {{ service|title }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+            <h2>{% trans %}Follow Us{% endtrans %}</h2>
+            <ul class="footer__horizontal-links">
+                {% for service, link in social_links.items() %}
+                    <li>
+                        <a rel="noopener noreferrer" href="{{ link }}" aria-label="{% trans s=service|title %}Visit our {{ s }}{% endtrans %}">
+                            {{ service|title }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
+        {% endif %}
 
         <div>
             <h2>{% trans %}Content rights{% endtrans %}</h2>
             <p>{% trans %}This work by Open Ownership, unless otherwise noted, is licensed under a Creative Commons Attribution 4.0 International License{% endtrans %}</p>
         </div>
-    </footer>
-</div>
+    </div>
+    </div>
+</footer>
+
+
+
+
