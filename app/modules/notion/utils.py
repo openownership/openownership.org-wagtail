@@ -1,4 +1,6 @@
 from consoler import console
+from typing import Optional
+from notion_client.client import Client
 
 
 def get_page_id(url: str) -> str:
@@ -23,8 +25,7 @@ def get_page_id(url: str) -> str:
     return id
 
 
-def check_page_access(client, page_id):
-    # console.info(f"Checking page access for {page_id}")
+def check_page_access(client: Client, page_id: str) -> bool:
     try:
         client.blocks.children.list(block_id=page_id)
     except Exception as e:
@@ -32,3 +33,28 @@ def check_page_access(client, page_id):
         console.error('Failed to get page. Did you "Share" the page with the Wagtail integration?')
         return False
     return True
+
+
+def find_db_id(client: Client, page_id: str, db_name: str) -> Optional[str]:
+    try:
+        blocks: dict = client.blocks.children.list(block_id=page_id)
+        for block in blocks['results']:
+            if block['type'] == 'child_database':
+                if _check_db_name(block, db_name):
+                    return block['id']
+        return None
+    except Exception as e:
+        console.error(e)
+        console.error("Failed to find database or page")
+        return None
+
+
+def _check_db_name(block: dict, db_name: str) -> bool:
+    try:
+        if block['child_database']['title'] == db_name:
+            return True
+    except Exception as e:
+        console.warn(e)
+        return False
+
+    return False

@@ -69,6 +69,7 @@ DJANGO_APPS = [
     'taggit',
     'storages',
     'django.contrib.staticfiles',
+    'django_cron',
     'cacheops',
 ]
 
@@ -111,6 +112,18 @@ SITE_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + WAGTAIL_APPS + SITE_APPS
+
+
+####################################################################################################
+# Django-Cron
+####################################################################################################
+
+
+CRON_CLASSES = [
+    # "modules.notion.cron.SyncCountries",
+    # "modules.notion.cron.SyncCommitments",
+    # "modules.notion.cron.SyncRegimes",
+]
 
 
 ####################################################################################################
