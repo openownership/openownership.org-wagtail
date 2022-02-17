@@ -3,7 +3,7 @@
 
 
 {% block breadcrumbs %}
-    {% with section_page=page.get_section_page() %}
+    {% with section_page=page.section_page %}
         {% if section_page %}
             <a href="{{ section_page.get_url() }}">Back to {{ section_page.title }}</a>
         {% endif %}
