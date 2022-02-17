@@ -1,5 +1,5 @@
 from django.http import Http404
-from wagtail.core.models import Page, Site
+from wagtail.core.models import Locale, Page, Site
 
 from modules.core.utils import get_site_context
 from modules.core.views import PaginatedListView
@@ -74,7 +74,8 @@ class TaggedView(PaginatedListView):
 
         pages = (
             Page.objects.live().public()
-            .descendant_of(self.section_page)
+            .descendant_of(self.section_page).specific()
+            .filter(locale=Locale.get_active())
             .filter(id__in=ids)
             .order_by('-first_published_at')
         )
@@ -86,7 +87,11 @@ class TaggedView(PaginatedListView):
 
     def _get_section_page(self, slug):
         try:
-            page = Page.objects.live().public().get(slug=slug)
+            page = (
+                Page.objects.live().public()
+                .filter(locale=Locale.get_active())
+                .get(slug=slug)
+            )
         except Page.DoesNotExist:
             raise Http404
         else:
