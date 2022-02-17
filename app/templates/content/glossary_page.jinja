@@ -3,8 +3,12 @@
 
 {% block content %}
 
-  {% for block in page.glossary %}
-    {% include_block block %}
-  {% endfor %}
+    {% for block in page.glossary %}
+        {% include_block block %}
+    {% endfor %}
 
 {% endblock content %}
+
+{% block menu %}
+    {% include "_partials/page_menu.jinja" %}
+{% endblock %}

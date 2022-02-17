@@ -10,6 +10,7 @@ from .pages import (  # NOQA
     ArticlePage,
     BlogArticlePage,
     BlogIndexPage,
+    GlossaryPage,
     HomePage,
     JobPage,
     JobsIndexPage,

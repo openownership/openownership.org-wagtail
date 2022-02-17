@@ -718,6 +718,18 @@ class GlossaryPage(BasePage):
         index.SearchField('glossary'),
     ]
 
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+        context['menu_pages'] = self._get_menu_pages()
+        return context
+
+    def _get_menu_pages(self):
+        menu_pages = []
+        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
+        for sibling in siblings:
+            menu_pages.append({"page": sibling, "children": []})
+        return menu_pages
+
 
 ####################################################################################################
 # Search

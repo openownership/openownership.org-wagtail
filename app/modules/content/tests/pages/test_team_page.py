@@ -10,7 +10,7 @@ client = Client()
 
 
 def test_menu_pages_siblings(team_page):
-    "Should include all the team page's siblings"
+    "Should include all the page's siblings"
 
     parent = team_page.get_parent()
 

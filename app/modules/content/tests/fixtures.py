@@ -10,6 +10,7 @@ from modules.content.models import (
     BlogArticlePage,
     BlogArticleAuthorRelationship,
     BlogIndexPage,
+    GlossaryPage,
     JobsIndexPage,
     JobPage,
     NewsArticlePage,
@@ -69,6 +70,17 @@ def _create_home_page(title, parent):
     p = HomePage()
     p.first_published_at = arrow.now().datetime
     p.title = title
+    parent.add_child(instance=p)
+    p.save_revision().publish()
+    return p
+
+
+def _create_glossary_page(
+    title: str, parent: Page, modifier: int = 1
+) -> GlossaryPage:
+    p = GlossaryPage()
+    p.title = title
+    p.first_published_at = arrow.now().shift(days=modifier * -1).datetime
     parent.add_child(instance=p)
     p.save_revision().publish()
     return p
@@ -209,6 +221,12 @@ def blog_index_page(section_page):
 @pytest.fixture(scope="function")
 def home_page(site_root):
     p = _create_home_page("Test Site Home", site_root)
+    return p
+
+
+@pytest.fixture(scope="function")
+def glossary_page(section_page):
+    p = _create_glossary_page("Glossary", section_page)
     return p
 
 
