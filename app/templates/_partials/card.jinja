@@ -17,21 +17,25 @@
         {{ page.publication_type }}
     {% endif %}
 
-    {% with areas=page.areas_of_focus.all() %}
-        {% if areas|length > 0 %}
-            {% for area in areas %}
-                <a href="{{ url('focusarea-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': area.slug}) }}">{{ area.name }}</a>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+    {% if page.areas_of_focus %}
+        {% with areas=page.areas_of_focus.all() %}
+            {% if areas|length > 0 %}
+                {% for area in areas %}
+                    <a href="{{ url('focusarea-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': area.slug}) }}">{{ area.name }}</a>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    {% endif %}
 
-    {% with sectors=page.sectors.all() %}
-        {% if sectors|length > 0 %}
-            {% for sector in sectors %}
-                <a href="{{ url('sector-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': sector.slug}) }}">{{ sector.name }}</a>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+    {% if page.sectors %}
+        {% with sectors=page.sectors.all() %}
+            {% if sectors|length > 0 %}
+                {% for sector in sectors %}
+                    <a href="{{ url('sector-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': sector.slug}) }}">{{ sector.name }}</a>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    {% endif %}
 
 
     {% with authors=page.specific.authors %}
@@ -45,6 +49,8 @@
         {% endif %}
     {% endwith %}
 
-    <p>{% trans %}Published{% endtrans %}: {{ page.human_display_date }}</p>
+    {% if page.display_date %}
+        <p>{% trans %}Published{% endtrans %}: {{ page.human_display_date }}</p>
+    {% endif %}
 
 </li>
