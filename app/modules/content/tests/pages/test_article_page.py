@@ -23,10 +23,10 @@ def test_menu_pages_live(article_page):
 
     rv = client.get(article_page.url)
 
-    pages = [p.specific for p in rv.context_data["menu_pages"]]
-    assert article_page in pages
-    assert live_sibling in pages
-    assert draft_sibling not in pages
+    menu = rv.context_data["menu_pages"]
+    assert len(menu) == 2
+    assert menu[0]["page"].specific == article_page
+    assert menu[1]["page"].specific == live_sibling
 
 
 def test_menu_pages_only_siblings(article_page):
@@ -44,5 +44,6 @@ def test_menu_pages_only_siblings(article_page):
 
     rv = client.get(article_page.url)
 
-    pages = [p.specific for p in rv.context_data["menu_pages"]]
-    assert non_sibling not in pages
+    menu = rv.context_data["menu_pages"]
+    assert len(menu) == 1
+    assert menu[0]["page"].specific == article_page

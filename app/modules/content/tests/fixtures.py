@@ -20,6 +20,8 @@ from modules.content.models import (
     PublicationInnerPage,
     SectionListingPage,
     SectionPage,
+    TeamPage,
+    TeamProfilePage,
 )
 
 
@@ -160,6 +162,28 @@ def _create_section_page(
     return p
 
 
+def _create_team_page(
+    title: str, parent: Page, modifier: int = 1
+) -> TeamPage:
+    p = TeamPage()
+    p.title = title
+    p.first_published_at = arrow.now().shift(days=modifier * -1).datetime
+    parent.add_child(instance=p)
+    p.save_revision().publish()
+    return p
+
+
+def _create_team_profile_page(
+    title: str, parent: Page, modifier: int = 1
+) -> TeamProfilePage:
+    p = TeamProfilePage()
+    p.title = title
+    p.first_published_at = arrow.now().shift(days=modifier * -1).datetime
+    parent.add_child(instance=p)
+    p.save_revision().publish()
+    return p
+
+
 ########################################################################
 # Fixtures for Pages
 
@@ -233,6 +257,18 @@ def section_listing_page(home_page):
 @pytest.fixture(scope="function")
 def section_page(home_page):
     p = _create_section_page("Section", home_page)
+    return p
+
+
+@pytest.fixture(scope="function")
+def team_page(section_listing_page):
+    p = _create_team_page("Team", section_listing_page)
+    return p
+
+
+@pytest.fixture(scope="function")
+def team_profile_page(team_page):
+    p = _create_team_profile_page("Team Profile", team_page)
     return p
 
 
