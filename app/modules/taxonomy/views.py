@@ -65,6 +65,8 @@ class TaggedView(PaginatedListView):
 
         context['tag'] = self.tag
         context['meta_title'] = self.tag.name
+        # So that templates looking for a Page object don't error:
+        context['page'] = self
 
         return context
 

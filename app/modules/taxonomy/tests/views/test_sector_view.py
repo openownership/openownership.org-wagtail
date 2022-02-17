@@ -12,6 +12,7 @@ from modules.content.models import (
     SectionPage,
 )
 from modules.taxonomy.models import SectorTag, SectorTaggedPage
+from modules.taxonomy.views import SectorView
 
 
 # NOTE: Identical to test_focus_area_view.py except for using different tags and URLs.
@@ -59,6 +60,7 @@ def test_context_data(section_page):
     data = rv.context_data
     assert data['tag'] == tag
     assert data['meta_title'] == 'Cats'
+    assert isinstance(data['page'], SectorView)
     assert data['site_name'] == 'openownership.org'
     assert 'footer_nav' in data
     assert 'navbar_blocks' in data
