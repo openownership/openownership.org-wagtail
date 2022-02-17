@@ -404,7 +404,9 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
         return PublicationType.objects.filter(name__in=publication_types)
 
     def get_next_page(self):
-        "Returns the first InnerPage in this publication"
+        """Returns the first InnerPage in this publication
+        Or None if there isn't one.
+        """
         return self.get_children().live().public().first()
 
 
@@ -486,7 +488,7 @@ class PublicationInnerPage(ContentPageType):
         """
         prev = self.get_prev_siblings().live().first()
         if prev is None:
-            return self.get_parent().live()
+            return self.get_parent()
         else:
             return prev
 
