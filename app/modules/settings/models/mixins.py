@@ -1,9 +1,10 @@
 from cacheops import cached
-from config.template import url_from_path
-from django import forms
+# from config.template import url_from_path
+# from django import forms
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from modules.settings.blocks import (
     footer_nav_blocks,
@@ -32,14 +33,14 @@ class AnalyticsSettings(BaseSetting):
         abstract = True
 
     analytics_property_id = models.CharField(
-        help_text='Analytics property ID (starting UA-...)',
+        help_text=_('Analytics property ID (starting UA-...)'),
         null=True,
         blank=True,
         max_length=32
     )
 
     tag_manager_property_id = models.CharField(
-        help_text='Tag Manager property ID (starting GTM...)',
+        help_text=_('Tag Manager property ID (starting GTM...)'),
         null=True,
         blank=True,
         max_length=32
@@ -60,7 +61,7 @@ class AnalyticsSettings(BaseSetting):
         MultiFieldPanel([
             FieldPanel('analytics_property_id'),
             FieldPanel('tag_manager_property_id'),
-        ], heading="Analytics settings")
+        ], heading=_("Analytics settings"))
     ]
 
 
@@ -70,14 +71,14 @@ class MetaTagSettings(BaseSetting):
         abstract = True
 
     meta_description = models.TextField(
-        help_text='The short description shown in search results (160 characters max)',
+        help_text=_('The short description shown in search results (160 characters max)'),
         null=True,
         blank=True
     )
 
     meta_image = models.ForeignKey(
         settings.IMAGE_MODEL,
-        help_text='A default image to use when shared on Facebook (aim for 1200x630)',
+        help_text=_('A default image to use when shared on Facebook (aim for 1200x630)'),
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
@@ -99,7 +100,7 @@ class MetaTagSettings(BaseSetting):
         MultiFieldPanel([
             FieldPanel('meta_description'),
             ImageChooserPanel('meta_image')
-        ], heading="Meta Tag settings")
+        ], heading=_("Meta Tag settings"))
     ]
 
 
@@ -261,7 +262,7 @@ class NavBar(BaseSetting):
     navigation_panels = [
         MultiFieldPanel([
             StreamFieldPanel('navbar_blocks'),
-        ], heading="Navbar"),
+        ], heading=_("Navbar")),
     ]
 
 
@@ -284,5 +285,5 @@ class Footer(BaseSetting):
     navigation_panels = [
         MultiFieldPanel([
             StreamFieldPanel('footer_nav'),
-        ], heading="Footer"),
+        ], heading=_("Footer")),
     ]

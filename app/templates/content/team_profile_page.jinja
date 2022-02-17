@@ -7,11 +7,11 @@
     {% endif %}
 
     {% if page.location %}
-        <p>Location: {{ page.location }}</p>
+        <p>{% trans %}Location{% endtrans %}: {{ page.location }}</p>
     {% endif %}
 
     {% if page.email_address %}
-        <p>Contact: <a href="mailto:{{ page.email_address }}">{{ page.email_address }}</a></p>
+        <p>{% trans %}Contact{% endtrans %}: <a href="mailto:{{ page.email_address }}">{{ page.email_address }}</a></p>
     {% endif %}
 
     {% if page.portrait_image %}

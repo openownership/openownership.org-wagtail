@@ -1,6 +1,7 @@
 from cacheops import invalidate_all
 from django.conf import settings
 from django.core.cache import cache
+from django.utils.translation import gettext_lazy as _
 
 from .mixins import Footer, NavBar
 
@@ -16,7 +17,7 @@ class NavigationSettings(
 ):
 
     class Meta:
-        verbose_name = 'Navigation settings'
+        verbose_name = _('Navigation settings')
 
     def build_nav_items(self, block, menu):
         menu.append({
@@ -66,8 +67,8 @@ class NavigationSettings(
         return super().save(*args, **kwargs)
 
     base_tabs = [
-        ObjectList(NavBar.navigation_panels, heading='Navbar'),
-        ObjectList(Footer.navigation_panels, heading='Footer'),
+        ObjectList(NavBar.navigation_panels, heading=_('Navbar')),
+        ObjectList(Footer.navigation_panels, heading=_('Footer')),
     ]
 
     edit_handler = TabbedInterface(base_tabs)

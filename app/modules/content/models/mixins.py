@@ -82,21 +82,21 @@ class PageHeroMixin(PageMixinBase):
         blank=True,
         null=True,
         features=['bold'],
-        verbose_name="Headline",
+        verbose_name=_("Headline"),
     )
 
     hero_body = fields.RichTextField(
         blank=True,
         null=True,
-        features=['bold', 'italic', 'underline', 'link', 'document-link'],
-        verbose_name="Body text"
+        features=settings.RICHTEXT_INLINE_FEATURES,
+        verbose_name=_("Body text")
     )
 
     hero_panels = [
         MultiFieldPanel([
             FieldPanel('hero_headline', classname="title"),
             FieldPanel('hero_body'),
-        ], heading="Hero"),
+        ], heading=_("Hero")),
     ]
 
     @property
@@ -127,7 +127,7 @@ class PageHeroMixin(PageMixinBase):
         """Add the hero tab to the tabbed interface
         """
         tabs = super().get_admin_tabs()
-        tabs.insert(1, (cls.hero_panels, "Hero"))
+        tabs.insert(1, (cls.hero_panels, _("Hero")))
         return tabs
 
 
@@ -285,8 +285,8 @@ class TaxonomyObjectMixin(ClusterableModel):
         ordering = ['name', ]
         abstract = True
 
-    name = models.CharField('Name', max_length=255)
-    slug = AutoSlugField('Slug', populate_from='name')
+    name = models.CharField(_('Name'), max_length=255)
+    slug = AutoSlugField(_('Slug'), populate_from='name')
     autocomplete_search_field = 'name'
 
     panels = [

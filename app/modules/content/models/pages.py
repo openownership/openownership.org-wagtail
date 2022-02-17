@@ -53,7 +53,7 @@ from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageTyp
 class HomePage(PageHeroMixin, LandingPageType):
 
     class Meta:
-        verbose_name = 'Home page'
+        verbose_name = _('Home page')
 
     template: str = 'content/home.jinja'
 
@@ -96,7 +96,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
     """For the top-level section pages, like Impact, Insight, Implement.
     """
     class Meta:
-        verbose_name = 'Section page'
+        verbose_name = _('Section page')
 
     template: str = 'content/section_page.jinja'
 
@@ -134,7 +134,7 @@ class SectionListingPage(SectionPage):
     ]
 
     show_child_pages = models.BooleanField(
-        default=True, help_text="Display cards linking to all the child pages"
+        default=True, help_text=_('Display cards linking to all the child pages')
     )
 
     content_panels = BasePage.content_panels + [
@@ -199,7 +199,7 @@ class BlogArticlePage(TaggedAuthorsPageMixin, ContentPageType):
     # authors from AuthorsPageMixin
 
     class Meta:
-        verbose_name = 'Blog post page'
+        verbose_name = _('Blog post page')
 
     def get_publication_type_choices(self):
         """Get the only PublicationType allowd for this kind of Page.
@@ -291,7 +291,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
     subpage_types: list = ['content.PublicationInnerPage']
 
     page_title = models.CharField(
-        max_length=255, blank=True, help_text="e.g. ‘Introduction’"
+        max_length=255, blank=True, help_text=_("e.g. ‘Introduction’")
     )
 
     cover_image = models.ForeignKey(
@@ -320,14 +320,14 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
         blank=True,
         null=True,
         features=settings.RICHTEXT_BODY_FEATURES,
-        verbose_name="Key Learning Outcomes"
+        verbose_name=_("Key Learning Outcomes")
     )
 
     impact = fields.RichTextField(
         blank=True,
         null=True,
         features=settings.RICHTEXT_INLINE_FEATURES,
-        verbose_name="Benefit / Impact"
+        verbose_name=_("Benefit / Impact")
     )
 
     # Also has:
@@ -340,14 +340,14 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
                 FieldPanel('title'),
                 FieldPanel('page_title'),
             ],
-            heading="Titles"
+            heading=_("Titles")
         ),
         MultiFieldPanel(
             [
                 ImageChooserPanel('cover_image'),
                 DocumentChooserPanel('download_document'),
             ],
-            heading="Cover and document"
+            heading=_("Cover and document")
         ),
         MultiFieldPanel(
             [
@@ -355,7 +355,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
                 FieldPanel('outcomes'),
                 FieldPanel('impact'),
             ],
-            heading='Content'
+            heading=_('Content')
         )
     ]
 
@@ -412,7 +412,10 @@ class PublicationInnerPageForm(WagtailAdminPageForm):
 
         title = self.fields['title']
         title.label = _('Page title')
-        title.help_text = _("Short title of this page within the publication e.g. 'Overview', 'Comprehensive coverage', etc.")
+        title.help_text = _(
+            "Short title of this page within the publication e.g. "
+            "'Overview', 'Comprehensive coverage', etc."
+        )
 
 
 class PublicationInnerPage(ContentPageType):
@@ -485,7 +488,7 @@ class TeamProfilePage(BasePage):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='team_profile',
-        help_text='Link team member to their authorship of articles on the site'
+        help_text=_('Link team member to their authorship of articles on the site')
     )
 
     role = models.CharField(max_length=255, blank=True)
@@ -499,7 +502,7 @@ class TeamProfilePage(BasePage):
     )
 
     location = models.CharField(
-        max_length=255, blank=True, help_text="e.g. ‘London, England’"
+        max_length=255, blank=True, help_text=_("e.g. ‘London, England’")
     )
 
     email_address = models.EmailField(blank=True)
@@ -518,7 +521,7 @@ class TeamProfilePage(BasePage):
                 FieldPanel('location'),
                 FieldPanel('email_address'),
             ],
-            heading="Details"
+            heading=_("Details")
         ),
         SnippetChooserPanel('authorship'),
         FieldPanel('intro'),
@@ -642,7 +645,7 @@ class SearchPageSuggestedSearch(Orderable):
     )
 
     link_url = models.CharField(
-        help_text='Link to an external URL',
+        help_text=_('Link to an external URL'),
         null=True,
         blank=True,
         max_length=255
@@ -679,7 +682,7 @@ class SearchPage(BasePage):
         null=True,
         blank=False,
         max_length=255,
-        default="People commonly search for"
+        default=_("People commonly search for")
     )
 
     content_panels = BasePage.content_panels + [

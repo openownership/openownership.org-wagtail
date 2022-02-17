@@ -1,5 +1,6 @@
 from cacheops import invalidate_all
 from django.core.cache import cache
+from django.utils.translation import gettext_lazy as _
 
 from .mixins import (
     AnalyticsSettings,
@@ -22,7 +23,7 @@ class SiteSettings(
 ):
 
     class Meta:
-        verbose_name = 'Site settings'
+        verbose_name = _('Site settings')
 
     def save(self, *args, **kwargs):
         cache.delete(self.get_cache_key_social(self.site_id))
@@ -31,11 +32,11 @@ class SiteSettings(
         return super().save(*args, **kwargs)
 
     base_tabs = [
-        ObjectList(AnalyticsSettings.navigation_panels, heading='Analytics'),
-        ObjectList(MetaTagSettings.navigation_panels, heading='Meta Tags'),
-        ObjectList(SocialMediaSettings.navigation_panels, heading='Social media'),
+        ObjectList(AnalyticsSettings.navigation_panels, heading=_('Analytics')),
+        ObjectList(MetaTagSettings.navigation_panels, heading=_('Meta Tags')),
+        ObjectList(SocialMediaSettings.navigation_panels, heading=_('Social media')),
         # Not sure this is needed for OO:
-        # ObjectList(UpdateBannerSettings.navigation_panels, heading='Update banner'),
+        # ObjectList(UpdateBannerSettings.navigation_panels, heading=_('Update banner')),
     ]
 
     edit_handler = TabbedInterface(base_tabs)

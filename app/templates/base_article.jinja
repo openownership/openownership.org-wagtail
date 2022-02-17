@@ -19,7 +19,7 @@
 
     <ul>
         <li>
-            Publication date: {{ page.human_display_date }}
+            {% trans %}Publication date{% endtrans %}: {{ page.human_display_date }}
         </li>
 
         {# Job Applications don't have authors; other articles do #}
@@ -36,7 +36,7 @@
 
         {# On Job Applications #}
         {% if page.application_deadline %}
-            <li>Application deadline: {{ page.human_application_deadline }}</li>
+            <li>{% trans %}Application deadline{% endtrans %}: {{ page.human_application_deadline }}</li>
         {% endif %}
     </ul>
 

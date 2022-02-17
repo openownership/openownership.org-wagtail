@@ -1,7 +1,7 @@
 
 {% if page.publication_type %}
 	<p>
-		<strong>Publication type</strong><br>
+		<strong>{% trans %}Publication type{% endtrans %}</strong><br>
 		{{ page.publication_type }}
 	</p>
 {% endif %}
@@ -9,7 +9,7 @@
 {% with areas=page.areas_of_focus.all() %}
 	{% if areas|length > 0 %}
 		<p>
-			<strong>Areas of focus</strong><br>
+			<strong>{% trans %}Areas of focus{% endtrans %}</strong><br>
 			{% for area in areas %}
 				{{ area.name }}{% if not loop.last %}, {% endif %}
 			{% endfor %}
@@ -20,7 +20,7 @@
 {% with sectors=page.sectors.all() %}
 	{% if sectors|length > 0 %}
 		<p>
-			<strong>Sectors</strong><br>
+			<strong>{% trans %}Sectors{% endtrans %}</strong><br>
 			{% for sector in sectors %}
 				{{ sector.name }}{% if not loop.last %}, {% endif %}
 			{% endfor %}
@@ -31,8 +31,8 @@
 
 
 {% if page.download_document %}
-	<p><a href="{{ page.download_document.url }}">Download document</a></p>
+	<p><a href="{{ page.download_document.url }}">{% trans %}Download document{% endtrans %}</a></p>
 {% endif %}
 
 
-<p>SHARE PAGE</td>
+<p>{% trans %}SHARE PAGE{% endtrans %}</td>
