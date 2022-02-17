@@ -1,8 +1,22 @@
 <div role="banner" class="hero {% if is_home %}hero--homepage{% endif %}">
     <div class="hero__content contained-width">
         <div class="hero__text">
-            {% if hero_headline %}<h1 class="hero__title">{{hero_headline|richtext}}</h1>{% endif %}
-            {% if hero_body %}{{hero_body|richtext}}{% endif %}
+            {% if hero_headline %}
+                <h1 class="hero__title">{{hero_headline|richtext}}
+                </h1>
+            {% endif %}
+
+            {# TODO: subheading
+            <p class="hero__subheading">
+                Furthering accountability and transparency to tackle corruption
+            </p>
+            #}
+            
+            {% if hero_body %}
+                <div class="hero__body">
+                    {{hero_body|richtext}}
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>

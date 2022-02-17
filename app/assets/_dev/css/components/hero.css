@@ -1,0 +1,32 @@
+.hero {
+    @apply bg-blue-light;
+    @apply text-black;
+    
+    &.hero--homepage {
+        @apply bg-blue-medium;
+        @apply text-white;
+
+        .hero__body { 
+            @apply border-white;
+        }
+    }
+
+    .hero__text {
+        @apply max-w-screen-sm mx-auto;
+        @apply py-10;
+    }
+
+    .hero__title {
+        @apply font-display font-bold text-36;
+    }
+
+    .hero__subheading {
+        @apply font-display font-normal text-36;
+    }
+
+    .hero__body {
+        @apply pt-10 mt-10;
+        @apply border-t;
+        @apply text-19;
+    }
+}
