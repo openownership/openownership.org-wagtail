@@ -26,18 +26,20 @@ services:
 
   # Application
   web:
-    image: template:latest
+    build:
+      context: ./app
+      cache_from:
+        - ghcr.io/hactar-is/openownership:latest
+      dockerfile: ../docker/web/Dockerfile
+      args:
+        - SERVER_ENV=development
+        - ENVKEY=${ENVKEY}
+    image: ghcr.io/hactar-is/openownership:latest
     environment:
       - SERVER_ENV=development
       - ENVKEY=${ENVKEY}
       - INDOCKER=1
     restart: always
-    build:
-      context: ./app
-      dockerfile: ../docker/web/Dockerfile
-      args:
-        - SERVER_ENV=development
-        - ENVKEY=${ENVKEY}
     volumes:
       - ./app/:/usr/srv/app:cached
       - ./app/media:/usr/srv/app/media:delegated

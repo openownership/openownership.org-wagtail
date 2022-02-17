@@ -8,6 +8,7 @@
 """
 
 # 3rd party
+from consoler import console
 from django.apps import apps
 from django.db import models
 from django.conf import settings
@@ -76,6 +77,21 @@ class BasePage(WagtailCacheMixin, Page):
     ]
 
     @cached_property
+    def translations(self):
+        result = []
+        try:
+            translations = self.get_translations().public().live()
+            for page in translations:
+                result.append({
+                    'language': page.locale.get_display_name(),
+                    'url': page.url
+                })
+        except Exception as e:
+            console.warn(e)
+        else:
+            return result
+
+    @cached_property
     def breadcrumbs(self):
         ancestors = self.\
             get_ancestors()\
@@ -132,9 +148,9 @@ class BasePage(WagtailCacheMixin, Page):
         if getattr(self, 'blurb', False):
             return self.blurb
         try:
-            for _ in self.body.stream_data:
-                if _['type'] == 'rich_text':
-                    return strip_tags(_['value'])
+            for item in self.body.stream_data:
+                if item['type'] == 'rich_text':
+                    return strip_tags(item['value'])
         except Exception:
             pass
         return None
