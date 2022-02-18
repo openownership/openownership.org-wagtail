@@ -23,7 +23,7 @@ from wagtail.admin.edit_handlers import (
 )
 from wagtail.admin.forms import WagtailAdminPageForm
 from wagtail.core import fields
-from wagtail.core.models import Orderable, Page
+from wagtail.core.models import Locale, Orderable, Page
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
@@ -162,11 +162,23 @@ class ArticlePage(ContentPageType):
     template = 'content/article_page.jinja'
 
     parent_page_types: list = ['content.SectionListingPage']
+    subpage_types: list = []
 
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)
-        context['menu_pages'] = self.get_parent().get_children().live().public()
+        context['menu_pages'] = self._get_menu_pages()
         return context
+
+    def _get_menu_pages(self):
+        """Will need amending if we allow ArticlePages to have subpages.
+        Because then we'll need to look for children for the page we're on.
+        """
+        menu_pages = []
+        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
+        for sibling in siblings:
+            menu_item = {"page": sibling, "children": []}
+            menu_pages.append(menu_item)
+        return menu_pages
 
 
 class NewsArticlePage(TaggedAuthorsPageMixin, ContentPageType):
@@ -381,13 +393,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
 
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)
-        # This seems odd, but it works.
-
-        # We want to use the page title for the `title` in the menu, so:
-        first_page = self
-        first_page.title = first_page.specific.page_title
-        context['menu_pages'] = [first_page] + list(self.get_children().live().public())
-
+        context['menu_pages'] = self._get_menu_pages()
         return context
 
     def get_publication_type_choices(self):
@@ -408,6 +414,17 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
         Or None if there isn't one.
         """
         return self.get_children().live().public().first()
+
+    def _get_menu_pages(self):
+        # We want to use the page title for the `title` in the menu, so:
+        first_page = self
+        first_page.title = first_page.specific.page_title
+
+        menu_pages = [{"page": first_page, "children": []}]
+        children = self.get_children().live().public().filter(locale=Locale.get_active())
+        for child in children:
+            menu_pages.append({"page": child, "children": []})
+        return menu_pages
 
 
 class PublicationInnerPageForm(WagtailAdminPageForm):
@@ -467,13 +484,7 @@ class PublicationInnerPage(ContentPageType):
 
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)
-        # This seems odd, but it works.
-
-        # We want to use the page title for the `title` in the menu, so:
-        first_page = self.get_parent()
-        first_page.title = first_page.specific.page_title
-        context['menu_pages'] = [first_page] + list(first_page.get_children().live().public())
-
+        context['menu_pages'] = self._get_menu_pages()
         return context
 
     def get_next_page(self):
@@ -491,6 +502,20 @@ class PublicationInnerPage(ContentPageType):
             return self.get_parent()
         else:
             return prev
+
+    def _get_menu_pages(self):
+        # We want to use the page title for the `title` in the menu, so:
+        first_page = self.get_parent()
+        first_page.title = first_page.specific.page_title
+
+        menu_pages = [{"page": first_page, "children": []}]
+        siblings = (
+            first_page.get_children().live().public()
+            .filter(locale=Locale.get_active())
+        )
+        for sibling in siblings:
+            menu_pages.append({"page": sibling, "children": []})
+        return menu_pages
 
 
 ####################################################################################################
@@ -558,6 +583,25 @@ class TeamProfilePage(BasePage):
         index.SearchField('email_address'),
     ]
 
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+        context['menu_pages'] = self._get_menu_pages()
+        return context
+
+    def _get_menu_pages(self):
+        parent = self.get_parent()
+        menu_pages = []
+        elders = parent.get_siblings().live().public().filter(locale=Locale.get_active())
+        for elder in elders:
+            menu_item = {"page": elder, "children": []}
+            if elder == parent:
+                menu_item["children"] = (
+                    parent.get_children().live().public()
+                    .filter(locale=Locale.get_active())
+                )
+            menu_pages.append(menu_item)
+        return menu_pages
+
 
 ####################################################################################################
 # Index type pages
@@ -577,8 +621,13 @@ class JobsIndexPage(IndexPageType):
 
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)
-        context['menu_pages'] = [self] + list(JobPage.objects.live().public())
+        context['menu_pages'] = self._get_menu_pages()
         return context
+
+    def _get_menu_pages(self):
+        children = self.get_children().live().public().filter(locale=Locale.get_active())
+        menu_pages = [{"page": self, "children": children}]
+        return menu_pages
 
 
 class NewsIndexPage(IndexPageType):
@@ -620,6 +669,24 @@ class TeamPage(IndexPageType):
     subpage_types: list = ['content.TeamProfilePage']
     max_count = 1
 
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+        context['menu_pages'] = self._get_menu_pages()
+        return context
+
+    def _get_menu_pages(self):
+        menu_pages = []
+        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
+        for sibling in siblings:
+            menu_item = {"page": sibling, "children": []}
+            if sibling.specific == self:
+                menu_item["children"] = (
+                    self.get_children().live().public()
+                    .filter(locale=Locale.get_active())
+                )
+            menu_pages.append(menu_item)
+        return menu_pages
+
 
 ####################################################################################################
 # Other pages
@@ -650,6 +717,18 @@ class GlossaryPage(BasePage):
         index.SearchField('body'),
         index.SearchField('glossary'),
     ]
+
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+        context['menu_pages'] = self._get_menu_pages()
+        return context
+
+    def _get_menu_pages(self):
+        menu_pages = []
+        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
+        for sibling in siblings:
+            menu_pages.append({"page": sibling, "children": []})
+        return menu_pages
 
 
 ####################################################################################################

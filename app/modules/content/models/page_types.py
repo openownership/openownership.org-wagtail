@@ -173,6 +173,11 @@ class BasePage(WagtailCacheMixin, Page):
         }
 
     @cached_property
+    def human_display_date(self):
+        if self.display_date:
+            return self.display_date.strftime('%d %B %Y')
+
+    @cached_property
     def page_type(self):
         return str(self.__class__.__name__)
 
@@ -261,10 +266,6 @@ class ContentPageType(BasePage):
     def date(self):
         return self.display_date
 
-    @cached_property
-    def human_display_date(self):
-        if self.display_date:
-            return self.display_date.strftime('%d %B %Y')
 
     @property
     def display_title(self):
