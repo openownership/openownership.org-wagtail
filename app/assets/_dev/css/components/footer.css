@@ -31,21 +31,46 @@ footer {
     }
 
     > div {
-        @apply flex;
+        @apply flex flex-col;
+        @include min-width(md) { 
+            @apply flex-row;
+        }
     }
 }
 
 .footer__newsletter-blurb {
-    @apply w-3/5;
+    @apply pb-4;
+    @include min-width(md) {
+        @apply w-3/5;
+        @apply pb-0;
+    }
+    
 }
 
 .footer__newsletter-form {
-    @apply w-2/5;
-    @apply flex self-end;
+    @apply flex flex-col;
+
+    @include min-width(md) {
+        @apply w-2/5;
+        @apply flex flex-row self-end;
+    }
     
     .footer__newsletter-input {
         @apply flex-1;
+        @apply mb-2;
         @apply border border-border-newsletter;
+        @include min-width(md) {
+            @apply mb-0;
+        }
+    }
+
+    .btn {
+        @apply self-baseline;
+        @include min-width(md) {
+            @apply self-auto;
+        }
     }
 }
+
+
 
