@@ -18,7 +18,8 @@ module.exports = {
         },
         border: {
             main: '#B1B4B6',
-            input: '#242424'
+            input: '#242424',
+            newsletter: '#626A6E'
         },
         focus: {
             main: '#DCEEFF'

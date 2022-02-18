@@ -25,5 +25,27 @@ footer {
     @apply bg-blue-cloud;
     @apply text-white;
     @apply py-6;
+
+    h2 {
+        @apply font-display text-21;
+    }
+
+    > div {
+        @apply flex;
+    }
+}
+
+.footer__newsletter-blurb {
+    @apply w-3/5;
+}
+
+.footer__newsletter-form {
+    @apply w-2/5;
+    @apply flex self-end;
+    
+    .footer__newsletter-input {
+        @apply flex-1;
+        @apply border border-border-newsletter;
+    }
 }
 

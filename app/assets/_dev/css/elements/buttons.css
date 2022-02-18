@@ -1,16 +1,16 @@
-/*    
+   
 .btn {
-    @apply bg-green-dark;
+    @apply bg-blue-medium;
     @apply text-white;
-    @apply border border-green-dark;
     @apply text-center;
     @apply inline-block;
     @apply no-underline;
-    @apply py-4 px-6;
-    @apply text-18 font-display font-bold;
-    @apply rounded-full;
+    @apply py-2 px-4;
+    @apply text-16 font-body;
+    box-shadow: inset 0px -2px 1px 0px #363F4E;
 }
 
+/* 
 .btn {
     &:hover, &:active, &:focus {
         @apply bg-purple-mid;
