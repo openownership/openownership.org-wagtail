@@ -4,3 +4,31 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
 }
+
+h1, .heading-xl {
+    @apply font-display font-bold text-36;
+    @apply mb-12 pb-12;
+    @apply border-b border-black/50;
+}
+
+.heading-l {
+    @apply font-display font-bold text-26;
+}
+
+.heading-m {
+    @apply font-display font-bold text-21;
+}
+
+.heading-s {
+    @apply font-display font-bold text-18;
+}
+
+.heading-xs {
+    @apply font-body font-bold text-16;
+}
+
+.intro {
+    @apply text-grey-dark font-body text-19;
+    @apply mb-12 pb-12;
+    @apply border-b border-black/50;
+}

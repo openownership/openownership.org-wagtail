@@ -1,0 +1,34 @@
+.page-menu__container {
+    .heading-m {
+        line-height: rem(72px);
+        @apply pl-4;
+    }
+}
+.page-menu__page {
+    &.current {
+        @apply bg-white;
+    }
+}
+
+.page-menu__page-title {
+    @apply px-8 py-3;
+    display: block;
+    @apply border-y border-grey-medium;
+}
+
+.page-menu__children-list {
+    @apply bg-grey-light;
+}
+
+.page-menu__children-list__item {
+    @apply px-8 py-3;
+    @apply border-b border-grey-medium;
+    &:last-of-type {
+        @apply border-0;
+    }
+
+    a {
+        @apply text-blue-medium;
+        @apply no-underline;
+    }
+}
