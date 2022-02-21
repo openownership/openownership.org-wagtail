@@ -34,7 +34,9 @@ module.exports = {
           dark: '#363F4E'
         },
         grey: {
-          light: '#F7F7F7'
+          light: '#F7F7F7',
+          medium: '#B1B4B6',
+          dark: '#505050'
         }
 
       },
@@ -77,6 +79,7 @@ module.exports = {
         20: ['1.25rem', '1.625rem'],
         21: ['1.313rem', '1.813rem'],
         25: ['1.563rem', '1.875rem'],
+        26: ['1.625rem', '2.5rem'],
         35: ['2.188rem', '2.813rem'],
         36: ['2.25rem', '3.75rem'],
         45: ['2.813rem', '3.125rem'],
