@@ -1,0 +1,6 @@
+.job-index-page {
+    h1 {
+        @apply mb-12 pb-12;
+        @apply border-b border-black/50;
+    }
+}

@@ -1,14 +1,37 @@
 {% extends 'base_article.jinja' %}
-
-{% block breadcrumbs %}
-    <a href="{{ page.get_parent().get_url() }}">{% trans %}Back to Careers at OO{% endtrans %}</a>
-{% endblock %}
-
-
 {% block article_content_end %}
     {% if page.application_url %}
         <p>
             <a href="{{ page.application_url }}">{% trans %}Apply{% endtrans %}</a>
         </p>
     {% endif %}
+
+    <div class="contained-width">
+        <div class="breadcrumbs">
+            {% block breadcrumbs %}
+                <a href="{{ page.get_parent().get_url() }}">{% trans %}Back to Careers at OO{% endtrans %}</a>
+            {% endblock %}
+        </div>
+
+        <article>
+            <header>
+                <h1 class="heading-xl">Title of job opportunity</h1>
+                <ul class="article-header__meta">
+                    <li class="article-header__meta-item">Publication date: 4th April 2020</li>
+                    <li class="article-header__meta-item">Application deadline: 6th May 2022</li>
+                </ul>  
+            </header>
+
+            <div class="aside-layout-right">
+                <div class="aside-layout__main">
+                    Content here
+                </div>
+
+                <div>
+                    sidebar here
+                </div>
+            </div>
+
+        </article>
+    </div>
 {% endblock %}

@@ -5,10 +5,8 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-h1, .heading-xl {
+.heading-xl {
     @apply font-display font-bold text-36;
-    @apply mb-12 pb-12;
-    @apply border-b border-black/50;
 }
 
 .heading-l {
