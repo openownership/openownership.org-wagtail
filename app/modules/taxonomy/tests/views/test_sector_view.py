@@ -67,6 +67,42 @@ def test_context_data(section_page):
     assert 'social_links' in data
 
 
+def test_page_attributes(section_page):
+    "The fake page attributes should work"
+    SectorTag.objects.create(name='Cats')
+
+    rv = client.get('/en/section/sector/cats/')
+
+    data = rv.context_data
+    assert data['page'].title == 'Cats'
+    assert data['page'].pk == 'TaggedView-section-SectorTag-cats'
+
+
+def test_menu_pages(section_page):
+    SectorTag.objects.create(name='Cats')
+    SectorTag.objects.create(name='Dogs')
+
+    rv = client.get('/en/section/sector/cats/')
+
+    pages = rv.context_data['menu_pages']
+    assert len(pages) == 3
+
+    assert pages[0]["page"].specific == section_page
+
+    assert pages[1]["page"].title == "Area of Focus"
+    assert pages[1]["page"].pk == "TaggedView-section-FocusAreaTag"
+    assert pages[1]["children"] == []
+
+    assert pages[2]["page"].title == "Sector"
+    assert pages[2]["page"].pk == "TaggedView-section-SectorTag"
+    assert len(pages[2]["children"]) == 2
+    assert pages[2]["children"][0].title == "Cats"
+    assert pages[2]["children"][0].pk == "TaggedView-section-SectorTag-cats"
+    assert pages[2]["children"][0].url == "/en/section/sector/cats/"
+    assert pages[2]["children"][1].title == "Dogs"
+    assert pages[2]["children"][1].pk == "TaggedView-section-SectorTag-dogs"
+    assert pages[2]["children"][1].url == "/en/section/sector/dogs/"
+
 def test_queryset_tagged_pages(blog_index_page):
     "The queryset should only include pages with this tag"
     cats_tag = SectorTag.objects.create(name='Cats')
