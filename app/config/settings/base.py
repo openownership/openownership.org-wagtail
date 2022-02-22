@@ -144,6 +144,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    # 'middleware.request.AnalyticsMiddleware',  # Possible future extra
     'wagtailcache.cache.FetchFromCacheMiddleware',
 ]
 
