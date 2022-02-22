@@ -9,4 +9,8 @@
         {{ page.intro|richtext }}
     </div>
 
+    {% with pages=page_obj %}
+        {% include "_partials/card_group.jinja" %}
+    {% endwith %}
+
 {% endblock content %}
