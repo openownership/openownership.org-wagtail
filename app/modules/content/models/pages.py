@@ -623,6 +623,13 @@ class NewsIndexPage(IndexPageType):
     subpage_types: list = ['content.NewsArticlePage']
     max_count = 1
 
+    def _get_menu_pages(self):
+        menu_pages = []
+        siblings = self.get_parent().get_children().live().public().filter(locale=Locale.get_active())
+        for sibling in siblings:
+            menu_pages.append({"page": sibling, "children": []})
+        return menu_pages
+
 
 class BlogIndexPage(IndexPageType):
     """The one page listing all BlogArticlePages (blog posts)"""
@@ -633,6 +640,13 @@ class BlogIndexPage(IndexPageType):
     parent_page_types: list = ['content.SectionPage']
     subpage_types: list = ['content.BlogArticlePage']
     max_count = 1
+
+    def _get_menu_pages(self):
+        menu_pages = []
+        siblings = self.get_parent().get_children().live().public().filter(locale=Locale.get_active())
+        for sibling in siblings:
+            menu_pages.append({"page": sibling, "children": []})
+        return menu_pages
 
 
 class ThemePage(IndexPageType):
