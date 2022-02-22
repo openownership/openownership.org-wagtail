@@ -164,11 +164,6 @@ class ArticlePage(ContentPageType):
     parent_page_types: list = ['content.SectionListingPage']
     subpage_types: list = []
 
-    def get_context(self, request, *args, **kwargs) -> dict:
-        context = super().get_context(request, *args, **kwargs)
-        context['menu_pages'] = self._get_menu_pages()
-        return context
-
     def _get_menu_pages(self):
         """Will need amending if we allow ArticlePages to have subpages.
         Because then we'll need to look for children for the page we're on.
@@ -391,11 +386,6 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
         "Title of the publication"
         return self.title
 
-    def get_context(self, request, *args, **kwargs) -> dict:
-        context = super().get_context(request, *args, **kwargs)
-        context['menu_pages'] = self._get_menu_pages()
-        return context
-
     def get_publication_type_choices(self):
         """Get the only PublicationType allowd for this kind of Page.
         Used by PublicationTypeFieldPanel() for the list of choices.
@@ -489,11 +479,6 @@ class PublicationInnerPage(ContentPageType):
         they can override this method.
         """
         return cls.section_page
-
-    def get_context(self, request, *args, **kwargs) -> dict:
-        context = super().get_context(request, *args, **kwargs)
-        context['menu_pages'] = self._get_menu_pages()
-        return context
 
     def get_next_page(self):
         """Returns the next page, according to the order set in Admin.
@@ -591,11 +576,6 @@ class TeamProfilePage(BasePage):
         index.SearchField('email_address'),
     ]
 
-    def get_context(self, request, *args, **kwargs) -> dict:
-        context = super().get_context(request, *args, **kwargs)
-        context['menu_pages'] = self._get_menu_pages()
-        return context
-
     def _get_menu_pages(self):
         parent = self.get_parent()
         menu_pages = []
@@ -626,11 +606,6 @@ class JobsIndexPage(IndexPageType):
     parent_page_types: list = ['content.HomePage']
     subpage_types: list = ['content.JobPage']
     max_count = 1
-
-    def get_context(self, request, *args, **kwargs) -> dict:
-        context = super().get_context(request, *args, **kwargs)
-        context['menu_pages'] = self._get_menu_pages()
-        return context
 
     def _get_menu_pages(self):
         children = self.get_children().live().public().filter(locale=Locale.get_active())
@@ -677,11 +652,6 @@ class TeamPage(IndexPageType):
     subpage_types: list = ['content.TeamProfilePage']
     max_count = 1
 
-    def get_context(self, request, *args, **kwargs) -> dict:
-        context = super().get_context(request, *args, **kwargs)
-        context['menu_pages'] = self._get_menu_pages()
-        return context
-
     def _get_menu_pages(self):
         menu_pages = []
         siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
@@ -725,11 +695,6 @@ class GlossaryPage(BasePage):
         index.SearchField('body'),
         index.SearchField('glossary'),
     ]
-
-    def get_context(self, request, *args, **kwargs) -> dict:
-        context = super().get_context(request, *args, **kwargs)
-        context['menu_pages'] = self._get_menu_pages()
-        return context
 
     def _get_menu_pages(self):
         menu_pages = []
