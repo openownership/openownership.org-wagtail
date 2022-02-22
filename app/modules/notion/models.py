@@ -169,8 +169,6 @@ class CountryTag(NotionModel, BaseTag):
         verbose_name = _("Country")
         verbose_name_plural = _("Countries")
 
-    internal_fields: list = ['disclosure_regime', ]
-
     icon = models.CharField(
         _("Icon"),
         blank=True,

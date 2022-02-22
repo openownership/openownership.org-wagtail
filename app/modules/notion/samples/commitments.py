@@ -1,4 +1,4 @@
-{
+COMMITMENTS = {
     'object': 'list',
     'results': [
         {
