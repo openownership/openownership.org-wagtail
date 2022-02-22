@@ -9,45 +9,36 @@ Expects:
 
 * page - The current Page
 
-* title - optional, the title for the menu. If falsey, the section page's title will be used.
+* page_menu_title - optional, the title for the menu. If falsey, the section page's title (e.g. "Insight") will be used.
 #}
-
 {% if menu_pages %}
-<div class="page-menu__container">
-    {% if title %}
-        <h2 class="heading-m">{{ title }}</h2>
-    {% else %}
+    <div class="page-menu__container">
+        <h2 class="heading-m">{% if page_menu_title %}{{ page_menu_title }}{% else %}{{ page.section_page.title }}{% endif %}</h2>
 
-        {% with section_page=page.section_page %}
-            {% if section_page %}
-                <h2 class="heading-m">{{ section_page.title }}</h2>
-            {% endif %}
-        {% endwith %}
-    {% endif %}
-    <ul class="page-menu">
-        {% for p in menu_pages %}
-            <li class="page-menu__page {% if p.page.pk == page.pk %}current{% endif %} {% if p.children %}is-open{% endif %}">
-                {% if p.page.pk == page.pk %}
-                    <span class="page-menu__page-title">{{ p.page.title }}</span>
-                {% else %}
-                    <a class="page-menu__page-title" href="{{ p.page.url }}">{{ p.page.title }}</a>
-                {% endif %}
+        <ul class="page-menu">
+            {% for p in menu_pages %}
+                <li class="page-menu__page {% if p.page.pk == page.pk %}current{% endif %} {% if p.children %}is-open{% endif %}">
+                    {% if p.page.pk == page.pk %}
+                        <span class="page-menu__page-title">{{ p.page.title }}</span>
+                    {% else %}
+                        <a class="page-menu__page-title" href="{{ p.page.url }}">{{ p.page.title }}</a>
+                    {% endif %}
 
-                {% if p.children %}
-                    <ul class="page-menu__children-list">
-                        {% for child in p.children %}
-                            <li class="page-menu__children-list__item {% if child.pk == page.pk %}current{% endif %}">
-                                {% if child.pk == page.pk %}
-                                    {{ child.title }}
-                                {% else %}
-                                    <a href="{{ child.url }}">{{ child.title }}</a>
-                                {% endif %}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-</div>
+                    {% if p.children %}
+                        <ul class="page-menu__children-list">
+                            {% for child in p.children %}
+                                <li class="page-menu__children-list__item {% if child.pk == page.pk %}current{% endif %}">
+                                    {% if child.pk == page.pk %}
+                                        {{ child.title }}
+                                    {% else %}
+                                        <a href="{{ child.url }}">{{ child.title }}</a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endif %}

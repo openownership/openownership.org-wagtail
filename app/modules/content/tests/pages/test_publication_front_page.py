@@ -140,3 +140,8 @@ def test_get_next_page_none(publication_front_page):
     parent.add_child(instance=draft_child)
 
     assert publication_front_page.get_next_page() is None
+
+
+def test_breadcrumb_page(publication_front_page):
+    "It should return the parent Section page"
+    assert publication_front_page.breadcrumb_page == publication_front_page.get_parent()

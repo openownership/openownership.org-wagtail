@@ -1,6 +1,6 @@
-{% extends 'content/article_page.jinja' %}
+{% extends 'base_with_menu.jinja' %}
 
-{% block article_body %}
+{% block content %}
 
     {% if page.role %}
         <p><strong>{{ page.role }}</strong></p>
@@ -29,4 +29,5 @@
             {% include "_partials/card_group.jinja" %}
         {% endwith %}
     {% endif %}
+
 {% endblock %}

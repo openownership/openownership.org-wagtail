@@ -19,7 +19,7 @@ from django.utils.translation import gettext_lazy as _
 
 from wagtail.admin.edit_handlers import FieldPanel, ObjectList, TabbedInterface, StreamFieldPanel
 from wagtail.core import fields
-from wagtail.core.models import Page
+from wagtail.core.models import Locale, Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.utils.decorators import cached_classmethod
@@ -200,6 +200,14 @@ class BasePage(WagtailCacheMixin, Page):
             return ancestors[2]
         else:
             return None
+
+    @cached_property
+    def breadcrumb_page(cls):
+        """For pages that have a 'Back to ...' breadcrumb link, returns the page to
+        go 'back' to. For most it's the parent, but some require going a bit higher;
+        they can override this method.
+        """
+        return cls.get_parent()
 
 
 ####################################################################################################
@@ -464,7 +472,7 @@ class IndexPageType(BasePage):
         return (
             self.get_objects_model()
             .objects
-            .live()
+            .live().public().filter(locale=Locale.get_active())
             .select_related('thumbnail')
         )
 

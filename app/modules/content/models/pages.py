@@ -184,7 +184,7 @@ class ArticlePage(ContentPageType):
 class NewsArticlePage(TaggedAuthorsPageMixin, ContentPageType):
     """An article in the Insight > News section.
     """
-    template = 'content/news_article_page.jinja'
+    template = 'content/blog_news_article_page.jinja'
     parent_page_types: list = ['content.NewsIndexPage']
     subpage_types: list = []
 
@@ -202,7 +202,7 @@ class NewsArticlePage(TaggedAuthorsPageMixin, ContentPageType):
 class BlogArticlePage(TaggedAuthorsPageMixin, ContentPageType):
     """An article in the Insight > Blog section.
     """
-    template = 'content/blog_article_page.jinja'
+    template = 'content/blog_news_article_page.jinja'
     parent_page_types: list = ['content.BlogIndexPage']
     subpage_types: list = []
 
@@ -482,6 +482,14 @@ class PublicationInnerPage(ContentPageType):
         "For consistency, use the front page's date"
         return self.get_parent().specific.human_display_date
 
+    @cached_property
+    def breadcrumb_page(cls):
+        """For pages that have a 'Back to ...' breadcrumb link, returns the page to
+        go 'back' to. For most it's the parent, but some require going a bit higher;
+        they can override this method.
+        """
+        return cls.section_page
+
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)
         context['menu_pages'] = self._get_menu_pages()
@@ -635,7 +643,7 @@ class NewsIndexPage(IndexPageType):
 
     objects_model = NewsArticlePage
 
-    template = 'content/news_index_page.jinja'
+    template = 'content/blog_news_index_page.jinja'
     parent_page_types: list = ['content.SectionPage']
     subpage_types: list = ['content.NewsArticlePage']
     max_count = 1
@@ -646,7 +654,7 @@ class BlogIndexPage(IndexPageType):
 
     objects_model = BlogArticlePage
 
-    template = 'content/blog_index_page.jinja'
+    template = 'content/blog_news_index_page.jinja'
     parent_page_types: list = ['content.SectionPage']
     subpage_types: list = ['content.BlogArticlePage']
     max_count = 1

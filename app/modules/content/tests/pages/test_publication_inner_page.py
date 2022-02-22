@@ -135,3 +135,10 @@ def test_get_previous_page_parent(publication_front_page):
     publication_front_page.add_child(instance=last)
 
     assert last.get_previous_page() == publication_front_page
+
+
+def test_breadcrumb_page(publication_inner_page):
+    """It should return grandparent Section page, not the parent PublciationFrontPage
+    (Unlike every other page that returns its parent as a breadcrumb)
+    """
+    assert publication_inner_page.breadcrumb_page.specific == publication_inner_page.get_parent().get_parent()

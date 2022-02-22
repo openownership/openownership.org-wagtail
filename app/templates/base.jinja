@@ -18,24 +18,31 @@
     </head>
     <body class="{% block body_class %}{% if body_classes %}{{body_classes}}{% endif %}{% endblock %}">
         {{ wagtailuserbar() }}
+
         {% block primary_nav %}
             {% include '_partials/navigation.jinja' %}
         {% endblock %}
+
         {% block hero %}
             {% if has_hero %}{% include '_partials/hero.jinja' %}{% endif %}
         {% endblock %}
-        {% block breadcrumbs %}
-        {% endblock %}
-            <main>
-            {% block content %}
-                {{render_stream(page.body)}}
+
+        <main>
+            {% block main %}
+                <div class="contained-width {{ main_classes }}">
+                    {% block main_inner %}
+                        {% block content %}
+                            {{render_stream(page.body)}}
+                        {% endblock %}
+                    {% endblock %}
+                </div>
             {% endblock %}
-            </main>
-        {% block menu %}
-        {% endblock %}
+        </main>
+
         {% block footer %}
             {% include '_partials/footer.jinja' %}
         {% endblock %}
+
         {% block js_prepend %}{% endblock %}
         <script type="text/javascript" src="{{static('js/main.js')}}"></script>
         {% block js_append %}{% endblock %}

@@ -23,3 +23,8 @@ def test_publication_type_choices(news_article_page):
     assert len(types) == 1
     assert isinstance(types[0], PublicationType)
     assert types[0].name == "News article"
+
+
+def test_breadcrumb_page(news_article_page):
+    "It should return the parent News page"
+    assert news_article_page.breadcrumb_page == news_article_page.get_parent()

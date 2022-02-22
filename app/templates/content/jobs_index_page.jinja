@@ -1,28 +1,12 @@
-{% extends 'base.jinja' %}
+{% set main_classes = "job-index-page" %}
+{% set page_menu_title = _("Opportunities") %}
+{% extends 'base_with_menu.jinja' %}
 
 
 {% block content %}
-<div class="contained-width job-index-page">
 
-    <div class="aside-layout-left">
-        <div class="aside-layout__menu">
-            {% block menu %}
-                {% with title="Opportunities" %}
-                    {% include "_partials/page_menu.jinja" %}
-                {% endwith %}
-            {% endblock menu %}
-        </div>
-
-        <div class="aside-layout__main">
-            <h1 class="heading-xl">{{ page.title }}</h1>
-
-            <div class="intro">
-                {{ page.intro|richtext }}
-            </div>
-        </div>
+    <div class="intro">
+        {{ page.intro|richtext }}
     </div>
-</div>
 
 {% endblock content %}
-
-
