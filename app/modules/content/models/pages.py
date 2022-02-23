@@ -114,7 +114,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
     body = fields.StreamField(section_page_blocks, blank=True)
 
     content_panels = BasePage.content_panels + [
-        StreamFieldPanel('body')
+        StreamFieldPanel('body'),
     ]
 
 

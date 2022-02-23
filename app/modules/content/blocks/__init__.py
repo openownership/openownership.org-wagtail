@@ -11,21 +11,22 @@ from .generic import (
 from .stream import (
     GlossaryItemBlock,
     EmbedBlock,
-    StepsBlock,
-    StatsBlock,
+    # StepsBlock,
+    # StatsBlock,
     PullQuoteBlock,
     BlockQuoteBlock,
-    EmbedBannerBlock,
-    LogoListBlock,
-    BannerBlock,
-    LatestNewsBlock,
-    CardGroupBlock,
-    TextColumnsBlock,
-    NotificationBlock,
-    SocialMediaBlock,
-    IconListBlock,
-    NewsletterBlock,
-    VideoGalleryBlock,
+    # EmbedBannerBlock,
+    # LogoListBlock,
+    # BannerBlock,
+    # LatestNewsBlock,
+    LatestSectionContentBlock,
+    # CardGroupBlock,
+    # TextColumnsBlock,
+    # NotificationBlock,
+    # SocialMediaBlock,
+    # IconListBlock,
+    # NewsletterBlock,
+    # VideoGalleryBlock,
 )
 
 landing_page_blocks: list = [
@@ -35,6 +36,7 @@ landing_page_blocks: list = [
     # ('logo_list', LogoListBlock()),
     # ('slim_banner', BannerBlock()),
     # ('latest_news', LatestNewsBlock()),
+    ('latest_section_content', LatestSectionContentBlock()),
     # ('card_group', CardGroupBlock()),
     # ('text_columns', TextColumnsBlock()),
     # ('notification', NotificationBlock()),
@@ -48,10 +50,6 @@ landing_page_blocks: list = [
 home_page_blocks: list = landing_page_blocks + []
 
 section_page_blocks: list = landing_page_blocks + []
-
-additional_content_blocks: list = landing_page_blocks
-
-contents_page_body_blocks: list = landing_page_blocks
 
 article_page_body_blocks: list = [
     (

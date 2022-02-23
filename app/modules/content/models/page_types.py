@@ -274,11 +274,9 @@ class ContentPageType(BasePage):
     template = 'content/article_page.jinja'
 
     body = fields.StreamField(article_page_body_blocks, blank=True)
-    # additional_content = fields.StreamField(additional_content_blocks, blank=True)
 
     model_content_panels = [
         StreamFieldPanel('body'),
-        # StreamFieldPanel('additional_content'),
     ]
 
     content_panels = BasePage.content_panels + model_content_panels
@@ -298,44 +296,6 @@ class ContentPageType(BasePage):
         return self.title
 
 
-# class ArticlePageWithContentsType(ContentPageType):
-#     """
-#     An article page which as a long body requiring a contents listing
-#     """
-
-#     class Meta:
-#         abstract = True
-
-#     template = 'content/article_page_with_contents.jinja'
-
-#     body = fields.StreamField(contents_page_body_blocks, blank=True)
-
-#     def build_contents_menu(self):
-#         menu = []
-#         for block in self.body:
-#             if block.block_type == 'contents_menu_item':
-#                 menu.append({
-#                     'slug': block.value.slug,
-#                     'title': block.value.get('title'),
-#                     'children': []
-#                 })
-#             if block.block_type == 'contents_menu_sub_item':
-#                 menu[-1]['children'].append({
-#                     'slug': block.value.slug,
-#                     'title': block.value.get('title')
-#                 })
-#         return menu
-
-#     def get_context(self, request, *args, **kwargs):
-#         context = super().get_context(request, *args, **kwargs)
-
-#         context.update({
-#             'contents_menu': self.build_contents_menu()
-#         })
-
-#         return context
-
-
 ####################################################################################################
 # Index Page Type
 ####################################################################################################
@@ -352,12 +312,6 @@ class IndexPageType(BasePage):
     intro = fields.RichTextField(
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
     )
-
-    # child_page_stream = fields.StreamField(
-    #     additional_content_blocks,
-    #     blank=True,
-    #     help_text="The blocks you create here will be displayed below all child pages"
-    # )
 
     content_panels = BasePage.content_panels + [
         FieldPanel('intro')

@@ -6,6 +6,7 @@
 
 from django import forms
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 
 from wagtail.core import blocks
 
@@ -392,6 +393,58 @@ class LatestNewsBlock(TitleMixin):
             'objects': objects,
             'highlight_first': True
         })
+
+        return context
+
+
+####################################################################################################
+# Section content
+####################################################################################################
+
+
+class LatestSectionContentBlock(blocks.StructBlock):
+    """
+    The most recently published Articles, Blog Articles, News Articles or
+    Publications that are descendants of a front section page.
+    """
+
+    class Meta:
+        icon = 'fa-newspaper-o'
+        template = "_partials/card_group.jinja"
+
+    DEFAULT_LIMIT = 3
+
+    section_page = blocks.PageChooserBlock(
+        required=True,
+        label="Front page of section",
+        page_type=(
+            'content.SectionPage',          # Insight, Impact, Implement
+            # 'content.SectionListingPage',   # About
+        )
+    )
+
+    def get_context(self, value, parent_context={}):
+        from modules.content.models import ArticlePage, BlogArticlePage, NewsArticlePage, PublicationFrontPage
+
+        context = super().get_context(value, parent_context=parent_context)
+
+        section_page = value.get('section_page')
+
+        if section_page:
+            pages = (
+                section_page.get_descendants()
+                .live().public()
+                .exact_type(
+                    ArticlePage, BlogArticlePage, NewsArticlePage, PublicationFrontPage
+                )
+                .specific()
+                .order_by('-first_published_at')[:self.DEFAULT_LIMIT]
+            )
+
+            context.update({
+                'pages': pages,
+                'title': _('Latest {}').format(section_page.title),
+            })
 
         return context
 
