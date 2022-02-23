@@ -5,12 +5,7 @@ from wagtail.core.models import Locale, Page, Site
 from modules.core.utils import get_site_context
 from modules.core.views import PaginatedListView
 from .models import FocusAreaTag, SectorTag
-
-
-class DummyPage(object):
-    pk = None
-    title = ""
-    url = ""
+from .models import DummyPage
 
 
 class TaggedView(PaginatedListView):
@@ -136,10 +131,7 @@ class TaggedView(PaginatedListView):
                     t = DummyPage()
                     t.pk = f"TaggedView-{section_slug}-{tag_class.__name__}-{tag.slug}"
                     t.title = tag.name
-                    t.url = reverse(
-                        url_name,
-                        kwargs={"section_slug": section_slug, "tag_slug": tag.slug}
-                    )
+                    t.url = tag.get_url(section_slug)
                     menu_item["children"].append(t)
 
             menu_pages.append(menu_item)

@@ -70,11 +70,18 @@ class BaseTag(TagBase):
 
     objects = TagManager()
 
+    blurb = models.CharField(
+        blank=True,
+        max_length=255,
+        help_text=_('Used when showing a card linking to this tag')
+    )
+
     body = fields.StreamField(tag_page_body_blocks, blank=True)
 
     panels = [
         MultiFieldPanel([
             FieldPanel('name'),
+            FieldPanel('blurb'),
             StreamFieldPanel('body')
         ], heading=_("Public fields")),
         # MultiFieldPanel([
