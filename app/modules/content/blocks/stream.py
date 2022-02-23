@@ -537,7 +537,7 @@ class SectorsBlock(AreasOfFocusBlock):
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
-    DEFAULT_TITLE = _('Sectors')
+    DEFAULT_TITLE = 'Sectors'
 
     title = blocks.CharBlock(
         required=False,
