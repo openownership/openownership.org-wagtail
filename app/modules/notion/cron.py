@@ -1,4 +1,5 @@
 import arrow
+from typing import Optional
 from datetime import datetime
 from consoler import console
 from django.db.models import Model
@@ -6,7 +7,7 @@ from django_cron import CronJobBase, Schedule
 from modules.notion.data import COUNTRY_TRACKER, COMMITMENT_TRACKER, DISCLOSURE_REGIMES
 from modules.notion.auth import get_notion_client
 from modules.notion.utils import find_db_id
-from modules.notion.models import CountryTag
+from modules.notion.models import CountryTag, Commitment
 
 
 DEFAULT_DATE = arrow.get('1970-01-01').datetime
@@ -64,7 +65,7 @@ class NotionCronBase(CronJobBase):
             console.warn(e)
             return DEFAULT_DATE
 
-    def _get_select_name(self, data: dict, property_name: str) -> str:
+    def _get_select_name(self, data: dict, property_name: str) -> Optional[str]:
         """A select in Notion presents like this, we just want the name key
 
         'properties': {
@@ -79,14 +80,254 @@ class NotionCronBase(CronJobBase):
             }
         }
 
+        If there's nothing selected, it looks like this:
+
+        'OO Support': {
+            'id': '%25%24OQ',
+            'type': 'select',
+            'select': None
+        }
+
+        Args:
+            data (dict): The dict we're grabbing the name from
+        """
+        if 'properties' not in data:
+            import ipdb; ipdb.set_trace()
+        if property_name not in data['properties'].keys():
+            return None
+        try:
+            if data['properties'][property_name]['select'] is not None:
+                if 'name' in data['properties'][property_name]['select'].keys():
+                    return data['properties'][property_name]['select']['name']
+                else:
+                    return None
+        except Exception as e:
+            console.warn(e)
+            return None
+
+    def _get_rel_id(self, data: dict, property_name: str) -> str:
+        """A rel in Notion presents like this, we just want the relation id key
+
+        'properties': {
+            'Country': {
+                'id': "X'sx",
+                'type': 'relation',
+                'relation': [
+                    {
+                        'id': 'be340a07-ee3d-44fe-8df1-98484fbda61c'
+                    }
+                ]
+            }
+        }
+
         Args:
             data (dict): The dict we're grabbing the name from
         """
         try:
-            return data['properties'][property_name]['select']['name']
+            if len(data['properties'][property_name]['relation']):
+                return data['properties'][property_name]['relation'][0]['id']
+        except Exception as e:
+            console.warn(e)
+            return None
+
+    def _get_plain_text(self, data: dict, property_name: str) -> str:
+        """Get the plain text representation of a rich_text property in the Notion data
+
+        'properties': {
+            'Commitment type': {
+                'id': ')UWR',
+                'type': 'rich_text',
+                'rich_text': [
+                    {
+                        'type': 'text',
+                        'text': {
+                            'content': 'Other',
+                            'link': None
+                        },
+                        'annotations': {
+                            'bold': False,
+                            'italic': False,
+                            'strikethrough': False,
+                            'underline': False,
+                            'code': False,
+                            'color': 'default'
+                        },
+                        'plain_text': 'Other',
+                        'href': None
+                    }
+                ]
+            }
+        }
+
+        Args:
+            data (dict): The dict we're grabbing the str from
+        """
+        try:
+            if len(data['properties'][property_name]['rich_text']):
+                return data['properties'][property_name]['rich_text'][0]['plain_text']
         except Exception as e:
             console.warn(e)
             return ''
+
+    def _get_rich_text(self, data: dict, property_name: str) -> str:
+        """Get the rich text representation of a rich_text property in the Notion data.
+
+        The only actual rich text we've found in the data is links, which is returned as
+        below, we need to reconstruct the paragraph from this.
+
+        'properties': {
+            'Summary Text': {
+                'id': 'ZC(N',
+                'type': 'rich_text',
+                'rich_text': [
+                    {
+                        'type': 'text',
+                        'text': {
+                            'content': 'Bahrain has made a commitment to beneficial ownership ',
+                            'link': None
+                        },
+                        'annotations': {
+                            'bold': False,
+                            'italic': False,
+                            'strikethrough': False,
+                            'underline': False,
+                            'code': False,
+                            'color': 'default'
+                        },
+                        'plain_text': 'Bahrain has made a commitment to beneficial ownership ',
+                        'href': None
+                    },
+                    {
+                        'type': 'text',
+                        'text': {
+                            'content': 'Ministerial Order No. (83) of 2020',
+                            'link': {
+                                'url': 'https://www.moic.gov.bh/en/Tiles/BusinessServices/'
+                            }
+                        },
+                        'annotations': {
+                            'bold': False,
+                            'italic': False,
+                            'strikethrough': False,
+                            'underline': False,
+                            'code': False,
+                            'color': 'default'
+                        },
+                        'plain_text': 'Ministerial Order No. (83) of 2020',
+                        'href': 'https://www.moic.gov.bh/en/Tiles/BusinessServices/Commercial'
+                    }
+                ]
+            }
+        }
+
+        Args:
+            data (dict): The dict we're grabbing the str from
+        """
+        try:
+            result = ''
+            for item in data['properties'][property_name]['rich_text']:
+                if item['type'] == 'text' and item['text']['link'] is None:
+                    result += f"{item['text']['content']}"
+                elif item['type'] == 'text' and item['text']['link'] is not None:
+                    url = item['text']['link']
+                    linked_text = item['text']['content']
+                    href = f'<a href="{url}">{linked_text}</a>'
+                    result += href
+            return result
+        except Exception as e:
+            console.warn(e)
+            return ''
+
+    def _get_url(self, data: dict, property_name: str) -> Optional[str]:
+        """A url field in Notion presents like this, we just want the url key
+
+        'properties': {
+            'Link': {
+                'id': '-ifl',
+                'type': 'url',
+                'url': 'https://www.imf.org/en/Publications/'
+            },
+        }
+
+        Args:
+            data (dict): The dict we're grabbing the name from
+        """
+        try:
+            return data['properties'][property_name]['url']
+        except Exception as e:
+            console.warn(e)
+            return None
+
+    def _get_bool(self, data: dict, property_name: str) -> bool:
+        """A checkbox / bool field in Notion presents like this, we just want the value
+
+        'properties': {
+            'Central register': {
+                'id': 'o)_-',
+                'type': 'checkbox',
+                'checkbox': True
+            }
+        }
+
+        Args:
+            data (dict): The dict we're grabbing the name from
+        """
+        try:
+            return data['properties'][property_name]['checkbox']
+        except Exception as e:
+            console.warn(e)
+            return False
+
+    def _get_date(self, data: dict, property_name: str) -> Optional[str]:
+        """A date in Notion presents like this, we just want the start key
+
+        'properties': {
+            'Date': {
+                'id': '%3Ao%7C%23',
+                'type': 'date',
+                'date': {
+                    'start': '2022-02-04',
+                    'end': None,
+                    'time_zone': None
+                }
+            },
+        }
+
+        Args:
+            data (dict): The dict we're grabbing the name from
+        """
+        try:
+            if data['properties'][property_name]['date'] is not None:
+                return data['properties'][property_name]['date']['start']
+        except Exception as e:
+            console.warn(e)
+            return None
+
+    def _is_updated(self, obj: Model, data: dict) -> bool:
+        try:
+            _notion_updated = data.get('last_edited_time')
+            last_updated = arrow.get(_notion_updated).datetime
+            our_updated = obj.notion_updated
+        except Exception:
+            console.error(f"Failed to get updated datetime from {_notion_updated}")
+            last_updated = DEFAULT_DATE
+            our_updated = obj.notion_updated
+        if our_updated is not None and last_updated <= our_updated:
+            # This row hasn't been updated since we last saved, so we can skip
+            return False
+        return True
+
+    def _get_country(self, notion_id: str) -> CountryTag:
+        """Looks up a CountryTag by notion_id
+
+        Args:
+            notion_id (str): The notion_id for the CountryTag we're looking for
+        """
+        # import ipdb; ipdb.set_trace()
+        try:
+            return CountryTag.objects.get(notion_id=notion_id)
+        except Exception as e:
+            console.warn(e)
 
 
 class SyncCountries(NotionCronBase):
@@ -101,11 +342,17 @@ class SyncCountries(NotionCronBase):
         Args:
             data (dict, optional): We're only going to pass the data in here in tests
         """
-        # Find the countries DB
-        db_id = find_db_id(self.client, COUNTRY_TRACKER, 'Country Tracker')
-        if not data:
-            data = self.client.databases.query(database_id=db_id)
+        in_tests = False
+        if data is not None:
+            in_tests = True
 
+        # The ID we have for COUNTRY_TRACKER is already the DB id
+        if not data:
+            data = self.client.databases.query(database_id=COUNTRY_TRACKER)
+
+        self._process_data(data)
+
+    def _process_data(self, data: dict) -> bool:
         results = data.get('results', [])
         if len(results):
             # Do stuff here to save the data from Notion
@@ -113,9 +360,17 @@ class SyncCountries(NotionCronBase):
                 self._handle_country(item)
         else:
             # Notify of failure, probably Slack and logging
-            console.warn("Results was zero len")
+            console.warn("Countries - Results was zero len")
 
     def _handle_country(self, country: dict) -> bool:
+        """Gets data from notion (`country`) and saves it as a Country tag.
+
+        Args:
+            country (dict): The OG Notion data, as a dict for a single country
+
+        Returns:
+            bool: Success / Failure
+        """
         try:
             notion_id = country['id']
         except KeyError:
@@ -123,17 +378,10 @@ class SyncCountries(NotionCronBase):
             console.error("No notion ID found")
 
         obj, created = CountryTag.objects.get_or_create(notion_id=notion_id)
-        try:
-            _notion_updated = country.get('last_edited_time')
-            last_updated = arrow.get(_notion_updated).datetime
-            our_updated = obj.notion_updated
-        except Exception:
-            console.error(f"Failed to get updated datetime from {_notion_updated}")
-            last_updated = DEFAULT_DATE
-            our_updated = obj.notion_updated
-        if our_updated is not None and last_updated <= our_updated:
-            # This row hasn't been updated since we last saved, so we can skip
+
+        if not self._is_updated(obj, country):
             return False
+
         # This is either a new row, or it has been updated, so save stuff
         country_name = self._get_country_name(country)
         if country_name:
@@ -183,7 +431,6 @@ class SyncCountries(NotionCronBase):
         except Exception as e:
             console.warn("Failed to get country name")
             console.warn(e)
-            import ipdb; ipdb.set_trace()
             return ''
 
 
@@ -199,11 +446,73 @@ class SyncCommitments(NotionCronBase):
         Args:
             data (dict, optional): We're only going to pass the data in here in tests
         """
+        in_tests = False
+        if data is not None:
+            in_tests = True
+
+
         # The ID we have for COMMITMENT_TRACKER is already the DB id
         if not data:
             data = self.client.databases.query(database_id=COMMITMENT_TRACKER)
+
+        results = data.get('results', [])
+        if len(results):
+            # Do stuff here to save the data from Notion
+            for item in results:
+                self._handle_commitment(item)
+        else:
+            # Notify of failure, probably Slack and logging
+            console.warn("Commitments - Results was zero len")
+
+    def _handle_commitment(self, commitment: dict) -> bool:
+        """Gets data from notion (`commitment`) and saves it as a Commitment.
+
+        Args:
+            commitment (dict): The OG Notion data, as a dict for a single commitment row
+
+        Returns:
+            bool: Success / Failure
+        """
         # import ipdb; ipdb.set_trace()
-        # Do stuff here to save the data from Notion
+        try:
+            notion_id = commitment['id']
+        except KeyError:
+            console.warn(commitment)
+            console.error("No notion ID found")
+
+        country_id = self._get_rel_id(commitment, 'Country')
+        if country_id is None:
+            return False
+
+        country = None
+        if country_id:
+            country = self._get_country(country_id)
+
+        if country:
+            obj, created = Commitment.objects.get_or_create(notion_id=notion_id, country=country)
+        else:
+            console.warn("No related country found, skipping")
+            return False
+
+        if not self._is_updated(obj, commitment):
+            return False
+
+        # This is either a new row, or it has been updated, so save stuff
+        self._set_universals(obj, commitment)
+        try:
+            obj.icon = commitment['icon']['emoji']
+        except Exception:
+            obj.icon = ''
+
+        obj.oo_support = self._get_select_name(commitment, 'OO Support')
+        obj.date = self._get_date(commitment, 'Date')
+        obj.link = self._get_url(commitment, 'Link')
+        obj.commitment_type_name = self._get_plain_text(commitment, 'Commitment type')
+        obj.central_register = self._get_bool(commitment, 'Central register')
+        obj.public_register = self._get_bool(commitment, 'Public register')
+        obj.summary_text = self._get_rich_text(commitment, 'Summary Text')
+
+        obj.save()
 
 
 class SyncRegimes(NotionCronBase):
@@ -218,6 +527,10 @@ class SyncRegimes(NotionCronBase):
         Args:
             data (dict, optional): We're only going to pass the data in here in tests
         """
+        in_tests = False
+        if data is not None:
+            in_tests = True
+
         # The ID we have for DISCLOSURE_REGIMES is already the DB id
         if not data:
             data = self.client.databases.query(database_id=DISCLOSURE_REGIMES)
