@@ -1,18 +1,10 @@
 # 3rd party
 from django.db import models
-<<<<<<< HEAD
-from django.conf import settings
-from wagtail.core import fields
-=======
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-
 from modelcluster.fields import ParentalKey
->>>>>>> main
 from taggit.models import ItemBase
-from modelcluster.fields import ParentalKey
 from wagtail.snippets.models import register_snippet
-from django.utils.translation import gettext_lazy as _
 
 from .core import BaseTag
 
