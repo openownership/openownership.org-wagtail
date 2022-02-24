@@ -6,6 +6,9 @@ from taggit.models import ItemBase
 from modelcluster.fields import ParentalKey
 from wagtail.snippets.models import register_snippet
 from django.utils.translation import gettext_lazy as _
+from modelcluster.models import ClusterableModel
+from modelcluster.fields import ParentalManyToManyField
+from django_extensions.db.fields import AutoSlugField
 
 from modules.taxonomy.models.core import BaseTag
 
@@ -110,53 +113,90 @@ class DisclosureRegime(NotionModel):
     )
 
     # Specified
-    title = models.CharField(
+    title = models.CharField(  # Title
         _("Title"),
         blank=True,
         null=True,
         max_length=255
     )
 
-    coverage = models.CharField(
-        _("Coverage"),
+    definition_legislation_url = models.URLField(  # 1.1 Definition: Legislation URL
+        _('Definition: Legislation URL'),
+        blank=True,
+        null=True
+    )
+
+    coverage_legislation_url = models.URLField(  # 2.3 Coverage: Legislation URL
+        _('Coverage: Legislation URL'),
+        blank=True,
+        null=True
+    )
+
+    central_register = models.CharField(  # 4.1 Central register
+        _("Central Register"),
         blank=True,
         null=True,
         max_length=255
     )
 
-    on_oo_register = models.BooleanField(
-        _("On OO Register"),
-        blank=False,
-        null=False,
-        default=False
-    )
-
-    r_central = models.CharField(
-        _("Central register (R-CENTRAL)"),
-        blank=True,
-        null=True,
-        max_length=255
-    )
-
-    public_access = models.CharField(
+    public_access = models.CharField(  # 5.1 Public access
         _("Public Access"),
         blank=True,
         null=True,
         max_length=255
     )
 
-    bulk_data = models.CharField(
-        _("Bulk Data"),
+    public_access_register_url = models.URLField(  # 5.1.1 Public access: Register URL
+        _('Public Access Register URL'),
+        blank=True,
+        null=True
+    )
+
+    year_launched = models.CharField(  # 5.1.2 Year launched
+        _("Year Launched"),
         blank=True,
         null=True,
         max_length=255
     )
 
-    r_api = models.CharField(
-        _("API (R-API)"),
+    structured_data = models.CharField(  # 6.1 Structured data
+        _("Structured data"),
         blank=True,
         null=True,
         max_length=255
+    )
+
+    api_available = models.CharField(  # 6.3 API available
+        _("API available"),
+        blank=True,
+        null=True,
+        max_length=255
+    )
+
+    data_in_bods = models.CharField(  # 6.4 Data published in BODS
+        _("Data published in BODS"),
+        blank=True,
+        null=True,
+        max_length=255
+    )
+
+    on_oo_register = models.BooleanField(  # 6.5 Data on OO Register
+        _("On OO Register"),
+        blank=False,
+        null=False,
+        default=False
+    )
+
+    legislation_url = models.URLField(  # 8.4 Legislation URL
+        _('Legislation URL'),
+        blank=True,
+        null=True
+    )
+
+    coverage_scope = ParentalManyToManyField(
+        'notion.CoverageScope',
+        related_name="disclosure_regimes",
+        blank=True
     )
 
 
@@ -196,3 +236,13 @@ class CountryTaggedPage(ItemBase):
         on_delete=models.CASCADE,
         related_name="country_related_items"
     )
+
+
+class CoverageScope(ClusterableModel):
+
+    class Meta:
+        verbose_name = _("Coverage Scope")
+        verbose_name_plural = _("Coverage Scopes")
+
+    name = models.CharField(blank=False, null=False, max_length=255)
+    slug = AutoSlugField(populate_from='name')

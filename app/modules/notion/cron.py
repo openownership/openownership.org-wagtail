@@ -7,7 +7,7 @@ from django_cron import CronJobBase, Schedule
 from modules.notion.data import COUNTRY_TRACKER, COMMITMENT_TRACKER, DISCLOSURE_REGIMES
 from modules.notion.auth import get_notion_client
 from modules.notion.utils import find_db_id
-from modules.notion.models import CountryTag, Commitment
+from modules.notion.models import CountryTag, Commitment, CoverageScope, DisclosureRegime
 
 
 DEFAULT_DATE = arrow.get('1970-01-01').datetime
@@ -64,6 +64,43 @@ class NotionCronBase(CronJobBase):
         except Exception as e:
             console.warn(e)
             return DEFAULT_DATE
+
+    def _get_title(self, data: dict) -> str:
+        """
+        A Notion `Title` presents like this, we just want the plain_text...
+
+        'properties': {
+            'Title': {
+                'id': 'title',
+                'type': 'title',
+                'title': [
+                    {
+                        'type': 'text',
+                        'text': {
+                            'content': 'Democratic Republic of the Congo EITI Register',
+                            'link': None
+                        },
+                        'annotations': {
+                            'bold': False,
+                            'italic': False,
+                            'strikethrough': False,
+                            'underline': False,
+                            'code': False,
+                            'color': 'default'
+                        },
+                        'plain_text': 'Democratic Republic of the Congo EITI Register',
+                        'href': None
+                    }
+                ]
+            }
+        }
+        """
+        try:
+            return data['properties']['Title']['title'][0]['plain_text']
+        except Exception as e:
+            console.warn("Failed to get Title")
+            console.warn(e)
+            return ''
 
     def _get_select_name(self, data: dict, property_name: str) -> Optional[str]:
         """A select in Notion presents like this, we just want the name key
@@ -450,7 +487,6 @@ class SyncCommitments(NotionCronBase):
         if data is not None:
             in_tests = True
 
-
         # The ID we have for COMMITMENT_TRACKER is already the DB id
         if not data:
             data = self.client.databases.query(database_id=COMMITMENT_TRACKER)
@@ -499,10 +535,6 @@ class SyncCommitments(NotionCronBase):
 
         # This is either a new row, or it has been updated, so save stuff
         self._set_universals(obj, commitment)
-        try:
-            obj.icon = commitment['icon']['emoji']
-        except Exception:
-            obj.icon = ''
 
         obj.oo_support = self._get_select_name(commitment, 'OO Support')
         obj.date = self._get_date(commitment, 'Date')
@@ -534,5 +566,117 @@ class SyncRegimes(NotionCronBase):
         # The ID we have for DISCLOSURE_REGIMES is already the DB id
         if not data:
             data = self.client.databases.query(database_id=DISCLOSURE_REGIMES)
+
+        results = data.get('results', [])
+        if len(results):
+            # Do stuff here to save the data from Notion
+            for item in results:
+                self._handle_regime(item)
+        else:
+            # Notify of failure, probably Slack and logging
+            console.warn("Regimes - Results was zero len")
+
+    def _handle_regime(self, regime: dict) -> bool:
+        """Gets data from notion (`regime`) and saves it as a DisclosureRegime.
+
+        Args:
+            regime (dict): The OG Notion data, as a dict for a single regime row
+
+        Returns:
+            bool: Success / Failure
+        """
         # import ipdb; ipdb.set_trace()
-        # Do stuff here to save the data from Notion
+        try:
+            notion_id = regime['id']
+        except KeyError:
+            console.warn(regime)
+            console.error("No notion ID found")
+
+        country_id = self._get_rel_id(regime, 'Country')
+        if country_id is None:
+            return False
+
+        country = None
+        if country_id:
+            country = self._get_country(country_id)
+
+        if country:
+            obj, created = DisclosureRegime.objects.get_or_create(
+                notion_id=notion_id,
+                country=country
+            )
+        else:
+            console.warn("No related country found, skipping")
+            return False
+
+        if not self._is_updated(obj, regime):
+            return False
+
+        # This is either a new row, or it has been updated, so save stuff
+        self._set_universals(obj, regime)
+        obj.title = self._get_title(regime)
+        obj.definition_legislation_url = self._get_url(
+            regime, '1.1 Definition: Legislation URL'
+        )
+        obj.coverage_legislation_url = self._get_url(
+            regime, '2.3 Coverage: Legislation URL'
+        )
+        scope_tags = self._get_scope_tags(regime)
+        if scope_tags:
+            for item in scope_tags:
+                obj.coverage_scope.add(item)
+        obj.central_register = self._get_select_name(regime, '4.1 Central register')
+        obj.public_access = self._get_select_name(regime, '5.1 Public access')
+        obj.public_access_register_url = self._get_url(regime, '5.1.1 Public access: Register URL')
+        obj.year_launched = self._get_select_name(regime, '5.1.2 Year launched')
+        obj.structured_data = self._get_select_name(regime, '6.1 Structured data')
+        obj.api_available = self._get_select_name(regime, '6.3 API available')
+        obj.data_in_bods = self._get_select_name(regime, '6.4 Data published in BODS')
+        obj.on_oo_register = self._get_bool(regime, '6.5 Data on OO Register')
+        obj.legislation_url = self._get_url(regime, '8.4 Legislation URL')
+
+        obj.save()
+
+    def _get_scope_tags(self, data: dict) -> list:
+        """Takes this dict, creates a CoverageScope tag for each `name` and returns a list of them
+
+        '2.1 Coverage: Scope': {
+            'id': 'Z%3Dqf',
+            'type': 'multi_select',
+            'multi_select': [
+                {
+                    'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                    'name': 'Full-economy',
+                    'color': 'green'
+                },
+                {
+                    'id': '859da0c6-cb5b-40f8-b238-8c7e913fb3e5',
+                    'name': 'Sectoral: Extractives',
+                    'color': 'purple'
+                }
+            ]
+        }
+
+        Args:
+            data (dict): The disclosure regime row
+
+        Returns:
+            list: List of tags
+        """
+        try:
+            tags = []
+            scopes = data['properties']['2.1 Coverage: Scope']['multi_select']
+            if not len(scopes):
+                return
+
+            for item in scopes:
+                tag, created = CoverageScope.objects.get_or_create(name=item['name'])
+                tags.append(tag)
+
+        except Exception as e:
+            console.warn("Failed to add scope tags")
+            console.warn(e)
+            raise
+        else:
+            console.info(f"Scope tags: {tags}")
+            return tags

@@ -3,426 +3,17 @@ REGIMES = {
     'results': [
         {
             'object': 'page',
-            'id': '6e4da261-9aea-4b86-8a4b-3c55b551e52a',
-            'created_time': '2022-02-15T10:05:00.000Z',
-            'last_edited_time': '2022-02-15T10:05:00.000Z',
-            'cover': None,
-            'icon': None,
-            'parent': {
-                'type': 'database_id',
-                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
-            },
-            'archived': False,
-            'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
-                'Last edited': {
-                    'id': '%23--Y',
-                    'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-15T10:05:00.000Z'
-                },
-                '3 On OO Register': {
-                    'id': '%24Fhj',
-                    'type': 'checkbox',
-                    'checkbox': False
-                },
-                '1.2 Threshold': {
-                    'id': '%24I.J',
-                    'type': 'number',
-                    'number': None
-                },
-                '14.1 API URL (R-API[URL])': {
-                    'id': '%24UM7',
-                    'type': 'url',
-                    'url': None
-                },
-                '11 Search by owners (R-SEARCH-PS)': {
-                    'id': "'AyV",
-                    'type': 'select',
-                    'select': None
-                },
-                '13 BODS Data (R-BODS)': {
-                    'id': '%2BTR2',
-                    'type': 'select',
-                    'select': None
-                },
-                '14 API (R-API)': {
-                    'id': '2BK.',
-                    'type': 'select',
-                    'select': None
-                },
-                '5 Central register (R-CENTRAL)': {
-                    'id': '5tav',
-                    'type': 'select',
-                    'select': None
-                },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
-                    'id': '7%5E%23l',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '0 Stage': {
-                    'id': '86%605',
-                    'type': 'multi_select',
-                    'multi_select': [
-                    ]
-                },
-                '2.2 Coverage legislation': {
-                    'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
-                },
-                '2.1 Coverage detail': {
-                    'id': "ApR'",
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
-                },
-                '12.1 Bulk data URL (R-BULK[URL])': {
-                    'id': 'EZ%5D1',
-                    'type': 'url',
-                    'url': None
-                },
-                '13.1 Open license for data (R-OPEN)': {
-                    'id': 'E%5B!F',
-                    'type': 'select',
-                    'select': None
-                },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
-                    'id': 'J~fN',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                'Country': {
-                    'id': 'PTKs',
-                    'type': 'relation',
-                    'relation': [
-                    ]
-                },
-                '1.1 Definition legislation': {
-                    'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
-                },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
-                    'id': 'X%26sR',
-                    'type': 'url',
-                    'url': None
-                },
-                '2 Coverage': {
-                    'id': 'Z%3Dqf',
-                    'type': 'multi_select',
-                    'multi_select': [
-                    ]
-                },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '9 Access is free (R-FREE)': {
-                    'id': "c*b'",
-                    'type': 'select',
-                    'select': None
-                },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
-                    'type': 'url',
-                    'url': None
-                },
-                '6 Public access': {
-                    'id': 'jxf!',
-                    'type': 'select',
-                    'select': None
-                },
-                '8 No registration required (R-NOREG)': {
-                    'id': 'l%2F%3Dw',
-                    'type': 'select',
-                    'select': None
-                },
-                'Last updated by': {
-                    'id': 'm%3D%7BD',
-                    'type': 'last_edited_by',
-                    'last_edited_by': {
-                        'object': 'user',
-                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
-                        'name': 'Tymon',
-                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
-                        'type': 'person',
-                        'person': {
-                            'email': 'tymon@openownership.org'
-                        }
-                    }
-                },
-                'Notes': {
-                    'id': 'wbf%5B',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '10 Search by company (R-SEARCH-ES)': {
-                    'id': '%7Ce%7Dn',
-                    'type': 'select',
-                    'select': None
-                },
-                '12 Bulk data (R-BULK)': {
-                    'id': '~obq',
-                    'type': 'select',
-                    'select': None
-                },
-                'Title': {
-                    'id': 'title',
-                    'type': 'title',
-                    'title': [
-                    ]
-                }
-            },
-            'url': 'https://www.notion.so/6e4da2619aea4b868a4b3c55b551e52a'
-        },
-        {
-            'object': 'page',
-            'id': 'dc0d8575-d704-43ae-ae84-ec0c648af7eb',
-            'created_time': '2022-02-08T07:11:00.000Z',
-            'last_edited_time': '2022-02-08T07:11:00.000Z',
-            'cover': None,
-            'icon': None,
-            'parent': {
-                'type': 'database_id',
-                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
-            },
-            'archived': False,
-            'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
-                'Last edited': {
-                    'id': '%23--Y',
-                    'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-08T07:11:00.000Z'
-                },
-                '3 On OO Register': {
-                    'id': '%24Fhj',
-                    'type': 'checkbox',
-                    'checkbox': False
-                },
-                '1.2 Threshold': {
-                    'id': '%24I.J',
-                    'type': 'number',
-                    'number': None
-                },
-                '14.1 API URL (R-API[URL])': {
-                    'id': '%24UM7',
-                    'type': 'url',
-                    'url': None
-                },
-                '11 Search by owners (R-SEARCH-PS)': {
-                    'id': "'AyV",
-                    'type': 'select',
-                    'select': None
-                },
-                '13 BODS Data (R-BODS)': {
-                    'id': '%2BTR2',
-                    'type': 'select',
-                    'select': None
-                },
-                '14 API (R-API)': {
-                    'id': '2BK.',
-                    'type': 'select',
-                    'select': None
-                },
-                '5 Central register (R-CENTRAL)': {
-                    'id': '5tav',
-                    'type': 'select',
-                    'select': None
-                },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
-                    'id': '7%5E%23l',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '0 Stage': {
-                    'id': '86%605',
-                    'type': 'multi_select',
-                    'multi_select': [
-                    ]
-                },
-                '2.2 Coverage legislation': {
-                    'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
-                },
-                '2.1 Coverage detail': {
-                    'id': "ApR'",
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
-                },
-                '12.1 Bulk data URL (R-BULK[URL])': {
-                    'id': 'EZ%5D1',
-                    'type': 'url',
-                    'url': None
-                },
-                '13.1 Open license for data (R-OPEN)': {
-                    'id': 'E%5B!F',
-                    'type': 'select',
-                    'select': None
-                },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
-                    'id': 'J~fN',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                'Country': {
-                    'id': 'PTKs',
-                    'type': 'relation',
-                    'relation': [
-                    ]
-                },
-                '1.1 Definition legislation': {
-                    'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
-                },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
-                    'id': 'X%26sR',
-                    'type': 'url',
-                    'url': None
-                },
-                '2 Coverage': {
-                    'id': 'Z%3Dqf',
-                    'type': 'multi_select',
-                    'multi_select': [
-                    ]
-                },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '9 Access is free (R-FREE)': {
-                    'id': "c*b'",
-                    'type': 'select',
-                    'select': None
-                },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
-                    'type': 'url',
-                    'url': None
-                },
-                '6 Public access': {
-                    'id': 'jxf!',
-                    'type': 'select',
-                    'select': None
-                },
-                '8 No registration required (R-NOREG)': {
-                    'id': 'l%2F%3Dw',
-                    'type': 'select',
-                    'select': None
-                },
-                'Last updated by': {
-                    'id': 'm%3D%7BD',
-                    'type': 'last_edited_by',
-                    'last_edited_by': {
-                        'object': 'user',
-                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
-                        'name': 'Stephen Abbott Pugh',
-                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
-                        'type': 'person',
-                        'person': {
-                            'email': 'stephen@openownership.org'
-                        }
-                    }
-                },
-                'Notes': {
-                    'id': 'wbf%5B',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '10 Search by company (R-SEARCH-ES)': {
-                    'id': '%7Ce%7Dn',
-                    'type': 'select',
-                    'select': None
-                },
-                '12 Bulk data (R-BULK)': {
-                    'id': '~obq',
-                    'type': 'select',
-                    'select': None
-                },
-                'Title': {
-                    'id': 'title',
-                    'type': 'title',
-                    'title': [
-                        {
-                            'type': 'text',
-                            'text': {
-                                'content': 'http://itie-rdc.masiavuvu.fr/donnees-itie/',
-                                'link': {
-                                    'url': 'http://itie-rdc.masiavuvu.fr/donnees-itie/'
-                                }
-                            },
-                            'annotations': {
-                                'bold': False,
-                                'italic': False,
-                                'strikethrough': False,
-                                'underline': False,
-                                'code': False,
-                                'color': 'default'
-                            },
-                            'plain_text': 'http://itie-rdc.masiavuvu.fr/donnees-itie/',
-                            'href': 'http://itie-rdc.masiavuvu.fr/donnees-itie/'
-                        }
-                    ]
-                }
-            },
-            'url': 'https://www.notion.so/http-itie-rdc-masiavuvu-fr-donnees-itie-dc0d8575d70443aeae84ec0c648af7eb'
-        },
-        {
-            'object': 'page',
             'id': '73632a63-620d-44a2-8f7b-efab219f656a',
             'created_time': '2022-02-08T07:09:00.000Z',
             'last_edited_time': '2022-02-10T07:47:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '1703e054-58b6-40d2-aab4-aff006900163'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': '1703e054-58b6-40d2-aab4-aff006900163'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -431,17 +22,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2022-02-10T07:47:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -451,12 +37,12 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -465,22 +51,22 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': None
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -497,37 +83,53 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -538,37 +140,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'http://itie-rdc.masiavuvu.fr/donnees-itie/'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
@@ -579,13 +166,23 @@ REGIMES = {
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -594,12 +191,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -608,7 +226,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -616,6 +234,11 @@ REGIMES = {
                         'name': 'Yes',
                         'color': 'green'
                     }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
                 },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
@@ -631,13 +254,34 @@ REGIMES = {
                         }
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -646,7 +290,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': {
@@ -685,7 +335,15 @@ REGIMES = {
             'object': 'page',
             'id': '3cb3f724-5074-47e9-b8f1-b4190f47cd8a',
             'created_time': '2022-01-05T11:45:00.000Z',
-            'last_edited_time': '2022-02-04T10:53:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -694,17 +352,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-04T10:53:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -714,27 +367,27 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -743,7 +396,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -760,41 +413,53 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -805,69 +470,80 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://www.gov.gr/upourgeia/upourgeio-oikonomikon/oikonomikon/metroo-pragmatikon-dikaioukhon'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -876,7 +552,7 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -885,19 +561,30 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
-                        'name': 'Stephen Abbott Pugh',
-                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'stephen@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -905,12 +592,33 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -945,7 +653,15 @@ REGIMES = {
             'object': 'page',
             'id': 'd54f27a8-d25a-4816-95f7-c2eb08b18c45',
             'created_time': '2022-01-05T11:13:00.000Z',
-            'last_edited_time': '2022-02-15T13:23:00.000Z',
+            'last_edited_time': '2022-02-23T13:17:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -954,17 +670,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-15T13:23:00.000Z'
+                    'last_edited_time': '2022-02-23T13:17:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -974,27 +685,27 @@ REGIMES = {
                     'type': 'number',
                     'number': 10
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -1003,7 +714,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -1020,37 +731,44 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -1073,6 +791,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -1082,73 +805,75 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
-                    'url': None
+                    'url': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/مستند 5 ea.pdf'
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://www.sijilat.bh/'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
-                        {
-                            'type': 'text',
-                            'text': {
-                                'content': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/مستند 2.pdf',
-                                'link': {
-                                    'url': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/%d9%85%d8%b3%d8%aa%d9%86%d8%af%202.pdf'
-                                }
-                            },
-                            'annotations': {
-                                'bold': False,
-                                'italic': False,
-                                'strikethrough': False,
-                                'underline': False,
-                                'code': False,
-                                'color': 'default'
-                            },
-                            'plain_text': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/مستند 2.pdf',
-                            'href': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/%d9%85%d8%b3%d8%aa%d9%86%d8%af%202.pdf'
-                        }
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -1157,8 +882,13 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -1175,6 +905,12 @@ REGIMES = {
                             'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -1287,15 +1023,72 @@ REGIMES = {
                             },
                             'plain_text': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/مستند 6.pdf',
                             'href': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/%d9%85%d8%b3%d8%aa%d9%86%d8%af%206.pdf'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '\nGuidance:\n',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '\nGuidance:\n',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/مستند 2.pdf',
+                                'link': {
+                                    'url': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/%d9%85%d8%b3%d8%aa%d9%86%d8%af%202.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/مستند 2.pdf',
+                            'href': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/%d9%85%d8%b3%d8%aa%d9%86%d8%af%202.pdf'
                         }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -1330,7 +1123,15 @@ REGIMES = {
             'object': 'page',
             'id': '9e56358d-d47f-4166-916f-444d6f7efc86',
             'created_time': '2022-01-05T10:23:00.000Z',
-            'last_edited_time': '2022-01-05T10:27:00.000Z',
+            'last_edited_time': '2022-02-23T12:49:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -1339,17 +1140,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-01-05T10:27:00.000Z'
+                    'last_edited_time': '2022-02-23T12:49:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -1359,12 +1155,12 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -1373,17 +1169,17 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -1392,7 +1188,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -1409,12 +1205,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -1437,30 +1239,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -1471,54 +1279,44 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://qkb.gov.al/search/search-in-the-register-of-beneficial-owners-rbo/search-reporting-subject/'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -1527,12 +1325,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -1541,7 +1360,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -1549,6 +1368,11 @@ REGIMES = {
                         'name': 'Yes',
                         'color': 'green'
                     }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
                 },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
@@ -1563,6 +1387,12 @@ REGIMES = {
                             'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -1606,7 +1436,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -1615,7 +1460,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -1648,208 +1499,17 @@ REGIMES = {
         },
         {
             'object': 'page',
-            'id': '7594c63f-7919-458f-9419-3f0d1ce887cd',
-            'created_time': '2021-11-01T17:31:00.000Z',
-            'last_edited_time': '2021-11-01T17:31:00.000Z',
-            'cover': None,
-            'icon': None,
-            'parent': {
-                'type': 'database_id',
-                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
-            },
-            'archived': False,
-            'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
-                'Last edited': {
-                    'id': '%23--Y',
-                    'type': 'last_edited_time',
-                    'last_edited_time': '2021-11-01T17:31:00.000Z'
-                },
-                '3 On OO Register': {
-                    'id': '%24Fhj',
-                    'type': 'checkbox',
-                    'checkbox': False
-                },
-                '1.2 Threshold': {
-                    'id': '%24I.J',
-                    'type': 'number',
-                    'number': None
-                },
-                '14.1 API URL (R-API[URL])': {
-                    'id': '%24UM7',
-                    'type': 'url',
-                    'url': None
-                },
-                '11 Search by owners (R-SEARCH-PS)': {
-                    'id': "'AyV",
-                    'type': 'select',
-                    'select': None
-                },
-                '13 BODS Data (R-BODS)': {
-                    'id': '%2BTR2',
-                    'type': 'select',
-                    'select': None
-                },
-                '14 API (R-API)': {
-                    'id': '2BK.',
-                    'type': 'select',
-                    'select': None
-                },
-                '5 Central register (R-CENTRAL)': {
-                    'id': '5tav',
-                    'type': 'select',
-                    'select': None
-                },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
-                    'id': '7%5E%23l',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '0 Stage': {
-                    'id': '86%605',
-                    'type': 'multi_select',
-                    'multi_select': [
-                    ]
-                },
-                '2.2 Coverage legislation': {
-                    'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
-                },
-                '2.1 Coverage detail': {
-                    'id': "ApR'",
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
-                },
-                '12.1 Bulk data URL (R-BULK[URL])': {
-                    'id': 'EZ%5D1',
-                    'type': 'url',
-                    'url': None
-                },
-                '13.1 Open license for data (R-OPEN)': {
-                    'id': 'E%5B!F',
-                    'type': 'select',
-                    'select': None
-                },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
-                    'id': 'J~fN',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                'Country': {
-                    'id': 'PTKs',
-                    'type': 'relation',
-                    'relation': [
-                    ]
-                },
-                '1.1 Definition legislation': {
-                    'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
-                },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
-                    'id': 'X%26sR',
-                    'type': 'url',
-                    'url': None
-                },
-                '2 Coverage': {
-                    'id': 'Z%3Dqf',
-                    'type': 'multi_select',
-                    'multi_select': [
-                    ]
-                },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '9 Access is free (R-FREE)': {
-                    'id': "c*b'",
-                    'type': 'select',
-                    'select': None
-                },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
-                    'type': 'url',
-                    'url': None
-                },
-                '6 Public access': {
-                    'id': 'jxf!',
-                    'type': 'select',
-                    'select': None
-                },
-                '8 No registration required (R-NOREG)': {
-                    'id': 'l%2F%3Dw',
-                    'type': 'select',
-                    'select': None
-                },
-                'Last updated by': {
-                    'id': 'm%3D%7BD',
-                    'type': 'last_edited_by',
-                    'last_edited_by': {
-                        'object': 'user',
-                        'id': '7621276b-7bbb-49ae-92b3-b5b0a8184232',
-                        'name': 'Agustina De Luca',
-                        'avatar_url': None,
-                        'type': 'person',
-                        'person': {
-                            'email': 'agustina@openownership.org'
-                        }
-                    }
-                },
-                'Notes': {
-                    'id': 'wbf%5B',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '10 Search by company (R-SEARCH-ES)': {
-                    'id': '%7Ce%7Dn',
-                    'type': 'select',
-                    'select': None
-                },
-                '12 Bulk data (R-BULK)': {
-                    'id': '~obq',
-                    'type': 'select',
-                    'select': None
-                },
-                'Title': {
-                    'id': 'title',
-                    'type': 'title',
-                    'title': [
-                    ]
-                }
-            },
-            'url': 'https://www.notion.so/7594c63f7919458f94193f0d1ce887cd'
-        },
-        {
-            'object': 'page',
             'id': 'b88796af-436a-40e8-ae4a-d2f3935102b5',
             'created_time': '2021-11-01T17:31:00.000Z',
             'last_edited_time': '2021-11-01T17:50:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '7621276b-7bbb-49ae-92b3-b5b0a8184232'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -1858,17 +1518,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2021-11-01T17:50:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -1878,32 +1533,32 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': None
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -1920,37 +1575,53 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -1961,70 +1632,86 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': None
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': None
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -2041,6 +1728,12 @@ REGIMES = {
                             'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -2173,12 +1866,33 @@ REGIMES = {
                         }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -2213,7 +1927,15 @@ REGIMES = {
             'object': 'page',
             'id': 'cc2c3dbe-c3ca-45c9-bd04-1a314aa92f10',
             'created_time': '2021-08-04T14:40:00.000Z',
-            'last_edited_time': '2021-09-22T08:00:00.000Z',
+            'last_edited_time': '2022-02-23T13:04:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '7621276b-7bbb-49ae-92b3-b5b0a8184232'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -2222,17 +1944,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-09-22T08:00:00.000Z'
+                    'last_edited_time': '2022-02-23T13:04:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -2242,27 +1959,27 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -2271,7 +1988,7 @@ REGIMES = {
                         'color': 'yellow'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -2293,12 +2010,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -2321,26 +2044,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -2363,6 +2087,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -2372,43 +2101,28 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://portal.pacra.org.zm/search#here'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         },
                         {
@@ -2418,13 +2132,23 @@ REGIMES = {
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -2433,21 +2157,42 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
-                    'type': 'url',
-                    'url': ''
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
                 },
-                '6 Public access': {
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -2456,19 +2201,30 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
-                        'name': 'Stephen Abbott Pugh',
-                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'stephen@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -2476,7 +2232,22 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -2485,7 +2256,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -2520,7 +2297,15 @@ REGIMES = {
             'object': 'page',
             'id': '50cc870d-ad9c-41dd-a83a-5c93982a507d',
             'created_time': '2021-08-04T14:29:00.000Z',
-            'last_edited_time': '2022-02-15T10:03:00.000Z',
+            'last_edited_time': '2022-02-23T13:03:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '7621276b-7bbb-49ae-92b3-b5b0a8184232'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -2529,17 +2314,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-15T10:03:00.000Z'
+                    'last_edited_time': '2022-02-23T13:03:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -2549,27 +2329,27 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -2578,7 +2358,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -2590,12 +2370,18 @@ REGIMES = {
                     'multi_select': [
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -2618,26 +2404,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -2648,42 +2444,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://donnees.itie.sn/dashboard/#b%C3%A9n%C3%A9ficiaires-effectifs'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
@@ -2694,13 +2470,23 @@ REGIMES = {
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -2709,12 +2495,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
-                    'type': 'url',
-                    'url': ''
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
                 },
-                '6 Public access': {
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -2723,8 +2530,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -2742,18 +2554,45 @@ REGIMES = {
                         }
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -2788,7 +2627,15 @@ REGIMES = {
             'object': 'page',
             'id': '1dc23caa-fe5b-453b-841d-6b4b644e4157',
             'created_time': '2021-08-04T14:17:00.000Z',
-            'last_edited_time': '2021-09-22T08:03:00.000Z',
+            'last_edited_time': '2022-02-23T13:19:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '7621276b-7bbb-49ae-92b3-b5b0a8184232'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -2797,17 +2644,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-09-22T08:03:00.000Z'
+                    'last_edited_time': '2022-02-23T13:19:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -2817,12 +2659,12 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -2831,7 +2673,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': {
@@ -2840,12 +2682,12 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -2854,7 +2696,7 @@ REGIMES = {
                         'color': 'orange'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -2866,104 +2708,45 @@ REGIMES = {
                     'multi_select': [
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
-                    'id': 'J~fN',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                'Country': {
-                    'id': 'PTKs',
-                    'type': 'relation',
-                    'relation': [
-                        {
-                            'id': '80244a78-949a-441f-b9cd-7ad197e68b74'
-                        }
-                    ]
-                },
-                '1.1 Definition legislation': {
-                    'id': 'PpKg',
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': '29cc1158-d4aa-4225-bba0-35007168d492',
-                                        'name': 'LG - Target',
-                                        'color': 'yellow'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
-                    'id': 'X%26sR',
-                    'type': 'url',
-                    'url': 'https://www.gheiti.gov.gh/site/index.php?option=com_phocadownload&view=category&id=15:implementation-reports&Itemid=54'
-                },
-                '2 Coverage': {
-                    'id': 'Z%3Dqf',
-                    'type': 'multi_select',
-                    'multi_select': [
-                        {
-                            'id': '859da0c6-cb5b-40f8-b238-8c7e913fb3e5',
-                            'name': 'Sectoral: Extractives',
-                            'color': 'purple'
-                        }
-                    ]
-                },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                         {
@@ -2985,7 +2768,63 @@ REGIMES = {
                         }
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '80244a78-949a-441f-b9cd-7ad197e68b74'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': 'https://www.gheiti.gov.gh/site/index.php?option=com_phocadownload&view=category&id=15:implementation-reports&Itemid=54'
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '859da0c6-cb5b-40f8-b238-8c7e913fb3e5',
+                            'name': 'Sectoral: Extractives',
+                            'color': 'purple'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -2994,12 +2833,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
-                    'type': 'url',
-                    'url': ''
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
                 },
-                '6 Public access': {
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -3008,8 +2868,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -3018,14 +2883,20 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
-                        'name': 'Stephen Abbott Pugh',
-                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'stephen@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -3033,7 +2904,22 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -3042,7 +2928,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': {
@@ -3082,6 +2974,14 @@ REGIMES = {
             'id': 'cca61a29-8fc6-474b-a83a-62225a9b9a05',
             'created_time': '2021-02-10T14:53:00.000Z',
             'last_edited_time': '2021-02-10T14:57:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '02cea0fa-fe74-47e4-8122-e12855faf1ef'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': '02cea0fa-fe74-47e4-8122-e12855faf1ef'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -3090,17 +2990,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2021-02-10T14:57:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -3110,27 +3005,27 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -3139,7 +3034,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -3156,37 +3051,53 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -3197,59 +3108,75 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'www.crm.com.mk'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
-                    'type': 'url',
-                    'url': ''
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
                 },
-                '6 Public access': {
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -3258,8 +3185,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -3271,18 +3203,45 @@ REGIMES = {
                         'id': '02cea0fa-fe74-47e4-8122-e12855faf1ef'
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -3317,7 +3276,15 @@ REGIMES = {
             'object': 'page',
             'id': '42fcb9fe-e445-4fa2-b2a4-1d38e3afc3c4',
             'created_time': '2020-10-27T15:20:00.000Z',
-            'last_edited_time': '2020-10-27T15:30:00.000Z',
+            'last_edited_time': '2022-02-23T13:11:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -3326,17 +3293,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-10-27T15:30:00.000Z'
+                    'last_edited_time': '2022-02-23T13:11:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -3346,17 +3308,17 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': {
@@ -3365,12 +3327,12 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -3379,7 +3341,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -3413,12 +3375,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -3441,30 +3409,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -3475,42 +3449,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://afghanistan.revenuedev.org/owner'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
@@ -3521,13 +3475,23 @@ REGIMES = {
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -3536,12 +3500,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -3550,7 +3535,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -3559,13 +3544,30 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -3573,7 +3575,22 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -3582,7 +3599,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': {
@@ -3622,6 +3645,14 @@ REGIMES = {
             'id': '1cc975ed-e1ac-4dbf-a268-781e8a51a8d8',
             'created_time': '2020-10-23T19:54:00.000Z',
             'last_edited_time': '2022-01-07T12:30:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '02cea0fa-fe74-47e4-8122-e12855faf1ef'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -3630,17 +3661,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2022-01-07T12:30:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -3650,12 +3676,12 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -3664,17 +3690,17 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -3683,7 +3709,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -3700,41 +3726,53 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -3745,42 +3783,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://pheiti.dof.gov.ph/boregistry/'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
@@ -3791,13 +3809,23 @@ REGIMES = {
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -3806,12 +3834,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
-                    'type': 'url',
-                    'url': ''
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
                 },
-                '6 Public access': {
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -3820,7 +3869,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -3828,6 +3877,11 @@ REGIMES = {
                         'name': 'Yes',
                         'color': 'green'
                     }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
                 },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
@@ -3843,13 +3897,34 @@ REGIMES = {
                         }
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -3858,7 +3933,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -3893,7 +3974,15 @@ REGIMES = {
             'object': 'page',
             'id': '07b94b19-6695-4a16-ada0-a1c911e01887',
             'created_time': '2020-10-01T11:06:00.000Z',
-            'last_edited_time': '2020-10-01T11:08:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -3902,17 +3991,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-10-01T11:08:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -3922,27 +4006,27 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -3951,7 +4035,7 @@ REGIMES = {
                         'color': 'orange'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -3963,12 +4047,18 @@ REGIMES = {
                     'multi_select': [
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -3991,26 +4081,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -4021,65 +4121,91 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': None
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': None
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -4088,8 +4214,20 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -4097,12 +4235,33 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -4138,6 +4297,14 @@ REGIMES = {
             'id': '02c2ac94-1502-4e58-8349-a27e4de41384',
             'created_time': '2020-10-01T10:52:00.000Z',
             'last_edited_time': '2020-10-01T10:57:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -4146,17 +4313,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2020-10-01T10:57:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -4166,22 +4328,22 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': {
@@ -4190,7 +4352,7 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -4199,7 +4361,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -4216,12 +4378,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -4244,30 +4412,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -4278,42 +4452,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': None
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
@@ -4324,13 +4478,23 @@ REGIMES = {
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -4339,12 +4503,33 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -4353,8 +4538,13 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -4366,18 +4556,45 @@ REGIMES = {
                         'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': {
@@ -4417,6 +4634,14 @@ REGIMES = {
             'id': '038649d7-219b-4da5-bdbf-a11980af6ae2',
             'created_time': '2020-08-24T13:48:00.000Z',
             'last_edited_time': '2020-10-29T11:30:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '02cea0fa-fe74-47e4-8122-e12855faf1ef'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -4425,17 +4650,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2020-10-29T11:30:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -4445,32 +4665,32 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': None
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -4487,41 +4707,53 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -4532,37 +4764,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'http://www.tteiti.org.tt/industry-overview/beneficial-ownership-declaration/beneficial-ownership-registry/'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
@@ -4573,23 +4790,54 @@ REGIMES = {
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -4598,8 +4846,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -4611,18 +4864,45 @@ REGIMES = {
                         'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -4657,7 +4937,15 @@ REGIMES = {
             'object': 'page',
             'id': '2956a55a-f9b1-4307-8fcf-ef88e6e68278',
             'created_time': '2020-06-18T10:22:00.000Z',
-            'last_edited_time': '2020-06-18T10:26:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -4666,17 +4954,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-06-18T10:26:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -4686,27 +4969,27 @@ REGIMES = {
                     'type': 'number',
                     'number': 5
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -4715,7 +4998,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -4732,12 +5015,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -4760,26 +5049,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -4802,6 +5092,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -4811,54 +5106,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': None
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -4867,18 +5157,44 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': None
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -4887,8 +5203,20 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -4896,12 +5224,33 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -4937,6 +5286,14 @@ REGIMES = {
             'id': '5ea13aa5-c1a3-42b3-8d59-66f4a4d5cf2c',
             'created_time': '2020-05-29T08:30:00.000Z',
             'last_edited_time': '2020-05-29T08:34:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -4945,17 +5302,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2020-05-29T08:34:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -4965,12 +5317,12 @@ REGIMES = {
                     'type': 'number',
                     'number': 5
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -4979,7 +5331,7 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': {
@@ -4988,7 +5340,7 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': {
@@ -4997,7 +5349,7 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -5006,7 +5358,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -5023,12 +5375,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -5051,26 +5409,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': 'https://bo.dica.gov.mm/sites/bo.dica.gov.mm/files/bo-disclosures-2019.zip'
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -5093,6 +5452,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -5102,37 +5466,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://bo.dica.gov.mm/en/beneficial-ownership-disclosures'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
@@ -5143,13 +5492,23 @@ REGIMES = {
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -5158,12 +5517,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -5172,7 +5552,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -5180,6 +5560,11 @@ REGIMES = {
                         'name': 'Yes',
                         'color': 'green'
                     }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
                 },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
@@ -5189,13 +5574,34 @@ REGIMES = {
                         'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -5204,7 +5610,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': {
@@ -5244,6 +5656,14 @@ REGIMES = {
             'id': '0ff61315-3685-452d-a67f-656626c5c91a',
             'created_time': '2020-05-28T08:41:00.000Z',
             'last_edited_time': '2021-09-22T07:58:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': '1703e054-58b6-40d2-aab4-aff006900163'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -5252,17 +5672,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2021-09-22T07:58:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -5272,27 +5687,27 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -5301,7 +5716,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -5318,37 +5733,53 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -5359,47 +5790,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '1058fd4c-9a3f-465a-be3d-b4f2184f2c41',
-                                        'name': 'G20',
-                                        'color': 'pink'
-                                    },
-                                    {
-                                        'id': '29cc1158-d4aa-4225-bba0-35007168d492',
-                                        'name': 'LG - Target',
-                                        'color': 'yellow'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://www.secstates.com/FL_Florida_Secretary_of_State_Corporation_Search'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
@@ -5410,23 +5816,54 @@ REGIMES = {
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -5435,8 +5872,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -5454,18 +5896,45 @@ REGIMES = {
                         }
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -5501,6 +5970,14 @@ REGIMES = {
             'id': '6e037fdb-9aff-43f7-a59c-3cb373bea640',
             'created_time': '2020-05-27T10:15:00.000Z',
             'last_edited_time': '2020-10-29T11:30:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '7bd368f7-9440-4d8f-ad8e-2d0a81043a7f'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+            },
             'cover': None,
             'icon': {
                 'type': 'emoji',
@@ -5512,17 +5989,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2020-10-29T11:30:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -5532,32 +6004,32 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': None
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -5569,37 +6041,53 @@ REGIMES = {
                     'multi_select': [
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -5610,32 +6098,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://ubosearch.egov.gi/Login?ReturnUrl=%252f'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
@@ -5646,23 +6124,54 @@ REGIMES = {
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -5671,8 +6180,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -5684,18 +6198,45 @@ REGIMES = {
                         'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -5730,7 +6271,15 @@ REGIMES = {
             'object': 'page',
             'id': '74ec2c08-c8ec-4e80-ac92-41cf30aa8ef8',
             'created_time': '2020-05-20T12:52:00.000Z',
-            'last_edited_time': '2021-11-18T09:53:00.000Z',
+            'last_edited_time': '2022-02-23T13:04:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'f631e4fb-0786-4016-86e0-788b967d8a36'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -5739,17 +6288,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-11-18T09:53:00.000Z'
+                    'last_edited_time': '2022-02-23T13:04:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -5759,27 +6303,27 @@ REGIMES = {
                     'type': 'number',
                     'number': 20
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -5788,7 +6332,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -5805,12 +6349,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -5833,26 +6383,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -5875,6 +6426,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -5884,65 +6440,95 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': None
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
-                    'type': 'url',
-                    'url': None
-                },
-                '6 Public access': {
-                    'id': 'jxf!',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
                     'type': 'select',
                     'select': None
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -5951,14 +6537,20 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
-                        'name': 'Stephen Abbott Pugh',
-                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'stephen@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -5966,12 +6558,33 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -6006,7 +6619,15 @@ REGIMES = {
             'object': 'page',
             'id': 'cac1996c-f637-46ba-aff5-73a462fa927c',
             'created_time': '2020-05-20T11:59:00.000Z',
-            'last_edited_time': '2020-05-20T13:45:00.000Z',
+            'last_edited_time': '2022-02-23T13:01:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'd254d0fd-a5b1-43af-94b8-67fcc54326d9'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -6015,17 +6636,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-05-20T13:45:00.000Z'
+                    'last_edited_time': '2022-02-23T13:01:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -6035,27 +6651,27 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -6064,7 +6680,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -6081,12 +6697,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -6109,30 +6731,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
-                        'name': 'Planned',
-                        'color': 'orange'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -6143,65 +6771,95 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': None
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
-                    'type': 'url',
-                    'url': None
-                },
-                '6 Public access': {
-                    'id': 'jxf!',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
                     'type': 'select',
                     'select': None
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -6210,8 +6868,20 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'f631e4fb-0786-4016-86e0-788b967d8a36'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -6219,12 +6889,33 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -6259,7 +6950,15 @@ REGIMES = {
             'object': 'page',
             'id': 'ac060b62-aa51-4449-b7c3-04a7fe53e79a',
             'created_time': '2020-03-13T16:23:00.000Z',
-            'last_edited_time': '2021-10-19T14:21:00.000Z',
+            'last_edited_time': '2022-02-23T13:20:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'f631e4fb-0786-4016-86e0-788b967d8a36'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -6268,17 +6967,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-19T14:21:00.000Z'
+                    'last_edited_time': '2022-02-23T13:20:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -6288,12 +6982,12 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -6302,17 +6996,17 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -6321,7 +7015,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -6338,12 +7032,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -6366,33 +7066,34 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                         {
                             'type': 'text',
                             'text': {
-                                'content': "It's possible to bypass the log in",
+                                'content': "It's possible to bypass the log in. Beneficial ownership information is not available through the register. ",
                                 'link': None
                             },
                             'annotations': {
@@ -6403,10 +7104,15 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': "It's possible to bypass the log in",
+                            'plain_text': "It's possible to bypass the log in. Beneficial ownership information is not available through the register. ",
                             'href': None
                         }
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -6417,81 +7123,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': '6ffad767-ae3e-4d60-a851-d8dda2e61dae',
-                                        'name': 'LG - Member',
-                                        'color': 'blue'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://rpo.statistics.sk/rpo/#login'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
-                        {
-                            'type': 'text',
-                            'text': {
-                                'content': 'Beneficial ownership information is not available through the register. ',
-                                'link': None
-                            },
-                            'annotations': {
-                                'bold': False,
-                                'italic': False,
-                                'strikethrough': False,
-                                'underline': False,
-                                'code': False,
-                                'color': 'default'
-                            },
-                            'plain_text': 'Beneficial ownership information is not available through the register. ',
-                            'href': None
-                        }
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -6500,12 +7174,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -6514,7 +7209,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -6522,6 +7217,11 @@ REGIMES = {
                         'name': 'Yes',
                         'color': 'green'
                     }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
                 },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
@@ -6537,13 +7237,34 @@ REGIMES = {
                         }
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -6552,7 +7273,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -6588,6 +7315,14 @@ REGIMES = {
             'id': 'f27867de-2d9b-436b-9561-90eddbeaf310',
             'created_time': '2020-03-13T13:39:00.000Z',
             'last_edited_time': '2021-11-18T13:23:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'f8622e2c-ebaf-4d8e-ba3a-7d83f3d03589'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -6596,17 +7331,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2021-11-18T13:23:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -6616,32 +7346,32 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': None
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -6658,12 +7388,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -6686,26 +7422,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -6716,75 +7462,86 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '1058fd4c-9a3f-465a-be3d-b4f2184f2c41',
-                                        'name': 'G20',
-                                        'color': 'pink'
-                                    },
-                                    {
-                                        'id': '29cc1158-d4aa-4225-bba0-35007168d492',
-                                        'name': 'LG - Target',
-                                        'color': 'yellow'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': None
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': None
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -6802,18 +7559,45 @@ REGIMES = {
                         }
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -6848,7 +7632,15 @@ REGIMES = {
             'object': 'page',
             'id': 'bcce98e3-8a6a-45d2-924b-16ba93feb125',
             'created_time': '2020-03-13T13:38:00.000Z',
-            'last_edited_time': '2021-11-18T13:42:00.000Z',
+            'last_edited_time': '2022-02-23T14:27:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -6857,17 +7649,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': 'https://register.openownership.org/data_sources/uk-psc-register'
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-11-18T13:42:00.000Z'
+                    'last_edited_time': '2022-02-23T14:27:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': True
@@ -6877,12 +7664,12 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': 'https://developer.companieshouse.gov.uk/api/docs/'
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -6891,7 +7678,7 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': {
@@ -6900,7 +7687,7 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': {
@@ -6909,7 +7696,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -6918,10 +7705,27 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Not applicable',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Not applicable',
+                            'href': None
+                        }
                     ]
                 },
                 '0 Stage': {
@@ -6935,19 +7739,55 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
-                    'url': None
+                    'url': 'https://www.legislation.gov.uk/uksi/2016/339/part/2/made'
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '0d942583-8ee9-4882-929e-99ddc23aa069',
+                            'name': 'Month of birth',
+                            'color': 'default'
+                        },
+                        {
+                            'id': 'b2b20686-159e-43a0-a9d5-086714110176',
+                            'name': 'Year of birth',
+                            'color': 'gray'
+                        },
+                        {
+                            'id': '9f391f20-e226-45d7-9867-f0ecb0e26579',
+                            'name': 'Business address',
+                            'color': 'pink'
+                        },
+                        {
+                            'id': '0b61d07f-fd97-4b68-89ce-6223ce427e6b',
+                            'name': 'Country of residence',
+                            'color': 'yellow'
+                        },
+                        {
+                            'id': '4f5d3263-7e0f-4ab4-a49d-60df8b7ea475',
+                            'name': 'Nature and extent of interest held (ranges)',
+                            'color': 'brown'
+                        },
+                        {
+                            'id': '474f594f-1758-4a29-b75f-5ea9056097c9',
+                            'name': 'Whether an application has been made for the individual’s information to be protected from public disclosure',
+                            'color': 'brown'
+                        }
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'UK companies *(see notes)',
+                                'content': 'UK registered and unregistered companies, partnerships, Limited Liability Liability Partnerships, Societates Europaeae, Scotish Limited Partnerships, Scottish Qualifying Partnerships',
                                 'link': None
                             },
                             'annotations': {
@@ -6958,26 +7798,22 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'UK companies *(see notes)',
+                            'plain_text': 'UK registered and unregistered companies, partnerships, Limited Liability Liability Partnerships, Societates Europaeae, Scotish Limited Partnerships, Scottish Qualifying Partnerships',
                             'href': None
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': 'https://www.gov.uk/guidance/applying-to-protect-your-personal-information-on-the-companies-house-register'
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': 'http://download.companieshouse.gov.uk/en_pscdata.html'
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': {
@@ -6986,7 +7822,12 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': 'http://resources.companieshouse.gov.uk/serviceInformation.shtml#compInfo'
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -7009,6 +7850,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': 20
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -7018,64 +7864,223 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
-                    'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
-                },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': '1058fd4c-9a3f-465a-be3d-b4f2184f2c41',
-                                        'name': 'G20',
-                                        'color': 'pink'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    },
-                                    {
-                                        'id': '6ffad767-ae3e-4d60-a851-d8dda2e61dae',
-                                        'name': 'LG - Member',
-                                        'color': 'blue'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': {
+                        'id': '6ee82c45-a25e-4dbc-9526-0359b2bcf14d',
+                        'name': 'Yes',
+                        'color': 'green'
                     }
                 },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'url',
+                    'url': 'https://www.legislation.gov.uk/ukpga/2006/46/schedule/1A'
+                },
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://find-and-update.company-information.service.gov.uk/'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': 'https://www.legislation.gov.uk/ukpga/2006/46/section/790F'
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '14 days',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '14 days',
+                            'href': None
+                        }
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': {
+                        'id': '79b81d80-2e4e-4555-b96f-8072aacef85b',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'url',
+                    'url': 'https://www.gov.uk/government/organisations/companies-house/about/personal-information-charter'
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': 'https://www.gov.uk/government/publications/companies-house-accreditation-to-information-fair-traders-scheme'
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': {
+                        'id': '7ce0db95-0a97-493d-8339-e08f5f55a52f',
+                        'name': 'For companies only',
+                        'color': 'brown'
+                    }
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies House does not verify the accuracy of the information filed',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies House does not verify the accuracy of the information filed',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': {
+                        'id': '6ee82c45-a25e-4dbc-9526-0359b2bcf14d',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '9e10c6c6-ea3e-47c7-85c7-02b79d386723',
+                            'name': 'Month of birth',
+                            'color': 'brown'
+                        },
+                        {
+                            'id': '676faf4f-a92d-40e3-a81a-1aaa9ff80a2b',
+                            'name': 'Day of birth',
+                            'color': 'red'
+                        },
+                        {
+                            'id': '33cf3ba8-0228-4571-b85d-d015f8d08b7d',
+                            'name': 'Year of birth',
+                            'color': 'orange'
+                        },
+                        {
+                            'id': '9767e47c-0ce5-420f-a088-987810e2d4ec',
+                            'name': 'Business address',
+                            'color': 'blue'
+                        },
+                        {
+                            'id': '6a034676-869c-4fc3-854f-a5c3c970d39c',
+                            'name': 'Residential address',
+                            'color': 'purple'
+                        },
+                        {
+                            'id': '61d94183-fce7-4357-81e3-6b9fe99e2a3c',
+                            'name': 'Nationality',
+                            'color': 'purple'
+                        },
+                        {
+                            'id': '790ef979-8627-44d0-a56c-dc7d8833e74d',
+                            'name': 'Date BO started',
+                            'color': 'pink'
+                        },
+                        {
+                            'id': '02214edf-9a06-4dd8-9727-24d919d580b2',
+                            'name': 'Whether an application has been made for the individual’s information to be protected from public disclosure',
+                            'color': 'default'
+                        },
+                        {
+                            'id': '1942c6ef-2d7b-42e7-9a6d-571825aa5fe8',
+                            'name': 'Nature and extent of interest held (ranges)',
+                            'color': 'gray'
+                        }
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                         {
@@ -7097,59 +8102,30 @@ REGIMES = {
                         }
                     ]
                 },
-                '9 Access is free (R-FREE)': {
-                    'id': "c*b'",
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'id': 'aaaae40b-cc5a-4314-af51-158c37c19d31',
+                        'name': '2016',
+                        'color': 'gray'
+                    }
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': {
+                        'id': '6ee82c45-a25e-4dbc-9526-0359b2bcf14d',
                         'name': 'Yes',
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
                     'type': 'url',
-                    'url': None
+                    'url': 'https://www.legislation.gov.uk/ukpga/2006/46/section/790E (period to update); https://www.legislation.gov.uk/ukpga/2006/46/part/24 (annual confirmation); https://www.gov.uk/government/organisations/companies-house/about/personal-information-charter (data retention)'
                 },
-                '6 Public access': {
-                    'id': 'jxf!',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
-                },
-                '8 No registration required (R-NOREG)': {
-                    'id': 'l%2F%3Dw',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
-                },
-                'Last updated by': {
-                    'id': 'm%3D%7BD',
-                    'type': 'last_edited_by',
-                    'last_edited_by': {
-                        'object': 'user',
-                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
-                        'name': 'Stephen Abbott Pugh',
-                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
-                        'type': 'person',
-                        'person': {
-                            'email': 'stephen@openownership.org'
-                        }
-                    }
-                },
-                'Notes': {
-                    'id': 'wbf%5B',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -7158,7 +8134,30 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Annually',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Annually',
+                            'href': None
+                        }
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': {
@@ -7174,7 +8173,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'UK PSC Register',
+                                'content': 'UK People with significant control (PSC) Register',
                                 'link': None
                             },
                             'annotations': {
@@ -7185,19 +8184,27 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'UK PSC Register',
+                            'plain_text': 'UK People with significant control (PSC) Register',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/UK-PSC-Register-bcce98e38a6a45d2924b16ba93feb125'
+            'url': 'https://www.notion.so/UK-People-with-significant-control-PSC-Register-bcce98e38a6a45d2924b16ba93feb125'
         },
         {
             'object': 'page',
             'id': '31634aad-64a4-469c-8d55-42ed90af018c',
             'created_time': '2020-03-13T13:38:00.000Z',
             'last_edited_time': '2020-03-13T16:16:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'f631e4fb-0786-4016-86e0-788b967d8a36'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -7206,17 +8213,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': 'https://register.openownership.org/data_sources/ua-edr-register'
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2020-03-13T16:16:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': True
@@ -7226,17 +8228,17 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': {
@@ -7245,12 +8247,12 @@ REGIMES = {
                         'color': 'orange'
                     }
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -7259,7 +8261,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -7276,12 +8278,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -7304,21 +8312,17 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': 'https://register.openownership.org/data_sources/ua-edr-register'
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': {
@@ -7327,7 +8331,12 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -7350,6 +8359,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -7359,64 +8373,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': '29cc1158-d4aa-4225-bba0-35007168d492',
-                                        'name': 'LG - Target',
-                                        'color': 'yellow'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://usr.minjust.gov.ua/'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -7425,12 +8424,33 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -7439,7 +8459,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -7447,6 +8467,11 @@ REGIMES = {
                         'name': 'Yes',
                         'color': 'green'
                     }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
                 },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
@@ -7456,18 +8481,45 @@ REGIMES = {
                         'id': 'f631e4fb-0786-4016-86e0-788b967d8a36'
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': {
@@ -7506,7 +8558,15 @@ REGIMES = {
             'object': 'page',
             'id': 'b30eddf7-db66-49ea-bf59-6c1d9e53d02d',
             'created_time': '2020-03-13T13:35:00.000Z',
-            'last_edited_time': '2021-10-24T08:33:00.000Z',
+            'last_edited_time': '2022-02-23T13:20:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -7515,17 +8575,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-24T08:33:00.000Z'
+                    'last_edited_time': '2022-02-23T13:20:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': True
@@ -7535,12 +8590,12 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -7549,17 +8604,17 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -7568,7 +8623,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -7585,12 +8640,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -7649,26 +8710,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -7691,6 +8753,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -7700,61 +8767,147 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': '29cc1158-d4aa-4225-bba0-35007168d492',
-                                        'name': 'LG - Target',
-                                        'color': 'yellow'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'http://www.bolagsverket.se/pb/etjanster/verklig-huvudman/sok\n\nhttps://bolagsverket.se/be/sok/xml/produktpaket-1.5471'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'User guidance: ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'User guidance: ',
+                            'href': None
+                        },
                         {
                             'type': 'text',
                             'text': {
@@ -7776,59 +8929,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '9 Access is free (R-FREE)': {
-                    'id': "c*b'",
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
                     'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                    'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
-                    'id': 'jxf!',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
-                },
-                '8 No registration required (R-NOREG)': {
-                    'id': 'l%2F%3Dw',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
-                },
-                'Last updated by': {
-                    'id': 'm%3D%7BD',
-                    'type': 'last_edited_by',
-                    'last_edited_by': {
-                        'object': 'user',
-                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
-                        'name': 'Tymon',
-                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
-                        'type': 'person',
-                        'person': {
-                            'email': 'tymon@openownership.org'
-                        }
-                    }
-                },
-                'Notes': {
-                    'id': 'wbf%5B',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -7837,7 +8953,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -7873,6 +8995,14 @@ REGIMES = {
             'id': '4d14f004-b7f9-4901-8ead-a31702dc0e05',
             'created_time': '2020-03-13T13:34:00.000Z',
             'last_edited_time': '2021-10-24T08:33:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -7881,17 +9011,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2021-10-24T08:33:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -7901,27 +9026,27 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -7930,7 +9055,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -7947,33 +9072,44 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -7996,6 +9132,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -8005,69 +9146,80 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': "N/A 'Registro de Titularidades Reales - yet to exist"
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -8076,8 +9228,13 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -8095,18 +9252,45 @@ REGIMES = {
                         }
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -8142,6 +9326,14 @@ REGIMES = {
             'id': 'ac066c55-fde8-4485-893b-99c0e54ddd2f',
             'created_time': '2020-03-13T13:33:00.000Z',
             'last_edited_time': '2020-10-29T11:29:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -8150,17 +9342,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2020-10-29T11:29:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -8170,32 +9357,32 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': None
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -8207,37 +9394,44 @@ REGIMES = {
                     'multi_select': [
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -8260,6 +9454,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -8269,64 +9468,80 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://www.ajpes.si/eRDL/Iskalnik/Javni'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -8335,8 +9550,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -8348,18 +9568,45 @@ REGIMES = {
                         'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -8395,6 +9642,14 @@ REGIMES = {
             'id': '73eab438-7918-4022-9dec-fd3ab66e4087',
             'created_time': '2020-03-13T13:33:00.000Z',
             'last_edited_time': '2020-03-13T16:23:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'f631e4fb-0786-4016-86e0-788b967d8a36'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -8403,17 +9658,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': 'https://register.openownership.org/data_sources/sk-rpvs-register'
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2020-03-13T16:23:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': True
@@ -8423,12 +9673,12 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': 'https://rpvs.gov.sk/OpenData'
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -8437,7 +9687,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': {
@@ -8446,7 +9696,7 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': {
@@ -8455,7 +9705,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -8464,7 +9714,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -8481,12 +9731,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -8509,26 +9765,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -8551,6 +9808,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -8560,47 +9822,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': '6ffad767-ae3e-4d60-a851-d8dda2e61dae',
-                                        'name': 'LG - Member',
-                                        'color': 'blue'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://rpvs.gov.sk/rpvs'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
@@ -8611,13 +9848,23 @@ REGIMES = {
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -8626,12 +9873,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -8640,7 +9908,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -8648,6 +9916,11 @@ REGIMES = {
                         'name': 'Yes',
                         'color': 'green'
                     }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
                 },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
@@ -8657,13 +9930,34 @@ REGIMES = {
                         'id': 'f631e4fb-0786-4016-86e0-788b967d8a36'
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -8672,7 +9966,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': {
@@ -8711,7 +10011,15 @@ REGIMES = {
             'object': 'page',
             'id': '43ae2db6-479b-4cb0-a0eb-7f7d67ac847c',
             'created_time': '2020-03-13T13:30:00.000Z',
-            'last_edited_time': '2020-05-28T14:52:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -8720,17 +10028,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-05-28T14:52:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -8740,32 +10043,32 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': None
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -8782,12 +10085,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -8810,26 +10119,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -8840,75 +10159,91 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'there is no register yet'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': None
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -8917,8 +10252,20 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -8926,12 +10273,33 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -8966,7 +10334,15 @@ REGIMES = {
             'object': 'page',
             'id': '6d25be62-7cc3-4b99-bc5c-c20711c30e58',
             'created_time': '2020-03-13T13:29:00.000Z',
-            'last_edited_time': '2021-10-19T16:15:00.000Z',
+            'last_edited_time': '2022-02-23T13:03:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -8975,17 +10351,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-19T16:15:00.000Z'
+                    'last_edited_time': '2022-02-23T13:03:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -8995,12 +10366,12 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -9009,17 +10380,17 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -9028,7 +10399,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -9045,12 +10416,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -9073,26 +10450,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -9115,6 +10493,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -9124,59 +10507,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://rcbe.justica.gov.pt/'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -9185,22 +10558,48 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -9209,14 +10608,20 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '7bd368f7-9440-4d8f-ad8e-2d0a81043a7f',
-                        'name': 'Peter Low',
-                        'avatar_url': None,
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'peter@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -9224,7 +10629,22 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -9233,7 +10653,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -9268,7 +10694,15 @@ REGIMES = {
             'object': 'page',
             'id': '2e891914-1b42-430a-acc3-0b64de60534a',
             'created_time': '2020-03-13T13:29:00.000Z',
-            'last_edited_time': '2021-10-19T16:15:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -9277,17 +10711,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-19T16:15:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -9297,12 +10726,12 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': 'https://bramka-crbr.mf.gov.pl/'
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -9311,12 +10740,12 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': {
@@ -9325,7 +10754,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -9334,7 +10763,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -9351,12 +10780,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -9379,26 +10814,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -9421,6 +10857,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -9430,54 +10871,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://crbr.podatki.gov.pl/adcrbr/#/'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -9486,12 +10922,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -9500,7 +10957,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -9509,19 +10966,30 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '7bd368f7-9440-4d8f-ad8e-2d0a81043a7f',
-                        'name': 'Peter Low',
-                        'avatar_url': None,
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'peter@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -9529,7 +10997,22 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -9538,7 +11021,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -9573,7 +11062,15 @@ REGIMES = {
             'object': 'page',
             'id': 'a74c31ae-8b12-411a-a68c-915a683b0229',
             'created_time': '2020-03-13T13:27:00.000Z',
-            'last_edited_time': '2021-11-18T13:22:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -9582,17 +11079,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-11-18T13:22:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -9602,27 +11094,27 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -9631,7 +11123,7 @@ REGIMES = {
                         'color': 'orange'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -9648,37 +11140,53 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -9689,74 +11197,80 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    },
-                                    {
-                                        'id': '6ffad767-ae3e-4d60-a851-d8dda2e61dae',
-                                        'name': 'LG - Member',
-                                        'color': 'blue'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'Not yet live'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -9765,8 +11279,13 @@ REGIMES = {
                         'color': 'orange'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -9775,14 +11294,20 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'f8622e2c-ebaf-4d8e-ba3a-7d83f3d03589',
-                        'name': 'Alanna',
-                        'avatar_url': None,
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'alanna@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -9807,12 +11332,33 @@ REGIMES = {
                         }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -9848,6 +11394,14 @@ REGIMES = {
             'id': '8d59d09b-a0c2-4bfa-815c-fcddabe84063',
             'created_time': '2020-03-13T13:25:00.000Z',
             'last_edited_time': '2020-10-29T11:29:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -9856,17 +11410,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2020-10-29T11:29:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -9876,27 +11425,27 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -9905,7 +11454,7 @@ REGIMES = {
                         'color': 'yellow'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -9922,12 +11471,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -9950,26 +11505,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -9992,6 +11548,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -10001,47 +11562,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    },
-                                    {
-                                        'id': '6ffad767-ae3e-4d60-a851-d8dda2e61dae',
-                                        'name': 'LG - Member',
-                                        'color': 'blue'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://bo.neiti.gov.ng/'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
@@ -10052,23 +11588,54 @@ REGIMES = {
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -10077,8 +11644,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -10090,18 +11662,45 @@ REGIMES = {
                         'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -10136,7 +11735,15 @@ REGIMES = {
             'object': 'page',
             'id': '9418b6ba-536f-47f5-be26-b1156185ef33',
             'created_time': '2020-03-13T13:24:00.000Z',
-            'last_edited_time': '2021-10-19T14:12:00.000Z',
+            'last_edited_time': '2022-02-23T14:37:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -10145,17 +11752,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-19T14:12:00.000Z'
+                    'last_edited_time': '2022-02-23T14:37:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -10165,12 +11767,12 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -10179,17 +11781,17 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -10198,7 +11800,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -10215,41 +11817,109 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '4f5d3263-7e0f-4ab4-a49d-60df8b7ea475',
+                            'name': 'Nature and extent of interest held (ranges)',
+                            'color': 'brown'
+                        },
+                        {
+                            'id': 'b2b20686-159e-43a0-a9d5-086714110176',
+                            'name': 'Year of birth',
+                            'color': 'gray'
+                        },
+                        {
+                            'id': '0d942583-8ee9-4882-929e-99ddc23aa069',
+                            'name': 'Month of birth',
+                            'color': 'default'
+                        },
+                        {
+                            'id': '710e25ca-b69b-4106-99f4-7b2d1e50b99e',
+                            'name': 'Full name',
+                            'color': 'default'
+                        },
+                        {
+                            'id': '9f391f20-e226-45d7-9867-f0ecb0e26579',
+                            'name': 'Business address',
+                            'color': 'pink'
+                        },
+                        {
+                            'id': '1bd1aaad-aa80-467a-a227-9be096e4221c',
+                            'name': 'Nationality',
+                            'color': 'purple'
+                        },
+                        {
+                            'id': '0b61d07f-fd97-4b68-89ce-6223ce427e6b',
+                            'name': 'Country of residence',
+                            'color': 'yellow'
+                        }
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '€2.55 fee',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '€2.55 fee',
+                            'href': None
+                        }
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -10260,64 +11930,57 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': {
+                        'id': '6ee82c45-a25e-4dbc-9526-0359b2bcf14d',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://www.kvk.nl/producten-bestellen/bedrijfsproducten-bestellen/uittreksel-ubo-register/'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': {
+                        'id': '79b81d80-2e4e-4555-b96f-8072aacef85b',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -10326,12 +11989,33 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -10340,13 +12024,22 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
                         'id': '85530135-8f52-462d-8dbc-e86014e31922',
                         'name': 'No',
                         'color': 'red'
+                    }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': {
+                        'id': '6ee82c45-a25e-4dbc-9526-0359b2bcf14d',
+                        'name': 'Yes',
+                        'color': 'green'
                     }
                 },
                 'Last updated by': {
@@ -10363,13 +12056,38 @@ REGIMES = {
                         }
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': {
+                        'id': 'b81a9b3e-62b4-47bb-bbc0-3d7fc5ae5303',
+                        'name': '2020',
+                        'color': 'default'
+                    }
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -10378,7 +12096,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -10413,7 +12137,15 @@ REGIMES = {
             'object': 'page',
             'id': '53ccbeda-7640-47f4-aa63-8ad889fd2978',
             'created_time': '2020-03-13T13:21:00.000Z',
-            'last_edited_time': '2021-10-19T16:19:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -10422,17 +12154,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-19T16:19:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -10442,12 +12169,12 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -10456,17 +12183,17 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -10475,7 +12202,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -10492,12 +12219,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
-                    'url': None
+                    'url': 'Companies Act Foundations and Associations Voluntary Organisations Regulations'
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -10520,30 +12253,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -10554,59 +12293,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://registry.mbr.mt/ROC/index.jsp#companySearch.do?action=companyDetails ; https://registry.mbr.mt/ROC/'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -10615,12 +12344,33 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -10629,7 +12379,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -10638,19 +12388,30 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '7bd368f7-9440-4d8f-ad8e-2d0a81043a7f',
-                        'name': 'Peter Low',
-                        'avatar_url': None,
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'peter@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -10658,7 +12419,22 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -10667,7 +12443,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -10702,7 +12484,15 @@ REGIMES = {
             'object': 'page',
             'id': '67580452-c6af-4926-a88e-a1a5b30388f6',
             'created_time': '2020-03-13T13:20:00.000Z',
-            'last_edited_time': '2021-07-15T10:09:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -10711,17 +12501,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-07-15T10:09:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -10731,12 +12516,12 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -10745,22 +12530,22 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': None
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -10777,12 +12562,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -10805,26 +12596,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -10847,6 +12639,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -10856,59 +12653,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'http://www.lbr.lu/mjrcs-rbe'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -10917,12 +12704,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -10931,7 +12739,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -10940,13 +12748,30 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '02cea0fa-fe74-47e4-8122-e12855faf1ef'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -10954,7 +12779,22 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -10963,7 +12803,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -10998,7 +12844,15 @@ REGIMES = {
             'object': 'page',
             'id': 'c3340f6f-d6ad-4db7-88ff-294d6487e0cf',
             'created_time': '2020-03-13T13:20:00.000Z',
-            'last_edited_time': '2021-10-19T14:11:00.000Z',
+            'last_edited_time': '2022-02-23T13:02:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -11007,17 +12861,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-19T14:11:00.000Z'
+                    'last_edited_time': '2022-02-23T13:02:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -11027,27 +12876,27 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -11056,7 +12905,7 @@ REGIMES = {
                         'color': 'orange'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -11073,12 +12922,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -11101,26 +12956,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -11143,6 +12999,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -11152,79 +13013,95 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': ''
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
-                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
-                        'name': 'Planned',
-                        'color': 'orange'
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -11241,6 +13118,12 @@ REGIMES = {
                             'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -11265,12 +13148,33 @@ REGIMES = {
                         }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -11305,7 +13209,15 @@ REGIMES = {
             'object': 'page',
             'id': 'c66aaa5d-826e-487f-b19c-fe0012652834',
             'created_time': '2020-03-13T13:18:00.000Z',
-            'last_edited_time': '2022-02-12T11:32:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -11314,17 +13226,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-12T11:32:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -11334,12 +13241,12 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': 'https://data.gov.lv/dati/lv/api/3'
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -11348,7 +13255,7 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': {
@@ -11357,7 +13264,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': {
@@ -11366,7 +13273,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -11375,7 +13282,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -11409,12 +13316,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -11437,21 +13350,17 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': {
@@ -11460,11 +13369,21 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -11475,64 +13394,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': '6ffad767-ae3e-4d60-a851-d8dda2e61dae',
-                                        'name': 'LG - Member',
-                                        'color': 'blue'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://info.ur.gov.lv/#/data-search'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -11541,12 +13445,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -11555,7 +13480,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -11564,19 +13489,30 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
-                        'name': 'Stephen Abbott Pugh',
-                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'stephen@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -11584,7 +13520,22 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -11593,7 +13544,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': {
@@ -11632,7 +13589,15 @@ REGIMES = {
             'object': 'page',
             'id': '2f4b0caa-6200-4be2-8a73-092575427b5e',
             'created_time': '2020-03-13T13:16:00.000Z',
-            'last_edited_time': '2021-10-19T13:55:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -11641,17 +13606,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-19T13:55:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -11661,27 +13621,27 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -11690,7 +13650,7 @@ REGIMES = {
                         'color': 'yellow'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -11707,12 +13667,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -11735,30 +13701,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
-                        'name': 'Planned',
-                        'color': 'orange'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -11769,69 +13741,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': '1058fd4c-9a3f-465a-be3d-b4f2184f2c41',
-                                        'name': 'G20',
-                                        'color': 'pink'
-                                    },
-                                    {
-                                        'id': '29cc1158-d4aa-4225-bba0-35007168d492',
-                                        'name': 'LG - Target',
-                                        'color': 'yellow'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': ''
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -11840,12 +13792,33 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -11854,8 +13827,13 @@ REGIMES = {
                         'color': 'yellow'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -11872,6 +13850,12 @@ REGIMES = {
                             'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -11915,12 +13899,33 @@ REGIMES = {
                         }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -11955,7 +13960,15 @@ REGIMES = {
             'object': 'page',
             'id': '986e647d-9612-4710-aa88-46d1a1773623',
             'created_time': '2020-03-13T13:15:00.000Z',
-            'last_edited_time': '2021-11-17T10:09:00.000Z',
+            'last_edited_time': '2022-02-23T13:20:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -11964,17 +13977,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-11-17T10:09:00.000Z'
+                    'last_edited_time': '2022-02-23T13:20:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -11984,12 +13992,12 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -11998,17 +14006,17 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -12017,7 +14025,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -12053,12 +14061,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -12081,21 +14095,17 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': {
@@ -12104,69 +14114,13 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
-                    'id': 'J~fN',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                'Country': {
-                    'id': 'PTKs',
-                    'type': 'relation',
-                    'relation': [
-                        {
-                            'id': '9349ee2b-3378-4b0a-8d2c-229c86063b63'
-                        }
-                    ]
-                },
-                '1.1 Definition legislation': {
-                    'id': 'PpKg',
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
-                    'id': 'X%26sR',
-                    'type': 'url',
-                    'url': 'https://rbo.gov.ie/'
-                },
-                '2 Coverage': {
-                    'id': 'Z%3Dqf',
-                    'type': 'multi_select',
-                    'multi_select': [
-                        {
-                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
-                            'color': 'green'
-                        }
-                    ]
-                },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                         {
@@ -12190,7 +14144,63 @@ REGIMES = {
                         }
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '9349ee2b-3378-4b0a-8d2c-229c86063b63'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': 'https://rbo.gov.ie/'
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -12199,12 +14209,33 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -12213,7 +14244,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -12221,6 +14252,11 @@ REGIMES = {
                         'name': 'Yes',
                         'color': 'green'
                     }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
                 },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
@@ -12235,6 +14271,12 @@ REGIMES = {
                             'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -12259,7 +14301,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -12268,7 +14325,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -12303,7 +14366,15 @@ REGIMES = {
             'object': 'page',
             'id': 'e515d514-b4c9-43ea-8922-35d40dbc1447',
             'created_time': '2020-03-13T13:15:00.000Z',
-            'last_edited_time': '2020-10-29T11:33:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -12312,17 +14383,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-10-29T11:33:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -12332,12 +14398,12 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -12346,7 +14412,7 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': {
@@ -12355,12 +14421,12 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -12369,7 +14435,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -12386,37 +14452,44 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -12439,6 +14512,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -12448,69 +14526,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': '1058fd4c-9a3f-465a-be3d-b4f2184f2c41',
-                                        'name': 'G20',
-                                        'color': 'pink'
-                                    },
-                                    {
-                                        'id': '29cc1158-d4aa-4225-bba0-35007168d492',
-                                        'name': 'LG - Target',
-                                        'color': 'yellow'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://kemenperin.go.id/direktori-perusahaan OR https://ahu.go.id/pencarian/profil-pt'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -12519,12 +14577,33 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -12533,7 +14612,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -12542,13 +14621,30 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -12556,7 +14652,22 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -12565,7 +14676,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': {
@@ -12605,6 +14722,14 @@ REGIMES = {
             'id': '97baee48-d235-4977-9699-2280020b415a',
             'created_time': '2020-03-13T13:14:00.000Z',
             'last_edited_time': '2021-10-19T13:49:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -12613,17 +14738,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
                     'last_edited_time': '2021-10-19T13:49:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -12633,32 +14753,32 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': None
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -12675,37 +14795,53 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -12716,65 +14852,86 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '1058fd4c-9a3f-465a-be3d-b4f2184f2c41',
-                                        'name': 'G20',
-                                        'color': 'pink'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': None
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': None
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -12792,18 +14949,45 @@ REGIMES = {
                         }
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -12838,7 +15022,15 @@ REGIMES = {
             'object': 'page',
             'id': 'a94913a3-57d1-453a-8dd4-746020444b8f',
             'created_time': '2020-03-13T13:14:00.000Z',
-            'last_edited_time': '2021-11-17T10:10:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -12847,17 +15039,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-11-17T10:10:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -12867,27 +15054,27 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -12896,7 +15083,7 @@ REGIMES = {
                         'color': 'yellow'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -12923,37 +15110,44 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
-                        'name': 'Planned',
-                        'color': 'orange'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -12976,6 +15170,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -12985,64 +15184,80 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'Expected access from 1 July 2022.'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -13051,8 +15266,13 @@ REGIMES = {
                         'color': 'orange'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -13069,6 +15289,12 @@ REGIMES = {
                             'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -13112,12 +15338,33 @@ REGIMES = {
                         }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -13152,7 +15399,15 @@ REGIMES = {
             'object': 'page',
             'id': '06f25ad4-302e-4255-99f1-2a731ebffc5a',
             'created_time': '2020-03-13T13:13:00.000Z',
-            'last_edited_time': '2021-10-22T15:40:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -13161,17 +15416,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-22T15:40:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -13181,27 +15431,27 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -13210,7 +15460,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -13227,12 +15477,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -13255,26 +15511,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -13285,69 +15551,80 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': None
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -13356,8 +15633,13 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -13366,14 +15648,20 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '2b8b633d-a8e1-4fdf-9fe1-850f30432e63',
-                        'name': 'Hani Rosidaini',
-                        'avatar_url': None,
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'hani@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -13381,12 +15669,33 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -13421,7 +15730,15 @@ REGIMES = {
             'object': 'page',
             'id': 'f01c8267-b432-4541-8bcb-3cd330d86f72',
             'created_time': '2020-03-13T13:12:00.000Z',
-            'last_edited_time': '2021-10-24T08:29:00.000Z',
+            'last_edited_time': '2022-02-23T13:19:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -13430,17 +15747,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-24T08:29:00.000Z'
+                    'last_edited_time': '2022-02-23T13:19:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -13450,12 +15762,12 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -13464,17 +15776,17 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -13483,7 +15795,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -13536,12 +15848,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -13564,186 +15882,28 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
-                    'type': 'rich_text',
-                    'rich_text': [
-                        {
-                            'type': 'text',
-                            'text': {
-                                'content': 'Access thought to be: Legitimate Interest',
-                                'link': None
-                            },
-                            'annotations': {
-                                'bold': False,
-                                'italic': False,
-                                'strikethrough': False,
-                                'underline': False,
-                                'code': False,
-                                'color': 'default'
-                            },
-                            'plain_text': 'Access thought to be: Legitimate Interest',
-                            'href': None
-                        }
-                    ]
-                },
-                'Country': {
-                    'id': 'PTKs',
-                    'type': 'relation',
-                    'relation': [
-                        {
-                            'id': 'cfad2fce-e7ac-456f-95b6-303dce4d1ed5'
-                        }
-                    ]
-                },
-                '1.1 Definition legislation': {
-                    'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
-                },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': '1058fd4c-9a3f-465a-be3d-b4f2184f2c41',
-                                        'name': 'G20',
-                                        'color': 'pink'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
-                    'id': 'X%26sR',
-                    'type': 'url',
-                    'url': 'https://www.transparenzregister.de/treg/en/start;jsessionid=A1B106E1C24B02446147B1E54081403A.app12?0'
-                },
-                '2 Coverage': {
-                    'id': 'Z%3Dqf',
-                    'type': 'multi_select',
-                    'multi_select': [
-                        {
-                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
-                            'color': 'green'
-                        }
-                    ]
-                },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
-                    'type': 'rich_text',
-                    'rich_text': [
-                        {
-                            'type': 'text',
-                            'text': {
-                                'content': 'https://www.transparenzregister.de/treg/de/Kurzanleitung_Eintragung.pdf',
-                                'link': {
-                                    'url': 'https://www.transparenzregister.de/treg/de/Kurzanleitung_Eintragung.pdf'
-                                }
-                            },
-                            'annotations': {
-                                'bold': False,
-                                'italic': False,
-                                'strikethrough': False,
-                                'underline': False,
-                                'code': False,
-                                'color': 'default'
-                            },
-                            'plain_text': 'https://www.transparenzregister.de/treg/de/Kurzanleitung_Eintragung.pdf',
-                            'href': 'https://www.transparenzregister.de/treg/de/Kurzanleitung_Eintragung.pdf'
-                        }
-                    ]
-                },
-                '9 Access is free (R-FREE)': {
-                    'id': "c*b'",
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
-                },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
-                    'type': 'url',
-                    'url': None
-                },
-                '6 Public access': {
-                    'id': 'jxf!',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
-                },
-                '8 No registration required (R-NOREG)': {
-                    'id': 'l%2F%3Dw',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
-                },
-                'Last updated by': {
-                    'id': 'm%3D%7BD',
-                    'type': 'last_edited_by',
-                    'last_edited_by': {
-                        'object': 'user',
-                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
-                        'name': 'Tymon',
-                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
-                        'type': 'person',
-                        'person': {
-                            'email': 'tymon@openownership.org'
-                        }
-                    }
-                },
-                'Notes': {
-                    'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
                         {
@@ -13765,7 +15925,198 @@ REGIMES = {
                         }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': 'cfad2fce-e7ac-456f-95b6-303dce4d1ed5'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': 'https://www.transparenzregister.de/treg/en/start;jsessionid=A1B106E1C24B02446147B1E54081403A.app12?0'
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'User guidance: ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'User guidance: ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.transparenzregister.de/treg/de/Kurzanleitung_Eintragung.pdf',
+                                'link': {
+                                    'url': 'https://www.transparenzregister.de/treg/de/Kurzanleitung_Eintragung.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.transparenzregister.de/treg/de/Kurzanleitung_Eintragung.pdf',
+                            'href': 'https://www.transparenzregister.de/treg/de/Kurzanleitung_Eintragung.pdf'
+                        }
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -13774,7 +16125,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -13809,7 +16166,15 @@ REGIMES = {
             'object': 'page',
             'id': '4360631b-cbe7-4eb3-b7a4-a800deff40f9',
             'created_time': '2020-03-13T13:12:00.000Z',
-            'last_edited_time': '2021-10-26T09:46:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -13818,17 +16183,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-26T09:46:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -13838,12 +16198,12 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': 'https://data.inpi.fr/swagger'
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -13852,12 +16212,12 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': {
@@ -13866,7 +16226,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -13875,7 +16235,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -13892,12 +16252,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -13920,21 +16286,17 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': {
@@ -13943,11 +16305,21 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -13958,69 +16330,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': '1058fd4c-9a3f-465a-be3d-b4f2184f2c41',
-                                        'name': 'G20',
-                                        'color': 'pink'
-                                    },
-                                    {
-                                        'id': '29cc1158-d4aa-4225-bba0-35007168d492',
-                                        'name': 'LG - Target',
-                                        'color': 'yellow'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://data.inpi.fr/'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -14029,12 +16381,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -14043,7 +16416,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -14052,19 +16425,30 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'b533228e-eb62-4dae-bde6-11554f3b47fd',
-                        'name': 'Favour Ime',
-                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJxLb4NlLQNH2lzd674xEQso8gQ9sXsOJM7BgRdg=s100',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'favour@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -14072,7 +16456,22 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -14081,7 +16480,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -14116,7 +16521,15 @@ REGIMES = {
             'object': 'page',
             'id': '511b3de1-8209-45d9-a687-1578beaa46d4',
             'created_time': '2020-03-13T13:12:00.000Z',
-            'last_edited_time': '2022-01-05T11:48:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -14125,17 +16538,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-01-05T11:48:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -14145,27 +16553,27 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -14174,7 +16582,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -14191,12 +16599,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -14255,26 +16669,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -14297,6 +16712,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -14306,64 +16726,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': '29cc1158-d4aa-4225-bba0-35007168d492',
-                                        'name': 'LG - Target',
-                                        'color': 'yellow'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://virre.prh.fi/novus/home?execution=e1s1'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -14372,12 +16777,33 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -14386,8 +16812,13 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -14404,6 +16835,12 @@ REGIMES = {
                             'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -14428,12 +16865,33 @@ REGIMES = {
                         }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -14468,7 +16926,15 @@ REGIMES = {
             'object': 'page',
             'id': 'bb1eb01b-c892-49ca-808e-a487299e2661',
             'created_time': '2020-03-13T13:11:00.000Z',
-            'last_edited_time': '2021-10-25T09:17:00.000Z',
+            'last_edited_time': '2022-02-23T13:18:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -14477,17 +16943,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-25T09:17:00.000Z'
+                    'last_edited_time': '2022-02-23T13:18:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -14497,12 +16958,12 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -14511,17 +16972,17 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -14530,7 +16991,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -14547,12 +17008,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -14575,30 +17042,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -14609,56 +17082,147 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': ' https://abiinfo.rik.ee/e-ariregistri-paringud/tegelikud-kasusaajad'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'User guidance: ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'User guidance: ',
+                            'href': None
+                        },
                         {
                             'type': 'text',
                             'text': {
@@ -14680,59 +17244,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '9 Access is free (R-FREE)': {
-                    'id': "c*b'",
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
                     'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                    'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
-                    'id': 'jxf!',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
-                },
-                '8 No registration required (R-NOREG)': {
-                    'id': 'l%2F%3Dw',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
-                },
-                'Last updated by': {
-                    'id': 'm%3D%7BD',
-                    'type': 'last_edited_by',
-                    'last_edited_by': {
-                        'object': 'user',
-                        'id': 'b533228e-eb62-4dae-bde6-11554f3b47fd',
-                        'name': 'Favour Ime',
-                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJxLb4NlLQNH2lzd674xEQso8gQ9sXsOJM7BgRdg=s100',
-                        'type': 'person',
-                        'person': {
-                            'email': 'favour@openownership.org'
-                        }
-                    }
-                },
-                'Notes': {
-                    'id': 'wbf%5B',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -14741,7 +17268,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -14776,7 +17309,15 @@ REGIMES = {
             'object': 'page',
             'id': '6cb12a57-7bf4-4379-9955-1ae0f1eabfbd',
             'created_time': '2020-03-13T13:09:00.000Z',
-            'last_edited_time': '2022-02-17T11:47:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -14785,17 +17326,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': 'https://register.openownership.org/data_sources/dk-cvr-register'
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-17T11:47:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': True
@@ -14805,12 +17341,12 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': 'http://datahub.virk.dk/dataset/system-til-system-adgang-til-cvr-data'
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -14819,7 +17355,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': {
@@ -14828,7 +17364,7 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': {
@@ -14837,7 +17373,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -14846,7 +17382,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -14863,12 +17399,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -14891,30 +17433,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': 'https://confluence.sdfe.dk/pages/viewpage.action?pageId=16056696'
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -14925,64 +17473,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': '29cc1158-d4aa-4225-bba0-35007168d492',
-                                        'name': 'LG - Target',
-                                        'color': 'yellow'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://datacvr.virk.dk/data/?language=en-gb&'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -14991,12 +17524,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -15005,7 +17559,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -15014,19 +17568,30 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
-                        'name': 'Stephen Abbott Pugh',
-                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'stephen@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -15034,7 +17599,22 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -15043,7 +17623,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': {
@@ -15082,7 +17668,15 @@ REGIMES = {
             'object': 'page',
             'id': '64f1013c-3aab-4ac4-b060-54a971cc3077',
             'created_time': '2020-03-13T13:07:00.000Z',
-            'last_edited_time': '2021-10-19T13:36:00.000Z',
+            'last_edited_time': '2022-02-23T13:19:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -15091,17 +17685,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-19T13:36:00.000Z'
+                    'last_edited_time': '2022-02-23T13:19:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -15111,12 +17700,12 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -15125,17 +17714,17 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -15144,7 +17733,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -15161,12 +17750,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -15208,30 +17803,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -15242,56 +17843,147 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://esm.justice.cz/ias/issm/rejstrik'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'User guidance: ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'User guidance: ',
+                            'href': None
+                        },
                         {
                             'type': 'text',
                             'text': {
@@ -15313,59 +18005,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '9 Access is free (R-FREE)': {
-                    'id': "c*b'",
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
                     'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                    'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
-                    'id': 'jxf!',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
-                },
-                '8 No registration required (R-NOREG)': {
-                    'id': 'l%2F%3Dw',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
-                },
-                'Last updated by': {
-                    'id': 'm%3D%7BD',
-                    'type': 'last_edited_by',
-                    'last_edited_by': {
-                        'object': 'user',
-                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
-                        'name': 'Tymon',
-                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
-                        'type': 'person',
-                        'person': {
-                            'email': 'tymon@openownership.org'
-                        }
-                    }
-                },
-                'Notes': {
-                    'id': 'wbf%5B',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -15374,7 +18029,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': {
@@ -15413,7 +18074,15 @@ REGIMES = {
             'object': 'page',
             'id': '1cfb81cc-a551-4d77-9be5-d53ac00f838c',
             'created_time': '2020-03-13T13:07:00.000Z',
-            'last_edited_time': '2021-06-17T07:50:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -15422,17 +18091,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-06-17T07:50:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -15440,34 +18104,46 @@ REGIMES = {
                 '1.2 Threshold': {
                     'id': '%24I.J',
                     'type': 'number',
-                    'number': None
+                    'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -15478,43 +18154,93 @@ REGIMES = {
                     'type': 'multi_select',
                     'multi_select': [
                         {
-                            'id': '5d3d079e-f56f-4466-bfa0-ed61cbe99061',
-                            'name': 'Legal',
-                            'color': 'brown'
+                            'id': '878268e4-dbc5-47f7-a649-88be1c683c35',
+                            'name': 'Data',
+                            'color': 'red'
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
-                    'url': None
+                    'url': ''
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies incorporated or registered under The Companies Law (Cap.113)\n- European Public limited liability Companies\n- Partnerships. \n\nThe nature and extent of beneficial interest must be completed in all cases (Natural person, Trust, Foundation, Other similar legal arrangements and listed company). Disclosure options for the nature of ownership or control include - Indirect, direct, or direct & indirect.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies incorporated or registered under The Companies Law (Cap.113)\n- European Public limited liability Companies\n- Partnerships. \n\nThe nature and extent of beneficial interest must be completed in all cases (Natural person, Trust, Foundation, Other similar legal arrangements and listed company). Disclosure options for the nature of ownership or control include - Indirect, direct, or direct & indirect.',
+                            'href': None
+                        }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Interim solution access to the BO information will be granted ONLY to Competent Supervisory Authorities, the FIUs, the Customs Department, the Tax Department and the Police, without any restriction and upon submitting a written request to the Registrar of Companies. This means that for the interim solution the search facility will not be available to\nobliged entities and any member of the general public.\nCompetent Supervisory Authorities, the FIU, the Customs Department, the Tax Department and the Police have unrestricted access to the BO information.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Interim solution access to the BO information will be granted ONLY to Competent Supervisory Authorities, the FIUs, the Customs Department, the Tax Department and the Police, without any restriction and upon submitting a written request to the Registrar of Companies. This means that for the interim solution the search facility will not be available to\nobliged entities and any member of the general public.\nCompetent Supervisory Authorities, the FIU, the Customs Department, the Tax Department and the Police have unrestricted access to the BO information.',
+                            'href': None
+                        }
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -15525,70 +18251,103 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
-                    'url': None
+                    'url': 'Prevention and Suppression of Money Laundering Activities Laws of 2007-2021'
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
-                    'url': ''
+                    'url': 'https://efiling.drcor.mcit.gov.cy/DrcorPublic/SearchForm.aspx?sc=0&cultureInfo=en-AU'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
-                    'id': "c*b'",
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
-                    'id': 'jxf!',
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
                     'type': 'select',
                     'select': None
                 },
-                '8 No registration required (R-NOREG)': {
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -15606,18 +18365,66 @@ REGIMES = {
                         }
                     }
                 },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Cyprus is in an “interim system solution” stage of BO register implementation following the passage of AMLD5 (duration: 12 March 2021 – 12 March 2022). Data is being collected during this time, but will not be made public on the register until after the initiation of the “final system solution” stage. Access is restricted until that time. After the register is made public, a fee of EUR3.50 will be assessed to get detailed records for both the public and obliged entities. Detailed info include information about a company’s mortgages and charges, as well as a description of the collateral used to secure financing. ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Cyprus is in an “interim system solution” stage of BO register implementation following the passage of AMLD5 (duration: 12 March 2021 – 12 March 2022). Data is being collected during this time, but will not be made public on the register until after the initiation of the “final system solution” stage. Access is restricted until that time. After the register is made public, a fee of EUR3.50 will be assessed to get detailed records for both the public and obliged entities. Detailed info include information about a company’s mortgages and charges, as well as a description of the collateral used to secure financing. ',
+                            'href': None
+                        }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
-                    'id': '%7Ce%7Dn',
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -15629,7 +18436,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Cyprus',
+                                'content': 'Cyprus Companies Register',
                                 'link': None
                             },
                             'annotations': {
@@ -15640,19 +18447,27 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Cyprus',
+                            'plain_text': 'Cyprus Companies Register',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Cyprus-1cfb81cca5514d779be5d53ac00f838c'
+            'url': 'https://www.notion.so/Cyprus-Companies-Register-1cfb81cca5514d779be5d53ac00f838c'
         },
         {
             'object': 'page',
             'id': '04f13a73-d22d-4385-8f17-52bcdf657825',
             'created_time': '2020-03-13T13:07:00.000Z',
-            'last_edited_time': '2021-11-08T16:04:00.000Z',
+            'last_edited_time': '2022-02-23T13:00:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -15661,17 +18476,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-11-08T16:04:00.000Z'
+                    'last_edited_time': '2022-02-23T13:00:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -15681,12 +18491,12 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -15695,17 +18505,17 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -15714,7 +18524,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -15767,12 +18577,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -15795,26 +18611,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -15837,6 +18654,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -15846,59 +18668,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://rsv.fina.hr/RSV-OnLineUnos-web/login'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -15907,21 +18719,42 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -15930,19 +18763,30 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'f8622e2c-ebaf-4d8e-ba3a-7d83f3d03589',
-                        'name': 'Alanna',
-                        'avatar_url': None,
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'alanna@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -15950,7 +18794,22 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -15959,7 +18818,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -15994,7 +18859,15 @@ REGIMES = {
             'object': 'page',
             'id': '66319d39-fbdf-4ed4-b4ed-bf580e463809',
             'created_time': '2020-03-13T13:04:00.000Z',
-            'last_edited_time': '2021-11-08T13:18:00.000Z',
+            'last_edited_time': '2022-02-23T14:30:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -16003,17 +18876,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-11-08T13:18:00.000Z'
+                    'last_edited_time': '2022-02-23T14:30:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -16023,32 +18891,36 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': 'dfe58e83-4471-4ca6-aa35-5e9bdb423674',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -16062,40 +18934,61 @@ REGIMES = {
                             'id': 'd94fec67-eca8-485f-9dcf-3329aa19726b',
                             'name': 'Commit',
                             'color': 'green'
+                        },
+                        {
+                            'id': '5d3d079e-f56f-4466-bfa0-ed61cbe99061',
+                            'name': 'Legal',
+                            'color': 'brown'
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -16106,75 +18999,95 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '1058fd4c-9a3f-465a-be3d-b4f2184f2c41',
-                                        'name': 'G20',
-                                        'color': 'pink'
-                                    },
-                                    {
-                                        'id': '29cc1158-d4aa-4225-bba0-35007168d492',
-                                        'name': 'LG - Target',
-                                        'color': 'yellow'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': ''
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
-                    'type': 'url',
-                    'url': None
-                },
-                '6 Public access': {
-                    'id': 'jxf!',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
                     'type': 'select',
                     'select': None
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -16183,14 +19096,20 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'f8622e2c-ebaf-4d8e-ba3a-7d83f3d03589',
-                        'name': 'Alanna',
-                        'avatar_url': None,
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'alanna@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -16198,12 +19117,33 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -16238,7 +19178,15 @@ REGIMES = {
             'object': 'page',
             'id': '7fce03f0-69ae-411c-9f63-d8a35a2c23f0',
             'created_time': '2020-03-13T13:03:00.000Z',
-            'last_edited_time': '2021-11-08T15:48:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -16247,17 +19195,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-11-08T15:48:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -16267,12 +19210,12 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -16281,17 +19224,17 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -16300,7 +19243,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -16317,12 +19260,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -16345,26 +19294,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -16387,6 +19337,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -16396,59 +19351,49 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': 'https://portal.registryagency.bg/CR/en/Reports/VerificationPersonOrg'
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -16457,12 +19402,33 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -16471,7 +19437,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -16480,19 +19446,30 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'f8622e2c-ebaf-4d8e-ba3a-7d83f3d03589',
-                        'name': 'Alanna',
-                        'avatar_url': None,
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'alanna@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -16517,7 +19494,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -16526,7 +19518,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -16561,7 +19559,15 @@ REGIMES = {
             'object': 'page',
             'id': 'fb3f00de-5578-44c9-b772-27085fa5a491',
             'created_time': '2020-03-13T13:02:00.000Z',
-            'last_edited_time': '2020-05-28T14:53:00.000Z',
+            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -16570,17 +19576,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-05-28T14:53:00.000Z'
+                    'last_edited_time': '2022-02-23T12:45:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -16590,32 +19591,32 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': None
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -16632,12 +19633,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -16660,22 +19667,27 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
@@ -16698,6 +19710,11 @@ REGIMES = {
                         }
                     ]
                 },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
                 'Country': {
                     'id': 'PTKs',
                     'type': 'relation',
@@ -16707,75 +19724,91 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '1058fd4c-9a3f-465a-be3d-b4f2184f2c41',
-                                        'name': 'G20',
-                                        'color': 'pink'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': None
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': None
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -16784,8 +19817,20 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -16793,12 +19838,33 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -16833,7 +19899,15 @@ REGIMES = {
             'object': 'page',
             'id': '54e78957-c878-4e59-9531-692fd606833f',
             'created_time': '2020-03-13T13:01:00.000Z',
-            'last_edited_time': '2022-02-17T07:55:00.000Z',
+            'last_edited_time': '2022-02-23T13:18:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -16842,17 +19916,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-17T07:55:00.000Z'
+                    'last_edited_time': '2022-02-23T13:18:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -16862,12 +19931,12 @@ REGIMES = {
                     'type': 'number',
                     'number': 25
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -16876,17 +19945,17 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -16895,7 +19964,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -16929,12 +19998,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -16957,100 +20032,28 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
-                    'id': 'J~fN',
-                    'type': 'rich_text',
-                    'rich_text': [
-                        {
-                            'type': 'text',
-                            'text': {
-                                'content': 'Access thought to be: Other',
-                                'link': None
-                            },
-                            'annotations': {
-                                'bold': False,
-                                'italic': False,
-                                'strikethrough': False,
-                                'underline': False,
-                                'code': False,
-                                'color': 'default'
-                            },
-                            'plain_text': 'Access thought to be: Other',
-                            'href': None
-                        }
-                    ]
-                },
-                'Country': {
-                    'id': 'PTKs',
-                    'type': 'relation',
-                    'relation': [
-                        {
-                            'id': '8e18365e-99d9-4320-8c92-cce09605dc32'
-                        }
-                    ]
-                },
-                '1.1 Definition legislation': {
-                    'id': 'PpKg',
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
-                    'id': 'X%26sR',
-                    'type': 'url',
-                    'url': 'http://eservices.minfin.fgov.be/ubo/'
-                },
-                '2 Coverage': {
-                    'id': 'Z%3Dqf',
-                    'type': 'multi_select',
-                    'multi_select': [
-                        {
-                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
-                            'color': 'green'
-                        }
-                    ]
-                },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                         {
@@ -17091,7 +20094,63 @@ REGIMES = {
                         }
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '8e18365e-99d9-4320-8c92-cce09605dc32'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': 'http://eservices.minfin.fgov.be/ubo/'
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -17100,21 +20159,42 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -17123,19 +20203,30 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
-                        'name': 'Stephen Abbott Pugh',
-                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'stephen@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -17179,7 +20270,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -17188,7 +20294,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -17223,7 +20335,15 @@ REGIMES = {
             'object': 'page',
             'id': '6fcd16e2-a1fd-4ac7-977f-3c6bc3219669',
             'created_time': '2020-03-13T13:00:00.000Z',
-            'last_edited_time': '2022-02-15T13:23:00.000Z',
+            'last_edited_time': '2022-02-23T13:15:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -17232,17 +20352,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-15T13:23:00.000Z'
+                    'last_edited_time': '2022-02-23T13:15:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -17252,12 +20367,12 @@ REGIMES = {
                     'type': 'number',
                     'number': None
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': {
@@ -17266,7 +20381,7 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': {
@@ -17275,12 +20390,12 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -17289,7 +20404,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -17323,12 +20438,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -17351,100 +20472,28 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
-                    'id': 'J~fN',
-                    'type': 'rich_text',
-                    'rich_text': [
-                        {
-                            'type': 'text',
-                            'text': {
-                                'content': 'Access thought to be: Public',
-                                'link': None
-                            },
-                            'annotations': {
-                                'bold': False,
-                                'italic': False,
-                                'strikethrough': False,
-                                'underline': False,
-                                'code': False,
-                                'color': 'default'
-                            },
-                            'plain_text': 'Access thought to be: Public',
-                            'href': None
-                        }
-                    ]
-                },
-                'Country': {
-                    'id': 'PTKs',
-                    'type': 'relation',
-                    'relation': [
-                        {
-                            'id': '772a8ece-4128-4521-9eaf-022d014e641c'
-                        }
-                    ]
-                },
-                '1.1 Definition legislation': {
-                    'id': 'PpKg',
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '68f24027-adca-4a18-9edb-4d0793f5ae4a',
-                                        'name': 'EU',
-                                        'color': 'red'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
-                    'id': 'X%26sR',
-                    'type': 'url',
-                    'url': 'https://wieregms.bmf.gv.at/at.gv.bmf.wiereg-p/wiereg?execution=e1s1'
-                },
-                '2 Coverage': {
-                    'id': 'Z%3Dqf',
-                    'type': 'multi_select',
-                    'multi_select': [
-                        {
-                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
-                            'color': 'green'
-                        }
-                    ]
-                },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                         {
@@ -17466,7 +20515,63 @@ REGIMES = {
                         }
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '772a8ece-4128-4521-9eaf-022d014e641c'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': 'https://wieregms.bmf.gv.at/at.gv.bmf.wiereg-p/wiereg?execution=e1s1'
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
@@ -17475,12 +20580,33 @@ REGIMES = {
                         'color': 'red'
                     }
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -17489,7 +20615,7 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
                     'select': {
@@ -17497,6 +20623,11 @@ REGIMES = {
                         'name': 'No',
                         'color': 'red'
                     }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
                 },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
@@ -17511,6 +20642,12 @@ REGIMES = {
                             'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -17554,7 +20691,22 @@ REGIMES = {
                         }
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': {
@@ -17563,7 +20715,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': {
@@ -17602,7 +20760,15 @@ REGIMES = {
             'object': 'page',
             'id': '561ad58c-9748-415c-b176-ad988aaa8689',
             'created_time': '2020-03-13T12:57:00.000Z',
-            'last_edited_time': '2020-10-29T11:27:00.000Z',
+            'last_edited_time': '2022-02-23T13:15:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -17611,17 +20777,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-10-29T11:27:00.000Z'
+                    'last_edited_time': '2022-02-23T13:15:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -17631,27 +20792,27 @@ REGIMES = {
                     'type': 'number',
                     'number': 10
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -17660,7 +20821,7 @@ REGIMES = {
                         'color': 'yellow'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -17692,12 +20853,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -17720,115 +20887,28 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
-                    'id': 'J~fN',
-                    'type': 'rich_text',
-                    'rich_text': [
-                        {
-                            'type': 'text',
-                            'text': {
-                                'content': 'Access thought to be: Public',
-                                'link': None
-                            },
-                            'annotations': {
-                                'bold': False,
-                                'italic': False,
-                                'strikethrough': False,
-                                'underline': False,
-                                'code': False,
-                                'color': 'default'
-                            },
-                            'plain_text': 'Access thought to be: Public',
-                            'href': None
-                        }
-                    ]
-                },
-                'Country': {
-                    'id': 'PTKs',
-                    'type': 'relation',
-                    'relation': [
-                        {
-                            'id': '0ef193ff-d0be-4143-a110-f6f4c3733e6d'
-                        }
-                    ]
-                },
-                '1.1 Definition legislation': {
-                    'id': 'PpKg',
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': '6ffad767-ae3e-4d60-a851-d8dda2e61dae',
-                                        'name': 'LG - Member',
-                                        'color': 'blue'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
-                    'id': 'X%26sR',
-                    'type': 'url',
-                    'url': 'https://www.eiti.am/hy/%D4%BB%D5%8D-%D5%B0%D5%A1%D5%B5%D5%BF%D5%A1%D6%80%D5%A1%D6%80%D5%A1%D5%A3%D5%A5%D6%80/?tab=88'
-                },
-                '2 Coverage': {
-                    'id': 'Z%3Dqf',
-                    'type': 'multi_select',
-                    'multi_select': [
-                        {
-                            'id': '859da0c6-cb5b-40f8-b238-8c7e913fb3e5',
-                            'name': 'Sectoral: Extractives',
-                            'color': 'purple'
-                        },
-                        {
-                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
-                            'color': 'green'
-                        }
-                    ]
-                },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                         {
@@ -17850,17 +20930,99 @@ REGIMES = {
                         }
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '0ef193ff-d0be-4143-a110-f6f4c3733e6d'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': 'https://www.eiti.am/hy/%D4%BB%D5%8D-%D5%B0%D5%A1%D5%B5%D5%BF%D5%A1%D6%80%D5%A1%D6%80%D5%A1%D5%A3%D5%A5%D6%80/?tab=88'
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '859da0c6-cb5b-40f8-b238-8c7e913fb3e5',
+                            'name': 'Sectoral: Extractives',
+                            'color': 'purple'
+                        },
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
@@ -17869,8 +21031,13 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -17879,8 +21046,20 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -17888,12 +21067,33 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
@@ -17928,7 +21128,15 @@ REGIMES = {
             'object': 'page',
             'id': '6901c4b8-3168-4456-8c92-f61c28588249',
             'created_time': '2020-03-13T12:57:00.000Z',
-            'last_edited_time': '2020-09-03T08:36:00.000Z',
+            'last_edited_time': '2022-02-23T13:00:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
             'cover': None,
             'icon': None,
             'parent': {
@@ -17937,17 +21145,12 @@ REGIMES = {
             },
             'archived': False,
             'properties': {
-                '3.1 OO Register Page URL': {
-                    'id': '%22!n%3B',
-                    'type': 'url',
-                    'url': None
-                },
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-09-03T08:36:00.000Z'
+                    'last_edited_time': '2022-02-23T13:00:00.000Z'
                 },
-                '3 On OO Register': {
+                '6.5 Data on OO Register': {
                     'id': '%24Fhj',
                     'type': 'checkbox',
                     'checkbox': False
@@ -17957,27 +21160,27 @@ REGIMES = {
                     'type': 'number',
                     'number': 0
                 },
-                '14.1 API URL (R-API[URL])': {
+                '6.3.1 API URL': {
                     'id': '%24UM7',
                     'type': 'url',
                     'url': None
                 },
-                '11 Search by owners (R-SEARCH-PS)': {
+                '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
                     'select': None
                 },
-                '13 BODS Data (R-BODS)': {
+                '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
                     'select': None
                 },
-                '14 API (R-API)': {
+                '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
                     'select': None
                 },
-                '5 Central register (R-CENTRAL)': {
+                '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
@@ -17986,7 +21189,7 @@ REGIMES = {
                         'color': 'yellow'
                     }
                 },
-                '8.1 Registration details (R-NOREG[DETAILS])': {
+                '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
@@ -18003,12 +21206,18 @@ REGIMES = {
                         }
                     ]
                 },
-                '2.2 Coverage legislation': {
+                '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
                     'type': 'url',
                     'url': None
                 },
-                '2.1 Coverage detail': {
+                '5.4.2.1 Fields available to public': {
+                    'id': '%40%7Cmi',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
@@ -18031,26 +21240,36 @@ REGIMES = {
                         }
                     ]
                 },
-                '7 All can access (R-UNRESTRICTED)': {
-                    'id': 'EH*F',
-                    'type': 'select',
-                    'select': None
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
                 },
-                '12.1 Bulk data URL (R-BULK[URL])': {
+                '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
                     'type': 'url',
                     'url': None
                 },
-                '13.1 Open license for data (R-OPEN)': {
+                '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
                 },
-                '7.1 Restriction details (R-UNRESTRICTED[DETAILS])': {
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -18061,89 +21280,91 @@ REGIMES = {
                         }
                     ]
                 },
-                '1.1 Definition legislation': {
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
                     'type': 'url',
                     'url': None
                 },
-                'Country memberships': {
-                    'id': "R'sW",
-                    'type': 'rollup',
-                    'rollup': {
-                        'type': 'array',
-                        'array': [
-                            {
-                                'type': 'multi_select',
-                                'multi_select': [
-                                    {
-                                        'id': '1058fd4c-9a3f-465a-be3d-b4f2184f2c41',
-                                        'name': 'G20',
-                                        'color': 'pink'
-                                    },
-                                    {
-                                        'id': 'be5dbe7b-6cbb-4d50-ba69-f8580f704ee9',
-                                        'name': 'EITI',
-                                        'color': 'orange'
-                                    },
-                                    {
-                                        'id': 'd043a950-b3ac-4ed7-a44c-9f1c613eeabb',
-                                        'name': 'OGP',
-                                        'color': 'green'
-                                    },
-                                    {
-                                        'id': '6ffad767-ae3e-4d60-a851-d8dda2e61dae',
-                                        'name': 'LG - Member',
-                                        'color': 'blue'
-                                    }
-                                ]
-                            }
-                        ],
-                        'function': 'show_original'
-                    }
-                },
-                '6.1 Register URL (R-ONLINE[URL])': {
+                '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
                     'url': None
                 },
-                '2 Coverage': {
+                '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
                         {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'National',
+                            'name': 'Full-economy',
                             'color': 'green'
                         }
                     ]
                 },
-                '6.2 User guidance (R-ONLINE[DETAILS])': {
-                    'id': 'Z%5B41',
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'url',
+                    'url': None
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
                     ]
                 },
-                '9 Access is free (R-FREE)': {
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': None
                 },
-                '2 Review tool link': {
-                    'id': 'i%5Bt0',
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
                     'type': 'url',
                     'url': None
                 },
-                '6 Public access': {
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                    'select': None
                 },
-                '8 No registration required (R-NOREG)': {
+                '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
                     'type': 'select',
                     'select': None
                 },
@@ -18152,14 +21373,20 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '7bd368f7-9440-4d8f-ad8e-2d0a81043a7f',
-                        'name': 'Peter Low',
-                        'avatar_url': None,
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'peter@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
+                },
+                '3.1 Sufficient detail: Data fields collected': {
+                    'id': 'udCF',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
@@ -18167,12 +21394,33 @@ REGIMES = {
                     'rich_text': [
                     ]
                 },
-                '10 Search by company (R-SEARCH-ES)': {
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
                     'select': None
                 },
-                '12 Bulk data (R-BULK)': {
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
                     'id': '~obq',
                     'type': 'select',
                     'select': None
