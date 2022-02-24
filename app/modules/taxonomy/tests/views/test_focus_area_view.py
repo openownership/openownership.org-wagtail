@@ -24,7 +24,7 @@ client = Client()
 
 
 def test_200_response(section_page):
-    "It should return 200 if sector and tag are valid"
+    "It should return 200 if section and tag are valid"
     FocusAreaTag.objects.create(name='Cats')
 
     # section_page is created with a title of 'Section', so has a
@@ -35,7 +35,7 @@ def test_200_response(section_page):
 
 
 def test_invalid_sector_404s(section_page):
-    "It should 404 if the sector_tag is invalid"
+    "It should 404 if the section_tag is invalid"
     FocusAreaTag.objects.create(name='Cats')
 
     rv = client.get('/en/nope/focus-areas/cats/')
@@ -91,24 +91,27 @@ def test_menu_pages(blog_index_page):
     rv = client.get('/en/section/focus-areas/cats/')
 
     pages = rv.context_data['menu_pages']
-    assert len(pages) == 4
+    assert len(pages) == 5
 
     assert pages[0]["page"].specific == section_page
 
     assert pages[1]["page"].title == "Area of Focus"
-    assert pages[1]["page"].pk == "TaxonomyPagesView-section-FocusAreaTag"
+    assert pages[1]["page"].pk == "TaxonomyView-section-FocusAreaTag"
     assert len(pages[1]["children"]) == 1
     assert pages[1]["children"][0].title == "Cats"
     assert pages[1]["children"][0].pk == "TaxonomyPagesView-section-FocusAreaTag-cats"
     assert pages[1]["children"][0].url == "/en/section/focus-areas/cats/"
 
     assert pages[2]["page"].title == "Sector"
-    assert pages[2]["page"].pk == "TaxonomyPagesView-section-SectorTag"
+    assert pages[2]["page"].pk == "TaxonomyView-section-SectorTag"
     assert pages[2]["children"] == []
 
     assert pages[3]["page"].title == "Publication type"
-    assert pages[3]["page"].pk == "TaxonomyPagesView-section-PublicationType"
+    assert pages[3]["page"].pk == "TaxonomyView-section-PublicationType"
     assert pages[3]["children"] == []
+
+    assert pages[4]["page"].title == "Latest Section"
+    assert pages[4]["page"].pk == "SectionLatestPagesView-section"
 
 
 def test_queryset_tagged_pages(blog_index_page):

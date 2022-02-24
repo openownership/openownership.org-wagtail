@@ -6,7 +6,7 @@ from wagtail.core.models import Locale, Page, Site
 
 from modules.core.utils import get_site_context
 from modules.core.views import PaginatedListView
-from modules.content.models import BlogArticlePage, JobPage, NewsArticlePage, PublicationFrontPage
+from modules.content.models import ArticlePage, BlogArticlePage, JobPage, NewsArticlePage, PublicationFrontPage
 from .models import BaseTag, Category, DummyPage, FocusAreaTag, SectorTag, PublicationType
 
 
@@ -27,6 +27,8 @@ class TaxonomyMixin:
     # Will be a Page, which listed Pages will be descendants of.
     section_page = None
 
+    taxonomy_class = None
+
     def get(self, request, *args, **kwargs):
         section_slug = kwargs.pop('section_slug')
         self.section_page = self._get_section_page(section_slug)
@@ -41,6 +43,8 @@ class TaxonomyMixin:
         context.update(
             **get_site_context(site),
         )
+
+        context['meta_title'] = self.title
 
         # So that templates looking for a Page object don't error:
         context['page'] = self
@@ -72,7 +76,7 @@ class TaxonomyMixin:
         for taxonomy_class in taxonomy_classes:
             p = DummyPage()
             p.title = taxonomy_class._meta.verbose_name
-            p.pk = f"TaxonomyPagesView-{section_slug}-{taxonomy_class.__name__}"
+            p.pk = f"TaxonomyView-{section_slug}-{taxonomy_class.__name__}"
             p.url = reverse(
                 'taxonomy',
                 kwargs={
@@ -93,6 +97,14 @@ class TaxonomyMixin:
                     menu_item["children"].append(t)
 
             menu_pages.append(menu_item)
+
+        # 3. Add the "Latest" link
+
+        p = DummyPage()
+        p.title = f'Latest {self.section_page.title}'
+        p.pk = f"SectionLatestPagesView-{section_slug}"
+        p.url = reverse('section-latest-pages', kwargs={'section_slug': section_slug})
+        menu_pages.append({"page": p, "children": []})
 
         return menu_pages
 
@@ -204,7 +216,6 @@ class TaxonomyPagesView(TaxonomyMixin, PaginatedListView):
         context = super().get_context_data(**kwargs)
 
         context['tag'] = self.tag
-        context['meta_title'] = self.tag.name
 
         return context
 
@@ -341,6 +352,13 @@ class TaxonomyView(TaxonomyMixin, TemplateView):
         "To mimic a Page object"
         return self.taxonomy_class._meta.verbose_name
 
+    @property
+    def pk(self):
+        "To mimic a Page object"
+        return (
+            f"TaxonomyView-{self.section_page.slug}-{self.taxonomy_class.__name__}"
+        )
+
     def _get_pages(self):
         """
         Get the Pages that we'll display in the main page content.
@@ -366,3 +384,35 @@ class TaxonomyView(TaxonomyMixin, TemplateView):
             return PublicationType
         else:
             raise Http404
+
+
+class SectionLatestPagesView(TaxonomyMixin, PaginatedListView):
+    """
+    Viewing the latest content within a section. No tags.
+
+    But we inherit from TaxonomyMixin so we can use its stuff for
+    generating menu_pages and pretending to be a real Wagtail Page.
+    """
+    template_name = 'taxonomy/pages.jinja'
+
+    @property
+    def title(self):
+        "To mimic a Page object"
+        return f"Latest {self.section_page.title}"
+
+    @property
+    def pk(self):
+        "To mimic a Page object"
+        return (f"SectionLatestPagesView-{self.section_page.slug}")
+
+    def get_queryset(self):
+        return (
+            self.section_page.get_descendants()
+            .live().public()
+            .exact_type(
+                ArticlePage, BlogArticlePage, JobPage, NewsArticlePage, PublicationFrontPage
+            )
+            .filter(locale=Locale.get_active())
+            .specific()
+            .order_by('-first_published_at')
+        )

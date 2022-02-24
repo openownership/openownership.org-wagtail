@@ -3,20 +3,13 @@ import pytest
 from django.test import Client
 
 from modules.content.models import (
-    ArticlePage,
     BlogArticlePage,
     NewsArticlePage,
-    JobPage,
-    JobsIndexPage,
     NewsIndexPage,
-    PublicationFrontPage,
     SectionPage,
 )
 from modules.taxonomy.models import PublicationType
 from modules.taxonomy.views import TaxonomyView
-
-
-# NOTE: Identical to test_focus_area_view.py except for using different tags and URLs.
 
 
 pytestmark = pytest.mark.django_db
@@ -141,21 +134,24 @@ def test_menu_pages(blog_index_page):
     rv = client.get('/en/section/types/')
 
     pages = rv.context_data['menu_pages']
-    assert len(pages) == 4
+    assert len(pages) == 5
 
     assert pages[0]["page"].specific == section_page
 
     assert pages[1]["page"].title == "Area of Focus"
-    assert pages[1]["page"].pk == "TaxonomyPagesView-section-FocusAreaTag"
+    assert pages[1]["page"].pk == "TaxonomyView-section-FocusAreaTag"
     assert pages[1]["children"] == []
 
     assert pages[2]["page"].title == "Sector"
-    assert pages[2]["page"].pk == "TaxonomyPagesView-section-SectorTag"
+    assert pages[2]["page"].pk == "TaxonomyView-section-SectorTag"
     assert pages[2]["children"] == []
 
     assert pages[3]["page"].title == "Publication type"
-    assert pages[3]["page"].pk == "TaxonomyPagesView-section-PublicationType"
+    assert pages[3]["page"].pk == "TaxonomyView-section-PublicationType"
     assert len(pages[3]["children"]) == 1
     assert pages[3]["children"][0].title == "Cats"
     assert pages[3]["children"][0].pk == "TaxonomyPagesView-section-PublicationType-cats"
     assert pages[3]["children"][0].url == "/en/section/types/cats/"
+
+    assert pages[4]["page"].title == "Latest Section"
+    assert pages[4]["page"].pk == "SectionLatestPagesView-section"
