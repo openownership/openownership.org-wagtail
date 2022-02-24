@@ -548,7 +548,7 @@ def get_publication_type_choices():
     return PublicationType.objects.values_list('id', 'name')
 
 
-class PublicationTypeBlock(blocks.StructBlock):
+class PublicationTypesBlock(blocks.StructBlock):
     """
     For displaying blocks that link to taxonomy.views.PublicationTypePagesView pages.
 
@@ -564,6 +564,7 @@ class PublicationTypeBlock(blocks.StructBlock):
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
+    DEFAULT_TITLE = 'View by publication type'
 
     section_page = blocks.PageChooserBlock(
         required=True,
@@ -574,7 +575,7 @@ class PublicationTypeBlock(blocks.StructBlock):
 
     title = blocks.CharBlock(
         required=False,
-        help_text=_('Leave empty to use default: "View by publication type"')
+        help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"')
     )
 
     types = blocks.MultipleChoiceBlock(
@@ -584,6 +585,8 @@ class PublicationTypeBlock(blocks.StructBlock):
     )
 
     def get_context(self, value, parent_context={}):
+        from modules.taxonomy.models import PublicationType
+
         context = super().get_context(value, parent_context=parent_context)
 
         # This will presumably be the Insight SectionPage or similar:
@@ -591,8 +594,9 @@ class PublicationTypeBlock(blocks.StructBlock):
         parent_page = parent_context['page']
 
         pages = []
-        for tag in value.get('tags'):
-            pages.append(tag.to_dummy_page(parent_page.slug))
+        for cat_type in value.get('types'):
+            category = PublicationType.objects.get(pk=cat_type)
+            pages.append(category.to_dummy_page(parent_page.slug))
 
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,

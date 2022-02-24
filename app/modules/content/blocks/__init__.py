@@ -22,6 +22,7 @@ from .stream import (
     LatestSectionContentBlock,
     AreasOfFocusBlock,
     SectorsBlock,
+    PublicationTypesBlock,
     # CardGroupBlock,
     # TextColumnsBlock,
     # NotificationBlock,
@@ -56,6 +57,7 @@ section_page_blocks: list = [
     ('areas_of_focus_block', AreasOfFocusBlock()),
     ('sectors_block', SectorsBlock()),
     ('latest_section_content', LatestSectionContentBlock()),
+    ('publication_types', PublicationTypesBlock()),
 ]
 
 article_page_body_blocks: list = [

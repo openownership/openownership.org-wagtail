@@ -46,6 +46,8 @@ class Category(models.Model):
     panels = [
         MultiFieldPanel([
             FieldPanel('name'),
+            FieldPanel('blurb'),
+            StreamFieldPanel('body')
         ], heading=_("Public fields")),
     ]
 
