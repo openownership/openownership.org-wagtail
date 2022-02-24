@@ -69,6 +69,7 @@ DJANGO_APPS = [
     'taggit',
     'storages',
     'django.contrib.staticfiles',
+    'django_cron',
     'cacheops',
 ]
 
@@ -107,9 +108,22 @@ SITE_APPS = [
     'modules.core',
     'modules.taxonomy',
     'modules.content',
+    'modules.notion',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + WAGTAIL_APPS + SITE_APPS
+
+
+####################################################################################################
+# Django-Cron
+####################################################################################################
+
+
+CRON_CLASSES = [
+    # "modules.notion.cron.SyncCountries",
+    # "modules.notion.cron.SyncCommitments",
+    # "modules.notion.cron.SyncRegimes",
+]
 
 
 ####################################################################################################
@@ -130,6 +144,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    # 'middleware.request.AnalyticsMiddleware',  # Possible future extra
     'wagtailcache.cache.FetchFromCacheMiddleware',
 ]
 
@@ -145,6 +160,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 INTERNAL_IPS = ['127.0.0.1']
 APPEND_SLASH = True
 AUTH_USER_MODEL = 'users.User'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
 ####################################################################################################

@@ -1,7 +1,7 @@
+# 3rd party
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-
 from modelcluster.fields import ParentalKey
 from taggit.models import ItemBase
 from wagtail.snippets.models import register_snippet
@@ -77,3 +77,8 @@ class SectorTaggedPage(ItemBase):
         on_delete=models.CASCADE,
         related_name="sector_related_items"
     )
+
+
+####################################################################
+# Country tags are defined in notion.models
+####################################################################

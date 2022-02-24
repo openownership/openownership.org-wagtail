@@ -1,0 +1,16 @@
+---
+
+exclude_paths:
+  - "docs/**"
+  - "docker/**"
+  - "guide/**"
+  - "devops/**"
+  - "fabfile/**"
+  - "**/tests/**"
+  - "**/migrations/**"
+  - "app/assets/**"
+  - "app/htmlcov/**"
+  - "app/static/**"
+  - "**/management/commands/**"
+  - "app/config/settings/test.py"
+  - "app/modules/notion/samples/**"
