@@ -17,6 +17,14 @@
 	{% endif %}
 {% endwith %}
 
+{% if page.location %}
+	{# For JobPage #}
+	<p>
+		<strong>{% trans %}Location{% endtrans %}</strong><br>
+		{{ page.location }}
+	</p>
+{% endif %}
+
 {% with sectors=page.sectors.all() %}
 	{% if sectors|length > 0 %}
 		<p>

@@ -245,11 +245,14 @@ class JobPage(TaggedPageMixin, ContentPageType):
     )
     application_deadline = models.DateField(blank=True, null=True)
 
+    location = models.CharField(max_length=255, blank=True)
+
     content_panels = ContentPageType.content_panels + [
         MultiFieldPanel(
             [
                 FieldPanel('application_deadline'),
-                FieldPanel('application_url')
+                FieldPanel('application_url'),
+                FieldPanel('location'),
             ],
             heading='Application details'
         )
