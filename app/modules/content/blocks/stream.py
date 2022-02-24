@@ -459,7 +459,7 @@ class LatestSectionContentBlock(blocks.StructBlock):
 
 class AreasOfFocusBlock(blocks.StructBlock):
     """
-    For displaying blocks that link to taxonomy.views.TagView pages.
+    For displaying blocks that link to taxonomy.views.FocusAreaPagesView pages.
 
     Choose tag(s) and display a card about each one, linking to its page.
 
@@ -491,8 +491,6 @@ class AreasOfFocusBlock(blocks.StructBlock):
     )
 
     def get_context(self, value, parent_context={}):
-        from modules.taxonomy.models import DummyPage
-
         context = super().get_context(value, parent_context=parent_context)
 
         # This will presumably be the Insight SectionPage or similar:
@@ -501,11 +499,7 @@ class AreasOfFocusBlock(blocks.StructBlock):
 
         pages = []
         for tag in value.get('tags'):
-            page = DummyPage()
-            page.title = tag.name
-            page.url = tag.get_url(parent_page.slug)
-            page.blurb = tag.blurb
-            pages.append(page)
+            pages.append(tag.to_dummy_page(parent_page.slug))
 
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,
@@ -517,7 +511,7 @@ class AreasOfFocusBlock(blocks.StructBlock):
 
 class SectorsBlock(AreasOfFocusBlock):
     """
-    For displaying blocks that link to taxonomy.views.TagView pages.
+    For displaying blocks that link to taxonomy.views.SectorPagesView pages.
 
     Choose tag(s) and display a card about each one, linking to its page.
 
@@ -555,6 +549,13 @@ def get_publication_type_choices():
 
 
 class PublicationTypeBlock(blocks.StructBlock):
+    """
+    For displaying blocks that link to taxonomy.views.PublicationTypePagesView pages.
+
+    Choose category/ies and display a card about each one, linking to its page.
+
+    For Sectors within a section (Impact, Insight, Implement)
+    """
 
     class Meta:
         label = _('Publication types block')
@@ -583,8 +584,6 @@ class PublicationTypeBlock(blocks.StructBlock):
     )
 
     def get_context(self, value, parent_context={}):
-        from modules.taxonomy.models import DummyPage
-
         context = super().get_context(value, parent_context=parent_context)
 
         # This will presumably be the Insight SectionPage or similar:
@@ -593,11 +592,7 @@ class PublicationTypeBlock(blocks.StructBlock):
 
         pages = []
         for tag in value.get('tags'):
-            page = DummyPage()
-            page.title = tag.name
-            page.url = tag.get_url(parent_page.slug)
-            page.blurb = tag.blurb
-            pages.append(page)
+            pages.append(tag.to_dummy_page(parent_page.slug))
 
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,

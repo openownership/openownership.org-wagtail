@@ -20,19 +20,15 @@ class FocusAreaTag(BaseTag):
     # Name of the URL for viewing things with this Tag.
     url_name = "focusarea-tag"
 
+    # Name of the URL for viewing things with this Tag.
+    url_slug = 'focus-areas'
+
+    # Convenient way of accessing the related_name that links to pages:
+    related_pages_name = 'focusarea_related_pages'
+
     class Meta:
         verbose_name = _("Area of Focus")
         verbose_name_plural = _("Areas of Focus")
-
-    def get_url(self, section_slug):
-        """Generate the URL to this tag's view
-        section_slug is the Slug of the section page the tag is within.
-        e.g. 'insight'
-        """
-        return reverse(
-            self.url_name,
-            kwargs={'section_slug': section_slug, 'tag_slug': self.slug}
-        )
 
 
 class FocusAreaTaggedPage(ItemBase):
@@ -59,19 +55,15 @@ class SectorTag(BaseTag):
     # Name of the URL for viewing things with this Tag.
     url_name = "sector-tag"
 
+    # Name of the URL for viewing things with this Tag.
+    url_slug = 'sectors'
+
+    # Convenient way of accessing the related_name that links to pages:
+    related_pages_name = 'sector_related_pages'
+
     class Meta:
         verbose_name = _("Sector")
         verbose_name_plural = _("Sectors")
-
-    def get_url(self, section_slug):
-        """Generate the URL to this tag's view
-        section_slug is the Slug of the section page the tag is within.
-        e.g. 'insight'
-        """
-        return reverse(
-            self.url_name,
-            kwargs={'section_slug': section_slug, 'tag_slug': self.slug}
-        )
 
 
 class SectorTaggedPage(ItemBase):

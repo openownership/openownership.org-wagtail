@@ -12,7 +12,7 @@ from modules.content.models import (
     SectionPage,
 )
 from modules.taxonomy.models import SectorTag, SectorTaggedPage
-from modules.taxonomy.views import SectorView
+from modules.taxonomy.views import SectorPagesView
 
 
 # NOTE: Identical to test_focus_area_view.py except for using different tags and URLs.
@@ -60,7 +60,7 @@ def test_context_data(section_page):
     data = rv.context_data
     assert data['tag'] == tag
     assert data['meta_title'] == 'Cats'
-    assert isinstance(data['page'], SectorView)
+    assert isinstance(data['page'], SectorPagesView)
     assert data['site_name'] == 'openownership.org'
     assert 'footer_nav' in data
     assert 'navbar_blocks' in data
@@ -75,7 +75,7 @@ def test_page_attributes(section_page):
 
     data = rv.context_data
     assert data['page'].title == 'Cats'
-    assert data['page'].pk == 'TaxonomyView-section-SectorTag-cats'
+    assert data['page'].pk == 'TaxonomyPagesView-section-SectorTag-cats'
 
 
 def test_menu_pages(blog_index_page):
@@ -96,18 +96,18 @@ def test_menu_pages(blog_index_page):
     assert pages[0]["page"].specific == section_page
 
     assert pages[1]["page"].title == "Area of Focus"
-    assert pages[1]["page"].pk == "TaxonomyView-section-FocusAreaTag"
+    assert pages[1]["page"].pk == "TaxonomyPagesView-section-FocusAreaTag"
     assert pages[1]["children"] == []
 
     assert pages[2]["page"].title == "Sector"
-    assert pages[2]["page"].pk == "TaxonomyView-section-SectorTag"
+    assert pages[2]["page"].pk == "TaxonomyPagesView-section-SectorTag"
     assert len(pages[2]["children"]) == 1
     assert pages[2]["children"][0].title == "Cats"
-    assert pages[2]["children"][0].pk == "TaxonomyView-section-SectorTag-cats"
+    assert pages[2]["children"][0].pk == "TaxonomyPagesView-section-SectorTag-cats"
     assert pages[2]["children"][0].url == "/en/section/sectors/cats/"
 
     assert pages[3]["page"].title == "Publication type"
-    assert pages[3]["page"].pk == "TaxonomyView-section-PublicationType"
+    assert pages[3]["page"].pk == "TaxonomyPagesView-section-PublicationType"
     assert pages[3]["children"] == []
 
 

@@ -1,0 +1,10 @@
+{% extends "base_with_menu.jinja" %}
+
+
+{% block content %}
+
+	{% with pages=pages %}
+		{% include "_partials/card_group.jinja" %}
+	{% endwith %}
+
+{% endblock %}
