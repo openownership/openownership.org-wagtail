@@ -14,7 +14,7 @@
     {# I don't know if cards should display all kinds of categories/tags or only some kinds. But here's what we've got. Phil. #}
 
     {% if page.publication_type %}
-        {{ page.publication_type }}
+        <a href="{{ url('publicationtype-category', kwargs={'section_slug': page.section_page.slug, 'tag_slug': page.publication_type.slug}) }}">{{ page.publication_type }}</a>
     {% endif %}
 
     {% if page.areas_of_focus %}

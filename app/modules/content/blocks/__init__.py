@@ -38,9 +38,6 @@ landing_page_blocks: list = [
     # ('logo_list', LogoListBlock()),
     # ('slim_banner', BannerBlock()),
     # ('latest_news', LatestNewsBlock()),
-    ('areas_of_focus_block', AreasOfFocusBlock()),
-    ('sectors_block', SectorsBlock()),
-    ('latest_section_content', LatestSectionContentBlock()),
     # ('card_group', CardGroupBlock()),
     # ('text_columns', TextColumnsBlock()),
     # ('notification', NotificationBlock()),
@@ -51,9 +48,15 @@ landing_page_blocks: list = [
 ]
 
 
-home_page_blocks: list = landing_page_blocks + []
+home_page_blocks: list = [
+    ('latest_section_content', LatestSectionContentBlock()),
+]
 
-section_page_blocks: list = landing_page_blocks + []
+section_page_blocks: list = [
+    ('areas_of_focus_block', AreasOfFocusBlock()),
+    ('sectors_block', SectorsBlock()),
+    ('latest_section_content', LatestSectionContentBlock()),
+]
 
 article_page_body_blocks: list = [
     (
@@ -71,3 +74,5 @@ article_page_body_blocks: list = [
 team_profile_page_body_blocks: list = article_page_body_blocks
 
 tag_page_body_blocks: list = article_page_body_blocks
+
+category_page_body_blocks: list = article_page_body_blocks

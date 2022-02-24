@@ -29,7 +29,7 @@ def test_200_response(section_page):
 
     # section_page is created with a title of 'Section', so has a
     # slug of 'section':
-    rv = client.get('/en/section/sector/cats/')
+    rv = client.get('/en/section/sectors/cats/')
 
     assert rv.status_code == 200
 
@@ -38,7 +38,7 @@ def test_invalid_sector_404s(section_page):
     "It should 404 if the sector_tag is invalid"
     SectorTag.objects.create(name='Cats')
 
-    rv = client.get('/en/nope/sector/cats/')
+    rv = client.get('/en/nope/sectors/cats/')
 
     assert rv.status_code == 404
 
@@ -46,7 +46,7 @@ def test_invalid_sector_404s(section_page):
 def test_invalid_tag_404s(section_page):
     "It should 404 if the tag_slug is invalid"
 
-    rv = client.get('/en/section/sector/cats/')
+    rv = client.get('/en/section/sectors/cats/')
 
     assert rv.status_code == 404
 
@@ -55,7 +55,7 @@ def test_context_data(section_page):
     "context data should be populated correctly"
     tag = SectorTag.objects.create(name='Cats')
 
-    rv = client.get('/en/section/sector/cats/')
+    rv = client.get('/en/section/sectors/cats/')
 
     data = rv.context_data
     assert data['tag'] == tag
@@ -71,37 +71,45 @@ def test_page_attributes(section_page):
     "The fake page attributes should work"
     SectorTag.objects.create(name='Cats')
 
-    rv = client.get('/en/section/sector/cats/')
+    rv = client.get('/en/section/sectors/cats/')
 
     data = rv.context_data
     assert data['page'].title == 'Cats'
-    assert data['page'].pk == 'TaggedView-section-SectorTag-cats'
+    assert data['page'].pk == 'TaxonomyView-section-SectorTag-cats'
 
 
-def test_menu_pages(section_page):
-    SectorTag.objects.create(name='Cats')
-    SectorTag.objects.create(name='Dogs')
+def test_menu_pages(blog_index_page):
+    "The correct data should be in the menu_pages context"
+    section_page = blog_index_page.get_parent()
 
-    rv = client.get('/en/section/sector/cats/')
+    cats_tag = SectorTag.objects.create(name='Cats')
+    cats_post = BlogArticlePage(live=True, title="Cats post")
+    blog_index_page.add_child(instance=cats_post)
+    cats_post.save_revision().publish()
+    SectorTaggedPage.objects.create(tag=cats_tag, content_object=cats_post)
+
+    rv = client.get('/en/section/sectors/cats/')
 
     pages = rv.context_data['menu_pages']
-    assert len(pages) == 3
+    assert len(pages) == 4
 
     assert pages[0]["page"].specific == section_page
 
     assert pages[1]["page"].title == "Area of Focus"
-    assert pages[1]["page"].pk == "TaggedView-section-FocusAreaTag"
+    assert pages[1]["page"].pk == "TaxonomyView-section-FocusAreaTag"
     assert pages[1]["children"] == []
 
     assert pages[2]["page"].title == "Sector"
-    assert pages[2]["page"].pk == "TaggedView-section-SectorTag"
-    assert len(pages[2]["children"]) == 2
+    assert pages[2]["page"].pk == "TaxonomyView-section-SectorTag"
+    assert len(pages[2]["children"]) == 1
     assert pages[2]["children"][0].title == "Cats"
-    assert pages[2]["children"][0].pk == "TaggedView-section-SectorTag-cats"
-    assert pages[2]["children"][0].url == "/en/section/sector/cats/"
-    assert pages[2]["children"][1].title == "Dogs"
-    assert pages[2]["children"][1].pk == "TaggedView-section-SectorTag-dogs"
-    assert pages[2]["children"][1].url == "/en/section/sector/dogs/"
+    assert pages[2]["children"][0].pk == "TaxonomyView-section-SectorTag-cats"
+    assert pages[2]["children"][0].url == "/en/section/sectors/cats/"
+
+    assert pages[3]["page"].title == "Publication type"
+    assert pages[3]["page"].pk == "TaxonomyView-section-PublicationType"
+    assert pages[3]["children"] == []
+
 
 def test_queryset_tagged_pages(blog_index_page):
     "The queryset should only include pages with this tag"
@@ -119,7 +127,7 @@ def test_queryset_tagged_pages(blog_index_page):
     SectorTaggedPage.objects.create(tag=dogs_tag, content_object=dogs_post)
 
     # section_page, with slug of 'section' is the parent of blog_index_page
-    rv = client.get('/en/section/sector/cats/')
+    rv = client.get('/en/section/sectors/cats/')
 
     data = rv.context_data
     assert len(data['object_list']) == 1
@@ -141,7 +149,7 @@ def test_queryset_live_pages(blog_index_page):
     SectorTaggedPage.objects.create(tag=tag, content_object=draft_post)
 
     # section_page, with slug of 'section' is the parent of blog_index_page
-    rv = client.get('/en/section/sector/cats/')
+    rv = client.get('/en/section/sectors/cats/')
 
     data = rv.context_data
     assert len(data['object_list']) == 1
@@ -185,7 +193,7 @@ def test_queryset_all_kinds_of_page(blog_index_page):
     publication.save_revision().publish()
     SectorTaggedPage.objects.create(tag=tag, content_object=publication)
 
-    rv = client.get('/en/section/sector/cats/')
+    rv = client.get('/en/section/sectors/cats/')
 
     pages = [p.specific for p in rv.context_data['object_list']]
     assert len(pages) == 4
@@ -214,7 +222,7 @@ def test_queryset_order(blog_index_page):
     post_3.save_revision().publish()
     SectorTaggedPage.objects.create(tag=tag, content_object=post_3)
 
-    rv = client.get('/en/section/sector/cats/')
+    rv = client.get('/en/section/sectors/cats/')
 
     pages = [p.specific for p in rv.context_data['object_list']]
     assert pages[0] == post_3
@@ -248,7 +256,7 @@ def test_queryset_section(blog_index_page):
     news_article.save_revision().publish()
     SectorTaggedPage.objects.create(tag=tag, content_object=news_article)
 
-    rv = client.get('/en/section/sector/cats/')
+    rv = client.get('/en/section/sectors/cats/')
 
     data = rv.context_data
     assert len(data['object_list']) == 1
