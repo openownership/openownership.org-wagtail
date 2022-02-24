@@ -15,7 +15,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from .views import (
     robots, error_400_view, error_403_view, error_404_test, error_404_view, error_500_view
 )
-from modules.taxonomy.views import FocusAreaView, SectorView
+from modules.taxonomy.views import FocusAreaView, SectorView, PublicationTypeView
 
 
 urlpatterns = [
@@ -45,14 +45,19 @@ handler500 = error_500_view
 
 urlpatterns = urlpatterns + i18n_patterns(
     path(
-        '<slug:section_slug>/focus-area/<str:tag_slug>/',
+        '<slug:section_slug>/focus-areas/<str:tag_slug>/',
         FocusAreaView.as_view(),
         name="focusarea-tag"
     ),
     path(
-        '<slug:section_slug>/sector/<str:tag_slug>/',
+        '<slug:section_slug>/sectors/<str:tag_slug>/',
         SectorView.as_view(),
         name="sector-tag"
+    ),
+    path(
+        '<slug:section_slug>/types/<str:tag_slug>/',
+        PublicationTypeView.as_view(),
+        name="publicationtype-category"
     ),
     url(r'', include(wagtail_urls)),
 )

@@ -453,13 +453,13 @@ class LatestSectionContentBlock(blocks.StructBlock):
 
 
 ####################################################################################################
-# Tags
+# Taxonomies
 ####################################################################################################
 
 
 class AreasOfFocusBlock(blocks.StructBlock):
     """
-    For displaying blocks that link to taxonomy.views.TaggedView pages.
+    For displaying blocks that link to taxonomy.views.TagView pages.
 
     Choose tag(s) and display a card about each one, linking to its page.
 
@@ -474,13 +474,6 @@ class AreasOfFocusBlock(blocks.StructBlock):
 
     DEFAULT_LIMIT = 3
     DEFAULT_TITLE = 'Areas of Focus'
-
-    section_page = blocks.PageChooserBlock(
-        required=True,
-        label=_("Front page of section"),
-        page_type=('content.SectionPage'),
-        help_text=_("Link to Areas of Focus pages within this section")
-    )
 
     title = blocks.CharBlock(
         required=False,
@@ -502,16 +495,17 @@ class AreasOfFocusBlock(blocks.StructBlock):
 
         context = super().get_context(value, parent_context=parent_context)
 
-        section_page = value.get('section_page')
+        # This will presumably be the Insight SectionPage or similar:
+        # (we need it to generate a URL to the tag page below this page)
+        parent_page = parent_context['page']
 
-        if section_page:
-            pages = []
-            for tag in value.get('tags'):
-                page = DummyPage()
-                page.title = tag.name
-                page.url = tag.get_url(section_page.slug)
-                page.blurb = tag.blurb
-                pages.append(page)
+        pages = []
+        for tag in value.get('tags'):
+            page = DummyPage()
+            page.title = tag.name
+            page.url = tag.get_url(parent_page.slug)
+            page.blurb = tag.blurb
+            pages.append(page)
 
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,
@@ -523,7 +517,7 @@ class AreasOfFocusBlock(blocks.StructBlock):
 
 class SectorsBlock(AreasOfFocusBlock):
     """
-    For displaying blocks that link to taxonomy.views.TaggedView pages.
+    For displaying blocks that link to taxonomy.views.TagView pages.
 
     Choose tag(s) and display a card about each one, linking to its page.
 
@@ -555,26 +549,59 @@ class SectorsBlock(AreasOfFocusBlock):
     )
 
 
-####################################################################################################
-# Card groups
-####################################################################################################
+def get_publication_type_choices():
+    from modules.taxonomy.models import PublicationType
+    return PublicationType.objects.values_list('id', 'name')
 
-class CardGroupBlock(TitleMixin):
+
+class PublicationTypeBlock(blocks.StructBlock):
 
     class Meta:
-        label = 'Card group'
-        icon = 'fa-th-large'
-        template = "blocks/card_group.jinja"
+        label = _('Publication types block')
+        group = _('Card group')
+        icon = "doc-full"
+        template = "_partials/card_group.jinja"
 
-    objects = CardStreamBlock(min_num=1, label="Cards")
+    DEFAULT_LIMIT = 3
+
+    section_page = blocks.PageChooserBlock(
+        required=True,
+        label=_("Front page of section"),
+        page_type=('content.SectionPage'),
+        help_text=_("Link to Publication Types within this section")
+    )
+
+    title = blocks.CharBlock(
+        required=False,
+        help_text=_('Leave empty to use default: "View by publication type"')
+    )
+
+    types = blocks.MultipleChoiceBlock(
+        choices=get_publication_type_choices,
+        required=True,
+        widget=forms.CheckboxSelectMultiple
+    )
 
     def get_context(self, value, parent_context={}):
+        from modules.taxonomy.models import DummyPage
+
         context = super().get_context(value, parent_context=parent_context)
 
-        object_count = len(value.get('objects', []))
+        # This will presumably be the Insight SectionPage or similar:
+        # (we need it to generate a URL to the tag page below this page)
+        parent_page = parent_context['page']
+
+        pages = []
+        for tag in value.get('tags'):
+            page = DummyPage()
+            page.title = tag.name
+            page.url = tag.get_url(parent_page.slug)
+            page.blurb = tag.blurb
+            pages.append(page)
 
         context.update({
-            'object_count': object_count
+            'title': value.get('title') or self.DEFAULT_TITLE,
+            'pages': pages,
         })
 
         return context

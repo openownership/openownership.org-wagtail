@@ -1,21 +1,22 @@
+from django.db.models.aggregates import Count
 from django.http import Http404
-from django.urls import reverse
 from wagtail.core.models import Locale, Page, Site
 
 from modules.core.utils import get_site_context
 from modules.core.views import PaginatedListView
-from .models import FocusAreaTag, SectorTag
-from .models import DummyPage
+from modules.content.models import BlogArticlePage, JobPage, NewsArticlePage, PublicationFrontPage
+from .models import DummyPage, FocusAreaTag, SectorTag, PublicationType
 
 
-class TaggedView(PaginatedListView):
-    """Parent class for displaying a list of Pages by some kind of tag, within a section.
+
+
+class TaxonomyView(PaginatedListView):
+    """Parent class for displaying a list of Pages by some kind of taxonomy, within a section.
 
     Child classes must define:
 
     tag_class - a child of BaseTag. The tag we're filtering pages on.
-    tag_related_pages_name - the related_name argument used by the associated
-        child of ItemBase that's linked to the tag_class
+    _get_tags_that_have_pages() - a method. See its comments for description.
 
     From the URL it expects:
 
@@ -23,9 +24,8 @@ class TaggedView(PaginatedListView):
     * tag_slug - the slug of the tag_class that's used to find all the Pages to list.
     """
 
-    # Child classes must set these two:
+    # Child classes must set this:
     tag_class = None
-    tag_related_pages_name = None
 
     template_name = 'taxonomy/tagged.jinja'
 
@@ -36,11 +36,10 @@ class TaggedView(PaginatedListView):
     section_page = None
 
     def __init__(self, *args, **kwargs):
-        if self.tag_class is None or self.tag_related_pages_name is None:
+        if self.tag_class is None:
             raise NotImplementedError(
-                f'{self.__class__.__name__} should have both tag_class and '
-                f'tag_related_pages_name defined but they are "{self.tag_class}" and "'
-                f'{self.tag_related_pages_name}"'
+                f'{self.__class__.__name__} should have tag_class defined '
+                f'but it is "{self.tag_class}".'
             )
         return super().__init__(*args, **kwargs)
 
@@ -77,13 +76,13 @@ class TaggedView(PaginatedListView):
 
     def get_queryset(self):
         related_pages = getattr(self.tag, self.tag_related_pages_name)
-        ids = related_pages.values_list('content_object__id', flat=True)
+        page_ids = related_pages.values_list('content_object__id', flat=True)
 
         pages = (
             Page.objects.live().public()
             .descendant_of(self.section_page).specific()
             .filter(locale=Locale.get_active())
-            .filter(id__in=ids)
+            .filter(id__in=page_ids)
             .order_by('-first_published_at')
         )
 
@@ -98,7 +97,7 @@ class TaggedView(PaginatedListView):
     def pk(self):
         "To mimic a Page object"
         return (
-            f"TaggedView-{self.section_page.slug}-{self.tag_class.__name__}-"
+            f"TaxonomyView-{self.section_page.slug}-{self.tag_class.__name__}-"
             f"{self.tag.slug}"
         )
 
@@ -111,25 +110,21 @@ class TaggedView(PaginatedListView):
         # 2. Add an entry for each kind of tag.
         # If it's the same as what we're viewing, include each sibling tag.
 
-        tag_classes = [
-            # Mapping class name to URL name:
-            (FocusAreaTag, "focusarea-tag"),
-            (SectorTag, "sector-tag"),
-        ]
+        tag_classes = [FocusAreaTag, SectorTag, PublicationType]
         section_slug = self.section_page.slug
 
-        for tag_class, url_name in tag_classes:
+        for tag_class in tag_classes:
             p = DummyPage()
             p.title = tag_class._meta.verbose_name
-            p.pk = f"TaggedView-{section_slug}-{tag_class.__name__}"
+            p.pk = f"TaxonomyView-{section_slug}-{tag_class.__name__}"
             menu_item = {"page": p, "children": []}
 
             if tag_class == self.tag_class:
                 # Add all the sibling tags to this current one.
-                for tag in self.tag_class.objects.all():
+                for tag in self._get_tags_that_have_pages(tag_class):
                     # Make a dummy page to fool the template:
                     t = DummyPage()
-                    t.pk = f"TaggedView-{section_slug}-{tag_class.__name__}-{tag.slug}"
+                    t.pk = f"TaxonomyView-{section_slug}-{tag_class.__name__}-{tag.slug}"
                     t.title = tag.name
                     t.url = tag.get_url(section_slug)
                     menu_item["children"].append(t)
@@ -138,6 +133,21 @@ class TaggedView(PaginatedListView):
 
         return menu_pages
 
+    def _get_tags_that_have_pages(self, tag_class):
+        """
+        Child classes should define this.
+
+        It should return a list/queryset of Tag/Category objects.
+
+        It should not include any that haven't been used on any Pages.
+
+        Each one should have a count property, of the number of live Pages within
+        this section and Locale that are tagged with that Tag/Category.
+        """
+        raise NotImplementedError(
+            f'{self.__class__.__name__} should have a _get_tags_that_have_pages() method '
+            'defined but it does not.'
+        )
 
     def _get_site(self):
         return Site.find_for_request(self.request)
@@ -163,15 +173,110 @@ class TaggedView(PaginatedListView):
             return tag
 
 
-class SectorView(TaggedView):
+class TagView(TaxonomyView):
+    """
+    Parent class for displaying a list of Pages by some kind of Tag, within a section.
+
+    Child classes must define:
+
+    tag_class - a child of BaseTag. The tag we're filtering pages on.
+    tag_related_pages_name - the related_name argument used by the associated
+        child of ItemBase that's linked to the tag_class
+    """
+
+    # Child classes must set this:
+    tag_related_pages_name = None
+
+    def __init__(self, *args, **kwargs):
+        if self.tag_related_pages_name is None:
+            raise NotImplementedError(
+                f'{self.__class__.__name__} should have tag_related_pages_name defined '
+                f'but it is "{self.tag_related_pages_name}".'
+            )
+        return super().__init__(*args, **kwargs)
+
+    def _get_tags_that_have_pages(self, tag_class):
+        """
+        Returns all the tags of tag_class, but only ones containing live Pages.
+        The Pageas must be live, and within this section.
+        Each tag object will also have a count element with the number of Pages it
+        contains.
+
+        tag_class is like SectorTag or FocusAreaTag
+        """
+        page_ids = (
+            Page.objects.live().public()
+            .descendant_of(self.section_page)
+            .filter(locale=Locale.get_active())
+            .values_list("id", flat=True)
+        )
+
+        tag_filter = {f'{self.tag_related_pages_name}__content_object_id__in': page_ids}
+
+        return (
+            tag_class.objects.filter(**tag_filter)
+            .annotate(count=Count(self.tag_related_pages_name))
+        )
+
+
+class CategoryView(TaxonomyView):
+    """
+    Parent class for displaying a list of Pages by some kid of Category, within a section.
+
+    Child classes must define:
+
+    tag_class - a child of BaseTag. The tag we're filtering pages on.
+    """
+
+    def get_queryset(self):
+        return self.tag.pages.descendant_of(self.section_page)
+
+    def _get_tags_that_have_pages(self, tag_class):
+        """
+        Returns a list of all the Categories of this class that have live pages
+        in this section and Locale.
+
+        Assumes that tag_class has a pages property that filters for live(), and locale.
+
+        I doubt this is efficient but...
+        """
+        categories = []
+
+        for cat in tag_class.objects.all():
+            cat.count = cat.pages.descendant_of(self.section_page).count()
+            if cat.count > 0:
+                categories.append(cat)
+
+        return categories
+
+
+####################################################################################
+# The actual classes for specific taxonomies.
+
+
+class SectorView(TagView):
+    """
+    Viewing all Pages tagged with a SectorTag that are descended from a SectionPage.
+    """
 
     tag_class = SectorTag
 
     tag_related_pages_name = "sector_related_pages"
 
 
-class FocusAreaView(TaggedView):
+class FocusAreaView(TagView):
+    """
+    Viewing all Pages tagged with an AreaOfFocusTag that are descended from a SectionPage.
+    """
 
     tag_class = FocusAreaTag
 
     tag_related_pages_name = "focusarea_related_pages"
+
+
+class PublicationTypeView(CategoryView):
+    """
+    Viewing all Pages of a PublicationType that are descended from a SectionPage.
+    """
+
+    tag_class = PublicationType

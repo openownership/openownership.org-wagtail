@@ -7,12 +7,13 @@ from django.utils.translation import gettext_lazy as _
 from django_extensions.db.fields import AutoSlugField
 from taggit.models import TagBase
 from wagtail.core import fields
+from wagtail.core.models import Locale
 from wagtail.admin.edit_handlers import (
     FieldPanel, ObjectList, MultiFieldPanel, StreamFieldPanel, TabbedInterface
 )
 from wagtail.core.models import Page
 
-from modules.content.blocks import tag_page_body_blocks
+from modules.content.blocks import category_page_body_blocks, tag_page_body_blocks
 
 
 ####################################################################################################
@@ -30,17 +31,48 @@ class Category(models.Model):
     name = models.CharField(blank=False, null=False, max_length=255)
     slug = AutoSlugField(populate_from='name')
 
+    blurb = models.CharField(
+        blank=True,
+        max_length=255,
+        help_text=_('Used when showing a card linking to this tag')
+    )
+
+    body = fields.StreamField(category_page_body_blocks, blank=True)
+
     panels = [
         MultiFieldPanel([
             FieldPanel('name'),
         ], heading=_("Public fields")),
-        # MultiFieldPanel([
-        #     FieldPanel('slug'),
-        # ], heading="Internal fields")
     ]
 
     def __str__(self):
         return self.name
+
+    @cached_property
+    def pages(self):
+        """
+        Returns all the Pages that have this Category.
+        """
+
+        # All the relationships to page models:
+        rels = [rel for rel in dir(self) if rel.startswith('pages_')]
+
+        # Get ALL of the Page IDs that have this category:
+        all_ids = []
+        for rel_name in rels:
+            rel = getattr(self, rel_name)
+            all_ids = all_ids + [page.id for page in rel.all()]
+
+        # Filter those pages by Locale, live, etc:
+        pages = (
+            Page.objects
+            .filter(id__in=all_ids)
+            .filter(locale=Locale.get_active())
+            .order_by('-first_published_at')
+            .specific().live().all()
+        )
+
+        return pages
 
 
 ####################################################################################################
@@ -84,9 +116,6 @@ class BaseTag(TagBase):
             FieldPanel('blurb'),
             StreamFieldPanel('body')
         ], heading=_("Public fields")),
-        # MultiFieldPanel([
-        #     FieldPanel('slug'),
-        # ], heading="Internal fields")
     ]
 
     edit_handler = TabbedInterface([
