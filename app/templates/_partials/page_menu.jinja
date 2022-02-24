@@ -3,32 +3,42 @@ A list of pages in a menu at the side of a page.
 
 Expects:
 
-* menu_pages - A list or PageQuerySet of pages to link to.
-* page - The current Page
-* title - optional, the title for the menu. If falsey, the section page's title will be used.
-#}
+* menu_pages - A nested list. Each item will have:
+    * page - A Page object
+    * children - If this is the page we're on, and the Page has children, this will contain a PageQueryset of the child Pages. Otherwise it's an empty list.
 
+* page - The current Page
+
+* page_menu_title - optional, the title for the menu. If falsey, the section page's title (e.g. "Insight") will be used.
+#}
 {% if menu_pages %}
-    {% if title %}
-        <h2>{{ title }}</h2>
-    {% else %}
-        {% with ancestors=page.get_ancestors() %}
-            {# ancestors will be like: Root, HomePage, SectionPage, etc. #}
-            {% if ancestors|length >= 3 %}
-                {# There is at least a section page above this, so use its title. #}
-                <h2>{{ ancestors[2].title }}</h2>
-            {% endif %}
-        {% endwith %}
-    {% endif %}
-    <ul>
-        {% for p in menu_pages %}
-            <li class="{% if p.pk == page.pk %}current{% endif %}">
-                {% if p.pk == page.pk %}
-                    {{ p.title }}
-                {% else %}
-                    <a href="{{ p.url }}">{{ p.title }}</a>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="page-menu__container">
+        <h2 class="heading-m">{% if page_menu_title %}{{ page_menu_title }}{% else %}{{ page.section_page.title }}{% endif %}</h2>
+
+        <ul class="page-menu">
+            {% for p in menu_pages %}
+                <li class="page-menu__page {% if p.page.pk == page.pk %}current{% endif %} {% if p.children %}is-open{% endif %}">
+                    {% if p.page.pk == page.pk %}
+                        <span class="page-menu__page-title">{{ p.page.title }}</span>
+                    {% else %}
+                        <a class="page-menu__page-title" href="{{ p.page.url }}">{{ p.page.title }}</a>
+                    {% endif %}
+
+                    {% if p.children %}
+                        <ul class="page-menu__children-list">
+                            {% for child in p.children %}
+                                <li class="page-menu__children-list__item {% if child.pk == page.pk %}current{% endif %}">
+                                    {% if child.pk == page.pk %}
+                                        {{ child.title }}
+                                    {% else %}
+                                        <a href="{{ child.url }}">{{ child.title }}</a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endif %}

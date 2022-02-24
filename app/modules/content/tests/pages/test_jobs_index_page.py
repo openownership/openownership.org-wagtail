@@ -15,8 +15,9 @@ def test_menu_pages_self(job_index_page):
 
     rv = client.get(job_index_page.url)
 
-    pages = [p.specific for p in rv.context_data["menu_pages"]]
-    assert job_index_page in pages
+    menu = rv.context_data["menu_pages"]
+    assert len(menu) == 1
+    assert menu[0]["page"].specific == job_index_page
 
 
 def test_menu_pages_live(job_index_page):
@@ -30,6 +31,6 @@ def test_menu_pages_live(job_index_page):
 
     rv = client.get(job_index_page.url)
 
-    pages = [p.specific for p in rv.context_data["menu_pages"]]
-    assert live_job in pages
-    assert draft_job not in pages
+    menu = rv.context_data["menu_pages"]
+    assert len(menu) == 1
+    assert menu[0]["page"].specific == job_index_page

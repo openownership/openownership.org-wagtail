@@ -13,36 +13,49 @@ For mega menu containing nav items:
 #}
 
 <div class="navbar">
+    <div class="contained-width navbar__wrapper">
+        {% include 'svg/logo_black.jinja' %}
 
-    <div class="image">OO image here</div>
 
-    <nav class="navbar-navigation">
+        <div class="navbar__navigations-container">
+            
+            
+            
+            {# <nav class="navbar__language">
+                <ul>
+                    <li><a href="">English</a></li>
+                    <li><a href="">Portuguese</a></li>
+                </ul>
+            </nav>#}
 
-        <ul class="navigation__level-one">
-            {% for obj in navbar_blocks recursive %}
-                    {% if obj.type == 'nav_item' %}
-                        {% set href, label = obj.value %}
-                        <li><a href="{{href}}">{{label}}</a></li>
-                    {% elif obj.type == 'mega_menu' %}
-                        {{ obj.text }}
-                        {% for item in obj.objects %}
-                        <li>{{ item.section_title }}</li>
-                            {% for href, label in item.links %}
+            {% if page.translations %}
+            <nav class="navbar__language">
+                <ul>
+                    {% for item in page.translations %}
+                        <li><a href="{{item.url}}">{{ item.language }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+            {% endif %}
+
+            <nav class="navbar__main-navigation">
+                <ul class="navigation__level-one">
+                    {% for obj in navbar_blocks recursive %}
+                            {% if obj.type == 'nav_item' %}
+                                {% set href, label = obj.value %}
                                 <li><a href="{{href}}">{{label}}</a></li>
-                            {% endfor %}
-                        {% endfor %}
-                    {% endif %}
-            {% endfor %}
-        </ul>
-    </nav>
-
-    {% if page.translations %}
-        <nav class="navbar-language">
-            <ul>
-                {% for item in page.translations %}
-                    <a href="{{item.url}}">{{ item.language }}</a>
-                {% endfor %}
-            </ul>
-        </nav>
-    {% endif %}
+                            {% elif obj.type == 'mega_menu' %}
+                                {{ obj.text }}
+                                {% for item in obj.objects %}
+                                <li>{{ item.section_title }}</li>
+                                {% for href, label in item.links %}
+                                    <li><a href="{{href}}">{{label}}</a></li>
+                                {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+    </div>
 </div>

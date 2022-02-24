@@ -2,3 +2,11 @@ html {
     font-size: 16px;
     scroll-behavior: smooth;
 }
+
+body {
+    @apply bg-grey-light;
+}
+
+main {
+    @apply py-12;
+}

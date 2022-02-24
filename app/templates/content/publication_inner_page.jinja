@@ -1,7 +1,10 @@
-{% extends 'base_article.jinja' %}
+{% set page_menu_title = _("Report contents") %}
+{% extends 'base_with_header_and_menu.jinja' %}
 
-{% block article_content %}
 
+{% block content %}
+
+    {# The title of this section in the publication: #}
     <h2>{{ page.title }}</h2>
 
     {{render_stream(page.body)}}
@@ -14,11 +17,4 @@
         {% endif %}
     {% endwith %}
 
-{% endblock article_content %}
-
-
-{% block menu %}
-    {% with title="Report contents" %}
-        {% include "_partials/page_menu.jinja" %}
-    {% endwith %}
 {% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base_with_header.jinja' %}
+
+{#
+	Combines the header from base_with_header.jinja and
+	the left-hand menu from base_with_menu.jinja (but without its heading).
+#}
+
+
+
+{% block main_inner %}
+
+    <div class="aside-layout-left">
+        <div class="aside-layout__menu">
+            {% include "_partials/page_menu.jinja" %}
+        </div>
+
+        <div class="aside-layout__main">
+            {% block content %}
+				{{render_stream(page.body)}}
+            {% endblock %}
+        </div>
+    </div>
+
+{% endblock %}

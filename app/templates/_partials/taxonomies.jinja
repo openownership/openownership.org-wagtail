@@ -11,7 +11,7 @@
 		<p>
 			<strong>{% trans %}Areas of focus{% endtrans %}</strong><br>
 			{% for area in areas %}
-				{{ area.name }}{% if not loop.last %}, {% endif %}
+				<a href="{{ url('focusarea-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': area.slug}) }}">{{ area.name }}</a>{% if not loop.last %}, {% endif %}
 			{% endfor %}
 		</p>
 	{% endif %}
@@ -22,7 +22,7 @@
 		<p>
 			<strong>{% trans %}Sectors{% endtrans %}</strong><br>
 			{% for sector in sectors %}
-				{{ sector.name }}{% if not loop.last %}, {% endif %}
+				<a href="{{ url('sector-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': sector.slug}) }}">{{ sector.name }}</a>{% if not loop.last %}, {% endif %}
 			{% endfor %}
 		</p>
 	{% endif %}

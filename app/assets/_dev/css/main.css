@@ -31,16 +31,22 @@
 @import "elements/rich-text";
 @import "elements/typography";
 @import "elements/buttons";
+@import "elements/card";
 
 /*------------------------------------*\
   #COMPONENT-IMPORTS
 \*------------------------------------*/
 
 @import "components/hero";
+@import "components/footer";
+@import "components/navigation";
+@import "components/page-menu";
 
 /*------------------------------------*\
   #PAGE-IMPORTS
 \*------------------------------------*/
+
+@import "pages/job-index-page";
 
 /*------------------------------------*\
   #TAILWIND-IMPORTS

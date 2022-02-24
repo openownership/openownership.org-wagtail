@@ -30,3 +30,8 @@ def test_publication_type_choices(job_page):
     assert len(types) == 1
     assert isinstance(types[0], PublicationType)
     assert types[0].name == "Job"
+
+
+def test_breadcrumb_page(job_page):
+    "It should return the parent Careers page"
+    assert job_page.breadcrumb_page == job_page.get_parent()

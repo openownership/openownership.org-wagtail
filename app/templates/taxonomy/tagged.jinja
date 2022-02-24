@@ -1,9 +1,7 @@
-{% extends "base.jinja" %}
+{% extends "base_with_menu.jinja" %}
 
 
 {% block content %}
-
-	<h1>{{ tag.name }}</h1>
 
 	{{render_stream(tag.body)}}
 

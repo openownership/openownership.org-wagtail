@@ -1,0 +1,19 @@
+.navbar {
+    @apply bg-white;
+    @apply py-4;
+    svg {
+        width: 173px;
+    }
+}
+
+.navbar__wrapper {
+    @apply flex;
+}
+
+.navbar__navigations-container {
+    @apply flex;
+}
+
+.navigation__level-one {
+    @apply flex;
+}

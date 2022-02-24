@@ -1,0 +1,25 @@
+{% extends "base.jinja" %}
+
+{#
+	Has a menu on the left-hand side (at full width) for navigating between
+	pages within a section or publication.
+#}
+
+
+{% block main_inner %}
+
+	<div class="aside-layout-left">
+		<div class="aside-layout__menu">
+			{% include "_partials/page_menu.jinja" %}
+		</div>
+
+		<div class="aside-layout__main">
+			<h1 class="heading-xl">{{ page.title }}</h1>
+
+			{% block content %}
+				{{render_stream(page.body)}}
+			{% endblock %}
+		</div>
+	</div>
+
+{% endblock %}

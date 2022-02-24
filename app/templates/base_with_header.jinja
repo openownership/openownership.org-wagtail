@@ -1,0 +1,65 @@
+{% extends 'base.jinja' %}
+
+{#
+	For pages that have:
+
+	* Breadcrumbs
+	* A full-width Heading
+	* Publication Date, etc
+
+	All above the main content and any side menu etc.
+#}
+
+{% block main %}
+
+	<div class="contained-width {{ main_classes }}">
+
+		{% with breadcrumb_page=page.breadcrumb_page %}
+			{% if breadcrumb_page %}
+				<div class="breadcrumbs">
+					<a href="{{ breadcrumb_page.get_url() }}">{% trans %}Back to{% endtrans %} {{ breadcrumb_page.title }}</a>
+				</div>
+			{% endif %}
+		{% endwith %}
+
+		<article>
+            <header>
+                <h1 class="heading-xl">{{ page.specific.display_title }}</h1>
+
+                <ul class="article-header__meta">
+                    <li class="article-header__meta-item">{% trans %}Publication date{% endtrans %}: {{ page.human_display_date }}</li>
+
+					{% with authors=page.specific.authors %}
+						{% if authors and authors|length %}
+							<li class="article-header__meta-item">
+								{% trans count=page.authors|length %}Author{% pluralize %}Authors{% endtrans %}:
+								{% for author in authors %}
+									{% if author.team_profile %}<a href="{{ author.team_profile.get_url() }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}{% if not loop.last %}, {% endif %}
+								{% endfor %}
+							</li>
+						{% endif %}
+					{% endwith %}
+
+					{% if page.application_deadline %}
+						<li class="article-header__meta-item">{% trans %}Application deadline{% endtrans %}: {{ page.human_application_deadline }}</li>
+					{% endif %}
+                </ul>
+            </header>
+		</article>
+
+		{% block main_inner %}
+			<div class="aside-layout-right">
+				<div class="aside-layout__main">
+					{% block content %}
+						{{render_stream(page.body)}}
+					{% endblock %}
+				</div>
+
+				<div>
+					{% include "_partials/taxonomies.jinja" %}
+				</div>
+			</div>
+		{% endblock %}
+	</div>
+
+{% endblock %}

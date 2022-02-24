@@ -1,7 +1,6 @@
-{% extends 'base.jinja' %}
+{% extends 'base_with_menu.jinja' %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
 
     {{ page.intro|richtext }}
 
@@ -13,8 +12,4 @@
         {% include "_partials/pagination.jinja" %}
     {% endif %}
 
-{% endblock %}
-
-{% block menu %}
-    {# TODO #}
 {% endblock %}

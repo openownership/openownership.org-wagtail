@@ -19,7 +19,7 @@ from django.utils.translation import gettext_lazy as _
 
 from wagtail.admin.edit_handlers import FieldPanel, ObjectList, TabbedInterface, StreamFieldPanel
 from wagtail.core import fields
-from wagtail.core.models import Page
+from wagtail.core.models import Locale, Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.utils.decorators import cached_classmethod
@@ -114,6 +114,8 @@ class BasePage(WagtailCacheMixin, Page):
             **self.get_metadata_settings(site)
         )
 
+        context["menu_pages"] = self._get_menu_pages()
+
         return context
 
     @cached_classmethod
@@ -173,8 +175,56 @@ class BasePage(WagtailCacheMixin, Page):
         }
 
     @cached_property
+    def human_display_date(self):
+        if self.display_date:
+            return self.display_date.strftime('%d %B %Y')
+
+    @cached_property
     def page_type(self):
         return str(self.__class__.__name__)
+
+    @cached_property
+    def section_page(cls):
+        """Get the top-level page this page is within, or *is*.
+        e.g. About, Insight, Implmentation, etc.
+
+        e.g. a page that's a child or grandchild of "Insight" will return "Insight" page.
+
+        But the "Insight" page will return itself.
+
+        Ignores root and home when calculating "top-level page".
+        """
+        ancestors = cls.get_ancestors()
+        if len(ancestors) == 2:
+            # Top-level section page itself.
+            return cls
+        elif len(ancestors) > 2:
+            return ancestors[2]
+        else:
+            return None
+
+    @cached_property
+    def breadcrumb_page(cls):
+        """For pages that have a 'Back to ...' breadcrumb link, returns the page to
+        go 'back' to. For most it's the parent, but some require going a bit higher;
+        they can override this method.
+        """
+        return cls.get_parent()
+
+    def _get_menu_pages(self):
+        """
+        Child classes can return a list of data for building a left-hand menu for this page.
+
+        It might be like:
+
+            [
+                {"page": <Page>, "children": []},
+                {"page": self, "children": <PageQuerySet>}
+                {"page": <Page>, "children": []},
+                {"page": <Page>, "children": []},
+            ]
+        """
+        return []
 
 
 ####################################################################################################
@@ -224,11 +274,9 @@ class ContentPageType(BasePage):
     template = 'content/article_page.jinja'
 
     body = fields.StreamField(article_page_body_blocks, blank=True)
-    # additional_content = fields.StreamField(additional_content_blocks, blank=True)
 
     model_content_panels = [
         StreamFieldPanel('body'),
-        # StreamFieldPanel('additional_content'),
     ]
 
     content_panels = BasePage.content_panels + model_content_panels
@@ -241,53 +289,11 @@ class ContentPageType(BasePage):
     def date(self):
         return self.display_date
 
-    @cached_property
-    def human_display_date(self):
-        if self.display_date:
-            return self.display_date.strftime('%d %B %Y')
 
     @property
     def display_title(self):
         "Allows us to override it for special cases"
         return self.title
-
-
-# class ArticlePageWithContentsType(ContentPageType):
-#     """
-#     An article page which as a long body requiring a contents listing
-#     """
-
-#     class Meta:
-#         abstract = True
-
-#     template = 'content/article_page_with_contents.jinja'
-
-#     body = fields.StreamField(contents_page_body_blocks, blank=True)
-
-#     def build_contents_menu(self):
-#         menu = []
-#         for block in self.body:
-#             if block.block_type == 'contents_menu_item':
-#                 menu.append({
-#                     'slug': block.value.slug,
-#                     'title': block.value.get('title'),
-#                     'children': []
-#                 })
-#             if block.block_type == 'contents_menu_sub_item':
-#                 menu[-1]['children'].append({
-#                     'slug': block.value.slug,
-#                     'title': block.value.get('title')
-#                 })
-#         return menu
-
-#     def get_context(self, request, *args, **kwargs):
-#         context = super().get_context(request, *args, **kwargs)
-
-#         context.update({
-#             'contents_menu': self.build_contents_menu()
-#         })
-
-#         return context
 
 
 ####################################################################################################
@@ -306,12 +312,6 @@ class IndexPageType(BasePage):
     intro = fields.RichTextField(
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
     )
-
-    # child_page_stream = fields.StreamField(
-    #     additional_content_blocks,
-    #     blank=True,
-    #     help_text="The blocks you create here will be displayed below all child pages"
-    # )
 
     content_panels = BasePage.content_panels + [
         FieldPanel('intro')
@@ -443,7 +443,7 @@ class IndexPageType(BasePage):
         return (
             self.get_objects_model()
             .objects
-            .live()
+            .live().public().filter(locale=Locale.get_active())
             .select_related('thumbnail')
         )
 

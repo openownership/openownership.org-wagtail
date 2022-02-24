@@ -6,6 +6,8 @@
 
 from django import forms
 from django.conf import settings
+from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 from wagtail.core import blocks
 
@@ -394,6 +396,163 @@ class LatestNewsBlock(TitleMixin):
         })
 
         return context
+
+
+####################################################################################################
+# Section content
+####################################################################################################
+
+
+class LatestSectionContentBlock(blocks.StructBlock):
+    """
+    The most recently published Articles, Blog Articles, News Articles or
+    Publications that are descendants of a front section page.
+    """
+
+    class Meta:
+        label = _('Latest section content block')
+        group = _('Card group')
+        icon = 'time'
+        template = "_partials/card_group.jinja"
+
+    DEFAULT_LIMIT = 3
+
+    section_page = blocks.PageChooserBlock(
+        required=True,
+        label=_("Front page of section"),
+        page_type=(
+            'content.SectionPage',          # Insight, Impact, Implement
+            # 'content.SectionListingPage',   # About
+        )
+    )
+
+    def get_context(self, value, parent_context={}):
+        from modules.content.models import ArticlePage, BlogArticlePage, NewsArticlePage, PublicationFrontPage
+
+        context = super().get_context(value, parent_context=parent_context)
+
+        section_page = value.get('section_page')
+
+        if section_page:
+            pages = (
+                section_page.get_descendants()
+                .live().public()
+                .exact_type(
+                    ArticlePage, BlogArticlePage, NewsArticlePage, PublicationFrontPage
+                )
+                .specific()
+                .order_by('-first_published_at')[:self.DEFAULT_LIMIT]
+            )
+
+            context.update({
+                'pages': pages,
+                'title': _('Latest {}').format(section_page.title),
+            })
+
+        return context
+
+
+####################################################################################################
+# Tags
+####################################################################################################
+
+
+class AreasOfFocusBlock(blocks.StructBlock):
+    """
+    For displaying blocks that link to taxonomy.views.TaggedView pages.
+
+    Choose tag(s) and display a card about each one, linking to its page.
+
+    For Areas of Focus within a section (Impact, Insight, Implement)
+    """
+
+    class Meta:
+        label = _('Areas of focus block')
+        group = _('Card group')
+        icon = "tag"
+        template = "_partials/card_group.jinja"
+
+    DEFAULT_LIMIT = 3
+    DEFAULT_TITLE = 'Areas of Focus'
+
+    section_page = blocks.PageChooserBlock(
+        required=True,
+        label=_("Front page of section"),
+        page_type=('content.SectionPage'),
+        help_text=_("Link to Areas of Focus pages within this section")
+    )
+
+    title = blocks.CharBlock(
+        required=False,
+        help_text=_('Leave empty to use default: "{}"'.format(DEFAULT_TITLE))
+    )
+
+    tags = blocks.ListBlock(
+        SnippetChooserBlock(
+            'taxonomy.FocusAreaTag',
+            required=True,
+        ),
+        min_num=1,
+        max_num=DEFAULT_LIMIT,
+        label=DEFAULT_TITLE,
+    )
+
+    def get_context(self, value, parent_context={}):
+        from modules.taxonomy.models import DummyPage
+
+        context = super().get_context(value, parent_context=parent_context)
+
+        section_page = value.get('section_page')
+
+        if section_page:
+            pages = []
+            for tag in value.get('tags'):
+                page = DummyPage()
+                page.title = tag.name
+                page.url = tag.get_url(section_page.slug)
+                page.blurb = tag.blurb
+                pages.append(page)
+
+        context.update({
+            'title': value.get('title') or self.DEFAULT_TITLE,
+            'pages': pages,
+        })
+
+        return context
+
+
+class SectorsBlock(AreasOfFocusBlock):
+    """
+    For displaying blocks that link to taxonomy.views.TaggedView pages.
+
+    Choose tag(s) and display a card about each one, linking to its page.
+
+    For Sectors within a section (Impact, Insight, Implement)
+    """
+
+    class Meta:
+        label = _('Sectors block')
+        group = _('Card group')
+        icon = "tag"
+        template = "_partials/card_group.jinja"
+
+    DEFAULT_LIMIT = 3
+    DEFAULT_TITLE = 'Sectors'
+
+    title = blocks.CharBlock(
+        required=False,
+        help_text=_('Leave empty to use default: "{}"'.format(DEFAULT_TITLE))
+    )
+
+    tags = blocks.ListBlock(
+        SnippetChooserBlock(
+            'taxonomy.SectorTag',
+            required=True,
+        ),
+        min_num=1,
+        max_num=DEFAULT_LIMIT,
+        label=DEFAULT_TITLE,
+    )
 
 
 ####################################################################################################

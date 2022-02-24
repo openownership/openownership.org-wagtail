@@ -1,7 +1,7 @@
 .hero {
     @apply bg-blue-light;
     @apply text-black;
-    
+
     &.hero--homepage {
         @apply bg-blue-medium;
         @apply text-white;
@@ -17,11 +17,7 @@
     }
 
     .hero__title {
-        @apply font-display font-bold text-36;
-    }
-
-    .hero__subheading {
-        @apply font-display font-normal text-36;
+        @apply font-display text-36;
     }
 
     .hero__body {

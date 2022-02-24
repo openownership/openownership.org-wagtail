@@ -1,10 +1,12 @@
 {% set body_classes = "glossary-page" %}
-{% extends 'base.jinja' %}
+{% extends 'base_with_menu.jinja' %}
 
 {% block content %}
 
-  {% for block in page.glossary %}
-    {% include_block block %}
-  {% endfor %}
+    {{render_stream(page.body)}}
+
+    {% for block in page.glossary %}
+        {% include_block block %}
+    {% endfor %}
 
 {% endblock content %}

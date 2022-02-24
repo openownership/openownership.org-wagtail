@@ -1,9 +1,11 @@
 from django.http import Http404
-from wagtail.core.models import Page, Site
+from django.urls import reverse
+from wagtail.core.models import Locale, Page, Site
 
 from modules.core.utils import get_site_context
 from modules.core.views import PaginatedListView
 from .models import FocusAreaTag, SectorTag
+from .models import DummyPage
 
 
 class TaggedView(PaginatedListView):
@@ -66,6 +68,11 @@ class TaggedView(PaginatedListView):
         context['tag'] = self.tag
         context['meta_title'] = self.tag.name
 
+        # So that templates looking for a Page object don't error:
+        context['page'] = self
+
+        context['menu_pages'] = self._get_menu_pages()
+
         return context
 
     def get_queryset(self):
@@ -74,19 +81,74 @@ class TaggedView(PaginatedListView):
 
         pages = (
             Page.objects.live().public()
-            .descendant_of(self.section_page)
+            .descendant_of(self.section_page).specific()
+            .filter(locale=Locale.get_active())
             .filter(id__in=ids)
             .order_by('-first_published_at')
         )
 
         return pages
 
+    @property
+    def title(self):
+        "To mimic a Page object"
+        return self.tag.name
+
+    @property
+    def pk(self):
+        "To mimic a Page object"
+        return (
+            f"TaggedView-{self.section_page.slug}-{self.tag_class.__name__}-"
+            f"{self.tag.slug}"
+        )
+
+    def _get_menu_pages(self):
+
+        # 1. Start off with the parent section page.
+
+        menu_pages = [{"page": self.section_page, "children": []}]
+
+        # 2. Add an entry for each kind of tag.
+        # If it's the same as what we're viewing, include each sibling tag.
+
+        tag_classes = [
+            # Mapping class name to URL name:
+            (FocusAreaTag, "focusarea-tag"),
+            (SectorTag, "sector-tag"),
+        ]
+        section_slug = self.section_page.slug
+
+        for tag_class, url_name in tag_classes:
+            p = DummyPage()
+            p.title = tag_class._meta.verbose_name
+            p.pk = f"TaggedView-{section_slug}-{tag_class.__name__}"
+            menu_item = {"page": p, "children": []}
+
+            if tag_class == self.tag_class:
+                # Add all the sibling tags to this current one.
+                for tag in self.tag_class.objects.all():
+                    # Make a dummy page to fool the template:
+                    t = DummyPage()
+                    t.pk = f"TaggedView-{section_slug}-{tag_class.__name__}-{tag.slug}"
+                    t.title = tag.name
+                    t.url = tag.get_url(section_slug)
+                    menu_item["children"].append(t)
+
+            menu_pages.append(menu_item)
+
+        return menu_pages
+
+
     def _get_site(self):
         return Site.find_for_request(self.request)
 
     def _get_section_page(self, slug):
         try:
-            page = Page.objects.live().public().get(slug=slug)
+            page = (
+                Page.objects.live().public()
+                .filter(locale=Locale.get_active())
+                .get(slug=slug)
+            )
         except Page.DoesNotExist:
             raise Http404
         else:

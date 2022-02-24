@@ -65,9 +65,10 @@ def test_menu_pages_self(publication_front_page):
 
     rv = client.get(p.url)
 
-    pages = rv.context_data['menu_pages']
-    assert pages[0].specific == p
-    assert pages[0].title == 'Introduction'
+    menu = rv.context_data['menu_pages']
+    assert len(menu) == 1
+    assert menu[0]["page"].specific == p
+    assert menu[0]["page"].title == 'Introduction'
 
 
 def test_menu_pages_children(publication_front_page):
@@ -89,11 +90,11 @@ def test_menu_pages_children(publication_front_page):
 
     rv = client.get(parent.url)
 
-    pages = rv.context_data['menu_pages']
-    assert len(pages) == 3
-    assert pages[0].specific == parent
-    assert pages[1].specific == p1
-    assert pages[2].specific == p2
+    menu = rv.context_data['menu_pages']
+    assert len(menu) == 3
+    assert menu[0]["page"].specific == parent
+    assert menu[1]["page"].specific == p1
+    assert menu[2]["page"].specific == p2
 
 
 def test_publication_type_choices(publication_front_page):
@@ -139,3 +140,8 @@ def test_get_next_page_none(publication_front_page):
     parent.add_child(instance=draft_child)
 
     assert publication_front_page.get_next_page() is None
+
+
+def test_breadcrumb_page(publication_front_page):
+    "It should return the parent Section page"
+    assert publication_front_page.breadcrumb_page == publication_front_page.get_parent()

@@ -1,8 +1,25 @@
 a {
     @apply underline;
+    @apply text-links-link;
 
     &:hover, &:focus, &:active {
         @apply no-underline;
+    }
+
+    &:hover {
+        @apply text-links-hover;
+    }
+
+    &:focus {
+        @apply text-links-hover;
+    }
+
+    &:active {
+        @apply text-links-active;
+    }
+
+    &:visited {
+        @apply text-links-visited;
     }
 }
 

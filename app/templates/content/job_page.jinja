@@ -1,14 +1,12 @@
-{% extends 'base_article.jinja' %}
+{% extends 'base_with_header.jinja' %}
 
-{% block breadcrumbs %}
-    <a href="{{ page.get_parent().get_url() }}">{% trans %}Back to Careers at OO{% endtrans %}</a>
-{% endblock %}
+{% block content %}
+    {{ super() }}
 
-
-{% block article_content_end %}
     {% if page.application_url %}
         <p>
             <a href="{{ page.application_url }}">{% trans %}Apply{% endtrans %}</a>
         </p>
     {% endif %}
+
 {% endblock %}
