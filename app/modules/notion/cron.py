@@ -625,6 +625,7 @@ class SyncRegimes(NotionCronBase):
         if scope_tags:
             for item in scope_tags:
                 obj.coverage_scope.add(item)
+                obj.coverage_scope.commit()
         obj.central_register = self._get_select_name(regime, '4.1 Central register')
         obj.public_access = self._get_select_name(regime, '5.1 Public access')
         obj.public_access_register_url = self._get_url(regime, '5.1.1 Public access: Register URL')
@@ -678,5 +679,5 @@ class SyncRegimes(NotionCronBase):
             console.warn(e)
             raise
         else:
-            console.info(f"Scope tags: {tags}")
+            # console.info(f"Scope tags: {tags}")
             return tags
