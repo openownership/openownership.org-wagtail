@@ -160,6 +160,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 INTERNAL_IPS = ['127.0.0.1']
 APPEND_SLASH = True
 AUTH_USER_MODEL = 'users.User'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
 ####################################################################################################

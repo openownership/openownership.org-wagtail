@@ -6,7 +6,6 @@ from django.db.models import Model
 from django_cron import CronJobBase, Schedule
 from modules.notion.data import COUNTRY_TRACKER, COMMITMENT_TRACKER, DISCLOSURE_REGIMES
 from modules.notion.auth import get_notion_client
-from modules.notion.utils import find_db_id
 from modules.notion.models import CountryTag, Commitment, CoverageScope, DisclosureRegime
 
 
@@ -17,6 +16,30 @@ class NotionCronBase(CronJobBase):
 
     def __init__(self, *args, **kwargs):
         self.client = get_notion_client()
+
+    def fetch_all_data(self, db_id: str) -> dict:
+        self.has_more = False
+        initial_data = self._fetch(db_id)
+        data = initial_data
+        self.has_more = data['has_more']
+        try:
+            while self.has_more is True:
+                data = self._fetch(db_id, next_cursor=data['next_cursor'])
+                initial_data['results'] += data['results']
+                self.has_more = data['has_more']
+        except KeyboardInterrupt:
+            import ipdb; ipdb.set_trace()
+        except Exception as e:
+            console.error(e)
+            import ipdb; ipdb.set_trace()
+            raise
+
+        return initial_data
+
+    def _fetch(self, db_id: str, next_cursor: str = None):
+        console.info(f"FETCH: {db_id} / {next_cursor}")
+        data = self.client.databases.query(database_id=db_id, start_cursor=next_cursor)
+        return data
 
     def _set_universals(self, obj: Model, data: dict) -> bool:
         """Sets the fields that are universal to our Notion model
@@ -129,7 +152,8 @@ class NotionCronBase(CronJobBase):
             data (dict): The dict we're grabbing the name from
         """
         if 'properties' not in data:
-            import ipdb; ipdb.set_trace()
+            import ipdb
+            ipdb.set_trace()
         if property_name not in data['properties'].keys():
             return None
         try:
@@ -379,13 +403,10 @@ class SyncCountries(NotionCronBase):
         Args:
             data (dict, optional): We're only going to pass the data in here in tests
         """
-        in_tests = False
-        if data is not None:
-            in_tests = True
 
         # The ID we have for COUNTRY_TRACKER is already the DB id
         if not data:
-            data = self.client.databases.query(database_id=COUNTRY_TRACKER)
+            data = self.fetch_all_data(COUNTRY_TRACKER)
 
         self._process_data(data)
 
@@ -431,7 +452,12 @@ class SyncCountries(NotionCronBase):
 
             obj.oo_support = self._get_select_name(country, 'OO Support')
 
-            obj.save()
+            try:
+                obj.save()
+            except Exception as e:
+                console.error("Failed to save")
+                console.error(e)
+                import ipdb; ipdb.set_trace()
 
     def _get_country_name(self, data: dict) -> str:
         """
@@ -483,13 +509,10 @@ class SyncCommitments(NotionCronBase):
         Args:
             data (dict, optional): We're only going to pass the data in here in tests
         """
-        in_tests = False
-        if data is not None:
-            in_tests = True
 
         # The ID we have for COMMITMENT_TRACKER is already the DB id
         if not data:
-            data = self.client.databases.query(database_id=COMMITMENT_TRACKER)
+            data = self.fetch_all_data(COMMITMENT_TRACKER)
 
         results = data.get('results', [])
         if len(results):
@@ -544,7 +567,12 @@ class SyncCommitments(NotionCronBase):
         obj.public_register = self._get_bool(commitment, 'Public register')
         obj.summary_text = self._get_rich_text(commitment, 'Summary Text')
 
-        obj.save()
+        try:
+            obj.save()
+        except Exception as e:
+            console.error("Failed to save")
+            console.error(e)
+            import ipdb; ipdb.set_trace()
 
 
 class SyncRegimes(NotionCronBase):
@@ -559,13 +587,10 @@ class SyncRegimes(NotionCronBase):
         Args:
             data (dict, optional): We're only going to pass the data in here in tests
         """
-        in_tests = False
-        if data is not None:
-            in_tests = True
 
         # The ID we have for DISCLOSURE_REGIMES is already the DB id
         if not data:
-            data = self.client.databases.query(database_id=DISCLOSURE_REGIMES)
+            data = self.fetch_all_data(DISCLOSURE_REGIMES)
 
         results = data.get('results', [])
         if len(results):
@@ -636,7 +661,12 @@ class SyncRegimes(NotionCronBase):
         obj.on_oo_register = self._get_bool(regime, '6.5 Data on OO Register')
         obj.legislation_url = self._get_url(regime, '8.4 Legislation URL')
 
-        obj.save()
+        try:
+            obj.save()
+        except Exception as e:
+            console.error("Failed to save")
+            console.error(e)
+            import ipdb; ipdb.set_trace()
 
     def _get_scope_tags(self, data: dict) -> list:
         """Takes this dict, creates a CoverageScope tag for each `name` and returns a list of them

@@ -65,7 +65,8 @@ class Commitment(NotionModel):
     link = models.URLField(
         _("Link"),
         blank=True,
-        null=True
+        null=True,
+        max_length=1000
     )
 
     # This field is going to be used to link to Snippets
@@ -123,13 +124,15 @@ class DisclosureRegime(NotionModel):
     definition_legislation_url = models.URLField(  # 1.1 Definition: Legislation URL
         _('Definition: Legislation URL'),
         blank=True,
-        null=True
+        null=True,
+        max_length=1000
     )
 
     coverage_legislation_url = models.URLField(  # 2.3 Coverage: Legislation URL
         _('Coverage: Legislation URL'),
         blank=True,
-        null=True
+        null=True,
+        max_length=1000
     )
 
     central_register = models.CharField(  # 4.1 Central register
@@ -149,7 +152,8 @@ class DisclosureRegime(NotionModel):
     public_access_register_url = models.URLField(  # 5.1.1 Public access: Register URL
         _('Public Access Register URL'),
         blank=True,
-        null=True
+        null=True,
+        max_length=1000
     )
 
     year_launched = models.CharField(  # 5.1.2 Year launched
@@ -190,7 +194,8 @@ class DisclosureRegime(NotionModel):
     legislation_url = models.URLField(  # 8.4 Legislation URL
         _('Legislation URL'),
         blank=True,
-        null=True
+        null=True,
+        max_length=1000
     )
 
     coverage_scope = ParentalManyToManyField(

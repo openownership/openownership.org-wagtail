@@ -9,7 +9,7 @@ class Command(BaseCommand):
     """
 
     """
-    help = 'Populates PublicationType, FocusAreaTag and SectorTag with required data.'
+    help = 'Checks access to Notion DBs'
 
     def handle(self, *args, **options):
         client = get_notion_client()
