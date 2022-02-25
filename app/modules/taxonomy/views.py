@@ -6,7 +6,7 @@ from wagtail.core.models import Locale, Page, Site
 
 from modules.core.utils import get_site_context
 from modules.core.views import PaginatedListView
-from modules.content.models import content_page_models
+from modules.content.models import content_page_models, PressLink
 from .models import BaseTag, Category, DummyPage, FocusAreaTag, SectorTag, PublicationType
 
 
@@ -74,6 +74,7 @@ class TaxonomyMixin:
         section_slug = self.section_page.slug
 
         for taxonomy_class in taxonomy_classes:
+            # Make a dummy page for the taxonomy itself, top level of menu:
             p = DummyPage()
             p.title = taxonomy_class._meta.verbose_name
             p.pk = f"TaxonomyView-{section_slug}-{taxonomy_class.__name__}"
@@ -86,25 +87,48 @@ class TaxonomyMixin:
             )
             menu_item = {"page": p, "children": []}
 
-            if taxonomy_class == self.taxonomy_class:
-                # Add all the sibling tags to this current one.
-                for tag in self._get_tags_that_have_pages(taxonomy_class):
-                    # Make a dummy page to fool the template:
-                    t = DummyPage()
-                    t.pk = f"TaxonomyPagesView-{section_slug}-{taxonomy_class.__name__}-{tag.slug}"
-                    t.title = tag.name
-                    t.url = tag.get_url(section_slug)
-                    menu_item["children"].append(t)
+            # Tags that could appear beneath, second level of menu:
+            tags_with_pages = self._get_tags_that_have_pages(taxonomy_class)
 
-            menu_pages.append(menu_item)
+            if len(tags_with_pages) > 0:
+                # Whether we're viewing this taxonomy or not, it has tags with pages,
+                # so we'll show a link to it.
+                if taxonomy_class == self.taxonomy_class:
+                    # We're viewing this taxonomy, so add the tags as children.
+                    for tag in tags_with_pages:
+                        # Make a dummy page to fool the template:
+                        t = DummyPage()
+                        t.pk = f"TaxonomyPagesView-{section_slug}-{taxonomy_class.__name__}-{tag.slug}"
+                        t.title = tag.name
+                        t.url = tag.get_url(section_slug)
+                        menu_item["children"].append(t)
 
-        # 3. Add the "Latest" link
+                menu_pages.append(menu_item)
 
-        p = DummyPage()
-        p.title = f'Latest {self.section_page.title}'
-        p.pk = f"SectionLatestPagesView-{section_slug}"
-        p.url = reverse('section-latest-pages', kwargs={'section_slug': section_slug})
-        menu_pages.append({"page": p, "children": []})
+        # 3. Add the "Latest" link, if there are any
+
+        latest_count = (
+            self.section_page.get_descendants()
+            .live().public()
+            .exact_type(*content_page_models)
+            .filter(locale=Locale.get_active())
+        ).count()
+        if latest_count > 0:
+            p = DummyPage()
+            p.title = f'Latest {self.section_page.title}'
+            p.pk = f"SectionLatestPagesView-{section_slug}"
+            p.url = reverse('section-latest-pages', kwargs={'section_slug': section_slug})
+            menu_pages.append({"page": p, "children": []})
+
+        # 4. Add the "Press links" link, if there are any
+
+        press_link_count = PressLink.objects.filter(section_page=self.section_page).count()
+        if press_link_count > 0:
+            p = DummyPage()
+            p.title = 'Press links'
+            p.pk = f"SectionPressLinksView-{section_slug}"
+            p.url = reverse('section-press-links', kwargs={'section_slug': section_slug})
+            menu_pages.append({"page": p, "children": []})
 
         return menu_pages
 
@@ -311,12 +335,12 @@ class PublicationTypePagesView(CategoryPagesView):
 
 
 ####################################################################################
-#
+#  Other views
 
 class TaxonomyView(TaxonomyMixin, TemplateView):
     """
     For viewing a taxonomy itself, with links to all of the tags/categories within it.
-
+    e.g. For viewing "Sector" and showing links to "Banking", "Technology", etc.
     """
     template_name = 'taxonomy/taxonomy_detail.jinja'
 
@@ -413,4 +437,30 @@ class SectionLatestPagesView(TaxonomyMixin, PaginatedListView):
             .filter(locale=Locale.get_active())
             .specific()
             .order_by('-first_published_at')
+        )
+
+
+class SectionPressLinksView(TaxonomyMixin, PaginatedListView):
+    """
+    Viewing all the Press Link snippets within this section. No tags.
+
+    But we inherit from TaxonomyMixin so we can use its stuff for
+    generating menu_pages and pretending to be a real Wagtail Page.
+    """
+    template_name = 'taxonomy/pages.jinja'
+
+    @property
+    def title(self):
+        "To mimic a Page object"
+        return "Press links"
+
+    @property
+    def pk(self):
+        "To mimic a Page object"
+        return (f"SectionPressLinksView-{self.section_page.slug}")
+
+    def get_queryset(self):
+        return (
+            PressLink.objects.filter(section_page=self.section_page)
+            .order_by("-first_published_at")
         )

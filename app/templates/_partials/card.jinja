@@ -5,7 +5,12 @@
             {{image(page.thumbnail,'fill-415x300')}}
         {% endif %}
         <div class="card-group__text">
-            <h2 class="card-group__title">{{page.title}}</h2>
+            <h2 class="card-group__title">
+                {{page.title}}
+                {% if page.is_press_link %}
+                    [EXTERNAL LINK ICON]
+                {% endif %}
+            </h2>
             {% if page.blurb %}<p class="card-group__blurb">{{page.blurb}}</p>{% endif %}
         </div>
     </a>
@@ -15,6 +20,9 @@
 
     {% if page.publication_type %}
         <a href="{{ url('publicationtype-category', kwargs={'section_slug': page.section_page.slug, 'tag_slug': page.publication_type.slug}) }}">{{ page.publication_type }}</a>
+    {% elif page.is_press_link %}
+        {# Press links don't have tags, but we can fake it to look like one. #}
+        <a href="{{ url('section-press-links', kwargs={'section_slug': page.section_page.slug}) }}">Press link</a>
     {% endif %}
 
     {% if page.areas_of_focus %}

@@ -15,7 +15,14 @@ from wagtail.documents import urls as wagtaildocs_urls
 from .views import (
     robots, error_400_view, error_403_view, error_404_test, error_404_view, error_500_view
 )
-from modules.taxonomy.views import FocusAreaPagesView, SectorPagesView, PublicationTypePagesView, SectionLatestPagesView, TaxonomyView
+from modules.taxonomy.views import (
+    FocusAreaPagesView,
+    SectorPagesView,
+    PublicationTypePagesView,
+    SectionLatestPagesView,
+    SectionPressLinksView,
+    TaxonomyView,
+)
 
 
 urlpatterns = [
@@ -64,8 +71,13 @@ urlpatterns = urlpatterns + i18n_patterns(
         SectionLatestPagesView.as_view(),
         name="section-latest-pages"
     ),
+    path(
+        '<slug:section_slug>/press-links/',
+        SectionPressLinksView.as_view(),
+        name="section-press-links"
+    ),
     re_path(
-        r'(?P<section_slug>\w+)/(?P<taxonomy_slug>focus-areas|sectors|types)/',
+        r'(?P<section_slug>[-\w]+)/(?P<taxonomy_slug>focus-areas|sectors|types)/',
         TaxonomyView.as_view(),
         name="taxonomy"
     ),

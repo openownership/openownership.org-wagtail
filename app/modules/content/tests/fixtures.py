@@ -16,6 +16,7 @@ from modules.content.models import (
     NewsArticlePage,
     NewsArticleAuthorRelationship,
     NewsIndexPage,
+    PressLink,
     PublicationFrontPage,
     PublicationAuthorRelationship,
     PublicationInnerPage,
@@ -374,3 +375,9 @@ def author_with_content_pages(author, blog_index_page, news_index_page, section_
         PublicationAuthorRelationship(page=p, author=author).save()
 
     return author
+
+
+
+@pytest.fixture(scope="function")
+def press_link():
+    return PressLink.objects.create(title="Press Link", url="https://example.org/foo/")

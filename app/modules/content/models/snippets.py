@@ -1,11 +1,19 @@
+from django.conf import settings
 from django.db import models
+from django.shortcuts import reverse
+from django.utils.translation import gettext_lazy as _
 
-from wagtail.admin.edit_handlers import FieldPanel
+from modelcluster.models import ClusterableModel
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.search import index
 from wagtail.snippets.models import register_snippet
+
+from modules.taxonomy.models import DummyPage, PublicationType
 
 
 @register_snippet
-class Author(models.Model):
+class Author(index.Indexed, models.Model):
     """
     An Author is someone who wrote something on this site.
     """
@@ -15,9 +23,11 @@ class Author(models.Model):
         FieldPanel('name'),
     ]
 
-    # Also:
+    # Also has:
     # blog_articles from BlogArticleAuthorRelationship
     # news_articles from NewsArticleAuthorRelationship
+    # publications from PublicationAuthorRelationship
+    # press_links from PressLinkAuthorRelationship
     # team_profile from TeamProfilePage
 
     def __str__(self):
@@ -71,3 +81,83 @@ class Author(models.Model):
         return sorted(
             content, key=lambda x: x.first_published_at, reverse=True
         )[:num]
+
+
+@register_snippet
+class PressLink(index.Indexed, ClusterableModel):
+    """
+    For linking to a page on another website.
+    Can appear as cards on section pages or on a theme listing page.
+    """
+
+    # PressLinks need to be "within" a section so that we only display
+    # the correct ones in the section taxonomy/theme listing pages
+    # and on front section pages.
+    section_page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('Section'),
+    )
+
+    url = models.URLField(verbose_name=_('URL'), blank=False)
+
+    title = models.CharField(max_length=255, blank=False)
+
+    blurb = models.CharField(max_length=255, blank=True)
+
+    thumbnail = models.ForeignKey(
+        settings.IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('Logo'),
+    )
+
+    first_published_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    # Also has:
+    # author_relationships from PressLinkAuthorRelationship
+
+    panels = [
+        PageChooserPanel('section_page', 'content.SectionPage'),
+        FieldPanel('url'),
+        ImageChooserPanel('thumbnail'),
+        FieldPanel('title'),
+        FieldPanel('blurb'),
+        MultiFieldPanel(
+            [InlinePanel('author_relationships', label=_('Authors'))], heading=_('Authors')
+        )
+    ]
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-first_published_at']
+        verbose_name = "Press Link"
+        verbose_name_plural = "Press Links"
+
+    @property
+    def authors(self):
+        """Returns a list of Author objects associated with this article.
+        """
+        authors = self.author_relationships.all().order_by("sort_order")
+        return [a.author for a in authors]
+
+    @property
+    def is_press_link(self):
+        "So it can be differentiated from Pages in templates"
+        return True
+
+    # Methods/properties to make it behave a bit like a Page in templates:
+
+    def get_url(self):
+        return self.url
+
+    @property
+    def specific(self):
+        return self

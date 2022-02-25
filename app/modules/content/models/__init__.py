@@ -31,9 +31,10 @@ from .inlines import (  # NOQA
     BlogArticleAuthorRelationship,
     NewsArticleAuthorRelationship,
     PublicationAuthorRelationship,
+    PressLinkAuthorRelationship,
 )
 
-from .snippets import Author  # NOQA
+from .snippets import Author, PressLink  # NOQA
 
 
 # When we want to get a bunch of Pages that are all "content" - like

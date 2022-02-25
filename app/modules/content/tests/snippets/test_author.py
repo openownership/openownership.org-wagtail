@@ -10,6 +10,9 @@ from modules.content.models import (
 )
 
 
+pytestmark = pytest.mark.django_db
+
+
 ########################################################################
 # Author.get_blog_articles()
 

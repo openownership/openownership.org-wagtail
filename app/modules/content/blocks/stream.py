@@ -564,13 +564,6 @@ class PublicationTypesBlock(blocks.StructBlock):
     DEFAULT_LIMIT = 3
     DEFAULT_TITLE = 'View by publication type'
 
-    section_page = blocks.PageChooserBlock(
-        required=True,
-        label=_("Front page of section"),
-        page_type=('content.SectionPage'),
-        help_text=_("Link to Publication Types within this section")
-    )
-
     title = blocks.CharBlock(
         required=False,
         help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"')
@@ -599,6 +592,52 @@ class PublicationTypesBlock(blocks.StructBlock):
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,
             'pages': pages,
+        })
+
+        return context
+
+
+####################################################################################################
+# Press links
+####################################################################################################
+
+
+class PressLinksBlock(blocks.StructBlock):
+
+    class Meta:
+        label = _('Press links block')
+        group = _('Card group')
+        icon = "doc-full"
+        template = "_partials/card_group.jinja"
+
+    DEFAULT_LIMIT = 3
+    DEFAULT_TITLE = 'Press links'
+
+    title = blocks.CharBlock(
+        required=False,
+        help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"')
+    )
+
+    limit_number = blocks.IntegerBlock(required=True, default=DEFAULT_LIMIT)
+
+    def get_context(self, value, parent_context={}):
+        from modules.content.models import PressLink
+
+        context = super().get_context(value, parent_context=parent_context)
+
+        # This will presumably be the Insight SectionPage or similar:
+        # (we need it to generate a URL to the tag page below this page)
+        parent_page = parent_context['page']
+
+        objects = (
+            PressLink.objects
+            .filter(section_page=parent_page)
+            .order_by("-first_published_at")[:value.get('limit', self.DEFAULT_LIMIT)]
+        )
+
+        context.update({
+            'title': value.get('title') or self.DEFAULT_TITLE,
+            'pages': objects
         })
 
         return context

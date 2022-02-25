@@ -78,42 +78,6 @@ def test_page_attributes(section_page):
     assert data['page'].pk == 'TaxonomyPagesView-section-SectorTag-cats'
 
 
-def test_menu_pages(blog_index_page):
-    "The correct data should be in the menu_pages context"
-    section_page = blog_index_page.get_parent()
-
-    cats_tag = SectorTag.objects.create(name='Cats')
-    cats_post = BlogArticlePage(live=True, title="Cats post")
-    blog_index_page.add_child(instance=cats_post)
-    cats_post.save_revision().publish()
-    SectorTaggedPage.objects.create(tag=cats_tag, content_object=cats_post)
-
-    rv = client.get('/en/section/sectors/cats/')
-
-    pages = rv.context_data['menu_pages']
-    assert len(pages) == 5
-
-    assert pages[0]["page"].specific == section_page
-
-    assert pages[1]["page"].title == "Area of Focus"
-    assert pages[1]["page"].pk == "TaxonomyView-section-FocusAreaTag"
-    assert pages[1]["children"] == []
-
-    assert pages[2]["page"].title == "Sector"
-    assert pages[2]["page"].pk == "TaxonomyView-section-SectorTag"
-    assert len(pages[2]["children"]) == 1
-    assert pages[2]["children"][0].title == "Cats"
-    assert pages[2]["children"][0].pk == "TaxonomyPagesView-section-SectorTag-cats"
-    assert pages[2]["children"][0].url == "/en/section/sectors/cats/"
-
-    assert pages[3]["page"].title == "Publication type"
-    assert pages[3]["page"].pk == "TaxonomyView-section-PublicationType"
-    assert pages[3]["children"] == []
-
-    assert pages[4]["page"].title == "Latest Section"
-    assert pages[4]["page"].pk == "SectionLatestPagesView-section"
-
-
 def test_queryset_tagged_pages(blog_index_page):
     "The queryset should only include pages with this tag"
     cats_tag = SectorTag.objects.create(name='Cats')
