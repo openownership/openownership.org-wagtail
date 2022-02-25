@@ -14,7 +14,8 @@ from .stream import (
     # StepsBlock,
     # StatsBlock,
     PullQuoteBlock,
-    BlockQuoteBlock,
+    # BlockQuoteBlock,
+    SummaryBoxBlock,
     # EmbedBannerBlock,
     # LogoListBlock,
     # BannerBlock,
@@ -73,7 +74,7 @@ article_page_body_blocks: list = [
     ('embed', EmbedBlock()),
     ('table', TableBlock()),
     ('pull_quote', PullQuoteBlock()),
-    ('block_quote', BlockQuoteBlock()),
+    ('summary_box', SummaryBoxBlock()),
     ('image', ArticleImageBlock()),
     ('cta_block_form', CTABlock()),
 ]

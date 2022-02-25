@@ -305,12 +305,28 @@ class PullQuoteBlock(blocks.StructBlock):
     quote = blocks.TextBlock(required=True)
 
 
-class BlockQuoteBlock(blocks.StructBlock):
-    class Meta:
-        icon = 'fa-indent'
-        template = 'blocks/block_quote.jinja'
+# class BlockQuoteBlock(blocks.StructBlock):
+#     class Meta:
+#         icon = 'fa-indent'
+#         template = 'blocks/block_quote.jinja'
 
-    quote = blocks.TextBlock(required=True)
+#     quote = blocks.TextBlock(required=True)
+
+
+####################################################################################################
+# Summary box
+####################################################################################################
+
+
+class SummaryBoxBlock(blocks.StructBlock):
+    class Meta:
+        icon = 'fa-square-o'
+        template = 'blocks/summary_box.jinja'
+        label = "Summary / highlight box"
+
+    text = blocks.RichTextBlock(
+        required=True, features=settings.RICHTEXT_SUMMARY_FEATURES
+    )
 
 
 ####################################################################################################
