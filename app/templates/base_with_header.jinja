@@ -45,21 +45,20 @@
 					{% endif %}
                 </ul>
             </header>
+			{% block main_inner %}
+				<div class="aside-layout-right">
+					<div class="aside-layout__main">
+						{% block content %}
+							{{render_stream(page.body)}}
+						{% endblock %}
+					</div>
+
+					<div>
+						{% include "_partials/taxonomies.jinja" %}
+					</div>
+				</div>
+			{% endblock %}
 		</article>
-
-		{% block main_inner %}
-			<div class="aside-layout-right">
-				<div class="aside-layout__main">
-					{% block content %}
-						{{render_stream(page.body)}}
-					{% endblock %}
-				</div>
-
-				<div>
-					{% include "_partials/taxonomies.jinja" %}
-				</div>
-			</div>
-		{% endblock %}
 	</div>
 
 {% endblock %}

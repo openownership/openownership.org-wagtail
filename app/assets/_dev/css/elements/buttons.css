@@ -10,15 +10,13 @@
     box-shadow: inset 0px -2px 1px 0px #363F4E;
 }
 
-/* 
+
 .btn {
     &:hover, &:active, &:focus {
-        @apply bg-purple-mid;
         @apply text-white;
-        @apply border border-purple-mid;
     }
 }
-
+/* 
 @include max-width(lg) {
     .btn {
         @apply py-2;

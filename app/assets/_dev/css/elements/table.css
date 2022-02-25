@@ -1,0 +1,18 @@
+table {
+    @apply border-collapse w-full;
+}
+
+table td, table th {
+    @apply border border-grey-medium;
+    @apply p-2;
+}
+
+table tr:nth-child(even){
+    @apply bg-grey-light;
+}
+
+table th {
+    @apply py-2;
+    @apply bg-blue-medium;
+    @apply text-white;
+}

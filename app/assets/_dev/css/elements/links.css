@@ -1,6 +1,6 @@
 a {
-    @apply underline;
-    @apply text-links-link;
+    @apply underline decoration-2;
+    @apply text-blue-medium;
 
     &:hover, &:focus, &:active {
         @apply no-underline;
