@@ -129,6 +129,7 @@ class SectionListingPage(SectionPage):
     parent_page_types: list = ["content.HomePage"]
     subpage_types: list = [
         "content.ArticlePage",
+        "content.JobsIndexPage",
         "content.PublicationFrontPage",
         "content.TeamPage",
     ]
@@ -606,7 +607,7 @@ class JobsIndexPage(IndexPageType):
     objects_model = JobPage
 
     template = 'content/jobs_index_page.jinja'
-    parent_page_types: list = ['content.HomePage']
+    parent_page_types: list = ['content.SectionListingPage']
     subpage_types: list = ['content.JobPage']
     max_count = 1
 
