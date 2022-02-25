@@ -37,6 +37,9 @@ app/media/**/*
 *.sublime-workspace
 *.sublime-project
 
+# This file is just for me, too dangerous to have on the servers
+app/modules/notion/management/commands/wipe_notion.py
+
 # Coverage
 .coverage
 coverage.xml

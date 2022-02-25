@@ -1,12 +1,18 @@
-import arrow
+# stdlib
 from typing import Optional
 from datetime import datetime
+
+# 3rd party
+import arrow
 from consoler import console
+from django_cron import Schedule, CronJobBase
 from django.db.models import Model
-from django_cron import CronJobBase, Schedule
-from modules.notion.data import COUNTRY_TRACKER, COMMITMENT_TRACKER, DISCLOSURE_REGIMES
+from django.template.defaultfilters import slugify
+
+# Project
 from modules.notion.auth import get_notion_client
-from modules.notion.models import CountryTag, Commitment, CoverageScope, DisclosureRegime
+from modules.notion.data import COUNTRY_TRACKER, COMMITMENT_TRACKER, DISCLOSURE_REGIMES
+from modules.notion.models import Commitment, CountryTag, CoverageScope, DisclosureRegime
 
 
 DEFAULT_DATE = arrow.get('1970-01-01').datetime
@@ -444,6 +450,7 @@ class SyncCountries(NotionCronBase):
         country_name = self._get_country_name(country)
         if country_name:
             obj.name = country_name
+            obj.slug = slugify(country_name)
             self._set_universals(obj, country)
             try:
                 obj.icon = country['icon']['emoji']
