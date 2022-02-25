@@ -352,6 +352,7 @@ class BannerBlock(EyebrowTitleMixin):
     cta = CTABlock(required=False)
 
 
+
 ####################################################################################################
 # News blocks
 ####################################################################################################
@@ -399,7 +400,54 @@ class LatestNewsBlock(TitleMixin):
 
 
 ####################################################################################################
-# Section content
+# Pages
+####################################################################################################
+
+
+class HighlightPagesBlock(blocks.StructBlock):
+    """
+    For choosing a few pages from ALL of the pages to highlight on a Home or Section
+    page.
+    """
+
+    class Meta:
+        label = _('Highlight Pages')
+        group = _('Card group')
+        icon = 'doc-full'
+        template = "_partials/card_group.jinja"
+
+    FORMAT_DEFAULT = 'default'
+
+    FORMAT_CHOICES = (
+        (FORMAT_DEFAULT, 'Default'),
+    )
+
+    pages = blocks.ListBlock(
+        blocks.StructBlock([
+            ('page', blocks.PageChooserBlock(required=True)),
+            ('card_format', blocks.ChoiceBlock(required=True, choices=FORMAT_CHOICES, default=FORMAT_DEFAULT)),
+        ]),
+        min_num=1
+    )
+
+    def get_context(self, value, parent_context={}):
+        context = super().get_context(value, parent_context=parent_context)
+
+        # Put the pages into a list that's easy to pass to the card_group template.
+        pages = []
+        for struct_value in value.get('pages'):
+            page = struct_value.get('page')
+            page.specific.card_format = struct_value.get('card_format')
+            pages.append(page.specific)
+
+        context.update({
+            'pages': pages,
+        })
+        return context
+
+
+####################################################################################################
+# Latest section content
 ####################################################################################################
 
 

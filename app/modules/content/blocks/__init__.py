@@ -19,6 +19,7 @@ from .stream import (
     # LogoListBlock,
     # BannerBlock,
     # LatestNewsBlock,
+    HighlightPagesBlock,
     LatestSectionContentBlock,
     AreasOfFocusBlock,
     SectorsBlock,
@@ -51,10 +52,12 @@ landing_page_blocks: list = [
 
 
 home_page_blocks: list = [
+    ('highlight_pages', HighlightPagesBlock()),
     ('latest_section_content', LatestSectionContentBlock()),
 ]
 
 section_page_blocks: list = [
+    ('highlight_pages', HighlightPagesBlock()),
     ('areas_of_focus_block', AreasOfFocusBlock()),
     ('sectors_block', SectorsBlock()),
     ('latest_section_content', LatestSectionContentBlock()),
