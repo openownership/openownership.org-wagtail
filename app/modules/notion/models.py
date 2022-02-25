@@ -232,7 +232,7 @@ class CountryTag(NotionModel, BaseTag):
 
 class CountryTaggedPage(ItemBase):
     tag = models.ForeignKey(
-        "notion.CountryTag",
+        CountryTag,
         related_name="country_related_pages",
         on_delete=models.CASCADE
     )

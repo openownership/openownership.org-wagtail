@@ -182,6 +182,22 @@ REDIS_CONNECTION = 'redis://{}:6379/0'.format(os.environ.get('REDIS_HOST'))
 
 
 ####################################################################################################
+# Disable bugsnag by default, enable it in staging and production configs
+####################################################################################################
+
+
+BUGSNAG = {
+    "api_key": os.environ['BUGSNAG_API_KEY'],
+    "project_root": DJANGO_ROOT,
+    "ignore_classes": [
+        'django.http.Http404', 'django.http.response.Http404',
+        'django.core.exceptions.PermissionDenied'
+    ],
+    "notify_release_stages": ["production", "staging"]
+}
+
+
+####################################################################################################
 # Cache
 ####################################################################################################
 

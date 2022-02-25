@@ -195,10 +195,15 @@ class TaggedPageMixin(PageMixinBase):
         through='taxonomy.SectorTaggedPage', blank=True
     )
 
+    countries = ClusterTaggableManager(
+        through='notion.CountryTaggedPage', blank=True
+    )
+
     about_panels = [
         PublicationTypeFieldPanel('publication_type', _('Publication type')),
         FieldPanel('areas_of_focus', _('Areas of focus')),
         FieldPanel('sectors', _('Sectors')),
+        FieldPanel('countries', _('Countries')),
     ]
 
     @classmethod

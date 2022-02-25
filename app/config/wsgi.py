@@ -13,9 +13,10 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-server_env = os.environ.get('SERVER_ENV')
+SERVER_ENV = os.environ.get('SERVER_ENV')
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.{}".format(server_env))
-os.environ.setdefault("BUGSNAG_RELEASE_STAGE", server_env)
+os.environ.setdefault('BUGSNAG_RELEASE_STAGE', SERVER_ENV)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.{}".format(SERVER_ENV))
+os.environ.setdefault("BUGSNAG_RELEASE_STAGE", SERVER_ENV)
 
 application = get_wsgi_application()
