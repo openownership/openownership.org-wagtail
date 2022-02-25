@@ -18,7 +18,6 @@ PUBLICATION_TYPES = (
     'Guidance',
     'Job',
     'News article',
-    'Press link',
     'Report',
     'Tool',
 )

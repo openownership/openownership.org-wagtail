@@ -37,14 +37,13 @@ def test_populates_publication_types():
         'Guidance',
         'Job',
         'News article',
-        'Press link',
         'Report',
         'Tool',
     ]
 
     types = PublicationType.objects.all()
 
-    assert len(types) == 11
+    assert len(types) == 10
     assert valid_names == [t.name for t in types]
 
 
