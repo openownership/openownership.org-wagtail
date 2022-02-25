@@ -1,3 +1,4 @@
+import arrow
 import pytest
 
 from modules.content.models import Author, PressLinkAuthorRelationship
@@ -30,3 +31,13 @@ def test_get_url(press_link):
 
 def test_specific(press_link):
     assert press_link.specific == press_link
+
+
+def test_display_date(press_link):
+    assert press_link.display_date == press_link.first_published_at
+
+
+def test_human_display_date(press_link):
+    dt = arrow.get("2022-01-09 12:00:00").datetime
+    press_link.first_published_at = dt
+    assert press_link.human_display_date == "09 January 2022"

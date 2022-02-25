@@ -161,3 +161,11 @@ class PressLink(index.Indexed, ClusterableModel):
     @property
     def specific(self):
         return self
+
+    @property
+    def display_date(self):
+        return self.first_published_at
+
+    @property
+    def human_display_date(self):
+        return self.display_date.strftime('%d %B %Y')
