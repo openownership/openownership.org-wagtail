@@ -34,3 +34,15 @@ from .inlines import (  # NOQA
 )
 
 from .snippets import Author  # NOQA
+
+
+# When we want to get a bunch of Pages that are all "content" - like
+# the "latest content" within a section, or "all content tagged with x"
+# then which Pages count as "content"? These pages:
+content_page_models: list = (  # NOQA
+    ArticlePage,
+    BlogArticlePage,
+    JobPage,
+    NewsArticlePage,
+    PublicationFrontPage,
+)

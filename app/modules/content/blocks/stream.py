@@ -427,7 +427,7 @@ class LatestSectionContentBlock(blocks.StructBlock):
     )
 
     def get_context(self, value, parent_context={}):
-        from modules.content.models import ArticlePage, BlogArticlePage, JobPage, NewsArticlePage, PublicationFrontPage
+        from modules.content.models import content_page_models
 
         context = super().get_context(value, parent_context=parent_context)
 
@@ -437,9 +437,7 @@ class LatestSectionContentBlock(blocks.StructBlock):
             pages = (
                 section_page.get_descendants()
                 .live().public()
-                .exact_type(
-                    ArticlePage, BlogArticlePage, JobPage, NewsArticlePage, PublicationFrontPage
-                )
+                .exact_type(*content_page_models)
                 .specific()
                 .order_by('-first_published_at')[:self.DEFAULT_LIMIT]
             )

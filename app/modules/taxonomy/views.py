@@ -6,7 +6,7 @@ from wagtail.core.models import Locale, Page, Site
 
 from modules.core.utils import get_site_context
 from modules.core.views import PaginatedListView
-from modules.content.models import ArticlePage, BlogArticlePage, JobPage, NewsArticlePage, PublicationFrontPage
+from modules.content.models import content_page_models
 from .models import BaseTag, Category, DummyPage, FocusAreaTag, SectorTag, PublicationType
 
 
@@ -409,9 +409,7 @@ class SectionLatestPagesView(TaxonomyMixin, PaginatedListView):
         return (
             self.section_page.get_descendants()
             .live().public()
-            .exact_type(
-                ArticlePage, BlogArticlePage, JobPage, NewsArticlePage, PublicationFrontPage
-            )
+            .exact_type(*content_page_models)
             .filter(locale=Locale.get_active())
             .specific()
             .order_by('-first_published_at')
