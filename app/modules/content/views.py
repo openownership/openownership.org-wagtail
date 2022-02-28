@@ -138,7 +138,9 @@ class SearchView(TemplateView):
         author_page = self._author_matches(terms)
         exclude_ids = [p.id for p in promoted]
         searched = Page.objects.exclude(
-            id__in=exclude_ids).live().specific().search(terms, operator=self.mode)
+            id__in=exclude_ids).filter(
+            locale=Locale.get_active()
+        ).live().specific().search(terms, operator=self.mode)
 
         # Unify stuff
         objects = []
