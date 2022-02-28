@@ -495,5 +495,6 @@ FONTAWESOME_ICONS = [
     'solid/cogs.svg',
     'solid/hashtag.svg',
     'solid/anchor.svg',
-    'solid/clock.svg'
+    'solid/clock.svg',
+    'solid/sticky-note.svg'
 ]
