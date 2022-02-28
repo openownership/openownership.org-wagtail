@@ -17,6 +17,14 @@
     }
 }
 
+/*------------------------------------*\
+  #APPLY FOR A JOB BUTTON
+\*------------------------------------*/
+
+.apply-btn {
+    @apply my-10;
+}
+
 /* 
 @include max-width(lg) {
     .btn {
@@ -81,3 +89,4 @@
         @apply text-white;
     }
 } */ 
+

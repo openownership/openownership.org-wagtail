@@ -17,7 +17,7 @@
 		{% with breadcrumb_page=page.breadcrumb_page %}
 			{% if breadcrumb_page %}
 				<div class="breadcrumbs">
-					<a href="{{ breadcrumb_page.get_url() }}">{% trans %}Back to{% endtrans %} {{ breadcrumb_page.title }}</a>
+					<a class="reverse-underline" href="{{ breadcrumb_page.get_url() }}"><span aria-hidden="true"> < </span>{% trans %}Back to{% endtrans %} {{ breadcrumb_page.title }}</a>
 				</div>
 			{% endif %}
 		{% endwith %}
@@ -53,7 +53,7 @@
 						{% endblock %}
 					</div>
 
-					<div>
+					<div class="aside-layout__right-aside">
 						{% include "_partials/taxonomies.jinja" %}
 					</div>
 				</div>
