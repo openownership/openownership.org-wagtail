@@ -111,6 +111,7 @@ SITE_APPS = [
     'modules.taxonomy',
     'modules.content',
     'modules.notion',
+    'modules.stats',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + WAGTAIL_APPS + SITE_APPS
@@ -133,6 +134,7 @@ CRON_CLASSES = [
 ####################################################################################################
 
 MIDDLEWARE = [
+    'modules.stats.middleware.ViewCountMiddleware',
     'wagtailcache.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',

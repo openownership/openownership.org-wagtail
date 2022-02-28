@@ -11,6 +11,7 @@ from collections import OrderedDict
 # 3rd party
 from django.db import models
 from django.conf import settings
+from wagtail.search import index
 from django_extensions.db.fields import AutoSlugField
 from django.utils.translation import gettext_lazy as _
 
@@ -150,6 +151,10 @@ class AuthorsPageMixin(PageMixinBase):
         )
     ]
 
+    search_fields = [
+        index.SearchField('_authors_string'),
+    ]
+
     @classmethod
     def get_admin_tabs(cls):
         """Add the about tab to the tabbed interface
@@ -164,6 +169,10 @@ class AuthorsPageMixin(PageMixinBase):
         """
         authors = self.author_relationships.all().order_by("sort_order")
         return [a.author for a in authors]
+
+    @property
+    def _authors_string(self):
+        return ' '.join([a.name for a in self.authors])
 
 
 class TaggedPageMixin(PageMixinBase):
@@ -234,6 +243,10 @@ class TaggedAuthorsPageMixin(TaggedPageMixin, AuthorsPageMixin):
         abstract = True
 
     about_panels = AuthorsPageMixin.about_panels + TaggedPageMixin.about_panels
+
+    search_fields = [
+        index.SearchField('_authors_string'),
+    ]
 
     @classmethod
     def get_admin_tabs(cls):

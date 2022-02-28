@@ -100,6 +100,7 @@ class SearchView(TemplateView):
         context = super().get_context_data(**kwargs)
         pages = self._get_pages(self.terms)
         self.paginator = self._get_paginator(pages)
+        self.page_obj = self.paginator
         context['terms'] = self.terms
         context['page'] = self
         context['results'] = self.paginator
@@ -116,26 +117,10 @@ class SearchView(TemplateView):
         result_set = p.page(self.page_num)
         return result_set
 
-    def _author_matches(self, terms):
-        # TODO
-        pass
-        # from modules.users.models import User
-        # # Author exact matches
-        # author_page = None
-        # try:
-        #     author = User.objects.filter(profile__is_public=True).get(slug=slugify(terms))
-        # except Exception:
-        #     pass
-        # else:
-        #     author_page = DummyUserPage(author)
-
-        # return author_page
-
     def _get_pages(self, terms):
         query = Query.get(terms)
         query.add_hit()
         promoted = Query.get(terms).editors_picks.all()
-        author_page = self._author_matches(terms)
         exclude_ids = [p.id for p in promoted]
         searched = Page.objects.exclude(
             id__in=exclude_ids).filter(
@@ -144,8 +129,6 @@ class SearchView(TemplateView):
 
         # Unify stuff
         objects = []
-        if author_page:
-            objects += [author_page]
         objects += [r.page for r in promoted]
         if searched:
             objects = objects + [r for r in searched]

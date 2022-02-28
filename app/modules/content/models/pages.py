@@ -41,6 +41,7 @@ from modules.content.blocks import (
 )
 from modules.content.blocks.stream import GlossaryItemBlock
 from modules.taxonomy.models import PublicationType
+from modules.stats.mixins import Countable
 from .mixins import TaggedAuthorsPageMixin, TaggedPageMixin, PageHeroMixin
 from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageType
 
@@ -176,12 +177,14 @@ class ArticlePage(ContentPageType):
         return menu_pages
 
 
-class NewsArticlePage(TaggedAuthorsPageMixin, ContentPageType):
+class NewsArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
     """An article in the Insight > News section.
     """
     template = 'content/blog_news_article_page.jinja'
     parent_page_types: list = ['content.NewsIndexPage']
     subpage_types: list = []
+
+    search_fields = ContentPageType.search_fields + TaggedAuthorsPageMixin.search_fields
 
     # Also has:
     # author_relationships from NewsArticleAuthorRelationship
@@ -194,12 +197,14 @@ class NewsArticlePage(TaggedAuthorsPageMixin, ContentPageType):
         return PublicationType.objects.filter(name='News article')
 
 
-class BlogArticlePage(TaggedAuthorsPageMixin, ContentPageType):
+class BlogArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
     """An article in the Insight > Blog section.
     """
     template = 'content/blog_news_article_page.jinja'
     parent_page_types: list = ['content.BlogIndexPage']
     subpage_types: list = []
+
+    search_fields = ContentPageType.search_fields + TaggedAuthorsPageMixin.search_fields
 
     # Also has:
     # author_relationships from BlogArticleAuthorRelationship
@@ -283,7 +288,7 @@ class PublicationFrontPageForm(WagtailAdminPageForm):
         title.help_text = _("The publication title as you'd like it to be seen by the public")
 
 
-class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
+class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
     """The front and main page of a Publication.
 
     This defines all the information about the Publication as a whole.
@@ -296,6 +301,8 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, BasePage):
     template = 'content/publication_front_page.jinja'
     parent_page_types: list = ['content.SectionPage', 'content.SectionListingPage']
     subpage_types: list = ['content.PublicationInnerPage']
+
+    search_fields = ContentPageType.search_fields + TaggedAuthorsPageMixin.search_fields
 
     page_title = models.CharField(
         max_length=255, blank=True, help_text=_("e.g. ‘Introduction’")

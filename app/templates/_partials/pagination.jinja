@@ -1,7 +1,10 @@
 {# Ana - just some dummy example HTML! Phil. #}
 
 
-{% if page_obj and page_obj.paginator and page_obj.paginator.num_pages and page_obj.paginator.num_pages > 1 %}
+{% if page_obj %}
+{% if page_obj.paginator %}
+{% if page_obj.paginator.num_pages %}
+{% if page_obj.paginator.num_pages > 1 %}
     <nav>
         <ul class="nav nav--pagination">
             {% if page_obj.has_previous() %}
@@ -37,4 +40,7 @@
             {% endif %}
         </ul>
     </nav>
+{% endif %}
+{% endif %}
+{% endif %}
 {% endif %}
