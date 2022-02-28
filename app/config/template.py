@@ -186,7 +186,7 @@ class TemplateGlobalsExtension(Extension):
             'static': staticfiles_storage.url,
             'absolutepath': isabsolutepath,
             'picture': picture,
-            'routablepageurl': jinja2.contextfunction(routablepageurl),
+            'routablepageurl': jinja2.pass_context(routablepageurl),
             'now': time_now,
             'today': date_now
         })

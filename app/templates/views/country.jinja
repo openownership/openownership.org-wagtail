@@ -1,5 +1,23 @@
-{% extends 'base.jinja' %}
+{% set body_classes = "country-page" %}
+{% extends 'base_with_menu.jinja' %}
 
 {% block content %}
+
     {{ super() }}
+
+    <div class="country__header">
+        {% if country.map %}
+        <div class="country__header-map">
+            TODO: Add map to CountryTag
+        </div>
+        <div class="country__header-meta">
+            <p>Records last updated: {{ country.notion_updated|nicedate }}</p>
+            <p>Work undertaken by: {{ country.notion_updated|nicedate }}</p>
+
+        </div>
+        {% endif %}
+
+    </div>
+
+
 {% endblock %}

@@ -85,7 +85,7 @@ WAGTAIL_APPS = [
     'wagtail.documents',
     'wagtail.images',
     'wagtail.search',
-    'wagtail.contrib.postgres_search',
+    # 'wagtail.contrib.postgres_search',  # Deprecated, now built in
     'wagtail.admin',
     'wagtail.core',
     "wagtail_localize",
@@ -261,7 +261,7 @@ CACHEOPS_DEGRADE_ON_FAILURE = True
 
 WAGTAILSEARCH_BACKENDS = {
     'default': {
-        'BACKEND': 'wagtail.contrib.postgres_search.backend',
+        'BACKEND': 'wagtail.search.backends.database.',
         'SEARCH_CONFIG': 'english',
         'AUTO_UPDATE': True
     },
@@ -276,13 +276,13 @@ JINJA2_EXTENSIONS = [
     'wagtail.core.jinja2tags.core',
     'wagtail.admin.jinja2tags.userbar',
     'wagtail.images.jinja2tags.images',
-    'jinja2.ext.with_',
+    # 'jinja2.ext.with_',  # Deprecated, now built in
     'jinja2.ext.i18n',
     'wagtail.contrib.settings.jinja2tags.settings',
     'config.template.TemplateGlobalsExtension',
     "jinja2.ext.do",
     "jinja2.ext.loopcontrols",
-    "jinja2.ext.autoescape",
+    # "jinja2.ext.autoescape",  # Deprecated, now built in
     'cacheops.jinja2.cache'
 ]
 
