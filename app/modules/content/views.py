@@ -1,15 +1,20 @@
 # 3rd party
 from consoler import console
-from django.utils.functional import cached_property
+from django.conf import settings
 from django.http import Http404
+from django.utils.text import slugify
+from wagtail.core.models import Locale, Page
 from django.views.generic import TemplateView
+from django.core.paginator import Paginator
+from wagtail.search.models import Query
+from django.utils.functional import cached_property
 from django.utils.datastructures import MultiValueDictKeyError
-from wagtail.core.models import Locale
 
 # Project
+from config.template import author_url
 from helpers.context import global_context
 from modules.notion.models import CountryTag
-from modules.content.models import SectionPage, HomePage
+from modules.content.models import HomePage, SectionPage
 
 
 class CountryView(TemplateView):
@@ -64,3 +69,134 @@ class CountryView(TemplateView):
             raise Http404
         else:
             return tag
+
+
+class SearchView(TemplateView):
+
+    template_name = 'search/results.jinja'
+
+    def __init__(self, *args, **kwargs):
+        self.page_num = 1
+        self.mode = 'and'
+        self.terms = ''
+
+    def setup(self, request, *args, **kwargs):
+        try:
+            self.page_num = int(request.GET['page'])
+        except MultiValueDictKeyError:
+            self.page_num = 1
+        except Exception as e:
+            console.error(e)
+        try:
+            self.terms = str(request.GET['q'])
+        except MultiValueDictKeyError:
+            self.terms = ''
+        except Exception:
+            self.terms = ''
+
+        super().setup(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pages = self._get_pages(self.terms)
+        context['terms'] = self.terms
+        context['results'] = self._get_paginator(pages)
+        if self.terms:
+            context['meta_title'] = f"Search: {self.terms}"
+        else:
+            context['meta_title'] = "Search"
+        global_context(context)  # Adds in nav settings etc.
+        return context
+
+    def _get_paginator(self, results):
+        p = Paginator(results, settings.PAGINATOR['objects_per_page'])
+        result_set = p.page(self.page_num)
+        return result_set
+
+    def _author_matches(self, terms):
+        # TODO
+        pass
+        # from modules.users.models import User
+        # # Author exact matches
+        # author_page = None
+        # try:
+        #     author = User.objects.filter(profile__is_public=True).get(slug=slugify(terms))
+        # except Exception:
+        #     pass
+        # else:
+        #     author_page = DummyUserPage(author)
+
+        # return author_page
+
+    def _get_pages(self, terms):
+        query = Query.get(terms)
+        query.add_hit()
+        promoted = Query.get(terms).editors_picks.all()
+        author_page = self._author_matches(terms)
+        exclude_ids = [p.id for p in promoted]
+        searched = Page.objects.exclude(
+            id__in=exclude_ids).live().specific().search(terms, operator=self.mode)
+
+        # Unify stuff
+        objects = []
+        if author_page:
+            objects += [author_page]
+        objects += [r.page for r in promoted]
+        if searched:
+            objects = objects + [r for r in searched]
+            return objects
+        else:
+            return objects
+
+
+class DummyUserPage(object):
+
+    def __init__(self, user):
+        self.user = user
+
+    @property
+    def display_type(self):
+        return "Profile"
+
+    @cached_property
+    def title(self):
+        return self.user.full_name
+
+    @cached_property
+    def blurb(self):
+        return self.user.bio
+
+    @cached_property
+    def excerpt(self):
+        return self.user.bio
+
+    @cached_property
+    def url(self):
+        return author_url(self.user.slug)
+
+    @cached_property
+    def thumb(self):
+        return self.user.avatar
+
+    @cached_property
+    def specific(self):
+        return self
+
+    @cached_property
+    def thumbnail(self):
+        return self.thumb
+
+    @cached_property
+    def default_image(self):
+        if self.thumb:
+            return self.thumb
+        else:
+            from modules.core.models.settings import DefaultImageSettings
+            try:
+                default_image = DefaultImageSettings.objects.first()
+                return default_image.image
+            except Exception:
+                return None
+
+    def get_excerpt(self):
+        return self.blurb

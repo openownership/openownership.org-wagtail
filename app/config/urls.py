@@ -16,7 +16,7 @@ from .views import (
     robots, error_400_view, error_403_view, error_404_test, error_404_view, error_500_view
 )
 from modules.taxonomy.views import FocusAreaView, SectorView, PublicationTypeView
-from modules.content.views import CountryView
+from modules.content.views import CountryView, SearchView
 
 
 urlpatterns = [
@@ -61,5 +61,6 @@ urlpatterns = urlpatterns + i18n_patterns(
         name="publicationtype-category"
     ),
     path('impact/country/<str:slug>/', CountryView.as_view(), name="country-tag"),
+    path('search/<str:slug>/', SearchView.as_view(), name="search"),
     url(r'', include(wagtail_urls)),
 )

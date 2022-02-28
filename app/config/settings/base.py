@@ -85,7 +85,8 @@ WAGTAIL_APPS = [
     'wagtail.documents',
     'wagtail.images',
     'wagtail.search',
-    # 'wagtail.contrib.postgres_search',  # Deprecated, now built in
+    # 'wagtail.contrib.postgres_search',  # Deprecated, replaced by...
+    'wagtail.search.backends.database',
     'wagtail.admin',
     'wagtail.core',
     "wagtail_localize",
@@ -99,6 +100,7 @@ WAGTAIL_APPS = [
     # Enable styleguide to see icons available for use in blocks etc:
     # 'wagtail.contrib.styleguide',
     'wagtailfontawesome',
+    'wagtailfontawesomesvg',
 ]
 
 SITE_APPS = [
@@ -261,7 +263,7 @@ CACHEOPS_DEGRADE_ON_FAILURE = True
 
 WAGTAILSEARCH_BACKENDS = {
     'default': {
-        'BACKEND': 'wagtail.search.backends.database.',
+        'BACKEND': 'wagtail.search.backends.database',
         'SEARCH_CONFIG': 'english',
         'AUTO_UPDATE': True
     },
@@ -467,3 +469,29 @@ PAGINATOR = {
     "padding": 2,
     "tail": 2
 }
+
+
+FONTAWESOME_ICONS = [
+    'solid/external-link-square-alt.svg',
+    'solid/th-large.svg',
+    'solid/link.svg',
+    'solid/columns.svg',
+    'solid/file-image.svg',
+    'solid/bell.svg',
+    'solid/quote-left.svg',
+    'solid/money-bill.svg',
+    'solid/chart-bar.svg',
+    'solid/newspaper.svg',
+    'solid/address-card.svg',
+    'solid/th.svg',
+    'solid/icons.svg',
+    'solid/align-left.svg',
+    'solid/map-pin.svg',
+    'solid/user-check.svg',
+    'solid/mail-bulk.svg',
+    'solid/sitemap.svg',
+    'solid/cogs.svg',
+    'solid/hashtag.svg',
+    'solid/anchor.svg',
+    'solid/clock.svg'
+]

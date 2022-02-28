@@ -3,17 +3,19 @@ import os
 
 # 3rd party
 import arrow
-from consoler import console
 import jinja2
+from cacheops import cached
+from consoler import console
 from jinja2.ext import Extension
 from django.conf import settings
+from django.utils import translation
 from django.shortcuts import reverse
+from django.utils.safestring import mark_safe
 from django.template.defaultfilters import slugify
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.utils import translation
-from django.utils.safestring import mark_safe
 from wagtail.contrib.routable_page.templatetags.wagtailroutablepage_tags import routablepageurl
 
+# Project
 from modules.core.models import SiteImage
 
 
@@ -83,6 +85,22 @@ def isabsolutepath(value):
         return True
     else:
         return False
+
+
+@cached(timeout=60 * 60 * 24 * 7)
+def author_url(slug: str) -> str:
+    """Takes an author slug and returns the author profile url
+
+    Args:
+        slug (str): Slug of the author's name, ie: bill-s-preston-esq
+
+    Returns:
+        str: The url for the author's profile
+    """
+    try:
+        return reverse('profile', kwargs={'slug': slug})
+    except Exception as e:
+        console.warn(e)
 
 
 def nicedate(value):
