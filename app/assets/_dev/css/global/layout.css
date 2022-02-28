@@ -69,3 +69,14 @@ body {
         @apply mt-0;
     }
 }
+
+.aside-layout__no-header {
+    @apply mb-10 pb-10;
+    @apply border-b border-black/50;
+
+    h1 {
+        @apply border-b border-black/50;
+        @apply pb-10;
+        @apply my-10;
+    }
+}
