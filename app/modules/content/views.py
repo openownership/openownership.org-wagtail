@@ -99,8 +99,11 @@ class SearchView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         pages = self._get_pages(self.terms)
+        self.paginator = self._get_paginator(pages)
         context['terms'] = self.terms
-        context['results'] = self._get_paginator(pages)
+        context['page'] = self
+        context['results'] = self.paginator
+
         if self.terms:
             context['meta_title'] = f"Search: {self.terms}"
         else:

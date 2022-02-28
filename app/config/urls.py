@@ -61,6 +61,6 @@ urlpatterns = urlpatterns + i18n_patterns(
         name="publicationtype-category"
     ),
     path('impact/country/<str:slug>/', CountryView.as_view(), name="country-tag"),
-    path('search/<str:slug>/', SearchView.as_view(), name="search"),
+    path("search/", SearchView.as_view(), name="search"),
     url(r'', include(wagtail_urls)),
 )

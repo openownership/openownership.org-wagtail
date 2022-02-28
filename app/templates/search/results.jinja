@@ -1,0 +1,44 @@
+{% extends 'base.jinja' %}
+
+{% block hero %}
+  <section class="hero">
+    <div class="contained-width">
+      <h1 class="hero__title">{% trans %}Find content and resources{% endtrans %}</h1>
+    </div>
+  </setion>
+{% endblock %}
+
+{% block content %}
+
+  <div class="contained-width">
+    <form action="" method="get" class="search-form">
+      <div class="input-group">
+        <input type="text" name="q" value="{{ terms }}" placeholder="Enter your search term" class="input-group__input">
+        <button class="input-group__button">
+          {# {% include 'svg/icons/search.jinja' %} #}
+          <span class="visually-hidden">Search</span>
+        </button>
+      </div>
+      {# <span class="search-form__help">Or hit enter to search</span> #}
+    </form>
+
+    {% if results %}
+
+      <section>
+        <div class="content-filter">
+
+          {% set objects = results %}
+          {% set page_obj = page %}
+
+      {# {% include '_partials/filter_list.jinja' %} #}
+          {% include '_partials/list_view.jinja' %}
+
+          {% include '_partials/pagination.jinja' %}
+
+        </div>
+      </section>
+
+    {% endif %}
+
+  </div>
+{% endblock %}
