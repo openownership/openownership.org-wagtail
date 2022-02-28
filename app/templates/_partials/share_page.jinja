@@ -1,9 +1,9 @@
 <div class="share-page">
-    <button class="share-page__btn">
+    <button class="share-page__btn" id="share-page" aria-controls="share-page-links">
         {% include "svg/share-icon.jinja" %}
         {% trans %}Share page{% endtrans %}
     </button>
-    <div class="share-page__links collapsed">
+    <div class="share-page__links collapsed" id="share-page-links">
         <!-- Sharingbutton Facebook -->
         <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=http%3A%2F%2Fsharingbuttons.io" target="_blank" rel="noopener" aria-label="">
             <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
