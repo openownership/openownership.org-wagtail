@@ -2,7 +2,7 @@ import pytest
 
 from django.test import Client
 
-from modules.content.models import ArticlePage, BlogIndexPage
+from modules.content.models import ArticlePage, BlogIndexPage, NewsArticlePage
 
 pytestmark = pytest.mark.django_db
 
@@ -32,3 +32,19 @@ def test_menu_pages_siblings(news_index_page):
     assert menu[0]["page"].specific == news_index_page
     assert menu[1]["page"].specific == blog_index_page
     assert menu[2]["page"].specific == article
+
+
+def test_menu_pages_no_children(news_index_page):
+    "Should not include child pages if we're on the index page"
+
+    article = NewsArticlePage(live=True, title="Article")
+    news_index_page.add_child(instance=article)
+    article.save_revision().publish()
+
+    rv = client.get(news_index_page.url)
+
+    menu = rv.context_data['menu_pages']
+
+    assert len(menu) == 1
+    assert menu[0]["page"].specific == news_index_page
+    assert len(menu[0]["children"]) == 0

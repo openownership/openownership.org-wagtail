@@ -47,7 +47,7 @@
     {{render_stream(page.body)}}
 
     {% if page.authorship %}
-        {% with pages=page.authorship.get_content_pages() %}
+        {% with pages=page.authorship.get_content_pages(), columns=1 %}
             {% include "_partials/card_group.jinja" %}
         {% endwith %}
     {% endif %}

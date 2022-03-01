@@ -1,11 +1,12 @@
 {% extends "base_with_menu.jinja" %}
 
-{# The page showing a taxonomy, like Areas of Focus, or Sectors, and all the tags within it. #}
+{# The page showing a list of PressLinks.  #}
 
 {% block content %}
-
-	{% with pages=pages, columns=2 %}
+	{% with pages=object_list, columns=2 %}
 		{% include "_partials/card_group.jinja" %}
 	{% endwith %}
+
+	{% include "_partials/pagination.jinja" %}
 
 {% endblock %}
