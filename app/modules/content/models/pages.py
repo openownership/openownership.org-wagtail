@@ -97,7 +97,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
     """For the top-level section pages, like Impact, Insight, Implement.
     """
     class Meta:
-        verbose_name = _('Section page')
+        verbose_name = _('Section (Insight, etc.)')
 
     template: str = 'content/section_page.jinja'
 
@@ -125,6 +125,8 @@ class SectionListingPage(SectionPage):
 
     Used for the About section page.
     """
+    class Meta:
+        verbose_name = _('Section listing (About)')
 
     template: str = 'content/section_listing_page.jinja'
     parent_page_types: list = ["content.HomePage"]
@@ -558,6 +560,10 @@ class TeamProfilePage(BasePage):
 
     email_address = models.EmailField(blank=True)
 
+    twitter_url = models.URLField(blank=True, verbose_name="Twitter URL")
+    github_url = models.URLField(blank=True, verbose_name="GitHub URL")
+    linkedin_url = models.URLField(blank=True, verbose_name="LinkedIn URL")
+
     intro = fields.RichTextField(
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES
     )
@@ -571,6 +577,9 @@ class TeamProfilePage(BasePage):
             [
                 FieldPanel('location'),
                 FieldPanel('email_address'),
+                FieldPanel('twitter_url'),
+                FieldPanel('github_url'),
+                FieldPanel('linkedin_url'),
             ],
             heading=_("Details")
         ),
@@ -618,11 +627,6 @@ class JobsIndexPage(IndexPageType):
     subpage_types: list = ['content.JobPage']
     max_count = 1
 
-    def _get_menu_pages(self):
-        children = self.get_children().live().public().filter(locale=Locale.get_active())
-        menu_pages = [{"page": self, "children": children}]
-        return menu_pages
-
 
 class NewsIndexPage(IndexPageType):
     """The one page listing all NewsArticlePages"""
@@ -634,13 +638,6 @@ class NewsIndexPage(IndexPageType):
     subpage_types: list = ['content.NewsArticlePage']
     max_count = 1
 
-    def _get_menu_pages(self):
-        menu_pages = []
-        siblings = self.get_parent().get_children().live().public().filter(locale=Locale.get_active())
-        for sibling in siblings:
-            menu_pages.append({"page": sibling, "children": []})
-        return menu_pages
-
 
 class BlogIndexPage(IndexPageType):
     """The one page listing all BlogArticlePages (blog posts)"""
@@ -651,13 +648,6 @@ class BlogIndexPage(IndexPageType):
     parent_page_types: list = ['content.SectionPage']
     subpage_types: list = ['content.BlogArticlePage']
     max_count = 1
-
-    def _get_menu_pages(self):
-        menu_pages = []
-        siblings = self.get_parent().get_children().live().public().filter(locale=Locale.get_active())
-        for sibling in siblings:
-            menu_pages.append({"page": sibling, "children": []})
-        return menu_pages
 
 
 class ThemePage(IndexPageType):
@@ -676,19 +666,6 @@ class TeamPage(IndexPageType):
     parent_page_types: list = ['content.SectionListingPage']
     subpage_types: list = ['content.TeamProfilePage']
     max_count = 1
-
-    def _get_menu_pages(self):
-        menu_pages = []
-        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
-        for sibling in siblings:
-            menu_item = {"page": sibling, "children": []}
-            if sibling.specific == self:
-                menu_item["children"] = (
-                    self.get_children().live().public()
-                    .filter(locale=Locale.get_active())
-                )
-            menu_pages.append(menu_item)
-        return menu_pages
 
 
 ####################################################################################################
