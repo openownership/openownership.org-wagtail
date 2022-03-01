@@ -29,7 +29,7 @@ services:
 
   # Application
   web:
-    platform: linux/x86_64
+    platform: linux/amd64
     build:
       context: ./app
       cache_from:
