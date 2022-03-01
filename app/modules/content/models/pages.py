@@ -560,6 +560,10 @@ class TeamProfilePage(BasePage):
 
     email_address = models.EmailField(blank=True)
 
+    twitter_url = models.URLField(blank=True, verbose_name="Twitter URL")
+    github_url = models.URLField(blank=True, verbose_name="GitHub URL")
+    linkedin_url = models.URLField(blank=True, verbose_name="LinkedIn URL")
+
     intro = fields.RichTextField(
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES
     )
@@ -573,6 +577,9 @@ class TeamProfilePage(BasePage):
             [
                 FieldPanel('location'),
                 FieldPanel('email_address'),
+                FieldPanel('twitter_url'),
+                FieldPanel('github_url'),
+                FieldPanel('linkedin_url'),
             ],
             heading=_("Details")
         ),
