@@ -10,7 +10,8 @@ ALLOWED_HOSTS = [
     'localhost',
     'openownership.org',
     'staging.openownership.org',
-    'www.openownership.org'
+    'www.openownership.org',
+    'openownership.hactar.work'
 ]
 
 ASSETS_DEBUG = False

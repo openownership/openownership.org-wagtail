@@ -13,5 +13,6 @@
     # - {role: 'hactar.ohmyzsh', tags: 'ohmyzsh'}
     # - {role: 'hactar.postgresql', tags: 'postgresql'}
     # - {role: 'hactar.python3', tags: 'python'}
+    - {role: 'hactar.node', tags: 'node'}
     # - {role: 'hactar.supervisor', tags: 'supervisor'}
-    - {role: 'hactar.caddy', tags: 'caddy'}
+    # - {role: 'hactar.caddy', tags: 'caddy'}
