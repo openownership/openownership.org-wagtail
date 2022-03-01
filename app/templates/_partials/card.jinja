@@ -1,5 +1,5 @@
 {# For displaying a single Page as a card. #}
-<li class="card-group__card {% if page.thumbnail %}card-group__card--with-thumbnail{% endif %}">
+<li class="card-group__card {% if page.thumbnail %}card-group__card--with-thumbnail{% endif %}{% if page.specific.card_format %} {{ page.specific.card_format }}{% endif %}">
     <a href="{{ page.get_url() }}" aria-label="{{page.title}}">
         {% if page.thumbnail %}
             {{image(page.thumbnail,'fill-415x300')}}

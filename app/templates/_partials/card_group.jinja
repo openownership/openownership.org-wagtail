@@ -4,6 +4,8 @@ Expects:
 
 * pages - The list of Pages
 * columns - The number of columns the cards should be in. Default is 3 (if pages is divisible by 3) or else 2.
+* title - Optional
+* card_format - "landscape" or "portrait", optional, default is "".
 #}
 
 {% if not columns %}
@@ -20,7 +22,7 @@ Expects:
             {% if title %}<h2 class="card-group__header-title">{{title}}</h2>{% endif %}
         </header>
     {% endif %}
-    <ul class="grid-cols grid--{{ columns }}-col">
+    <ul class="grid-cols grid--{{ columns }}-col {{ card_format|default("") }}">
         {% for page in pages %}
             {% include "_partials/card.jinja" %}
         {% endfor %}

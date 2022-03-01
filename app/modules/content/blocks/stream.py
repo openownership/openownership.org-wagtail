@@ -432,10 +432,12 @@ class HighlightPagesBlock(blocks.StructBlock):
         icon = 'doc-full'
         template = "_partials/card_group.jinja"
 
-    FORMAT_DEFAULT = 'default'
+    FORMAT_LANDSCAPE = 'landscape'
+    FORMAT_PORTRAIT = 'portrait'
 
     FORMAT_CHOICES = (
-        (FORMAT_DEFAULT, 'Default'),
+        (FORMAT_LANDSCAPE, _('Landscape')),
+        (FORMAT_PORTRAIT, _('Portrait')),
     )
 
     title = blocks.CharBlock(
@@ -446,7 +448,7 @@ class HighlightPagesBlock(blocks.StructBlock):
     pages = blocks.ListBlock(
         blocks.StructBlock([
             ('page', blocks.PageChooserBlock(required=True)),
-            ('card_format', blocks.ChoiceBlock(required=True, choices=FORMAT_CHOICES, default=FORMAT_DEFAULT)),
+            ('card_format', blocks.ChoiceBlock(required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE)),
         ]),
         min_num=1
     )
@@ -487,13 +489,25 @@ class LatestSectionContentBlock(blocks.StructBlock):
 
     DEFAULT_LIMIT = 3
 
+    FORMAT_LANDSCAPE = 'landscape'
+    FORMAT_PORTRAIT = 'portrait'
+
+    FORMAT_CHOICES = (
+        (FORMAT_LANDSCAPE, _('Landscape')),
+        (FORMAT_PORTRAIT, _('Portrait')),
+    )
+
     section_page = blocks.PageChooserBlock(
         required=True,
         label=_("Front page of section"),
         page_type=(
-            'content.SectionPage',          # Research, Impact, Implement
+            'content.SectionPage',            # Research, Impact, Implement
             # 'content.SectionListingPage',   # About
         )
+    )
+
+    card_format = blocks.ChoiceBlock(
+        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
     )
 
     def get_context(self, value, parent_context={}):
@@ -515,6 +529,7 @@ class LatestSectionContentBlock(blocks.StructBlock):
             context.update({
                 'pages': pages,
                 'title': _('Latest {}').format(section_page.title),
+                'card_format': value.get('card_format'),
             })
 
         return context
@@ -543,9 +558,21 @@ class AreasOfFocusBlock(blocks.StructBlock):
     DEFAULT_LIMIT = 3
     DEFAULT_TITLE = 'Areas of Focus'
 
+    FORMAT_LANDSCAPE = 'landscape'
+    FORMAT_PORTRAIT = 'portrait'
+
+    FORMAT_CHOICES = (
+        (FORMAT_LANDSCAPE, _('Landscape')),
+        (FORMAT_PORTRAIT, _('Portrait')),
+    )
+
     title = blocks.CharBlock(
         required=False,
         help_text=_('Leave empty to use default: "{}"'.format(DEFAULT_TITLE))
+    )
+
+    card_format = blocks.ChoiceBlock(
+        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
     )
 
     tags = blocks.ListBlock(
@@ -572,6 +599,7 @@ class AreasOfFocusBlock(blocks.StructBlock):
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,
             'pages': pages,
+            'card_format': value.get('card_format'),
         })
 
         return context
@@ -634,9 +662,21 @@ class PublicationTypesBlock(blocks.StructBlock):
     DEFAULT_LIMIT = 3
     DEFAULT_TITLE = 'View by publication type'
 
+    FORMAT_LANDSCAPE = 'landscape'
+    FORMAT_PORTRAIT = 'portrait'
+
+    FORMAT_CHOICES = (
+        (FORMAT_LANDSCAPE, _('Landscape')),
+        (FORMAT_PORTRAIT, _('Portrait')),
+    )
+
     title = blocks.CharBlock(
         required=False,
         help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"')
+    )
+
+    card_format = blocks.ChoiceBlock(
+        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
     )
 
     types = blocks.MultipleChoiceBlock(
@@ -662,6 +702,7 @@ class PublicationTypesBlock(blocks.StructBlock):
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,
             'pages': pages,
+            'card_format': value.get('card_format'),
         })
 
         return context
@@ -683,9 +724,21 @@ class PressLinksBlock(blocks.StructBlock):
     DEFAULT_LIMIT = 3
     DEFAULT_TITLE = 'Press links'
 
+    FORMAT_LANDSCAPE = 'landscape'
+    FORMAT_PORTRAIT = 'portrait'
+
+    FORMAT_CHOICES = (
+        (FORMAT_LANDSCAPE, _('Landscape')),
+        (FORMAT_PORTRAIT, _('Portrait')),
+    )
+
     title = blocks.CharBlock(
         required=False,
         help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"')
+    )
+
+    card_format = blocks.ChoiceBlock(
+        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
     )
 
     limit_number = blocks.IntegerBlock(required=True, default=DEFAULT_LIMIT)
@@ -707,7 +760,8 @@ class PressLinksBlock(blocks.StructBlock):
 
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,
-            'pages': objects
+            'pages': objects,
+            'card_format': value.get('card_format'),
         })
 
         return context
