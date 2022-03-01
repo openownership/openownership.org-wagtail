@@ -1,19 +1,22 @@
 @for $i from 1 through 5 {
     .grid--#{$i}-col {
-        @apply grid;
         @apply grid-cols-#{$i};
-        @apply gap-8;
     }
 }
 
+.grid-cols {
+    @apply grid;
+    @apply gap-8;
+}
+
 @include max-width(lg) {
-    .grid-cols {
+    .grid--3-col {
         @apply grid-cols-2 !important;
     }
 }
 
 @include max-width(sm) {
-    .grid-cols {
+    .grid--3-col {
         @apply grid-cols-1 !important;
     }
 }
