@@ -16,6 +16,7 @@ from django.forms import CheckboxSelectMultiple
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
+from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 
 from wagtail.admin.edit_handlers import (
@@ -40,6 +41,7 @@ from modules.content.blocks import (
     team_profile_page_body_blocks,
 )
 from modules.content.blocks.stream import GlossaryItemBlock
+from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
 from modules.taxonomy.models import PublicationType
 from modules.stats.mixins import Countable
 from .mixins import TaggedAuthorsPageMixin, TaggedPageMixin, PageHeroMixin
@@ -264,6 +266,13 @@ class JobPage(TaggedPageMixin, ContentPageType):
             ],
             heading='Application details'
         )
+    ]
+
+    # Does not use the countries that TaggedPageMixin has:
+    about_panels = [
+        PublicationTypeFieldPanel('publication_type', _('Publication type')),
+        FieldPanel('areas_of_focus', _('Areas of focus')),
+        FieldPanel('sectors', _('Sectors')),
     ]
 
     @cached_property
@@ -530,6 +539,11 @@ class PublicationInnerPage(ContentPageType):
 
 
 class TeamProfilePage(BasePage):
+    """
+    Although this has areas_of_focus and countries, we don't inherit from
+    TaggedPageMixin because it doesn't use publication_type or sectors.
+    And it labels areas_of_focus and countries differently.
+    """
 
     template = 'content/team_profile_page.jinja'
     parent_page_types: list = ['content.TeamPage']
@@ -554,6 +568,14 @@ class TeamProfilePage(BasePage):
             related_name='+'
     )
 
+    countries = ClusterTaggableManager(
+        through='notion.CountryTaggedPage', blank=True
+    )
+
+    areas_of_focus = ClusterTaggableManager(
+        through='taxonomy.FocusAreaTaggedPage', blank=True
+    )
+
     location = models.CharField(
         max_length=255, blank=True, help_text=_("e.g. ‘London, England’")
     )
@@ -573,19 +595,24 @@ class TeamProfilePage(BasePage):
     content_panels = BasePage.content_panels + [
         FieldPanel('role'),
         ImageChooserPanel('portrait_image'),
+        FieldPanel('intro'),
+        StreamFieldPanel('body'),
+    ]
+
+    about_panels = [
+        SnippetChooserPanel('authorship'),
+        FieldPanel('countries', _('Regional experience')),
+        FieldPanel('areas_of_focus', _('Specialist area')),
+        FieldPanel('location'),
         MultiFieldPanel(
             [
-                FieldPanel('location'),
                 FieldPanel('email_address'),
                 FieldPanel('twitter_url'),
                 FieldPanel('github_url'),
                 FieldPanel('linkedin_url'),
             ],
-            heading=_("Details")
+            heading=_("Contact")
         ),
-        SnippetChooserPanel('authorship'),
-        FieldPanel('intro'),
-        StreamFieldPanel('body'),
     ]
 
     search_fields = BasePage.search_fields + [
@@ -595,6 +622,14 @@ class TeamProfilePage(BasePage):
         index.SearchField('location'),
         index.SearchField('email_address'),
     ]
+
+    @classmethod
+    def get_admin_tabs(cls):
+        """Add the about tab to the tabbed interface
+        """
+        tabs = super().get_admin_tabs()
+        tabs.insert(1, (cls.about_panels, _("About")))
+        return tabs
 
     def _get_menu_pages(self):
         parent = self.get_parent()
