@@ -34,7 +34,7 @@
         }
     }
 
-    [aria-current] {
+    [aria-current], .navbar--current {
         @apply border-blue-medium font-bold ;
     }
 }
