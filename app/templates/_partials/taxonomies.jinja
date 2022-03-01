@@ -1,44 +1,31 @@
 {% if page.publication_type %}
-	<p>
-		<strong>{% trans %}Publication type{% endtrans %}</strong><br>
-		<a href="{{ url('publicationtype-category', kwargs={'section_slug': page.section_page.slug, 'tag_slug': page.publication_type.slug}) }}">{{ page.publication_type }}</a>
-	</p>
+    <p>
+        <strong>{% trans %}Publication type{% endtrans %}</strong><br>
+        <a href="{{ url('publicationtype-category', kwargs={'section_slug': page.section_page.slug, 'tag_slug': page.publication_type.slug}) }}">{{ page.publication_type }}</a>
+    </p>
 {% endif %}
 
-{% with areas=page.areas_of_focus.all() %}
-	{% if areas|length > 0 %}
-		<p>
-			<strong>{% trans %}Areas of focus{% endtrans %}</strong><br>
-			{% for area in areas %}
-				<a href="{{ url('focusarea-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': area.slug}) }}">{{ area.name }}</a>{% if not loop.last %}, {% endif %}
-			{% endfor %}
-		</p>
-	{% endif %}
-{% endwith %}
+
+{% include "_partials/taxonomy_areas_of_focus.jinja" %}
+
+
+{% include "_partials/taxonomy_countries.jinja" %}
+
 
 {% if page.location %}
-	{# For JobPage #}
-	<p>
-		<strong>{% trans %}Location{% endtrans %}</strong><br>
-		{{ page.location }}
-	</p>
+    {# For JobPage #}
+    <p>
+        <strong>{% trans %}Location{% endtrans %}</strong><br>
+        {{ page.location }}
+    </p>
 {% endif %}
 
-{% with sectors=page.sectors.all() %}
-	{% if sectors|length > 0 %}
-		<p>
-			<strong>{% trans %}Sectors{% endtrans %}</strong><br>
-			{% for sector in sectors %}
-				<a href="{{ url('sector-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': sector.slug}) }}">{{ sector.name }}</a>{% if not loop.last %}, {% endif %}
-			{% endfor %}
-		</p>
-	{% endif %}
-{% endwith %}
 
+{% include "_partials/taxonomy_sectors.jinja" %}
 
 
 {% if page.download_document %}
-	<p><a href="{{ page.download_document.url }}">{% trans %}Download document{% endtrans %}</a></p>
+    <p><a href="{{ page.download_document.url }}">{% trans %}Download document{% endtrans %}</a></p>
 {% endif %}
 
 

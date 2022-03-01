@@ -16,6 +16,7 @@ from django.forms import CheckboxSelectMultiple
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
+from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 
 from wagtail.admin.edit_handlers import (
@@ -23,6 +24,7 @@ from wagtail.admin.edit_handlers import (
 )
 from wagtail.admin.forms import WagtailAdminPageForm
 from wagtail.core import fields
+from wagtail.core.blocks import StreamBlock
 from wagtail.core.models import Locale, Orderable, Page
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -38,8 +40,10 @@ from modules.content.blocks import (
     home_page_blocks,
     section_page_blocks,
     team_profile_page_body_blocks,
+    HighlightPagesBlock,
 )
 from modules.content.blocks.stream import GlossaryItemBlock
+from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
 from modules.taxonomy.models import PublicationType
 from modules.stats.mixins import Countable
 from .mixins import TaggedAuthorsPageMixin, TaggedPageMixin, PageHeroMixin
@@ -94,10 +98,10 @@ class HomePage(PageHeroMixin, LandingPageType):
 
 
 class SectionPage(PageHeroMixin, LandingPageType):
-    """For the top-level section pages, like Impact, Insight, Implement.
+    """For the top-level section pages, like Impact, Resarch, Implement.
     """
     class Meta:
-        verbose_name = _('Section (Insight, etc.)')
+        verbose_name = _('Section (Impact, etc.)')
 
     template: str = 'content/section_page.jinja'
 
@@ -168,6 +172,22 @@ class ArticlePage(ContentPageType):
     parent_page_types: list = ['content.SectionListingPage']
     subpage_types: list = []
 
+    # For some reason this one kind of article page has an "Examples of our work"
+    # block linking to other pages:
+    highlight_pages = fields.StreamField(
+        StreamBlock(
+            [
+                ("highlight_pages", HighlightPagesBlock())
+            ],
+            max_num=1
+        ),
+        blank=True
+    )
+
+    content_panels = ContentPageType.content_panels + [
+        StreamFieldPanel('highlight_pages'),
+    ]
+
     def _get_menu_pages(self):
         """Will need amending if we allow ArticlePages to have subpages.
         Because then we'll need to look for children for the page we're on.
@@ -181,7 +201,7 @@ class ArticlePage(ContentPageType):
 
 
 class NewsArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
-    """An article in the Insight > News section.
+    """An article in the Research > News section.
     """
     template = 'content/blog_news_article_page.jinja'
     parent_page_types: list = ['content.NewsIndexPage']
@@ -201,7 +221,7 @@ class NewsArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
 
 
 class BlogArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
-    """An article in the Insight > Blog section.
+    """An article in the Research > Blog section.
     """
     template = 'content/blog_news_article_page.jinja'
     parent_page_types: list = ['content.BlogIndexPage']
@@ -264,6 +284,13 @@ class JobPage(TaggedPageMixin, ContentPageType):
             ],
             heading='Application details'
         )
+    ]
+
+    # Does not use the countries that TaggedPageMixin has:
+    about_panels = [
+        PublicationTypeFieldPanel('publication_type', _('Publication type')),
+        FieldPanel('areas_of_focus', _('Areas of focus')),
+        FieldPanel('sectors', _('Sectors')),
     ]
 
     @cached_property
@@ -530,6 +557,11 @@ class PublicationInnerPage(ContentPageType):
 
 
 class TeamProfilePage(BasePage):
+    """
+    Although this has areas_of_focus and countries, we don't inherit from
+    TaggedPageMixin because it doesn't use publication_type or sectors.
+    And it labels areas_of_focus and countries differently.
+    """
 
     template = 'content/team_profile_page.jinja'
     parent_page_types: list = ['content.TeamPage']
@@ -554,6 +586,14 @@ class TeamProfilePage(BasePage):
             related_name='+'
     )
 
+    countries = ClusterTaggableManager(
+        through='notion.CountryTaggedPage', blank=True
+    )
+
+    areas_of_focus = ClusterTaggableManager(
+        through='taxonomy.FocusAreaTaggedPage', blank=True
+    )
+
     location = models.CharField(
         max_length=255, blank=True, help_text=_("e.g. ‘London, England’")
     )
@@ -573,19 +613,24 @@ class TeamProfilePage(BasePage):
     content_panels = BasePage.content_panels + [
         FieldPanel('role'),
         ImageChooserPanel('portrait_image'),
+        FieldPanel('intro'),
+        StreamFieldPanel('body'),
+    ]
+
+    about_panels = [
+        SnippetChooserPanel('authorship'),
+        FieldPanel('countries', _('Regional experience')),
+        FieldPanel('areas_of_focus', _('Specialist area')),
+        FieldPanel('location'),
         MultiFieldPanel(
             [
-                FieldPanel('location'),
                 FieldPanel('email_address'),
                 FieldPanel('twitter_url'),
                 FieldPanel('github_url'),
                 FieldPanel('linkedin_url'),
             ],
-            heading=_("Details")
+            heading=_("Contact")
         ),
-        SnippetChooserPanel('authorship'),
-        FieldPanel('intro'),
-        StreamFieldPanel('body'),
     ]
 
     search_fields = BasePage.search_fields + [
@@ -595,6 +640,14 @@ class TeamProfilePage(BasePage):
         index.SearchField('location'),
         index.SearchField('email_address'),
     ]
+
+    @classmethod
+    def get_admin_tabs(cls):
+        """Add the about tab to the tabbed interface
+        """
+        tabs = super().get_admin_tabs()
+        tabs.insert(1, (cls.about_panels, _("About")))
+        return tabs
 
     def _get_menu_pages(self):
         parent = self.get_parent()
@@ -638,6 +691,12 @@ class NewsIndexPage(IndexPageType):
     subpage_types: list = ['content.NewsArticlePage']
     max_count = 1
 
+    def _get_menu_pages(self):
+        "Override parent so we don't include ALL the child NewsArticle pages"
+        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
+        return [
+            {"page": sibling, "children": []} for sibling in siblings
+        ]
 
 class BlogIndexPage(IndexPageType):
     """The one page listing all BlogArticlePages (blog posts)"""
@@ -648,6 +707,13 @@ class BlogIndexPage(IndexPageType):
     parent_page_types: list = ['content.SectionPage']
     subpage_types: list = ['content.BlogArticlePage']
     max_count = 1
+
+    def _get_menu_pages(self):
+        "Override parent so we don't include ALL the child NewsArticle pages"
+        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
+        return [
+            {"page": sibling, "children": []} for sibling in siblings
+        ]
 
 
 class ThemePage(IndexPageType):

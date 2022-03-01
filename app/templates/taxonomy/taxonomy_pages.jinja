@@ -1,11 +1,12 @@
 {% extends "base_with_menu.jinja" %}
 
+{# The page showing all the pages with a particular tag/category in a taxonomy. #}
 
 {% block content %}
 
 	{{render_stream(tag.body)}}
 
-	{% with pages=object_list %}
+	{% with pages=object_list, columns=1 %}
 		{% include "_partials/card_group.jinja" %}
 	{% endwith %}
 

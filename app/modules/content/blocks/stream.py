@@ -422,26 +422,33 @@ class LatestNewsBlock(TitleMixin):
 
 class HighlightPagesBlock(blocks.StructBlock):
     """
-    For choosing a few pages from ALL of the pages to highlight on a Home or Section
-    page.
+    For choosing a few pages from ALL of the pages to highlight on a Home,
+    Section page, or Article.
     """
 
     class Meta:
-        label = _('Highlight Pages')
+        label = _('Highlight pages')
         group = _('Card group')
         icon = 'doc-full'
         template = "_partials/card_group.jinja"
 
-    FORMAT_DEFAULT = 'default'
+    FORMAT_LANDSCAPE = 'landscape'
+    FORMAT_PORTRAIT = 'portrait'
 
     FORMAT_CHOICES = (
-        (FORMAT_DEFAULT, 'Default'),
+        (FORMAT_LANDSCAPE, _('Landscape')),
+        (FORMAT_PORTRAIT, _('Portrait')),
+    )
+
+    title = blocks.CharBlock(
+        required=False,
+        help_text=_('e.g. “Examples of our work”, or leave empty')
     )
 
     pages = blocks.ListBlock(
         blocks.StructBlock([
             ('page', blocks.PageChooserBlock(required=True)),
-            ('card_format', blocks.ChoiceBlock(required=True, choices=FORMAT_CHOICES, default=FORMAT_DEFAULT)),
+            ('card_format', blocks.ChoiceBlock(required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE)),
         ]),
         min_num=1
     )
@@ -457,6 +464,7 @@ class HighlightPagesBlock(blocks.StructBlock):
             pages.append(page.specific)
 
         context.update({
+            'title': value.get('title', ''),
             'pages': pages,
         })
         return context
@@ -474,20 +482,32 @@ class LatestSectionContentBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Latest section content block')
+        label = _('Latest section content')
         group = _('Card group')
         icon = 'time'
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
 
+    FORMAT_LANDSCAPE = 'landscape'
+    FORMAT_PORTRAIT = 'portrait'
+
+    FORMAT_CHOICES = (
+        (FORMAT_LANDSCAPE, _('Landscape')),
+        (FORMAT_PORTRAIT, _('Portrait')),
+    )
+
     section_page = blocks.PageChooserBlock(
         required=True,
         label=_("Front page of section"),
         page_type=(
-            'content.SectionPage',          # Insight, Impact, Implement
+            'content.SectionPage',            # Research, Impact, Implement
             # 'content.SectionListingPage',   # About
         )
+    )
+
+    card_format = blocks.ChoiceBlock(
+        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
     )
 
     def get_context(self, value, parent_context={}):
@@ -509,6 +529,7 @@ class LatestSectionContentBlock(blocks.StructBlock):
             context.update({
                 'pages': pages,
                 'title': _('Latest {}').format(section_page.title),
+                'card_format': value.get('card_format'),
             })
 
         return context
@@ -525,11 +546,11 @@ class AreasOfFocusBlock(blocks.StructBlock):
 
     Choose tag(s) and display a card about each one, linking to its page.
 
-    For Areas of Focus within a section (Impact, Insight, Implement)
+    For Areas of Focus within a section (Impact, Research, Implement)
     """
 
     class Meta:
-        label = _('Areas of focus block')
+        label = _('Areas of focus')
         group = _('Card group')
         icon = "tag"
         template = "_partials/card_group.jinja"
@@ -537,9 +558,21 @@ class AreasOfFocusBlock(blocks.StructBlock):
     DEFAULT_LIMIT = 3
     DEFAULT_TITLE = 'Areas of Focus'
 
+    FORMAT_LANDSCAPE = 'landscape'
+    FORMAT_PORTRAIT = 'portrait'
+
+    FORMAT_CHOICES = (
+        (FORMAT_LANDSCAPE, _('Landscape')),
+        (FORMAT_PORTRAIT, _('Portrait')),
+    )
+
     title = blocks.CharBlock(
         required=False,
         help_text=_('Leave empty to use default: "{}"'.format(DEFAULT_TITLE))
+    )
+
+    card_format = blocks.ChoiceBlock(
+        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
     )
 
     tags = blocks.ListBlock(
@@ -555,7 +588,7 @@ class AreasOfFocusBlock(blocks.StructBlock):
     def get_context(self, value, parent_context={}):
         context = super().get_context(value, parent_context=parent_context)
 
-        # This will presumably be the Insight SectionPage or similar:
+        # This will presumably be the Research SectionPage or similar:
         # (we need it to generate a URL to the tag page below this page)
         parent_page = parent_context['page']
 
@@ -566,6 +599,7 @@ class AreasOfFocusBlock(blocks.StructBlock):
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,
             'pages': pages,
+            'card_format': value.get('card_format'),
         })
 
         return context
@@ -577,11 +611,11 @@ class SectorsBlock(AreasOfFocusBlock):
 
     Choose tag(s) and display a card about each one, linking to its page.
 
-    For Sectors within a section (Impact, Insight, Implement)
+    For Sectors within a section (Impact, Research, Implement)
     """
 
     class Meta:
-        label = _('Sectors block')
+        label = _('Sectors')
         group = _('Card group')
         icon = "tag"
         template = "_partials/card_group.jinja"
@@ -616,11 +650,11 @@ class PublicationTypesBlock(blocks.StructBlock):
 
     Choose category/ies and display a card about each one, linking to its page.
 
-    For Sectors within a section (Impact, Insight, Implement)
+    For Sectors within a section (Impact, Research, Implement)
     """
 
     class Meta:
-        label = _('Publication types block')
+        label = _('Publication types')
         group = _('Card group')
         icon = "doc-full"
         template = "_partials/card_group.jinja"
@@ -628,9 +662,21 @@ class PublicationTypesBlock(blocks.StructBlock):
     DEFAULT_LIMIT = 3
     DEFAULT_TITLE = 'View by publication type'
 
+    FORMAT_LANDSCAPE = 'landscape'
+    FORMAT_PORTRAIT = 'portrait'
+
+    FORMAT_CHOICES = (
+        (FORMAT_LANDSCAPE, _('Landscape')),
+        (FORMAT_PORTRAIT, _('Portrait')),
+    )
+
     title = blocks.CharBlock(
         required=False,
         help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"')
+    )
+
+    card_format = blocks.ChoiceBlock(
+        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
     )
 
     types = blocks.MultipleChoiceBlock(
@@ -644,7 +690,7 @@ class PublicationTypesBlock(blocks.StructBlock):
 
         context = super().get_context(value, parent_context=parent_context)
 
-        # This will presumably be the Insight SectionPage or similar:
+        # This will presumably be the Research SectionPage or similar:
         # (we need it to generate a URL to the tag page below this page)
         parent_page = parent_context['page']
 
@@ -656,6 +702,7 @@ class PublicationTypesBlock(blocks.StructBlock):
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,
             'pages': pages,
+            'card_format': value.get('card_format'),
         })
 
         return context
@@ -669,7 +716,7 @@ class PublicationTypesBlock(blocks.StructBlock):
 class PressLinksBlock(blocks.StructBlock):
 
     class Meta:
-        label = _('Press links block')
+        label = _('Press links')
         group = _('Card group')
         icon = "doc-full"
         template = "_partials/card_group.jinja"
@@ -677,9 +724,21 @@ class PressLinksBlock(blocks.StructBlock):
     DEFAULT_LIMIT = 3
     DEFAULT_TITLE = 'Press links'
 
+    FORMAT_LANDSCAPE = 'landscape'
+    FORMAT_PORTRAIT = 'portrait'
+
+    FORMAT_CHOICES = (
+        (FORMAT_LANDSCAPE, _('Landscape')),
+        (FORMAT_PORTRAIT, _('Portrait')),
+    )
+
     title = blocks.CharBlock(
         required=False,
         help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"')
+    )
+
+    card_format = blocks.ChoiceBlock(
+        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
     )
 
     limit_number = blocks.IntegerBlock(required=True, default=DEFAULT_LIMIT)
@@ -689,7 +748,7 @@ class PressLinksBlock(blocks.StructBlock):
 
         context = super().get_context(value, parent_context=parent_context)
 
-        # This will presumably be the Insight SectionPage or similar:
+        # This will presumably be the Research SectionPage or similar:
         # (we need it to generate a URL to the tag page below this page)
         parent_page = parent_context['page']
 
@@ -701,7 +760,8 @@ class PressLinksBlock(blocks.StructBlock):
 
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,
-            'pages': objects
+            'pages': objects,
+            'card_format': value.get('card_format'),
         })
 
         return context

@@ -447,7 +447,7 @@ class SectionPressLinksView(TaxonomyMixin, PaginatedListView):
     But we inherit from TaxonomyMixin so we can use its stuff for
     generating menu_pages and pretending to be a real Wagtail Page.
     """
-    template_name = 'taxonomy/pages.jinja'
+    template_name = 'taxonomy/press_links.jinja'
 
     @property
     def title(self):

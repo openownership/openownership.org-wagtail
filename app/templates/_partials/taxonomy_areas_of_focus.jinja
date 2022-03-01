@@ -1,0 +1,18 @@
+{#
+Render a list of country tags.
+
+Optional:
+
+title - Title for the block.
+#}
+
+{% with areas=page.areas_of_focus.all() %}
+    {% if areas|length > 0 %}
+        <p>
+            <strong>{% if title %}{{ title }}{% else %}{% trans %}Areas of focus{% endtrans %}{% endif %}</strong><br>
+            {% for area in areas %}
+                <a href="{{ url('focusarea-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': area.slug}) }}">{{ area.name }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+    {% endif %}
+{% endwith %}
