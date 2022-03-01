@@ -491,7 +491,7 @@ class LatestSectionContentBlock(blocks.StructBlock):
         required=True,
         label=_("Front page of section"),
         page_type=(
-            'content.SectionPage',          # Insight, Impact, Implement
+            'content.SectionPage',          # Research, Impact, Implement
             # 'content.SectionListingPage',   # About
         )
     )
@@ -531,7 +531,7 @@ class AreasOfFocusBlock(blocks.StructBlock):
 
     Choose tag(s) and display a card about each one, linking to its page.
 
-    For Areas of Focus within a section (Impact, Insight, Implement)
+    For Areas of Focus within a section (Impact, Research, Implement)
     """
 
     class Meta:
@@ -561,7 +561,7 @@ class AreasOfFocusBlock(blocks.StructBlock):
     def get_context(self, value, parent_context={}):
         context = super().get_context(value, parent_context=parent_context)
 
-        # This will presumably be the Insight SectionPage or similar:
+        # This will presumably be the Research SectionPage or similar:
         # (we need it to generate a URL to the tag page below this page)
         parent_page = parent_context['page']
 
@@ -583,7 +583,7 @@ class SectorsBlock(AreasOfFocusBlock):
 
     Choose tag(s) and display a card about each one, linking to its page.
 
-    For Sectors within a section (Impact, Insight, Implement)
+    For Sectors within a section (Impact, Research, Implement)
     """
 
     class Meta:
@@ -622,7 +622,7 @@ class PublicationTypesBlock(blocks.StructBlock):
 
     Choose category/ies and display a card about each one, linking to its page.
 
-    For Sectors within a section (Impact, Insight, Implement)
+    For Sectors within a section (Impact, Research, Implement)
     """
 
     class Meta:
@@ -650,7 +650,7 @@ class PublicationTypesBlock(blocks.StructBlock):
 
         context = super().get_context(value, parent_context=parent_context)
 
-        # This will presumably be the Insight SectionPage or similar:
+        # This will presumably be the Research SectionPage or similar:
         # (we need it to generate a URL to the tag page below this page)
         parent_page = parent_context['page']
 
@@ -695,7 +695,7 @@ class PressLinksBlock(blocks.StructBlock):
 
         context = super().get_context(value, parent_context=parent_context)
 
-        # This will presumably be the Insight SectionPage or similar:
+        # This will presumably be the Research SectionPage or similar:
         # (we need it to generate a URL to the tag page below this page)
         parent_page = parent_context['page']
 

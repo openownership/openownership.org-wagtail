@@ -98,10 +98,10 @@ class HomePage(PageHeroMixin, LandingPageType):
 
 
 class SectionPage(PageHeroMixin, LandingPageType):
-    """For the top-level section pages, like Impact, Insight, Implement.
+    """For the top-level section pages, like Impact, Resarch, Implement.
     """
     class Meta:
-        verbose_name = _('Section (Insight, etc.)')
+        verbose_name = _('Section (Impact, etc.)')
 
     template: str = 'content/section_page.jinja'
 
@@ -201,7 +201,7 @@ class ArticlePage(ContentPageType):
 
 
 class NewsArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
-    """An article in the Insight > News section.
+    """An article in the Research > News section.
     """
     template = 'content/blog_news_article_page.jinja'
     parent_page_types: list = ['content.NewsIndexPage']
@@ -221,7 +221,7 @@ class NewsArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
 
 
 class BlogArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
-    """An article in the Insight > Blog section.
+    """An article in the Research > Blog section.
     """
     template = 'content/blog_news_article_page.jinja'
     parent_page_types: list = ['content.BlogIndexPage']
