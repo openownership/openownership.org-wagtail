@@ -1,1 +1,11 @@
 {% extends 'base_with_menu.jinja' %}
+
+
+{% block content %}
+	{{ super() }}
+
+	{% if page.highlight_pages %}
+		{{ page.highlight_pages }}
+	{% endif %}
+
+{% endblock %}

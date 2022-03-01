@@ -422,8 +422,8 @@ class LatestNewsBlock(TitleMixin):
 
 class HighlightPagesBlock(blocks.StructBlock):
     """
-    For choosing a few pages from ALL of the pages to highlight on a Home or Section
-    page.
+    For choosing a few pages from ALL of the pages to highlight on a Home,
+    Section page, or Article.
     """
 
     class Meta:
@@ -436,6 +436,11 @@ class HighlightPagesBlock(blocks.StructBlock):
 
     FORMAT_CHOICES = (
         (FORMAT_DEFAULT, 'Default'),
+    )
+
+    title = blocks.CharBlock(
+        required=False,
+        help_text=_('e.g. “Examples of our work”, or leave empty')
     )
 
     pages = blocks.ListBlock(
@@ -457,6 +462,7 @@ class HighlightPagesBlock(blocks.StructBlock):
             pages.append(page.specific)
 
         context.update({
+            'title': value.get('title', ''),
             'pages': pages,
         })
         return context

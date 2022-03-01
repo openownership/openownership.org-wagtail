@@ -24,6 +24,7 @@ from wagtail.admin.edit_handlers import (
 )
 from wagtail.admin.forms import WagtailAdminPageForm
 from wagtail.core import fields
+from wagtail.core.blocks import StreamBlock
 from wagtail.core.models import Locale, Orderable, Page
 from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -39,6 +40,7 @@ from modules.content.blocks import (
     home_page_blocks,
     section_page_blocks,
     team_profile_page_body_blocks,
+    HighlightPagesBlock,
 )
 from modules.content.blocks.stream import GlossaryItemBlock
 from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
@@ -169,6 +171,22 @@ class ArticlePage(ContentPageType):
 
     parent_page_types: list = ['content.SectionListingPage']
     subpage_types: list = []
+
+    # For some reason this one kind of article page has an "Examples of our work"
+    # block linking to other pages:
+    highlight_pages = fields.StreamField(
+        StreamBlock(
+            [
+                ("highlight_pages", HighlightPagesBlock())
+            ],
+            max_num=1
+        ),
+        blank=True
+    )
+
+    content_panels = ContentPageType.content_panels + [
+        StreamFieldPanel('highlight_pages'),
+    ]
 
     def _get_menu_pages(self):
         """Will need amending if we allow ArticlePages to have subpages.
