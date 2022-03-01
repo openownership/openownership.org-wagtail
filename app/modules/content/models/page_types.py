@@ -324,6 +324,19 @@ class IndexPageType(BasePage):
 
         return self.objects_model
 
+    def _get_menu_pages(self):
+        menu_pages = []
+        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
+        for sibling in siblings:
+            menu_item = {"page": sibling, "children": []}
+            if sibling.specific == self:
+                menu_item["children"] = (
+                    self.get_children().live().public()
+                    .filter(locale=Locale.get_active())
+                )
+            menu_pages.append(menu_item)
+        return menu_pages
+
     # def get_filter_options(self) -> dict:
     #     """
     #     This method should return a dict of valid filters for the child pages, in the format:

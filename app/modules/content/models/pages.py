@@ -620,11 +620,6 @@ class JobsIndexPage(IndexPageType):
     subpage_types: list = ['content.JobPage']
     max_count = 1
 
-    def _get_menu_pages(self):
-        children = self.get_children().live().public().filter(locale=Locale.get_active())
-        menu_pages = [{"page": self, "children": children}]
-        return menu_pages
-
 
 class NewsIndexPage(IndexPageType):
     """The one page listing all NewsArticlePages"""
@@ -636,13 +631,6 @@ class NewsIndexPage(IndexPageType):
     subpage_types: list = ['content.NewsArticlePage']
     max_count = 1
 
-    def _get_menu_pages(self):
-        menu_pages = []
-        siblings = self.get_parent().get_children().live().public().filter(locale=Locale.get_active())
-        for sibling in siblings:
-            menu_pages.append({"page": sibling, "children": []})
-        return menu_pages
-
 
 class BlogIndexPage(IndexPageType):
     """The one page listing all BlogArticlePages (blog posts)"""
@@ -653,13 +641,6 @@ class BlogIndexPage(IndexPageType):
     parent_page_types: list = ['content.SectionPage']
     subpage_types: list = ['content.BlogArticlePage']
     max_count = 1
-
-    def _get_menu_pages(self):
-        menu_pages = []
-        siblings = self.get_parent().get_children().live().public().filter(locale=Locale.get_active())
-        for sibling in siblings:
-            menu_pages.append({"page": sibling, "children": []})
-        return menu_pages
 
 
 class ThemePage(IndexPageType):
@@ -678,19 +659,6 @@ class TeamPage(IndexPageType):
     parent_page_types: list = ['content.SectionListingPage']
     subpage_types: list = ['content.TeamProfilePage']
     max_count = 1
-
-    def _get_menu_pages(self):
-        menu_pages = []
-        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
-        for sibling in siblings:
-            menu_item = {"page": sibling, "children": []}
-            if sibling.specific == self:
-                menu_item["children"] = (
-                    self.get_children().live().public()
-                    .filter(locale=Locale.get_active())
-                )
-            menu_pages.append(menu_item)
-        return menu_pages
 
 
 ####################################################################################################
