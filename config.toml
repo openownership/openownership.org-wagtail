@@ -1,10 +1,6 @@
 [meta]
 PROJECT_NAME = "openownership.org"
-
-# [hexstatic]
-# SOURCE = './app/static'
-# DEST = 'assets/'
-# CACHES = ['keycdn', 'cloudflare']
+REPO = "openownership.org"  # The name of the repo on the remote servers
 
 [aws]
 REGION = "eu-west-1"
@@ -14,7 +10,7 @@ ENDPOINT = "s3-eu-west-1.amazonaws.com"
 ROOT = "/srv/www/app"
 
 [envs.stage]
-HOSTS = ['', ]
+HOSTS = ['195.201.99.74', ]
 TAG = "staging"
 BUCKET = "cdn-openownership.org-staging"
 GIT_DEPLOY = "This server can only be deployed with Git. Speak to Andy."

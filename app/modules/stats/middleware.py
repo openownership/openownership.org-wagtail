@@ -25,7 +25,7 @@ class ViewCountMiddleware:
         site = Site.find_for_request(request)
         path_components = [component for component in path.split('/') if component]
         # strip out the i18 slug
-        if path_components[0] in self._active_locale_slugs:
+        if len(path_components) and path_components[0] in self._active_locale_slugs:
             path_components = path_components[1:]
 
         if len(path_components) == 0:

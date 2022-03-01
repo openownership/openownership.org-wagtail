@@ -64,10 +64,6 @@ hactar_firewall_allow:
     name: https
     port: 443
     protocol: tcp
-  -
-    name: et
-    port: 2022
-    protocol: tcp
 
 
 ####################################################################################################
@@ -76,7 +72,7 @@ hactar_firewall_allow:
 
 hactar_caddy_sites:
   -
-    domains: https://staging.openownership.org
+    domains: https://openownership.hactar.work
     proxy: 127.0.0.1:8000
     tls: "systems@hactar.is"
     features:
