@@ -97,7 +97,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
     """For the top-level section pages, like Impact, Insight, Implement.
     """
     class Meta:
-        verbose_name = _('Section page')
+        verbose_name = _('Section (Insight, etc.)')
 
     template: str = 'content/section_page.jinja'
 
@@ -125,6 +125,8 @@ class SectionListingPage(SectionPage):
 
     Used for the About section page.
     """
+    class Meta:
+        verbose_name = _('Section listing (About)')
 
     template: str = 'content/section_listing_page.jinja'
     parent_page_types: list = ["content.HomePage"]
