@@ -1,0 +1,9 @@
+<div>
+    {% if value.link_type == 'page' %}
+        <a href="{{ value.link_page.get_url() }}">{{ value.link_label }}</a>
+    {% elif value.link_type == 'document' %}
+        <a href="{{ value.link_document.url }}">{{ value.link_label }}</a>
+    {% elif value.link_type == 'url' %}
+        <a href="{{ value.link_url }}">{{ value.link_label }}</a>
+    {% endif %}
+</div>

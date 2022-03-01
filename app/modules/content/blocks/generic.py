@@ -147,6 +147,7 @@ class CTABlock(LinkBlock):
 
     class Meta:
         form_template = 'wagtail/cta_block_form.html'
+        template = 'blocks/cta.jinja'
         label = "Link"
         value_class = CTABlockStructValue
         icon = "fa-link"
