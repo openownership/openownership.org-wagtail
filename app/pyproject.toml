@@ -46,6 +46,7 @@ pytest-django = "*"
 pytest-pythonpath = "*"
 pytest-sugar = "*"
 packaging = "20.4"
+codacy-coverage = "^1.3.11"
 
 [build-system]
 requires = ["poetry>=0.12"]
