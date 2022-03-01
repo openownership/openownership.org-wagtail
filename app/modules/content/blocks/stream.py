@@ -427,7 +427,7 @@ class HighlightPagesBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Highlight Pages')
+        label = _('Highlight pages')
         group = _('Card group')
         icon = 'doc-full'
         template = "_partials/card_group.jinja"
@@ -482,7 +482,7 @@ class LatestSectionContentBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Latest section content block')
+        label = _('Latest section content')
         group = _('Card group')
         icon = 'time'
         template = "_partials/card_group.jinja"
@@ -550,7 +550,7 @@ class AreasOfFocusBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Areas of focus block')
+        label = _('Areas of focus')
         group = _('Card group')
         icon = "tag"
         template = "_partials/card_group.jinja"
@@ -615,7 +615,7 @@ class SectorsBlock(AreasOfFocusBlock):
     """
 
     class Meta:
-        label = _('Sectors block')
+        label = _('Sectors')
         group = _('Card group')
         icon = "tag"
         template = "_partials/card_group.jinja"
@@ -654,7 +654,7 @@ class PublicationTypesBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Publication types block')
+        label = _('Publication types')
         group = _('Card group')
         icon = "doc-full"
         template = "_partials/card_group.jinja"
@@ -716,7 +716,7 @@ class PublicationTypesBlock(blocks.StructBlock):
 class PressLinksBlock(blocks.StructBlock):
 
     class Meta:
-        label = _('Press links block')
+        label = _('Press links')
         group = _('Card group')
         icon = "doc-full"
         template = "_partials/card_group.jinja"
