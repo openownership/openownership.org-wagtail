@@ -1,5 +1,6 @@
 [meta]
 PROJECT_NAME = "openownership.org"
+SHORT_NAME = "oownership"
 REPO = "openownership.org"  # The name of the repo on the remote servers
 
 [aws]
