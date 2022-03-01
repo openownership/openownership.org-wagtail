@@ -37,7 +37,7 @@ class CountryView(TemplateView):
         context = super().get_context_data(**kwargs)
         slug = kwargs.pop('slug')
         self.tag = self._get_tag(slug)
-        context['tag'] = self.tag
+        context['country'] = self.tag
         context['page'] = self
         context['meta_title'] = f"{self.tag.name}"
         global_context(context)  # Adds in nav settings etc.

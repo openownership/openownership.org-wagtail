@@ -3,21 +3,18 @@
 
 {% block content %}
 
-    {{ super() }}
-
     <div class="country__header">
         {% if country.map %}
-        <div class="country__header-map">
-            TODO: Add map to CountryTag
-        </div>
+            <div class="country__header-map">
+                TODO: Add map to CountryTag
+            </div>
+        {% endif %}
         <div class="country__header-meta">
             <p>Records last updated: {{ country.notion_updated|nicedate }}</p>
-            <p>Work undertaken by: {{ country.notion_updated|nicedate }}</p>
-
+            <!-- <p>Work undertaken by: </p> -->
         </div>
-        {% endif %}
-
     </div>
 
+    {{ super() }}
 
 {% endblock %}
