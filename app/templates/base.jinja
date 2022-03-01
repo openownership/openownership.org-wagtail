@@ -29,7 +29,7 @@
 
         <main>
             {% block main %}
-                <div class="contained-width {{ main_classes }}">
+                <div class="contained-width {{ main_classes|default("") }}">
                     {% block main_inner %}
                         {% block content %}
                             {{render_stream(page.body)}}
