@@ -35,7 +35,7 @@
         }
 
         [aria-current] {
-            @apply bg-grey-darker text-white text-bold;
+            @apply bg-grey-darker text-white font-bold;
         }
 
     }
