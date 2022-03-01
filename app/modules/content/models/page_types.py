@@ -186,11 +186,11 @@ class BasePage(WagtailCacheMixin, Page):
     @cached_property
     def section_page(cls):
         """Get the top-level page this page is within, or *is*.
-        e.g. About, Insight, Implmentation, etc.
+        e.g. About, Research, Implmentation, etc.
 
-        e.g. a page that's a child or grandchild of "Insight" will return "Insight" page.
+        e.g. a page that's a child or grandchild of "Research" will return "Research" page.
 
-        But the "Insight" page will return itself.
+        But the "Research" page will return itself.
 
         Ignores root and home when calculating "top-level page".
         """
