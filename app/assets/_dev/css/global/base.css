@@ -10,3 +10,26 @@ body {
 main {
     @apply py-12;
 }
+
+article {
+    header {
+        @apply border-b border-black/50;
+        @apply pb-5;
+
+        h1 {
+            @apply my-5;
+        }
+    }
+}
+
+.article-header__meta {
+    @apply list-none flex;
+
+    & > li:first-of-type {
+        @apply p-0;
+    }
+
+    .article-header__meta-item {
+        @apply text-text-secondary text-14;
+    }
+}

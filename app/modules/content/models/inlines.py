@@ -198,3 +198,28 @@ class PublicationAuthorRelationship(Orderable, models.Model):
 
     def __str__(self):
         return self.page.title + " -> " + self.author.name
+
+
+class PressLinkAuthorRelationship(Orderable, models.Model):
+
+    snippet = ParentalKey(
+        'content.PressLink',
+        on_delete=models.CASCADE,
+        related_name='author_relationships'
+    )
+    author = models.ForeignKey(
+        'content.Author',
+        on_delete=models.CASCADE,
+        related_name='press_links'
+    )
+
+    class Meta(Orderable.Meta):
+        verbose_name = _('Press link author')
+        verbose_name_plural = _('Press link authors')
+
+    panels = [
+        SnippetChooserPanel('author'),
+    ]
+
+    def __str__(self):
+        return self.presslink.title + " -> " + self.author.name

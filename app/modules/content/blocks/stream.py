@@ -305,12 +305,28 @@ class PullQuoteBlock(blocks.StructBlock):
     quote = blocks.TextBlock(required=True)
 
 
-class BlockQuoteBlock(blocks.StructBlock):
-    class Meta:
-        icon = 'fa-indent'
-        template = 'blocks/block_quote.jinja'
+# class BlockQuoteBlock(blocks.StructBlock):
+#     class Meta:
+#         icon = 'fa-indent'
+#         template = 'blocks/block_quote.jinja'
 
-    quote = blocks.TextBlock(required=True)
+#     quote = blocks.TextBlock(required=True)
+
+
+####################################################################################################
+# Summary box
+####################################################################################################
+
+
+class SummaryBoxBlock(blocks.StructBlock):
+    class Meta:
+        icon = 'fa-square-o'
+        template = 'blocks/summary_box.jinja'
+        label = "Summary / highlight box"
+
+    text = blocks.RichTextBlock(
+        required=True, features=settings.RICHTEXT_SUMMARY_FEATURES
+    )
 
 
 ####################################################################################################
@@ -350,6 +366,7 @@ class BannerBlock(EyebrowTitleMixin):
         template = 'blocks/banner.jinja'
 
     cta = CTABlock(required=False)
+
 
 
 ####################################################################################################
@@ -399,7 +416,54 @@ class LatestNewsBlock(TitleMixin):
 
 
 ####################################################################################################
-# Section content
+# Pages
+####################################################################################################
+
+
+class HighlightPagesBlock(blocks.StructBlock):
+    """
+    For choosing a few pages from ALL of the pages to highlight on a Home or Section
+    page.
+    """
+
+    class Meta:
+        label = _('Highlight Pages')
+        group = _('Card group')
+        icon = 'doc-full'
+        template = "_partials/card_group.jinja"
+
+    FORMAT_DEFAULT = 'default'
+
+    FORMAT_CHOICES = (
+        (FORMAT_DEFAULT, 'Default'),
+    )
+
+    pages = blocks.ListBlock(
+        blocks.StructBlock([
+            ('page', blocks.PageChooserBlock(required=True)),
+            ('card_format', blocks.ChoiceBlock(required=True, choices=FORMAT_CHOICES, default=FORMAT_DEFAULT)),
+        ]),
+        min_num=1
+    )
+
+    def get_context(self, value, parent_context={}):
+        context = super().get_context(value, parent_context=parent_context)
+
+        # Put the pages into a list that's easy to pass to the card_group template.
+        pages = []
+        for struct_value in value.get('pages'):
+            page = struct_value.get('page')
+            page.specific.card_format = struct_value.get('card_format')
+            pages.append(page.specific)
+
+        context.update({
+            'pages': pages,
+        })
+        return context
+
+
+####################################################################################################
+# Latest section content
 ####################################################################################################
 
 
@@ -427,7 +491,7 @@ class LatestSectionContentBlock(blocks.StructBlock):
     )
 
     def get_context(self, value, parent_context={}):
-        from modules.content.models import ArticlePage, BlogArticlePage, NewsArticlePage, PublicationFrontPage
+        from modules.content.models import content_page_models
 
         context = super().get_context(value, parent_context=parent_context)
 
@@ -437,9 +501,7 @@ class LatestSectionContentBlock(blocks.StructBlock):
             pages = (
                 section_page.get_descendants()
                 .live().public()
-                .exact_type(
-                    ArticlePage, BlogArticlePage, NewsArticlePage, PublicationFrontPage
-                )
+                .exact_type(*content_page_models)
                 .specific()
                 .order_by('-first_published_at')[:self.DEFAULT_LIMIT]
             )
@@ -459,7 +521,7 @@ class LatestSectionContentBlock(blocks.StructBlock):
 
 class AreasOfFocusBlock(blocks.StructBlock):
     """
-    For displaying blocks that link to taxonomy.views.TagView pages.
+    For displaying blocks that link to taxonomy.views.FocusAreaPagesView pages.
 
     Choose tag(s) and display a card about each one, linking to its page.
 
@@ -491,8 +553,6 @@ class AreasOfFocusBlock(blocks.StructBlock):
     )
 
     def get_context(self, value, parent_context={}):
-        from modules.taxonomy.models import DummyPage
-
         context = super().get_context(value, parent_context=parent_context)
 
         # This will presumably be the Insight SectionPage or similar:
@@ -501,11 +561,7 @@ class AreasOfFocusBlock(blocks.StructBlock):
 
         pages = []
         for tag in value.get('tags'):
-            page = DummyPage()
-            page.title = tag.name
-            page.url = tag.get_url(parent_page.slug)
-            page.blurb = tag.blurb
-            pages.append(page)
+            pages.append(tag.to_dummy_page(parent_page.slug))
 
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,
@@ -517,7 +573,7 @@ class AreasOfFocusBlock(blocks.StructBlock):
 
 class SectorsBlock(AreasOfFocusBlock):
     """
-    For displaying blocks that link to taxonomy.views.TagView pages.
+    For displaying blocks that link to taxonomy.views.SectorPagesView pages.
 
     Choose tag(s) and display a card about each one, linking to its page.
 
@@ -554,7 +610,14 @@ def get_publication_type_choices():
     return PublicationType.objects.values_list('id', 'name')
 
 
-class PublicationTypeBlock(blocks.StructBlock):
+class PublicationTypesBlock(blocks.StructBlock):
+    """
+    For displaying blocks that link to taxonomy.views.PublicationTypePagesView pages.
+
+    Choose category/ies and display a card about each one, linking to its page.
+
+    For Sectors within a section (Impact, Insight, Implement)
+    """
 
     class Meta:
         label = _('Publication types block')
@@ -563,17 +626,11 @@ class PublicationTypeBlock(blocks.StructBlock):
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
-
-    section_page = blocks.PageChooserBlock(
-        required=True,
-        label=_("Front page of section"),
-        page_type=('content.SectionPage'),
-        help_text=_("Link to Publication Types within this section")
-    )
+    DEFAULT_TITLE = 'View by publication type'
 
     title = blocks.CharBlock(
         required=False,
-        help_text=_('Leave empty to use default: "View by publication type"')
+        help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"')
     )
 
     types = blocks.MultipleChoiceBlock(
@@ -583,7 +640,7 @@ class PublicationTypeBlock(blocks.StructBlock):
     )
 
     def get_context(self, value, parent_context={}):
-        from modules.taxonomy.models import DummyPage
+        from modules.taxonomy.models import PublicationType
 
         context = super().get_context(value, parent_context=parent_context)
 
@@ -592,16 +649,59 @@ class PublicationTypeBlock(blocks.StructBlock):
         parent_page = parent_context['page']
 
         pages = []
-        for tag in value.get('tags'):
-            page = DummyPage()
-            page.title = tag.name
-            page.url = tag.get_url(parent_page.slug)
-            page.blurb = tag.blurb
-            pages.append(page)
+        for cat_type in value.get('types'):
+            category = PublicationType.objects.get(pk=cat_type)
+            pages.append(category.to_dummy_page(parent_page.slug))
 
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,
             'pages': pages,
+        })
+
+        return context
+
+
+####################################################################################################
+# Press links
+####################################################################################################
+
+
+class PressLinksBlock(blocks.StructBlock):
+
+    class Meta:
+        label = _('Press links block')
+        group = _('Card group')
+        icon = "doc-full"
+        template = "_partials/card_group.jinja"
+
+    DEFAULT_LIMIT = 3
+    DEFAULT_TITLE = 'Press links'
+
+    title = blocks.CharBlock(
+        required=False,
+        help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"')
+    )
+
+    limit_number = blocks.IntegerBlock(required=True, default=DEFAULT_LIMIT)
+
+    def get_context(self, value, parent_context={}):
+        from modules.content.models import PressLink
+
+        context = super().get_context(value, parent_context=parent_context)
+
+        # This will presumably be the Insight SectionPage or similar:
+        # (we need it to generate a URL to the tag page below this page)
+        parent_page = parent_context['page']
+
+        objects = (
+            PressLink.objects
+            .filter(section_page=parent_page)
+            .order_by("-first_published_at")[:value.get('limit', self.DEFAULT_LIMIT)]
+        )
+
+        context.update({
+            'title': value.get('title') or self.DEFAULT_TITLE,
+            'pages': objects
         })
 
         return context

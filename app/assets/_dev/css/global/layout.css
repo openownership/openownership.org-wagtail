@@ -44,22 +44,36 @@ body {
     @media (min-width: 40rem) {
         grid-template-columns: 300px minmax(10px, 1fr);
     }
-
-    .aside-layout__main {
-        width: 100%;
-    }
 }
 
 .aside-layout-right {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 2rem;
+    @apply pt-10;
 
     @media (min-width: 40rem) {
         grid-template-columns: minmax(10px, 1fr) 300px;
     }
 
-    .aside-layout__main {
-        width: 100%;
+    .aside-layout__right-aside {
+        > * {
+            @apply mb-5;
+        }
+    }
+}
+
+.aside-layout__main {
+    width: 100%;
+    & > *:first-child {
+        @apply mt-0;
+    }
+}
+
+.aside-layout__no-header {
+    h1 {
+        @apply border-b border-black/50;
+        @apply pb-10;
+        @apply my-10;
     }
 }

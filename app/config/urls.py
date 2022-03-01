@@ -5,7 +5,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.http import HttpResponse
-from django.urls import path
+from django.urls import path, re_path
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.core import urls as wagtail_urls
@@ -15,8 +15,16 @@ from wagtail.documents import urls as wagtaildocs_urls
 from .views import (
     robots, error_400_view, error_403_view, error_404_test, error_404_view, error_500_view
 )
-from modules.taxonomy.views import FocusAreaView, SectorView, PublicationTypeView
+
 from modules.content.views import CountryView, SearchView
+from modules.taxonomy.views import (
+    FocusAreaPagesView,
+    SectorPagesView,
+    PublicationTypePagesView,
+    SectionLatestPagesView,
+    SectionPressLinksView,
+    TaxonomyView,
+)
 
 
 urlpatterns = [
@@ -47,20 +55,35 @@ handler500 = error_500_view
 urlpatterns = urlpatterns + i18n_patterns(
     path(
         '<slug:section_slug>/focus-areas/<str:tag_slug>/',
-        FocusAreaView.as_view(),
+        FocusAreaPagesView.as_view(),
         name="focusarea-tag"
     ),
     path(
         '<slug:section_slug>/sectors/<str:tag_slug>/',
-        SectorView.as_view(),
+        SectorPagesView.as_view(),
         name="sector-tag"
     ),
     path(
         '<slug:section_slug>/types/<str:tag_slug>/',
-        PublicationTypeView.as_view(),
+        PublicationTypePagesView.as_view(),
         name="publicationtype-category"
     ),
     path('impact/country/<str:slug>/', CountryView.as_view(), name="country-tag"),
     path("search/", SearchView.as_view(), name="search"),
+    path(
+        '<slug:section_slug>/latest/',
+        SectionLatestPagesView.as_view(),
+        name="section-latest-pages"
+    ),
+    path(
+        '<slug:section_slug>/press-links/',
+        SectionPressLinksView.as_view(),
+        name="section-press-links"
+    ),
+    re_path(
+        r'(?P<section_slug>[-\w]+)/(?P<taxonomy_slug>focus-areas|sectors|types)/',
+        TaxonomyView.as_view(),
+        name="taxonomy"
+    ),
     url(r'', include(wagtail_urls)),
 )

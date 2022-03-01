@@ -12,7 +12,7 @@ from modules.content.models import (
     SectionPage,
 )
 from modules.taxonomy.models import FocusAreaTag, FocusAreaTaggedPage
-from modules.taxonomy.views import FocusAreaView
+from modules.taxonomy.views import FocusAreaPagesView
 
 
 # NOTE: Identical to test_sector_view.py except for using different tags and URLs.
@@ -24,7 +24,7 @@ client = Client()
 
 
 def test_200_response(section_page):
-    "It should return 200 if sector and tag are valid"
+    "It should return 200 if section and tag are valid"
     FocusAreaTag.objects.create(name='Cats')
 
     # section_page is created with a title of 'Section', so has a
@@ -35,7 +35,7 @@ def test_200_response(section_page):
 
 
 def test_invalid_sector_404s(section_page):
-    "It should 404 if the sector_tag is invalid"
+    "It should 404 if the section_tag is invalid"
     FocusAreaTag.objects.create(name='Cats')
 
     rv = client.get('/en/nope/focus-areas/cats/')
@@ -60,7 +60,7 @@ def test_context_data(section_page):
     data = rv.context_data
     assert data['tag'] == tag
     assert data['meta_title'] == 'Cats'
-    assert isinstance(data['page'], FocusAreaView)
+    assert isinstance(data['page'], FocusAreaPagesView)
     assert data['site_name'] == 'openownership.org'
     assert 'footer_nav' in data
     assert 'navbar_blocks' in data
@@ -75,40 +75,7 @@ def test_page_attributes(section_page):
 
     data = rv.context_data
     assert data['page'].title == 'Cats'
-    assert data['page'].pk == 'TaxonomyView-section-FocusAreaTag-cats'
-
-
-def test_menu_pages(blog_index_page):
-    "The correct data should be in the menu_pages context"
-    section_page = blog_index_page.get_parent()
-
-    cats_tag = FocusAreaTag.objects.create(name='Cats')
-    cats_post = BlogArticlePage(live=True, title="Cats post")
-    blog_index_page.add_child(instance=cats_post)
-    cats_post.save_revision().publish()
-    FocusAreaTaggedPage.objects.create(tag=cats_tag, content_object=cats_post)
-
-    rv = client.get('/en/section/focus-areas/cats/')
-
-    pages = rv.context_data['menu_pages']
-    assert len(pages) == 4
-
-    assert pages[0]["page"].specific == section_page
-
-    assert pages[1]["page"].title == "Area of Focus"
-    assert pages[1]["page"].pk == "TaxonomyView-section-FocusAreaTag"
-    assert len(pages[1]["children"]) == 1
-    assert pages[1]["children"][0].title == "Cats"
-    assert pages[1]["children"][0].pk == "TaxonomyView-section-FocusAreaTag-cats"
-    assert pages[1]["children"][0].url == "/en/section/focus-areas/cats/"
-
-    assert pages[2]["page"].title == "Sector"
-    assert pages[2]["page"].pk == "TaxonomyView-section-SectorTag"
-    assert pages[2]["children"] == []
-
-    assert pages[3]["page"].title == "Publication type"
-    assert pages[3]["page"].pk == "TaxonomyView-section-PublicationType"
-    assert pages[3]["children"] == []
+    assert data['page'].pk == 'TaxonomyPagesView-section-FocusAreaTag-cats'
 
 
 def test_queryset_tagged_pages(blog_index_page):

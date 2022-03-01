@@ -1,4 +1,3 @@
-
 {% if page.publication_type %}
 	<p>
 		<strong>{% trans %}Publication type{% endtrans %}</strong><br>
@@ -16,6 +15,14 @@
 		</p>
 	{% endif %}
 {% endwith %}
+
+{% if page.location %}
+	{# For JobPage #}
+	<p>
+		<strong>{% trans %}Location{% endtrans %}</strong><br>
+		{{ page.location }}
+	</p>
+{% endif %}
 
 {% with sectors=page.sectors.all() %}
 	{% if sectors|length > 0 %}
@@ -35,4 +42,4 @@
 {% endif %}
 
 
-<p>{% trans %}SHARE PAGE{% endtrans %}</td>
+{% include "_partials/share_page.jinja" %}

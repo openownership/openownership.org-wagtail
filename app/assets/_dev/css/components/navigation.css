@@ -17,3 +17,34 @@
 .navigation__level-one {
     @apply flex;
 }
+
+/*------------------------------------*\
+  #PAGINATION
+\*------------------------------------*/
+
+.nav--pagination {
+    @apply flex justify-center;
+    @apply mt-10 pt-10;
+    @apply border-t border-black/50;
+
+    li {
+        @apply mx-2;
+
+        a {
+            @apply p-1;
+        }
+
+        [aria-current] {
+            @apply bg-grey-darker text-white text-bold;
+        }
+
+    }
+}
+
+.nav--previous, .nav--next {
+    @apply mx-5;
+}
+
+.nav--no-page {
+    @apply text-blue-medium;
+}

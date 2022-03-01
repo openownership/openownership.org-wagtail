@@ -37,12 +37,12 @@ def test_section_page_news_article(news_article_page):
     assert news_article_page.section_page.specific == news_article_page.get_parent().get_parent()
 
 
-def test_section_page_job_index_page(job_index_page):
-    assert job_index_page.section_page.specific == job_index_page
+def test_section_page_jobs_index_page(jobs_index_page):
+    assert jobs_index_page.section_page.specific == jobs_index_page.get_parent()
 
 
 def test_section_page_job_page(job_page):
-    assert job_page.section_page.specific == job_page.get_parent()
+    assert job_page.section_page.specific == job_page.get_parent().get_parent()
 
 
 def test_section_page_publication_front_page(publication_front_page):

@@ -36,7 +36,8 @@ module.exports = {
         grey: {
           light: '#F7F7F7',
           medium: '#B1B4B6',
-          dark: '#505050'
+          dark: '#505050',
+          darker: '#2F4549'
         }
 
       },
@@ -73,6 +74,7 @@ module.exports = {
         ],
       },
       fontSize: {
+        14: ['0.875rem', '1.625rem'],
         16: ['1rem', '1.625rem'],
         18: ['1.125rem', '1.5rem'],
         19: ['1.188rem', '1.75rem'],

@@ -1,27 +1,27 @@
 body {
-    @apply text-black font-body;
+    @apply text-text-main font-body;
 
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
 }
 
-.heading-xl {
+h1, .heading-xl {
     @apply font-display font-bold text-36;
 }
 
-.heading-l {
+h2, .heading-l {
     @apply font-display font-bold text-26;
 }
 
-.heading-m {
+h3, .heading-m {
     @apply font-display font-bold text-21;
 }
 
-.heading-s {
+h4, .heading-s {
     @apply font-display font-bold text-18;
 }
 
-.heading-xs {
+h5, h6, .heading-xs {
     @apply font-body font-bold text-16;
 }
 
@@ -29,4 +29,39 @@ body {
     @apply text-grey-dark font-body text-19;
     @apply mb-12 pb-12;
     @apply border-b border-black/50;
+    line-height: rem(32px);
+}
+
+article {
+    p {
+        line-height: rem(32px);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply mt-10 mb-5;
+    }
+
+    ol {
+        list-style: auto;
+        list-style-position: inside;
+        li {
+            @apply pl-3;
+            line-height: rem(32px);
+        }
+    }
+
+    ul {
+        list-style: disc;
+        list-style-position: inside;
+        li {
+            @apply pl-3;
+            line-height: rem(32px);
+        }
+    }
+}
+
+blockquote {
+    @apply font-display font-bold text-26;
+    @apply border-l-2 border-blue-medium pl-8;
+    @apply pl-8 py-4 my-8;
 }

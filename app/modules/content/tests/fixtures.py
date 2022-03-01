@@ -16,6 +16,7 @@ from modules.content.models import (
     NewsArticlePage,
     NewsArticleAuthorRelationship,
     NewsIndexPage,
+    PressLink,
     PublicationFrontPage,
     PublicationAuthorRelationship,
     PublicationInnerPage,
@@ -86,7 +87,7 @@ def _create_glossary_page(
     return p
 
 
-def _create_job_index_page(
+def _create_jobs_index_page(
     title: str, parent: Page, modifier: int = 1
 ) -> JobsIndexPage:
     p = JobsIndexPage()
@@ -231,14 +232,14 @@ def glossary_page(section_page):
 
 
 @pytest.fixture(scope="function")
-def job_index_page(home_page):
-    p = _create_job_index_page("Job Index", home_page)
+def jobs_index_page(section_listing_page):
+    p = _create_jobs_index_page("Job Index", section_listing_page)
     return p
 
 
 @pytest.fixture(scope="function")
-def job_page(job_index_page):
-    p = _create_job_page("Job", job_index_page)
+def job_page(jobs_index_page):
+    p = _create_job_page("Job", jobs_index_page)
     return p
 
 
@@ -374,3 +375,9 @@ def author_with_content_pages(author, blog_index_page, news_index_page, section_
         PublicationAuthorRelationship(page=p, author=author).save()
 
     return author
+
+
+
+@pytest.fixture(scope="function")
+def press_link():
+    return PressLink.objects.create(title="Press Link", url="https://example.org/foo/")

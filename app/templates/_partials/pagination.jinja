@@ -5,11 +5,12 @@
 {% if page_obj.paginator %}
 {% if page_obj.paginator.num_pages %}
 {% if page_obj.paginator.num_pages > 1 %}
-    <nav>
+    <nav aria-label="Pagination">
         <ul class="nav nav--pagination">
             {% if page_obj.has_previous() %}
-                <li>
-                    <a href="?page={{ page_obj.previous_page_number }}">
+                <li class="nav--previous">
+                    <a class="reverse-underline" href="?page={{ page_obj.previous_page_number }}">
+                        <span aria-hidden="true"> < </span>
                         {% trans %}Back{% endtrans %}
                     </a>
                 </li>
@@ -18,11 +19,13 @@
             {% for p in page_obj.page_range %}
                 {% if not p %}
                     <li>
-                        ...
+                        <span class="nav--no-page">...</span>
                     </li>
                 {% elif p == page_obj.number %}
                     <li>
-                        {{ p }} {% trans %}(current){% endtrans %}
+                        <a class="reverse-underline" href="./" aria-current="page">
+                            {{ p }}
+                        </a>
                     </li>
                 {% else %}
                     <li>
@@ -32,9 +35,10 @@
             {% endfor %}
 
             {% if page_obj.has_next() %}
-                <li>
-                    <a href="?page={{ page_obj.next_page_number }}">
+                <li class="nav--next">
+                    <a class="reverse-underline" href="?page={{ page_obj.next_page_number }}">
                         {% trans %}Next{% endtrans %}
+                        <span aria-hidden="true"> > </span>
                     </a>
                 </li>
             {% endif %}

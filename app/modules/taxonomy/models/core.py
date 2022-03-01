@@ -14,6 +14,7 @@ from wagtail.admin.edit_handlers import (
 from wagtail.core.models import Page
 
 from modules.content.blocks import category_page_body_blocks, tag_page_body_blocks
+from .pages import DummyPage
 
 
 ####################################################################################################
@@ -27,6 +28,9 @@ class Category(models.Model):
         abstract = True
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
+
+    # Child classes should set this to use get_url() and to_dummy_page()
+    url_name = None
 
     name = models.CharField(blank=False, null=False, max_length=255)
     slug = AutoSlugField(populate_from='name')
@@ -42,6 +46,8 @@ class Category(models.Model):
     panels = [
         MultiFieldPanel([
             FieldPanel('name'),
+            FieldPanel('blurb'),
+            StreamFieldPanel('body')
         ], heading=_("Public fields")),
     ]
 
@@ -74,6 +80,29 @@ class Category(models.Model):
 
         return pages
 
+    def get_url(self, section_slug):
+        """Generate the URL to this category's view
+        section_slug is the Slug of the section page the category is within.
+        e.g. 'insight'
+        """
+        return reverse(
+            self.url_name,
+            kwargs={'section_slug': section_slug, 'tag_slug': self.slug}
+        )
+
+    def to_dummy_page(self, section_slug):
+        """
+        Returns a DummyPage representing this category.
+        Useful for passing to templates that expect a Page like object.
+        section_slug is the Slug of the section page the category is within.
+        e.g. 'insight'
+        """
+        page = DummyPage()
+        page.title = self.name
+        page.url = self.get_url(section_slug)
+        page.blurb = self.blurb
+        return page
+
 
 ####################################################################################################
 # Manager
@@ -100,6 +129,9 @@ class BaseTag(TagBase):
         verbose_name = _("Tag")
         verbose_name_plural = _("Tags")
 
+    # Child classes should set this to use get_url() and to_dummy_page()
+    url_name = None
+
     objects = TagManager()
 
     blurb = models.CharField(
@@ -124,6 +156,29 @@ class BaseTag(TagBase):
 
     def __str__(self):
         return self.name
+
+    def get_url(self, section_slug):
+        """Generate the URL to this tag's view
+        section_slug is the Slug of the section page the tag is within.
+        e.g. 'insight'
+        """
+        return reverse(
+            self.url_name,
+            kwargs={'section_slug': section_slug, 'tag_slug': self.slug}
+        )
+
+    def to_dummy_page(self, section_slug):
+        """
+        Returns a DummyPage representing this tag.
+        Useful for passing to templates that expect a Page like object.
+        section_slug is the Slug of the section page the tag is within.
+        e.g. 'insight'
+        """
+        page = DummyPage()
+        page.title = self.name
+        page.url = self.get_url(section_slug)
+        page.blurb = self.blurb
+        return page
 
     # @property
     # def pages(self):

@@ -453,12 +453,16 @@ SOCIAL_MEDIA_CHOICES = [
 
 # Which features do we allow in which kinds of richtext fields?
 RICHTEXT_INLINE_FEATURES = [
-    'bold', 'italic', 'underline', 'small', 'link', 'document-link'
+    'bold', 'italic', 'small', 'link', 'document-link'
 ]
 
 RICHTEXT_BODY_FEATURES = [
-    "h2", "h3", "h4", "h5", "h6", "bold",
-    "italic", "small", "ol", "ul", "link", "document-link",
+    "h2", "h3", "h4", "h5", "h6",
+    "bold", "italic", "small", "ol", "ul", "link", "document-link",
+]
+
+RICHTEXT_SUMMARY_FEATURES = [
+    "bold", "italic", "small", "ol", "ul", "link", "document-link",
 ]
 
 

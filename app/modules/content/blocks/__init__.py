@@ -14,14 +14,18 @@ from .stream import (
     # StepsBlock,
     # StatsBlock,
     PullQuoteBlock,
-    BlockQuoteBlock,
+    # BlockQuoteBlock,
+    SummaryBoxBlock,
     # EmbedBannerBlock,
     # LogoListBlock,
     # BannerBlock,
     # LatestNewsBlock,
+    HighlightPagesBlock,
     LatestSectionContentBlock,
     AreasOfFocusBlock,
     SectorsBlock,
+    PublicationTypesBlock,
+    PressLinksBlock,
     # CardGroupBlock,
     # TextColumnsBlock,
     # NotificationBlock,
@@ -49,13 +53,17 @@ landing_page_blocks: list = [
 
 
 home_page_blocks: list = [
+    ('highlight_pages', HighlightPagesBlock()),
     ('latest_section_content', LatestSectionContentBlock()),
 ]
 
 section_page_blocks: list = [
+    ('highlight_pages', HighlightPagesBlock()),
     ('areas_of_focus_block', AreasOfFocusBlock()),
     ('sectors_block', SectorsBlock()),
     ('latest_section_content', LatestSectionContentBlock()),
+    ('publication_types', PublicationTypesBlock()),
+    ('press_links', PressLinksBlock()),
 ]
 
 article_page_body_blocks: list = [
@@ -66,7 +74,7 @@ article_page_body_blocks: list = [
     ('embed', EmbedBlock()),
     ('table', TableBlock()),
     ('pull_quote', PullQuoteBlock()),
-    ('block_quote', BlockQuoteBlock()),
+    ('summary_box', SummaryBoxBlock()),
     ('image', ArticleImageBlock()),
     ('cta_block_form', CTABlock()),
 ]
