@@ -3,6 +3,7 @@ from consoler import console
 from django.db import models
 from django.conf import settings
 from wagtail.core import fields
+from django.shortcuts import reverse
 from taggit.models import ItemBase
 from django.forms import CheckboxSelectMultiple
 from wagtail.core.models import Locale, Page
@@ -309,6 +310,14 @@ class CountryTag(NotionModel, BaseTag):
                 console.warn(e)
 
         return []
+
+    @cached_property
+    def url(self):
+        try:
+            return reverse('country-tag', args=(self.slug, ))
+        except Exception as e:
+            console.warn(e)
+            return "#"
 
 
 class CountryTaggedPage(ItemBase):
