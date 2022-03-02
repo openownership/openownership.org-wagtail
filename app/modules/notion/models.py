@@ -3,7 +3,9 @@ from consoler import console
 from django.db import models
 from django.conf import settings
 from wagtail.core import fields
+from django.shortcuts import reverse
 from taggit.models import ItemBase
+from django.forms import CheckboxSelectMultiple
 from wagtail.core.models import Locale, Page
 from modelcluster.fields import ParentalKey
 from wagtail.snippets.models import register_snippet
@@ -49,7 +51,6 @@ class NotionModel(models.Model):
     )
 
 
-@register_snippet
 class Commitment(NotionModel):
 
     class Meta:
@@ -106,7 +107,6 @@ class Commitment(NotionModel):
     )
 
 
-@register_snippet
 class DisclosureRegime(NotionModel):
 
     class Meta:
@@ -123,6 +123,13 @@ class DisclosureRegime(NotionModel):
     # Specified
     title = models.CharField(  # Title
         _("Title"),
+        blank=True,
+        null=True,
+        max_length=255
+    )
+
+    stage = models.CharField(  # 0 Stage
+        _("Stage"),
         blank=True,
         null=True,
         max_length=255
@@ -212,7 +219,6 @@ class DisclosureRegime(NotionModel):
     )
 
 
-@register_snippet
 class CountryTag(NotionModel, BaseTag):
 
     free_tagging = False
@@ -236,6 +242,20 @@ class CountryTag(NotionModel, BaseTag):
         max_length=25
     )
 
+    regions = ParentalManyToManyField(
+        'notion.Region',
+        related_name="countries",
+        blank=True
+    )
+
+    consultant = models.ForeignKey(
+        'content.TeamProfilePage',
+        related_name="consultant_countries",
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE
+    )
+
     # Stuff from the Notion Properties dict
     oo_support = models.CharField(
         _("OO Support"),
@@ -247,8 +267,10 @@ class CountryTag(NotionModel, BaseTag):
     main_panels = [
         FieldPanel('name'),
         ImageChooserPanel('map_image'),
-        FieldPanel('blurb'),
-        StreamFieldPanel('body')
+        FieldPanel('regions', widget=CheckboxSelectMultiple),
+        FieldPanel('consultant', widget=CheckboxSelectMultiple),
+        # FieldPanel('blurb'),
+        # StreamFieldPanel('body')
     ]
 
     notion_panels = [
@@ -262,6 +284,51 @@ class CountryTag(NotionModel, BaseTag):
     ]
 
     edit_handler = TabbedInterface(base_tabs)
+
+    @cached_property
+    def committed_central(self):
+        """The behaviour we'd like to see is that the 'Commitment to BOT/Central register'
+        field is ticked for a country if the Central register field in any commitments
+        for that country listed on the Commitment tracker = ticked.
+        """
+        for item in self.commitments.all():
+            if item.central_register is True:
+                return True
+        return False
+
+    @cached_property
+    def committed_public(self):
+        """The behaviour we'd like to see is that the 'Commitment to BOT/Central register'
+        field is ticked for a country if the Central register field in any commitments
+        for that country listed on the Commitment tracker = ticked.
+        """
+        for item in self.commitments.all():
+            if item.public_register is True:
+                return True
+        return False
+
+    @cached_property
+    def implementation_central(self):
+        """For the Implementation of BOT tab, you'll need to aggregate implementations
+        for a country and then tick 'Implementation of BOT/Central register' where any
+        implementations listed in the Disclosure regimes tracker have the '4 Central'
+        field = Yes plus the 0 Stage field = Publish.
+        """
+        for item in self.disclosure_regimes.all():
+            if item.central_register == "Yes" and 'Publish' in item.stage:
+                return True
+        return False
+
+    @cached_property
+    def implementation_public(self):
+        """'Implementation of BOT/Public register' tick box, this should be ticked for a
+        country page where any implementations listed where the
+        '5.1 Public access' field = Yes plus the 0 Stage field = Publish.
+        """
+        for item in self.disclosure_regimes.all():
+            if item.public_access == "Yes" and 'Publish' in item.stage:
+                return True
+        return False
 
     @cached_property
     def commitment(self):
@@ -305,6 +372,14 @@ class CountryTag(NotionModel, BaseTag):
 
         return []
 
+    @cached_property
+    def url(self):
+        try:
+            return reverse('country-tag', args=(self.slug, ))
+        except Exception as e:
+            console.warn(e)
+            return "#"
+
 
 class CountryTaggedPage(ItemBase):
     tag = models.ForeignKey(
@@ -327,3 +402,19 @@ class CoverageScope(ClusterableModel):
 
     name = models.CharField(blank=False, null=False, max_length=255)
     slug = AutoSlugField(populate_from='name')
+
+    def __str__(self):
+        return self.name
+
+
+class Region(ClusterableModel):
+
+    class Meta:
+        verbose_name = _("Region")
+        verbose_name_plural = _("Regions")
+
+    name = models.CharField(blank=False, null=False, max_length=255)
+    slug = AutoSlugField(populate_from='name')
+
+    def __str__(self):
+        return self.name

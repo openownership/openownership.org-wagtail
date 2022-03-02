@@ -6,7 +6,6 @@ from django.utils.translation import gettext_lazy as _
 from wagtail.snippets.models import register_snippet
 
 
-@register_snippet
 class PublicationType(Category):
     """
     e.g. Case Study, Guidance, Job.

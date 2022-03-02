@@ -2,6 +2,7 @@
 import os
 
 # 3rd party
+import json
 import arrow
 import jinja2
 from cacheops import cached
@@ -231,6 +232,23 @@ def commitment_summary(commitment_type, country):
     return ""
 
 
+@cached(timeout=60 * 60)
+def countries_json():
+    try:
+        countries = CountryTag.objects.all()
+        data = []
+        for item in countries:
+            data.append({
+                'name': item.name,
+                'url': item.url
+            })
+        rv = json.dumps(data)
+    except Exception as e:
+        console.warn(e)
+    else:
+        return rv
+
+
 class TemplateGlobalsExtension(Extension):
     def __init__(self, environment):
         super(TemplateGlobalsExtension, self).__init__(environment)
@@ -255,7 +273,8 @@ class TemplateGlobalsExtension(Extension):
             'picture': picture,
             'routablepageurl': jinja2.pass_context(routablepageurl),
             'now': time_now,
-            'today': date_now
+            'today': date_now,
+            'countries_json': countries_json
         })
         environment.tests.update({
             'absolutepath': isabsolutepath

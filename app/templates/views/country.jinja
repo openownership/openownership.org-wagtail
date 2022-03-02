@@ -11,7 +11,9 @@
         {% endif %}
         <div class="country__header-meta">
             <p>Records last updated: {{ country.notion_updated|nicedate }}</p>
-            {% if country.people %}<p>{% trans %}Consultants' details:{% endtrans %}{{ country.people }}{% endif %} {# TODO #}
+            {% if country.consultant %}<p>{% trans %}Consultant's details:{% endtrans %}
+                <a href="{{ country.consultant.url }}">{{ country.consultant.title }}</a>
+            {% endif %}
         </div>
 
         <div class="country__header-card">
@@ -19,10 +21,8 @@
             {# NOTE TO ANA: I've done this checkbox function here to render something on a bool value.
                 At the moment it just returns YES or NO, but you might want to have it return an svg or something.
             #}
-            {% for commitment in country.commitments.all() %}
-            <span class="country__header-card_row">{{ checkbox(commitment.central_register) }}{% trans %}Central Register{% endtrans %}</span>
-            <span class="country__header-card_row">{{ checkbox(commitment.public_register) }}{% trans %}Public Register{% endtrans %}</span>
-            {% endfor %}
+            <span class="country__header-card_row">{{ checkbox(country.committed_central) }}{% trans %}Central Register{% endtrans %}</span>
+            <span class="country__header-card_row">{{ checkbox(country.committed_public) }}{% trans %}Public Register{% endtrans %}</span>
         </div>
 
         <div class="country__header-card">
@@ -30,8 +30,8 @@
             {# NOTE TO ANA: I've done this checkbox function here to render something on a bool value.
                 At the moment it just returns YES or NO, but you might want to have it return an svg or something.
             #}
-            <span class="country__header-card_row">{{ checkbox(country.regime.central) }}{% trans %}Central register: Open Ownership register{% endtrans %}</span>
-            <span class="country__header-card_row">{{ checkbox(country.regime.public_access) }}{% trans %}Public register: UK PSC Register{% endtrans %}</span>
+            <span class="country__header-card_row">{{ checkbox(country.implementation_central) }}{% trans %}Central register: Open Ownership register{% endtrans %}</span>
+            <span class="country__header-card_row">{{ checkbox(country.implementation_public) }}{% trans %}Public register: UK PSC Register{% endtrans %}</span>
         </div>
 
         <a href="#" class="button">{% trans %}Download Country Data{% endtrans %}</a>
@@ -49,10 +49,9 @@
 <section>
     <hr/>
     <h2>{% trans %}Implementation Detail{% endtrans %}</h2>
-    {# {% for commitment in country.commitments.all() %}
-        <p>{{ commitment_summary(commitment.commitment_type_name, country) }} [{{ commitment.date|nicedate }}]
-            {% if commitment.link %}<a href="{{ commitment.link }}">link to commitment</a>{% endif %}</p>
-    {% endfor %} #}
+    {% for regime in country.disclosure_regimes.all() %}
+        <p>{{ regime.title }}</p>
+    {% endfor %}
 
     <dl>
         <dt>{% trans %}Central register implemented{% endtrans %}</dt>

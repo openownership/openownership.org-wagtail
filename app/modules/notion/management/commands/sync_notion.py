@@ -24,7 +24,7 @@ class Command(BaseCommand):
         console.info(f"Synced commitments - {total_commitments}")
 
         s = SyncRegimes()
-        s.do()
+        s.do(force=True)
 
         total_regimes = DisclosureRegime.objects.count()
         console.info(f"Synced disclosure regimes - {total_regimes}")
