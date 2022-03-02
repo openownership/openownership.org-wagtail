@@ -69,6 +69,7 @@ class HomePage(PageHeroMixin, LandingPageType):
         "content.SectionPage",
         "content.SectionListingPage",
         "content.UtilityPage",
+        "content.NewsIndexPage",
     ]
     max_count = 1
 
