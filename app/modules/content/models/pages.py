@@ -687,7 +687,7 @@ class NewsIndexPage(IndexPageType):
     objects_model = NewsArticlePage
 
     template = 'content/blog_news_index_page.jinja'
-    parent_page_types: list = ['content.SectionPage']
+    parent_page_types: list = ['content.HomePage', ]
     subpage_types: list = ['content.NewsArticlePage']
     max_count = 1
 
@@ -697,6 +697,7 @@ class NewsIndexPage(IndexPageType):
         return [
             {"page": sibling, "children": []} for sibling in siblings
         ]
+
 
 class BlogIndexPage(IndexPageType):
     """The one page listing all BlogArticlePages (blog posts)"""
