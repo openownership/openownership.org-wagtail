@@ -9,22 +9,19 @@ from django.conf import settings
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from wagtail.core import blocks
-
+from wagtail.contrib.table_block.blocks import TableBlock
+from wagtail.core import blocks, fields
 from wagtail.embeds import embeds
 from wagtail.embeds.blocks import EmbedBlock as WagtailEmbedBlock
-
 from wagtail.images.blocks import ImageChooserBlock
-
 from wagtail.snippets.blocks import SnippetChooserBlock
 
 # Module
+from .generic import ArticleImageBlock, CTABlock
 from .mixins import (  # NOQA
-    TitleMixin, EyebrowMixin, CTAStreamBlock, TitleBodyMixin, EyebrowTitleMixin,
+    TitleMixin, TitleBodyMixin, EyebrowTitleMixin,
     EyebrowTitleBodyMixin
 )
-
-from .generic import LinkBlock, CTABlock, CardStreamBlock  # NOQA
 
 
 ####################################################################################################
@@ -43,6 +40,7 @@ class GlossaryItemBlock(blocks.StructBlock):
         required=True,
         features=settings.RICHTEXT_INLINE_FEATURES
     )
+
 
 
 ####################################################################################################
@@ -834,3 +832,25 @@ class FormAssemblyBlock(blocks.StructBlock):
         context = super().get_context(value, parent_context=parent_context)
         context['form_html'] = value.get('formassembly_form').cleaned_html
         return context
+
+
+####################################################################################################
+# Details
+####################################################################################################
+
+class DisclosureBlock(blocks.StructBlock):
+    "A title that, when clicked, reveals something else"
+
+    class Meta:
+        label = _('Details')
+        icon = 'fa-caret-down'
+        template = 'blocks/disclosure.jinja'
+
+    title = blocks.CharBlock(required=True)
+
+    body = blocks.StreamBlock([
+        ('rich_text', blocks.RichTextBlock(features=settings.RICHTEXT_SUMMARY_FEATURES)),
+        ('embed', EmbedBlock()),
+        ('table', TableBlock()),
+        ('image', ArticleImageBlock()),
+    ], max_num=1)
