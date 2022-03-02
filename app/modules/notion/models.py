@@ -50,6 +50,13 @@ class NotionModel(models.Model):
         null=True
     )
 
+    deleted = models.BooleanField(
+        _("Soft deleted"),
+        blank=False,
+        null=False,
+        default=False
+    )
+
 
 class Commitment(NotionModel):
 

@@ -58,3 +58,15 @@ BUGSNAG = {
     ],
     "notify_release_stages": ["production", "staging"]
 }
+
+
+####################################################################################################
+# Django-Cron
+####################################################################################################
+
+
+CRON_CLASSES = [
+    "modules.notion.cron.SyncCountries",
+    "modules.notion.cron.SyncCommitments",
+    "modules.notion.cron.SyncRegimes",
+]

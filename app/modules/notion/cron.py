@@ -23,6 +23,23 @@ class NotionCronBase(CronJobBase):
     def __init__(self, *args, **kwargs):
         self.client = get_notion_client()
 
+    def _clean_up(self, data: dict) -> None:
+        """Looks through the `notion_id` of `self._model.objects.all()` and checks to see if
+        it still exists in the `data`. If it doesn't, that row is gone from Notion and our instance
+        should be deleted. However, we're doing soft-deletes for fear of breaking data integrity
+        due to an accident on Notion.
+
+        Args:
+            data (dict): The data from Notion.
+        """
+        objects = self._model.objects.all()
+        data_string = str(data)
+        for item in objects:
+            if item.notion_id not in data_string:
+                console.warn(f"Deleting {item}")
+                item.deleted = True
+                item.save()
+
     def fetch_all_data(self, db_id: str) -> dict:
         self.has_more = False
         initial_data = self._fetch(db_id)
@@ -405,6 +422,10 @@ class SyncCountries(NotionCronBase):
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'notion.sync_countries'
 
+    def __init__(self, *args, **kwargs):
+        self._model = CountryTag
+        super().__init__(*args, **kwargs)
+
     def do(self, data: dict = None):
         """Sync countries from Notion
 
@@ -417,6 +438,7 @@ class SyncCountries(NotionCronBase):
             data = self.fetch_all_data(COUNTRY_TRACKER)
 
         self._process_data(data)
+        self._clean_up(data)
 
     def _process_data(self, data: dict) -> bool:
         results = data.get('results', [])
@@ -512,6 +534,10 @@ class SyncCommitments(NotionCronBase):
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'notion.sync_commitments'
 
+    def __init__(self, *args, **kwargs):
+        self._model = Commitment
+        super().__init__(*args, **kwargs)
+
     def do(self, data: dict = None):
         """Sync commitments from Notion
 
@@ -531,6 +557,8 @@ class SyncCommitments(NotionCronBase):
         else:
             # Notify of failure, probably Slack and logging
             console.warn("Commitments - Results was zero len")
+
+        self._clean_up(data)
 
     def _handle_commitment(self, commitment: dict) -> bool:
         """Gets data from notion (`commitment`) and saves it as a Commitment.
@@ -590,6 +618,10 @@ class SyncRegimes(NotionCronBase):
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'notion.sync_regimes'
 
+    def __init__(self, *args, **kwargs):
+        self._model = DisclosureRegime
+        super().__init__(*args, **kwargs)
+
     def do(self, data: dict = None, force: bool = False):
         """Sync regimes from Notion
 
@@ -609,6 +641,8 @@ class SyncRegimes(NotionCronBase):
         else:
             # Notify of failure, probably Slack and logging
             console.warn("Regimes - Results was zero len")
+
+        self._clean_up(data)
 
     def _handle_regime(self, regime: dict, force: bool = False) -> bool:
         """Gets data from notion (`regime`) and saves it as a DisclosureRegime.
