@@ -188,17 +188,6 @@ class ArticlePage(ContentPageType):
         StreamFieldPanel('highlight_pages'),
     ]
 
-    def _get_menu_pages(self):
-        """Will need amending if we allow ArticlePages to have subpages.
-        Because then we'll need to look for children for the page we're on.
-        """
-        menu_pages = []
-        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
-        for sibling in siblings:
-            menu_item = {"page": sibling, "children": []}
-            menu_pages.append(menu_item)
-        return menu_pages
-
 
 class NewsArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
     """An article in the Research > News section.
@@ -649,20 +638,6 @@ class TeamProfilePage(BasePage):
         tabs.insert(1, (cls.about_panels, _("About")))
         return tabs
 
-    def _get_menu_pages(self):
-        parent = self.get_parent()
-        menu_pages = []
-        elders = parent.get_siblings().live().public().filter(locale=Locale.get_active())
-        for elder in elders:
-            menu_item = {"page": elder, "children": []}
-            if elder == parent:
-                menu_item["children"] = (
-                    parent.get_children().live().public()
-                    .filter(locale=Locale.get_active())
-                )
-            menu_pages.append(menu_item)
-        return menu_pages
-
 
 ####################################################################################################
 # Index type pages
@@ -691,12 +666,6 @@ class NewsIndexPage(IndexPageType):
     subpage_types: list = ['content.NewsArticlePage']
     max_count = 1
 
-    def _get_menu_pages(self):
-        "Override parent so we don't include ALL the child NewsArticle pages"
-        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
-        return [
-            {"page": sibling, "children": []} for sibling in siblings
-        ]
 
 class BlogIndexPage(IndexPageType):
     """The one page listing all BlogArticlePages (blog posts)"""
@@ -707,13 +676,6 @@ class BlogIndexPage(IndexPageType):
     parent_page_types: list = ['content.SectionPage']
     subpage_types: list = ['content.BlogArticlePage']
     max_count = 1
-
-    def _get_menu_pages(self):
-        "Override parent so we don't include ALL the child NewsArticle pages"
-        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
-        return [
-            {"page": sibling, "children": []} for sibling in siblings
-        ]
 
 
 class ThemePage(IndexPageType):
@@ -763,13 +725,6 @@ class GlossaryPage(BasePage):
         index.SearchField('body'),
         index.SearchField('glossary'),
     ]
-
-    def _get_menu_pages(self):
-        menu_pages = []
-        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
-        for sibling in siblings:
-            menu_pages.append({"page": sibling, "children": []})
-        return menu_pages
 
 
 ####################################################################################################

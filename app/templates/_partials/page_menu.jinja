@@ -1,17 +1,19 @@
 {#
 A list of pages in a menu at the side of a page.
 
-Expects:
+By default this will generate the navigation using the top level menu data.
+It will display the menu for the section this page is in.
+
+Alternatively, if a `menu_pages` variable is present in the context, that is
+used to generate the menu instead:
 
 * menu_pages - A nested list. Each item will have:
     * page - A Page object
     * children - If this is the page we're on, and the Page has children, this will contain a PageQueryset of the child Pages. Otherwise it's an empty list.
 
-* page - The current Page
-
 * page_menu_title - optional, the title for the menu. If falsey, the section page's title (e.g. "Research") will be used.
 #}
-{% if menu_pages %}
+{% if menu_pages and menu_pages|length > 0 %}
     <div class="page-menu__container">
         <h2 class="heading-m">{% if page_menu_title %}{{ page_menu_title }}{% else %}{{ page.section_page.title }}{% endif %}</h2>
 
@@ -41,4 +43,40 @@ Expects:
             {% endfor %}
         </ul>
     </div>
+{% else %}
+    {% for obj in navbar_blocks recursive %}
+        {% if obj.type == 'mega_menu' and obj.page and obj.page.pk == page.section_page.pk %}
+            <div class="page-menu__container">
+                <h2 class="heading-m">{% if page_menu_title %}{{ page_menu_title }}{% else %}{{ page.section_page.title }}{% endif %}</h2>
+
+                <ul class="page-menu">
+                    {% for item in obj.objects %}
+                        {% set href, label = item.link %}
+                        <li class="page-menu__page{% if item.page.pk == page.pk %} current{% endif %}{% if item.type == 'sub_menu' %} is-open{% endif %}">
+                            {% if item.page.pk == page.pk %}
+                                <span class="page-menu__page-title">{{label}}</span>
+                            {% else %}
+                                <a class="page-menu__page-title" href="{{href}}">{{label}}</a>
+                            {% endif %}
+
+                            {% if item.type == 'sub_menu' %}
+                                <ul class="page-menu__children-list">
+                                    {% for sub_item in item.objects %}
+                                        {% set href, label = sub_item.link %}
+                                        <li class="page-menu__children-list__item {% if sub_item.page.pk == page.pk %}current{% endif %}">
+                                            {% if sub_item.page.pk == page.pk %}
+                                                {{label}}
+                                            {% else %}
+                                                <a href="{{href}}">{{label}}</a>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endif %}

@@ -239,10 +239,17 @@ class NavBar(BaseSetting):
     )
 
     def build_mega_menu(self, block, menu):
+
+        # In the dicts below, 'link' is useful for linking to whatever
+        # Page, Doc or URL is in the menu.
+        # But 'page' is useful for checking whether the Page being
+        # viewed is the same as this menu item.
+
         nav_item = block.value['nav_item']
         menu.append({
             'type': 'mega_menu',
             'link': (nav_item.href, nav_item.label),
+            'page': nav_item.get('link_page', None),
             'objects': []
         })
         current = next(
@@ -254,15 +261,22 @@ class NavBar(BaseSetting):
                 current['objects'].append({
                     'type': 'nav_item',
                     'link': (sub_nav_item.href, sub_nav_item.label),
+                    'page': sub_nav_item.get('link_page', None),
                 })
             else:
                 # sub_block.block_type == 'sub_menu'
                 sub_nav_item = sub_block.value.get('nav_item')
-                links = sub_block.value.get('links')
+                sub_nav_objects = []
+                for link in sub_block.value.get('links'):
+                    sub_nav_objects.append({
+                        'link': (link.href, link.label),
+                        'page': link.get('link_page', None),
+                    })
                 current['objects'].append({
                     'type': 'sub_menu',
                     'link': (sub_nav_item.href, sub_nav_item.label),
-                    'objects': [(link.href, link.label) for link in links]
+                    'page': sub_nav_item.get('link_page', None),
+                    'objects': sub_nav_objects,
                 })
         return menu
 
