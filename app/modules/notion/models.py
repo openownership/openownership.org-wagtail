@@ -249,7 +249,7 @@ class CountryTag(NotionModel, BaseTag):
         max_length=25
     )
 
-    regions = ParentalManyToManyField(
+    regions = models.ManyToManyField(
         'notion.Region',
         related_name="countries",
         blank=True
