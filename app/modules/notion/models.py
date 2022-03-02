@@ -16,7 +16,7 @@ from django_extensions.db.fields import AutoSlugField
 from wagtail.images.edit_handlers import ImageChooserPanel
 from django.utils.functional import cached_property
 from wagtail.admin.edit_handlers import (
-    FieldPanel, ObjectList, MultiFieldPanel, StreamFieldPanel, TabbedInterface, InlinePanel
+    FieldPanel, ObjectList, PageChooserPanel, StreamFieldPanel, TabbedInterface, InlinePanel
 )
 
 from modules.taxonomy.models.core import BaseTag
@@ -275,7 +275,7 @@ class CountryTag(NotionModel, BaseTag):
         FieldPanel('name'),
         ImageChooserPanel('map_image'),
         FieldPanel('regions', widget=CheckboxSelectMultiple),
-        FieldPanel('consultant', widget=CheckboxSelectMultiple),
+        PageChooserPanel('consultant'),
         # FieldPanel('blurb'),
         # StreamFieldPanel('body')
     ]
