@@ -49,10 +49,9 @@
 <section>
     <hr/>
     <h2>{% trans %}Implementation Detail{% endtrans %}</h2>
-    {# {% for commitment in country.commitments.all() %}
-        <p>{{ commitment_summary(commitment.commitment_type_name, country) }} [{{ commitment.date|nicedate }}]
-            {% if commitment.link %}<a href="{{ commitment.link }}">link to commitment</a>{% endif %}</p>
-    {% endfor %} #}
+    {% for regime in country.disclosure_regimes.all() %}
+        <p>{{ regime.title }}</p>
+    {% endfor %}
 
     <dl>
         <dt>{% trans %}Central register implemented{% endtrans %}</dt>
