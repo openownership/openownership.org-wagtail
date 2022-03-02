@@ -1,7 +1,7 @@
 """
-    taxonomy.wagtail_hooks
+    notion.wagtail_hooks
 
-    Adds the Taxonomy menu to the Wagtail sidebar
+    Adds the Notion menu to the Wagtail sidebar
 """
 
 # Wagtail
@@ -96,10 +96,10 @@ class CoverageScopeModelAdmin(ModelAdmin):
 ################################################################################
 
 
-class TaxonomyAdminGroup(ModelAdminGroup):
+class NotionAdminGroup(ModelAdminGroup):
     menu_label = 'Notion'
     menu_icon = 'fa-sticky-note'
-    menu_order = 900
+    menu_order = 1000
     items = (
         CountryTagModelAdmin,
         RegionModelAdmin,
@@ -109,4 +109,4 @@ class TaxonomyAdminGroup(ModelAdminGroup):
     )
 
 
-modeladmin_register(TaxonomyAdminGroup)
+modeladmin_register(NotionAdminGroup)
