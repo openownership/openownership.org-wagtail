@@ -66,7 +66,6 @@ def nl2br(self):
 
 
 def richtext_custom(value, wrapper=False):
-    from django.utils.safestring import mark_safe
     from wagtail.core.rich_text import RichText, expand_db_html
 
     if isinstance(value, RichText):
@@ -85,6 +84,12 @@ def isabsolutepath(value):
         return True
     else:
         return False
+
+
+def checkbox(value):
+    if value is True:
+        return "YES"
+    return "NO"
 
 
 @cached(timeout=60 * 60 * 24 * 7)
@@ -184,6 +189,48 @@ def url_from_path(value):
     return value.replace('/home', '', 1)
 
 
+def commitment_summary(commitment_type, country):
+    if commitment_type == 'EU':
+        return mark_safe(
+            f"As a European Union member, {country.name} is obliged to "
+            f"create a central, public register of beneficial ownership, "
+            f"covering the whole economy."
+        )
+    elif commitment_type == 'EITI':
+        return mark_safe(
+            f"As an <a href='https://eiti.org/'>Extractives Industry "
+            f"Transparency Initiative (EITI)</a> member, {country.name} has "
+            f"committed to beneficial ownership transparency for the "
+            f"extractives sector."
+        )
+    elif commitment_type == 'BOLG':
+        return mark_safe(
+            f"{country.name} has made a commitment to beneficial ownership "
+            f"transparency as part of the "
+            f"<a href='https://www.openownership.org/what-we-do/the-beneficial-ownership-leadership-group/'>"
+            f"Beneficial Ownership Leadership Group</a>."
+        )
+    elif commitment_type == 'UK Anti-Corruption Summit':
+        return mark_safe(
+            f"At the "
+            f"<a href='https://www.gov.uk/government/topical-events/anti-corruption-summit-london-2016'>"
+            f"2016 UK Anti-Corruption Summit</a>, {country.name} made a "
+            f"commitment to beneficial ownership disclosure."
+        )
+    elif commitment_type == 'OGP':
+        return mark_safe(
+            f"{country.name} has included a commitment in an Open "
+            f"Government Partnership National Action Plan to beneficial "
+            f"ownership transparency"
+        )
+    elif commitment_type == 'Other':
+        return mark_safe(
+            f"{country.name} has made a commitment to beneficial "
+            f"ownership transparency through some other means"
+        )
+    return ""
+
+
 class TemplateGlobalsExtension(Extension):
     def __init__(self, environment):
         super(TemplateGlobalsExtension, self).__init__(environment)
@@ -201,6 +248,8 @@ class TemplateGlobalsExtension(Extension):
         environment.globals.update({
             'server_env': os.environ.get('SERVER_ENV'),
             'url': reverse,
+            'checkbox': checkbox,
+            'commitment_summary': commitment_summary,
             'static': staticfiles_storage.url,
             'absolutepath': isabsolutepath,
             'picture': picture,

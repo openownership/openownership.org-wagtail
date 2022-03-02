@@ -1,14 +1,21 @@
 # 3rd party
+from consoler import console
 from django.db import models
 from django.conf import settings
 from wagtail.core import fields
 from taggit.models import ItemBase
+from wagtail.core.models import Locale, Page
 from modelcluster.fields import ParentalKey
 from wagtail.snippets.models import register_snippet
 from django.utils.translation import gettext_lazy as _
 from modelcluster.models import ClusterableModel
 from modelcluster.fields import ParentalManyToManyField
 from django_extensions.db.fields import AutoSlugField
+from wagtail.images.edit_handlers import ImageChooserPanel
+from django.utils.functional import cached_property
+from wagtail.admin.edit_handlers import (
+    FieldPanel, ObjectList, MultiFieldPanel, StreamFieldPanel, TabbedInterface, InlinePanel
+)
 
 from modules.taxonomy.models.core import BaseTag
 
@@ -214,6 +221,14 @@ class CountryTag(NotionModel, BaseTag):
         verbose_name = _("Country")
         verbose_name_plural = _("Countries")
 
+    map_image = models.ForeignKey(
+        settings.IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
     icon = models.CharField(
         _("Icon"),
         blank=True,
@@ -228,6 +243,67 @@ class CountryTag(NotionModel, BaseTag):
         null=True,
         max_length=255
     )
+
+    main_panels = [
+        FieldPanel('name'),
+        ImageChooserPanel('map_image'),
+        FieldPanel('blurb'),
+        StreamFieldPanel('body')
+    ]
+
+    notion_panels = [
+        FieldPanel('oo_support'),
+        # InlinePanel('disclosure_regimes'),
+    ]
+
+    base_tabs = [
+        ObjectList(main_panels, heading='Content'),
+        ObjectList(notion_panels, heading='Notion'),
+    ]
+
+    edit_handler = TabbedInterface(base_tabs)
+
+    @cached_property
+    def commitment(self):
+        try:
+            return self.commitments.first()
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No commitment found for {self.name}")
+            return None
+
+    @cached_property
+    def regime(self):
+        try:
+            return self.disclosure_regimes.first()
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No disclosure regime found for {self.name}")
+            return None
+
+    @cached_property
+    def related_pages(self):
+        try:
+            page_ids = [item.content_object_id for item in self.country_related_pages.all()]
+            pages = Page.objects.filter(
+                id__in=page_ids,
+                locale=Locale.get_active()
+            ).specific().live().public().order_by('-first_published_at')
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No related pages found for {self.name}")
+            return None
+        else:
+            return pages
+
+    def latest_related(self, count):
+        if self.related_pages is not None:
+            try:
+                return self.related_pages[:3]
+            except Exception as e:
+                console.warn(e)
+
+        return []
 
 
 class CountryTaggedPage(ItemBase):
