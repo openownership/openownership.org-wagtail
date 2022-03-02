@@ -10,7 +10,7 @@ from wagtail.contrib.modeladmin.options import (
     ModelAdmin, ModelAdminGroup, modeladmin_register
 )
 
-from .models import Commitment, DisclosureRegime, CountryTag, CoverageScope
+from .models import Commitment, DisclosureRegime, CountryTag, CoverageScope, Region
 
 
 class ReadOnlyPermissionHelper(PermissionHelper):
@@ -43,6 +43,16 @@ class CountryTagModelAdmin(ModelAdmin):
     list_filter = ('archived', 'oo_support', )
     prepopulated_fields = {"slug": ("name",)}
     inspect_view_enabled = True
+
+
+class RegionModelAdmin(ModelAdmin):
+    model = Region
+    menu_order = 150
+    menu_icon = 'site'
+    add_to_settings_menu = True
+    list_display = ('name', )
+    search_fields = ('name', )
+    prepopulated_fields = {"slug": ("name",)}
 
 
 class CommitmentModelAdmin(ModelAdmin):
@@ -92,6 +102,7 @@ class TaxonomyAdminGroup(ModelAdminGroup):
     menu_order = 900
     items = (
         CountryTagModelAdmin,
+        RegionModelAdmin,
         CommitmentModelAdmin,
         DisclosureRegimeModelAdmin,
         CoverageScopeModelAdmin,

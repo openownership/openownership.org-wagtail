@@ -4,6 +4,7 @@ from django.db import models
 from django.conf import settings
 from wagtail.core import fields
 from taggit.models import ItemBase
+from django.forms import CheckboxSelectMultiple
 from wagtail.core.models import Locale, Page
 from modelcluster.fields import ParentalKey
 from wagtail.snippets.models import register_snippet
@@ -49,7 +50,6 @@ class NotionModel(models.Model):
     )
 
 
-@register_snippet
 class Commitment(NotionModel):
 
     class Meta:
@@ -106,7 +106,6 @@ class Commitment(NotionModel):
     )
 
 
-@register_snippet
 class DisclosureRegime(NotionModel):
 
     class Meta:
@@ -212,7 +211,6 @@ class DisclosureRegime(NotionModel):
     )
 
 
-@register_snippet
 class CountryTag(NotionModel, BaseTag):
 
     free_tagging = False
@@ -236,6 +234,12 @@ class CountryTag(NotionModel, BaseTag):
         max_length=25
     )
 
+    regions = ParentalManyToManyField(
+        'notion.Region',
+        related_name="countries",
+        blank=True
+    )
+
     # Stuff from the Notion Properties dict
     oo_support = models.CharField(
         _("OO Support"),
@@ -247,6 +251,7 @@ class CountryTag(NotionModel, BaseTag):
     main_panels = [
         FieldPanel('name'),
         ImageChooserPanel('map_image'),
+        FieldPanel('regions', widget=CheckboxSelectMultiple),
         FieldPanel('blurb'),
         StreamFieldPanel('body')
     ]
@@ -327,3 +332,19 @@ class CoverageScope(ClusterableModel):
 
     name = models.CharField(blank=False, null=False, max_length=255)
     slug = AutoSlugField(populate_from='name')
+
+    def __str__(self):
+        return self.name
+
+
+class Region(ClusterableModel):
+
+    class Meta:
+        verbose_name = _("Region")
+        verbose_name_plural = _("Regions")
+
+    name = models.CharField(blank=False, null=False, max_length=255)
+    slug = AutoSlugField(populate_from='name')
+
+    def __str__(self):
+        return self.name
