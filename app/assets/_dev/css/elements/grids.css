@@ -20,3 +20,9 @@
         @apply grid-cols-1 !important;
     }
 }
+
+.grid--3-col {
+    .landscape {
+        grid-column: auto / span 2;
+    }
+}

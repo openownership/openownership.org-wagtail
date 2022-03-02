@@ -33,6 +33,7 @@ from .stream import (
     # IconListBlock,
     # NewsletterBlock,
     # VideoGalleryBlock,
+    DisclosureBlock,
 )
 
 landing_page_blocks: list = [
@@ -77,6 +78,7 @@ article_page_body_blocks: list = [
     ('summary_box', SummaryBoxBlock()),
     ('image', ArticleImageBlock()),
     ('cta_block_form', CTABlock()),
+    ('disclosure', DisclosureBlock()),
 ]
 
 team_profile_page_body_blocks: list = article_page_body_blocks

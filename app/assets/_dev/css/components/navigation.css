@@ -1,6 +1,5 @@
 .navbar {
     @apply bg-white;
-    @apply py-4;
     svg {
         width: 173px;
     }
@@ -8,14 +7,36 @@
 
 .navbar__wrapper {
     @apply flex;
+    @apply my-4;
 }
 
 .navbar__navigations-container {
     @apply flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .navigation__level-one {
     @apply flex;
+}
+
+.navigation__level-two {
+    @apply mx-4;
+    a {
+        @apply block;
+        @apply border-b-3 border-transparent;
+        @apply no-underline text-black;
+        @apply pb-2;
+        &:hover {
+            @apply text-blue-medium;
+        }
+    }
+
+    [aria-current], .navbar--current {
+        @apply border-blue-medium font-bold ;
+    }
 }
 
 /*------------------------------------*\

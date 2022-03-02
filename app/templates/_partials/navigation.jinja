@@ -16,12 +16,8 @@ For mega menu containing nav items:
     <div class="contained-width navbar__wrapper">
         {% include 'svg/logo_black.jinja' %}
 
-
         <div class="navbar__navigations-container">
-            
-            
-            
-            {# <nav class="navbar__language">
+            {# <nav class="navbar__language" aria-label="Language">
                 <ul>
                     <li><a href="">English</a></li>
                     <li><a href="">Portuguese</a></li>
@@ -29,7 +25,7 @@ For mega menu containing nav items:
             </nav>#}
 
             {% if page.translations %}
-            <nav class="navbar__language">
+            <nav class="navbar__language" aria-label="Language">
                 <ul>
                     {% for item in page.translations %}
                         <li><a href="{{item.url}}">{{ item.language }}</a></li>
@@ -38,19 +34,20 @@ For mega menu containing nav items:
             </nav>
             {% endif %}
 
-            <nav class="navbar__main-navigation">
+            <nav class="navbar__main-navigation" aria-label="Main navigation">
                 <ul class="navigation__level-one">
                     {% for obj in navbar_blocks recursive %}
                             {% if obj.type == 'nav_item' %}
                                 {% set href, label = obj.value %}
-                                <li><a href="{{href}}">{{label}}</a></li>
+                                <li class="navigation__level-two">
+                                    <a href="{{href}}">{{label}}</a></li>
                             {% elif obj.type == 'mega_menu' %}
                                 {{ obj.text }}
                                 {% for item in obj.objects %}
-                                <li>{{ item.section_title }}</li>
-                                {% for href, label in item.links %}
-                                    <li><a href="{{href}}">{{label}}</a></li>
-                                {% endfor %}
+                                    <li class="navigation__level-two">{{ item.section_title }}</li>
+                                    {% for href, label in item.links %}
+                                        <a href="{{href}}">{{label}}</a>
+                                    {% endfor %}
                                 {% endfor %}
                             {% endif %}
                     {% endfor %}
