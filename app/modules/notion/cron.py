@@ -169,7 +169,9 @@ class NotionCronBase(CronJobBase):
                 else:
                     return None
         except Exception as e:
+            console.warn(f"Failed to get select for {property_name}")
             console.warn(e)
+            import ipdb; ipdb.set_trace()
             return None
 
     def _get_rel_id(self, data: dict, property_name: str) -> str:
@@ -588,7 +590,7 @@ class SyncRegimes(NotionCronBase):
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'notion.sync_regimes'
 
-    def do(self, data: dict = None):
+    def do(self, data: dict = None, force: bool = False):
         """Sync regimes from Notion
 
         Args:
@@ -603,12 +605,12 @@ class SyncRegimes(NotionCronBase):
         if len(results):
             # Do stuff here to save the data from Notion
             for item in results:
-                self._handle_regime(item)
+                self._handle_regime(item, force)
         else:
             # Notify of failure, probably Slack and logging
             console.warn("Regimes - Results was zero len")
 
-    def _handle_regime(self, regime: dict) -> bool:
+    def _handle_regime(self, regime: dict, force: bool = False) -> bool:
         """Gets data from notion (`regime`) and saves it as a DisclosureRegime.
 
         Args:
@@ -641,7 +643,7 @@ class SyncRegimes(NotionCronBase):
             console.warn("No related country found, skipping")
             return False
 
-        if not self._is_updated(obj, regime):
+        if not self._is_updated(obj, regime) and not force:
             return False
 
         # This is either a new row, or it has been updated, so save stuff
@@ -658,6 +660,8 @@ class SyncRegimes(NotionCronBase):
             for item in scope_tags:
                 obj.coverage_scope.add(item)
                 obj.coverage_scope.commit()
+
+        obj.stage = self._get_stages(regime)  # 0 Stage - multi_select
         obj.central_register = self._get_select_name(regime, '4.1 Central register')
         obj.public_access = self._get_select_name(regime, '5.1 Public access')
         obj.public_access_register_url = self._get_url(regime, '5.1.1 Public access: Register URL')
@@ -718,3 +722,36 @@ class SyncRegimes(NotionCronBase):
         else:
             # console.info(f"Scope tags: {tags}")
             return tags
+
+    def _get_stages(self, data: dict) -> list:
+        """Takes this dict, returns a comma separated list of values
+
+        '0 Stage': {
+            'id': '86%605',
+            'type': 'multi_select',
+            'multi_select': [
+                {
+                    'id': '486a37df-ec33-4f48-a513-c734ec2d7d8c',
+                    'name': 'Systems',
+                    'color': 'yellow'
+                }
+            ]
+        },
+
+        Args:
+            data (dict): The disclosure regime row
+
+        Returns:
+            list: List of tags
+        """
+        try:
+            stages = data['properties']['0 Stage']['multi_select']
+            if not len(stages):
+                return
+
+            return ', '.join([item['name'] for item in stages])
+
+        except Exception as e:
+            console.warn("Failed to get Stages")
+            console.warn(e)
+            raise

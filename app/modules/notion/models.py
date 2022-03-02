@@ -128,6 +128,13 @@ class DisclosureRegime(NotionModel):
         max_length=255
     )
 
+    stage = models.CharField(  # 0 Stage
+        _("Stage"),
+        blank=True,
+        null=True,
+        max_length=255
+    )
+
     definition_legislation_url = models.URLField(  # 1.1 Definition: Legislation URL
         _('Definition: Legislation URL'),
         blank=True,
@@ -241,6 +248,14 @@ class CountryTag(NotionModel, BaseTag):
         blank=True
     )
 
+    consultant = models.ForeignKey(
+        'content.TeamProfilePage',
+        related_name="consultant_countries",
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE
+    )
+
     # Stuff from the Notion Properties dict
     oo_support = models.CharField(
         _("OO Support"),
@@ -253,8 +268,9 @@ class CountryTag(NotionModel, BaseTag):
         FieldPanel('name'),
         ImageChooserPanel('map_image'),
         FieldPanel('regions', widget=CheckboxSelectMultiple),
-        FieldPanel('blurb'),
-        StreamFieldPanel('body')
+        FieldPanel('consultant', widget=CheckboxSelectMultiple),
+        # FieldPanel('blurb'),
+        # StreamFieldPanel('body')
     ]
 
     notion_panels = [
@@ -268,6 +284,51 @@ class CountryTag(NotionModel, BaseTag):
     ]
 
     edit_handler = TabbedInterface(base_tabs)
+
+    @cached_property
+    def committed_central(self):
+        """The behaviour we'd like to see is that the 'Commitment to BOT/Central register'
+        field is ticked for a country if the Central register field in any commitments
+        for that country listed on the Commitment tracker = ticked.
+        """
+        for item in self.commitments.all():
+            if item.central_register is True:
+                return True
+        return False
+
+    @cached_property
+    def committed_public(self):
+        """The behaviour we'd like to see is that the 'Commitment to BOT/Central register'
+        field is ticked for a country if the Central register field in any commitments
+        for that country listed on the Commitment tracker = ticked.
+        """
+        for item in self.commitments.all():
+            if item.public_register is True:
+                return True
+        return False
+
+    @cached_property
+    def implementation_central(self):
+        """For the Implementation of BOT tab, you'll need to aggregate implementations
+        for a country and then tick 'Implementation of BOT/Central register' where any
+        implementations listed in the Disclosure regimes tracker have the '4 Central'
+        field = Yes plus the 0 Stage field = Publish.
+        """
+        for item in self.disclosure_regimes.all():
+            if item.central_register == "Yes" and 'Publish' in item.stage:
+                return True
+        return False
+
+    @cached_property
+    def implementation_public(self):
+        """'Implementation of BOT/Public register' tick box, this should be ticked for a
+        country page where any implementations listed where the
+        '5.1 Public access' field = Yes plus the 0 Stage field = Publish.
+        """
+        for item in self.disclosure_regimes.all():
+            if item.public_access == "Yes" and 'Publish' in item.stage:
+                return True
+        return False
 
     @cached_property
     def commitment(self):
