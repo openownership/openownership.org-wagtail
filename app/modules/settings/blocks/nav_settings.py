@@ -31,7 +31,11 @@ class NavItem(blocks.StructBlock):
 
 class NavSubMenu(blocks.StructBlock):
 
-    section_title = blocks.CharBlock(required=False)
+    class Meta:
+        label = 'Link with sub menu'
+        icon = 'fa-bars'
+
+    nav_item = NavItem()
     links = blocks.ListBlock(
         NavItem()
     )
@@ -43,7 +47,8 @@ class NavMegaMenu(blocks.StructBlock):
         label = 'Link with mega menu'
         icon = 'fa-bars'
 
-    text = blocks.CharBlock(required=False)
-    objects = blocks.ListBlock(
-        NavSubMenu()
-    )
+    nav_item = NavItem()
+    objects = blocks.StreamBlock([
+        ('nav_item', NavItem()),
+        ('sub_menu', NavSubMenu()),
+    ])

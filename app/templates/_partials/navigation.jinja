@@ -12,6 +12,7 @@ For mega menu containing nav items:
 
 #}
 
+
 <div class="navbar">
     <div class="contained-width navbar__wrapper">
         {% include 'svg/logo_black.jinja' %}
@@ -37,19 +38,32 @@ For mega menu containing nav items:
             <nav class="navbar__main-navigation" aria-label="Main navigation">
                 <ul class="navigation__level-one">
                     {% for obj in navbar_blocks recursive %}
-                            {% if obj.type == 'nav_item' %}
-                                {% set href, label = obj.value %}
-                                <li class="navigation__level-two">
+                        {% if obj.type == 'nav_item' %}
+                            {# "Home" #}
+                            {% set href, label = obj.value %}
+                            <li class="navigation__level-two">
+                                <a href="{{href}}">{{label}}</a></li>
+                        {% elif obj.type == 'mega_menu' %}
+                            {# "About" #}
+                            {% set href, label = obj.link %}
+                            <li class="navigation__level-two">
+                                <a href="{{href}}">{{label}}</a></li>
+
+                            {% for item in obj.objects %}
+                                {# "Open Ownership Team" #}
+                                {% set href, label = item.link %}
+                                <li class="navigation__level-three">
                                     <a href="{{href}}">{{label}}</a></li>
-                            {% elif obj.type == 'mega_menu' %}
-                                {{ obj.text }}
-                                {% for item in obj.objects %}
-                                    <li class="navigation__level-two">{{ item.section_title }}</li>
-                                    {% for href, label in item.links %}
+
+                                {% if item.type == 'sub_menu' %}
+                                    {# level-four: Team members #}
+                                    {% for href, label in item.objects %}
                                         <a href="{{href}}">{{label}}</a>
                                     {% endfor %}
-                                {% endfor %}
-                            {% endif %}
+                                {% endif %}
+
+                            {% endfor %}
+                        {% endif %}
                     {% endfor %}
                 </ul>
             </nav>
