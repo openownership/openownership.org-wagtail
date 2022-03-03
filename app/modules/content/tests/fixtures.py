@@ -22,6 +22,8 @@ from modules.content.models import (
     PublicationInnerPage,
     SectionListingPage,
     SectionPage,
+    TagPage,
+    TaxonomyPage,
     TeamPage,
     TeamProfilePage,
 )
@@ -175,6 +177,28 @@ def _create_section_page(
     return p
 
 
+def _create_tag_page(
+    title: str, parent: Page, modifier: int = 1
+) -> TagPage:
+    p = TagPage()
+    p.title = title
+    p.first_published_at = arrow.now().shift(days=modifier * -1).datetime
+    parent.add_child(instance=p)
+    p.save_revision().publish()
+    return p
+
+
+def _create_taxonomy_page(
+    title: str, parent: Page, modifier: int = 1
+) -> TaxonomyPage:
+    p = TaxonomyPage()
+    p.title = title
+    p.first_published_at = arrow.now().shift(days=modifier * -1).datetime
+    parent.add_child(instance=p)
+    p.save_revision().publish()
+    return p
+
+
 def _create_team_page(
     title: str, parent: Page, modifier: int = 1
 ) -> TeamPage:
@@ -276,6 +300,18 @@ def section_listing_page(home_page):
 @pytest.fixture(scope="function")
 def section_page(home_page):
     p = _create_section_page("Section", home_page)
+    return p
+
+
+@pytest.fixture(scope="function")
+def tag_page(taxonomy_page):
+    p = _create_tag_page("Tag", taxonomy_page)
+    return p
+
+
+@pytest.fixture(scope="function")
+def taxonomy_page(section_page):
+    p = _create_taxonomy_page("Taxonomy", section_page)
     return p
 
 

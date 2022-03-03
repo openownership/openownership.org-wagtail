@@ -41,8 +41,6 @@ class Category(models.Model):
         help_text=_('Used when showing a card linking to this tag')
     )
 
-    body = fields.StreamField(category_page_body_blocks, blank=True)
-
     panels = [
         MultiFieldPanel([
             FieldPanel('name'),
@@ -70,36 +68,25 @@ class Category(models.Model):
             all_ids = all_ids + [page.id for page in rel.all()]
 
         # Filter those pages by Locale, live, etc:
-        pages = (
+        return (
             Page.objects
             .filter(id__in=all_ids)
+            .live()
             .filter(locale=Locale.get_active())
             .order_by('-first_published_at')
-            .specific().live().all()
+            .specific()
         )
 
-        return pages
-
-    def get_url(self, section_slug):
-        """Generate the URL to this category's view
-        section_slug is the Slug of the section page the category is within.
-        e.g. 'insight'
-        """
-        return reverse(
-            self.url_name,
-            kwargs={'section_slug': section_slug, 'tag_slug': self.slug}
-        )
-
-    def to_dummy_page(self, section_slug):
+    def to_dummy_page(self, section_page):
         """
         Returns a DummyPage representing this category.
         Useful for passing to templates that expect a Page like object.
-        section_slug is the Slug of the section page the category is within.
+        section_page is the section page the category is within.
         e.g. 'insight'
         """
         page = DummyPage()
         page.title = self.name
-        page.url = self.get_url(section_slug)
+        page.url = self.get_url(section_page)
         page.blurb = self.blurb
         return page
 
@@ -140,8 +127,6 @@ class BaseTag(TagBase):
         help_text=_('Used when showing a card linking to this tag')
     )
 
-    body = fields.StreamField(tag_page_body_blocks, blank=True)
-
     panels = [
         MultiFieldPanel([
             FieldPanel('name'),
@@ -157,26 +142,16 @@ class BaseTag(TagBase):
     def __str__(self):
         return self.name
 
-    def get_url(self, section_slug):
-        """Generate the URL to this tag's view
-        section_slug is the Slug of the section page the tag is within.
-        e.g. 'insight'
-        """
-        return reverse(
-            self.url_name,
-            kwargs={'section_slug': section_slug, 'tag_slug': self.slug}
-        )
-
-    def to_dummy_page(self, section_slug):
+    def to_dummy_page(self, section_page):
         """
         Returns a DummyPage representing this tag.
         Useful for passing to templates that expect a Page like object.
-        section_slug is the Slug of the section page the tag is within.
+        section_page is the the section page the tag is within.
         e.g. 'insight'
         """
         page = DummyPage()
         page.title = self.name
-        page.url = self.get_url(section_slug)
+        page.url = self.get_url(section_page)
         page.blurb = self.blurb
         return page
 

@@ -592,7 +592,7 @@ class AreasOfFocusBlock(blocks.StructBlock):
 
         pages = []
         for tag in value.get('tags'):
-            pages.append(tag.to_dummy_page(parent_page.slug))
+            pages.append(tag.to_dummy_page(parent_page))
 
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,
@@ -695,7 +695,7 @@ class PublicationTypesBlock(blocks.StructBlock):
         pages = []
         for cat_type in value.get('types'):
             category = PublicationType.objects.get(pk=cat_type)
-            pages.append(category.to_dummy_page(parent_page.slug))
+            pages.append(category.to_dummy_page(parent_page))
 
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,

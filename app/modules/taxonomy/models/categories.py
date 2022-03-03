@@ -3,7 +3,7 @@ from .core import Category
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from wagtail.snippets.models import register_snippet
+from wagtail.core.models import Locale
 
 
 class PublicationType(Category):
@@ -23,3 +23,19 @@ class PublicationType(Category):
     class Meta:
         verbose_name = _("Publication type")
         verbose_name_plural = _("Publication types")
+
+    def get_url(self, section_page):
+        """Generate the URL to this category's TagPage in a specific section.
+        section_page is the page the TagPage is within.  e.g. 'impact'
+        """
+        from modules.content.models import TagPage
+
+        page = (
+            TagPage.objects.descendant_of(section_page)
+            .live().public().filter(locale=Locale.get_active())
+            .filter(publication_type=self).first()
+        )
+        if page:
+            return page.get_url()
+        else:
+            return ''
