@@ -1,5 +1,5 @@
 {# For displaying a single Page as a card. #}
-<li class="card-group__card {% if page.thumbnail %}card-group__card--with-thumbnail{% endif %}{% if page.specific.card_format %} {{ page.specific.card_format }}{% endif %}">
+<li class="card-group__card {% if page.thumbnail %}card-group__card--with-thumbnail{% else %}card-group__card--without-thumbnail{% endif %}{% if page.specific.card_format %} {{ page.specific.card_format }}{% endif %}">
 
     {% if page.thumbnail %}
     <div class="card-group__thumbnail">
