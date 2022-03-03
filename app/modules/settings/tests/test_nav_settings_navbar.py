@@ -37,16 +37,14 @@ def test_nav_item_url(home_page, nav_settings):
 def test_meganav(home_page, nav_settings):
     p = home_page
     data = MEGA_MENU
-    data['value']['objects'][0]['links'][0]['link_page'] = home_page.id
+    data['value']['nav_item']['link_page'] = home_page.id
     nav_settings.navbar_blocks = json.dumps([
         data
     ])
     nav_settings.save()
     rv = client.get(p.url)
     assert rv.status_code == 200
-    assert "Get help" in rv.rendered_content
-    assert "Not sure where to start?" in rv.rendered_content
     assert "Link to home page" in rv.rendered_content
-    assert "Link to live chat" in rv.rendered_content
     assert "Tools to help you cope" in rv.rendered_content
+    assert "Link to live chat" in rv.rendered_content
     assert "Find a centre" in rv.rendered_content

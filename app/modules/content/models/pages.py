@@ -415,6 +415,13 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         "Title of the publication"
         return self.title
 
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+
+        context['menu_pages'] = self._get_menu_pages()
+
+        return context
+
     def get_publication_type_choices(self):
         """Get the only PublicationType allowd for this kind of Page.
         Used by PublicationTypeFieldPanel() for the list of choices.
@@ -508,6 +515,13 @@ class PublicationInnerPage(ContentPageType):
         they can override this method.
         """
         return cls.section_page
+
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+
+        context['menu_pages'] = self._get_menu_pages()
+
+        return context
 
     def get_next_page(self):
         """Returns the next page, according to the order set in Admin.
