@@ -10,7 +10,9 @@
 
 	<div class="aside-layout-left">
 		<div class="aside-layout__menu">
-			{% include "_partials/page_menu.jinja" %}
+			{% block page_menu %}
+				{% include "_partials/page_menu.jinja" %}
+			{% endblock %}
 		</div>
 
 		<div class="aside-layout__main aside-layout__no-header">

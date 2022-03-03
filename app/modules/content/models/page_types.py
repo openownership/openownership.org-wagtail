@@ -114,8 +114,6 @@ class BasePage(WagtailCacheMixin, Page):
             **self.get_metadata_settings(site)
         )
 
-        context["menu_pages"] = self._get_menu_pages()
-
         return context
 
     @cached_classmethod
@@ -210,21 +208,6 @@ class BasePage(WagtailCacheMixin, Page):
         they can override this method.
         """
         return cls.get_parent()
-
-    def _get_menu_pages(self):
-        """
-        Child classes can return a list of data for building a left-hand menu for this page.
-
-        It might be like:
-
-            [
-                {"page": <Page>, "children": []},
-                {"page": self, "children": <PageQuerySet>}
-                {"page": <Page>, "children": []},
-                {"page": <Page>, "children": []},
-            ]
-        """
-        return []
 
 
 ####################################################################################################
@@ -323,19 +306,6 @@ class IndexPageType(BasePage):
             return apps.get_model(self.objects_model)
 
         return self.objects_model
-
-    def _get_menu_pages(self):
-        menu_pages = []
-        siblings = self.get_siblings().live().public().filter(locale=Locale.get_active())
-        for sibling in siblings:
-            menu_item = {"page": sibling, "children": []}
-            if sibling.specific == self:
-                menu_item["children"] = (
-                    self.get_children().live().public()
-                    .filter(locale=Locale.get_active())
-                )
-            menu_pages.append(menu_item)
-        return menu_pages
 
     # def get_filter_options(self) -> dict:
     #     """

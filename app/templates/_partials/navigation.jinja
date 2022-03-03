@@ -12,6 +12,7 @@ For mega menu containing nav items:
 
 #}
 
+
 <div class="navbar">
     <div class="contained-width navbar__wrapper">
         {% include 'svg/logo_black.jinja' %}
@@ -37,19 +38,34 @@ For mega menu containing nav items:
             <nav class="navbar__main-navigation" aria-label="Main navigation">
                 <ul class="navigation__level-one">
                     {% for obj in navbar_blocks recursive %}
-                            {% if obj.type == 'nav_item' %}
-                                {% set href, label = obj.value %}
-                                <li class="navigation__level-two">
+                        {% if obj.type == 'nav_item' %}
+                            {# "Home" #}
+                            {% set href, label = obj.value %}
+                            <li class="navigation__level-two"{% if obj.value.page == page.section_page %} aria-current="page"{% endif %}>
+                                <a href="{{href}}">{{label}}</a></li>
+                        {% elif obj.type == 'mega_menu' %}
+                            {# "About" #}
+                            {% set href, label = obj.link %}
+                            <li class="navigation__level-two"{% if obj.page == page.section_page %} aria-current="page"{% endif %}>
+                                <a href="{{href}}">{{label}}</a></li>
+
+                            {% for item in obj.objects %}
+                                {# "Open Ownership Team" #}
+                                {% set href, label = item.link %}
+                                <li class="navigation__level-three"{% if item.page and item.page.pk == page.pk %} aria-current="page"{% endif %}>
                                     <a href="{{href}}">{{label}}</a></li>
-                            {% elif obj.type == 'mega_menu' %}
-                                {{ obj.text }}
-                                {% for item in obj.objects %}
-                                    <li class="navigation__level-two">{{ item.section_title }}</li>
-                                    {% for href, label in item.links %}
-                                        <a href="{{href}}">{{label}}</a>
+
+                                {% if item.type == 'sub_menu' %}
+                                    {# level-four: Team members #}
+                                    {% for sub_item in item.objects %}
+                                        {% set href, label = sub_item.link %}
+                                        <li class="navigation__level-four"{% if sub_item.page and sub_item.page.pk == page.pk %} aria-current="page"{% endif %}>
+                                            <a href="{{href}}">{{label}}</a></li>
                                     {% endfor %}
-                                {% endfor %}
-                            {% endif %}
+                                {% endif %}
+
+                            {% endfor %}
+                        {% endif %}
                     {% endfor %}
                 </ul>
             </nav>

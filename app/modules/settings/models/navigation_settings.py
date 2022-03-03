@@ -22,7 +22,8 @@ class NavigationSettings(
     def build_nav_items(self, block, menu):
         menu.append({
             'type': 'nav_item',
-            'value': (block.value.href, block.value.label)
+            'value': (block.value.href, block.value.label),
+            'page': block.value.get('link_page', None),
         })
         return menu
 

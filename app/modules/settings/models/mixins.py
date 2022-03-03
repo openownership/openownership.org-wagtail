@@ -239,19 +239,45 @@ class NavBar(BaseSetting):
     )
 
     def build_mega_menu(self, block, menu):
+
+        # In the dicts below, 'link' is useful for linking to whatever
+        # Page, Doc or URL is in the menu.
+        # But 'page' is useful for checking whether the Page being
+        # viewed is the same as this menu item.
+
+        nav_item = block.value['nav_item']
         menu.append({
             'type': 'mega_menu',
-            'text': block.value['text'],
+            'link': (nav_item.href, nav_item.label),
+            'page': nav_item.get('link_page', None),
             'objects': []
         })
         current = next(
-            i for i in menu if i['type'] == 'mega_menu' and i['text'] == block.value['text']
+            i for i in menu if i['type'] == 'mega_menu' and i['link'][0] == nav_item.href
         )
-        for obj in block.value['objects']:
-            current['objects'].append({
-                'section_title': obj.get('section_title'),
-                'links': [(link.href, link.label) for link in obj.get('links')]
-            })
+        for sub_block in block.value['objects']:
+            if sub_block.block_type == 'nav_item':
+                sub_nav_item = sub_block.value
+                current['objects'].append({
+                    'type': 'nav_item',
+                    'link': (sub_nav_item.href, sub_nav_item.label),
+                    'page': sub_nav_item.get('link_page', None),
+                })
+            else:
+                # sub_block.block_type == 'sub_menu'
+                sub_nav_item = sub_block.value.get('nav_item')
+                sub_nav_objects = []
+                for link in sub_block.value.get('links'):
+                    sub_nav_objects.append({
+                        'link': (link.href, link.label),
+                        'page': link.get('link_page', None),
+                    })
+                current['objects'].append({
+                    'type': 'sub_menu',
+                    'link': (sub_nav_item.href, sub_nav_item.label),
+                    'page': sub_nav_item.get('link_page', None),
+                    'objects': sub_nav_objects,
+                })
         return menu
 
     @classmethod

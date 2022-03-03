@@ -67,8 +67,8 @@ def test_menu_pages_self(publication_front_page):
 
     menu = rv.context_data['menu_pages']
     assert len(menu) == 1
-    assert menu[0]["page"].specific == p
-    assert menu[0]["page"].title == 'Introduction'
+    assert menu[0].specific == p
+    assert menu[0].title == 'Introduction'
 
 
 def test_menu_pages_children(publication_front_page):
@@ -92,9 +92,9 @@ def test_menu_pages_children(publication_front_page):
 
     menu = rv.context_data['menu_pages']
     assert len(menu) == 3
-    assert menu[0]["page"].specific == parent
-    assert menu[1]["page"].specific == p1
-    assert menu[2]["page"].specific == p2
+    assert menu[0].specific == parent
+    assert menu[1].specific == p1
+    assert menu[2].specific == p2
 
 
 def test_publication_type_choices(publication_front_page):
