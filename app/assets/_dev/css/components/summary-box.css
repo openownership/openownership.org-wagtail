@@ -1,0 +1,22 @@
+article .summary-box {
+    @apply bg-white my-8 p-8;
+    @apply font-display text-21;
+
+    ul {
+        list-style: none;
+
+        li {
+            line-height: rem(40px);
+            @apply pl-5;
+        }
+    }
+      
+    ul li::before {
+        content: "\2022";  
+        @apply text-blue-medium font-bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+        
+    }
+}
