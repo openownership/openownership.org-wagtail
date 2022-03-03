@@ -10,7 +10,7 @@
     {% if page_obj %}
         <h2 class="sr-only">{% trans %}Latest content{% endtrans %}</h2>
 
-        {% with pages=page_obj, columns=1 %}
+        {% with pages=page_obj, columns=1, card_format='landscape' %}
             {% include "_partials/card_group.jinja" %}
         {% endwith %}
 
