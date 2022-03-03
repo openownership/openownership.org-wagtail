@@ -1,3 +1,5 @@
+from typing import Optional
+
 # 3rd party
 from consoler import console
 from django.conf import settings
@@ -15,6 +17,31 @@ from config.template import author_url
 from helpers.context import global_context
 from modules.notion.models import CountryTag
 from modules.content.models import HomePage, SectionPage
+
+
+class DummyCountryPage(object):
+
+    def __init__(self, country: CountryTag):
+        self.country = country
+
+    @cached_property
+    def title(self):
+        return self.country.name
+
+    @cached_property
+    def blurb(self):
+        return self.country.blurb
+
+    @cached_property
+    def url(self):
+        return self.country.url
+
+    @cached_property
+    def specific(self):
+        return self
+
+    def get_url(self):
+        return self.url
 
 
 class CountryView(TemplateView):
@@ -127,8 +154,11 @@ class SearchView(TemplateView):
             locale=Locale.get_active()
         ).live().specific().search(terms, operator=self.mode)
 
+        # Check to see if this matches a Country name
+        countries = self._find_countries(terms)
         # Unify stuff
         objects = []
+        objects += countries
         objects += [r.page for r in promoted]
         if searched:
             objects = objects + [r for r in searched]
@@ -136,55 +166,18 @@ class SearchView(TemplateView):
         else:
             return objects
 
+    def _find_countries(self, terms: str) -> Optional[DummyCountryPage]:
+        rv = []
+        try:
+            countries = CountryTag.objects.filter(name__icontains=terms).all()
+            if not countries:
+                return rv
 
-class DummyUserPage(object):
+            for country in countries:
+                rv.append(DummyCountryPage(country))
+            return rv
 
-    def __init__(self, user):
-        self.user = user
+        except Exception as e:
+            console.warn(e)
 
-    @property
-    def display_type(self):
-        return "Profile"
-
-    @cached_property
-    def title(self):
-        return self.user.full_name
-
-    @cached_property
-    def blurb(self):
-        return self.user.bio
-
-    @cached_property
-    def excerpt(self):
-        return self.user.bio
-
-    @cached_property
-    def url(self):
-        return author_url(self.user.slug)
-
-    @cached_property
-    def thumb(self):
-        return self.user.avatar
-
-    @cached_property
-    def specific(self):
-        return self
-
-    @cached_property
-    def thumbnail(self):
-        return self.thumb
-
-    @cached_property
-    def default_image(self):
-        if self.thumb:
-            return self.thumb
-        else:
-            from modules.core.models.settings import DefaultImageSettings
-            try:
-                default_image = DefaultImageSettings.objects.first()
-                return default_image.image
-            except Exception:
-                return None
-
-    def get_excerpt(self):
-        return self.blurb
+        return rv

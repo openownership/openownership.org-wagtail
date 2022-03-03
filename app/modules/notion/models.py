@@ -322,7 +322,7 @@ class CountryTag(NotionModel, BaseTag):
         field = Yes plus the 0 Stage field = Publish.
         """
         for item in self.disclosure_regimes.all():
-            if item.central_register == "Yes" and 'Publish' in item.stage:
+            if item.central_register == "Yes" and item.stage and 'Publish' in item.stage:
                 return True
         return False
 
@@ -333,7 +333,7 @@ class CountryTag(NotionModel, BaseTag):
         '5.1 Public access' field = Yes plus the 0 Stage field = Publish.
         """
         for item in self.disclosure_regimes.all():
-            if item.public_access == "Yes" and 'Publish' in item.stage:
+            if item.public_access == "Yes" and item.stage and 'Publish' in item.stage:
                 return True
         return False
 

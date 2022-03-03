@@ -34,7 +34,7 @@
     <section>
         <h2>{% trans %}Find a specific country{% endtrans %}</h2>
         <p>{% trans %}Find country activity through the map, search or from the regions listed below{% endtrans %}</p>
-        <form action="" method="GET" class="country-search__form">
+        <form action="/search/" method="GET" class="country-search__form">
             <div class="relative max-w-sixcol">
                 <label for="q" class="sr-only">Search</label>
                 <input type="text" id="q" name="q" value="{{search_query or ''}}" placeholder="Country search">
