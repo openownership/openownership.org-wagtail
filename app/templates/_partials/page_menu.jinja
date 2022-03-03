@@ -5,11 +5,10 @@ By default this will generate the navigation using the top level menu data.
 It will display the menu for the section this page is in.
 
 Alternatively, if a `menu_pages` variable is present in the context, that is
-used to generate the menu instead:
+used to generate the menu instead. It is a simple list of Pages.
+This is used in Publications.
 
-* menu_pages - A nested list. Each item will have:
-    * page - A Page object
-    * children - If this is the page we're on, and the Page has children, this will contain a PageQueryset of the child Pages. Otherwise it's an empty list.
+Other possible variables:
 
 * page_menu_title - optional, the title for the menu. If falsey, the section page's title (e.g. "Research") will be used.
 #}
@@ -19,25 +18,11 @@ used to generate the menu instead:
 
         <ul class="page-menu">
             {% for p in menu_pages %}
-                <li class="page-menu__page {% if p.page.pk == page.pk %}current{% endif %} {% if p.children %}is-open{% endif %}">
-                    {% if p.page.pk == page.pk %}
-                        <span class="page-menu__page-title">{{ p.page.title }}</span>
+                <li class="page-menu__page {% if p.pk == page.pk %}current{% endif %}">
+                    {% if p.pk == page.pk %}
+                        <span class="page-menu__page-title">{{ p.title }}</span>
                     {% else %}
-                        <a class="page-menu__page-title" href="{{ p.page.url }}">{{ p.page.title }}</a>
-                    {% endif %}
-
-                    {% if p.children %}
-                        <ul class="page-menu__children-list">
-                            {% for child in p.children %}
-                                <li class="page-menu__children-list__item {% if child.pk == page.pk %}current{% endif %}">
-                                    {% if child.pk == page.pk %}
-                                        {{ child.title }}
-                                    {% else %}
-                                        <a href="{{ child.url }}">{{ child.title }}</a>
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
-                        </ul>
+                        <a class="page-menu__page-title" href="{{ p.url }}">{{ p.title }}</a>
                     {% endif %}
                 </li>
             {% endfor %}

@@ -446,10 +446,10 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         first_page = self
         first_page.title = first_page.specific.page_title
 
-        menu_pages = [{"page": first_page, "children": []}]
+        menu_pages = [first_page]
         children = self.get_children().live().public().filter(locale=Locale.get_active())
         for child in children:
-            menu_pages.append({"page": child, "children": []})
+            menu_pages.append(child)
         return menu_pages
 
 
@@ -544,13 +544,13 @@ class PublicationInnerPage(ContentPageType):
         first_page = self.get_parent()
         first_page.title = first_page.specific.page_title
 
-        menu_pages = [{"page": first_page, "children": []}]
+        menu_pages = [first_page]
         siblings = (
             first_page.get_children().live().public()
             .filter(locale=Locale.get_active())
         )
         for sibling in siblings:
-            menu_pages.append({"page": sibling, "children": []})
+            menu_pages.append(sibling)
         return menu_pages
 
 
