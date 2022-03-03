@@ -43,6 +43,7 @@ from modules.content.blocks import (
     HighlightPagesBlock,
 )
 from modules.notion.helpers import countries_json
+from modules.notion.models import CountryTag, Region
 from modules.content.blocks.stream import GlossaryItemBlock
 from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
 from modules.taxonomy.models import PublicationType
@@ -882,6 +883,13 @@ class SearchPage(BasePage):
 
 class MapPage(BasePage):
     """The page that displays the international impact map.
+
+    For the OO global map, the designs call for a count in the map key of the number of countries
+    committed to a central register/public register as well as those who have implemented a central
+    register/public register.
+    So the number of countries satisfying the conditions laid out in the comment above also needs
+    to be tallied up.
+
     """
     template = 'content/map_page.jinja'
 
@@ -899,5 +907,39 @@ class MapPage(BasePage):
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)
         context['countries_json'] = countries_json()
+        context['country_counts'] = self._country_counts
+        context['regions'] = Region.objects.all()
 
         return context
+
+    @cached_property
+    def _country_counts(self):
+        """Get four counts for the context. These use cached_properties on the
+        country models so we can't do a nice SQL / ORM query to tally them, so
+        we're doing this instead.
+        """
+        committed_central = []
+        committed_public = []
+        implementation_central = []
+        implementation_public = []
+        countries = CountryTag.objects.all()
+        for country in countries:
+
+            if country.committed_central:
+                committed_central.append(country)
+
+            if country.committed_public:
+                committed_public.append(country)
+
+            if country.implementation_central:
+                implementation_central.append(country)
+
+            if country.implementation_public:
+                implementation_public.append(country)
+
+        return {
+            'committed_central': len(committed_central),
+            'committed_public': len(committed_public),
+            'implementation_central': len(implementation_central),
+            'implementation_public': len(implementation_public),
+        }

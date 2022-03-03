@@ -16,16 +16,21 @@
     <section class="grid-cols grid--2-col">
         <div class="country__header-card">
             <span class="country__header-card_header">{% trans %}Commitment to BOT{% endtrans %}</span>
-
-            {# <span class="country__header-card_row">{{ checkbox(country.committed_central) }}{% trans %}Central Register{% endtrans %}</span>
-            <span class="country__header-card_row">{{ checkbox(country.committed_public) }}{% trans %}Public Register{% endtrans %}</span> #}
+            <span class="country__header-card_row">{% trans %}Central Register {% endtrans %}({{ country_counts.committed_central }})</span>
+            <span class="country__header-card_row">{% trans %}Public Register{% endtrans %}({{ country_counts.committed_public }})</span>
         </div>
 
         <div class="country__header-card">
             <span class="country__header-card_header">{% trans %}Implementation of BOT{% endtrans %}</span>
-            {#
-            <span class="country__header-card_row">{{ checkbox(country.implementation_central) }}{% trans %}Central register: Open Ownership register{% endtrans %}</span>
-            <span class="country__header-card_row">{{ checkbox(country.implementation_public) }}{% trans %}Public register: UK PSC Register{% endtrans %}</span> #}
+            <span class="country__header-card_row">{% trans %}Central Register{% endtrans %}({{ country_counts.implementation_central }})</span>
+            <span class="country__header-card_row">{% trans %}Public Register{% endtrans %}({{ country_counts.implementation_public }})</span>
+        </div>
+
+        <div class="country__header-col">
+            Regions where Open Ownership is engaged
+        </div>
+        <div class="country__header-col">
+            <a href="#" class="button">{% trans %}Download all country data{% endtrans %}</a>
         </div>
     </section>
 
@@ -41,6 +46,20 @@
                 <button type="submit" class="btn">Search</button>
             </div>
         </form>
+
+        {# regions #}
+        <div class="accordion">
+            {% for region in regions %}
+                <button class="accordion__button region__button">
+                    {{region.name}}
+                </button>
+                {% for country in region.countries.all() %}
+                    <div id="accordion-section-{{region.slug}}" class="accordion__section open">
+                        <a href="{{ country.url }}">{{ country.name }}</a>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
     </section>
 
 {% endblock content %}
