@@ -1,0 +1,36 @@
+.team-profile__overview {
+    @apply flex flex-row gap-8;
+    @apply border-b border-black/50;
+    @apply pb-10;
+    @apply my-10;
+}
+
+.team-profile__portrait, .team-profile__details {
+    @apply basis-1/2;
+}
+
+.team-profile__portrait {
+    img {
+        @apply w-full;
+    }
+}
+
+.team-profile__role {
+    @apply font-display text-26 font-bold mb-4;
+}
+
+.team-profile__details {
+    p {
+        @apply mb-4;
+    }
+}
+
+.team-profile__articles {
+    @apply border-t border-black/50;
+    @apply pt-10;
+    @apply mt-10;
+
+    h2 {
+        @apply mb-10;
+    }
+}

@@ -2,54 +2,76 @@
 
 {% block content %}
 
-    {% if page.role %}
-        <p><strong>{{ page.role }}</strong></p>
-    {% endif %}
+<article>
+    <div class="team-profile__overview">
+        {% if page.portrait_image %}
+        <div class="team-profile__portrait">
+            {{ picture(page.portrait_image, 200, 300, alt="Portrait of "+page.title) }}
+        </div>
+        {% endif %}
+        <div class="team-profile__details">
+            {% if page.role %}
+                <p class="team-profile__role">{{ page.role }}</p>
+            {% endif %}
+            
+            {% with title=gettext("Regional Experience") %}
+                {% include "_partials/taxonomy_countries.jinja" %}
+            {% endwith %}
 
-    {% with title=gettext("Regional Experience") %}
-        {% include "_partials/taxonomy_countries.jinja" %}
+            {% with title=gettext("Specialist area") %}
+                {% include "_partials/taxonomy_areas_of_focus.jinja" %}
+            {% endwith %}
+
+            {% if page.location %}
+                <p><strong>{% trans %}Location{% endtrans %}</strong><br> {{ page.location }}</p>
+            {% endif %}
+
+            {% if page.email_address %}
+                <p><strong>{% trans %}Contact{% endtrans %}</strong><br> <a href="mailto:{{ page.email_address }}">{{ page.email_address }}</a></p>
+            {% endif %}
+
+            {% if page.twitter_url or page.github_url or page.linkedin_url %}
+                <ul>
+                    {% if page.twitter_url %}
+                        <li><a href="{{ page.twitter_url }}">Twitter</a></li>
+                    {% endif %}
+                    {% if page.github_url %}
+                        <li><a href="{{ page.github_url }}">GitHub</a></li>
+                    {% endif %}
+                    {% if page.linkedin_url %}
+                        <li><a href="{{ page.linkedin_url }}">LinkedIn</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+            
+        </div>
+    </div>
+
+    <div class="team-profile__content">        
+        {% if page.intro %}
+            {{ page.intro|richtext }}
+        {% endif %}
+
+        {{render_stream(page.body)}}
+
+    </div>
+</article>
+
+{% if page.authorship %}
+    <div class="team-profile__articles">
+    <h2>{% trans %}Relevant articles and publications{% endtrans %}</h2>
+    {% with pages=page.authorship.get_content_pages(), columns=1 %}
+        {% include "_partials/card_group.jinja" %}
     {% endwith %}
+    </div>
+{% endif %}
 
-    {% with title=gettext("Specialist area") %}
-        {% include "_partials/taxonomy_areas_of_focus.jinja" %}
-    {% endwith %}
 
-    {% if page.location %}
-        <p>{% trans %}Location{% endtrans %}: {{ page.location }}</p>
-    {% endif %}
 
-    {% if page.email_address %}
-        <p>{% trans %}Contact{% endtrans %}: <a href="mailto:{{ page.email_address }}">{{ page.email_address }}</a></p>
-    {% endif %}
 
-    {% if page.twitter_url or page.github_url or page.linkedin_url %}
-        <ul>
-            {% if page.twitter_url %}
-                <li><a href="{{ page.twitter_url }}">Twitter</a></li>
-            {% endif %}
-            {% if page.github_url %}
-                <li><a href="{{ page.github_url }}">GitHub</a></li>
-            {% endif %}
-            {% if page.linkedin_url %}
-                <li><a href="{{ page.linkedin_url }}">LinkedIn</a></li>
-            {% endif %}
-        </ul>
-    {% endif %}
 
-    {% if page.portrait_image %}
-        {{ picture(page.portrait_image, 200, 300, alt="Portrait of "+page.title) }}
-    {% endif %}
 
-    {% if page.intro %}
-        {{ page.intro|richtext }}
-    {% endif %}
 
-    {{render_stream(page.body)}}
 
-    {% if page.authorship %}
-        {% with pages=page.authorship.get_content_pages(), columns=1 %}
-            {% include "_partials/card_group.jinja" %}
-        {% endwith %}
-    {% endif %}
 
 {% endblock %}
