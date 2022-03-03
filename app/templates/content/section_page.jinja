@@ -2,7 +2,10 @@
 
 {# front page of Impact, Research, Implementation, but not About. #}
 
-{% block contnt %}
+{% set columns = 3 %}
+{% set hideHeader = true %}
+
+{% block content %}
 	{{ super() }}
 
 {% endblock %}
