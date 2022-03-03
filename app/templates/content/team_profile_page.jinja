@@ -31,15 +31,27 @@
             {% endif %}
 
             {% if page.twitter_url or page.github_url or page.linkedin_url %}
-                <ul>
+                <ul class="team-profile__social-media-list">
                     {% if page.twitter_url %}
-                        <li><a href="{{ page.twitter_url }}">Twitter</a></li>
+                        <li>
+                            <a href="{{ page.twitter_url }}" aria-label="Twitter">
+                                {% include "svg/social-media/twitter.jinja" %}
+                            </a>
+                        </li>
                     {% endif %}
                     {% if page.github_url %}
-                        <li><a href="{{ page.github_url }}">GitHub</a></li>
+                        <li>
+                            <a href="{{ page.github_url }}" aria-label="Github">
+                                {% include "svg/social-media/github.jinja" %}
+                            </a>
+                        </li>
                     {% endif %}
                     {% if page.linkedin_url %}
-                        <li><a href="{{ page.linkedin_url }}">LinkedIn</a></li>
+                        <li>
+                            <a href="{{ page.linkedin_url }}" aria-label="LinkedIn">
+                                {% include "svg/social-media/linkedin.jinja" %}
+                            </a>
+                        </li>
                     {% endif %}
                 </ul>
             {% endif %}

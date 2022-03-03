@@ -34,3 +34,16 @@
         @apply mb-10;
     }
 }
+
+.team-profile__social-media-list {
+    @apply list-none flex space-x-3;
+
+    li {
+        @apply p-0;
+    }
+
+    svg {
+        fill: #3C31D5;
+        width: 20px;
+    }
+}
