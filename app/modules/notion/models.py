@@ -21,6 +21,7 @@ from wagtail.admin.edit_handlers import (
 
 from modules.content.blocks import tag_page_body_blocks
 from modules.taxonomy.models.core import BaseTag
+from modules.notion.data import CAPITALS
 
 
 class NotionModel(models.Model):
@@ -274,6 +275,13 @@ class CountryTag(NotionModel, BaseTag):
         max_length=255
     )
 
+    iso2 = models.CharField(
+        _("ISO2"),
+        blank=True,
+        null=True,
+        max_length=10
+    )
+
     main_panels = [
         FieldPanel('name'),
         ImageChooserPanel('map_image'),
@@ -325,7 +333,7 @@ class CountryTag(NotionModel, BaseTag):
         field = Yes plus the 0 Stage field = Publish.
         """
         for item in self.disclosure_regimes.all():
-            if item.central_register == "Yes" and 'Publish' in item.stage:
+            if item.central_register == "Yes" and item.stage and 'Publish' in item.stage:
                 return True
         return False
 
@@ -336,9 +344,23 @@ class CountryTag(NotionModel, BaseTag):
         '5.1 Public access' field = Yes plus the 0 Stage field = Publish.
         """
         for item in self.disclosure_regimes.all():
-            if item.public_access == "Yes" and 'Publish' in item.stage:
+            if item.public_access == "Yes" and item.stage and 'Publish' in item.stage:
                 return True
         return False
+
+    @cached_property
+    def lat(self):
+        try:
+            return CAPITALS[self.iso2]['lat']
+        except Exception as e:
+            console.warn(e)
+
+    @cached_property
+    def lon(self):
+        try:
+            return CAPITALS[self.iso2]['lon']
+        except Exception as e:
+            console.warn(e)
 
     @cached_property
     def commitment(self):

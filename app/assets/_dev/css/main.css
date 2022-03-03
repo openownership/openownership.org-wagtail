@@ -43,6 +43,8 @@
 @import "components/navigation";
 @import "components/page-menu";
 @import "components/share-page";
+@import "components/summary-box";
+@import "components/details";
 
 /*------------------------------------*\
   #PAGE-IMPORTS

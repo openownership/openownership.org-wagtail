@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         s = SyncCountries()
-        s.do()
+        s.do(force=True)
 
         total_countries = CountryTag.objects.count()
         console.info(f"Synced countries - {total_countries}")

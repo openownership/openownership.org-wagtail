@@ -1,0 +1,66 @@
+{% extends 'base_with_menu.jinja' %}
+
+
+{% block content %}
+
+<script>var countries_data = {{ countries_json|safe }}</script>
+<script>var map_data = {{ map_json|safe }}</script>
+
+    <div class="intro">
+        {{ page.intro|richtext }}
+    </div>
+
+    {# Map goes here #}
+    Map goes here
+
+
+    <section class="grid-cols grid--2-col">
+        <div class="country__header-card">
+            <span class="country__header-card_header">{% trans %}Commitment to BOT{% endtrans %}</span>
+            <span class="country__header-card_row">{% trans %}Central Register {% endtrans %}({{ country_counts.committed_central }})</span>
+            <span class="country__header-card_row">{% trans %}Public Register{% endtrans %}({{ country_counts.committed_public }})</span>
+        </div>
+
+        <div class="country__header-card">
+            <span class="country__header-card_header">{% trans %}Implementation of BOT{% endtrans %}</span>
+            <span class="country__header-card_row">{% trans %}Central Register{% endtrans %}({{ country_counts.implementation_central }})</span>
+            <span class="country__header-card_row">{% trans %}Public Register{% endtrans %}({{ country_counts.implementation_public }})</span>
+        </div>
+
+        <div class="country__header-col">
+            Regions where Open Ownership is engaged
+        </div>
+        <div class="country__header-col">
+            <a href="#" class="button">{% trans %}Download all country data{% endtrans %}</a>
+        </div>
+    </section>
+
+    <hr/>
+
+    <section>
+        <h2>{% trans %}Find a specific country{% endtrans %}</h2>
+        <p>{% trans %}Find country activity through the map, search or from the regions listed below{% endtrans %}</p>
+        <form action="/search/" method="GET" class="country-search__form">
+            <div class="relative max-w-sixcol">
+                <label for="q" class="sr-only">Search</label>
+                <input type="text" id="q" name="q" value="{{search_query or ''}}" placeholder="Country search">
+                <button type="submit" class="btn">Search</button>
+            </div>
+        </form>
+
+        {# regions #}
+        <div class="accordion">
+            {% for region in regions %}
+                <button class="accordion__button region__button">
+                    {{region.name}}
+                </button>
+                {% for country in region.countries.all() %}
+                    <div id="accordion-section-{{region.slug}}" class="accordion__section open">
+                        <a href="{{ country.url }}">{{ country.name }}</a>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock content %}

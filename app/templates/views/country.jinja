@@ -15,23 +15,24 @@
                 <a href="{{ country.consultant.url }}">{{ country.consultant.title }}</a>
             {% endif %}
         </div>
+        <div class="grid-cols grid--2-col">
+            <div class="country__header-card">
+                <span class="country__header-card_header">{% trans %}Commitment to BOT{% endtrans %}</span>
+                {# NOTE TO ANA: I've done this checkbox function here to render something on a bool value.
+                    At the moment it just returns YES or NO, but you might want to have it return an svg or something.
+                #}
+                <span class="country__header-card_row">{{ checkbox(country.committed_central) }}{% trans %}Central Register{% endtrans %}</span>
+                <span class="country__header-card_row">{{ checkbox(country.committed_public) }}{% trans %}Public Register{% endtrans %}</span>
+            </div>
 
-        <div class="country__header-card">
-            <span class="country__header-card_header">{% trans %}Commitment to BOT{% endtrans %}</span>
-            {# NOTE TO ANA: I've done this checkbox function here to render something on a bool value.
-                At the moment it just returns YES or NO, but you might want to have it return an svg or something.
-            #}
-            <span class="country__header-card_row">{{ checkbox(country.committed_central) }}{% trans %}Central Register{% endtrans %}</span>
-            <span class="country__header-card_row">{{ checkbox(country.committed_public) }}{% trans %}Public Register{% endtrans %}</span>
-        </div>
-
-        <div class="country__header-card">
-            <span class="country__header-card_header">{% trans %}Implementation of BOT{% endtrans %}</span>
-            {# NOTE TO ANA: I've done this checkbox function here to render something on a bool value.
-                At the moment it just returns YES or NO, but you might want to have it return an svg or something.
-            #}
-            <span class="country__header-card_row">{{ checkbox(country.implementation_central) }}{% trans %}Central register: Open Ownership register{% endtrans %}</span>
-            <span class="country__header-card_row">{{ checkbox(country.implementation_public) }}{% trans %}Public register: UK PSC Register{% endtrans %}</span>
+            <div class="country__header-card">
+                <span class="country__header-card_header">{% trans %}Implementation of BOT{% endtrans %}</span>
+                {# NOTE TO ANA: I've done this checkbox function here to render something on a bool value.
+                    At the moment it just returns YES or NO, but you might want to have it return an svg or something.
+                #}
+                <span class="country__header-card_row">{{ checkbox(country.implementation_central) }}{% trans %}Central register: Open Ownership register{% endtrans %}</span>
+                <span class="country__header-card_row">{{ checkbox(country.implementation_public) }}{% trans %}Public register: UK PSC Register{% endtrans %}</span>
+            </div>
         </div>
 
         <a href="#" class="button">{% trans %}Download Country Data{% endtrans %}</a>

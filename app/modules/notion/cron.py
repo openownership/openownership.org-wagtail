@@ -426,31 +426,32 @@ class SyncCountries(NotionCronBase):
         self._model = CountryTag
         super().__init__(*args, **kwargs)
 
-    def do(self, data: dict = None):
+    def do(self, data: dict = None, force: bool = False):
         """Sync countries from Notion
 
         Args:
             data (dict, optional): We're only going to pass the data in here in tests
+            force (bool, optional): Force this to run
         """
 
         # The ID we have for COUNTRY_TRACKER is already the DB id
         if not data:
             data = self.fetch_all_data(COUNTRY_TRACKER)
 
-        self._process_data(data)
+        self._process_data(data, force)
         self._clean_up(data)
 
-    def _process_data(self, data: dict) -> bool:
+    def _process_data(self, data: dict, force: bool = False) -> bool:
         results = data.get('results', [])
         if len(results):
             # Do stuff here to save the data from Notion
             for item in results:
-                self._handle_country(item)
+                self._handle_country(item, force)
         else:
             # Notify of failure, probably Slack and logging
             console.warn("Countries - Results was zero len")
 
-    def _handle_country(self, country: dict) -> bool:
+    def _handle_country(self, country: dict, force: bool = False) -> bool:
         """Gets data from notion (`country`) and saves it as a Country tag.
 
         Args:
@@ -467,7 +468,7 @@ class SyncCountries(NotionCronBase):
 
         obj, created = CountryTag.objects.get_or_create(notion_id=notion_id)
 
-        if not self._is_updated(obj, country):
+        if not self._is_updated(obj, country) and not force:
             return False
 
         # This is either a new row, or it has been updated, so save stuff
@@ -482,6 +483,7 @@ class SyncCountries(NotionCronBase):
                 obj.icon = ''
 
             obj.oo_support = self._get_select_name(country, 'OO Support')
+            obj.iso2 = self._get_plain_text(country, 'ISO2')
 
             try:
                 obj.save()
