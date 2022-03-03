@@ -1,64 +1,71 @@
 {# For displaying a single Page as a card. #}
 <li class="card-group__card {% if page.thumbnail %}card-group__card--with-thumbnail{% endif %}{% if page.specific.card_format %} {{ page.specific.card_format }}{% endif %}">
-    <a href="{{ page.get_url() }}" aria-label="{{page.title}}">
-        {% if page.thumbnail %}
-            {{image(page.thumbnail,'fill-415x300')}}
+
+    {% if page.thumbnail %}
+    <div class="card-group__thumbnail">
+        {{image(page.thumbnail,'fill-415x300')}}
+    </div>
+    {% endif %}
+
+    <div class="card-group__meta">
+        {# I don't know if cards should display all kinds of categories/tags or only some kinds. But here's what we've got. Phil. #}
+
+        {% if page.publication_type %}
+            <a href="{{ url('publicationtype-category', kwargs={'section_slug': page.section_page.slug, 'tag_slug': page.publication_type.slug}) }}">{{ page.publication_type }}</a>
+        {% elif page.is_press_link %}
+            {# Press links don't have tags, but we can fake it to look like one. #}
+            <a href="{{ url('section-press-links', kwargs={'section_slug': page.section_page.slug}) }}">Press link</a>
         {% endif %}
-        <div class="card-group__text">
+    
+        {% if page.areas_of_focus %}
+            {% with areas=page.areas_of_focus.all() %}
+                {% if areas|length > 0 %}
+                    {% for area in areas %}
+                        <a href="{{ url('focusarea-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': area.slug}) }}">{{ area.name }}</a>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        {% endif %}
+    
+        {% if page.sectors %}
+            {% with sectors=page.sectors.all() %}
+                {% if sectors|length > 0 %}
+                    {% for sector in sectors %}
+                        <a href="{{ url('sector-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': sector.slug}) }}">{{ sector.name }}</a>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        {% endif %}    
+    </div>
+
+    <div class="card-group__text">
+        <a href="{{ page.get_url() }}" aria-label="{{page.title}}">
             <h2 class="card-group__title">
                 {{page.title}}
                 {% if page.is_press_link %}
                     [EXTERNAL LINK ICON]
                 {% endif %}
             </h2>
-            {% if page.blurb %}<p class="card-group__blurb">{{page.blurb}}</p>{% endif %}
-        </div>
-    </a>
+            {% if page.blurb %}
+                <p class="card-group__blurb">{{page.blurb}}</p>
+            {% endif %}
+        </a>
 
-
-    {# I don't know if cards should display all kinds of categories/tags or only some kinds. But here's what we've got. Phil. #}
-
-    {% if page.publication_type %}
-        <a href="{{ url('publicationtype-category', kwargs={'section_slug': page.section_page.slug, 'tag_slug': page.publication_type.slug}) }}">{{ page.publication_type }}</a>
-    {% elif page.is_press_link %}
-        {# Press links don't have tags, but we can fake it to look like one. #}
-        <a href="{{ url('section-press-links', kwargs={'section_slug': page.section_page.slug}) }}">Press link</a>
-    {% endif %}
-
-    {% if page.areas_of_focus %}
-        {% with areas=page.areas_of_focus.all() %}
-            {% if areas|length > 0 %}
-                {% for area in areas %}
-                    <a href="{{ url('focusarea-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': area.slug}) }}">{{ area.name }}</a>
-                {% endfor %}
+        {% with authors=page.specific.authors %}
+            {% if authors and authors|length %}
+                <p class="card-group__author">
+                    {% trans %}Written by{% endtrans %}
+                    {% for author in authors %}
+                        {% if author.team_profile %}
+                        <a href="{{ author.team_profile.get_url() }}">{{ author.name }}</a>
+                        {% else %}{{ author.name }}{% endif %}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
             {% endif %}
         {% endwith %}
-    {% endif %}
 
-    {% if page.sectors %}
-        {% with sectors=page.sectors.all() %}
-            {% if sectors|length > 0 %}
-                {% for sector in sectors %}
-                    <a href="{{ url('sector-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': sector.slug}) }}">{{ sector.name }}</a>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    {% endif %}
-
-
-    {% with authors=page.specific.authors %}
-        {% if authors and authors|length %}
-            <p>
-                {% trans %}Written by{% endtrans %}
-                {% for author in authors %}
-                    {% if author.team_profile %}<a href="{{ author.team_profile.get_url() }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}{% if not loop.last %}, {% endif %}
-                {% endfor %}
-            </p>
+        {% if page.display_date %}
+            <p class="card-group__date">{% trans %}Published{% endtrans %}: {{ page.human_display_date }}</p>
         {% endif %}
-    {% endwith %}
-
-    {% if page.display_date %}
-        <p>{% trans %}Published{% endtrans %}: {{ page.human_display_date }}</p>
-    {% endif %}
-
+    </div>
 </li>
