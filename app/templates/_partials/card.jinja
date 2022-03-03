@@ -11,7 +11,7 @@
         <div class="card-group__meta">
             {# I don't know if cards should display all kinds of categories/tags or only some kinds. But here's what we've got. Phil. #}
             {% if page.publication_type %}
-                <a href="{{ page.publication_type.get_url(page.section_page) }}">{{ page.publication_type }}"><span>{{ page.publication_type }}</span></a>
+                <a href="{{ page.publication_type.get_url(page.section_page) }}"><span>{{ page.publication_type }}</span></a>
             {% elif page.is_press_link %}
                 {# Press links don't have tags, but we can fake it to look like one. #}
                 <a href="{{ page.section_page.specific.press_links_page_url }}"><span>Press link</span></a>
