@@ -42,7 +42,7 @@ from modules.content.blocks import (
     team_profile_page_body_blocks,
     HighlightPagesBlock,
 )
-from modules.notion.helpers import countries_json
+from modules.notion.helpers import countries_json, map_json
 from modules.notion.models import CountryTag, Region
 from modules.content.blocks.stream import GlossaryItemBlock
 from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
@@ -907,6 +907,7 @@ class MapPage(BasePage):
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)
         context['countries_json'] = countries_json()
+        context['map_json'] = map_json()
         context['country_counts'] = self._country_counts
         context['regions'] = Region.objects.all()
 
