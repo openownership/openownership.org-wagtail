@@ -1,0 +1,46 @@
+{% extends 'base_with_menu.jinja' %}
+
+
+{% block content %}
+
+<script>var countries_data = {{ countries_json|safe }}</script>
+
+    <div class="intro">
+        {{ page.intro|richtext }}
+    </div>
+
+    {# Map goes here #}
+    Map goes here
+
+
+    <section class="grid-cols grid--2-col">
+        <div class="country__header-card">
+            <span class="country__header-card_header">{% trans %}Commitment to BOT{% endtrans %}</span>
+
+            {# <span class="country__header-card_row">{{ checkbox(country.committed_central) }}{% trans %}Central Register{% endtrans %}</span>
+            <span class="country__header-card_row">{{ checkbox(country.committed_public) }}{% trans %}Public Register{% endtrans %}</span> #}
+        </div>
+
+        <div class="country__header-card">
+            <span class="country__header-card_header">{% trans %}Implementation of BOT{% endtrans %}</span>
+            {#
+            <span class="country__header-card_row">{{ checkbox(country.implementation_central) }}{% trans %}Central register: Open Ownership register{% endtrans %}</span>
+            <span class="country__header-card_row">{{ checkbox(country.implementation_public) }}{% trans %}Public register: UK PSC Register{% endtrans %}</span> #}
+        </div>
+    </section>
+
+    <hr/>
+
+    <section>
+        <h2>{% trans %}Find a specific country{% endtrans %}</h2>
+        <p>{% trans %}Find country activity through the map, search or from the regions listed below{% endtrans %}</p>
+        <form action="" method="GET" class="country-search__form">
+            <div class="relative max-w-sixcol">
+                <label for="q" class="sr-only">Search</label>
+                <input type="text" id="q" name="q" value="{{search_query or ''}}" placeholder="Country search">
+                <button type="submit" class="btn">Search</button>
+            </div>
+        </form>
+    </section>
+
+{% endblock content %}

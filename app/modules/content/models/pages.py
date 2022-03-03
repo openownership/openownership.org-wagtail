@@ -42,6 +42,7 @@ from modules.content.blocks import (
     team_profile_page_body_blocks,
     HighlightPagesBlock,
 )
+from modules.notion.helpers import countries_json
 from modules.content.blocks.stream import GlossaryItemBlock
 from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
 from modules.taxonomy.models import PublicationType
@@ -70,6 +71,7 @@ class HomePage(PageHeroMixin, LandingPageType):
         "content.SectionListingPage",
         "content.UtilityPage",
         "content.NewsIndexPage",
+        "content.MapPage",
     ]
     max_count = 1
 
@@ -876,3 +878,26 @@ class SearchPage(BasePage):
     @classmethod
     def can_create_at(cls, parent) -> bool:
         return super().can_create_at(parent) and not cls.objects.exists()
+
+
+class MapPage(BasePage):
+    """The page that displays the international impact map.
+    """
+    template = 'content/map_page.jinja'
+
+    parent_page_types: list = ['content.HomePage', ]
+    subpage_types: list = []
+
+    intro = fields.RichTextField(
+        blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES
+    )
+
+    content_panels = BasePage.content_panels + [
+        FieldPanel('intro')
+    ]
+
+    def get_context(self, request, *args, **kwargs) -> dict:
+        context = super().get_context(request, *args, **kwargs)
+        context['countries_json'] = countries_json()
+
+        return context
