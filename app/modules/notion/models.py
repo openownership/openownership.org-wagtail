@@ -20,6 +20,7 @@ from wagtail.admin.edit_handlers import (
 )
 
 from modules.taxonomy.models.core import BaseTag
+from modules.notion.data import CAPITALS
 
 
 class NotionModel(models.Model):
@@ -271,6 +272,13 @@ class CountryTag(NotionModel, BaseTag):
         max_length=255
     )
 
+    iso2 = models.CharField(
+        _("ISO2"),
+        blank=True,
+        null=True,
+        max_length=10
+    )
+
     main_panels = [
         FieldPanel('name'),
         ImageChooserPanel('map_image'),
@@ -336,6 +344,20 @@ class CountryTag(NotionModel, BaseTag):
             if item.public_access == "Yes" and item.stage and 'Publish' in item.stage:
                 return True
         return False
+
+    @cached_property
+    def lat(self):
+        try:
+            return CAPITALS[self.iso2]['lat']
+        except Exception as e:
+            console.warn(e)
+
+    @cached_property
+    def lon(self):
+        try:
+            return CAPITALS[self.iso2]['lon']
+        except Exception as e:
+            console.warn(e)
 
     @cached_property
     def commitment(self):
