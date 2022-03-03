@@ -1,0 +1,9 @@
+details {
+    @apply my-4;
+}
+
+summary {
+    @apply text-blue-medium;
+    @apply underline decoration-2;
+    @apply mb-2;
+}
