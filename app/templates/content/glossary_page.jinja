@@ -3,10 +3,14 @@
 
 {% block content %}
 
+    <article>
+
     {{render_stream(page.body)}}
 
     {% for block in page.glossary %}
         {% include_block block %}
     {% endfor %}
+
+    </article>
 
 {% endblock content %}
