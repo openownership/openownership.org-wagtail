@@ -1,7 +1,7 @@
 {% if page.publication_type %}
     <p>
         <strong>{% trans %}Publication type{% endtrans %}</strong><br>
-        <a href="{{ url('publicationtype-category', kwargs={'section_slug': page.section_page.slug, 'tag_slug': page.publication_type.slug}) }}">{{ page.publication_type }}</a>
+        <a href="{{ page.publication_type.get_url(page.section_page) }}">{{ page.publication_type }}</a>
     </p>
 {% endif %}
 

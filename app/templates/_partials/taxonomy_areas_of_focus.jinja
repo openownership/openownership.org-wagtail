@@ -11,7 +11,7 @@ title - Title for the block.
         <p>
             <strong>{% if title %}{{ title }}{% else %}{% trans %}Areas of focus{% endtrans %}{% endif %}</strong><br>
             {% for area in areas %}
-                <a href="{{ url('focusarea-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': area.slug}) }}">{{ area.name }}</a>{% if not loop.last %}, {% endif %}
+                <a href="{{ area.get_url(page.section_page) }}">{{ area.name }}</a>{% if not loop.last %}, {% endif %}
             {% endfor %}
         </p>
     {% endif %}

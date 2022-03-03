@@ -19,6 +19,7 @@ from wagtail.admin.edit_handlers import (
     FieldPanel, ObjectList, PageChooserPanel, StreamFieldPanel, TabbedInterface, InlinePanel
 )
 
+from modules.content.blocks import tag_page_body_blocks
 from modules.taxonomy.models.core import BaseTag
 
 
@@ -233,6 +234,8 @@ class CountryTag(NotionModel, BaseTag):
     class Meta:
         verbose_name = _("Country")
         verbose_name_plural = _("Countries")
+
+    body = fields.StreamField(tag_page_body_blocks, blank=True)
 
     map_image = models.ForeignKey(
         settings.IMAGE_MODEL,
