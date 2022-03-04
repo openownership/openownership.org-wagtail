@@ -31,7 +31,7 @@ a {
     }
 }
 
-.next-page {
+.next-page, .ghost-link {
     @apply py-2 px-3 my-4;
     @apply no-underline;
 

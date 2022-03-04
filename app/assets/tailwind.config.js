@@ -19,7 +19,9 @@ module.exports = {
         border: {
             main: '#B1B4B6',
             input: '#242424',
-            newsletter: '#626A6E'
+            newsletter: '#626A6E',
+            table: '#D3DBDB',
+            data: '#979797'
         },
         focus: {
             main: '#DCEEFF'
