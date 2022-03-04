@@ -16,15 +16,17 @@ Expects:
     {% endif %}
 {% endif %}
 
-<div class="card-group">
-    {% if title %}
-        <header class="card-group__header">
-            {% if title %}<h2 class="card-group__header-title">{{title}}</h2>{% endif %}
-        </header>
-    {% endif %}
-    <ul class="grid-cols grid--{{ columns }}-col {{ card_format|default("") }}">
-        {% for page in pages %}
-            {% include "_partials/card.jinja" %}
-        {% endfor %}
-    </ul>
-</div>
+{% if pages|length > 0 %}
+    <div class="card-group">
+        {% if title %}
+            <header class="card-group__header">
+                {% if title %}<h2 class="card-group__header-title">{{title}}</h2>{% endif %}
+            </header>
+        {% endif %}
+        <ul class="grid-cols grid--{{ columns }}-col {{ card_format|default("") }}">
+            {% for page in pages %}
+                {% include "_partials/card.jinja" %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
