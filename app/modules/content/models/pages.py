@@ -46,7 +46,7 @@ from modules.notion.helpers import countries_json, map_json
 from modules.notion.models import CountryTag, Region
 from modules.content.blocks.stream import GlossaryItemBlock
 from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
-from modules.taxonomy.models import PublicationType
+from modules.taxonomy.models import FocusAreaTag, PublicationType, SectorTag
 from modules.stats.mixins import Countable
 from .mixins import TaggedAuthorsPageMixin, TaggedPageMixin, PageHeroMixin
 from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageType
@@ -114,8 +114,11 @@ class SectionPage(PageHeroMixin, LandingPageType):
         'content.ArticlePage',
         'content.BlogIndexPage',
         'content.GlossaryPage',
+        'content.LatestSectionContentPage',
         'content.NewsIndexPage',
+        'content.PressLinksPage',
         'content.PublicationFrontPage',
+        'content.TaxonomyPage',
     ]
 
     search_fields: list = []
@@ -125,6 +128,22 @@ class SectionPage(PageHeroMixin, LandingPageType):
     content_panels = BasePage.content_panels + [
         StreamFieldPanel('body'),
     ]
+
+    @cached_property
+    def press_links_page_url(self):
+        """
+        Get the URL for the PressLinksPage within this section, if any.
+        I couldn't think how else to do this.
+        """
+        page = (
+            self.get_children().live().public()
+            .filter(locale=Locale.get_active())
+            .type(PressLinksPage).first()
+        )
+        if page:
+            return page.url
+        else:
+            return ''
 
 
 class SectionListingPage(SectionPage):
@@ -141,7 +160,10 @@ class SectionListingPage(SectionPage):
     subpage_types: list = [
         "content.ArticlePage",
         "content.JobsIndexPage",
+        'content.LatestSectionContentPage',
+        'content.PressLinksPage',
         "content.PublicationFrontPage",
+        'content.TaxonomyPage',
         "content.TeamPage",
     ]
 
@@ -160,6 +182,22 @@ class SectionListingPage(SectionPage):
         else:
             context['child_pages'] = self.get_children().none()
         return context
+
+    @cached_property
+    def press_links_page_url(self):
+        """
+        Get the URL for the PressLinksPage within this section, if any.
+        I couldn't think how else to do this.
+        """
+        page = (
+            self.get_children().live().public()
+            .filter(locale=Locale.get_active())
+            .type(PressLinksPage).first()
+        )
+        if page:
+            return page.url
+        else:
+            return ''
 
 
 ####################################################################################################
@@ -725,7 +763,7 @@ class GlossaryPage(BasePage):
     """
     template = 'content/glossary_page.jinja'
 
-    parent_page_types: list = ['content.SectionPage']
+    parent_page_types: list = ['content.SectionPage', ]
     subpage_types: list = []
     max_count = 1
 
@@ -881,6 +919,203 @@ class SearchPage(BasePage):
         return super().can_create_at(parent) and not cls.objects.exists()
 
 
+####################################################################################################
+# TAXONOMIES
+####################################################################################################
+
+
+class TaxonomyPage(BasePage):
+    """
+    For listing all of the tags/categories within a taxonomy.
+    """
+
+    template = 'content/taxonomy_detail.jinja'
+    parent_page_types = ['content.SectionPage', 'content.SectionListingPage']
+    subpage_types: list = ['content.TagPage']
+
+    intro = fields.RichTextField(
+        blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
+    )
+
+    content_panels = BasePage.content_panels + [
+        FieldPanel('intro'),
+    ]
+
+    search_fields = BasePage.search_fields + [
+        index.SearchField('intro'),
+    ]
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+
+        # For listing all the child TagPages:
+        context['pages'] = self.get_children().live().public().filter(locale=Locale.get_active())
+
+        return context
+
+
+class TagPageForm(WagtailAdminPageForm):
+    "Adding custom validation"
+
+    def clean(self):
+        "Ensure 1, and only 1, tag is selected."
+        cleaned_data = super().clean()
+
+        tags = [
+            cleaned_data['focus_area'],
+            cleaned_data['sector'],
+            cleaned_data['publication_type'],
+        ]
+        num_selected = len([t for t in tags if t])
+        if num_selected == 0:
+            self.add_error(
+                'focus_area',
+                f'Please choose a tag from one of the {len(tags)} taxonomies.'
+            )
+        elif num_selected > 1:
+            self.add_error(
+                'focus_area',
+                f'Please only choose a single tag from the {len(tags)} taxonomies.'
+            )
+
+        return cleaned_data
+
+
+class TagPage(IndexPageType):
+    """
+    For choosing a single tag/category, and listing all the Pages tagged with it
+    in this Section.
+    """
+
+    base_form_class = TagPageForm
+    template = 'content/taxonomy_tag.jinja'
+    parent_page_types = ['content.TaxonomyPage']
+    subpage_types: list = []
+
+    # Allow for headings, per design:
+    intro = fields.RichTextField(
+        blank=True, null=True, features=settings.RICHTEXT_BODY_FEATURES,
+    )
+
+    focus_area = models.ForeignKey(
+        'taxonomy.FocusAreaTag',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='tagpages',
+    )
+
+    sector = models.ForeignKey(
+        'taxonomy.SectorTag',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='tagpages',
+    )
+
+    publication_type = models.ForeignKey(
+        'taxonomy.PublicationType',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='tagpages',
+    )
+
+    content_panels = BasePage.content_panels + [
+        MultiFieldPanel([
+            FieldPanel('focus_area'),
+            FieldPanel('sector'),
+            FieldPanel('publication_type'),
+        ], heading=_('Tag')),
+        FieldPanel('intro')
+    ]
+
+    def get_order_by(self):
+        return ['-last_published_at']
+
+    def base_queryset(self):
+        """
+        Get pages that are in the chosen category, or tagged with the
+        chosen tag.
+        """
+        tag = None
+        category = None
+
+        # Work out which tag/category this page is for:
+        if self.focus_area:
+            tag = self.focus_area
+        elif self.sector:
+            tag = self.sector
+        elif self.publication_type:
+            category = self.publication_type
+
+        if category:
+            return category.pages.descendant_of(self.section_page)
+
+        elif tag:
+            related_pages = getattr(tag, tag.__class__.related_pages_name)
+            page_ids = related_pages.values_list('content_object__id', flat=True)
+
+            return (
+                Page.objects.live().public()
+                .descendant_of(self.section_page).specific()
+                .filter(locale=Locale.get_active())
+                .filter(id__in=page_ids)
+                .select_related('thumbnail')
+            )
+        else:
+            # Shouldn't get here.
+            return Page.objects.none()
+
+    @classmethod
+    def can_create_at(cls, parent) -> bool:
+        "Override IndexPageType, which only lets us create 1"
+        can_create = cls.is_creatable and cls.can_exist_under(parent)
+
+        return can_create
+
+
+class LatestSectionContentPage(IndexPageType):
+    """
+    For displaying the latest content within a section
+    """
+
+    template = 'content/latest_content.jinja'
+    parent_page_types = ['content.SectionPage', 'content.SectionListingPage']
+    subpage_types: list = []
+
+    def get_order_by(self):
+        return ['-last_published_at']
+
+    def base_queryset(self):
+        from modules.content.models import content_page_models
+
+        return (
+            self.section_page.get_descendants()
+            .live().public()
+            .exact_type(*content_page_models)
+            .filter(locale=Locale.get_active())
+            .specific()
+            .select_related('thumbnail')
+        )
+
+
+class PressLinksPage(IndexPageType):
+    """
+    For displaying PressLink snippets within a section.
+    """
+
+    template = 'content/press_links.jinja'
+    parent_page_types = ['content.SectionPage', 'content.SectionListingPage']
+    subpage_types: list = []
+
+    def get_order_by(self):
+        return ['-first_published_at']
+
+    def base_queryset(self):
+        from modules.content.models import PressLink
+
+        return PressLink.objects.filter(section_page=self.section_page)
 class MapPage(BasePage):
     """The page that displays the international impact map.
 

@@ -22,6 +22,8 @@ from .pages import (  # NOQA
     SearchPageSuggestedSearch,
     SectionListingPage,
     SectionPage,
+    TagPage,
+    TaxonomyPage,
     TeamPage,
     TeamProfilePage,
     UtilityPage,

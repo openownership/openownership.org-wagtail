@@ -3,14 +3,21 @@
 
 {% block content %}
 
-    <article>
-
     {{render_stream(page.body)}}
 
-    {% for block in page.glossary %}
-        {% include_block block %}
-    {% endfor %}
 
-    </article>
+    <div id="accordionGroup" class="accordion">
+        {% for item in page.glossary %}
+
+            <button id="accordion-open-{{loop.index}}" class="accordion__button">
+                {{ item.value.title }}
+            </button>
+
+            <div id="accordion-section-{{loop.index}}" class="accordion__section open">
+                {{ item.value.body }}
+            </div>
+
+        {% endfor %}
+    </div>
 
 {% endblock content %}

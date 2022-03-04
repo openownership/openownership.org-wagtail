@@ -1,0 +1,16 @@
+{% extends 'base_with_menu.jinja' %}
+
+
+{% block content %}
+
+	{{ page.intro|richtext }}
+
+    {% if page_obj %}
+        {% with pages=page_obj, columns=1 %}
+            {% include "_partials/card_group.jinja" %}
+        {% endwith %}
+
+        {% include "_partials/pagination.jinja" %}
+    {% endif %}
+
+{% endblock content %}

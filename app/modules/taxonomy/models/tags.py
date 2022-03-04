@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from taggit.models import ItemBase
-from wagtail.snippets.models import register_snippet
+from wagtail.core.models import Locale
 
 from .core import BaseTag
 
@@ -28,6 +28,22 @@ class FocusAreaTag(BaseTag):
     class Meta:
         verbose_name = _("Area of Focus")
         verbose_name_plural = _("Areas of Focus")
+
+    def get_url(self, section_page):
+        """Generate the URL to this tag's TagPage in a specific section.
+        section_page is the page the TagPage is within.  e.g. 'impact'
+        """
+        from modules.content.models import TagPage
+
+        page = (
+            TagPage.objects.descendant_of(section_page)
+            .live().public().filter(locale=Locale.get_active())
+            .filter(focus_area=self).first()
+        )
+        if page:
+            return page.get_url()
+        else:
+            return ''
 
 
 class FocusAreaTaggedPage(ItemBase):
@@ -63,6 +79,22 @@ class SectorTag(BaseTag):
     class Meta:
         verbose_name = _("Sector")
         verbose_name_plural = _("Sectors")
+
+    def get_url(self, section_page):
+        """Generate the URL to this tag's TagPage in a specific section.
+        section_page is the page the TagPage is within.  e.g. 'impact'
+        """
+        from modules.content.models import TagPage
+
+        page = (
+            TagPage.objects.descendant_of(section_page)
+            .live().public().filter(locale=Locale.get_active())
+            .filter(sector=self).first()
+        )
+        if page:
+            return page.get_url()
+        else:
+            return ''
 
 
 class SectorTaggedPage(ItemBase):

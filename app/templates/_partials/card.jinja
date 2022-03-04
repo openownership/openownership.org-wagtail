@@ -10,19 +10,18 @@
 
         <div class="card-group__meta">
             {# I don't know if cards should display all kinds of categories/tags or only some kinds. But here's what we've got. Phil. #}
-
             {% if page.publication_type %}
-                <a href="{{ url('publicationtype-category', kwargs={'section_slug': page.section_page.slug, 'tag_slug': page.publication_type.slug}) }}"><span>{{ page.publication_type }}</span></a>
+                <a href="{{ page.publication_type.get_url(page.section_page) }}"><span>{{ page.publication_type }}</span></a>
             {% elif page.is_press_link %}
                 {# Press links don't have tags, but we can fake it to look like one. #}
-                <a href="{{ url('section-press-links', kwargs={'section_slug': page.section_page.slug}) }}"><span>Press link</span></a>
+                <a href="{{ page.section_page.specific.press_links_page_url }}"><span>Press link</span></a>
             {% endif %}
         
             {% if page.areas_of_focus %}
                 {% with areas=page.areas_of_focus.all() %}
                     {% if areas|length > 0 %}
                         {% for area in areas %}
-                            <a href="{{ url('focusarea-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': area.slug}) }}"><span>{{ area.name }}</span></a>
+                            <a href="{{ area.get_url(page.section_page) }}"><span>{{ area.name }}</span></a>
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
@@ -32,7 +31,7 @@
                 {% with sectors=page.sectors.all() %}
                     {% if sectors|length > 0 %}
                         {% for sector in sectors %}
-                            <a href="{{ url('sector-tag', kwargs={'section_slug': page.section_page.slug, 'tag_slug': sector.slug}) }}"><span>{{ sector.name }}</span></a>
+                            <a href="{{ sector.get_url(page.section_page) }}"><span>{{ sector.name }}</span></a>
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
