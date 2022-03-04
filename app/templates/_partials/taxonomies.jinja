@@ -25,7 +25,10 @@
 
 
 {% if page.download_document %}
-    <p><a href="{{ page.download_document.url }}">{% trans %}Download document{% endtrans %}</a></p>
+    <p class="download-document">
+    {% include "svg/download-document.jinja" %}
+    <a href="{{ page.download_document.url }}">{% trans %}Download document{% endtrans %}</a>
+    </p>
 {% endif %}
 
 

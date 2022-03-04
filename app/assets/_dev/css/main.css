@@ -45,6 +45,8 @@
 @import "components/share-page";
 @import "components/summary-box";
 @import "components/details";
+@import "components/glossary";
+@import "components/key-learning-outcomes";
 
 /*------------------------------------*\
   #PAGE-IMPORTS
@@ -52,6 +54,7 @@
 
 @import "pages/job-index-page";
 @import "pages/team-profile-page";
+@import "pages/publication-front-page";
 
 /*------------------------------------*\
   #TAILWIND-IMPORTS

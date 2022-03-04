@@ -1,4 +1,4 @@
-article .summary-box {
+article .summary-box, .summary-box{
     @apply bg-white my-8 p-8;
     @apply font-display text-21;
 

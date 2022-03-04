@@ -1,0 +1,32 @@
+.publication-front-page__overview {
+    @apply flex flex-row gap-8;
+    @apply border-b border-black/50;
+    @apply pb-10;
+    @apply my-10;
+}
+
+.publication-front-page__cover, .publication-front-page__details {
+    @apply basis-1/2;
+}
+
+.publication-front-page__cover {
+    img {
+        @apply w-full;
+    }
+}
+
+.publication-front-page__details {
+    p {
+        @apply mb-4;
+    }
+}
+
+.download-document {
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 30px;
+        margin-right: 1rem;
+    }
+}

@@ -30,3 +30,21 @@ a {
         @apply underline;
     }
 }
+
+.next-page {
+    @apply py-2 px-3 my-4;
+    @apply no-underline;
+
+    &:hover, &:focus, &:active {
+        @apply underline;
+    }
+
+    @apply border-2 border-blue-medium;
+
+    display: inline-flex;
+    align-items: center;
+
+    svg {
+        @apply ml-4;
+    }
+}

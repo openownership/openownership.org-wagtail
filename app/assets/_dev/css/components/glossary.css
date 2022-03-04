@@ -1,0 +1,60 @@
+.accordion {
+    @apply my-8;
+    &__button {
+      position: relative;
+      display: block;
+      margin: -1px 0 0;
+      @apply border-t border-black/50;
+      @apply border-b border-black/50;
+      padding: 1rem 1rem;
+      width: 100%;
+      text-align: left;
+      @apply text-blue-medium font-bold text-19;
+      
+      &:focus, 
+      &:hover {
+        @apply bg-blue-light;
+        
+        &::after {
+          border-top-color: #000;
+        }
+      }
+      
+      &::after {
+        content: '+';
+        position: absolute;
+        right: 2rem;
+        top: 15px;
+        width: 0; 
+        height: 0;
+        @apply text-21;
+        
+      }
+    }
+    
+    &__button.expanded {
+        @apply bg-blue-light text-blue-medium;
+        
+        &::after {
+            content:'-';
+            @apply text-21;
+         
+          border-top: none;
+      }
+    }
+    
+    &__section {
+      padding: 1rem;
+      @apply bg-white;
+      max-height: 0vh;
+      overflow: hidden;
+      padding: 0;
+    }
+    
+    &__section.open {
+      max-height: 100vh;
+      overflow: auto;
+      padding: 1.25em;
+      visibility: visible;
+    }
+  }

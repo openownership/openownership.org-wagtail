@@ -54,31 +54,36 @@
         <p>{{ regime.title }}</p>
     {% endfor %}
 
-    <dl>
-        <dt>{% trans %}Central register implemented{% endtrans %}</dt>
-        <dd>{{ country.regime.central_register }}</dd>
+    <details>
+        <summary>{% trans %}Central register implemented{% endtrans %}</summary>
+        {{ country.regime.central_register }}
+    </details>
 
-        <dt>{% trans %}Public access{% endtrans %}</dt>
-        <dd>{{ country.regime.public_access }}</dd>
+    <details>
+        <summary>{% trans %}Public access{% endtrans %}</summary>
+        {{ country.regime.public_access }}
+    </details>
 
-        <dt>{% trans %}Scope{% endtrans %}</dt>
-        <dd>{{ country.regime.coverage_scope }}</dd>
-
-        <dt>{% trans %}Register launched{% endtrans %}</dt>
-        <dd>{{ country.regime.year_launched }}</dd>
-
-        <dt>{% trans %}Structured data publicly available{% endtrans %}</dt>
-        <dd>{{ country.regime.structured_data }}</dd>
-
-        <dt>{% trans %}Available as BODS{% endtrans %}</dt>
-        <dd>{{ country.regime.data_in_bods }}</dd>
-
-        <dt>{% trans %}Available via API{% endtrans %}</dt>
-        <dd>{{ country.regime.api_available }}</dd>
-
-        <dt>{% trans %}Available on the OO register{% endtrans %}</dt>
-        <dd>{{ country.regime.on_oo_register }}</dd>
-    </dl>
+    <details>
+        <summary>{% trans %}Scope{% endtrans %}</summary>
+        {{ country.regime.coverage_scope }}
+    </details>
+    <details>
+        <summary>{% trans %}Register launched{% endtrans %}</summary>
+        {{ country.regime.year_launched }}
+    </details>
+    <details>
+        <summary>{% trans %}Structured data publicly available{% endtrans %}</summary>
+        {{ country.regime.data_in_bods }}
+    </details>
+    <details>
+        <summary>{% trans %}Available via API{% endtrans %}</summary>
+        {{ country.regime.api_available }}
+    </details>
+    <details>
+        <summary>{% trans %}Available on the OO register{% endtrans %}</summary>
+        {{ country.regime.on_oo_register }}
+    </details>
 </section>
 
 {# This section will come post-launch #}
