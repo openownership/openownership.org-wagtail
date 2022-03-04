@@ -29,7 +29,9 @@ from wagtailcache.cache import WagtailCacheMixin
 # Project
 from modules.core.paginator import DiggPaginator
 from modules.core.utils import get_site_context
-from modules.content.blocks import landing_page_blocks, article_page_body_blocks
+from modules.content.blocks import (
+    landing_page_blocks, article_page_body_blocks, additional_content_blocks
+)
 
 
 ####################################################################################################
@@ -257,9 +259,11 @@ class ContentPageType(BasePage):
     template = 'content/article_page.jinja'
 
     body = fields.StreamField(article_page_body_blocks, blank=True)
+    additional_content = fields.StreamField(additional_content_blocks, blank=True)
 
     model_content_panels = [
         StreamFieldPanel('body'),
+        StreamFieldPanel('additional_content'),
     ]
 
     content_panels = BasePage.content_panels + model_content_panels

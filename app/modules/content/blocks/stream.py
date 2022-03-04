@@ -4,6 +4,8 @@
     Primary stream blocks.
 """
 
+from collections import Counter
+from consoler import console
 from django import forms
 from django.conf import settings
 from django.urls import reverse
@@ -11,6 +13,7 @@ from django.utils.translation import gettext_lazy as _
 
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.core import blocks, fields
+from wagtail.core.models import Locale, Page
 from wagtail.embeds import embeds
 from wagtail.embeds.blocks import EmbedBlock as WagtailEmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
@@ -41,6 +44,125 @@ class GlossaryItemBlock(blocks.StructBlock):
         features=settings.RICHTEXT_INLINE_FEATURES
     )
 
+
+
+####################################################################################################
+# Related Content
+####################################################################################################
+
+
+class SimilarContentBlock(blocks.StructBlock):
+    """
+    Select from Areas of Focus, Sectors, Publication Types, or Authors,
+    and then display 3 pages that share those attributes with the
+    current Page.
+    """
+
+    class Meta:
+        label = _('Similar Content')
+        group = _('Card group')
+        icon = 'doc-full'
+        template = "_partials/card_group.jinja"
+
+    options = [
+        ('focus_area', _('Area of Focus')),
+        ('sector', _('Sector')),
+        ('publication_type', _('Publication Type')),
+        ('author', _('Author')),
+    ]
+
+    suggest_by = blocks.ChoiceBlock(choices=options, required=True, default='focus_area')
+
+    def _ranked_pages(self, all_ids, count=3):
+        ranked_ids = Counter(all_ids).most_common()
+        ids = [element[0] for element in ranked_ids[:count]]
+        objects = (
+            Page.objects
+            .live().public().filter(locale=Locale.get_active())
+            .filter(id__in=ids).specific()
+            .order_by('-first_published_at').all()
+        )
+        return objects
+
+    @property
+    def by_focus_area(self):
+        """Get the latest 3 articles by FocusAreaTag.
+        """
+        all_ids = []
+        for tag in self.page.areas_of_focus.all():
+            for item in tag.focusarea_related_pages.all():
+                if item.content_object.id != self.page.id:
+                    all_ids.append(item.content_object.id)
+
+        objects = self._ranked_pages(all_ids, 3)
+        return objects
+
+    @property
+    def by_sector(self):
+        """Get the latest 3 articles by SectorTag.
+        """
+        all_ids = []
+        for tag in self.page.sectors.all():
+            for item in tag.sector_related_pages.all():
+                if item.content_object.id != self.page.id:
+                    all_ids.append(item.content_object.id)
+
+        objects = self._ranked_pages(all_ids, 3)
+        return objects
+
+    @property
+    def by_publication_type(self):
+        """Get the latest 3 articles by PublicationType.
+        """
+        all_ids = []
+        if self.page.publication_type:
+            for page in self.page.publication_type.pages.all():
+                if page.id != self.page.id:
+                    all_ids.append(page.id)
+
+        objects = self._ranked_pages(all_ids, 3)
+        return objects
+
+    @property
+    def by_authors(self):
+        """Get the latest 3 articles by Author
+        """
+        if not hasattr(self.page, 'authors'):
+            return []
+
+        all_ids = []
+        for author in self.page.authors:
+            pages = author.get_content_pages(num=3)
+            all_ids = all_ids + [page.id for page in pages if page.id != self.page.id]
+
+        objects = self._ranked_pages(all_ids, 3)
+        return objects
+
+    def objects(self, mode):
+        if mode == 'focus_area':
+            return self.by_focus_area
+        if mode == 'sector':
+            return self.by_sector
+        if mode == 'publication_type':
+            return self.by_publication_type
+        elif mode == 'author':
+            return self.by_authors
+        else:
+            return []
+
+    def get_context(self, value, parent_context={}):
+        context = super().get_context(value, parent_context=parent_context)
+        mode = value.get('suggest_by', None)
+        try:
+            self.page = parent_context['page']
+        except Exception as e:
+            console.warn("Couldn't find a page for SimilarContentBlock")
+            console.warn(e)
+
+        context['title'] = _('Related articles and publications')
+        context['pages'] = self.objects(mode)
+        context['columns'] = 1
+        return context
 
 
 ####################################################################################################
@@ -518,7 +640,7 @@ class LatestSectionContentBlock(blocks.StructBlock):
         if section_page:
             pages = (
                 section_page.get_descendants()
-                .live().public()
+                .live().public().filter(locale=Locale.get_active())
                 .exact_type(*content_page_models)
                 .specific()
                 .order_by('-first_published_at')[:self.DEFAULT_LIMIT]

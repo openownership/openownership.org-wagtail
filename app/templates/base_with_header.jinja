@@ -50,6 +50,8 @@
 					<div class="aside-layout__main">
 						{% block content %}
 							{{render_stream(page.body)}}
+
+							{{render_stream(page.additional_content, page)}}
 						{% endblock %}
 					</div>
 

@@ -10,6 +10,7 @@ from .generic import (
 
 from .stream import (
     GlossaryItemBlock,
+    SimilarContentBlock,
     EmbedBlock,
     # StepsBlock,
     # StatsBlock,
@@ -86,3 +87,8 @@ team_profile_page_body_blocks: list = article_page_body_blocks
 tag_page_body_blocks: list = article_page_body_blocks
 
 category_page_body_blocks: list = article_page_body_blocks
+
+additional_content_blocks: list = [
+    ('similar_content', SimilarContentBlock()),
+    ('highlight_pages', HighlightPagesBlock()),
+]

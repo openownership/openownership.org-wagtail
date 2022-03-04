@@ -36,6 +36,7 @@ from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from config.template import url_from_path
 from modules.content.blocks import (
+    additional_content_blocks,
     article_page_body_blocks,
     home_page_blocks,
     section_page_blocks,
@@ -208,14 +209,17 @@ class SectionListingPage(SectionPage):
 
 class ArticlePage(ContentPageType):
     """Basic page of content, used for things like About pages.
+
+    Differs from all the other Content Pages in that, as it has no tags
+    or authors, there's no point having the SimilarContentBlock.
     """
     template = 'content/article_page.jinja'
 
     parent_page_types: list = ['content.SectionListingPage']
     subpage_types: list = []
 
-    # For some reason this one kind of article page has an "Examples of our work"
-    # block linking to other pages:
+    body = fields.StreamField(article_page_body_blocks, blank=True)
+
     highlight_pages = fields.StreamField(
         StreamBlock(
             [
@@ -226,7 +230,8 @@ class ArticlePage(ContentPageType):
         blank=True
     )
 
-    content_panels = ContentPageType.content_panels + [
+    content_panels = BasePage.content_panels + [
+        StreamFieldPanel('body'),
         StreamFieldPanel('highlight_pages'),
     ]
 
@@ -306,7 +311,7 @@ class JobPage(TaggedPageMixin, ContentPageType):
 
     location = models.CharField(max_length=255, blank=True)
 
-    content_panels = ContentPageType.content_panels + [
+    content_panels = [
         MultiFieldPanel(
             [
                 FieldPanel('application_deadline'),
@@ -315,7 +320,7 @@ class JobPage(TaggedPageMixin, ContentPageType):
             ],
             heading='Application details'
         )
-    ]
+    ] + ContentPageType.content_panels
 
     # Does not use the countries that TaggedPageMixin has:
     about_panels = [
@@ -408,6 +413,8 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         verbose_name=_("Benefit / Impact")
     )
 
+    additional_content = fields.StreamField(additional_content_blocks, blank=True)
+
     # Also has:
     # author_relationships from PublicationAuthorRelationship
     # authors from AuthorsPageMixin
@@ -434,7 +441,8 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
                 FieldPanel('impact'),
             ],
             heading=_('Content')
-        )
+        ),
+        StreamFieldPanel('additional_content'),
     ]
 
     search_fields = BasePage.search_fields + [
@@ -1116,6 +1124,8 @@ class PressLinksPage(IndexPageType):
         from modules.content.models import PressLink
 
         return PressLink.objects.filter(section_page=self.section_page)
+
+
 class MapPage(BasePage):
     """The page that displays the international impact map.
 

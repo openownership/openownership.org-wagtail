@@ -1,4 +1,4 @@
-{% macro render_stream(stream) %}
+{% macro render_stream(stream, page=None) %}
 {% for stream_block in stream %}
 {% with block_id = stream_block.id %}
     {% include_block stream_block %}
