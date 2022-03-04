@@ -45,7 +45,7 @@ handler404 = error_404_view
 handler500 = error_500_view
 
 urlpatterns = urlpatterns + i18n_patterns(
-    path('impact/country/<str:slug>/', CountryView.as_view(), name="country-tag"),
+    path('map/country/<str:slug>/', CountryView.as_view(), name="country-tag"),
     path("search/", SearchView.as_view(), name="search"),
     url(r'', include(wagtail_urls)),
 )
