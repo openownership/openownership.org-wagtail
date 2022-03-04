@@ -41,9 +41,10 @@
 
     {% with next_page=page.get_next_page() %}
         {% if next_page %}
-            <p>
-                <a href="{{ next_page.url }}">{% trans %}Next page{% endtrans %}: {{ next_page.title }}</a>
-            </p>
+            <a class="next-page" href="{{ next_page.url }}">
+                {% trans %}Next page{% endtrans %}: {{ next_page.title }}
+                {% include "svg/right-arrow.jinja" %}
+            </a>
         {% endif %}
     {% endwith %}
     
