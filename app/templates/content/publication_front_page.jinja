@@ -27,8 +27,10 @@
         {% endif %}
 
         {% if page.outcomes %}
-            <h2>{% trans %}Key Learning Outcomes{% endtrans %}</h2>
-            {{ page.outcomes|richtext }}
+            <div class="key-learning-outcomes">
+                <h2>{% trans %}Key Learning Outcomes{% endtrans %}</h2>
+                {{ page.outcomes|richtext }}
+            </div>
         {% endif %}
 
         {% if page.impact %}

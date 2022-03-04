@@ -1,0 +1,9 @@
+.key-learning-outcomes {
+    @apply bg-white;
+    @apply border border-blue-dark;
+    @apply p-8 my-8;
+
+    h2 {
+        @apply mt-0;
+    }
+}
