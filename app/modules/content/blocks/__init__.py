@@ -25,6 +25,9 @@ from .stream import (
     AreasOfFocusBlock,
     SectorsBlock,
     PublicationTypesBlock,
+    LatestFocusAreaBlock,
+    LatestPublicationTypeBlock,
+    LatestSectorBlock,
     PressLinksBlock,
     # CardGroupBlock,
     # TextColumnsBlock,
@@ -56,6 +59,9 @@ landing_page_blocks: list = [
 home_page_blocks: list = [
     ('highlight_pages', HighlightPagesBlock()),
     ('latest_section_content', LatestSectionContentBlock()),
+    ('latest_by_focus_area', LatestFocusAreaBlock()),
+    ('latest_by_publication_type', LatestPublicationTypeBlock()),
+    ('latest_by_sector', LatestSectorBlock()),
 ]
 
 section_page_blocks: list = [

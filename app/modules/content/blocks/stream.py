@@ -15,6 +15,7 @@ from wagtail.embeds import embeds
 from wagtail.embeds.blocks import EmbedBlock as WagtailEmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
+from wagtailmodelchooser.blocks import ModelChooserBlock
 
 # Module
 from .generic import ArticleImageBlock, CTABlock
@@ -42,10 +43,10 @@ class GlossaryItemBlock(blocks.StructBlock):
     )
 
 
-
 ####################################################################################################
 # Embeds
 ####################################################################################################
+
 
 class EmbedBlockMixin(WagtailEmbedBlock):
 
@@ -366,10 +367,10 @@ class BannerBlock(EyebrowTitleMixin):
     cta = CTABlock(required=False)
 
 
-
 ####################################################################################################
 # News blocks
 ####################################################################################################
+
 
 def get_news_category_choices():
     from modules.content.models import NewsCategory
@@ -527,6 +528,193 @@ class LatestSectionContentBlock(blocks.StructBlock):
             context.update({
                 'pages': pages,
                 'title': _('Latest {}').format(section_page.title),
+                'card_format': value.get('card_format'),
+            })
+
+        return context
+
+
+####################################################################################################
+# Latest by focus area tag
+####################################################################################################
+
+
+class LatestFocusAreaBlock(blocks.StructBlock):
+    """
+    The most recently published pages tagged on `focus_area`
+    """
+
+    class Meta:
+        label = _('Latest by Focus Area')
+        group = _('Card group')
+        icon = 'tag'
+        template = "_partials/card_group.jinja"
+
+    DEFAULT_LIMIT = 3
+
+    FORMAT_LANDSCAPE = 'landscape'
+    FORMAT_PORTRAIT = 'portrait'
+
+    FORMAT_CHOICES = (
+        (FORMAT_LANDSCAPE, _('Landscape')),
+        (FORMAT_PORTRAIT, _('Portrait')),
+    )
+
+    title = blocks.CharBlock(
+        required=False,
+        help_text=_('If blank, will use "Latest"')
+    )
+
+    focus_area = ModelChooserBlock(
+        'taxonomy.FocusAreaTag',
+        required=True,
+    )
+
+    card_format = blocks.ChoiceBlock(
+        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
+    )
+
+    def get_context(self, value, parent_context={}):
+        from wagtail.core.models import Page
+        context = super().get_context(value, parent_context=parent_context)
+
+        focus_area = value.get('focus_area', None)
+        title = value.get('title', None)
+
+        if focus_area:
+            page_ids = focus_area.focusarea_related_pages.values_list(
+                'content_object_id', flat=True)
+
+            pages = Page.objects.filter(
+                id__in=page_ids).live().public().specific().order_by(
+                '-first_published_at')[:self.DEFAULT_LIMIT]
+
+            context.update({
+                'pages': pages,
+                'title': title or "Latest",
+                'card_format': value.get('card_format'),
+            })
+
+        return context
+
+
+####################################################################################################
+# Latest by sector tag
+####################################################################################################
+
+
+class LatestSectorBlock(blocks.StructBlock):
+    """
+    The most recently published pages tagged on `sector`
+    """
+
+    class Meta:
+        label = _('Latest by Sector')
+        group = _('Card group')
+        icon = 'tag'
+        template = "_partials/card_group.jinja"
+
+    DEFAULT_LIMIT = 3
+
+    FORMAT_LANDSCAPE = 'landscape'
+    FORMAT_PORTRAIT = 'portrait'
+
+    FORMAT_CHOICES = (
+        (FORMAT_LANDSCAPE, _('Landscape')),
+        (FORMAT_PORTRAIT, _('Portrait')),
+    )
+
+    title = blocks.CharBlock(
+        required=False,
+        help_text=_('If blank, will use "Latest"')
+    )
+
+    sector = ModelChooserBlock(
+        'taxonomy.SectorTag',
+        required=True,
+    )
+
+    card_format = blocks.ChoiceBlock(
+        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
+    )
+
+    def get_context(self, value, parent_context={}):
+        from wagtail.core.models import Page
+        context = super().get_context(value, parent_context=parent_context)
+
+        sector = value.get('sector', None)
+        title = value.get('title', None)
+
+        if sector:
+            page_ids = sector.sector_related_pages.values_list(
+                'content_object_id', flat=True)
+
+            pages = Page.objects.filter(
+                id__in=page_ids).live().public().specific().order_by(
+                '-first_published_at')[:self.DEFAULT_LIMIT]
+
+            context.update({
+                'pages': pages,
+                'title': title or "Latest",
+                'card_format': value.get('card_format'),
+            })
+
+        return context
+
+
+####################################################################################################
+# Latest by publication type
+####################################################################################################
+
+
+class LatestPublicationTypeBlock(blocks.StructBlock):
+    """
+    The most recently published pages of `publication_type`
+    """
+
+    class Meta:
+        label = _('Latest by Publication Type')
+        group = _('Card group')
+        icon = 'tag'
+        template = "_partials/card_group.jinja"
+
+    DEFAULT_LIMIT = 3
+
+    FORMAT_LANDSCAPE = 'landscape'
+    FORMAT_PORTRAIT = 'portrait'
+
+    FORMAT_CHOICES = (
+        (FORMAT_LANDSCAPE, _('Landscape')),
+        (FORMAT_PORTRAIT, _('Portrait')),
+    )
+
+    title = blocks.CharBlock(
+        required=False,
+        help_text=_('If blank, will use "Latest"')
+    )
+
+    publication_type = ModelChooserBlock(
+        'taxonomy.PublicationType',
+        required=True,
+    )
+
+    card_format = blocks.ChoiceBlock(
+        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
+    )
+
+    def get_context(self, value, parent_context={}):
+        context = super().get_context(value, parent_context=parent_context)
+
+        publication_type = value.get('publication_type', None)
+        title = value.get('title', None)
+
+        if publication_type:
+            pages = publication_type.pages.live().public().specific().order_by(
+                '-first_published_at')[:self.DEFAULT_LIMIT]
+
+            context.update({
+                'pages': pages,
+                'title': title or "Latest",
                 'card_format': value.get('card_format'),
             })
 

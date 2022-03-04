@@ -101,6 +101,7 @@ WAGTAIL_APPS = [
     # 'wagtail.contrib.styleguide',
     'wagtailfontawesome',
     'wagtailfontawesomesvg',
+    'wagtailmodelchooser',
 ]
 
 SITE_APPS = [
