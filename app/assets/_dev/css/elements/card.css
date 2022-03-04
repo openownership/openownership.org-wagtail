@@ -22,7 +22,11 @@
 
 .card-group__title {
     @apply font-display text-blue-medium font-bold text-21 mb-4;
+    @apply flex items-center; 
 
+    svg {
+        @apply ml-2;
+    }
 
 }
 
@@ -63,6 +67,11 @@
     @apply text-14 text-text-secondary;
 }
 
+.card-group__thumbnail {
+    img {
+        @apply w-full;
+    }
+}
 
 /*------------------------------------*\
   # LANSCAPE CARDS WITH THUMBNAIL

@@ -43,7 +43,7 @@
                 <h2 class="card-group__title">
                     {{page.title}}
                     {% if page.is_press_link %}
-                        [EXTERNAL LINK ICON]
+                        {% include "svg/external-link.jinja" %}
                     {% endif %}
                 </h2>
                 {% if page.blurb %}

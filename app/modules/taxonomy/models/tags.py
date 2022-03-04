@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from taggit.models import ItemBase
 from wagtail.core.models import Locale
+from wagtailmodelchooser import register_model_chooser
 
 from .core import BaseTag
 
@@ -12,6 +13,8 @@ from .core import BaseTag
 ####################################################################
 # AREAS OF FOCUS
 
+
+@register_model_chooser
 class FocusAreaTag(BaseTag):
 
     free_tagging = False
@@ -63,6 +66,7 @@ class FocusAreaTaggedPage(ItemBase):
 # SECTORS
 
 
+@register_model_chooser
 class SectorTag(BaseTag):
 
     free_tagging = False

@@ -2,10 +2,11 @@ from .core import Category
 
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-
+from wagtailmodelchooser import register_model_chooser
 from wagtail.core.models import Locale
 
 
+@register_model_chooser
 class PublicationType(Category):
     """
     e.g. Case Study, Guidance, Job.

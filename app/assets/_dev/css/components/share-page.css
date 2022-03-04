@@ -188,6 +188,10 @@ background-color: #FF6600
     &:hover {
       @apply no-underline;
     }
+
+    svg {
+      width: 30px;
+    }
 }
 
 .share-page__links {

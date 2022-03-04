@@ -28,6 +28,9 @@ TIME_IN_A_YEAR = datetime.now() + timedelta(days=365 * 1)
 guru.add("/var/log/openownership.org/output.log", rotation="100 MB", backtrace=True)
 
 
+WHITENOISE_MANIFEST_STRICT = False
+
+
 ####################################################################################################
 # I18N
 ####################################################################################################
@@ -101,6 +104,7 @@ WAGTAIL_APPS = [
     # 'wagtail.contrib.styleguide',
     'wagtailfontawesome',
     'wagtailfontawesomesvg',
+    'wagtailmodelchooser',
 ]
 
 SITE_APPS = [

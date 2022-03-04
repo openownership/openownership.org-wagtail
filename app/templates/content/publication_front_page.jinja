@@ -4,36 +4,51 @@
 
 {% block content %}
 
-    {% if page.cover_image %}
-        {{ picture(page.cover_image, 200, 300, alt="Cover") }}
-    {% endif %}
+<article>
 
-    {% include "_partials/taxonomies.jinja" %}
+    <div class="publication-front-page__overview">
+        {% if page.cover_image %}
+        <div class="publication-front-page__cover">
+            {{ picture(page.cover_image, 200, 300, alt="Cover") }}
+        </div>
+        {% endif %}
 
-    <hr>
+        <div class="publication-front-page__details">
 
-    {% if page.summary %}
-        <h2>{% trans %}Summary{% endtrans %}</h2>
-        {{ page.summary|richtext }}
-    {% endif %}
+        {% include "_partials/taxonomies.jinja" %}
 
-    {% if page.outcomes %}
-        <h2>{% trans %}Key Learning Outcomes{% endtrans %}</h2>
-        {{ page.outcomes|richtext }}
-    {% endif %}
+        </div>
+    </div>
 
-    {% if page.impact %}
-        <h2>{% trans %}Benefit / Impact{% endtrans %}</h2>
-        {{ page.impact|richtext }}
-    {% endif %}
+    <div class="publication-front-page__content">
+        {% if page.summary %}
+            <h2>{% trans %}Summary{% endtrans %}</h2>
+            {{ page.summary|richtext }}
+        {% endif %}
+
+        {% if page.outcomes %}
+            <div class="key-learning-outcomes">
+                <h2>{% trans %}Key Learning Outcomes{% endtrans %}</h2>
+                {{ page.outcomes|richtext }}
+            </div>
+        {% endif %}
+
+        {% if page.impact %}
+            <h2>{% trans %}Benefit / Impact{% endtrans %}</h2>
+            {{ page.impact|richtext }}
+        {% endif %}
+    </div>
 
     {% with next_page=page.get_next_page() %}
         {% if next_page %}
-            <p>
-                <a href="{{ next_page.url }}">{% trans %}Next page{% endtrans %}: {{ next_page.title }}</a>
-            </p>
+            <a class="next-page" href="{{ next_page.url }}">
+                {% trans %}Next page{% endtrans %}: {{ next_page.title }}
+                {% include "svg/right-arrow.jinja" %}
+            </a>
         {% endif %}
     {% endwith %}
 
     {{render_stream(page.additional_content, page)}}
+
+</article>
 {% endblock %}

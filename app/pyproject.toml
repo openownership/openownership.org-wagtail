@@ -35,6 +35,7 @@ wagtail-localize = "^1.0.1"
 notion-client = "^0.9.0"
 django-cron = "^0.5.1"
 jedi = "0.17.2"
+wagtail-modelchooser = "^2.13.1"
 
 
 [tool.poetry.dev-dependencies]
