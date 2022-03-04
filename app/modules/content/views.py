@@ -168,6 +168,8 @@ class SearchView(TemplateView):
 
     def _find_countries(self, terms: str) -> Optional[DummyCountryPage]:
         rv = []
+        if not len(terms):
+            return []
         try:
             countries = CountryTag.objects.filter(name__icontains=terms).all()
             if not countries:

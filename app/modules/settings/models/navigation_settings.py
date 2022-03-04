@@ -11,10 +11,7 @@ from wagtailcache.cache import clear_cache
 
 
 @register_setting(icon="fa-bars")
-class NavigationSettings(
-    NavBar,
-    Footer
-):
+class NavigationSettings(NavBar, Footer):
 
     class Meta:
         verbose_name = _('Navigation settings')

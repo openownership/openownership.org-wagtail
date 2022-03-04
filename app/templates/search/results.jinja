@@ -23,17 +23,31 @@
     </form>
 
     {% if results %}
-
       <section>
         <div class="content-filter">
 
           {% set objects = results %}
-          {% set page_obj = page %}
+          {% set page_obj = results %}
 
       {# {% include '_partials/filter_list.jinja' %} #}
           {% include '_partials/list_view.jinja' %}
 
+          {% if results.paginator.num_pages > 1 %}
           {% include '_partials/pagination.jinja' %}
+          {% endif %}
+
+            {# {% if results.paginator.num_pages > 1 %}
+                <nav class="pagination">
+                    {% if results.has_previous() %}
+                        <a href="?q={{terms}}&amp;page={{ results.previous_page_number() }}" class="btn">Previous</a>
+                        {% else %}
+                        <div></div>
+                    {% endif %}
+                    {% if results.has_next() %}
+                        <a href="?q={{terms}}&amp;page={{ results.next_page_number() }}" class="btn">Next</a>
+                    {% endif %}
+                </nav>
+            {% endif %} #}
 
         </div>
       </section>
