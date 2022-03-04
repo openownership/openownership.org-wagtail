@@ -488,13 +488,13 @@ class LatestSectionContentBlock(blocks.StructBlock):
 
     DEFAULT_LIMIT = 3
 
-    FORMAT_LANDSCAPE = 'landscape'
-    FORMAT_PORTRAIT = 'portrait'
+    # FORMAT_LANDSCAPE = 'landscape'
+    # FORMAT_PORTRAIT = 'portrait'
 
-    FORMAT_CHOICES = (
-        (FORMAT_LANDSCAPE, _('Landscape')),
-        (FORMAT_PORTRAIT, _('Portrait')),
-    )
+    # FORMAT_CHOICES = (
+    #     (FORMAT_LANDSCAPE, _('Landscape')),
+    #     (FORMAT_PORTRAIT, _('Portrait')),
+    # )
 
     section_page = blocks.PageChooserBlock(
         required=True,
@@ -505,9 +505,9 @@ class LatestSectionContentBlock(blocks.StructBlock):
         )
     )
 
-    card_format = blocks.ChoiceBlock(
-        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
-    )
+    # card_format = blocks.ChoiceBlock(
+    #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
+    # )
 
     def get_context(self, value, parent_context={}):
         from modules.content.models import content_page_models
@@ -528,7 +528,7 @@ class LatestSectionContentBlock(blocks.StructBlock):
             context.update({
                 'pages': pages,
                 'title': _('Latest {}').format(section_page.title),
-                'card_format': value.get('card_format'),
+                'card_format': 'portrait',
             })
 
         return context
@@ -552,13 +552,13 @@ class LatestFocusAreaBlock(blocks.StructBlock):
 
     DEFAULT_LIMIT = 3
 
-    FORMAT_LANDSCAPE = 'landscape'
-    FORMAT_PORTRAIT = 'portrait'
+    # FORMAT_LANDSCAPE = 'landscape'
+    # FORMAT_PORTRAIT = 'portrait'
 
-    FORMAT_CHOICES = (
-        (FORMAT_LANDSCAPE, _('Landscape')),
-        (FORMAT_PORTRAIT, _('Portrait')),
-    )
+    # FORMAT_CHOICES = (
+    #     (FORMAT_LANDSCAPE, _('Landscape')),
+    #     (FORMAT_PORTRAIT, _('Portrait')),
+    # )
 
     title = blocks.CharBlock(
         required=False,
@@ -570,9 +570,9 @@ class LatestFocusAreaBlock(blocks.StructBlock):
         required=True,
     )
 
-    card_format = blocks.ChoiceBlock(
-        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
-    )
+    # card_format = blocks.ChoiceBlock(
+    #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
+    # )
 
     def get_context(self, value, parent_context={}):
         from wagtail.core.models import Page
@@ -592,7 +592,7 @@ class LatestFocusAreaBlock(blocks.StructBlock):
             context.update({
                 'pages': pages,
                 'title': title or "Latest",
-                'card_format': value.get('card_format'),
+                'card_format': 'portrait',
             })
 
         return context
@@ -616,13 +616,13 @@ class LatestSectorBlock(blocks.StructBlock):
 
     DEFAULT_LIMIT = 3
 
-    FORMAT_LANDSCAPE = 'landscape'
-    FORMAT_PORTRAIT = 'portrait'
+    # FORMAT_LANDSCAPE = 'landscape'
+    # FORMAT_PORTRAIT = 'portrait'
 
-    FORMAT_CHOICES = (
-        (FORMAT_LANDSCAPE, _('Landscape')),
-        (FORMAT_PORTRAIT, _('Portrait')),
-    )
+    # FORMAT_CHOICES = (
+    #     (FORMAT_LANDSCAPE, _('Landscape')),
+    #     (FORMAT_PORTRAIT, _('Portrait')),
+    # )
 
     title = blocks.CharBlock(
         required=False,
@@ -634,9 +634,9 @@ class LatestSectorBlock(blocks.StructBlock):
         required=True,
     )
 
-    card_format = blocks.ChoiceBlock(
-        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
-    )
+    # card_format = blocks.ChoiceBlock(
+    #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
+    # )
 
     def get_context(self, value, parent_context={}):
         from wagtail.core.models import Page
@@ -656,7 +656,7 @@ class LatestSectorBlock(blocks.StructBlock):
             context.update({
                 'pages': pages,
                 'title': title or "Latest",
-                'card_format': value.get('card_format'),
+                'card_format': 'portrait',
             })
 
         return context
@@ -680,13 +680,13 @@ class LatestPublicationTypeBlock(blocks.StructBlock):
 
     DEFAULT_LIMIT = 3
 
-    FORMAT_LANDSCAPE = 'landscape'
-    FORMAT_PORTRAIT = 'portrait'
+    # FORMAT_LANDSCAPE = 'landscape'
+    # FORMAT_PORTRAIT = 'portrait'
 
-    FORMAT_CHOICES = (
-        (FORMAT_LANDSCAPE, _('Landscape')),
-        (FORMAT_PORTRAIT, _('Portrait')),
-    )
+    # FORMAT_CHOICES = (
+    #     (FORMAT_LANDSCAPE, _('Landscape')),
+    #     (FORMAT_PORTRAIT, _('Portrait')),
+    # )
 
     title = blocks.CharBlock(
         required=False,
@@ -698,9 +698,9 @@ class LatestPublicationTypeBlock(blocks.StructBlock):
         required=True,
     )
 
-    card_format = blocks.ChoiceBlock(
-        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
-    )
+    # card_format = blocks.ChoiceBlock(
+    #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
+    # )
 
     def get_context(self, value, parent_context={}):
         context = super().get_context(value, parent_context=parent_context)
@@ -715,7 +715,7 @@ class LatestPublicationTypeBlock(blocks.StructBlock):
             context.update({
                 'pages': pages,
                 'title': title or "Latest",
-                'card_format': value.get('card_format'),
+                'card_format': 'portrait',
             })
 
         return context
