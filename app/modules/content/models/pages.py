@@ -763,7 +763,7 @@ class GlossaryPage(BasePage):
     """
     template = 'content/glossary_page.jinja'
 
-    parent_page_types: list = ['content.SectionPage']
+    parent_page_types: list = ['content.SectionPage', ]
     subpage_types: list = []
     max_count = 1
 
