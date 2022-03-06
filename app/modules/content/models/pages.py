@@ -74,6 +74,7 @@ class HomePage(PageHeroMixin, LandingPageType):
         "content.UtilityPage",
         "content.NewsIndexPage",
         "content.MapPage",
+        "content.TaxonomyPage",
     ]
     max_count = 1
 
@@ -938,7 +939,7 @@ class TaxonomyPage(BasePage):
     """
 
     template = 'content/taxonomy_detail.jinja'
-    parent_page_types = ['content.SectionPage', 'content.SectionListingPage']
+    parent_page_types = ['content.HomePage', ]
     subpage_types: list = ['content.TagPage']
 
     intro = fields.RichTextField(

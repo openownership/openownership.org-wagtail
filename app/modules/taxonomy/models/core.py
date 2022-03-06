@@ -45,7 +45,7 @@ class Category(models.Model):
         MultiFieldPanel([
             FieldPanel('name'),
             FieldPanel('blurb'),
-            StreamFieldPanel('body')
+            # StreamFieldPanel('body')
         ], heading=_("Public fields")),
     ]
 
@@ -131,7 +131,7 @@ class BaseTag(TagBase):
         MultiFieldPanel([
             FieldPanel('name'),
             FieldPanel('blurb'),
-            StreamFieldPanel('body')
+            # StreamFieldPanel('body')
         ], heading=_("Public fields")),
     ]
 
