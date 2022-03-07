@@ -4,7 +4,14 @@
         @apply pl-4;
     }
 }
+
+.page-menu {
+    list-style: none;
+}
+
 .page-menu__page {
+    @apply p-0;
+    
     &.current {
         @apply bg-white;
     }
