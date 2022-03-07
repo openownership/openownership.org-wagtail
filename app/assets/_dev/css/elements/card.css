@@ -38,9 +38,11 @@
 .card-group__meta {
     @apply flex;
     align-self: start;
+    flex-wrap: wrap;
     @apply my-2;
     a {
         @apply text-white;
+        @apply mb-2;
 
         span {
             @apply bg-text-secondary text-14 font-bold ;
