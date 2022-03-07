@@ -75,6 +75,7 @@ class HomePage(PageHeroMixin, LandingPageType):
         "content.NewsIndexPage",
         "content.MapPage",
         "content.TaxonomyPage",
+        "content.PublicationsIndexPage",
     ]
     max_count = 1
 
@@ -119,7 +120,6 @@ class SectionPage(PageHeroMixin, LandingPageType):
         'content.LatestSectionContentPage',
         'content.NewsIndexPage',
         'content.PressLinksPage',
-        'content.PublicationFrontPage',
         'content.TaxonomyPage',
     ]
 
@@ -158,13 +158,12 @@ class SectionListingPage(SectionPage):
         verbose_name = _('Section listing (About)')
 
     template: str = 'content/section_listing_page.jinja'
-    parent_page_types: list = ["content.HomePage"]
+    parent_page_types: list = ["content.HomePage", ]
     subpage_types: list = [
         "content.ArticlePage",
         "content.JobsIndexPage",
         'content.LatestSectionContentPage',
         'content.PressLinksPage',
-        "content.PublicationFrontPage",
         'content.TaxonomyPage',
         "content.TeamPage",
     ]
@@ -369,7 +368,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
     base_form_class = PublicationFrontPageForm
 
     template = 'content/publication_front_page.jinja'
-    parent_page_types: list = ['content.SectionPage', 'content.SectionListingPage']
+    parent_page_types: list = ['content.PublicationsIndexPage', ]
     subpage_types: list = ['content.PublicationInnerPage']
 
     search_fields = ContentPageType.search_fields + TaggedAuthorsPageMixin.search_fields
@@ -731,6 +730,16 @@ class NewsIndexPage(IndexPageType):
     subpage_types: list = ['content.NewsArticlePage']
     max_count = 1
 
+
+class PublicationsIndexPage(IndexPageType):
+    """The one page listing all NewsArticlePages"""
+
+    objects_model = PublicationFrontPage
+
+    template = 'content/blog_news_index_page.jinja'
+    parent_page_types: list = ['content.HomePage', ]
+    subpage_types: list = ['content.PublicationFrontPage']
+    max_count = 1
 
 
 class BlogIndexPage(IndexPageType):
