@@ -2,7 +2,9 @@
 
 {% block content %}
 
-    {{ page.intro|richtext }}
+    <div class="intro">
+        {{ page.intro|richtext }}
+    </div>
 
     {% if page_obj %}
         {% with pages=page_obj, columns=2 %}
