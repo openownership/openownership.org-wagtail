@@ -5,4 +5,7 @@
         {{ page.intro|richtext }}
     </div>
     {{render_stream(page.body)}}
+
+    {{render_stream(page.additional_content, page)}}
+
 {% endblock content %}
