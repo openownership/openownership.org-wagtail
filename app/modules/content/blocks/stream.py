@@ -161,6 +161,7 @@ class SimilarContentBlock(blocks.StructBlock):
 
         context['title'] = _('Related articles and publications')
         context['pages'] = self.objects(mode)
+        context['card_format'] = 'landscape'
         context['columns'] = 1
         return context
 
