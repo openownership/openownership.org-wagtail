@@ -60,18 +60,19 @@ For mega menu containing nav items:
                         {% if obj.type == 'nav_item' %}
                             {# "Home" #}
                             {% set href, label = obj.value %}
-                            <li class="navigation__level-one__item"{% if obj.value.page == page.section_page %} aria-current="page"{% endif %}>
-                                <a href="{{href}}">{{label}}</a>
+                            <li class="navigation__level-one__item --no-submenu">
+                                <a href="{{href}}"{% if obj.value.page == page.section_page %} aria-current="page"{% endif %}>{{label}}</a>
                             </li>
                         {% elif obj.type == 'mega_menu' %}
                             {# "About" #}
 
                             {% set href, label = obj.link %}
-                            <li class="navigation__level-one__item"{% if obj.page == page.section_page %} aria-current="page"{% endif %}>
-                                <a href="{{href}}">{{label}}</a>
+                            <li class="navigation__level-one__item --has-submenu">
+                                <a href="{{href}}"{% if obj.page == page.section_page %} aria-current="page"{% endif %}>{{label}}</a>
 
                                 <button aria-expanded="false" class="navigation__subnav-button --level-one">
-                                    {% include 'svg/expand.jinja' %}
+                                    {% include 'svg/mobile-expand-icon.jinja' %}
+                                    {% include 'svg/mobile-collapse-icon.jinja' %}
                                     <span class="sr-only">{% trans %}Expand{% endtrans %} {{label}} {% trans %}menu{% endtrans %}.</span>
                                 </button>
                         
@@ -79,22 +80,23 @@ For mega menu containing nav items:
                                     {% for item in obj.objects %}
                                         {# "Open Ownership Team" #}
                                         {% set href, label = item.link %}
-                                        <li class="navigation__level-two__item"{% if item.page and item.page.pk == page.pk %} aria-current="page"{% endif %}>
-                                            <a href="{{href}}">{{label}}</a>
+                                        <li class="navigation__level-two__item">
+                                            <a href="{{href}}"{% if item.page and item.page.pk == page.pk %} aria-current="page"{% endif %}>{{label}}</a>
                                         
                                             {% if item.type == 'sub_menu' %}
                                                 {# level-four: Team members #}
 
                                                 <button aria-expanded="false" class="navigation__subnav-button --level-two">
-                                                    {% include 'svg/expand.jinja' %}
+                                                    {% include 'svg/mobile-expand-icon.jinja' %}
+                                                    {% include 'svg/mobile-collapse-icon.jinja' %}
                                                     <span class="sr-only">{% trans %}Expand{% endtrans %} {{label}} {% trans %}menu{% endtrans %}.</span>
                                                 </button>
 
-                                                <ul class="navigation__level-three subnav--hidden">
+                                                <ul class="navigation__level-three --has-submenu subnav--hidden">
                                                     {% for sub_item in item.objects %}
                                                         {% set href, label = sub_item.link %}
-                                                        <li class="navigation__level-three__item"{% if sub_item.page and sub_item.page.pk == page.pk %} aria-current="page"{% endif %}>
-                                                            <a href="{{href}}">{{label}}</a>
+                                                        <li class="navigation__level-three__item">
+                                                            <a href="{{href}}"{% if sub_item.page and sub_item.page.pk == page.pk %} aria-current="page"{% endif %}>{{label}}</a>
                                                         </li>
                                                     {% endfor %}
                                                 </ul>
