@@ -49,6 +49,12 @@
 				<div class="aside-layout-right">
 					<div class="aside-layout__main">
 						{% block content %}
+							{% if page.intro %}
+								<div class="intro">
+									{{ page.intro|richtext }}
+								</div>
+							{% endif %}
+
 							{{render_stream(page.body)}}
 
 							{{render_stream(page.additional_content, page)}}

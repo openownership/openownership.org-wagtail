@@ -1,11 +1,1 @@
-{% extends 'base_with_menu.jinja' %}
-
-{% block content %}
-    <div class="intro">
-        {{ page.intro|richtext }}
-    </div>
-    {{render_stream(page.body)}}
-
-    {{render_stream(page.additional_content, page)}}
-
-{% endblock content %}
+{% extends 'base_with_header.jinja' %}
