@@ -244,9 +244,9 @@ const worldMap = (function () {
 
 // Ensure we have everything required before initialising:
 if (
-  d3 &&
-  geojsonPath &&
-  mapData &&
+  typeof d3 !== 'undefined' &&
+  typeof geojsonPath !== 'undefined' &&
+  typeof mapData !== 'undefined' &&
   document.querySelectorAll(mapSelector).length
 ) {
   worldMap.init({
