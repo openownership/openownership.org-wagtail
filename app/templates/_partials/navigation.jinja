@@ -61,7 +61,7 @@ For mega menu containing nav items:
                             {# "Home" #}
                             {% set href, label = obj.value %}
                             <li class="navigation__level-one__item --no-submenu">
-                                <a href="{{href}}"{% if obj.value.page == page.section_page %} aria-current="page"{% endif %}>{{label}}</a>
+                                <a href="{{href}}"{% if obj.page == page.section_page or href == request.path[3:] %} aria-current="page"{% endif %}>{{label}}</a>
                             </li>
                         {% elif obj.type == 'mega_menu' %}
                             {# "About" #}
