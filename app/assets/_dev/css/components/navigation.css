@@ -173,6 +173,10 @@
     &:first-of-type {
         @apply border-t border-grey-medium;
     }
+
+    &.--no-submenu {
+        padding: .6rem 0;
+    }
 }
 
 .navigation__level-three {
@@ -182,6 +186,7 @@
 
 .navigation__level-three__item {
     padding: .6rem;
+    @apply text-14;
 }
 
 .subnav--hidden {

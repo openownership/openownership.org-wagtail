@@ -80,7 +80,7 @@ For mega menu containing nav items:
                                     {% for item in obj.objects %}
                                         {# "Open Ownership Team" #}
                                         {% set href, label = item.link %}
-                                        <li class="navigation__level-two__item">
+                                        <li class="navigation__level-two__item {% if item.type != 'sub_menu' %}--no-submenu{% endif %}">
                                             <a href="{{href}}"{% if item.page and item.page.pk == page.pk %} aria-current="page"{% endif %}>{{label}}</a>
                                         
                                             {% if item.type == 'sub_menu' %}
