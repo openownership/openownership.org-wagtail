@@ -111,49 +111,46 @@ const worldMap = (function () {
 
   /**
    * Listen for clicks on the buttons that hilite certain countries.
+   *
+   * Each one should have the "js-map-filter" class.
+   * And an attribute like:
+   *  data-map-hilites="committed-central|committed-public"
    */
   var initListeners = function () {
-    var committedBtn = document.querySelector('.js-map-committed');
-    committedBtn.addEventListener('click', function(event) {
-      hiliteCountries(['committed-central', 'committed-public']);
-      event.preventDefault();
-    });
 
-    var committedCentralBtn = document.querySelector('.js-map-committed-central');
-    committedCentralBtn.addEventListener('click', function(event) {
-      hiliteCountries(['committed-central']);
-      event.preventDefault();
-    });
+    document.addEventListener('click', function (event) {
+      // Is it a click on one of the buttons:
+      if (event.target.matches('.js-map-filter')) {
+        // Get what to filter:
+        var filters = event.target.getAttribute("data-map-hilites");
+        hiliteCountries(filters.split("|"));
 
-    var committedPublicBtn = document.querySelector('.js-map-committed-public');
-    committedPublicBtn.addEventListener('click', function(event) {
-      hiliteCountries(['committed-public']);
-      event.preventDefault();
-    });
+        setActiveButton(event.target);
 
-    var implementationBtn = document.querySelector('.js-map-implementation');
-    implementationBtn.addEventListener('click', function(event) {
-      hiliteCountries(['implementation-central', 'implementation-public']);
-      event.preventDefault();
-    });
-
-    var implementationCentralBtn = document.querySelector('.js-map-implementation-central');
-    implementationCentralBtn.addEventListener('click', function(event) {
-      hiliteCountries(['implementation-central']);
-      event.preventDefault();
-    });
-
-    var implementationPublicBtn = document.querySelector('.js-map-implementation-public');
-    implementationPublicBtn.addEventListener('click', function(event) {
-      hiliteCountries(['implementation-public']);
-      event.preventDefault();
+        event.preventDefault();
+      }
     });
 
     // Just clicking on the background removes any existing hiliting.
     svg.on("click", function(event, d) {
       hiliteCountries([]);
+      setActiveButton();
     });
   };
+
+  /**
+   * Set which button is now active.
+   * @param {object} btnEl The element to be active. Or null if none of them should be.
+   */
+  var setActiveButton = function (btnEl) {
+    document.querySelectorAll(".js-map-filter").forEach(function(el) {
+      el.classList.remove("--active");
+    });
+
+    if (btnEl) {
+      btnEl.classList.add("--active");
+    }
+  }
 
   /**
    * Draw the map using supplied data.
