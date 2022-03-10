@@ -1,0 +1,20 @@
+.search-page__header {
+    @apply border-b border-black/50;
+    @apply mb-10 pb-10;
+}
+
+.search-form {
+    @apply w-2/4;
+    @apply flex;
+    @apply mt-5;
+
+    .btn {
+        @apply text-19 font-bold;
+        height: 46px;
+    }
+}
+
+input[type=text].search-form__text-input {
+    flex: 1 1 0%;
+    @apply border-2;
+}
