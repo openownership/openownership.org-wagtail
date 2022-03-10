@@ -49,10 +49,7 @@
 }
 
 .navigation__level-one__item {
-    @apply mx-2;
-    @apply p-2;
     @apply text-14;
-
     /* */
     display: flex;
     align-items: start;
@@ -62,79 +59,151 @@
     align-items: center;
     position: relative;
 
+    &.expanded {
+        @apply bg-blue-light;
+    }
+
+    &.--no-submenu {
+        @include max-width(lg) {
+            padding: .6rem;
+            @apply px-8;
+        }
+        
+    }
+
+    &.--has-submenu {
+        @include max-width(lg) {
+            a {
+                @apply ml-8;
+            }
+        }
+        
+    }
+
     @include max-width(lg) {
         flex-wrap: wrap;
         justify-content: space-between;
-        @apply py-2 text-16;
+        @apply font-bold text-16;
+        @apply border-b-2 border-grey-medium;
+        @apply text-blue-medium;
+        &:first-of-type {
+            @apply border-t-2 border-grey-medium;
+        }
+    }
+
+    @include min-width(lg) {
+        @apply px-2;
     }
 
     a {
         @apply block;
-        @apply border-b-3 border-transparent;
-        @apply no-underline text-black;
+        @apply text-blue-medium no-underline;
         &:hover {
             @apply text-blue-medium;
         }
     }
 
-    [aria-current], .navbar--current {
-        @apply border-blue-medium font-bold ;
-    }
-
-    @media (hover: hover) {
-        &:hover {
-            .navigation__level-two {
-                display: block;
-            }
+    @include min-width(lg) {
+        a {
+            @apply border-b-3 border-transparent;
+            @apply text-black;
     
-            .navigation__subnav-button.--level-one svg{
-                -webkit-transform: rotate(180deg);
-                transform: rotate(180deg);
+            &[aria-current], &.navbar--current {
+                @apply border-blue-medium font-bold ;
             }
         }
     }
-
-
 }
 
 .navigation__subnav-button {
-    width: 18px;
-    @apply ml-2;
+    @apply p-4;
+    display: none;
+    @include max-width(lg) {
+        display: block;
+    }
 }
 
-.navigation__subnav-button.--level-two.expanded {
-    -webkit-transform: rotate(180deg);
-            transform: rotate(180deg);
+.navigation__subnav-button.--level-one {
+    .collapse-icon {
+        display: none;
+    }
+
+    .expand-icon {
+        display: block;
+    }
+
+    &.expanded {
+        .collapse-icon {
+            display: block;
+        }
+
+        .expand-icon {
+            display: none;
+        }
+    }
+}
+
+
+.navigation__subnav-button.--level-two {
+    .collapse-icon {
+        display: none;
+    }
+
+    .expand-icon {
+        display: block;
+    }
+
+    &.expanded {
+        .collapse-icon {
+            display: block;
+        }
+
+        .expand-icon {
+            display: none;
+        }
+    }
 }
 
 .navigation__level-two {
+    @apply bg-white;
     width: 100%;
-    background-color: white;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    position: absolute;
-    top: 37px;
-    left: 0;
-    min-width: 250px;
-    width: max-content;
-    @apply p-2;
-
-    @include max-width(lg) {
-        width: 100%;
-        position: relative;
-        top: unset;
-    }
+    justify-content: space-between;
 }
 
 .navigation__level-two__item {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    @apply border-t border-grey-medium;
+    @apply text-blue-medium;
+    @apply font-normal text-16;
+    justify-content: space-between;
+    &:first-of-type {
+        @apply border-t border-grey-medium;
+    }
+
+    &.--no-submenu {
+        padding: .6rem 0;
+    }
+
+    &.expanded {
+        @apply bg-blue-light;
+    }
 }
 
 .navigation__level-three {
     width: 100%;
+    padding: .6rem;
+    @apply bg-white;
+}
+
+.navigation__level-three__item {
+    padding: .6rem;
+    @apply text-14;
 }
 
 .subnav--hidden {
@@ -188,7 +257,24 @@
 
 .navigation__toggle {
     position: absolute;
-    top: 30px;
+    top: 45px;
+    display: flex;
+    align-items: center;
+
+    svg {
+        @apply ml-2;
+        transform: rotate(180deg);
+    }
+
+    &.expanded {
+        svg {
+            transform: rotate(0deg);
+        }
+    }
+
+    @include min-width(lg) {
+        display: none;
+    }
 }
 
 

@@ -1,0 +1,48 @@
+.map {
+  height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-content: center;
+  background: #fff;
+
+  svg {
+    width: 100%;
+  }
+
+  path {
+    stroke: white;
+    stroke-width: 0.25px;
+    fill: #999;
+
+  }
+
+  path.hilite-central {
+    fill: #f00;
+  }
+
+  path.hilite-public {
+    fill: #00f;
+  }
+
+  path.hilite-public.hilite-central {
+    fill: url(#diagonalHatch) #90c;
+  }
+}
+
+.map-hatch-bg {
+  fill: #f00;
+}
+.map-hatch-fg {
+  stroke: #00f;
+}
+
+.map-tooltip {
+  background: #fff;
+  position: absolute;
+  z-index: 20;
+  visibility: hidden;
+  padding: 0.5em 10px;
+  width: 200px;
+  font-size: 12px;
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.33);
+}

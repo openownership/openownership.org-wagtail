@@ -13,6 +13,7 @@ def countries_json():
         for item in countries:
             data.append({
                 'name': item.name,
+                'iso2': item.iso2,
                 'url': item.url
             })
         rv = json.dumps(data)
@@ -30,6 +31,7 @@ def map_json():
         for item in countries:
             data.append({
                 'name': item.name,
+                'iso2': item.iso2,
                 'url': item.url,
                 'lat': item.lat,
                 'lon': item.lon,

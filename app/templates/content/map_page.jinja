@@ -2,28 +2,41 @@
 
 {% block content %}
 
-<script>var countries_data = {{ countries_json|safe }}</script>
-<script>var map_data = {{ map_json|safe }}</script>
 
     <div class="intro">
         {{ page.intro|richtext }}
     </div>
 
-    {# Map goes here #}
-    Map goes here
+    {# Stripes for use in CSS for filling a shape.
+       From https://stackoverflow.com/a/22643745/250962
+       In CSS set the `fill` color for .map-hatch-bg and the
+       `stroke` color for .map-hatch-fg.
+       Then apply the stripe background to an eelement with:
+        fill: url(#diagonalHatch) #f00;
+        with the color being a fallback.
+    #}
+    <svg>
+        <pattern id="diagonalHatch" width="5" height="5" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+            <rect class="map-hatch-bg" x="0" y="0" width="5" height="5" />
+            <line class="map-hatch-fg" x1="0" y1="0" x2="0" y2="5" style="stroke-width:5" />
+        </pattern>
+    </svg>
 
+    <p>[NOTE: Country boundaries are currently from https://geojson-maps.ash.ms ]</p>
+
+    <div class="js-map map"></div>
 
     <section class="grid-cols grid--2-col">
         <div class="country__header-card">
-            <span class="country__header-card_header">{% trans %}Commitment to BOT{% endtrans %}</span>
-            <span class="country__header-card_row">{% trans %}Central Register {% endtrans %}({{ country_counts.committed_central }})</span>
-            <span class="country__header-card_row">{% trans %}Public Register{% endtrans %}({{ country_counts.committed_public }})</span>
+            <a href="" class="country__header-card_header js-map-committed">{% trans %}Commitment to BOT{% endtrans %}</a><br>
+            <span class="country__header-card_row">{% trans %}Central Register{% endtrans %} ({{ country_counts.committed_central }})</span><br>
+            <span class="country__header-card_row">{% trans %}Public Register{% endtrans %} ({{ country_counts.committed_public }})</span>
         </div>
 
         <div class="country__header-card">
-            <span class="country__header-card_header">{% trans %}Implementation of BOT{% endtrans %}</span>
-            <span class="country__header-card_row">{% trans %}Central Register{% endtrans %}({{ country_counts.implementation_central }})</span>
-            <span class="country__header-card_row">{% trans %}Public Register{% endtrans %}({{ country_counts.implementation_public }})</span>
+            <a href="#" class="country__header-card_header js-map-implementation">{% trans %}Implementation of BOT{% endtrans %}</a><br>
+            <span class="country__header-card_row">{% trans %}Central Register{% endtrans %} ({{ country_counts.implementation_central }})</span><br>
+            <span class="country__header-card_row">{% trans %}Public Register{% endtrans %} ({{ country_counts.implementation_public }})</span>
         </div>
 
         <div class="country__header-col">
@@ -50,16 +63,30 @@
         {# regions #}
         <div class="accordion">
             {% for region in regions %}
-                <button class="accordion__button region__button">
+                <button id="accordion-open-{{region.slug}}" class="accordion__button region__button">
                     {{region.name}}
                 </button>
-                {% for country in region.countries.all() %}
-                    <div id="accordion-section-{{region.slug}}" class="accordion__section open">
+
+                <div id="accordion-section-{{region.slug}}" class="accordion__section open">
+                    {% for country in region.countries.all() %}
+                    <div >
                         <a href="{{ country.url }}">{{ country.name }}</a>
                     </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
+
             {% endfor %}
         </div>
     </section>
 
 {% endblock content %}
+
+{% block js_prepend %}
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+    <script type="text/javascript">
+        {# countries.json from https://geojson-maps.ash.ms #}
+        var geojsonPath = "{{static('data/countries.json')}}";
+        var mapData = {{ map_json|safe }};
+    </script>
+{% endblock %}

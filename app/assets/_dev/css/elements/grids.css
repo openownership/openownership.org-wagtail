@@ -7,6 +7,7 @@
 .grid-cols {
     @apply grid;
     @apply gap-8;
+    list-style: none;
 }
 
 @include max-width(lg) {
