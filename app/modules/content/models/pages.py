@@ -99,7 +99,8 @@ class HomePage(PageHeroMixin, LandingPageType):
         meta_title = super().get_meta_title()
         if meta_title == 'Home':
             return settings.WAGTAIL_SITE_NAME
-        return ""
+        else:
+            return meta_title
 
     @classmethod
     def can_create_at(cls, parent) -> bool:
