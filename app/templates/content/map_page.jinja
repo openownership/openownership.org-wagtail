@@ -18,30 +18,34 @@
     #}
     <svg>
         <pattern id="diagonalHatch" width="5" height="5" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
-            <rect class="map-hatch-bg" x="0" y="0" width="5" height="5" />
-            <line class="map-hatch-fg" x1="0" y1="0" x2="0" y2="5" style="stroke-width:5" />
+            <rect class="map__hatch-bg" x="0" y="0" width="5" height="5" />
+            <line class="map__hatch-fg" x1="0" y1="0" x2="0" y2="5" style="stroke-width:5" />
         </pattern>
     </svg>
 
     <p>[NOTE: Country boundaries are currently from https://geojson-maps.ash.ms ]</p>
 
-    <div class="js-map map"></div>
+    <div class="js-map map">
+        <button class="map__zoom map__zoom-in js-map-zoomin">+</button>
+        <button class="map__zoom map__zoom-out js-map-zoomout">−</button>
+    </div>
+
 
     <section class="grid-cols grid--2-col">
         <div class="country__header-card">
-            <a href="" class="country__header-card_header js-map-committed">{% trans %}Commitment to BOT{% endtrans %}</a><br>
-            <span class="country__header-card_row">{% trans %}Central Register{% endtrans %} ({{ country_counts.committed_central }})</span><br>
-            <span class="country__header-card_row">{% trans %}Public Register{% endtrans %} ({{ country_counts.committed_public }})</span>
+            <a href="#" class="country__header-card_header js-map-committed">{% trans %}Commitment to <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}</a><br>
+            <a href="#" class="country__header-card_row js-map-committed-central">{% trans %}Central Register{% endtrans %} ({{ country_counts.committed_central }})</a><br>
+            <a href="#" class="country__header-card_row js-map-committed-public">{% trans %}Public Register{% endtrans %} ({{ country_counts.committed_public }})</a>
         </div>
 
         <div class="country__header-card">
-            <a href="#" class="country__header-card_header js-map-implementation">{% trans %}Implementation of BOT{% endtrans %}</a><br>
-            <span class="country__header-card_row">{% trans %}Central Register{% endtrans %} ({{ country_counts.implementation_central }})</span><br>
-            <span class="country__header-card_row">{% trans %}Public Register{% endtrans %} ({{ country_counts.implementation_public }})</span>
+            <a href="#" class="country__header-card_header js-map-implementation">{% trans %}Implementation of <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}</a><br>
+            <a href="#" class="country__header-card_row js-map-implementation-central">{% trans %}Central Register{% endtrans %} ({{ country_counts.implementation_central }})</a><br>
+            <a href="#" class="country__header-card_row js-map-implementation-public">{% trans %}Public Register{% endtrans %} ({{ country_counts.implementation_public }})</a>
         </div>
 
         <div class="country__header-col">
-            Regions where Open Ownership is engaged
+            Countries where Open Ownership is engaged ({{ country_counts.engaged }})
         </div>
         <div class="country__header-col">
             <a href="#" class="button">{% trans %}Download all country data{% endtrans %}</a>
@@ -85,5 +89,6 @@
         {# countries.json from https://geojson-maps.ash.ms #}
         var geojsonPath = "{{static('data/countries.json')}}";
         var mapData = {{ map_json|safe }};
+        var ooEngagedValues = {{ oo_engaged_values|safe }};
     </script>
 {% endblock %}

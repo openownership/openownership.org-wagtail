@@ -7,6 +7,7 @@
 """
 
 from itertools import chain
+from re import I
 
 # 3rd party
 from django.conf import settings
@@ -1165,6 +1166,7 @@ class MapPage(BasePage):
         context['map_json'] = map_json()
         context['country_counts'] = self._country_counts
         context['regions'] = Region.objects.all()
+        context['oo_engaged_values'] = list(CountryTag.OO_ENGAGED_VALUES)
 
         return context
 
@@ -1193,9 +1195,15 @@ class MapPage(BasePage):
             if country.implementation_public:
                 implementation_public.append(country)
 
+        # Number of countries in which OO is engaged:
+        engaged_count = (
+            CountryTag.objects.filter(oo_support__in=CountryTag.OO_ENGAGED_VALUES).count()
+        )
+
         return {
             'committed_central': len(committed_central),
             'committed_public': len(committed_public),
             'implementation_central': len(implementation_central),
             'implementation_public': len(implementation_public),
+            'engaged': engaged_count,
         }

@@ -23,7 +23,6 @@ def countries_json():
         return rv
 
 
-@cached(timeout=60 * 60)
 def map_json():
     try:
         countries = CountryTag.objects.all()
@@ -35,6 +34,7 @@ def map_json():
                 'url': item.url,
                 'lat': item.lat,
                 'lon': item.lon,
+                'oo_support': item.oo_support,
                 'committed_central': item.committed_central,
                 'committed_public': item.committed_public,
                 'implementation_central': item.implementation_central,
