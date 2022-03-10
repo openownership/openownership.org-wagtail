@@ -1,4 +1,5 @@
 # 3rd party
+from re import I
 from consoler import console
 from django.db import models
 from django.conf import settings
@@ -230,6 +231,14 @@ class DisclosureRegime(NotionModel):
 
 class CountryTag(NotionModel, BaseTag):
 
+    # Values for oo_support that count as OO being "engaged" in that country:
+    OO_ENGAGED_VALUES = (
+        "High",
+        "Medium",
+        "Standard",
+        "Past engagement",
+    )
+
     free_tagging = False
 
     class Meta:
@@ -411,6 +420,10 @@ class CountryTag(NotionModel, BaseTag):
         except Exception as e:
             console.warn(e)
             return "#"
+
+    @cached_property
+    def is_engaged(self):
+        return self.oo_support in self.OO_ENGAGED_VALUES
 
 
 class CountryTaggedPage(ItemBase):

@@ -4,39 +4,68 @@
   display: flex;
   align-content: center;
   background: #fff;
+  position: relative;
 
   svg {
     width: 100%;
   }
 
   path {
-    stroke: white;
+    stroke: #363f4e;
     stroke-width: 0.25px;
-    fill: #999;
-
+    fill: #dceeff;
+    cursor: pointer;
   }
 
-  path.hilite-central {
+  /* path.map-engaged {
     fill: #f00;
+  } */
+
+  path.map__hilite-central {
+    fill: #7F12E0;
   }
 
-  path.hilite-public {
-    fill: #00f;
+  path.map__hilite-public {
+    fill: #1BB0A7;
   }
 
-  path.hilite-public.hilite-central {
+  path.map__hilite-public.map__hilite-central {
     fill: url(#diagonalHatch) #90c;
   }
 }
 
-.map-hatch-bg {
-  fill: #f00;
+.map__hatch-bg {
+  fill: #7F12E0;
 }
-.map-hatch-fg {
-  stroke: #00f;
+.map__hatch-fg {
+  stroke: #1BB0A7;
 }
 
-.map-tooltip {
+.map__circle {
+  fill: #DB00C9;
+  stroke-width: 0.25px;
+  stroke: #fff;
+}
+
+.map__zoom {
+  position: absolute;
+  top: 5px;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid #ccc;
+  z-index: 20;
+  font-size: 1.5em;
+  line-height: 1em;
+}
+.map__zoom-in {
+  left: 5px;
+}
+.map__zoom-out {
+  left: 47px;
+}
+
+.map__tooltip {
   background: #fff;
   position: absolute;
   z-index: 20;
