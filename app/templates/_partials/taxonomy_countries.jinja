@@ -10,7 +10,7 @@ title - Title for the block.
     {% with countries=page.countries.all() %}
         {% if countries|length > 0 %}
             <p>
-                <strong>{% if title %}{{ title }}{% else %}{% trans %}Region specific{% endtrans %}{% endif %}</strong><br>
+                <strong>{% if title %}{{ title }}{% else %}{% trans %}Country focus{% endtrans %}{% endif %}</strong><br>
                 {% for country in countries %}
                     <a href="{{ url('country-tag', kwargs={'slug': country.slug}) }}">{{ country.name }}</a>{% if not loop.last %}, {% endif %}
                 {% endfor %}
