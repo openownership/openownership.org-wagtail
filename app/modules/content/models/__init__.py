@@ -27,6 +27,7 @@ from .pages import (  # NOQA
     TeamPage,
     TeamProfilePage,
     UtilityPage,
+    MapPage
 )
 
 from .inlines import (  # NOQA
