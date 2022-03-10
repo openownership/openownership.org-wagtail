@@ -75,6 +75,19 @@ class CountryView(TemplateView):
         return self.tag.name
 
     @cached_property
+    def breadcrumb_page(cls):
+        """For pages that have a 'Back to ...' breadcrumb link, returns the page to
+        go 'back' to. For most it's the parent, but some require going a bit higher;
+        they can override this method.
+        """
+        from modules.content.models import MapPage
+        try:
+            return MapPage.objects.filter(locale=Locale.get_active()).first()
+        except Exception as e:
+            console.warn(e)
+            return
+
+    @cached_property
     def section_page(self):
         """Country views appear as though inside the Impact section, so we look this up
         for the menu etc. first for the current locale, secondly for any locale, and
