@@ -1,6 +1,5 @@
 {% extends 'base_with_menu.jinja' %}
 
-
 {% block content %}
 
 
@@ -68,14 +67,18 @@
         {# regions #}
         <div class="accordion">
             {% for region in regions %}
-                <button class="accordion__button region__button">
+                <button id="accordion-open-{{region.slug}}" class="accordion__button region__button">
                     {{region.name}}
                 </button>
-                {% for country in region.countries.all() %}
-                    <div id="accordion-section-{{region.slug}}" class="accordion__section open">
+
+                <div id="accordion-section-{{region.slug}}" class="accordion__section open">
+                    {% for country in region.countries.all() %}
+                    <div >
                         <a href="{{ country.url }}">{{ country.name }}</a>
                     </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
+
             {% endfor %}
         </div>
     </section>

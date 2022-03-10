@@ -1,58 +1,45 @@
 {% extends 'base.jinja' %}
-
-{% block hero %}
-  <section class="hero">
-    <div class="contained-width">
-      <h1 class="hero__title">{% trans %}Find content and resources{% endtrans %}</h1>
-    </div>
-  </setion>
-{% endblock %}
-
 {% block content %}
-
-  <div class="contained-width">
-    <form action="" method="get" class="search-form">
-      <div class="input-group">
-        <input type="text" name="q" value="{{ terms }}" placeholder="Enter your search term" class="input-group__input">
-        <button class="input-group__button">
-          {# {% include 'svg/icons/search.jinja' %} #}
+  <header class="search-page__header">
+      <h1 class="heading-xl">{% trans %}Find content and resources{% endtrans %}</h1>
+      <form action="" method="get" class="search-form">
+        <input class="search-form__text-input" type="text" name="q" value="{{ terms }}" placeholder="Enter your search term">
+        <button class="btn" type="submit">
           <span class="visually-hidden">Search</span>
         </button>
+      </form>
+  </header>
+
+  {% if results %}
+    <section>
+      <div class="content-filter">
+
+        {% set objects = results %}
+        {% set page_obj = results %}
+
+    {# {% include '_partials/filter_list.jinja' %} #}
+        {% include '_partials/list_view.jinja' %}
+
+        {% if results.paginator.num_pages > 1 %}
+        {% include '_partials/pagination.jinja' %}
+        {% endif %}
+
+          {# {% if results.paginator.num_pages > 1 %}
+              <nav class="pagination">
+                  {% if results.has_previous() %}
+                      <a href="?q={{terms}}&amp;page={{ results.previous_page_number() }}" class="btn">Previous</a>
+                      {% else %}
+                      <div></div>
+                  {% endif %}
+                  {% if results.has_next() %}
+                      <a href="?q={{terms}}&amp;page={{ results.next_page_number() }}" class="btn">Next</a>
+                  {% endif %}
+              </nav>
+          {% endif %} #}
+
       </div>
-      {# <span class="search-form__help">Or hit enter to search</span> #}
-    </form>
-
-    {% if results %}
-      <section>
-        <div class="content-filter">
-
-          {% set objects = results %}
-          {% set page_obj = results %}
-
-      {# {% include '_partials/filter_list.jinja' %} #}
-          {% include '_partials/list_view.jinja' %}
-
-          {% if results.paginator.num_pages > 1 %}
-          {% include '_partials/pagination.jinja' %}
-          {% endif %}
-
-            {# {% if results.paginator.num_pages > 1 %}
-                <nav class="pagination">
-                    {% if results.has_previous() %}
-                        <a href="?q={{terms}}&amp;page={{ results.previous_page_number() }}" class="btn">Previous</a>
-                        {% else %}
-                        <div></div>
-                    {% endif %}
-                    {% if results.has_next() %}
-                        <a href="?q={{terms}}&amp;page={{ results.next_page_number() }}" class="btn">Next</a>
-                    {% endif %}
-                </nav>
-            {% endif %} #}
-
-        </div>
-      </section>
-
-    {% endif %}
-
-  </div>
+    </section>
+  {% endif %}
 {% endblock %}
+
+
