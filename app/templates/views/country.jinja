@@ -1,6 +1,21 @@
 {% set body_classes = "country-page" %}
 {% extends 'base_with_menu.jinja' %}
 
+
+{% block crumbs %}
+    <div class="contained-width {{ main_classes }}">
+
+        {% with breadcrumb_page=page.breadcrumb_page %}
+            {% if breadcrumb_page %}
+                <div class="breadcrumbs">
+                    <a class="reverse-underline" href="{{ breadcrumb_page.get_url() }}"><span aria-hidden="true"> < </span>{% trans %}Back to{% endtrans %} {{ breadcrumb_page.title }}</a>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+    </div>
+{% endblock %}
+
 {% block content %}
 
 <article>

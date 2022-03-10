@@ -28,6 +28,8 @@
         {% endblock %}
 
         <main>
+            {% block crumbs %}
+            {% endblock %}
             {% block main %}
                 <div class="contained-width {{ main_classes|default("") }}">
                     {% block main_inner %}

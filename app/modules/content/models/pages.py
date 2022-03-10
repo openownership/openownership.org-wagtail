@@ -73,6 +73,7 @@ class HomePage(PageHeroMixin, LandingPageType):
         "content.SectionListingPage",
         "content.UtilityPage",
         "content.NewsIndexPage",
+        "content.BlogIndexPage",
         "content.MapPage",
         "content.TaxonomyPage",
         "content.PublicationsIndexPage",
@@ -748,7 +749,7 @@ class BlogIndexPage(IndexPageType):
     objects_model = BlogArticlePage
 
     template = 'content/blog_news_index_page.jinja'
-    parent_page_types: list = ['content.SectionPage']
+    parent_page_types: list = ['content.HomePage']
     subpage_types: list = ['content.BlogArticlePage']
     max_count = 1
 
