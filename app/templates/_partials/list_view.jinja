@@ -1,5 +1,7 @@
 {% if objects %}
-    {% for page in objects %}
-        {% include '_partials/card.jinja' %}
-    {% endfor %}
+    <ul class="list-view">
+        {% for page in objects %}
+            {% include '_partials/card.jinja' %}
+        {% endfor %}
+    </ul>
 {% endif %}

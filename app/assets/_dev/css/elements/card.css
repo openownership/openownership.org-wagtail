@@ -1,3 +1,7 @@
+.list-view {
+    @apply list-none;
+}
+
 .card-group__header {
     @apply my-10 pt-10;
     @apply border-t border-black/50;
