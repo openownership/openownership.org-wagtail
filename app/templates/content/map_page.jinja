@@ -32,15 +32,15 @@
 
     <section class="grid-cols grid--2-col">
         <div class="country__header-card">
-            <a href="#" class="country__header-card_header js-map-committed">{% trans %}Commitment to <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}</a><br>
-            <a href="#" class="country__header-card_row js-map-committed-central">{% trans %}Central Register{% endtrans %} ({{ country_counts.committed_central }})</a><br>
-            <a href="#" class="country__header-card_row js-map-committed-public">{% trans %}Public Register{% endtrans %} ({{ country_counts.committed_public }})</a>
+            <a href="#" class="country__header-card_header js-map-filter" data-map-hilites="committed-central|committed-public">{% trans %}Commitment to <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}</a><br>
+            <a href="#" class="country__header-card_row js-map-filter" data-map-hilites="committed-central">{% trans %}Central Register{% endtrans %} ({{ country_counts.committed_central }})</a><br>
+            <a href="#" class="country__header-card_row js-map-filter" data-map-hilites="committed-public">{% trans %}Public Register{% endtrans %} ({{ country_counts.committed_public }})</a>
         </div>
 
         <div class="country__header-card">
-            <a href="#" class="country__header-card_header js-map-implementation">{% trans %}Implementation of <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}</a><br>
-            <a href="#" class="country__header-card_row js-map-implementation-central">{% trans %}Central Register{% endtrans %} ({{ country_counts.implementation_central }})</a><br>
-            <a href="#" class="country__header-card_row js-map-implementation-public">{% trans %}Public Register{% endtrans %} ({{ country_counts.implementation_public }})</a>
+            <a href="#" class="country__header-card_header js-map-filter" data-map-hilites="implementation-central|implementation-publict">{% trans %}Implementation of <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}</a><br>
+            <a href="#" class="country__header-card_row js-map-filter" data-map-hilites="implementation-central">{% trans %}Central Register{% endtrans %} ({{ country_counts.implementation_central }})</a><br>
+            <a href="#" class="country__header-card_row js-map-filter" data-map-hilites="implementation-public">{% trans %}Public Register{% endtrans %} ({{ country_counts.implementation_public }})</a>
         </div>
 
         <div class="country__header-col">

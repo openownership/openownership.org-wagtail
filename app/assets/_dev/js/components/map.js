@@ -49,11 +49,6 @@ const worldMap = (function () {
   var width = null;
   var height = null;
   var path = null;
-  var tooltip = null;
-
-  // Set to true to show tooltips when hovering cursor over countries.
-  // Useful for debugging.
-  var useTooltips = false;
 
   /**
    * Call this to initialise everything.
@@ -70,7 +65,6 @@ const worldMap = (function () {
 
     initMapData(options.mapData);
     initMap();
-    initTooltip();
     initListeners();
 
     d3.json(options.geojsonPath).then(function (geojsonData) {
@@ -116,64 +110,47 @@ const worldMap = (function () {
   };
 
   /**
-   * Create the tooltip element if it doesn't already exist.
-   */
-  var initTooltip = function () {
-    if (document.getElementsByClassName("js-map-tooltip").length == 0) {
-      tooltip = d3
-        .select("body")
-        .append("div")
-        .classed("map__tooltip js-map-tooltip", true);
-    } else {
-      tooltip = d3.select(".js-map-tooltip");
-    }
-  };
-
-  /**
    * Listen for clicks on the buttons that hilite certain countries.
+   *
+   * Each one should have the "js-map-filter" class.
+   * And an attribute like:
+   *  data-map-hilites="committed-central|committed-public"
    */
   var initListeners = function () {
-    var committedBtn = document.querySelector('.js-map-committed');
-    committedBtn.addEventListener('click', function(event) {
-      hiliteCountries(['committed-central', 'committed-public']);
-      event.preventDefault();
-    });
 
-    var committedCentralBtn = document.querySelector('.js-map-committed-central');
-    committedCentralBtn.addEventListener('click', function(event) {
-      hiliteCountries(['committed-central']);
-      event.preventDefault();
-    });
+    document.addEventListener('click', function (event) {
+      // Is it a click on one of the buttons:
+      if (event.target.matches('.js-map-filter')) {
+        // Get what to filter:
+        var filters = event.target.getAttribute("data-map-hilites");
+        hiliteCountries(filters.split("|"));
 
-    var committedPublicBtn = document.querySelector('.js-map-committed-public');
-    committedPublicBtn.addEventListener('click', function(event) {
-      hiliteCountries(['committed-public']);
-      event.preventDefault();
-    });
+        setActiveButton(event.target);
 
-    var implementationBtn = document.querySelector('.js-map-implementation');
-    implementationBtn.addEventListener('click', function(event) {
-      hiliteCountries(['implementation-central', 'implementation-public']);
-      event.preventDefault();
-    });
-
-    var implementationCentralBtn = document.querySelector('.js-map-implementation-central');
-    implementationCentralBtn.addEventListener('click', function(event) {
-      hiliteCountries(['implementation-central']);
-      event.preventDefault();
-    });
-
-    var implementationPublicBtn = document.querySelector('.js-map-implementation-public');
-    implementationPublicBtn.addEventListener('click', function(event) {
-      hiliteCountries(['implementation-public']);
-      event.preventDefault();
+        event.preventDefault();
+      }
     });
 
     // Just clicking on the background removes any existing hiliting.
     svg.on("click", function(event, d) {
       hiliteCountries([]);
+      setActiveButton();
     });
   };
+
+  /**
+   * Set which button is now active.
+   * @param {object} btnEl The element to be active. Or null if none of them should be.
+   */
+  var setActiveButton = function (btnEl) {
+    document.querySelectorAll(".js-map-filter").forEach(function(el) {
+      el.classList.remove("--active");
+    });
+
+    if (btnEl) {
+      btnEl.classList.add("--active");
+    }
+  }
 
   /**
    * Draw the map using supplied data.
@@ -212,9 +189,6 @@ const worldMap = (function () {
         })
         .attr("d", path)
           .on("click", onClick)
-          .on("mouseover", onMouseover)
-          .on("mousemove", onMousemove)
-          .on("mouseout", onMouseout)
           .on("zoom", zoom);
 
     ///////////////////////////////////////////////////////
@@ -286,64 +260,6 @@ const worldMap = (function () {
   };
 
   /**
-   * Cursor has entered a country - show the tooltip.
-   * @param {object} event The event.
-   * @param {object} d The country object.
-   */
-  var onMouseover = function (event, d) {
-    if (useTooltips) {
-      tooltip.html(tooltipFormat(d));
-      tooltip.style("visibility", "visible");
-    }
-  };
-
-  /**
-   * Position the tooltip in relation to cursor.
-   * @param {object} event The event.
-   * @param {object} d The country object.
-   */
-  var onMousemove = function (event, d) {
-    if (useTooltips) {
-      var tooltipRect = d3
-        .select(".js-map-tooltip")
-        .node()
-        .getBoundingClientRect();
-      var tooltipHeight = tooltipRect.height;
-      var tooltipWidth = tooltipRect.width;
-
-      // Position above the cursor:
-      tooltip
-        .style("top", event.pageY - (tooltipHeight + 10) + "px")
-        .style("left", event.pageX - tooltipWidth / 2 + "px");
-    };
-  };
-
-  /**
-   * The cursor has left a country - hide the tooltip.
-   * @param {object} event The event.
-   * @param {object} d The country object.
-   */
-  var onMouseout = function (event, d) {
-    if (useTooltips) {
-      tooltip.style("visibility", "hidden");
-    }
-  };
-
-  /**
-   * Set the content of the tooltip.
-   * @param {object} d The country object.
-   * @returns string HTML for the tooltip.
-   */
-  var tooltipFormat = function (d) {
-    let text = "<strong>" + getCountryProp(d, "name") + "</strong>";
-    text += "<br>Committed central: " + getCountryProp(d, "committed_central");
-    text += "<br>Committed public: " + getCountryProp(d, "committed_public");
-    text += "<br>Implementation central: " + getCountryProp(d, "implementation_central");
-    text += "<br>Implementation public: " + getCountryProp(d, "implementation_public");
-    return text;
-  };
-
-  /**
    * Get a property about a country from its path element.
    *
    * We use the data that's passed in from the back end, that's now in
@@ -365,7 +281,9 @@ const worldMap = (function () {
         );
       }
     } else {
-      console.error("No iso_a2 value found in " + d.properties);
+      console.error(
+        "No iso_a2 value found for " + d.properties.name + " when looking for " + key
+      );
     }
     return '';
   }
