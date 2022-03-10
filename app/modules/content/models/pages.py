@@ -6,6 +6,7 @@
     Site-wide page modules.
 """
 
+import copy
 from itertools import chain
 from re import I
 
@@ -496,7 +497,9 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
 
     def _get_menu_pages(self):
         # We want to use the page title for the `title` in the menu, so:
-        first_page = self
+        # (Can't just use self, because if we change its title then that
+        # new title gets used as the actual title in <h1> in the template!)
+        first_page = copy.copy(self)
         first_page.title = first_page.specific.page_title
 
         menu_pages = [first_page]
