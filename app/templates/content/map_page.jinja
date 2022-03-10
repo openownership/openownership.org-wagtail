@@ -50,7 +50,6 @@
 
     <hr/>
 
-    {# 
     <section>
         <h2>{% trans %}Find a specific country{% endtrans %}</h2>
         <p>{% trans %}Find country activity through the map, search or from the regions listed below{% endtrans %}</p>
@@ -62,6 +61,7 @@
             </div>
         </form>
 
+        {# regions #}
         <div class="accordion">
             {% for region in regions %}
                 <button class="accordion__button region__button">
@@ -75,7 +75,6 @@
             {% endfor %}
         </div>
     </section>
-    #}
 
 {% endblock content %}
 
