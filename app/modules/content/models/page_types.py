@@ -211,6 +211,11 @@ class BasePage(WagtailCacheMixin, Page):
         """
         return cls.get_parent()
 
+    @property
+    def show_display_date_on_card(self):
+        "Whether to show the date when displaying a card about this page."
+        return False
+
 
 ####################################################################################################
 # Landing Page Type
@@ -276,11 +281,15 @@ class ContentPageType(BasePage):
     def date(self):
         return self.display_date
 
-
     @property
     def display_title(self):
         "Allows us to override it for special cases"
         return self.title
+
+    @property
+    def show_display_date_on_card(self):
+        "Whether to show the date when displaying a card about this page."
+        return True
 
 
 ####################################################################################################

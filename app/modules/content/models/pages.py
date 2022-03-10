@@ -299,6 +299,11 @@ class UtilityPage(ContentPageType):
         FieldPanel('intro')
     ] + ContentPageType.model_content_panels
 
+    @property
+    def show_display_date_on_card(self):
+        "Whether to show the date when displaying a card about this page."
+        return False
+
 
 class JobPage(TaggedPageMixin, ContentPageType):
     template = 'content/job_page.jinja'
@@ -468,6 +473,11 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
     def display_title(self):
         "Title of the publication"
         return self.title
+
+    @property
+    def show_display_date_on_card(self):
+        "Whether to show the date when displaying a card about this page."
+        return True
 
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)

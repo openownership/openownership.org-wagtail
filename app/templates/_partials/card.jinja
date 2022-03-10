@@ -64,7 +64,7 @@
                 {% endif %}
             {% endwith %}
 
-            {% if page.display_date %}
+            {% if page.show_display_date_on_card and page.display_date %}
                 <p class="card-group__date">{% trans %}Published{% endtrans %}: {{ page.human_display_date }}</p>
             {% endif %}
         </div>
