@@ -103,13 +103,13 @@ def test_publication_type_choices(publication_front_page):
     valid_names = [
         'Briefing',
         'Case study',
-        'Consultation',
+        # 'Consultation',  # No longer valid
         'Guidance',
-        'Report',
+        # 'Report',  # No longer valid
     ]
     types = publication_front_page.get_publication_type_choices()
 
-    assert len(types) == 5
+    assert len(types) == 3
     assert isinstance(types[0], PublicationType)
     assert valid_names == [t.name for t in types]
 

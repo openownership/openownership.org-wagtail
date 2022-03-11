@@ -10,6 +10,7 @@ AREAS_OF_FOCUS = (
 )
 
 PUBLICATION_TYPES = (
+    "Job",
     "Blog post",
     "Briefing",
     "Case study",

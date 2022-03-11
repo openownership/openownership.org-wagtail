@@ -65,10 +65,13 @@ class SimilarContentBlock(blocks.StructBlock):
         template = "_partials/card_group.jinja"
 
     options = [
-        ('focus_area', _('Area of Focus')),
+        # ('focus_area', _('Area of Focus')),
         ('sector', _('Sector')),
         ('publication_type', _('Publication Type')),
         ('author', _('Author')),
+        ('country', _('Country')),
+        ('section', _('Section')),
+        ('principles', _('Open Ownership Principles')),
     ]
 
     suggest_by = blocks.ChoiceBlock(choices=options, required=True, default='focus_area')
@@ -91,6 +94,45 @@ class SimilarContentBlock(blocks.StructBlock):
         all_ids = []
         for tag in self.page.areas_of_focus.all():
             for item in tag.focusarea_related_pages.all():
+                if item.content_object.id != self.page.id:
+                    all_ids.append(item.content_object.id)
+
+        objects = self._ranked_pages(all_ids, 3)
+        return objects
+
+    @property
+    def by_country(self):
+        """Get the latest 3 articles by CountryTag.
+        """
+        all_ids = []
+        for tag in self.page.countries.all():
+            for item in tag.country_related_pages.all():
+                if item.content_object.id != self.page.id:
+                    all_ids.append(item.content_object.id)
+
+        objects = self._ranked_pages(all_ids, 3)
+        return objects
+
+    @property
+    def by_section(self):
+        """Get the latest 3 articles by SectionTag.
+        """
+        all_ids = []
+        for tag in self.page.sections.all():
+            for item in tag.section_related_pages.all():
+                if item.content_object.id != self.page.id:
+                    all_ids.append(item.content_object.id)
+
+        objects = self._ranked_pages(all_ids, 3)
+        return objects
+
+    @property
+    def by_principle(self):
+        """Get the latest 3 articles by PrincipleTag.
+        """
+        all_ids = []
+        for tag in self.page.principles.all():
+            for item in tag.principle_related_pages.all():
                 if item.content_object.id != self.page.id:
                     all_ids.append(item.content_object.id)
 
@@ -147,6 +189,12 @@ class SimilarContentBlock(blocks.StructBlock):
             return self.by_publication_type
         elif mode == 'author':
             return self.by_authors
+        elif mode == 'country':
+            return self.by_country
+        elif mode == 'section':
+            return self.by_section
+        elif mode == 'principle':
+            return self.by_principle
         else:
             return []
 
@@ -803,14 +851,6 @@ class LatestPublicationTypeBlock(blocks.StructBlock):
 
     DEFAULT_LIMIT = 3
 
-    # FORMAT_LANDSCAPE = 'landscape'
-    # FORMAT_PORTRAIT = 'portrait'
-
-    # FORMAT_CHOICES = (
-    #     (FORMAT_LANDSCAPE, _('Landscape')),
-    #     (FORMAT_PORTRAIT, _('Portrait')),
-    # )
-
     title = blocks.CharBlock(
         required=False,
         help_text=_('If blank, will use "Latest"')
@@ -833,6 +873,118 @@ class LatestPublicationTypeBlock(blocks.StructBlock):
 
         if publication_type:
             pages = publication_type.pages.live().public().specific().order_by(
+                '-first_published_at')[:self.DEFAULT_LIMIT]
+
+            context.update({
+                'pages': pages,
+                'title': title or "Latest",
+                'card_format': 'portrait',
+            })
+
+        return context
+
+
+####################################################################################################
+# Latest by section tag
+####################################################################################################
+
+
+class LatestSectionTagBlock(blocks.StructBlock):
+    """
+    The most recently published pages of tagged with SectionTag
+    """
+
+    class Meta:
+        label = _('Latest by Section Tag')
+        group = _('Card group')
+        icon = 'tag'
+        template = "_partials/card_group.jinja"
+
+    DEFAULT_LIMIT = 3
+
+    title = blocks.CharBlock(
+        required=False,
+        help_text=_('If blank, will use "Latest"')
+    )
+
+    section = ModelChooserBlock(
+        'taxonomy.SectionTag',
+        required=True,
+    )
+
+    # card_format = blocks.ChoiceBlock(
+    #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
+    # )
+
+    def get_context(self, value, parent_context={}):
+        from wagtail.core.models import Page
+        context = super().get_context(value, parent_context=parent_context)
+
+        section = value.get('section', None)
+        title = value.get('title', None)
+
+        if section:
+            page_ids = section.section_tag_related_pages.values_list(
+                'content_object_id', flat=True)
+
+            pages = Page.objects.filter(
+                id__in=page_ids).live().public().specific().order_by(
+                '-first_published_at')[:self.DEFAULT_LIMIT]
+
+            context.update({
+                'pages': pages,
+                'title': title or "Latest",
+                'card_format': 'portrait',
+            })
+
+        return context
+
+
+####################################################################################################
+# Latest by principle tag
+####################################################################################################
+
+
+class LatestPrincipleTagBlock(blocks.StructBlock):
+    """
+    The most recently published pages tagged with PrincipleTag
+    """
+
+    class Meta:
+        label = _('Latest by Open Ownership Principle')
+        group = _('Card group')
+        icon = 'tag'
+        template = "_partials/card_group.jinja"
+
+    DEFAULT_LIMIT = 3
+
+    title = blocks.CharBlock(
+        required=False,
+        help_text=_('If blank, will use "Latest"')
+    )
+
+    principle = ModelChooserBlock(
+        'taxonomy.PrincipleTag',
+        required=True,
+    )
+
+    # card_format = blocks.ChoiceBlock(
+    #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
+    # )
+
+    def get_context(self, value, parent_context={}):
+        from wagtail.core.models import Page
+        context = super().get_context(value, parent_context=parent_context)
+
+        principle = value.get('principle', None)
+        title = value.get('title', None)
+
+        if principle:
+            page_ids = principle.principle_tag_related_pages.values_list(
+                'content_object_id', flat=True)
+
+            pages = Page.objects.filter(
+                id__in=page_ids).live().public().specific().order_by(
                 '-first_published_at')[:self.DEFAULT_LIMIT]
 
             context.update({

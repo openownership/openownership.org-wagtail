@@ -493,9 +493,9 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         publication_types = (
             'Briefing',
             'Case study',
-            'Consultation',
+            # 'Consultation',  # No longer valid
             'Guidance',
-            'Report',
+            # 'Report',  # No longer valid
         )
         return PublicationType.objects.filter(name__in=publication_types)
 
