@@ -169,7 +169,9 @@ class CTABlockStructValue(blocks.StructValue):
     def href(self):
 
         if self.link_type == 'page':
-            return getattr(self.get('link_page'), 'url_path', None).replace('/home', '', 1)
+            path = getattr(self.get('link_page'), 'url_path', None)
+            if path:
+                return path.replace('/home', '', 1)
 
         elif self.link_type == 'document':
             return getattr(self.get('link_document'), 'url')
