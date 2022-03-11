@@ -1,32 +1,25 @@
 from django.core.management.base import BaseCommand, CommandError
 
-from ...models import FocusAreaTag, PublicationType, SectorTag
+from ...models import SectionTag, PrincipleTag
 
 
-AREAS_OF_FOCUS = (
-    'Law',
-    'Policy',
-    'Systems & data',
+SECTIONS = (
+    'About',
+    'Impact',
+    'Implement',
+    'Research',
 )
 
-PUBLICATION_TYPES = (
-    "Blog post",
-    "Briefing",
-    "Case study",
-    "Event",
-    "Forms",
-    "Guidance",
-    "News article",
-    "Publication",
-    "Technical guidance",
-    "Tools",
-    "Video",
-)
-
-SECTORS = (
-    'Banking',
-    'Environment',
-    'Extractives',
+PRINCIPLES = (
+    "Robust definition",
+    "Comprehensive coverage",
+    "Sufficient detail",
+    "A central register",
+    "Public access",
+    "Structured data",
+    "Verification",
+    "Up to date and auditable",
+    "Sanctions and enforcement",
 )
 
 
@@ -36,14 +29,13 @@ class Command(BaseCommand):
     unless names of objects in the database have since been changed;
     then new objects will be created with the original names.
     """
-    help = 'Populates PublicationType, FocusAreaTag and SectorTag with required data.'
+    help = 'Populates SectionTag, PrincipleTag with required data.'
 
     def handle(self, *args, **options):
         verbosity = int(options['verbosity'])
 
-        self._populate(FocusAreaTag, AREAS_OF_FOCUS, verbosity)
-        self._populate(PublicationType, PUBLICATION_TYPES, verbosity)
-        self._populate(SectorTag, SECTORS, verbosity)
+        self._populate(SectionTag, SECTIONS, verbosity)
+        self._populate(PrincipleTag, PRINCIPLES, verbosity)
 
     def _populate(self, tag_class, names, verbosity):
         num_created = 0

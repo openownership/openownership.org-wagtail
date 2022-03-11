@@ -1,7 +1,10 @@
 from .categories import PublicationType
-from .core import Category, BaseTag
+from .core import Category, BaseTag  # NOQA
 from .pages import DummyPage
-from .tags import FocusAreaTag, FocusAreaTaggedPage, SectorTag, SectorTaggedPage
+from .tags import (
+    FocusAreaTag, FocusAreaTaggedPage, SectorTag, SectorTaggedPage, SectionTag, SectionTaggedPage,
+    PrincipleTag, PrincipleTaggedPage
+)
 
 
 __all__ = [
@@ -10,5 +13,9 @@ __all__ = [
     FocusAreaTaggedPage,
     PublicationType,
     SectorTag,
+    SectionTag,
     SectorTaggedPage,
+    SectionTaggedPage,
+    PrincipleTag,
+    PrincipleTaggedPage
 ]

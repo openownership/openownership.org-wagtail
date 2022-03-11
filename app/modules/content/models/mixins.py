@@ -14,7 +14,7 @@ from django.conf import settings
 from wagtail.search import index
 from django_extensions.db.fields import AutoSlugField
 from django.utils.translation import gettext_lazy as _
-
+from django.forms import CheckboxSelectMultiple
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalManyToManyField
 from modelcluster.models import ClusterableModel
@@ -208,11 +208,21 @@ class TaggedPageMixin(PageMixinBase):
         through='notion.CountryTaggedPage', blank=True
     )
 
+    sections = ClusterTaggableManager(
+        through='taxonomy.SectionTaggedPage', blank=True
+    )
+
+    principles = ClusterTaggableManager(
+        through='taxonomy.PrincipleTaggedPage', blank=True
+    )
+
     about_panels = [
         PublicationTypeFieldPanel('publication_type', _('Publication type')),
-        FieldPanel('areas_of_focus', _('Areas of focus')),
-        FieldPanel('sectors', _('Sectors')),
+        # FieldPanel('areas_of_focus', _('Areas of focus')),
+        FieldPanel('sectors', _('Topics')),
         FieldPanel('countries', _('Countries')),
+        FieldPanel('sections', _('Sections')),
+        FieldPanel('principles', _('Open Ownership Principles')),
     ]
 
     @classmethod

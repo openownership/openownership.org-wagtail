@@ -12,7 +12,7 @@ from wagtail.contrib.modeladmin.options import (
 
 
 from modules.taxonomy.models import (
-    PublicationType, FocusAreaTag, SectorTag
+    PublicationType, FocusAreaTag, SectorTag, SectionTag
 )
 
 
@@ -51,6 +51,16 @@ class SectorTagModelAdmin(ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 
+class SectionTagModelAdmin(ModelAdmin):
+    model = SectionTag
+    menu_order = 300
+    menu_icon = 'tag'
+    add_to_settings_menu = True
+    list_display = ('name', )
+    search_fields = ('name', )
+    prepopulated_fields = {"slug": ("name",)}
+
+
 ################################################################################
 # Wagtail Menu customisation
 ################################################################################
@@ -64,6 +74,7 @@ class TaxonomyAdminGroup(ModelAdminGroup):
         PublicationTypeModelAdmin,
         FocusAreaTagModelAdmin,
         SectorTagModelAdmin,
+        SectionTagModelAdmin
     )
 
 
