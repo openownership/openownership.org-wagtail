@@ -996,9 +996,11 @@ class TagPageForm(WagtailAdminPageForm):
         cleaned_data = super().clean()
 
         tags = [
-            cleaned_data['focus_area'],
+            # cleaned_data['focus_area'],
             cleaned_data['sector'],
             cleaned_data['publication_type'],
+            cleaned_data['section'],
+            cleaned_data['principle'],
         ]
         num_selected = len([t for t in tags if t])
         if num_selected == 0:
@@ -1055,11 +1057,29 @@ class TagPage(IndexPageType):
         related_name='tagpages',
     )
 
+    section = models.ForeignKey(
+        'taxonomy.SectionTag',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='tagpages',
+    )
+
+    principle = models.ForeignKey(
+        'taxonomy.PrincipleTag',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='tagpages',
+    )
+
     content_panels = BasePage.content_panels + [
         MultiFieldPanel([
-            FieldPanel('focus_area'),
-            FieldPanel('sector'),
+            # FieldPanel('focus_area'),
+            FieldPanel('sector', _('Topic')),
             FieldPanel('publication_type'),
+            FieldPanel('section'),
+            FieldPanel('principle'),
         ], heading=_('Tag')),
         FieldPanel('intro')
     ]
@@ -1080,6 +1100,10 @@ class TagPage(IndexPageType):
             tag = self.focus_area
         elif self.sector:
             tag = self.sector
+        elif self.section:
+            tag = self.section
+        elif self.principle:
+            tag = self.principle
         elif self.publication_type:
             category = self.publication_type
 
@@ -1092,7 +1116,7 @@ class TagPage(IndexPageType):
 
             return (
                 Page.objects.live().public()
-                .descendant_of(self.section_page).specific()
+                .specific()
                 .filter(locale=Locale.get_active())
                 .filter(id__in=page_ids)
                 .select_related('thumbnail')
