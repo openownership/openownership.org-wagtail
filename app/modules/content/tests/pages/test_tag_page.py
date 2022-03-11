@@ -99,33 +99,34 @@ def test_tag_context_live(tag_page):
     assert pages[0].specific == live_pub
 
 
-def test_tag_context_in_section(tag_page):
-    "Tag page should only show pages in the same section"
+# THIS IS NO LONGER TRUE
+# def test_tag_context_in_section(tag_page):
+#     "Tag page should only show pages in the same section"
 
-    section_page = tag_page.get_parent().get_parent()
+#     section_page = tag_page.get_parent().get_parent()
 
-    tag = FocusAreaTag.objects.create(name='Cats')
-    tag_page.focus_area = tag
-    tag_page.save()
+#     tag = FocusAreaTag.objects.create(name='Cats')
+#     tag_page.focus_area = tag
+#     tag_page.save()
 
-    section_2 = SectionPage(live=True, title="Section 2")
-    section_page.get_parent().add_child(instance=section_2)
-    section_2.save()
+#     section_2 = SectionPage(live=True, title="Section 2")
+#     section_page.get_parent().add_child(instance=section_2)
+#     section_2.save()
 
-    # A page in the same section as the tag page
-    pub1 = PublicationFrontPage(live=True, title="Pub 1")
-    section_page.add_child(instance=pub1)
-    pub1.save_revision().publish()
-    FocusAreaTaggedPage.objects.create(tag=tag, content_object=pub1)
+#     # A page in the same section as the tag page
+#     pub1 = PublicationFrontPage(live=True, title="Pub 1")
+#     section_page.add_child(instance=pub1)
+#     pub1.save_revision().publish()
+#     FocusAreaTaggedPage.objects.create(tag=tag, content_object=pub1)
 
-    # A page in the second section
-    pub2 = PublicationFrontPage(live=True, title="Pub 2")
-    section_2.add_child(instance=pub2)
-    pub2.save_revision().publish()
-    FocusAreaTaggedPage.objects.create(tag=tag, content_object=pub2)
+#     # A page in the second section
+#     pub2 = PublicationFrontPage(live=True, title="Pub 2")
+#     section_2.add_child(instance=pub2)
+#     pub2.save_revision().publish()
+#     FocusAreaTaggedPage.objects.create(tag=tag, content_object=pub2)
 
-    rv = client.get(tag_page.url)
+#     rv = client.get(tag_page.url)
 
-    pages = rv.context_data['page_obj']
-    assert len(pages) == 1
-    assert pages[0].specific == pub1
+#     pages = rv.context_data['page_obj']
+#     assert len(pages) == 1
+#     assert pages[0].specific == pub1
