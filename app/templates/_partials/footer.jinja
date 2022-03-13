@@ -16,7 +16,7 @@ Nav items:
         <div class="contained-width">
             <div class="footer__newsletter-blurb">
                 <h2>Open Ownership newsletter</h2>
-                <p>Our email newsletter is the best way to receive our latest reports, articles and updates </p>
+                <p>Sign up to receive our latest reports, news and updates</p>
             </div>
             <form action="https://openownership.us19.list-manage.com/subscribe/post?u=5a522bc71b24b7202b6bf2c95&amp;id=57602bb40c" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate footer__newsletter-form" target="_blank" novalidate>
                 <label class="sr-only" for="newsletter-email">Your email:</label>
@@ -55,7 +55,7 @@ Nav items:
 
             {% if social_links %}
             <div>
-                <h2>{% trans %}Follow Us{% endtrans %}</h2>
+                <h2>{% trans %}Follow us{% endtrans %}</h2>
                 <ul class="footer__horizontal-links">
                     {% for service, link in social_links.items() %}
                         <li>
@@ -70,7 +70,7 @@ Nav items:
 
             <div>
                 <h2>{% trans %}Content rights{% endtrans %}</h2>
-                <p>{% trans %}This work by Open Ownership, unless otherwise noted, is licensed under a Creative Commons Attribution 4.0 International License{% endtrans %}</p>
+                <p>{% trans %}This work by Open Ownership, unless otherwise noted, is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>{% endtrans %}</p>
             </div>
         </div>
         </div>
