@@ -37,6 +37,10 @@
     button.country__header-card_row:last-child {
         @apply border-0;
     }
+
+    .ghost-link {
+        @apply my-0;
+    }
 }
 
 .map__country-data-header {
@@ -132,5 +136,9 @@
             fill: #db00c9;
         }
     }
+}
+
+.note {
+    @apply text-14 text-grey-dark;
 }
 
