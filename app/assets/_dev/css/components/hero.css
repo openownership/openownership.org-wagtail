@@ -17,7 +17,7 @@
     }
 
     .hero__title {
-        @apply font-display text-36;
+        @apply font-display text-36 font-normal;
     }
 
     .hero__body {
