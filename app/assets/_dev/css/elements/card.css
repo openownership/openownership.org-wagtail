@@ -49,7 +49,7 @@
         @apply mb-2;
 
         span {
-            @apply bg-text-secondary text-14 font-bold ;
+            @apply bg-text-secondary text-14 font-bold;
             padding: 5px;
             @apply mr-1;
         }
@@ -65,8 +65,12 @@
 
 .card-group__author {
     @apply text-14;
-    @apply underline decoration-2;
-    @apply text-blue-medium;
+    @apply text-text-secondary;
+
+    a {
+        @apply underline decoration-2;
+        @apply text-blue-medium;
+    }
 }
 
 .card-group__date {
