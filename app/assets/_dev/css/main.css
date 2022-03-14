@@ -58,6 +58,7 @@
 @import "pages/publication-front-page";
 @import "pages/country-page";
 @import "pages/search-page";
+@import "pages/map-page";
 
 /*------------------------------------*\
   #TAILWIND-IMPORTS

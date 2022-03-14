@@ -1,0 +1,21 @@
+.find-country {
+    @apply my-8;
+}
+
+.find-country__title,
+.find-country__blurb, 
+.country-search__form {
+    @apply my-4;
+}
+
+.country-search__form-wrapper {
+    @apply relative w-4/6 flex;
+    
+    .btn {
+        @apply p-1;
+    }
+}
+
+.country-search__input {
+    @apply flex-1;
+}
