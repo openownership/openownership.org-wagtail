@@ -1,5 +1,6 @@
 .find-country {
     @apply my-8;
+    @apply border-t border-black/50;
 }
 
 .find-country__title,
@@ -22,7 +23,7 @@
 
 .map__country-data {
     @apply flex flex-row gap-8;
-    @apply my-10;
+    @apply my-4;
 }
 
 .map__country-data-box {
@@ -113,6 +114,22 @@
     &.--implementation-public {
         g {
             fill: #D9D9D9;
+        }
+    }
+}
+
+.country__card-no-action {
+    @apply w-full px-4;
+    @apply flex items-center;
+    @apply text-black;
+
+    svg {
+        @apply mr-4;
+        width: 100%;
+        max-width: 30px;
+
+        g {
+            fill: #db00c9;
         }
     }
 }

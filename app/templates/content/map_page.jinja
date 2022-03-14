@@ -61,12 +61,20 @@
         </div>
     </div>
 
-    <div class="country__header-col">
-        Countries where Open Ownership is engaged ({{ country_counts.engaged }})
+    <div class="map__country-data">
+        <div class="map__country-data-box">
+            <div class="country__card-no-action">
+                {% include "svg/filled-circle-icon.jinja" %}
+                Countries where Open Ownership is engaged ({{ country_counts.engaged }})
+            </div>
+            
+        </div>
+        <div class="map__country-data-box">
+            <a href="#" class="ghost-link">{% trans %}Download all country data{% endtrans %}</a>
+        </div>
     </div>
-    <div class="country__header-col">
-        <a href="#" class="button">{% trans %}Download all country data{% endtrans %}</a>
-    </div>
+
+
     
 
 
