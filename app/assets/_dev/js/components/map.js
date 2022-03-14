@@ -140,15 +140,17 @@ const worldMap = (function () {
 
   /**
    * Set which button is now active.
-   * @param {object} btnEl The element to be active. Or null if none of them should be.
+   * @param {object} btnEl The element whose parent is to be active. Or null if none of them should be.
    */
   var setActiveButton = function (btnEl) {
-    document.querySelectorAll(".js-map-filter").forEach(function(el) {
+    
+    document.querySelectorAll(".map__country-data-box").forEach(function(el) {
       el.classList.remove("--active");
     });
 
     if (btnEl) {
-      btnEl.classList.add("--active");
+      var parentContainer = btnEl.parentElement;
+      parentContainer.classList.add("--active");
     }
   }
 

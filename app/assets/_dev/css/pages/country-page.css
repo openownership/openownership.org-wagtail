@@ -84,6 +84,8 @@
 
     svg {
         @apply mr-4;
+        width: 100%;
+        max-width: 30px;
     }
 
 }

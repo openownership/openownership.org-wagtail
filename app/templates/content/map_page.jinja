@@ -28,28 +28,48 @@
     </div>
 
 
-    <section class="grid-cols grid--2-col">
-        <div class="country__header-card">
-            <a href="#" class="country__header-card_header js-map-filter" data-map-hilites="committed-central|committed-public">{% trans %}Commitment to <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}</a><br>
-            <a href="#" class="country__header-card_row js-map-filter" data-map-hilites="committed-central">{% trans %}Central Register{% endtrans %} ({{ country_counts.committed_central }})</a><br>
-            <a href="#" class="country__header-card_row js-map-filter" data-map-hilites="committed-public">{% trans %}Public Register{% endtrans %} ({{ country_counts.committed_public }})</a>
+    <div class="map__country-data">
+        <div class="map__country-data-box">
+            <button class="map__country-data-header js-map-filter" data-map-hilites="committed-central|committed-public">
+                {% include "svg/commitment-icon.jinja" %}
+                <span>
+                {% trans %}Commitment to <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}</span>
+            </button>
+            <button class="country__header-card_row --committed-central js-map-filter" data-map-hilites="committed-central">
+                {% include "svg/filled-circle-icon.jinja" %}
+                {% trans %}Central Register{% endtrans %} ({{ country_counts.committed_central }})</button>
+            <button class="country__header-card_row --committed-public js-map-filter" data-map-hilites="committed-public">
+                {% include "svg/filled-circle-icon.jinja" %}
+                {% trans %}Public Register{% endtrans %} ({{ country_counts.committed_public }})</button>
         </div>
 
-        <div class="country__header-card">
-            <a href="#" class="country__header-card_header js-map-filter" data-map-hilites="implementation-central|implementation-publict">{% trans %}Implementation of <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}</a><br>
-            <a href="#" class="country__header-card_row js-map-filter" data-map-hilites="implementation-central">{% trans %}Central Register{% endtrans %} ({{ country_counts.implementation_central }})</a><br>
-            <a href="#" class="country__header-card_row js-map-filter" data-map-hilites="implementation-public">{% trans %}Public Register{% endtrans %} ({{ country_counts.implementation_public }})</a>
+        <div class="map__country-data-box">
+            <button class="map__country-data-header js-map-filter" data-map-hilites="implementation-central|implementation-publict">
+                {% include "svg/implementation-icon.jinja" %}
+                <span>
+                {% trans %}Implementation of <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}
+                </span>
+            </button>
+            <button class="country__header-card_row --implementation-central js-map-filter" data-map-hilites="implementation-central">
+                {% include "svg/filled-circle-icon.jinja" %}
+                {% trans %}Central Register{% endtrans %} ({{ country_counts.implementation_central }})
+            </button>
+            <button class="country__header-card_row --implementation-public js-map-filter" data-map-hilites="implementation-public">
+                {% include "svg/filled-circle-icon.jinja" %}
+                {% trans %}Public Register{% endtrans %} ({{ country_counts.implementation_public }})
+            </button>
         </div>
+    </div>
 
-        <div class="country__header-col">
-            Countries where Open Ownership is engaged ({{ country_counts.engaged }})
-        </div>
-        <div class="country__header-col">
-            <a href="#" class="button">{% trans %}Download all country data{% endtrans %}</a>
-        </div>
-    </section>
+    <div class="country__header-col">
+        Countries where Open Ownership is engaged ({{ country_counts.engaged }})
+    </div>
+    <div class="country__header-col">
+        <a href="#" class="button">{% trans %}Download all country data{% endtrans %}</a>
+    </div>
+    
 
-    <hr/>
+
 
     <section>
 

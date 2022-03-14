@@ -19,3 +19,101 @@
 .country-search__input {
     @apply flex-1;
 }
+
+.map__country-data {
+    @apply flex flex-row gap-8;
+    @apply my-10;
+}
+
+.map__country-data-box {
+    @apply p-2;
+    @apply basis-1/2;
+
+    button.country__header-card_row {
+        @apply border-b-2 border-border-data;
+    }
+
+    button.country__header-card_row:last-child {
+        @apply border-0;
+    }
+}
+
+.map__country-data-header {
+    @apply flex items-center w-full;
+    @apply m-0 p-2 font-bold font-body text-16;
+    @apply border-2 border-blue-medium;
+    @apply text-blue-medium;
+
+    svg {
+        @apply mr-4;
+        * {
+            stroke: #3C31D5;
+        }
+        
+    }
+
+    > * {
+        pointer-events: none;
+    }
+}
+
+.map__country-data-box.--active {
+    @apply bg-white;
+
+    .map__country-data-header{
+        @apply bg-blue-light;
+        @apply border-2 border-blue-light;
+        @apply text-black;
+
+        svg {
+            @apply mr-4;
+            * {
+                stroke: black;
+            }
+        }
+    }
+    .country__header-card_row {    
+        @apply text-black;
+        &.--committed-central,
+        &.--implementation-central {
+            g {
+                fill: #7F12E0;
+            }
+        }
+    
+        &.--committed-public,
+        &.--implementation-public {
+            g {
+                fill: #1bb0a7;
+            }
+        }
+    }
+       
+}
+
+.country__header-card_row {
+    @apply w-full p-4;
+    @apply flex items-center;
+    @apply text-grey-medium;
+
+    svg {
+        @apply mr-4;
+        width: 100%;
+        max-width: 30px;
+    }
+
+    &.--committed-central,
+    &.--implementation-central {
+        g {
+            fill: #D9D9D9;
+        }
+    }
+
+    &.--committed-public,
+    &.--implementation-public {
+        g {
+            fill: #D9D9D9;
+        }
+    }
+}
+
