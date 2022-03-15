@@ -3,9 +3,11 @@
 
 {% block content %}
 
-    <div class="intro">
-        {{ page.intro|richtext }}
-    </div>
+    <article>
+        <div class="intro">
+            {{ page.intro|richtext }}
+        </div>
+    </article>
 
     {% if page_obj %}
         {% with pages=page_obj, columns=1, card_format='landscape' %}

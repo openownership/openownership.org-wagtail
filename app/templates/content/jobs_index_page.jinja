@@ -4,9 +4,13 @@
 
 {% block content %}
 
-    <div class="intro">
-        {{ page.intro|richtext }}
-    </div>
+    <article>
+
+        <div class="intro">
+            {{ page.intro|richtext }}
+        </div>
+
+    </article>
 
     {% with pages=page_obj, columns=1, card_format='landscape' %}
         {% include "_partials/card_group.jinja" %}
