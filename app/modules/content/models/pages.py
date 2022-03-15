@@ -967,8 +967,15 @@ class TaxonomyPage(BasePage):
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
+    tags_title = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text=_("Will appear above the cards linking to each Tag Page")
+    )
+
     content_panels = BasePage.content_panels + [
         FieldPanel('intro'),
+        FieldPanel('tags_title'),
     ]
 
     search_fields = BasePage.search_fields + [
