@@ -119,12 +119,9 @@ class SectionPage(PageHeroMixin, LandingPageType):
     parent_page_types: list = ['content.HomePage']
     subpage_types: list = [
         'content.ArticlePage',
-        'content.BlogIndexPage',
         'content.GlossaryPage',
         'content.LatestSectionContentPage',
-        'content.NewsIndexPage',
         'content.PressLinksPage',
-        'content.TaxonomyPage',
     ]
 
     search_fields: list = []
@@ -168,7 +165,6 @@ class SectionListingPage(SectionPage):
         "content.JobsIndexPage",
         'content.LatestSectionContentPage',
         'content.PressLinksPage',
-        'content.TaxonomyPage',
         "content.TeamPage",
     ]
 
@@ -1108,7 +1104,7 @@ class TagPage(IndexPageType):
             category = self.publication_type
 
         if category:
-            return category.pages.descendant_of(self.section_page)
+            return category.pages
 
         elif tag:
             related_pages = getattr(tag, tag.__class__.related_pages_name)

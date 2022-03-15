@@ -30,6 +30,10 @@ class Author(index.Indexed, models.Model):
     # press_links from PressLinkAuthorRelationship
     # team_profile from TeamProfilePage
 
+    search_fields = [
+        index.SearchField('name', partial_match=True),
+    ]
+
     def __str__(self):
         return self.name
 
@@ -121,6 +125,11 @@ class PressLink(index.Indexed, ClusterableModel):
 
     # Also has:
     # author_relationships from PressLinkAuthorRelationship
+
+    search_fields = [
+        index.SearchField('title', partial_match=True),
+        index.SearchField('blurb', partial_match=True),
+    ]
 
     panels = [
         PageChooserPanel('section_page', 'content.SectionPage'),

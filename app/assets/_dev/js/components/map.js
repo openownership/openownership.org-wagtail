@@ -69,6 +69,11 @@ const worldMap = (function () {
 
     d3.json(options.geojsonPath).then(function (geojsonData) {
       generateMap(geojsonData);
+
+      // On load we set the initial state by setting this button to be active:
+      setActiveButton(document.querySelector(
+        ".js-map-filter[data-map-hilites='committed-central|committed-public']"
+      ));
     });
   };
 
@@ -121,29 +126,23 @@ const worldMap = (function () {
     document.addEventListener('click', function (event) {
       // Is it a click on one of the buttons:
       if (event.target.matches('.js-map-filter')) {
-        // Get what to filter:
-        var filters = event.target.getAttribute("data-map-hilites");
-        hiliteCountries(filters.split("|"));
-
         setActiveButton(event.target);
-
         event.preventDefault();
       }
     });
 
     // Just clicking on the background removes any existing hiliting.
     svg.on("click", function(event, d) {
-      hiliteCountries([]);
       setActiveButton();
     });
   };
 
   /**
-   * Set which button is now active.
+   * Set which button is now active, and change map hilites accordingly.
    * @param {object} btnEl The element whose parent is to be active. Or null if none of them should be.
    */
   var setActiveButton = function (btnEl) {
-    
+
     document.querySelectorAll(".map__country-data-box").forEach(function(el) {
       el.classList.remove("--active");
     });
@@ -151,6 +150,12 @@ const worldMap = (function () {
     if (btnEl) {
       var parentContainer = btnEl.parentElement;
       parentContainer.classList.add("--active");
+
+      // Get what to filter:
+      var filters = btnEl.getAttribute("data-map-hilites");
+      hiliteCountries(filters.split("|"));
+    } else {
+      hiliteCountries([]);
     }
   }
 

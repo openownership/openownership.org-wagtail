@@ -31,9 +31,12 @@ class PublicationType(Category):
         """
         from modules.content.models import TagPage
 
+        qs = TagPage.objects
+        if section_page:
+            qs = qs.descendant_of(section_page)
+
         page = (
-            TagPage.objects.descendant_of(section_page)
-            .live().public().filter(locale=Locale.get_active())
+            qs.live().public().filter(locale=Locale.get_active())
             .filter(publication_type=self).first()
         )
         if page:
