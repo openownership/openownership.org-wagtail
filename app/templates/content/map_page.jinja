@@ -86,10 +86,12 @@
             <form action="/search/" method="GET" class="country-search__form">
                 <div class="country-search__form-wrapper">
                     <label for="q" class="sr-only">Search</label>
-                    <input class="country-search__input" type="text" id="q" name="q" value="{{search_query or ''}}" placeholder="Country search">
+                    <input autocomplete="off" class="country-search__input" type="text" id="q" name="q" value="{{search_query or ''}}" placeholder="Country search">
                     <button type="submit" class="btn" aria-label="Search">
                         {% include 'svg/search-icon.jinja' %}
                     </button>
+                    <ul class="country__suggestions">
+                    </ul>
                 </div>
             </form>
         </div>
@@ -122,6 +124,7 @@
         {# countries.json from https://geojson-maps.ash.ms #}
         var geojsonPath = "{{static('data/countries.json')}}";
         var mapData = {{ map_json|safe }};
+        var countryData = {{ countries_json|safe }};
         var ooEngagedValues = {{ oo_engaged_values|safe }};
     </script>
 {% endblock %}

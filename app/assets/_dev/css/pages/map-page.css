@@ -142,3 +142,16 @@
     @apply text-14 text-grey-dark;
 }
 
+.country__suggestions {
+    position: absolute;
+    max-height: 250px;
+    overflow-y: scroll;
+    background-color: white;
+    top: 42px;
+    @apply w-full;
+}
+
+.country__suggestions_single-country {
+    @apply p-2;
+}
+
