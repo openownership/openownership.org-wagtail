@@ -246,19 +246,20 @@ def get_subnav_top_level_page(page, navbar_blocks):
     Returns None if `page` isn't found within the hierarchy.
     """
     parent = None
+    if hasattr(page, 'pk'):
 
-    for obj in navbar_blocks:
-        parent = obj['page']
+        for obj in navbar_blocks:
+            parent = obj['page']
 
-        if obj['type'] == 'mega_menu':
-            for item in obj['objects']:
-                if item['page'] and item['page'].pk == page.pk:
-                    return parent
+            if obj['type'] == 'mega_menu':
+                for item in obj['objects']:
+                    if item['page'] and item['page'].pk == page.pk:
+                        return parent
 
-                if item['type'] == 'sub_menu':
-                    for sub_item in item['objects']:
-                        if sub_item['page'] and sub_item['page'].pk == page.pk:
-                            return parent
+                    if item['type'] == 'sub_menu':
+                        for sub_item in item['objects']:
+                            if sub_item['page'] and sub_item['page'].pk == page.pk:
+                                return parent
 
     return parent
 
