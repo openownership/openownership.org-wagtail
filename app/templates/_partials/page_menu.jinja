@@ -29,10 +29,13 @@ Other possible variables:
         </ul>
     </div>
 {% else %}
+    {% set subnav_top_level_page = get_subnav_top_level_page(page, navbar_blocks) %}
+
     {% for obj in navbar_blocks recursive %}
-        {% if obj.type == 'mega_menu' and obj.page and obj.page.pk == page.section_page.pk %}
+
+        {% if obj.type == 'mega_menu' and obj.page and obj.page == subnav_top_level_page %}
             <div class="page-menu__container">
-                <h2 class="heading-m">{% if page_menu_title %}{{ page_menu_title }}{% else %}{{ page.section_page.title }}{% endif %}</h2>
+                <h2 class="heading-m">{% if page_menu_title %}{{ page_menu_title }}{% else %}{{ subnav_top_level_page.title }}{% endif %}</h2>
 
                 <ul class="page-menu">
                     {% for item in obj.objects %}
