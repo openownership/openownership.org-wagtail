@@ -16,4 +16,8 @@
         {% include "_partials/card_group.jinja" %}
     {% endwith %}
 
+    {% if page_obj.paginator.num_pages > 1 %}
+        {% include '_partials/pagination.jinja' %}
+    {% endif %}
+
 {% endblock content %}

@@ -34,7 +34,7 @@ def test_category_context_live(tag_page):
 
     rv = client.get(tag_page.url)
 
-    pages = rv.context_data['page_obj']
+    pages = rv.context_data['page_obj'].object_list
     assert len(pages) == 1
     assert pages[0].specific == live_pub
 
@@ -68,7 +68,7 @@ def test_category_context_from_all_sections(tag_page):
 
     rv = client.get(tag_page.url)
 
-    pages = [p.specific for p in rv.context_data['page_obj']]
+    pages = [p.specific for p in rv.context_data['page_obj'].object_list]
     assert len(pages) == 2
     assert pub1 in pages
     assert pub2 in pages
@@ -95,6 +95,6 @@ def test_tag_context_live(tag_page):
 
     rv = client.get(tag_page.url)
 
-    pages = rv.context_data['page_obj']
+    pages = rv.context_data['page_obj'].object_list
     assert len(pages) == 1
     assert pages[0].specific == live_pub

@@ -27,7 +27,7 @@ from wagtail.utils.decorators import cached_classmethod
 from wagtailcache.cache import WagtailCacheMixin
 
 # Project
-from modules.core.paginator import DiggPaginator
+from django.core.paginator import Paginator
 from modules.core.utils import get_site_context
 from modules.content.blocks import (
     landing_page_blocks, article_page_body_blocks, additional_content_blocks
@@ -303,8 +303,6 @@ class IndexPageType(BasePage):
 
     objects_model = None
 
-    paginator_class = DiggPaginator
-
     intro = fields.RichTextField(
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
     )
@@ -470,16 +468,7 @@ class IndexPageType(BasePage):
     def paginate_objects(self, request):
         queryset = self.get_queryset(request)
 
-        sp = settings.PAGINATOR
-
-        paginator = self.paginator_class(
-            queryset,
-            sp['objects_per_page'],
-            body=sp['body'],
-            margin=sp['margin'],
-            padding=sp['padding'],
-            tail=sp['tail'],
-        )
+        paginator = Paginator(queryset, 10)
         current_page = request.GET.get('page', 1)
         try:
             return paginator.page(current_page)

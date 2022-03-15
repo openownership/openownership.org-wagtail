@@ -153,7 +153,7 @@ class SearchView(TemplateView):
         return context
 
     def _get_paginator(self, results):
-        p = Paginator(results, settings.PAGINATOR['objects_per_page'])
+        p = Paginator(results, 10)
         result_set = p.page(self.page_num)
         return result_set
 

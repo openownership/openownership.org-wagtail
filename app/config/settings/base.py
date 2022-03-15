@@ -457,18 +457,6 @@ RICHTEXT_SUMMARY_FEATURES = [
     "bold", "italic", "small", "ol", "ul", "link", "document-link",
 ]
 
-
-# One place for the settings for pagination:
-PAGINATOR = {
-    "objects_per_page": 10,
-    # See modules.core.paginator for what these mean:
-    "body": 5,
-    "margin": 2,
-    "padding": 2,
-    "tail": 2
-}
-
-
 FONTAWESOME_ICONS = [
     'solid/external-link-square-alt.svg',
     'solid/th-large.svg',

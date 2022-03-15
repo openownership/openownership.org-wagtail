@@ -1,5 +1,3 @@
-{# Ana - just some dummy example HTML! Phil. #}
-
 
 {% if page_obj %}
 {% if page_obj.paginator %}
@@ -9,19 +7,19 @@
         <ul class="nav nav--pagination">
             {% if page_obj.has_previous() %}
                 <li class="nav--previous">
-                    <a class="reverse-underline" href="?page={{ page_obj.previous_page_number() }}">
+                    <a class="reverse-underline" href="?{% if terms %}q={{ terms|urlencode }}&amp;{% endif %}page={{ page_obj.previous_page_number() }}">
                         <span aria-hidden="true"> < </span>
                         {% trans %}Back{% endtrans %}
                     </a>
                 </li>
             {% endif %}
 
-            {% for p in page_obj.paginator.page_range %}
-                {% if not p %}
+            {% for p in page_obj.paginator.get_elided_page_range() %}
+                {% if p == '…' %}
                     <li>
                         <span class="nav--no-page">...</span>
                     </li>
-                {% elif p == page_obj.paginator.number %}
+                {% elif p == page_obj.number %}
                     <li>
                         <a class="reverse-underline" href="./" aria-current="page">
                             {{ p }}
@@ -29,14 +27,14 @@
                     </li>
                 {% else %}
                     <li>
-                        <a href="?page={{ p }}">{{ p }}</a>
+                        <a href="?{% if terms %}q={{ terms|urlencode }}&amp;{% endif %}page={{ p }}">{{ p }}</a>
                     </li>
                 {% endif %}
             {% endfor %}
 
             {% if page_obj.has_next() %}
                 <li class="nav--next">
-                    <a class="reverse-underline" href="?page={{ page_obj.next_page_number() }}">
+                    <a class="reverse-underline" href="?{% if terms %}q={{ terms|urlencode }}&amp;{% endif %}page={{ page_obj.next_page_number() }}">
                         {% trans %}Next{% endtrans %}
                         <span aria-hidden="true"> > </span>
                     </a>
