@@ -17,7 +17,8 @@
 }
 
 @include max-width(sm) {
-    .grid--3-col {
+    .grid--3-col,
+    .grid--4-col {
         @apply grid-cols-1 !important;
     }
 }
