@@ -160,13 +160,12 @@
 
 {% set related_pages = country.latest_related(3) %}
 {% if related_pages|length %}
-<section>
-    <hr/>
+<div class="related-pages">
     <h2>{% trans %}Relevant articles and publications{% endtrans %}</h2>
-    {% with pages=related_pages, columns=1 %}
+    {% with pages=related_pages, columns=1, card_format='landscape' %}
         {% include "_partials/card_group.jinja" %}
     {% endwith %}
-</section>
+</div>
 {% endif %}
 
 
