@@ -3,10 +3,15 @@
 
 {% block content %}
 
+<article>
 	{{ page.intro|richtext }}
+</article>
 
+<div class="related-pages">
+    {# <h2>Heading field here</h2>#}
 	{% with columns=2 %}
 		{% include "_partials/card_group.jinja" %}
 	{% endwith %}
+</div>
 
 {% endblock content %}
