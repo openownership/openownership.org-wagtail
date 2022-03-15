@@ -10,11 +10,15 @@
     </article>
 
     {% if page_obj %}
-        {% with pages=page_obj, columns=1, card_format='landscape' %}
-            {% include "_partials/card_group.jinja" %}
-        {% endwith %}
+        <div class="related-pages">
+            {% with pages=page_obj, columns=1, card_format='landscape' %}
+                {% include "_partials/card_group.jinja" %}
+            {% endwith %}
 
-        {% include "_partials/pagination.jinja" %}
+            {% include "_partials/pagination.jinja" %}
+        </div>
     {% endif %}
+
+    
 
 {% endblock content %}
