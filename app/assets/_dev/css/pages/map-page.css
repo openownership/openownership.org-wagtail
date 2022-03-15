@@ -22,8 +22,23 @@
 }
 
 .map__country-data {
-    @apply flex flex-row gap-8;
+    @apply flex flex-row;
     @apply my-4;
+
+    @include min-width(lg) {
+        @apply gap-8;
+    }
+
+    &.--no-filters {
+        @include max-width(lg) {
+            @apply flex-col;
+
+            .map__country-data-box {
+                @apply w-full;
+            }
+        }
+    }
+
 }
 
 .map__country-data-box {
@@ -53,6 +68,10 @@
         @apply mr-4;
         * {
             stroke: #3C31D5;
+        }
+
+        @include max-width(lg) {
+            display: none;
         }
         
     }
@@ -97,9 +116,14 @@
 }
 
 .country__header-card_row {
-    @apply w-full p-4;
+    @apply w-full py-4 px-0;
     @apply flex items-center;
     @apply text-grey-medium;
+    text-align: left;
+
+    @include min-width(lg) {
+        @apply p-4;
+    }
 
     svg {
         @apply mr-4;
@@ -123,15 +147,18 @@
 }
 
 .country__card-no-action {
-    @apply w-full px-4;
+    @apply w-full;
     @apply flex items-center;
     @apply text-black;
+
+    @include min-width(lg) {
+        @apply px-4;
+    }
 
     svg {
         @apply mr-4;
         width: 100%;
         max-width: 30px;
-
         g {
             fill: #db00c9;
         }
