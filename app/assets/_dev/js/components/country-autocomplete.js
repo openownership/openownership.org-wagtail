@@ -8,6 +8,10 @@ function findMatches(keyword, countries) {
 // add results to HTML li
 function displayMatches() {
     if (countryData) {
+
+      if (this.value.length === 0) {
+        suggestions.innerHTML = '';
+      } else {
         const matchArray = findMatches(this.value, countryData)
         const html = matchArray.map(country => {
             
@@ -20,6 +24,7 @@ function displayMatches() {
         }).join('');
         
         suggestions.innerHTML = html;
+      }
     }
 }
 

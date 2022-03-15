@@ -149,6 +149,7 @@
     background-color: white;
     top: 42px;
     @apply w-full;
+    z-index: 2;
 }
 
 .country__suggestions_single-country {
