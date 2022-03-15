@@ -232,6 +232,37 @@ def commitment_summary(commitment_type, country):
     return ""
 
 
+def get_subnav_top_level_page(page, navbar_blocks):
+    """
+    Returns the top-most page above `page` in the navbar hierarchy.
+    e.g. if, within some mega_nav and sub_menu structures we have:
+
+    * About (mega_nav)
+      * The Team (sub_menu)
+        * Bob Ferris (link)
+
+    and we call this with page=<Bob Ferris> then this returns <About>
+
+    Returns None if `page` isn't found within the hierarchy.
+    """
+    parent = None
+
+    for obj in navbar_blocks:
+        parent = obj['page']
+
+        if obj['type'] == 'mega_menu':
+            for item in obj['objects']:
+                if item['page'] and item['page'].pk == page.pk:
+                    return parent
+
+                if item['type'] == 'sub_menu':
+                    for sub_item in item['objects']:
+                        if sub_item['page'] and sub_item['page'].pk == page.pk:
+                            return parent
+
+    return parent
+
+
 class TemplateGlobalsExtension(Extension):
     def __init__(self, environment):
         super(TemplateGlobalsExtension, self).__init__(environment)
@@ -257,6 +288,7 @@ class TemplateGlobalsExtension(Extension):
             'routablepageurl': jinja2.pass_context(routablepageurl),
             'now': time_now,
             'today': date_now,
+            'get_subnav_top_level_page': get_subnav_top_level_page,
         })
         environment.tests.update({
             'absolutepath': isabsolutepath
