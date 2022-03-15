@@ -90,11 +90,15 @@
 .card-group__card.card-group__card--with-thumbnail.landscape {
 
     .card-group__card-decoration {
-        display: grid;
-        grid-column-gap: 40px;
-        grid-row-gap: 0px;
-        grid-template-columns: 50% minmax(min-content,max-content);
-        grid-auto-rows: minmax(min-content,auto) minmax(100%,auto);
+        @apply flex flex-col;
+
+        @include min-width(lg) {
+            display: grid;
+            grid-column-gap: 40px;
+            grid-row-gap: 0px;
+            grid-template-columns: 50% minmax(min-content,max-content);
+            grid-auto-rows: minmax(min-content,auto) minmax(100%,auto);
+        }
     }
 
 
