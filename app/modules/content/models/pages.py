@@ -542,11 +542,6 @@ class PublicationInnerPage(ContentPageType):
     parent_page_types: list = ['content.PublicationFrontPage']
     subpage_types: list = []
 
-    content_panels = [
-        FieldPanel('title'),
-        StreamFieldPanel('body'),
-    ]
-
     def __str__(self):
         return f"{self.get_parent().title}: {self.title}"
 
