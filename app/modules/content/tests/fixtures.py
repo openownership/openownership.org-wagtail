@@ -310,8 +310,8 @@ def tag_page(taxonomy_page):
 
 
 @pytest.fixture(scope="function")
-def taxonomy_page(section_page):
-    p = _create_taxonomy_page("Taxonomy", section_page)
+def taxonomy_page(home_page):
+    p = _create_taxonomy_page("Taxonomy", home_page)
     return p
 
 
