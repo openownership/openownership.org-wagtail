@@ -90,6 +90,7 @@ article_page_body_blocks: list = [
     ('image', ArticleImageBlock()),
     ('cta_block_form', CTABlock()),
     ('disclosure', DisclosureBlock()),
+    ('raw_html', blocks.RawHTMLBlock(label='Raw HTML')),
 ]
 
 team_profile_page_body_blocks: list = article_page_body_blocks
