@@ -98,3 +98,8 @@ def test_tag_context_live(tag_page):
     pages = rv.context_data['page_obj'].object_list
     assert len(pages) == 1
     assert pages[0].specific == live_pub
+
+
+def test_card_blurb(tag_page):
+    tag_page.blurb = "My blurb"
+    assert tag_page.card_blurb == "My blurb"

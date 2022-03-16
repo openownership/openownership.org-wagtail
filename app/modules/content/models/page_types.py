@@ -216,6 +216,11 @@ class BasePage(WagtailCacheMixin, Page):
         "Whether to show the date when displaying a card about this page."
         return False
 
+    @cached_property
+    def card_blurb(self):
+        "So that other types of page can display different fields in place of blurb on cards"
+        return self.blurb
+
 
 ####################################################################################################
 # Landing Page Type

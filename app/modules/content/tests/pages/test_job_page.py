@@ -35,3 +35,8 @@ def test_publication_type_choices(job_page):
 def test_breadcrumb_page(job_page):
     "It should return the parent Careers page"
     assert job_page.breadcrumb_page == job_page.get_parent()
+
+
+def test_card_blurb(job_page):
+    job_page.blurb = "My blurb"
+    assert job_page.card_blurb == "My blurb"

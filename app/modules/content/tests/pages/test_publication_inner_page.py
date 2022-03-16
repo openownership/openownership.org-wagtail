@@ -142,3 +142,8 @@ def test_breadcrumb_page(publication_inner_page):
     (Unlike every other page that returns its parent as a breadcrumb)
     """
     assert publication_inner_page.breadcrumb_page.specific == publication_inner_page.get_parent().get_parent()
+
+
+def test_card_blurb(publication_inner_page):
+    publication_inner_page.blurb = "My blurb"
+    assert publication_inner_page.card_blurb == "My blurb"

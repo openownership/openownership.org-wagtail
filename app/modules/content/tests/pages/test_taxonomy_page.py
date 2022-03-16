@@ -60,3 +60,8 @@ def test_context_children(taxonomy_page):
     pages = rv.context_data['pages']
     assert len(pages) == 1
     assert pages[0].specific == page1
+
+
+def test_card_blurb(taxonomy_page):
+    taxonomy_page.blurb = "My blurb"
+    assert taxonomy_page.card_blurb == "My blurb"

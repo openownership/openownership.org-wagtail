@@ -145,3 +145,8 @@ def test_get_next_page_none(publication_front_page):
 def test_breadcrumb_page(publication_front_page):
     "It should return the parent Section page"
     assert publication_front_page.breadcrumb_page == publication_front_page.get_parent()
+
+
+def test_card_blurb(publication_front_page):
+    publication_front_page.blurb = "My blurb"
+    assert publication_front_page.card_blurb == "My blurb"

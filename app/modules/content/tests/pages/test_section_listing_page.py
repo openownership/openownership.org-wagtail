@@ -46,3 +46,8 @@ def test_show_child_pages_false(section_listing_page):
 
     pages = [p.specific for p in rv.context_data["child_pages"]]
     assert p1 not in pages
+
+
+def test_card_blurb(section_listing_page):
+    section_listing_page.blurb = "My blurb"
+    assert section_listing_page.card_blurb == "My blurb"

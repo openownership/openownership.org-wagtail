@@ -701,6 +701,11 @@ class TeamProfilePage(BasePage):
         index.SearchField('email_address'),
     ]
 
+    @cached_property
+    def card_blurb(self):
+        "Display role instead of blurb on cards"
+        return self.role
+
     @classmethod
     def get_admin_tabs(cls):
         """Add the about tab to the tabbed interface

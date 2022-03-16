@@ -28,3 +28,8 @@ def test_publication_type_choices(news_article_page):
 def test_breadcrumb_page(news_article_page):
     "It should return the parent News page"
     assert news_article_page.breadcrumb_page == news_article_page.get_parent()
+
+
+def test_card_blurb(news_article_page):
+    news_article_page.blurb = "My blurb"
+    assert news_article_page.card_blurb == "My blurb"
