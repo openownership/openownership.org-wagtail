@@ -29,7 +29,11 @@
 .implementation-details {
     @apply bg-white;
     @apply border-l-2 border-blue-medium;
-    @apply ml-10 px-8 py-4;
+    @apply px-8 py-4;
+
+    @include min-width(lg) {
+        @apply ml-10;
+    }
 
     dl {
         display: flex;
@@ -47,12 +51,17 @@
         width: 40%;
         @apply border-b border-border-table;
         @apply py-2;
+        word-break: break-word;
     }
 }
 
 .country-page__country-data {
     @apply flex flex-row gap-8;
     @apply my-10;
+
+    @include max-width(lg) {
+        @apply gap-4;
+    }
 }
 
 .country-page__country-data-box {
@@ -67,6 +76,10 @@
 
     svg {
         @apply mr-4;
+
+        @include max-width(lg) {
+            display: none;
+        }
     }
 }
 
@@ -75,8 +88,12 @@
 }
 
 .country-page__country-data-box-list-item {
-    @apply flex items-center p-4;
+    @apply flex items-center py-4 px-0;
     @apply border-t-2 border-border-data;
+
+    @include min-width(lg) {
+        @apply p-4;
+    }
 
     &:first-child {
         @apply border-0;
@@ -86,6 +103,11 @@
         @apply mr-4;
         width: 100%;
         max-width: 30px;
+
+        @include max-width(lg) {
+            align-self: flex-start;
+            @apply mr-2 mt-2;
+        }
     }
 
 }
