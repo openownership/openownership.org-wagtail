@@ -303,6 +303,8 @@ class IndexPageType(BasePage):
 
     objects_model = None
 
+    objects_per_page = 10
+
     intro = fields.RichTextField(
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
     )
@@ -317,118 +319,6 @@ class IndexPageType(BasePage):
             return apps.get_model(self.objects_model)
 
         return self.objects_model
-
-    # def get_filter_options(self) -> dict:
-    #     """
-    #     This method should return a dict of valid filters for the child pages, in the format:
-
-    #     {filterable_attribute: (value_field, label_field)}
-
-    #     For example, given the objects_model model:
-
-    #         NewsArticlePage(Page):
-    #             ...
-    #             categories = ParentalManyToManyField(
-    #                 'taxonomy.NewsCategory',
-    #                 related_name="news",
-    #                 blank=True
-    #             )
-
-    #     returning {'categories': ('slug', 'name')}
-
-    #     Means that you could create a series of checkboxes for each `NewsCategory`,
-    #     where `slug` is the value, and `name` is label.
-    #     """
-
-    #     return {
-    #         'categories': ('slug', 'name')
-    #     }
-
-    # def get_filter_label(self, model):
-    #     """
-    #     A simple method for getting the friendly name of a filter, in the case that you are
-    #     setting up a loop in the template. Easily overridable with some "if field ==" logic,
-    #     or just ignore it altogether and put a custom title on the template. You can do whatever
-    #     you want. This is life.
-    #     """
-
-    #     return model._meta.verbose_name
-
-    # def get_filter_data(self, request=None) -> dict:
-
-    #     """
-    #     Where to retrieve the filter data from. This is usually going to be from the query string
-    #     but if you are passing via the url like /category/news/ then you could return view kwargs
-    #     """
-    #     return request.GET.copy()
-
-    # def get_filters_for_template(self, request) -> dict:
-    #     """
-    #     This method return a list of dicts for constructing filter menus in the template.
-
-    #     Each dict has a field_name, label and an is_active boolean to say whether this filter
-    #     is currently being used on the queryset. Example:
-
-
-    #     return [
-    #         {
-    #             'field_name': 'categories',
-    #             'label': 'Category',
-    #             'choices': <QuerySet [
-    #                 {
-    #                     'name': 'Blog',
-    #                     'slug': 'blog',
-    #                     'selected': True
-    #                 },
-    #                 {
-    #                     'name': 'Press release',
-    #                     'slug': 'press-release',
-    #                     'selected': False
-    #                 },
-
-    #                 {
-    #                     'name': 'Research Papers',
-    #                     'slug': 'research',
-    #                     'selected': False
-    #                 },
-    #             ]>
-    #         }
-    #     ]
-    #     """
-
-    #     filters = []
-    #     query_string = request.GET.copy()
-    #     objects_model = self.get_objects_model()
-
-    #     for key, values in self.get_filter_options().items():
-    #         filter_model = getattr(objects_model, key).field.related_model
-    #         active_filters = query_string.getlist(key)
-
-    #         value_key = values[0]
-
-    #         choices = (
-    #             filter_model
-    #             .objects
-    #             .values(*values)
-    #             .annotate(
-    #                 is_active=models.Case(
-    #                     *[models.When(**{
-    #                         value_key: active_filter,
-    #                         'then': True
-    #                     }) for active_filter in active_filters],
-    #                     default=models.Value(False),
-    #                     output_field=models.BooleanField()
-    #                 )
-    #             ).values(*values, 'is_active')
-    #         )
-
-    #         filters.append({
-    #             'field_name': key,
-    #             'label': self.get_filter_label(filter_model),
-    #             'choices': choices
-    #         })
-
-    #     return filters
 
     def get_order_by(self):
         return ['-display_date', '-last_published_at']
@@ -447,28 +337,14 @@ class IndexPageType(BasePage):
         This returns the queryset needed to paginate the objects on the page. It pulls all the
         valid filters from get_filter_options and carries out the respective logic on the queryset.
         """
-
         query = self.base_queryset()
-        # filter_options = self.get_filter_options()
-        # filters = {}
-
-        # for key, values in filter_options.items():
-        #     query = query.prefetch_related(key)
-        #     filter_value = request.GET.get(key, None)
-        #     if filter_value:
-        #         filters.update({
-        #             f'{key}__{values[0]}': filter_value
-        #         })
-
-        # if filters:
-        #     query = query.filter(**filters)
 
         return query.distinct().order_by(*self.get_order_by())
 
     def paginate_objects(self, request):
         queryset = self.get_queryset(request)
 
-        paginator = Paginator(queryset, 10)
+        paginator = Paginator(queryset, self.objects_per_page)
         current_page = request.GET.get('page', 1)
         try:
             return paginator.page(current_page)

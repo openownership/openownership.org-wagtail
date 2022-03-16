@@ -770,6 +770,10 @@ class ThemePage(IndexPageType):
 class TeamPage(IndexPageType):
     """The one page listing all TeamProfilePages"""
 
+    # We don't want pagination but, at a certain point, we're going
+    # to want pagination:
+    objects_per_page = 50
+
     objects_model = TeamProfilePage
 
     template = 'content/team_page.jinja'
