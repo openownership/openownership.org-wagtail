@@ -260,6 +260,7 @@ def get_subnav_top_level_page(page, navbar_blocks):
                         for sub_item in item['objects']:
                             if sub_item['page'] and sub_item['page'].pk == page.pk:
                                 return parent
+        parent = None
 
     return parent
 
