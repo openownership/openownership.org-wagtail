@@ -781,6 +781,10 @@ class TeamPage(IndexPageType):
     subpage_types: list = ['content.TeamProfilePage']
     max_count = 1
 
+    def get_order_by(self):
+        "Order by the order that's been set in Wagtail Admin"
+        return ['path']
+
 
 ####################################################################################################
 # Other pages
