@@ -25,7 +25,7 @@ footer {
 }
 
 .footer__horizontal-links {
-    @apply flex;
+    @apply flex flex-wrap;
     @apply gap-3;
 }
 
