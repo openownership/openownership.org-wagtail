@@ -249,11 +249,16 @@ class NewsArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
     # author_relationships from NewsArticleAuthorRelationship
     # authors from AuthorsPageMixin
 
+    # def get_publication_type_choices(self):
+    #     """Get the only PublicationType allowd for this kind of Page.
+    #     Used by PublicationTypeFieldPanel() for the list of choices.
+    #     """
+    #     return PublicationType.objects.filter(name='News article')
+
     def get_publication_type_choices(self):
-        """Get the only PublicationType allowd for this kind of Page.
-        Used by PublicationTypeFieldPanel() for the list of choices.
+        """We now allow any publication type category on these pages.
         """
-        return PublicationType.objects.filter(name='News article')
+        return PublicationType.objects.all()
 
 
 class BlogArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
@@ -272,11 +277,16 @@ class BlogArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
     class Meta:
         verbose_name = _('Blog post page')
 
+    # def get_publication_type_choices(self):
+    #     """Get the only PublicationType allowd for this kind of Page.
+    #     Used by PublicationTypeFieldPanel() for the list of choices.
+    #     """
+    #     return PublicationType.objects.filter(name='Blog post')
+
     def get_publication_type_choices(self):
-        """Get the only PublicationType allowd for this kind of Page.
-        Used by PublicationTypeFieldPanel() for the list of choices.
+        """We now allow any publication type category on these pages.
         """
-        return PublicationType.objects.filter(name='Blog post')
+        return PublicationType.objects.all()
 
 
 class UtilityPage(ContentPageType):
@@ -339,11 +349,16 @@ class JobPage(TaggedPageMixin, ContentPageType):
         if self.application_deadline:
             return self.application_deadline.strftime('%d %B %Y')
 
+    # def get_publication_type_choices(self):
+    #     """Get the only PublicationType allowd for this kind of Page.
+    #     Used by PublicationTypeFieldPanel() for the list of choices."""
+
+    #     return PublicationType.objects.filter(name='Job')
+
     def get_publication_type_choices(self):
-        """Get the only PublicationType allowd for this kind of Page.
-        Used by PublicationTypeFieldPanel() for the list of choices.
+        """We now allow any publication type category on these pages.
         """
-        return PublicationType.objects.filter(name='Job')
+        return PublicationType.objects.all()
 
 
 ####################################################################################################
@@ -482,18 +497,23 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
 
         return context
 
+    # def get_publication_type_choices(self):
+    #     """Get the only PublicationType allowd for this kind of Page.
+    #     Used by PublicationTypeFieldPanel() for the list of choices.
+    #     """
+    #     publication_types = (
+    #         'Briefing',
+    #         'Case study',
+    #         # 'Consultation',  # No longer valid
+    #         'Guidance',
+    #         # 'Report',  # No longer valid
+    #     )
+    #     return PublicationType.objects.filter(name__in=publication_types)
+
     def get_publication_type_choices(self):
-        """Get the only PublicationType allowd for this kind of Page.
-        Used by PublicationTypeFieldPanel() for the list of choices.
+        """We now allow any publication type category on these pages.
         """
-        publication_types = (
-            'Briefing',
-            'Case study',
-            # 'Consultation',  # No longer valid
-            'Guidance',
-            # 'Report',  # No longer valid
-        )
-        return PublicationType.objects.filter(name__in=publication_types)
+        return PublicationType.objects.all()
 
     def get_next_page(self):
         """Returns the first InnerPage in this publication
