@@ -67,7 +67,7 @@ class SimilarContentBlock(blocks.StructBlock):
     options = [
         # ('focus_area', _('Area of Focus')),
         ('sector', _('Sector')),
-        ('publication_type', _('Publication Type')),
+        ('publication_type', _('Content Type')),
         ('author', _('Author')),
         ('country', _('Country')),
         ('section', _('Section')),

@@ -217,7 +217,7 @@ class TaggedPageMixin(PageMixinBase):
     )
 
     about_panels = [
-        PublicationTypeFieldPanel('publication_type', _('Publication type')),
+        PublicationTypeFieldPanel('publication_type', _('Content type')),
         # FieldPanel('areas_of_focus', _('Areas of focus')),
         FieldPanel('sectors', _('Topics')),
         FieldPanel('countries', _('Countries')),

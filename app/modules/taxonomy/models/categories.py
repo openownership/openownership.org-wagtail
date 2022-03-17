@@ -22,8 +22,8 @@ class PublicationType(Category):
     url_slug = 'types'
 
     class Meta:
-        verbose_name = _("Publication type")
-        verbose_name_plural = _("Publication types")
+        verbose_name = _("Content type")
+        verbose_name_plural = _("Content types")
 
     def get_url(self, section_page):
         """Generate the URL to this category's TagPage in a specific section.
