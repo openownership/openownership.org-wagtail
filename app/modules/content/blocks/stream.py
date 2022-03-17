@@ -780,7 +780,7 @@ class LatestSectorBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Latest by Sector')
+        label = _('Latest by Topic')
         group = _('Card group')
         icon = 'tag'
         template = "_partials/card_group.jinja"
@@ -1076,13 +1076,13 @@ class SectorsBlock(AreasOfFocusBlock):
     """
 
     class Meta:
-        label = _('Sectors')
+        label = _('Topics')
         group = _('Card group')
         icon = "tag"
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
-    DEFAULT_TITLE = 'Sectors'
+    DEFAULT_TITLE = 'Topics'
 
     title = blocks.CharBlock(
         required=False,

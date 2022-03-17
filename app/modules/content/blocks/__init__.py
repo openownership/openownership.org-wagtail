@@ -73,7 +73,7 @@ home_page_blocks: list = [
 section_page_blocks: list = [
     ('highlight_pages', HighlightPagesBlock()),
     # ('areas_of_focus_block', AreasOfFocusBlock()),
-    ('topics_block', SectorsBlock()),
+    ('topics_block', SectorsBlock(label="Topics")),
     ('latest_section_content', LatestSectionContentBlock()),
     ('publication_types', PublicationTypesBlock(label='Content types')),
     ('press_links', PressLinksBlock()),

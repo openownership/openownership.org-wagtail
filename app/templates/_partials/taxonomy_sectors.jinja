@@ -10,7 +10,7 @@ title - Title for the block.
     {% with sectors=page.sectors.all() %}
         {% if sectors|length > 0 %}
             <p>
-                <strong>{% if title %}{{ title }}{% else %}{% trans %}Sectors{% endtrans %}{% endif %}</strong><br>
+                <strong>{% if title %}{{ title }}{% else %}{% trans %}Topics{% endtrans %}{% endif %}</strong><br>
                 {% for sector in sectors %}
                     <a href="{{ sector.get_url(page.section_page) }}">{{ sector.name }}</a>{% if not loop.last %}, {% endif %}
                 {% endfor %}

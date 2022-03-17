@@ -75,14 +75,14 @@ class SectorTag(BaseTag):
     url_name = "sector-tag"
 
     # Name of the URL for viewing things with this Tag.
-    url_slug = 'sectors'
+    url_slug = 'topics'
 
     # Convenient way of accessing the related_name that links to pages:
     related_pages_name = 'sector_related_pages'
 
     class Meta:
-        verbose_name = _("Sector")
-        verbose_name_plural = _("Sectors")
+        verbose_name = _("Topic")
+        verbose_name_plural = _("Topics")
 
     def get_url(self, section_page):
         """Generate the URL to this tag's TagPage in a specific section.
