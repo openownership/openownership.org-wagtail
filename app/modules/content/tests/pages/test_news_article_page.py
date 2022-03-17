@@ -15,14 +15,16 @@ def test_human_display_date(news_article_page):
 
 
 def test_publication_type_choices(news_article_page):
-    "It should return the only PublicationTypes availeble to this page"
+    """It should return the only PublicationTypes availeble to this page,
+    but this page now allows all publication types."""
     call_command('populate_taxonomies', verbosity=0)
 
     types = news_article_page.get_publication_type_choices()
 
-    assert len(types) == 1
+    assert len(types) == 8
     assert isinstance(types[0], PublicationType)
-    assert types[0].name == "News article"
+    # News article is no longer a publication type
+    assert types[0].name != "News article"
 
 
 def test_breadcrumb_page(news_article_page):

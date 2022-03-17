@@ -29,15 +29,11 @@ def test_populates_publication_types():
     call_command('populate_taxonomies', verbosity=0)
 
     valid_names = [
-        "Job",
-        "Blog post",
         "Briefing",
         "Case study",
         "Event",
         "Forms",
         "Guidance",
-        "News article",
-        "Publication",
         "Technical guidance",
         "Tools",
         "Video",
@@ -45,7 +41,7 @@ def test_populates_publication_types():
 
     types = PublicationType.objects.all()
 
-    assert len(types) == 12
+    assert len(types) == 8
     assert valid_names == [t.name for t in types]
 
 
