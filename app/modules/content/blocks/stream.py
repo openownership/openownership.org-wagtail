@@ -21,7 +21,7 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtailmodelchooser.blocks import ModelChooserBlock
 
 # Module
-from .values import LatestBlogValue, LatestNewsValue
+from .values import LatestBlogValue, LatestNewsValue, LatestPublicationsValue
 from .generic import ArticleImageBlock, CTABlock
 from .mixins import (  # NOQA
     TitleMixin, TitleBodyMixin, EyebrowTitleMixin,
@@ -89,23 +89,23 @@ class LatestNewsBlock(blocks.StructBlock):
     )
 
 
-# class LatestBlogBlock(blocks.StructBlock):
+class LatestPublicationsBlock(blocks.StructBlock):
 
-#     class Meta:
-#         label = 'Latest blog posts'
-#         icon = 'doc-full'
-#         template = "_partials/card_group.jinja"
-#         value_class = LatestBlogValue
+    class Meta:
+        label = 'Latest publications'
+        icon = 'doc-full'
+        template = "_partials/card_group.jinja"
+        value_class = LatestPublicationsValue
 
-#     title = blocks.CharBlock(
-#         required=True,
-#         default="Latest blog posts"
-#     )
-#     section = ModelChooserBlock(
-#         'taxonomy.SectionTag',
-#         required=False,
-#         help_text=""
-#     )
+    title = blocks.CharBlock(
+        required=True,
+        default="Latest publications"
+    )
+    section = ModelChooserBlock(
+        'taxonomy.SectionTag',
+        required=False,
+        help_text=""
+    )
 
 
 ####################################################################################################
@@ -128,7 +128,7 @@ class SimilarContentBlock(blocks.StructBlock):
 
     options = [
         # ('focus_area', _('Area of Focus')),
-        ('sector', _('Sector')),
+        ('sector', _('Topic')),
         ('publication_type', _('Content Type')),
         ('author', _('Author')),
         ('country', _('Country')),

@@ -52,3 +52,11 @@ class LatestNewsValue(SectionLatestValue):
         from modules.content.models import NewsArticlePage
         self.model = NewsArticlePage
         super().__init__(*args, **kwargs)
+
+
+class LatestPublicationsValue(SectionLatestValue):
+
+    def __init__(self, *args, **kwargs):
+        from modules.content.models import PublicationFrontPage
+        self.model = PublicationFrontPage
+        super().__init__(*args, **kwargs)
