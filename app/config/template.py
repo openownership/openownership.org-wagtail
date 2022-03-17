@@ -263,6 +263,10 @@ def get_subnav_top_level_page(page, navbar_blocks):
         for obj in navbar_blocks:
             parent = obj['page']
 
+            if hasattr(parent, 'pk') and parent.pk == page.pk:
+                # If the current page is a top-level link in the navbar.
+                return parent
+
             if obj['type'] == 'mega_menu':
                 for item in obj['objects']:
                     if item['page'] and item['page'].pk == page.pk:
@@ -273,7 +277,6 @@ def get_subnav_top_level_page(page, navbar_blocks):
                             if sub_item['page'] and sub_item['page'].pk == page.pk:
                                 return parent
         parent = None
-
     return parent
 
 
