@@ -10,7 +10,7 @@ accordionButtons.forEach(button => {
   button.setAttribute('aria-expanded', false);
   
   const expanded = button.getAttribute('aria-expanded');
-  const number = button.getAttribute('id').split('-').pop();
+  const number = button.getAttribute('id').split('accordion-open-').pop();
   const associatedSection = document.getElementById(`accordion-section-${number}`)
  
   button.addEventListener('click', () => {

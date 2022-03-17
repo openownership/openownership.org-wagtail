@@ -244,8 +244,20 @@ def get_subnav_top_level_page(page, navbar_blocks):
     and we call this with page=<Bob Ferris> then this returns <About>
 
     Returns None if `page` isn't found within the hierarchy.
+
+    * page is probably a Wagtail Page but it could also be a view
+    * navbar_blocks is the navbar_blocks that was passed in the template context
     """
+    from modules.content.views import CountryView
+
     parent = None
+
+    if isinstance(page, CountryView):
+        # Special case. If it's a CountryView, we want to show the same
+        # nav as the Map page. Which is what a CountryView has as its
+        # breadcrumb_page. So:
+        page = page.breadcrumb_page
+
     if hasattr(page, 'pk'):
 
         for obj in navbar_blocks:
@@ -260,6 +272,7 @@ def get_subnav_top_level_page(page, navbar_blocks):
                         for sub_item in item['objects']:
                             if sub_item['page'] and sub_item['page'].pk == page.pk:
                                 return parent
+        parent = None
 
     return parent
 

@@ -105,9 +105,9 @@
 
                 <div id="accordion-section-{{region.slug}}" class="accordion__section open">
                     {% for country in region.countries.all() %}
-                    <div >
+                    
                         <a href="{{ country.url }}">{{ country.name }}</a>
-                    </div>
+                    
                     {% endfor %}
                 </div>
 

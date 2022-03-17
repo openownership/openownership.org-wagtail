@@ -21,13 +21,19 @@
       }
       
       &::after {
-        content: '+';
+        content: ' ';
+        background-image: url('/static/images/icons/plus.svg');
+        background-size: 15px 15px;
+        background-position: center;
+        background-repeat: no-repeat;
         position: absolute;
-        right: 2rem;
+        right: 1rem;
         top: 15px;
         width: 0; 
         height: 0;
         @apply text-21;
+        width: 30px;
+        height: 30px;
         
       }
     }
@@ -36,7 +42,9 @@
         @apply bg-blue-light text-blue-medium;
         
         &::after {
-            content:'-';
+            content:' ';
+            background-image: url('/static/images/icons/minus.svg');
+            background-size: 15px 15px;
             @apply text-21;
          
           border-top: none;
@@ -56,5 +64,12 @@
       overflow: auto;
       padding: 1.25em;
       visibility: visible;
+
+      a {
+        @apply py-2 block font-bold no-underline;
+        &:hover {
+          @apply underline;
+        }
+      }
     }
   }
