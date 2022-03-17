@@ -33,6 +33,7 @@ from .stream import (
     LatestPrincipleTagBlock,
     PressLinksBlock,
     LatestBlogBlock,
+    LatestNewsBlock,
     # CardGroupBlock,
     # TextColumnsBlock,
     # NotificationBlock,
@@ -70,6 +71,7 @@ home_page_blocks: list = [
     ('latest_by_section_tag', LatestSectionTagBlock()),
     ('latest_by_open_ownership_principle', LatestPrincipleTagBlock()),
     ('latest_from_the_blog', LatestBlogBlock()),
+    ('latest_news', LatestNewsBlock()),
 ]
 
 section_page_blocks: list = [
@@ -80,6 +82,7 @@ section_page_blocks: list = [
     ('publication_types', PublicationTypesBlock(label='Content types')),
     ('press_links', PressLinksBlock()),
     ('latest_from_the_blog', LatestBlogBlock()),
+    ('latest_news', LatestNewsBlock()),
 ]
 
 article_page_body_blocks: list = [

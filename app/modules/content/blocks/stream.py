@@ -21,7 +21,7 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtailmodelchooser.blocks import ModelChooserBlock
 
 # Module
-from .values import LatestBlogValue
+from .values import LatestBlogValue, LatestNewsValue
 from .generic import ArticleImageBlock, CTABlock
 from .mixins import (  # NOQA
     TitleMixin, TitleBodyMixin, EyebrowTitleMixin,
@@ -68,6 +68,44 @@ class LatestBlogBlock(blocks.StructBlock):
         required=False,
         help_text=""
     )
+
+
+class LatestNewsBlock(blocks.StructBlock):
+
+    class Meta:
+        label = 'Latest news'
+        icon = 'doc-full'
+        template = "_partials/card_group.jinja"
+        value_class = LatestNewsValue
+
+    title = blocks.CharBlock(
+        required=True,
+        default="Latest news"
+    )
+    section = ModelChooserBlock(
+        'taxonomy.SectionTag',
+        required=False,
+        help_text=""
+    )
+
+
+# class LatestBlogBlock(blocks.StructBlock):
+
+#     class Meta:
+#         label = 'Latest blog posts'
+#         icon = 'doc-full'
+#         template = "_partials/card_group.jinja"
+#         value_class = LatestBlogValue
+
+#     title = blocks.CharBlock(
+#         required=True,
+#         default="Latest blog posts"
+#     )
+#     section = ModelChooserBlock(
+#         'taxonomy.SectionTag',
+#         required=False,
+#         help_text=""
+#     )
 
 
 ####################################################################################################
@@ -572,41 +610,43 @@ def get_news_category_choices():
     return NewsCategory.objects.values_list('id', 'name')
 
 
-class LatestNewsBlock(TitleMixin):
+""" DEPRECATED """
 
-    class Meta:
-        icon = 'fa-newspaper-o'
-        template = "blocks/news_listing.jinja"
+# class LatestNewsBlock(TitleMixin):
 
-    DEFAULT_LIMIT = 4
-    limit_number = blocks.IntegerBlock(required=True, default=DEFAULT_LIMIT)
-    limit_to_categories = blocks.MultipleChoiceBlock(
-        choices=get_news_category_choices,
-        required=False,
-        widget=forms.CheckboxSelectMultiple
-    )
+#     class Meta:
+#         icon = 'fa-newspaper-o'
+#         template = "blocks/news_listing.jinja"
 
-    def get_context(self, value, parent_context={}):
-        from modules.content.models import NewsArticlePage
-        context = super().get_context(value, parent_context=parent_context)
+#     DEFAULT_LIMIT = 4
+#     limit_number = blocks.IntegerBlock(required=True, default=DEFAULT_LIMIT)
+#     limit_to_categories = blocks.MultipleChoiceBlock(
+#         choices=get_news_category_choices,
+#         required=False,
+#         widget=forms.CheckboxSelectMultiple
+#     )
 
-        query = NewsArticlePage.objects.live()
+#     def get_context(self, value, parent_context={}):
+#         from modules.content.models import NewsArticlePage
+#         context = super().get_context(value, parent_context=parent_context)
 
-        categories = value.get('limit_to_categories')
+#         query = NewsArticlePage.objects.live()
 
-        if categories:
-            query = query.filter(categories__id__in=categories)
+#         categories = value.get('limit_to_categories')
 
-        objects = list(
-            query.distinct().order_by('-display_date')[:value.get('limit', self.DEFAULT_LIMIT)]
-        )
+#         if categories:
+#             query = query.filter(categories__id__in=categories)
 
-        context.update({
-            'objects': objects,
-            'highlight_first': True
-        })
+#         objects = list(
+#             query.distinct().order_by('-display_date')[:value.get('limit', self.DEFAULT_LIMIT)]
+#         )
 
-        return context
+#         context.update({
+#             'objects': objects,
+#             'highlight_first': True
+#         })
+
+#         return context
 
 
 ####################################################################################################

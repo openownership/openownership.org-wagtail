@@ -44,3 +44,11 @@ class LatestBlogValue(SectionLatestValue):
         from modules.content.models import BlogArticlePage
         self.model = BlogArticlePage
         super().__init__(*args, **kwargs)
+
+
+class LatestNewsValue(SectionLatestValue):
+
+    def __init__(self, *args, **kwargs):
+        from modules.content.models import NewsArticlePage
+        self.model = NewsArticlePage
+        super().__init__(*args, **kwargs)
