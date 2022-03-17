@@ -104,7 +104,7 @@
                 </button>
 
                 <div id="accordion-section-{{region.slug}}" class="accordion__section open">
-                    {% for country in region.countries.all() %}
+                    {% for country in region.countries.all().order_by('name') %}
                     
                         <a href="{{ country.url }}">{{ country.name }}</a>
                     
