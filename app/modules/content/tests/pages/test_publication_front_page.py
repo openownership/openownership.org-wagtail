@@ -150,3 +150,25 @@ def test_breadcrumb_page(publication_front_page):
 def test_card_blurb(publication_front_page):
     publication_front_page.blurb = "My blurb"
     assert publication_front_page.card_blurb == "My blurb"
+
+
+def test_show_display_date_on_card(publication_front_page):
+    "It should match the show_display_date property"
+    p = publication_front_page
+
+    p.show_display_date = True
+    assert p.show_display_date_on_card is True
+
+    p.show_display_date = False
+    assert p.show_display_date_on_card is False
+
+
+def test_show_display_date_on_page(publication_front_page):
+    "It should match the show_display_date property"
+    p = publication_front_page
+
+    p.show_display_date = True
+    assert p.show_display_date_on_page is True
+
+    p.show_display_date = False
+    assert p.show_display_date_on_page is False

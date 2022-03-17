@@ -418,6 +418,12 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         verbose_name=_("Benefit / Impact")
     )
 
+    show_display_date = models.BooleanField(
+        default=True,
+        help_text=_("Should this date be displayed as the publication's date?"),
+        verbose_name=_('Show Display Date?')
+    )
+
     additional_content = fields.StreamField(additional_content_blocks, blank=True)
 
     # Also has:
@@ -450,6 +456,13 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         StreamFieldPanel('additional_content'),
     ]
 
+    settings_panels = [
+        MultiFieldPanel([
+            FieldPanel('display_date'),
+            FieldPanel('show_display_date')
+        ], heading=_("Display date"))
+    ] + Page.settings_panels
+
     search_fields = BasePage.search_fields + [
         index.SearchField('summary'),
         index.SearchField('outcomes'),
@@ -473,7 +486,12 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
     @property
     def show_display_date_on_card(self):
         "Whether to show the date when displaying a card about this page."
-        return True
+        return self.show_display_date
+
+    @property
+    def show_display_date_on_page(self):
+        "Whether to show the date when displaying the page."
+        return self.show_display_date
 
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)
@@ -542,6 +560,9 @@ class PublicationInnerPage(ContentPageType):
     parent_page_types: list = ['content.PublicationFrontPage']
     subpage_types: list = []
 
+    # So we don't show display_date:
+    settings_panels = Page.settings_panels
+
     def __str__(self):
         return f"{self.get_parent().title}: {self.title}"
 
@@ -572,6 +593,16 @@ class PublicationInnerPage(ContentPageType):
         they can override this method.
         """
         return cls.section_page
+
+    @cached_property
+    def show_display_date_on_card(self):
+        "Whether to show the date when displaying a card about this page."
+        return self.get_parent().specific.show_display_date
+
+    @cached_property
+    def show_display_date_on_page(self):
+        "Whether to show the date when displaying the page."
+        return self.get_parent().specific.show_display_date
 
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)

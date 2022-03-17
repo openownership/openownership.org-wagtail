@@ -27,7 +27,9 @@
                 <h1 class="heading-xl">{{ page.specific.display_title }}</h1>
 
                 <ul class="article-header__meta">
-                    <li class="article-header__meta-item">{% trans %}Publication date{% endtrans %}: {{ page.human_display_date }}</li>
+					{% if page.show_display_date_on_page %}
+						<li class="article-header__meta-item">{% trans %}Publication date{% endtrans %}: {{ page.human_display_date }}</li>
+					{% endif %}
 
 					{% with authors=page.specific.authors %}
 						{% if authors and authors|length %}

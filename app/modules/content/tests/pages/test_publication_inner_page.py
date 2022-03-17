@@ -147,3 +147,43 @@ def test_breadcrumb_page(publication_inner_page):
 def test_card_blurb(publication_inner_page):
     publication_inner_page.blurb = "My blurb"
     assert publication_inner_page.card_blurb == "My blurb"
+
+
+def test_show_display_date_on_card_true(publication_inner_page):
+    "It should match the parent's show_display_date property"
+    p = publication_inner_page
+    parent = p.get_parent()
+
+    parent.show_display_date = True
+    parent.save()
+    assert p.show_display_date_on_card is True
+
+
+def test_show_display_date_on_card_false(publication_inner_page):
+    "It should match the parent's show_display_date property"
+    p = publication_inner_page
+    parent = p.get_parent()
+
+    parent.show_display_date = False
+    parent.save()
+    assert p.show_display_date_on_card is False
+
+
+def test_show_display_date_on_page_true(publication_inner_page):
+    "It should match the parent's show_display_date property"
+    p = publication_inner_page
+    parent = p.get_parent()
+
+    parent.show_display_date = True
+    parent.save()
+    assert p.show_display_date_on_page is True
+
+
+def test_show_display_date_on_page_false(publication_inner_page):
+    "It should match the parent's show_display_date property"
+    p = publication_inner_page
+    parent = p.get_parent()
+
+    parent.show_display_date = False
+    parent.save()
+    assert p.show_display_date_on_page is False
