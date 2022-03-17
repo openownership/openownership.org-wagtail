@@ -1,50 +1,97 @@
 {% extends 'base.jinja' %}
 {% block content %}
-  <header class="search-page__header">
-      <h1 class="heading-xl">{% trans %}Find content and resources{% endtrans %}</h1>
-      <form action="" method="get" class="search-form">
-        <input class="search-form__text-input" type="text" name="q" value="{{ terms }}" placeholder="Enter your search term">
-        <button class="btn" type="submit">
-          <span class="visually-hidden">Search</span>
-        </button>
-      </form>
-  </header>
+  <form action="" method="get">
+    <header class="search-page__header">
+      <div class="search-form"
+        <h1 class="heading-xl">{% trans %}Find content and resources{% endtrans %}</h1>
+          <input class="search-form__text-input" type="text" name="q" value="{{ form.q.value() }}" placeholder="Enter your search term">
+          <button class="btn" type="submit">
+            <span class="visually-hidden">Search</span>
+          </button>
+      </div>
+    </header>
 
 
-  <div class="aside-layout-left">
-		<div class="aside-layout__menu">
+    <div class="aside-layout-left">
+      <div class="aside-layout__menu">
 
-			{# {% include '_partials/filter_list.jinja' %} #}
-		</div>
+        <h2>Content types</h2>
+        <ul>
+          {% for field in form.pt %}
+            <li>
+              {{ field }}
+            </li>
+          {% endfor %}
+        </ul>
 
-		<div class="aside-layout__main aside-layout__no-header">
-      {% if results %}
-        {% set objects = results %}
-        {% set page_obj = results %}
-      
-          {% include '_partials/list_view.jinja' %}
+        <h2>Principles</h2>
+        <ul>
+          {% for field in form.pr %}
+            <li>
+              {{ field }}
+            </li>
+          {% endfor %}
+        </ul>
 
-          {% if results.paginator.num_pages > 1 %}
-            {% include '_partials/pagination.jinja' %}
-          {% endif %}
+        <h2>Sections</h2>
+        <ul>
+          {% for field in form.sn %}
+            <li>
+              {{ field }}
+            </li>
+          {% endfor %}
+        </ul>
 
-            {# {% if results.paginator.num_pages > 1 %}
-                <nav class="pagination">
-                    {% if results.has_previous() %}
-                        <a href="?q={{terms}}&amp;page={{ results.previous_page_number() }}" class="btn">Previous</a>
-                        {% else %}
-                        <div></div>
-                    {% endif %}
-                    {% if results.has_next() %}
-                        <a href="?q={{terms}}&amp;page={{ results.next_page_number() }}" class="btn">Next</a>
-                    {% endif %}
-                </nav>
-            {% endif %} #}
-      {% endif %}
-		</div>
-	</div>
+        <h2>Topics</h2>
+        <ul>
+          {% for field in form.sr %}
+            <li>
+              {{ field }}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="aside-layout__main aside-layout__no-header">
+
+        <p>
+          {{results.paginator.count}} {% trans count=results.paginator.count %}result{% pluralize %}results{% endtrans %}
+        </p>
+
+        {% if filters_list|length %}
+          <p>
+            {% for obj in filters_list %}
+              <span>{{ obj.name }}</span>
+            {% endfor %}
+          </p>
+        {% endif %}
+
+        {% if results %}
+          {% set objects = results %}
+          {% set page_obj = results %}
+
+            {% include '_partials/list_view.jinja' %}
+
+            {% if results.paginator.num_pages > 1 %}
+              {% include '_partials/pagination.jinja' %}
+            {% endif %}
+
+              {# {% if results.paginator.num_pages > 1 %}
+                  <nav class="pagination">
+                      {% if results.has_previous() %}
+                          <a href="?q={{terms}}&amp;page={{ results.previous_page_number() }}" class="btn">Previous</a>
+                          {% else %}
+                          <div></div>
+                      {% endif %}
+                      {% if results.has_next() %}
+                          <a href="?q={{terms}}&amp;page={{ results.next_page_number() }}" class="btn">Next</a>
+                      {% endif %}
+                  </nav>
+              {% endif %} #}
+        {% endif %}
+      </div>
+    </div>
+  </form>
 
 
 {% endblock %}
-
-

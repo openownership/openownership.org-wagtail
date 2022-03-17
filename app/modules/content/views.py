@@ -16,7 +16,9 @@ from django.utils.datastructures import MultiValueDictKeyError
 from config.template import author_url
 from helpers.context import global_context
 from modules.notion.models import CountryTag
-from modules.content.models import HomePage, SectionPage
+from modules.content.forms import SearchForm
+from modules.content.models import content_page_models, HomePage, SectionPage
+from modules.taxonomy.models import PrincipleTag, PublicationType, SectionTag, SectorTag
 
 
 class DummyCountryPage(object):
@@ -118,7 +120,16 @@ class SearchView(TemplateView):
     def __init__(self, *args, **kwargs):
         self.page_num = 1
         self.mode = 'and'
+
+        # Will be the search terms:
         self.terms = ''
+
+        # We'll save all the taxonomy objects in here:
+        self.filters = {}
+        # And a list of them all in here:
+        self.filters_list = []
+        # Were any filters chosen?
+        self.is_filtered = False
 
     def setup(self, request, *args, **kwargs):
         try:
@@ -127,6 +138,7 @@ class SearchView(TemplateView):
             self.page_num = 1
         except Exception as e:
             console.error(e)
+
         try:
             self.terms = str(request.GET['q'])
         except MultiValueDictKeyError:
@@ -134,16 +146,28 @@ class SearchView(TemplateView):
         except Exception:
             self.terms = ''
 
+        self._set_filters(request)
+
         super().setup(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         pages = self._get_pages(self.terms)
+
         self.paginator = self._get_paginator(pages)
         self.page_obj = self.paginator
+        context['form'] = SearchForm(initial={
+            'q': self.terms,
+            'pt': self.request.GET.getlist('pt', []),
+            'pr': self.request.GET.getlist('pr', []),
+            'sn': self.request.GET.getlist('sn', []),
+            'sr': self.request.GET.getlist('sr', []),
+        })
         context['terms'] = self.terms
         context['page'] = self
         context['results'] = self.paginator
+        context['filters_list'] = self.filters_list
 
         if self.terms:
             context['meta_title'] = f"Search: {self.terms}"
@@ -151,6 +175,34 @@ class SearchView(TemplateView):
             context['meta_title'] = "Search"
         global_context(context)  # Adds in nav settings etc.
         return context
+
+    def _set_filters(self, request):
+        """
+        Gets all the taxonomy objects based on the chosen filters.
+        Will be used when getting the queryset.
+        """
+        f = {}  # for brevity
+
+        ids = [int(n) for n in request.GET.getlist('pt', [])]
+        f['publication_types'] = PublicationType.objects.filter(id__in=ids)
+        self.filters_list += list(f['publication_types'])
+
+        ids = [int(n) for n in request.GET.getlist('pr', [])]
+        f['principle_tags'] = PrincipleTag.objects.filter(id__in=ids)
+        self.filters_list += list(f['principle_tags'])
+
+        ids = [int(n) for n in request.GET.getlist('sn', [])]
+        f['section_tags'] = SectionTag.objects.filter(id__in=ids)
+        self.filters_list += list(f['section_tags'])
+
+        ids = [int(n) for n in request.GET.getlist('sr', [])]
+        f['sector_tags'] = SectorTag.objects.filter(id__in=ids)
+        self.filters_list += list(f['sector_tags'])
+
+        self.filters = f
+
+        if len(self.filters_list) > 0:
+            self.is_filtered = True
 
     def _get_paginator(self, results):
         p = Paginator(results, 10)
@@ -160,12 +212,63 @@ class SearchView(TemplateView):
     def _get_pages(self, terms):
         query = Query.get(terms)
         query.add_hit()
+
         promoted = Query.get(terms).editors_picks.all()
         exclude_ids = [p.id for p in promoted]
-        searched = Page.objects.exclude(
-            id__in=exclude_ids).filter(
-            locale=Locale.get_active()
-        ).live().specific().search(terms, operator=self.mode)
+
+        qs = Page.objects
+
+        if self.is_filtered:
+            page_ids = []
+
+            def add_ids(a, b):
+                "Combines and returns two lists of IDs, a and b."
+                if self.mode == 'and' and len(a) > 0:
+                    # a will contain only IDs that are in BOTH lists
+                    a = list(set(a).intersection(b))
+                else:
+                    # a will contain all of the IDS:
+                    a += b
+                return a
+
+            f = self.filters  # for brevity
+
+            # The publication_types Category:
+
+            if len(f['publication_types']):
+                for pt in f['publication_types']:
+                    ids = list(pt.pages.values_list('id', flat=True))
+                    page_ids = add_ids(page_ids, ids)
+
+            # The three Tags:
+
+            if len(f['principle_tags']):
+                for tag in f['principle_tags']:
+                    ids = list(tag.principle_tag_related_pages.values_list('content_object__id', flat=True))
+                    page_ids = add_ids(page_ids, ids)
+
+            if len(f['section_tags']):
+                for tag in f['section_tags']:
+                    ids = list(tag.section_tag_related_pages.values_list('content_object__id', flat=True))
+                    page_ids = add_ids(page_ids, ids)
+
+            if len(f['sector_tags']):
+                for tag in f['sector_tags']:
+                    ids = list(tag.sector_related_pages.values_list('content_object__id', flat=True))
+                    page_ids = add_ids(page_ids, ids)
+
+            # Restrict to the only page types that have taxonomies
+            # and filter by the page_ids we've found.
+            qs = qs.type(*content_page_models).filter(id__in=set(page_ids))
+
+        searched = (
+            qs.exclude(id__in=exclude_ids)
+            .filter(locale=Locale.get_active())
+            .live().specific()
+        )
+
+        if terms:
+            searched = searched.search(terms, operator=self.mode)
 
         # Check to see if this matches a Country name
         countries = self._find_countries(terms)
