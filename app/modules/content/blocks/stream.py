@@ -21,7 +21,7 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtailmodelchooser.blocks import ModelChooserBlock
 
 # Module
-from .values import LatestBlogValue, LatestNewsValue, LatestPublicationsValue
+from .values import LatestBlogValue, LatestNewsValue, LatestPublicationsValue, LatestContentValue
 from .generic import ArticleImageBlock, CTABlock
 from .mixins import (  # NOQA
     TitleMixin, TitleBodyMixin, EyebrowTitleMixin,
@@ -100,6 +100,26 @@ class LatestPublicationsBlock(blocks.StructBlock):
     title = blocks.CharBlock(
         required=True,
         default="Latest publications"
+    )
+    section = ModelChooserBlock(
+        'taxonomy.SectionTag',
+        required=False,
+        help_text=""
+    )
+
+
+class LatestContentBlock(blocks.StructBlock):
+
+    class Meta:
+        label = 'Latest content'
+        icon = 'doc-full'
+        template = "_partials/card_group.jinja"
+        value_class = LatestContentValue
+        help_text = "Shows latest blog posts, news and job pages"
+
+    title = blocks.CharBlock(
+        required=True,
+        default="Latest"
     )
     section = ModelChooserBlock(
         'taxonomy.SectionTag',

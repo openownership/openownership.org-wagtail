@@ -35,6 +35,7 @@ from .stream import (
     LatestBlogBlock,
     LatestNewsBlock,
     LatestPublicationsBlock,
+    LatestContentBlock,
     # CardGroupBlock,
     # TextColumnsBlock,
     # NotificationBlock,
@@ -74,6 +75,7 @@ home_page_blocks: list = [
     ('latest_from_the_blog', LatestBlogBlock()),
     ('latest_news', LatestNewsBlock()),
     ('latest_publications', LatestPublicationsBlock()),
+    ('latest_content', LatestContentBlock()),
 ]
 
 section_page_blocks: list = [

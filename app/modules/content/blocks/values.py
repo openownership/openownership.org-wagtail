@@ -1,15 +1,9 @@
 """
     StructValues
 """
-
-import arrow
-from django.db import models
-from typing import Optional
 from consoler import console
-from django.utils.functional import cached_property
 from wagtail.core.models import Page, Locale
 from wagtail.core import blocks
-from django.utils.translation import gettext_lazy as _
 
 
 class SectionLatestValue(blocks.StructValue):
@@ -24,13 +18,22 @@ class SectionLatestValue(blocks.StructValue):
 
     @property
     def pages(self):
-        qs = self.model.objects.live().public().filter(locale=Locale.get_active())
+        if hasattr(self, 'model') and not hasattr(self, 'models'):
+            qs = self.model.objects.live().public().filter(locale=Locale.get_active())
+
+        if hasattr(self, 'models') and not hasattr(self, 'model'):
+            qs = Page.objects.live().public().specific().filter(
+                locale=Locale.get_active()).type(self.models)
+
         if self.section_tag:
             related_pages = self.section_tag.section_tag_related_pages.all()
             ids = [item.content_object_id for item in related_pages]
             qs = qs.filter(id__in=ids)
 
-        qs = qs.order_by('-display_date')
+        try:
+            qs = qs.order_by('-display_date')
+        except Exception:
+            qs = qs.order_by('-first_published_at')
         try:
             return qs.all()[:3]
         except Exception as e:
@@ -59,4 +62,18 @@ class LatestPublicationsValue(SectionLatestValue):
     def __init__(self, *args, **kwargs):
         from modules.content.models import PublicationFrontPage
         self.model = PublicationFrontPage
+        super().__init__(*args, **kwargs)
+
+
+class LatestContentValue(SectionLatestValue):
+
+    def __init__(self, *args, **kwargs):
+        """
+            • News article
+            • Blog post
+            • Event ? doesn't actually exist
+            • Job
+        """
+        from modules.content.models import NewsArticlePage, BlogArticlePage, JobPage
+        self.models = (NewsArticlePage, BlogArticlePage, JobPage, )
         super().__init__(*args, **kwargs)
