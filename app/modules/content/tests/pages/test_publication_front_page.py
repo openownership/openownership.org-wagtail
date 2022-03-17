@@ -98,20 +98,13 @@ def test_menu_pages_children(publication_front_page):
 
 
 def test_publication_type_choices(publication_front_page):
-    "It should return the only PublicationTypes availeble to this page"
+    """It should return the only PublicationTypes availeble to this page,
+    but this page now allows all publication types."""
     call_command('populate_taxonomies', verbosity=0)
-    valid_names = [
-        'Briefing',
-        'Case study',
-        # 'Consultation',  # No longer valid
-        'Guidance',
-        # 'Report',  # No longer valid
-    ]
     types = publication_front_page.get_publication_type_choices()
 
-    assert len(types) == 3
+    assert len(types) == 8
     assert isinstance(types[0], PublicationType)
-    assert valid_names == [t.name for t in types]
 
 
 def test_get_next_page(publication_front_page):

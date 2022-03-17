@@ -8,6 +8,18 @@ Expects:
 * card_format - "landscape" or "portrait", optional, default is "".
 #}
 
+{% if value and not pages %}
+{% if value.pages and not pages %}
+{% set pages = value.pages %}
+{% endif %}
+{% endif %}
+
+{% if value and not title %}
+{% if value.title and not title %}
+{% set title = value.title %}
+{% endif %}
+{% endif %}
+
 {% if not columns %}
     {% if pages|length is divisibleby 3 %}
         {% set columns = 3 %}
