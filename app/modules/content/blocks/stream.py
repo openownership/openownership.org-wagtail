@@ -21,6 +21,7 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtailmodelchooser.blocks import ModelChooserBlock
 
 # Module
+from .values import LatestBlogValue
 from .generic import ArticleImageBlock, CTABlock
 from .mixins import (  # NOQA
     TitleMixin, TitleBodyMixin, EyebrowTitleMixin,
@@ -43,6 +44,29 @@ class GlossaryItemBlock(blocks.StructBlock):
     body = blocks.RichTextBlock(
         required=True,
         features=settings.RICHTEXT_INLINE_FEATURES
+    )
+
+
+####################################################################################################
+# New taxonomy related blocks
+####################################################################################################
+
+class LatestBlogBlock(blocks.StructBlock):
+
+    class Meta:
+        label = 'Latest blog posts'
+        icon = 'doc-full'
+        template = "_partials/card_group.jinja"
+        value_class = LatestBlogValue
+
+    title = blocks.CharBlock(
+        required=True,
+        default="Latest blog posts"
+    )
+    section = ModelChooserBlock(
+        'taxonomy.SectionTag',
+        required=False,
+        help_text=""
     )
 
 
