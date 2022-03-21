@@ -38,9 +38,9 @@ class CountryTagModelAdmin(ModelAdmin):
     menu_order = 100
     menu_icon = 'site'
     add_to_settings_menu = True
-    list_display = ('name', )
+    list_display = ('name', 'icon', 'deleted')
     search_fields = ('name', )
-    list_filter = ('archived', 'oo_support', )
+    list_filter = ('archived', 'oo_support', 'deleted')
     prepopulated_fields = {"slug": ("name",)}
     inspect_view_enabled = True
 
@@ -60,9 +60,11 @@ class CommitmentModelAdmin(ModelAdmin):
     menu_order = 200
     menu_icon = 'fa-link'
     add_to_settings_menu = True
-    list_display = ('country', )
-    search_fields = ('country', )
-    list_filter = ('commitment_type_name', 'central_register', 'public_register')
+    list_display = (
+        'country', 'commitment_type_name', 'central_register', 'public_register', 'deleted'
+    )
+    search_fields = ('country__name', )
+    list_filter = ('commitment_type_name', 'central_register', 'public_register', 'deleted')
     inspect_view_enabled = True
     permission_helper_class = ReadOnlyPermissionHelper
 
@@ -72,9 +74,9 @@ class DisclosureRegimeModelAdmin(ModelAdmin):
     menu_order = 300
     menu_icon = 'fa-link'
     add_to_settings_menu = True
-    list_display = ('title', )
-    search_fields = ('title', )
-    list_filter = ('title', )
+    list_display = ('title', 'country', 'stage', 'deleted')
+    search_fields = ('title', 'country__name')
+    list_filter = ('stage', 'country', 'deleted')
     inspect_view_enabled = True
     permission_helper_class = ReadOnlyPermissionHelper
 
