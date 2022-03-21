@@ -344,6 +344,26 @@ class NotionCronBase(CronJobBase):
             console.warn(e)
             return None
 
+    def _get_number(self, data: dict, property_name: str) -> Optional[str]:
+        """A number field in Notion presents like this, we just want the number key
+
+        'properties': {
+            '1.2 Threshold': {
+                'id': '%24I.J',
+                'type': 'number',
+                'number': 23
+            },
+        }
+
+        Args:
+            data (dict): The dict we're grabbing the name from
+        """
+        try:
+            return data['properties'][property_name]['number']
+        except Exception as e:
+            console.warn(e)
+            return None
+
     def _get_bool(self, data: dict, property_name: str) -> bool:
         """A checkbox / bool field in Notion presents like this, we just want the value
 
@@ -707,6 +727,7 @@ class SyncRegimes(NotionCronBase):
         obj.data_in_bods = self._get_select_name(regime, '6.4 Data published in BODS')
         obj.on_oo_register = self._get_bool(regime, '6.5 Data on OO Register')
         obj.legislation_url = self._get_url(regime, '8.4 Legislation URL')
+        obj.threshold = self._get_number(regime, '1.2 Threshold')
 
         try:
             obj.save()
