@@ -65,9 +65,6 @@ body {
 
 .aside-layout__main {
     width: 100%;
-    & > *:first-child {
-        @apply mt-0;
-    }
 }
 
 .aside-layout__no-header {
