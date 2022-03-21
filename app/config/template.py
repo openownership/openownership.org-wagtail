@@ -13,6 +13,7 @@ from django.utils import translation
 from django.shortcuts import reverse
 from django.utils.safestring import mark_safe
 from django.template.defaultfilters import slugify
+from django.utils.translation import gettext_lazy as _
 from django.contrib.staticfiles.storage import staticfiles_storage
 from wagtail.contrib.routable_page.templatetags.wagtailroutablepage_tags import routablepageurl
 
@@ -161,6 +162,13 @@ def date_now():
     return date.today()
 
 
+def yesno(value):
+    if value:
+        return _('Yes')
+    else:
+        return _('No')
+
+
 def rich_text(value, class_name=None):
     from django.utils.safestring import mark_safe
     from wagtail.core.rich_text import RichText, expand_db_html
@@ -286,6 +294,7 @@ class TemplateGlobalsExtension(Extension):
         environment.filters.update({
             'nicedate': nicedate,
             'shortdate': shortdate,
+            'yesno': yesno,
             'datestamp': datestamp,
             'fieldtype': fieldtype,
             'nl2br': nl2br,
