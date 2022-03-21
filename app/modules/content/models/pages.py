@@ -11,6 +11,7 @@ from itertools import chain
 from re import I
 
 # 3rd party
+from consoler import console
 from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
@@ -260,6 +261,18 @@ class NewsArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
         """
         return PublicationType.objects.all()
 
+    @cached_property
+    def page_type(self):
+        return _('News article')
+
+    @cached_property
+    def index_link(self):
+        try:
+            p = self.get_parent()
+            return p.url
+        except Exception as e:
+            console.warn(e)
+
 
 class BlogArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
     """An article in the Research > Blog section.
@@ -287,6 +300,18 @@ class BlogArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
         """We now allow any publication type category on these pages.
         """
         return PublicationType.objects.all()
+
+    @cached_property
+    def page_type(self):
+        return _('Blog post')
+
+    @cached_property
+    def index_link(self):
+        try:
+            p = self.get_parent()
+            return p.url
+        except Exception as e:
+            console.warn(e)
 
 
 class UtilityPage(ContentPageType):
@@ -359,6 +384,18 @@ class JobPage(TaggedPageMixin, ContentPageType):
         """We now allow any publication type category on these pages.
         """
         return PublicationType.objects.all()
+
+    @cached_property
+    def page_type(self):
+        return _('Job')
+
+    @cached_property
+    def index_link(self):
+        try:
+            p = self.get_parent()
+            return p.url
+        except Exception as e:
+            console.warn(e)
 
 
 ####################################################################################################
@@ -507,6 +544,18 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
     def show_display_date_on_page(self):
         "Whether to show the date when displaying the page."
         return self.show_display_date
+
+    @cached_property
+    def page_type(self):
+        return _('Publication')
+
+    @cached_property
+    def index_link(self):
+        try:
+            p = self.get_parent()
+            return p.url
+        except Exception as e:
+            console.warn(e)
 
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)

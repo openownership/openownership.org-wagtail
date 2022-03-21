@@ -1,7 +1,12 @@
-{% if page.publication_type %}
+{% if page.publication_type or page.page_type %}
     <p>
         <strong>{% trans %}Publication type{% endtrans %}</strong><br>
         <a href="{{ page.publication_type.get_url(page.section_page) }}">{{ page.publication_type }}</a>
+        {% if page.page_type and page.index_link %}
+            {% if page.page_type != page.publication_type.name %}
+                <br><a href="{{ page.index_link }}">{{ page.page_type }}</a>
+            {% endif %}
+        {% endif %}
     </p>
 {% endif %}
 

@@ -225,6 +225,15 @@ class TaggedPageMixin(PageMixinBase):
         FieldPanel('principles', _('Open Ownership Principles')),
     ]
 
+    search_fields = [
+        index.SearchField('publication_type'),
+        index.SearchField('areas_of_focus'),
+        index.SearchField('sectors'),
+        index.SearchField('countries'),
+        index.SearchField('sections'),
+        index.SearchField('principles'),
+    ]
+
     @classmethod
     def get_admin_tabs(cls):
         """Add the about tab to the tabbed interface

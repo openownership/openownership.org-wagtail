@@ -201,7 +201,7 @@ class SimilarContentBlock(blocks.StructBlock):
         """
         all_ids = []
         for tag in self.page.sections.all():
-            for item in tag.section_related_pages.all():
+            for item in tag.section_tag_related_pages.all():
                 if item.content_object.id != self.page.id:
                     all_ids.append(item.content_object.id)
 
