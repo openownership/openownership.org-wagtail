@@ -417,6 +417,15 @@ class CountryTag(NotionModel, BaseTag):
             return None
 
     @cached_property
+    def implementation_stage(self):
+        try:
+            return self.regime.stage
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No stage for {self.name}")
+            return None
+
+    @cached_property
     def display_structured_data(self):
         try:
             return self.regime.structured_data

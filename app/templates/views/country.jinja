@@ -134,8 +134,10 @@ Reminder that we have the Annotated country profile page with links to relevant 
             
         </section>
 
-        <section class="country-page__section">
+
            
+{% if country.implementation_stage == 'Publish' %}
+        <section class="country-page__section">
             <h2>{% trans %}Implementation Detail{% endtrans %}</h2>
             {% for regime in country.disclosure_regimes.all() %}
                 <p>{{ regime.title }}</p>
@@ -146,7 +148,7 @@ Reminder that we have the Annotated country profile page with links to relevant 
                 <div class="implementation-details">
                     <dl>
                         {% if country.implementation_title %}
-                        <dt>{% trans %}Title of implementation{% endtrans %}</dt>
+                        <dt>{% trans %}Title{% endtrans %}</dt>
                         <dd>
                             {% if country.implementation_title_link %}<a href="{{ country.implementation_title_link }}">{% endif %}
                             {{ country.implementation_title }}
@@ -190,6 +192,8 @@ Reminder that we have the Annotated country profile page with links to relevant 
                 </div>
             </details>
         </section>
+
+{% endif %}
 
         {# This section will come post-launch #}
         {# <section>
