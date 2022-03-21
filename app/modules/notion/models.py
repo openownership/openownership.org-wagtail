@@ -520,6 +520,35 @@ class CountryTag(NotionModel, BaseTag):
             return None
 
     @cached_property
+    def first_public_regime_with_url(self):
+        """Find the first regime that has a value for both
+        public_access_register_url and title
+        """
+        rv = {}
+        for item in self.regimes:
+            if item.title and item.public_access_register_url:
+                rv['title'] = item.title
+                rv['url'] = item.public_access_register_url
+                return rv
+
+    @cached_property
+    def first_central_regime_with_url(self):
+        """Find the first regime that has...
+            * YES for central_register
+            * a title
+        """
+        rv = {}
+        for item in self.regimes:
+            if item.central_register and item.central_register.lower() == 'yes':
+                if item.title:
+                    rv['title'] = item.title
+
+                if item.public_access_register_url:
+                    rv['url'] = item.public_access_register_url
+
+                return rv
+
+    @cached_property
     def related_pages(self):
         try:
             page_ids = [item.content_object_id for item in self.country_related_pages.all()]
