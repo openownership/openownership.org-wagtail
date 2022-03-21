@@ -62,7 +62,7 @@ class CommitmentModelAdmin(ModelAdmin):
     add_to_settings_menu = True
     list_display = ('country', )
     search_fields = ('country', )
-    list_filter = ('country', )
+    list_filter = ('commitment_type_name', 'central_register', 'public_register')
     inspect_view_enabled = True
     permission_helper_class = ReadOnlyPermissionHelper
 

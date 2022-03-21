@@ -163,6 +163,9 @@ def date_now():
 
 
 def yesno(value):
+    if value is None:
+        return
+    console.info(value)
     if value:
         return _('Yes')
     else:
