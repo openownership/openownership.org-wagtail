@@ -18,3 +18,12 @@ input[type=text].search-form__text-input {
     flex: 1 1 0%;
     @apply border-2;
 }
+
+.results__count {
+    @apply mb-4;
+}
+
+.search-filter__title {
+    @apply text-21 font-bold;
+    padding: 1rem 1rem;   
+}

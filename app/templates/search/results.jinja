@@ -2,12 +2,13 @@
 {% block content %}
   <form action="" method="get">
     <header class="search-page__header">
-      <div class="search-form"
-        <h1 class="heading-xl">{% trans %}Find content and resources{% endtrans %}</h1>
-          <input class="search-form__text-input" type="text" name="q" value="{{ form.q.value() }}" placeholder="Enter your search term">
-          <button class="btn" type="submit">
-            <span class="visually-hidden">Search</span>
-          </button>
+      <h1 class="heading-xl">{% trans %}Find content and resources{% endtrans %}</h1>
+      <div class="search-form">
+        
+        <input class="search-form__text-input" type="text" name="q" value="{{ form.q.value() }}" placeholder="Enter your search term">
+        <button class="btn" type="submit">
+          <span class="visually-hidden">Search</span>
+        </button>
       </div>
     </header>
 
@@ -15,46 +16,55 @@
     <div class="aside-layout-left">
       <div class="aside-layout__menu">
 
-        <h2>Content types</h2>
-        <ul>
-          {% for field in form.pt %}
-            <li>
+        <h2 class="search-filter__title">Filter your results</h2>
+        <div class="accordion search-filter">
+          <button id="accordion-open-content-types" class="accordion__button">
+            Content types
+          </button>
+          <div id="accordion-section-content-types" class="accordion__section open">
+            {% for field in form.pt %}
               {{ field }}
-            </li>
-          {% endfor %}
-        </ul>
+            {% endfor %}
+          </div>
+        </div>
 
-        <h2>Principles</h2>
-        <ul>
-          {% for field in form.pr %}
-            <li>
+        <div class="accordion search-filter">
+          <button id="accordion-open-principles" class="accordion__button">
+              Principles
+          </button>
+          <div id="accordion-section-principles" class="accordion__section open">
+            {% for field in form.pr %}
               {{ field }}
-            </li>
-          {% endfor %}
-        </ul>
+            {% endfor %}
+          </div>
+        </div>
 
-        <h2>Sections</h2>
-        <ul>
-          {% for field in form.sn %}
-            <li>
+        <div class="accordion search-filter">
+          <button id="accordion-open-sections" class="accordion__button">
+              Sections
+          </button>
+          <div id="accordion-section-sections" class="accordion__section open">
+            {% for field in form.sn %}
               {{ field }}
-            </li>
-          {% endfor %}
-        </ul>
+            {% endfor %}
+          </div>
+        </div>
 
-        <h2>Topics</h2>
-        <ul>
-          {% for field in form.sr %}
-            <li>
+        <div class="accordion search-filter">
+          <button id="accordion-open-topics" class="accordion__button">
+              Topics
+          </button>
+          <div id="accordion-section-topics" class="accordion__section open">
+            {% for field in form.sr %}
               {{ field }}
-            </li>
-          {% endfor %}
-        </ul>
+            {% endfor %}
+          </div>
+        </div>
       </div>
 
       <div class="aside-layout__main aside-layout__no-header">
 
-        <p>
+        <p class="results__count">
           {{results.paginator.count}} {% trans count=results.paginator.count %}result{% pluralize %}results{% endtrans %}
         </p>
 
