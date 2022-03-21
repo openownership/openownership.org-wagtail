@@ -25,15 +25,15 @@ class PublicationType(Category):
         verbose_name = _("Content type")
         verbose_name_plural = _("Content types")
 
-    def get_url(self, section_page):
+    def get_url(self, section_page=None):
         """Generate the URL to this category's TagPage in a specific section.
         section_page is the page the TagPage is within.  e.g. 'impact'
         """
         from modules.content.models import TagPage
 
         qs = TagPage.objects
-        if section_page:
-            qs = qs.descendant_of(section_page)
+        # if section_page:
+        #     qs = qs.descendant_of(section_page)
 
         page = (
             qs.live().public().filter(locale=Locale.get_active())

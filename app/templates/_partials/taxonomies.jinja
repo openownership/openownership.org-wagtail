@@ -1,7 +1,14 @@
 {% if page.publication_type or page.page_type %}
     <p>
-        <strong>{% trans %}Publication type{% endtrans %}</strong><br>
-        <a href="{{ page.publication_type.get_url(page.section_page) }}">{{ page.publication_type }}</a>
+        <strong>{% trans %}Publication type{% endtrans %}</strong>
+        {% if page.publication_type %}
+            {% set tag_link = page.publication_type.get_url(page.section_page) %}
+        {% else %}
+            {% set tag_link = '' %}
+        {% endif %}
+        {% if tag_link %}<a href="{{ page.publication_type.get_url(page.section_page) }}">{% endif %}
+            {% if page.publication_type %}<br>{{ page.publication_type }}{% endif %}
+        {% if tag_link %}</a>{% endif %}
         {% if page.page_type and page.index_link %}
             {% if page.page_type != page.publication_type.name %}
                 <br><a href="{{ page.index_link }}">{{ page.page_type }}</a>

@@ -32,14 +32,14 @@ class FocusAreaTag(BaseTag):
         verbose_name = _("Area of Focus")
         verbose_name_plural = _("Areas of Focus")
 
-    def get_url(self, section_page):
+    def get_url(self, section_page=None):
         """Generate the URL to this tag's TagPage in a specific section.
         section_page is the page the TagPage is within.  e.g. 'impact'
         """
         from modules.content.models import TagPage
 
         page = (
-            TagPage.objects.descendant_of(section_page)
+            TagPage.objects
             .live().public().filter(locale=Locale.get_active())
             .filter(focus_area=self).first()
         )
@@ -91,7 +91,7 @@ class SectorTag(BaseTag):
         from modules.content.models import TagPage
 
         page = (
-            TagPage.objects.descendant_of(section_page)
+            TagPage.objects
             .live().public().filter(locale=Locale.get_active())
             .filter(sector=self).first()
         )
@@ -144,7 +144,7 @@ class SectionTag(BaseTag):
         from modules.content.models import TagPage
 
         page = (
-            TagPage.objects.descendant_of(section_page)
+            TagPage.objects
             .live().public().filter(locale=Locale.get_active())
             .filter(section=self).first()
         )
@@ -197,7 +197,7 @@ class PrincipleTag(BaseTag):
         from modules.content.models import TagPage
 
         page = (
-            TagPage.objects.descendant_of(section_page)
+            TagPage.objects
             .live().public().filter(locale=Locale.get_active())
             .filter(principle=self).first()
         )
