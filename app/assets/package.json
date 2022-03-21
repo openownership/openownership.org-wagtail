@@ -29,7 +29,7 @@
     "file-loader": "^6.2.0",
     "postcss-cli": "^9.1.0",
     "postcss-css-variables": "^0.18.0",
-    "postcss-easy-import": "^3.0.0",
+    "postcss-easy-import": "^4.0.0",
     "postcss-focus-visible": "^6.0.4",
     "postcss-loader": "^6.2.1",
     "postcss-map-get": "^0.3.0",
