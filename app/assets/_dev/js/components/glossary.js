@@ -13,8 +13,8 @@ accordionButtons.forEach(button => {
   const number = button.getAttribute('id').split('accordion-open-').pop();
   const associatedSection = document.getElementById(`accordion-section-${number}`)
  
-  button.addEventListener('click', () => {
-    
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
     button.classList.toggle('expanded');
     associatedSection.classList.toggle('open');
     if (button.classList.contains('expanded')) {

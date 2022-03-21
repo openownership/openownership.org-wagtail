@@ -1,75 +1,94 @@
 .accordion {
-    @apply my-8;
-    &__button {
-      position: relative;
-      display: block;
-      margin: -1px 0 0;
-      @apply border-t border-black/50;
-      @apply border-b border-black/50;
-      padding: 1rem 1rem;
-      width: 100%;
-      text-align: left;
-      @apply text-blue-medium font-bold text-19;
-      
-      &:focus, 
-      &:hover {
-        @apply bg-blue-light;
-        
-        &::after {
-          border-top-color: #000;
-        }
-      }
+  @apply my-8;
+
+  &__button {
+    position: relative;
+    display: block;
+    margin: -1px 0 0;
+    @apply border-t border-black/50;
+    @apply border-b border-black/50;
+    padding: 1rem 1rem;
+    width: 100%;
+    text-align: left;
+    @apply text-blue-medium font-bold text-19;
+    
+    &:focus, 
+    &:hover {
+      @apply bg-blue-light;
       
       &::after {
-        content: ' ';
-        background-image: url('/static/images/icons/plus.svg');
-        background-size: 15px 15px;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: absolute;
-        right: 1rem;
-        top: 15px;
-        width: 0; 
-        height: 0;
-        @apply text-21;
-        width: 30px;
-        height: 30px;
-        
+        border-top-color: #000;
       }
     }
+      
+    &::after {
+      content: ' ';
+      background-image: url('/static/images/icons/plus.svg');
+      background-size: 15px 15px;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      right: 1rem;
+      top: 15px;
+      width: 0; 
+      height: 0;
+      @apply text-21;
+      width: 30px;
+      height: 30px;
+      
+    }
+  }
     
-    &__button.expanded {
-        @apply bg-blue-light text-blue-medium;
+  &__button.expanded {
+      @apply bg-blue-light text-blue-medium;
+      
+      &::after {
+          content:' ';
+          background-image: url('/static/images/icons/minus.svg');
+          background-size: 15px 15px;
+          @apply text-21;
         
-        &::after {
-            content:' ';
-            background-image: url('/static/images/icons/minus.svg');
-            background-size: 15px 15px;
-            @apply text-21;
-         
-          border-top: none;
-      }
+        border-top: none;
     }
+  }
     
-    &__section {
-      padding: 1rem;
-      @apply bg-white;
-      max-height: 0vh;
-      overflow: hidden;
-      padding: 0;
-    }
-    
-    &__section.open {
-      max-height: 100vh;
-      overflow: auto;
-      padding: 1.25em;
-      visibility: visible;
+  &__section {
+    padding: 1rem;
+    @apply bg-white;
+    max-height: 0vh;
+    overflow: hidden;
+    padding: 0;
+  }
+  
+  &__section.open {
+    max-height: 100vh;
+    overflow: auto;
+    padding: 1.25em;
+    visibility: visible;
 
-      a {
-        @apply py-2 block font-bold no-underline;
-        &:hover {
-          @apply underline;
-        }
+    a {
+      @apply py-2 block font-bold no-underline;
+      &:hover {
+        @apply underline;
       }
     }
   }
+}
+
+.accordion.search-filter {
+  @apply my-0;
+  .accordion__section {
+    @apply bg-transparent;
+    @apply flex flex-col gap-y-4;
+  }
+
+  .accordion__button {
+    @apply border-t border-t-2 border-grey-medium;
+    @apply border-b-0;
+    @apply text-16 font-bold;
+  }
+
+  label {
+    @apply flex gap-x-2;
+  }
+}

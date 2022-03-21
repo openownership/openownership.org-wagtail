@@ -1,5 +1,6 @@
 .list-view {
     @apply list-none;
+    @apply flex flex-col gap-y-6;
 }
 
 .card-group__header {
