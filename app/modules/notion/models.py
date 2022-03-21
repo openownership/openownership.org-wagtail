@@ -462,6 +462,15 @@ class CountryTag(NotionModel, BaseTag):
             return None
 
     @cached_property
+    def display_central_register(self):
+        try:
+            return self.regime.central_register
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No central_register for {self.name}")
+            return None
+
+    @cached_property
     def implementation_title(self):
         try:
             return self.regime.title

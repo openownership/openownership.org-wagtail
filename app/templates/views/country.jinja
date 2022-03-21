@@ -86,7 +86,7 @@
                         {% include "svg/not-confirm-icon.jinja" %}
                     {% endif %}
                     
-                    {% trans %}Central register: Open Ownership register{% endtrans %}
+                    {% trans %}Central register:{% endtrans %}{{ country.display_central_register }}
                 </li>
 
                 <li  class="country-page__country-data-box-list-item">
@@ -95,7 +95,9 @@
                     {% else %}
                         {% include "svg/not-confirm-icon.jinja" %}
                     {% endif %}
-                    {% trans %}Public register: UK PSC Register{% endtrans %}
+                    {% if country.implementation_title_link %}<a href="{{ country.implementation_title_link }}">{% endif %}
+                    {% trans %}Public register:{% endtrans %}{{ country.implementation_title }}
+                    {% if country.implementation_title_link %}</a>{% endif %}
                 </li>
             </ul>
         </div>
