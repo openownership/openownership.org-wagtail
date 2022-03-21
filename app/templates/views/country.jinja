@@ -47,7 +47,7 @@
         <div class="country-page__country-data-box">
             <h2 class="country-page__country-data-box-header">
                 {% include "svg/commitment-icon.jinja" %}
-                {% trans %}Commitment to BOT{% endtrans %}
+                {% trans %}Committed to one or more{% endtrans %}
             </h2>
 
             <ul class="country-page__country-data-box-list">
@@ -58,7 +58,7 @@
                         {% include "svg/not-confirm-icon.jinja" %}
                     {% endif %}
                     
-                    {% trans %}Central Register{% endtrans %}
+                    {% trans %}Central register(s){% endtrans %}
                 </li>
 
                 <li  class="country-page__country-data-box-list-item">
@@ -67,7 +67,7 @@
                     {% else %}
                         {% include "svg/not-confirm-icon.jinja" %}
                     {% endif %}
-                    {% trans %}Public Register{% endtrans %}
+                    {% trans %}Public register(s){% endtrans %}
                 </li>
             </ul>
         </div>
@@ -75,7 +75,7 @@
         <div class="country-page__country-data-box">
             <h2 class="country-page__country-data-box-header">
                 {% include "svg/implementation-icon.jinja" %}
-                {% trans %}Implementation of BOT{% endtrans %}
+                {% trans %}Implemented one or more{% endtrans %}
             </h2>
 
             <ul class="country-page__country-data-box-list">
@@ -86,7 +86,7 @@
                         {% include "svg/not-confirm-icon.jinja" %}
                     {% endif %}
                     
-                    {% trans %}Central register:{% endtrans %}{{ country.display_central_register }}
+                    {% trans %}Central register(s):{% endtrans %}{{ country.display_central_register }}
                 </li>
 
                 <li  class="country-page__country-data-box-list-item">
@@ -96,7 +96,7 @@
                         {% include "svg/not-confirm-icon.jinja" %}
                     {% endif %}
                     {% if country.implementation_title_link %}<a href="{{ country.implementation_title_link }}">{% endif %}
-                    {% trans %}Public register:{% endtrans %}{{ country.implementation_title }}
+                    {% trans %}Public register(s):{% endtrans %}{{ country.implementation_title }}
                     {% if country.implementation_title_link %}</a>{% endif %}
                 </li>
             </ul>
@@ -104,22 +104,6 @@
     </div>
 
     <a href="#" class="ghost-link">{% trans %}Download Country Data{% endtrans %}</a>
-
-{# only when "publish" #}
-
-{#
-Request to add additional fields from the Disclosure Regimes tracker to the 'Show further detail' dropdown on country profile pages:
-
-Implementation detail title
-Title of implementation [field = Title] and link title to URL for Register if [field = 5.1 Public access: Register URL] is filled in
-
-Show further detail dropdown
-
-
-Building on earlier conversations, we would only like these fields to show up for an implementation example when the field has been filled in on the Notion database. Blank fields should not be shown.
-
-Reminder that we have the Annotated country profile page with links to relevant Notion fields but this image is missing these additional fields. I have updated the spreadsheet of all Notion fields).
-#}
 
     <div class="country-page__content">
         <section class="country-page__section">
@@ -136,66 +120,65 @@ Reminder that we have the Annotated country profile page with links to relevant 
             
         </section>
 
+<section class="country-page__section">
+    <h2>{% trans %}Implementation Detail{% endtrans %}</h2>
 
-           
-{% if country.implementation_stage == 'Publish' %}
-        <section class="country-page__section">
-            <h2>{% trans %}Implementation Detail{% endtrans %}</h2>
-            {% for regime in country.disclosure_regimes.all() %}
-                <p>{{ regime.title }}</p>
-            {% endfor %}
+{% for regime in country.regimes %}
+    {# only when "publish" #}
+    {% if regime.implementation_stage == 'Publish' %}
+            <p>{{ regime.title }}</p>
 
             <details>
                 <summary>{% trans %}Show further detail{% endtrans %}</summary>
                 <div class="implementation-details">
                     <dl>
-                        {% if country.implementation_title %}
+                        {% if regime.implementation_title %}
                         <dt>{% trans %}Title{% endtrans %}</dt>
                         <dd>
-                            {% if country.implementation_title_link %}<a href="{{ country.implementation_title_link }}">{% endif %}
-                            {{ country.implementation_title }}
-                            {% if country.implementation_title_link %}</a>{% endif %}
+                            {% if regime.implementation_title_link %}<a href="{{ regime.implementation_title_link }}">{% endif %}
+                            {{ regime.implementation_title }}
+                            {% if regime.implementation_title_link %}</a>{% endif %}
                         </dd>
                         {% endif %}
 
                         <dt>{% trans %}Central register implemented{% endtrans %}</dt>
-                        <dd>{{ country.implementation_central|yesno }}</dd>
+                        <dd>{{ regime.implementation_central|yesno }}</dd>
 
                         <dt>{% trans %}Public access{% endtrans %}</dt>
-                        <dd>{{ country.implementation_public|yesno }}</dd>
+                        <dd>{{ regime.implementation_public|yesno }}</dd>
 
-                        {% if country.display_scope %}
+                        {% if regime.display_scope %}
                         <dt>{% trans %}Scope{% endtrans %}</dt>
-                        <dd>{{ country.display_scope }}</dd>
+                        <dd>{{ regime.display_scope }}</dd>
                         {% endif %}
 
-                        {% if country.display_register_launched %}
+                        {% if regime.display_register_launched %}
                         <dt>{% trans %}Register launched{% endtrans %}</dt>
-                        <dd>{{ country.display_register_launched }}</dd>
+                        <dd>{{ regime.display_register_launched }}</dd>
                         {% endif %}
 
-                        {% if country.display_threshold %}
+                        {% if regime.display_threshold %}
                         <dt>{% trans %}Threshold used to determine beneficial ownership{% endtrans %}</dt>
-                        <dd>{{ country.display_threshold }}</dd>
+                        <dd>{{ regime.display_threshold }}</dd>
                         {% endif %}
 
                         <dt>{% trans %}Structured data publicly available{% endtrans %}</dt>
-                        <dd>{{ country.display_structured_data|yesno }}</dd>
+                        <dd>{{ regime.display_structured_data|yesno }}</dd>
 
                         <dt>{% trans %}Available as BODS{% endtrans %}</dt>
-                        <dd>{{ country.display_data_in_bods|yesno }}</dd>
+                        <dd>{{ regime.display_data_in_bods|yesno }}</dd>
 
                         <dt>{% trans %}Available via API{% endtrans %}</dt>
-                        <dd>{{ country.display_api|yesno }}</dd>
+                        <dd>{{ regime.display_api|yesno }}</dd>
 
                         <dt>{% trans %}Available on the OO register{% endtrans %}</dt>
-                        <dd>{{ country.display_oo_register|yesno }}</dd>
+                        <dd>{{ regime.display_oo_register|yesno }}</dd>
                     </dl>
                 </div>
             </details>
-        </section>
-
-{% endif %}
+    {% endif %}
+{% endfor %}
+</section>
 
         {# This section will come post-launch #}
         {# <section>

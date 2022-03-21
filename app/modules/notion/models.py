@@ -237,6 +237,109 @@ class DisclosureRegime(NotionModel):
         max_length=255
     )
 
+    @cached_property
+    def display_scope(self):
+        try:
+            return self.coverage_scope.first().name
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No scope for {self.name}")
+            return None
+
+    @cached_property
+    def display_register_launched(self):
+        try:
+            return self.year_launched
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No year_launched for {self.name}")
+            return None
+
+    @cached_property
+    def implementation_stage(self):
+        try:
+            return self.stage
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No stage for {self.name}")
+            return None
+
+    @cached_property
+    def display_structured_data(self):
+        try:
+            return self.structured_data
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No structured_data for {self.name}")
+            return None
+
+    @cached_property
+    def display_data_in_bods(self):
+        try:
+            return self.data_in_bods
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No data_in_bods for {self.name}")
+            return None
+
+    @cached_property
+    def display_api(self):
+        try:
+            return self.api_available
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No api_available for {self.name}")
+            return None
+
+    @cached_property
+    def display_oo_register(self):
+        try:
+            return self.on_oo_register
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No on_oo_register for {self.name}")
+            return None
+
+    @cached_property
+    def display_central_register(self):
+        try:
+            return self.central_register
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No central_register for {self.name}")
+            return None
+
+    @cached_property
+    def implementation_title(self):
+        try:
+            return self.title
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No title for {self.name}")
+            return None
+
+    @cached_property
+    def implementation_title_link(self):
+        try:
+            return self.public_access_register_url
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No public_access_register_url for {self.name}")
+            return None
+
+    @cached_property
+    def display_threshold(self):
+        try:
+            if self.threshold:
+                if "%" not in self.threshold:
+                    return f"{self.threshold}%"
+                else:
+                    self.threshold
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No threshold for {self.name}")
+            return None
+
 
 class CountryTag(NotionModel, BaseTag):
 
@@ -390,6 +493,15 @@ class CountryTag(NotionModel, BaseTag):
             return None
 
     @cached_property
+    def commitments(self):
+        try:
+            return self.commitments.all()
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No commitments found for {self.name}")
+            return None
+
+    @cached_property
     def regime(self):
         try:
             return self.disclosure_regimes.first()
@@ -399,106 +511,12 @@ class CountryTag(NotionModel, BaseTag):
             return None
 
     @cached_property
-    def display_scope(self):
+    def regimes(self):
         try:
-            return self.regime.coverage_scope.first().name
+            return self.disclosure_regimes.all()
         except Exception as e:
             console.warn(e)
-            console.warn(f"No scope for {self.name}")
-            return None
-
-    @cached_property
-    def display_register_launched(self):
-        try:
-            return self.regime.year_launched
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No year_launched for {self.name}")
-            return None
-
-    @cached_property
-    def implementation_stage(self):
-        try:
-            return self.regime.stage
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No stage for {self.name}")
-            return None
-
-    @cached_property
-    def display_structured_data(self):
-        try:
-            return self.regime.structured_data
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No structured_data for {self.name}")
-            return None
-
-    @cached_property
-    def display_data_in_bods(self):
-        try:
-            return self.regime.data_in_bods
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No data_in_bods for {self.name}")
-            return None
-
-    @cached_property
-    def display_api(self):
-        try:
-            return self.regime.api_available
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No api_available for {self.name}")
-            return None
-
-    @cached_property
-    def display_oo_register(self):
-        try:
-            return self.regime.on_oo_register
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No on_oo_register for {self.name}")
-            return None
-
-    @cached_property
-    def display_central_register(self):
-        try:
-            return self.regime.central_register
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No central_register for {self.name}")
-            return None
-
-    @cached_property
-    def implementation_title(self):
-        try:
-            return self.regime.title
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No title for {self.name}")
-            return None
-
-    @cached_property
-    def implementation_title_link(self):
-        try:
-            return self.regime.public_access_register_url
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No public_access_register_url for {self.name}")
-            return None
-
-    @cached_property
-    def display_threshold(self):
-        try:
-            if self.regime.threshold:
-                if "%" not in self.regime.threshold:
-                    return f"{self.regime.threshold}%"
-                else:
-                    self.regime.threshold
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No threshold for {self.name}")
+            console.warn(f"No disclosure regimes found for {self.name}")
             return None
 
     @cached_property
