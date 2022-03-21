@@ -27,8 +27,7 @@ h5, h6, .heading-xs {
 
 .intro {
     @apply text-grey-dark font-body text-19;
-    @apply mb-12 pb-12;
-    @apply border-b border-black/50;
+    @apply mb-12;
     line-height: rem(32px);
 }
 

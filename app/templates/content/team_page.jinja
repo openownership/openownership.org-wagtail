@@ -7,11 +7,15 @@
     </div>
 
     {% if page_obj %}
-        {% with pages=page_obj, columns=2 %}
-            {% include "_partials/card_group.jinja" %}
-        {% endwith %}
+        <div class="related-pages">
+            {% with pages=page_obj, columns=2 %}
+                {% include "_partials/card_group.jinja" %}
+            {% endwith %}
+        
 
         {% include "_partials/pagination.jinja" %}
+        </div>
+    
     {% endif %}
 
 {% endblock %}
