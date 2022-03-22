@@ -77,21 +77,23 @@
           </div>
         </div>
 
-        <button class="btn" type="submit">{% trans %}Filter{% endtrans %}</button>
+        <button class="btn filter-results__btn" type="submit">{% trans %}Filter{% endtrans %}</button>
       </div>
 
       <div class="aside-layout__main aside-layout__no-header">
 
         <p class="results__count">
+          <span class="sr-only">{% trans %}Total results:{% endtrans %}</span>
           {{results.paginator.count}} {% trans count=results.paginator.count %}result{% pluralize %}results{% endtrans %}
         </p>
 
         {% if filters_list|length %}
-          <p>
+          <span class="sr-only">{% trans %}Current filters:{% endtrans %}</span>
+          <ul class="filter-list">
             {% for obj in filters_list %}
-              <span>{{ obj.name }}</span>
+              <li>{{ obj.name }}</li>
             {% endfor %}
-          </p>
+          </ul>
         {% endif %}
 
         {% if results %}
