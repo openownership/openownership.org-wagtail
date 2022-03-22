@@ -11,9 +11,20 @@
 
 .page-menu__page {
     @apply p-0;
+
+    a {
+        @apply no-underline;
+        &:hover {
+            @apply underline;
+        }
+    }
     
     &.current {
         @apply bg-white;
+    }
+
+    &.child-current {
+        @apply bg-blue-light;
     }
 }
 
@@ -21,6 +32,7 @@
     @apply px-8 py-3;
     display: block;
     @apply border-y border-grey-medium;
+
 }
 
 .page-menu__children-list {
@@ -28,8 +40,9 @@
 }
 
 .page-menu__children-list__item {
-    @apply px-8 py-3;
-    @apply border-b border-grey-medium;
+    @apply pl-10 pr-8 py-3;
+    @apply text-14;
+    
     &:last-of-type {
         @apply border-0;
     }
@@ -37,5 +50,9 @@
     a {
         @apply text-blue-medium;
         @apply no-underline;
+    }
+
+    &.current {
+        @apply bg-white;
     }
 }
