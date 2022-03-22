@@ -234,6 +234,10 @@ class SearchView(TemplateView):
         return result_set
 
     def _get_pages(self, terms):
+        if not terms or terms == '':
+            qs = Page.objects.none()
+            return qs
+
         query = Query.get(terms)
         query.add_hit()
 
