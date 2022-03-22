@@ -177,6 +177,7 @@ class SearchView(TemplateView):
         for region in Region.objects.all():
             context['regions'].append({
                 'name': region.name,
+                'slug': region.slug,
                 'countries': list(region.countries.values_list('id', flat=True))
             })
 
