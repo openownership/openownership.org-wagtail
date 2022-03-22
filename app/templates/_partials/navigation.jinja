@@ -75,7 +75,7 @@ For mega menu containing nav items:
 
                             {% set href, label = obj.link %}
                             <li class="navigation__level-one__item --has-submenu">
-                                <a href="{{href}}"{% if obj.page == page.section_page %} aria-current="page"{% endif %}>{{label}}</a>
+                                <a href="{{href}}"{% if obj.page.pk == page.section_page.pk %} aria-current="page"{% endif %}>{{label}}</a>
 
                                 <button aria-expanded="false" class="navigation__subnav-button --level-one">
                                     {% include 'svg/mobile-expand-icon.jinja' %}
