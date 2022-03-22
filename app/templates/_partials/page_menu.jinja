@@ -40,7 +40,7 @@ Other possible variables:
                 <ul class="page-menu">
                     {% for item in obj.objects %}
                         {% set href, label = item.link %}
-                        <li class="page-menu__page{% if item.page.pk == page.pk %} current{% endif %}{% if item.type == 'sub_menu' %} is-open{% endif %}">
+                        <li class="page-menu__page{% if item.page.pk == page.pk %} current{% endif %}{% if item.type == 'sub_menu' %} is-open{% endif %}{% if item.page == page.get_parent() %} child-current{% endif %}">
                             {% if item.page.pk == page.pk %}
                                 <span class="page-menu__page-title">{{label}}</span>
                             {% else %}
