@@ -91,4 +91,20 @@
   label {
     @apply flex gap-x-2;
   }
+
+
+  #accordion-section-countries {
+    @apply p-0;
+
+    .accordion__button {
+      @apply text-14 font-bold;
+      padding: 1rem 1rem;
+      padding-left: 1.5rem;
+      @apply bg-white border-0;
+    }
+  }
+
+  .countries-filter {
+    @apply m-0;
+  }
 }
