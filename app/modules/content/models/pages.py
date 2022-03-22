@@ -1196,7 +1196,7 @@ class TagPage(IndexPageType):
     ]
 
     def get_order_by(self):
-        return ['-last_published_at']
+        return ['-first_published_at']
 
     def base_queryset(self):
         """
