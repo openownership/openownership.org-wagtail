@@ -143,8 +143,12 @@
         }
     }
 
-    .card-group__author, .card-group__date {
+    .card-group__date {
         @apply inline-flex;
+    }
+
+    .card-group__author {
+        display: inline;
     }
 }
 
