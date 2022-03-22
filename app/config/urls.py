@@ -12,7 +12,7 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 # Module
-from .views import (
+from modules.core.views import (
     robots, error_400_view, error_403_view, error_404_test, error_404_view, error_500_view
 )
 
