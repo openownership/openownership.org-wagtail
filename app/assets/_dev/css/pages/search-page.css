@@ -27,3 +27,18 @@ input[type=text].search-form__text-input {
     @apply text-21 font-bold;
     padding: 1rem 1rem;   
 }
+
+.filter-results__btn {
+    @apply mt-4;
+}
+
+.filter-list {
+    @apply flex flex-wrap;
+    li {
+        @apply bg-text-secondary text-14 font-bold;
+        padding: 5px;
+        @apply mr-1;
+        @apply text-white;
+        @apply mb-2;
+    }
+}
