@@ -16,6 +16,10 @@
         @apply text-white;
         @apply bg-links-hover;
     }
+
+    &:visited {
+        @apply text-white;
+    }
 }
 
 /*------------------------------------*\
