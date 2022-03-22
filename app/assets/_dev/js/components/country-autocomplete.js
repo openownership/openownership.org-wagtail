@@ -31,6 +31,9 @@ function displayMatches() {
 const searchInput = document.querySelector('.country-search__input');
 const suggestions = document.querySelector('.country__suggestions');
 
-searchInput.addEventListener('change', displayMatches);
-searchInput.addEventListener('keyup', displayMatches);
+if (searchInput) {
+  searchInput.addEventListener('change', displayMatches);
+  searchInput.addEventListener('keyup', displayMatches);
+}
+
 
