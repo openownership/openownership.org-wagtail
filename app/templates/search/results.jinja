@@ -7,7 +7,7 @@
 
         <input class="search-form__text-input" type="text" name="q" value="{{ form.q.value() }}" placeholder="Enter your search term">
         <button class="btn" type="submit">
-          <span class="visually-hidden">Search</span>
+          <span class="visually-hidden">{% trans %}Search{% endtrans %}</span>
         </button>
       </div>
     </header>
@@ -61,6 +61,7 @@
           </div>
         </div>
 
+        <button class="btn" type="submit">{% trans %}Filter{% endtrans %}</button>
       </div>
 
       <div class="aside-layout__main aside-layout__no-header">
