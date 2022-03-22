@@ -15,7 +15,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 # Project
 from config.template import author_url
 from helpers.context import global_context
-from modules.notion.models import CountryTag
+from modules.notion.models import CountryTag, Region
 from modules.content.forms import SearchForm
 from modules.content.models import content_page_models, HomePage, SectionPage
 from modules.taxonomy.models import PrincipleTag, PublicationType, SectionTag, SectorTag
@@ -172,11 +172,22 @@ class SearchView(TemplateView):
             'pr': self.request.GET.getlist('pr', []),
             'sn': self.request.GET.getlist('sn', []),
             'sr': self.request.GET.getlist('sr', []),
+            'co': self.request.GET.getlist('co', []),
         })
         context['terms'] = self.terms
         context['page'] = self
         context['results'] = self.paginator
         context['filters_list'] = self.filters_list
+
+        # Add regions and their countries to help us split up the country
+        # checkboxes by region.
+        context['regions'] = []
+        for region in Region.objects.all():
+            context['regions'].append({
+                'name': region.name,
+                'slug': region.slug,
+                'countries': list(region.countries.values_list('id', flat=True))
+            })
 
         if self.terms:
             context['meta_title'] = f"Search: {self.terms}"
@@ -207,6 +218,10 @@ class SearchView(TemplateView):
         ids = [int(n) for n in request.GET.getlist('sr', [])]
         f['sector_tags'] = SectorTag.objects.filter(id__in=ids)
         self.filters_list += list(f['sector_tags'])
+
+        ids = [int(n) for n in request.GET.getlist('co', [])]
+        f['country_tags'] = CountryTag.objects.filter(id__in=ids)
+        self.filters_list += list(f['country_tags'])
 
         self.filters = f
 
@@ -264,6 +279,11 @@ class SearchView(TemplateView):
             if len(f['sector_tags']):
                 for tag in f['sector_tags']:
                     ids = list(tag.sector_related_pages.values_list('content_object__id', flat=True))
+                    page_ids = add_ids(page_ids, ids)
+
+            if len(f['country_tags']):
+                for tag in f['country_tags']:
+                    ids = list(tag.country_related_pages.values_list('content_object__id', flat=True))
                     page_ids = add_ids(page_ids, ids)
 
             # Restrict to the only page types that have taxonomies
