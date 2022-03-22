@@ -84,10 +84,11 @@ class BasePage(WagtailCacheMixin, Page):
         try:
             translations = self.get_translations().public().live()
             for page in translations:
-                result.append({
-                    'language': page.locale.get_display_name(),
-                    'url': page.url
-                })
+                if not page.alias_of:  # If the page is just a mirror, alias_of returns the source
+                    result.append({
+                        'language': page.locale.get_display_name(),
+                        'url': page.url
+                    })
         except Exception as e:
             console.warn(e)
         else:
