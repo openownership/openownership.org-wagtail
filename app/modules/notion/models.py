@@ -359,6 +359,10 @@ class CountryTag(NotionModel, BaseTag):
 
     body = fields.StreamField(tag_page_body_blocks, blank=True)
 
+    blurb = fields.RichTextField(
+        blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
+    )
+
     map_image = models.ForeignKey(
         settings.IMAGE_MODEL,
         null=True,
@@ -405,6 +409,7 @@ class CountryTag(NotionModel, BaseTag):
 
     main_panels = [
         FieldPanel('name'),
+        FieldPanel('blurb'),
         ImageChooserPanel('map_image'),
         FieldPanel('regions', widget=CheckboxSelectMultiple),
         PageChooserPanel('consultant'),
