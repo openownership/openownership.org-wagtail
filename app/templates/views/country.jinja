@@ -87,10 +87,10 @@
                     {% endif %}
                     
                     {% trans %}Central register(s):{% endtrans %}<br>
-                    {% if country.first_central_regime_with_url %}
-                    {% if country.first_central_regime_with_url.url %}<a href="{{ country.first_central_regime_with_url.url }}">{% endif %}
-                        {{ country.first_central_regime_with_url.title }}
-                    {% if country.first_central_regime_with_url.url %}</a>{% endif %}
+                    {% if country.first_central_regime %}
+                    {% if country.first_central_regime.url %}<a href="{{ country.first_central_regime.url }}">{% endif %}
+                        {{ country.first_central_regime.title }}
+                    {% if country.first_central_regime.url %}</a>{% endif %}
                     {% endif %}
                 </li>
 
