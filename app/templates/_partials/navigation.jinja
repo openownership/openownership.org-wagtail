@@ -22,24 +22,10 @@ For mega menu containing nav items:
 
         <div class="navbar__navigations-container">
 
-            {#
-            <nav class="navbar__language" aria-label="Language">
-
-                <button class="navbar__choose-language" aria-expanded="false" aria-label="Choose language.">
-                    Current lang {% include 'svg/expand.jinja' %}
-                </button>
-                <ul class="navbar__language-list">
-                    <li><a href="">English</a></li>
-                    <li><a href="">Portuguese</a></li>
-                </ul>
-            </nav>
-
-            #}
-
             {% if page.translations %}
             <nav class="navbar__language" aria-label="Language">
                 <button class="navbar__choose-language" aria-expanded="false" aria-label="Choose language.">
-                    Current lang {% include 'svg/expand.jinja' %}
+                    {{ page.locale }} {% include 'svg/expand.jinja' %}
                 </button>
 
                 <ul class="navbar__language-list">
