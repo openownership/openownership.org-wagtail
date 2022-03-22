@@ -48,6 +48,8 @@
                 </h2>
                 {% if page.card_blurb %}
                     <p class="card-group__blurb">{{page.card_blurb}}</p>
+                {% elif page.rich_blurb %}
+                    <p class="card-group__blurb">{{page.rich_blurb|richtext}}</p>
                 {% endif %}
             </a>
 
