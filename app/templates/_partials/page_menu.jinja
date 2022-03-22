@@ -13,7 +13,7 @@ Other possible variables:
 * page_menu_title - optional, the title for the menu. If falsey, the section page's title (e.g. "Research") will be used.
 #}
 {% if menu_pages and menu_pages|length > 0 %}
-    <div class="page-menu__container">
+    <div class="page-menu__container" id="page-menu">
         <h2 class="heading-m">{% if page_menu_title %}{{ page_menu_title }}{% else %}{{ page.section_page.title }}{% endif %}</h2>
 
         <ul class="page-menu">
@@ -34,7 +34,7 @@ Other possible variables:
     {% for obj in navbar_blocks recursive %}
 
         {% if obj.type == 'mega_menu' and obj.page and obj.page == subnav_top_level_page %}
-            <div class="page-menu__container">
+            <div class="page-menu__container" id="page-menu">
                 <h2 class="heading-m">{% if page_menu_title %}{{ page_menu_title }}{% else %}{{ subnav_top_level_page.title }}{% endif %}</h2>
 
                 <ul class="page-menu">

@@ -5,6 +5,22 @@
     }
 }
 
+@include max-width(md) {
+    .page-menu__container {
+        display: none;
+    
+        &.show {
+            display: block;
+        }
+    }
+    .aside-layout__menu.--is-publication {
+        .heading-m {
+            display: none;
+        }
+    }    
+}
+
+
 .page-menu {
     list-style: none;
 }
@@ -54,5 +70,31 @@
 
     &.current {
         @apply bg-white;
+    }
+}
+
+.report-contents {
+    @apply border-t border-black/50;
+    @apply w-full p-4;
+    @apply flex items-center justify-between;
+    @apply text-16 font-bold text-blue-medium;
+
+
+    .collapse-icon {
+        display: none;
+    }
+
+    &.expanded {
+        .collapse-icon {
+            display: block;
+        }
+
+        .expand-icon {
+            display: none;
+        }
+    }
+
+    @include min-width(md) {
+        display: none;
     }
 }

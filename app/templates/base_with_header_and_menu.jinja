@@ -10,6 +10,14 @@
 
     <div class="aside-layout-left">
         <div class="aside-layout__menu {% if page.__class__.__name__ in ['PublicationFrontPage', 'PublicationInnerPage'] %}--is-publication{% endif %}">
+            
+            {% if page.__class__.__name__ in ['PublicationFrontPage', 'PublicationInnerPage'] %}
+                <button id="report-contents" class="report-contents">
+                    Report contents 
+                    {% include 'svg/mobile-expand-icon.jinja' %}
+                    {% include 'svg/mobile-collapse-icon.jinja' %}
+                </button>
+            {% endif %}
             {% block page_menu %}
                 {% include "_partials/page_menu.jinja" %}
             {% endblock %}

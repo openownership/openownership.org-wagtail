@@ -13,3 +13,5 @@ import './components/navigation.js';
 import './components/map.js';
 
 import './components/country-autocomplete.js';
+
+import './components/report-contents-button.js';
