@@ -9,7 +9,7 @@
 {% block main_inner %}
 
     <div class="aside-layout-left">
-        <div class="aside-layout__menu">
+        <div class="aside-layout__menu {% if page.__class__.__name__ in ['PublicationFrontPage', 'PublicationInnerPage'] %}--is-publication{% endif %}">
             {% block page_menu %}
                 {% include "_partials/page_menu.jinja" %}
             {% endblock %}

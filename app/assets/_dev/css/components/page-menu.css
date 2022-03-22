@@ -1,6 +1,6 @@
 .page-menu__container {
     .heading-m {
-        @apply pl-4;
+        @apply pl-4 mb-5;
         margin-top: rem(50px);
     }
 }
