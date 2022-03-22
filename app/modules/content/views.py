@@ -35,12 +35,20 @@ class DummyCountryPage(object):
         return self.country.blurb
 
     @cached_property
+    def rich_blurb(self):
+        return self.blurb
+
+    @cached_property
     def url(self):
         return self.country.url
 
     @cached_property
     def specific(self):
         return self
+
+    @cached_property
+    def thumbnail(self):
+        return self.country.map_image
 
     def get_url(self):
         return self.url
