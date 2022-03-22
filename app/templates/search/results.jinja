@@ -109,7 +109,7 @@
           {% set page_obj = results %}
 
             {% with card_format='landscape' %}
-              {% include '_partials/list_view.jinja' %}
+              {% include '_partials/card_group.jinja' %}
             {% endwith %}
 
             {% if results.paginator.num_pages > 1 %}
