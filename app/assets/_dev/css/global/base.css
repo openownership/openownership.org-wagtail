@@ -40,6 +40,9 @@ article {
     @apply mt-10;
 
     h2 {
-        @apply mb-10;
+        @include min-width(lg) {
+            @apply mb-10;
+        }
+        
     }
 }

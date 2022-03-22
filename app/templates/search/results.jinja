@@ -4,10 +4,10 @@
     <header class="search-page__header">
       <h1 class="heading-xl">{% trans %}Find content and resources{% endtrans %}</h1>
       <div class="search-form">
-        
+
         <input class="search-form__text-input" type="text" name="q" value="{{ form.q.value() }}" placeholder="Enter your search term">
         <button class="btn" type="submit">
-          <span class="visually-hidden">Search</span>
+          <span class="visually-hidden">{% trans %}Search{% endtrans %}</span>
         </button>
       </div>
     </header>
@@ -15,33 +15,11 @@
 
     <div class="aside-layout-left">
       <div class="aside-layout__menu">
-
-        <h2 class="search-filter__title">Filter your results</h2>
-        <div class="accordion search-filter">
-          <button id="accordion-open-content-types" class="accordion__button">
-            Content types
-          </button>
-          <div id="accordion-section-content-types" class="accordion__section open">
-            {% for field in form.pt %}
-              {{ field }}
-            {% endfor %}
-          </div>
-        </div>
-
-        <div class="accordion search-filter">
-          <button id="accordion-open-principles" class="accordion__button">
-              Principles
-          </button>
-          <div id="accordion-section-principles" class="accordion__section open">
-            {% for field in form.pr %}
-              {{ field }}
-            {% endfor %}
-          </div>
-        </div>
+        <h2 class="search-filter__title">{% trans %}Filter your results{% endtrans %}</h2>
 
         <div class="accordion search-filter">
           <button id="accordion-open-sections" class="accordion__button">
-              Sections
+            {% trans %}Sections{% endtrans %}
           </button>
           <div id="accordion-section-sections" class="accordion__section open">
             {% for field in form.sn %}
@@ -52,7 +30,7 @@
 
         <div class="accordion search-filter">
           <button id="accordion-open-topics" class="accordion__button">
-              Topics
+            {% trans %}Topics{% endtrans %}
           </button>
           <div id="accordion-section-topics" class="accordion__section open">
             {% for field in form.sr %}
@@ -60,6 +38,30 @@
             {% endfor %}
           </div>
         </div>
+
+        <div class="accordion search-filter">
+          <button id="accordion-open-principles" class="accordion__button">
+            {% trans %}Principles{% endtrans %}
+          </button>
+          <div id="accordion-section-principles" class="accordion__section open">
+            {% for field in form.pr %}
+              {{ field }}
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="accordion search-filter">
+          <button id="accordion-open-content-types" class="accordion__button">
+            {% trans %}Content types{% endtrans %}
+          </button>
+          <div id="accordion-section-content-types" class="accordion__section open">
+            {% for field in form.pt %}
+              {{ field }}
+            {% endfor %}
+          </div>
+        </div>
+
+        <button class="btn" type="submit">{% trans %}Filter{% endtrans %}</button>
       </div>
 
       <div class="aside-layout__main aside-layout__no-header">

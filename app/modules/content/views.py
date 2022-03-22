@@ -120,6 +120,7 @@ class SearchView(TemplateView):
     def __init__(self, *args, **kwargs):
         self.page_num = 1
         self.mode = 'and'
+        self.filter_mode = 'or'
 
         # Will be the search terms:
         self.terms = ''
@@ -223,7 +224,7 @@ class SearchView(TemplateView):
 
             def add_ids(a, b):
                 "Combines and returns two lists of IDs, a and b."
-                if self.mode == 'and' and len(a) > 0:
+                if self.filter_mode == 'and' and len(a) > 0:
                     # a will contain only IDs that are in BOTH lists
                     a = list(set(a).intersection(b))
                 else:
