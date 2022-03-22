@@ -173,6 +173,10 @@
 }
 
 .navigation__level-one__language-menu {
+    display: block;
+    @include min-width(lg) {
+        display: none;
+    }
     .navigation__level-two__item {
         a {
             @apply w-full;
