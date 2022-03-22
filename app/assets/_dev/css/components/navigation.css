@@ -159,6 +159,28 @@
     }
 }
 
+.navigation__subnav-button__language {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @apply text-blue-medium;
+    @apply font-normal text-16 font-bold;
+    padding: .6rem;
+    @apply pl-8 pr-4;
+
+
+}
+
+.navigation__level-one__language-menu {
+    .navigation__level-two__item {
+        a {
+            @apply w-full;
+            @apply py-2;
+        }
+    }
+}
+
 
 .navigation__subnav-button.--level-two {
     .collapse-icon {
