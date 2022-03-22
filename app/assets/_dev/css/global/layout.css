@@ -44,6 +44,17 @@ body {
     @media (min-width: 40rem) {
         grid-template-columns: 300px minmax(10px, 1fr);
     }
+
+    .aside-layout__menu {
+        display: none;
+        @include min-width(lg) {
+            display: block;
+        }
+
+        &.--is-publication {
+            display: block;
+        }
+    }
 }
 
 .aside-layout-right {
