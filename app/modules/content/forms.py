@@ -1,5 +1,6 @@
 from django import forms
 
+from modules.notion.models import CountryTag
 from modules.taxonomy.models import PrincipleTag, PublicationType, SectionTag, SectorTag
 
 
@@ -57,4 +58,10 @@ class SearchForm(forms.Form):
             required=False,
             widget=forms.CheckboxSelectMultiple(),
             choices=list(SectorTag.objects.values_list("id", "name").order_by("name")),
+        )
+
+        self.fields['co'] = forms.MultipleChoiceField(
+            required=False,
+            widget=forms.CheckboxSelectMultiple(),
+            choices=list(CountryTag.objects.values_list("id", "name").order_by("name")),
         )

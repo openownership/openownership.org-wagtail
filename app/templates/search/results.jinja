@@ -61,6 +61,22 @@
           </div>
         </div>
 
+        <div class="accordion search-filter">
+          <button id="accordion-open-countries" class="accordion__button">
+            {% trans %}Countries{% endtrans %}
+          </button>
+          <div id="accordion-section-countries" class="accordion__section open">
+            {% for region in regions %}
+              <h3>{{ region.name }}</h3>
+              {% for field in form.co %}
+                {% if field.data.value in region.countries %}
+                  {{ field }}
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </div>
+        </div>
+
         <button class="btn" type="submit">{% trans %}Filter{% endtrans %}</button>
       </div>
 
