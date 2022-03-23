@@ -77,16 +77,14 @@ class Category(models.Model):
             .specific()
         )
 
-    def to_dummy_page(self, section_page):
+    def to_dummy_page(self):
         """
         Returns a DummyPage representing this category.
         Useful for passing to templates that expect a Page like object.
-        section_page is the section page the category is within.
-        e.g. 'insight'
         """
         page = DummyPage()
         page.title = self.name
-        page.url = self.get_url(section_page)
+        page.url = self.get_url()
         page.blurb = self.blurb
         return page
 
@@ -142,16 +140,14 @@ class BaseTag(TagBase):
     def __str__(self):
         return self.name
 
-    def to_dummy_page(self, section_page):
+    def to_dummy_page(self):
         """
         Returns a DummyPage representing this tag.
         Useful for passing to templates that expect a Page like object.
-        section_page is the the section page the tag is within.
-        e.g. 'insight'
         """
         page = DummyPage()
         page.title = self.name
-        page.url = self.get_url(section_page)
+        page.url = self.get_url()
         page.blurb = self.blurb
         return page
 

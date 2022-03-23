@@ -1,6 +1,5 @@
 # 3rd party
 from django.db import models
-from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from modelcluster.fields import ParentalKey
 from taggit.models import ItemBase
@@ -32,10 +31,8 @@ class FocusAreaTag(BaseTag):
         verbose_name = _("Area of Focus")
         verbose_name_plural = _("Areas of Focus")
 
-    def get_url(self, section_page=None):
-        """Generate the URL to this tag's TagPage in a specific section.
-        section_page is the page the TagPage is within.  e.g. 'impact'
-        """
+    def get_url(self):
+        "Generate the URL to this tag's TagPage."
         from modules.content.models import TagPage
 
         page = (
@@ -84,10 +81,8 @@ class SectorTag(BaseTag):
         verbose_name = _("Topic")
         verbose_name_plural = _("Topics")
 
-    def get_url(self, section_page):
-        """Generate the URL to this tag's TagPage in a specific section.
-        section_page is the page the TagPage is within.  e.g. 'impact'
-        """
+    def get_url(self):
+        "Generate the URL to this tag's TagPage."
         from modules.content.models import TagPage
 
         page = (
@@ -137,10 +132,8 @@ class SectionTag(BaseTag):
         verbose_name = _("Section")
         verbose_name_plural = _("Sections")
 
-    def get_url(self, section_page):
-        """Generate the URL to this tag's TagPage in a specific section.
-        section_page is the page the TagPage is within.  e.g. 'impact'
-        """
+    def get_url(self):
+        "Generate the URL to this tag's TagPage."
         from modules.content.models import TagPage
 
         page = (
@@ -190,10 +183,8 @@ class PrincipleTag(BaseTag):
         verbose_name = _("Open Ownership Principle")
         verbose_name_plural = _("Open Ownership Principles")
 
-    def get_url(self, section_page):
-        """Generate the URL to this tag's TagPage in a specific section.
-        section_page is the page the TagPage is within.  e.g. 'impact'
-        """
+    def get_url(self):
+        "Generate the URL to this tag's TagPage."
         from modules.content.models import TagPage
 
         page = (
