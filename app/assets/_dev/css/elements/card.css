@@ -48,10 +48,13 @@
     a {
         @apply text-white;
         @apply mb-2;
-        @apply bg-text-secondary text-14 font-bold;
-        padding: 2px 5px;
-        @apply mr-1;
-        &:hover {
+
+        span {
+            @apply bg-text-secondary text-14 font-bold;
+            padding: 5px;
+            @apply mr-1;
+        }
+        &:hover span {
             @apply bg-grey-darker;
         }
     }
