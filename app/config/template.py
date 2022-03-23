@@ -266,10 +266,13 @@ def get_top_level_navpage(page, navbar_blocks):
        because it will be in the navbar hierarchy, while the front/inner
        pages won't be.
 
+    3. Similarly, TeamProfilePages or JobPages will use their parent
+       pages to determine their place in the navbar hierarchy.
+
     * page is probably a Wagtail Page but it could also be a view
     * navbar_blocks is the navbar_blocks that was passed in the template context
     """
-    from modules.content.models import PublicationFrontPage, PublicationInnerPage
+    from modules.content.models import JobPage, PublicationFrontPage, PublicationInnerPage, TeamProfilePage
     from modules.content.views import CountryView
 
     navpage = None
@@ -283,6 +286,8 @@ def get_top_level_navpage(page, navbar_blocks):
         page = page.get_parent()
     elif isinstance(page, PublicationInnerPage):
         page = page.get_parent().get_parent()
+    elif isinstance(page, TeamProfilePage) or isinstance(page, JobPage):
+        page = page.get_parent()
 
     if hasattr(page, 'pk'):
 
