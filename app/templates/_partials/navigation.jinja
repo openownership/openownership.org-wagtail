@@ -61,21 +61,22 @@ For mega menu containing nav items:
                         </ul>
                     </li>
                     {% endif %}
-                  
+
+                    {% set top_level_navpage = get_top_level_navpage(page, navbar_blocks) %}
 
                     {% for obj in navbar_blocks recursive %}
                         {% if obj.type == 'nav_item' %}
                             {# "Home" #}
                             {% set href, label = obj.value %}
                             <li class="navigation__level-one__item --no-submenu">
-                                <a href="{{href}}"{% if (page.section_page and obj.page == page.section_page) or href == request.path[3:] %} aria-current="page"{% endif %}>{{label}}</a>
+                                <a href="{{href}}"{% if (obj.page and obj.page.pk == top_level_navpage.pk) or href == request.path[3:] %} aria-current="page"{% endif %}>{{label}}</a>
                             </li>
                         {% elif obj.type == 'mega_menu' %}
                             {# "About" #}
 
                             {% set href, label = obj.link %}
                             <li class="navigation__level-one__item --has-submenu">
-                                <a href="{{href}}"{% if obj.page.pk == page.section_page.pk %} aria-current="page"{% endif %}>{{label}}</a>
+                                <a href="{{href}}"{% if obj.page.pk == top_level_navpage.pk %} aria-current="page"{% endif %}>{{label}}</a>
 
                                 <button aria-expanded="false" class="navigation__subnav-button --level-one">
                                     {% include 'svg/mobile-expand-icon.jinja' %}

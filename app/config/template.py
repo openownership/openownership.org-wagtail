@@ -243,7 +243,7 @@ def commitment_summary(commitment_type, country):
     return ""
 
 
-def get_subnav_top_level_page(page, navbar_blocks):
+def get_top_level_navpage(page, navbar_blocks):
     """
     Returns the top-most page above `page` in the navbar hierarchy.
     e.g. if, within some mega_nav and sub_menu structures we have:
@@ -252,22 +252,37 @@ def get_subnav_top_level_page(page, navbar_blocks):
       * The Team (sub_menu)
         * Bob Ferris (link)
 
-    and we call this with page=<Bob Ferris> then this returns <About>
+    and we call this with <Page: Bob Ferris> then this returns <Page: About>
 
     Returns None if `page` isn't found within the hierarchy.
+
+    SPECIAL CASES:
+
+    1. If page is a CountryView we use its breadcrumb_view property as
+       the `page` instead (probably the Map page).
+
+    2. If page is a Publication front or inner page, we use its
+       parent/grandparent as the `page` instead (PublicationsIndexPage),
+       because it will be in the navbar hierarchy, while the front/inner
+       pages won't be.
 
     * page is probably a Wagtail Page but it could also be a view
     * navbar_blocks is the navbar_blocks that was passed in the template context
     """
+    from modules.content.models import PublicationFrontPage, PublicationInnerPage
     from modules.content.views import CountryView
 
-    parent = None
+    navpage = None
 
     if isinstance(page, CountryView):
         # Special case. If it's a CountryView, we want to show the same
         # nav as the Map page. Which is what a CountryView has as its
         # breadcrumb_page. So:
         page = page.breadcrumb_page
+    elif isinstance(page, PublicationFrontPage):
+        page = page.get_parent()
+    elif isinstance(page, PublicationInnerPage):
+        page = page.get_parent().get_parent()
 
     if hasattr(page, 'pk'):
 
@@ -275,23 +290,23 @@ def get_subnav_top_level_page(page, navbar_blocks):
         page_pks = [page.pk] + [p.pk for p in page.get_translations()]
 
         for obj in navbar_blocks:
-            parent = obj['page']
+            navpage = obj['page']
 
-            if hasattr(parent, 'pk') and parent.pk in page_pks:
+            if hasattr(navpage, 'pk') and navpage.pk in page_pks:
                 # If the current page is a top-level link in the navbar.
-                return parent
+                return navpage
 
             if obj['type'] == 'mega_menu':
                 for item in obj['objects']:
                     if item['page'] and item['page'].pk in page_pks:
-                        return parent
+                        return navpage
 
                     if item['type'] == 'sub_menu':
                         for sub_item in item['objects']:
                             if sub_item['page'] and sub_item['page'].pk in page_pks:
-                                return parent
-        parent = None
-    return parent
+                                return navpage
+        navpage = None
+    return navpage
 
 
 class TemplateGlobalsExtension(Extension):
@@ -320,7 +335,7 @@ class TemplateGlobalsExtension(Extension):
             'routablepageurl': jinja2.pass_context(routablepageurl),
             'now': time_now,
             'today': date_now,
-            'get_subnav_top_level_page': get_subnav_top_level_page,
+            'get_top_level_navpage': get_top_level_navpage,
         })
         environment.tests.update({
             'absolutepath': isabsolutepath
