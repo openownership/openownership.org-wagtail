@@ -185,6 +185,13 @@ class BasePage(WagtailCacheMixin, Page):
         return str(self.__class__.__name__)
 
     @cached_property
+    def all_pks(self):
+        """
+        Returns a list of IDs of this Page and all its translated versions, if any.
+        """
+        return [self.pk] + [p.pk for p in self.get_translations()]
+
+    @cached_property
     def section_page(cls):
         """Get the top-level page this page is within, or *is*.
         e.g. About, Research, Implmentation, etc.

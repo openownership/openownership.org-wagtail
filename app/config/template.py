@@ -271,21 +271,24 @@ def get_subnav_top_level_page(page, navbar_blocks):
 
     if hasattr(page, 'pk'):
 
+        # Need to not only match this Page, but also its translated versions:
+        page_pks = [page.pk] + [p.pk for p in page.get_translations()]
+
         for obj in navbar_blocks:
             parent = obj['page']
 
-            if hasattr(parent, 'pk') and parent.pk == page.pk:
+            if hasattr(parent, 'pk') and parent.pk in page_pks:
                 # If the current page is a top-level link in the navbar.
                 return parent
 
             if obj['type'] == 'mega_menu':
                 for item in obj['objects']:
-                    if item['page'] and item['page'].pk == page.pk:
+                    if item['page'] and item['page'].pk in page_pks:
                         return parent
 
                     if item['type'] == 'sub_menu':
                         for sub_item in item['objects']:
-                            if sub_item['page'] and sub_item['page'].pk == page.pk:
+                            if sub_item['page'] and sub_item['page'].pk in page_pks:
                                 return parent
         parent = None
     return parent

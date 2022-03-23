@@ -40,8 +40,8 @@ Other possible variables:
                 <ul class="page-menu">
                     {% for item in obj.objects %}
                         {% set href, label = item.link %}
-                        <li class="page-menu__page{% if item.page.pk == page.pk %} current{% endif %}{% if item.type == 'sub_menu' %} is-open{% for sub_item in item.objects %}{% if sub_item.page.pk == page.pk %} child-current{% endif %}{% endfor %}{% endif %}">
-                            {% if item.page.pk == page.pk %}
+                        <li class="page-menu__page{% if item.page.pk in page.all_pks %} current{% endif %}{% if item.type == 'sub_menu' %} is-open{% for sub_item in item.objects %}{% if sub_item.page.pk in page.all_pks %} child-current{% endif %}{% endfor %}{% endif %}">
+                            {% if item.page.pk in page.all_pks %}
                                 <span class="page-menu__page-title">{{label}}</span>
                             {% else %}
                                 <a class="page-menu__page-title" href="{{href}}">{{label}}</a>
@@ -51,8 +51,8 @@ Other possible variables:
                                 <ul class="page-menu__children-list">
                                     {% for sub_item in item.objects %}
                                         {% set href, label = sub_item.link %}
-                                        <li class="page-menu__children-list__item {% if sub_item.page.pk == page.pk %}current{% endif %}">
-                                            {% if sub_item.page.pk == page.pk %}
+                                        <li class="page-menu__children-list__item {% if sub_item.page.pk in page.all_pks %}current{% endif %}">
+                                            {% if sub_item.page.pk in page.all_pks %}
                                                 {{label}}
                                             {% else %}
                                                 <a href="{{href}}">{{label}}</a>
