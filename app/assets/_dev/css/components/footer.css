@@ -67,6 +67,7 @@ footer {
         @apply flex-1;
         @apply mb-2;
         @apply border border-border-newsletter;
+        @apply text-text-main;
         @include min-width(md) {
             @apply mb-0;
         }
