@@ -1,7 +1,7 @@
 {% if meta_image %}{% set og_image = image(meta_image, 'fill-1200x630') %}{% endif %}
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
 
 <title>{% block title_tag %}{{meta_title}}{% if meta_title != site_name %} | {{site_name}}{% endif %}{% endblock %}</title>
 {% if not error_page %}

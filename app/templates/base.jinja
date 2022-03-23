@@ -1,12 +1,11 @@
 {% from 'macros.jinja' import render_stream, render_cta, render_field with context %}
 
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{% if page.locale %}{{ page.locale.language_code }}{% else %}en{% endif %}"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="{% if page.locale %}{{ page.locale.language_code }}{% else %}en{% endif %}"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="{% if page.locale %}{{ page.locale.language_code }}{% else %}en{% endif %}"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{% if page.locale %}{{ page.locale.language_code }}{% else %}en{% endif %}"> <!--<![endif]-->
     <head>
-
         {% include '_partials/head_meta.jinja' %}
         {% block analytics %}{% include '_partials/analytics.jinja' %}{% endblock %}
         <link rel="stylesheet" type="text/css" href="{{static('css/main.min.css')}}">
