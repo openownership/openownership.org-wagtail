@@ -1282,6 +1282,12 @@ class PressLinksBlock(blocks.StructBlock):
         help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"')
     )
 
+    section = ModelChooserBlock(
+        'taxonomy.SectionTag',
+        required=False,
+        help_text="Optional, restrict to press links tagged by section"
+    )
+
     # card_format = blocks.ChoiceBlock(
     #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
     # )
@@ -1297,11 +1303,16 @@ class PressLinksBlock(blocks.StructBlock):
         # (we need it to generate a URL to the tag page below this page)
         # parent_page = parent_context['page']
 
-        objects = (
-            PressLink.objects
-            # .filter(section_page=parent_page)
-            .order_by("-first_published_at")[:value.get('limit', self.DEFAULT_LIMIT)]
-        )
+        qs = PressLink.objects
+
+        section = value.get('section', None)
+
+        if section:
+            related_snippets = section.section_tag_press_links.all()
+            ids = [item.content_object_id for item in related_snippets]
+            qs = qs.filter(id__in=ids)
+
+        objects = qs.order_by("-first_published_at")[:value.get('limit', self.DEFAULT_LIMIT)]
 
         context.update({
             'title': value.get('title') or self.DEFAULT_TITLE,

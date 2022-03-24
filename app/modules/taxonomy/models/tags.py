@@ -160,6 +160,19 @@ class SectionTaggedPage(ItemBase):
     )
 
 
+class SectionTaggedPressLink(ItemBase):
+    tag = models.ForeignKey(
+        "taxonomy.SectionTag",
+        related_name="section_tag_press_links",
+        on_delete=models.CASCADE
+    )
+    content_object = ParentalKey(
+        'content.PressLink',
+        on_delete=models.CASCADE,
+        related_name="section_tagged"
+    )
+
+
 ####################################################################################################
 # PrincipleTags
 ####################################################################################################
