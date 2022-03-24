@@ -57,7 +57,7 @@ def global_context(context={}):
 
 @cached(timeout=60 * 60)
 def _get_press_links_page_url():
-    from modules.content.models import PressLinksPage
+    from modules.content.models.pages import PressLinksPage
     page = PressLinksPage.objects.filter(locale=Locale.get_active()).first()
     if page:
         return page.url
