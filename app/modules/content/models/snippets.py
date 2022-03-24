@@ -100,7 +100,7 @@ class PressLink(index.Indexed, ClusterableModel):
     section_page = models.ForeignKey(
         'wagtailcore.Page',
         null=True,
-        blank=False,
+        blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
         verbose_name=_('Section'),
@@ -132,7 +132,7 @@ class PressLink(index.Indexed, ClusterableModel):
     ]
 
     panels = [
-        PageChooserPanel('section_page', 'content.SectionPage'),
+        # PageChooserPanel('section_page', 'content.SectionPage'),
         FieldPanel('url'),
         ImageChooserPanel('thumbnail'),
         FieldPanel('title'),

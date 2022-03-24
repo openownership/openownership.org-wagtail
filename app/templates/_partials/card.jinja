@@ -14,7 +14,7 @@
                 <a href="{{ page.publication_type.get_url() }}"><span>{{ page.publication_type }}</span></a>
             {% elif page.is_press_link %}
                 {# Press links don't have tags, but we can fake it to look like one. #}
-                <a href="{{ page.section_page.specific.press_links_page_url }}"><span>Press link</span></a>
+                <a href="{{ press_links_page_url }}"><span>Press link</span></a>
             {% endif %}
         
             {% if page.areas_of_focus %}

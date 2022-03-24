@@ -1299,7 +1299,7 @@ class PressLinksBlock(blocks.StructBlock):
 
         objects = (
             PressLink.objects
-            .filter(section_page=parent_page)
+            # .filter(section_page=parent_page)
             .order_by("-first_published_at")[:value.get('limit', self.DEFAULT_LIMIT)]
         )
 
