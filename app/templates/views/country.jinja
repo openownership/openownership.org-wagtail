@@ -109,7 +109,13 @@
         </div>
     </div>
 
-    <a href="#" class="ghost-link">{% trans %}Download Country Data{% endtrans %}</a>
+    <div>
+        <a href="#" class="ghost-link">{% trans %}Download Country Data{% endtrans %}</a>
+    </div>
+
+    <div>
+        {{ _('Data outdated/incorrect?') }} <a href="https://share.hsforms.com/1ooDVGfPWQFyc93l3Bds9jA3upv4">{{_('Please let us know')}}</a>.
+    </div>
 
     <div class="country-page__content">
         <section class="country-page__section">
@@ -124,7 +130,7 @@
                 {% endif %}
 
                 <li>
-                    {{ summary }} [{{ commitment.date|nicedate }}]
+                    {{ summary }} {% if commitment.date %}[{{ commitment.date|nicedate }}]{% endif %}
                     {% if commitment.link %}<a href="{{ commitment.link }}">link to commitment</a>{% endif %}
                 </li>
                 {% endfor %}
@@ -137,7 +143,8 @@
 
 {% for regime in country.regimes %}
     {# only when "publish" #}
-    {% if regime.implementation_stage == 'Publish' %}
+    {% if 'Publish' in regime.implementation_stage %}
+    {% if 'Subnational' not in regime.display_scope %}
             <p>{{ regime.title }}</p>
 
             <details>
@@ -200,6 +207,7 @@
                     </dl>
                 </div>
             </details>
+    {% endif %}
     {% endif %}
 {% endfor %}
 </section>
