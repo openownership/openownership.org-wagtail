@@ -1,6 +1,6 @@
 from cacheops import invalidate_all
 from django.conf import settings
-from django.core.cache import cache
+from cacheops import cache, CacheMiss
 from django.utils.translation import gettext_lazy as _
 
 from .mixins import Footer, NavBar
@@ -44,15 +44,16 @@ class NavigationSettings(NavBar, Footer):
     def get_nav_context(cls, site):
         obj = cls.for_site(site)
         cache_key = cls.get_cache_key_nav(site.pk)
-        cached = cache.get(cache_key)
 
-        if not cached:
+        try:
+            cached = cache.get(cache_key)
+        except CacheMiss:
             obj = cls.for_site(site)
             data = obj.build_nav()
             cache.set(cache_key, data, settings.MONTH_IN_SECONDS)  # month
             return data
-
-        return cached
+        else:
+            return cached
 
     @classmethod
     def get_cache_key_nav(cls, site_id):

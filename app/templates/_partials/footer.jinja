@@ -44,14 +44,23 @@ Nav items:
                                 <li><a href="{{href}}">{{label}}</a></li>
                             {% endif %}
                         {% endfor %}
-
                     </ul>
                 </nav>
             {% endif %}
 
-            <div>
+            {% if footer_nav2 %}
+            <nav class="footer__item footer__item--nav" aria-label="Secondary navigation">
                 <h2>{% trans %}Contact us{% endtrans %}</h2>
-            </div>
+                <ul class="footer__horizontal-links">
+                    {% for obj in footer_nav2 recursive %}
+                        {% if obj.type == 'nav_item' %}
+                            {% set href, label = obj.value %}
+                            <li><a href="{{href}}">{{label}}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+            {% endif %}
 
             {% if social_links %}
             <div>
