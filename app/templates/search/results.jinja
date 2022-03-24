@@ -13,6 +13,7 @@
     </header>
 
 
+{% if terms %}
     <div class="aside-layout-left">
       <div class="aside-layout__menu">
         <h2 class="search-filter__title">{% trans %}Filter your results{% endtrans %}</h2>
@@ -82,18 +83,19 @@
             </div>
           </div>
         </div>
-
-
-
         <button class="btn filter-results__btn" type="submit">{% trans %}Filter{% endtrans %}</button>
       </div>
+{% endif %}
 
       <div class="aside-layout__main aside-layout__no-header">
 
+
+{% if terms %}
         <p class="results__count">
           <span class="sr-only">{% trans %}Total results:{% endtrans %}</span>
           {{results.paginator.count}} {% trans count=results.paginator.count %}result{% pluralize %}results{% endtrans %}
         </p>
+{% endif %}
 
         {% if filters_list|length %}
           <span class="sr-only">{% trans %}Current filters:{% endtrans %}</span>
@@ -128,6 +130,21 @@
                       {% endif %}
                   </nav>
               {% endif %} #}
+        {% else %}
+
+            {% if popular|length > 0 %}
+                <div class="card-group">
+                    <header class="card-group__header">
+                        <h2 class="card-group__header-title">{{_('Most read')}}</h2>
+                    </header>
+                    <ul class="grid-cols grid--{{ columns }}-col {{ card_format|default("") }}">
+                        {% for page in popular %}
+                            {% include "_partials/card.jinja" %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
         {% endif %}
       </div>
     </div>
