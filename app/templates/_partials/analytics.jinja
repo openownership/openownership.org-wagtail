@@ -1,3 +1,14 @@
+
+
+{% if (request is defined and not request.is_preview) %}
+        {% if server_env == 'staging' %}
+            <script defer data-domain="openownership.hactar.work" src="https://plausible.io/js/plausible.js"></script>
+        {% elif server_env == 'production' %}
+            <script defer data-domain="openownership.org" src="https://plausible.io/js/plausible.js"></script>
+        {% endif %}
+{% endif %}
+
+{#
 {% if (request is defined and not request.is_preview) and server_env == 'production' %}
     {% if request.COOKIES.get('analytics_cookies', 'allow') == 'deny' %}
         <script>window['ga-disable-UA-{{analytics_property_id}}-Y'] = true;</script>
@@ -24,3 +35,4 @@
         {% endif %}
     {% endif %}
 {% endif %}
+ #}
