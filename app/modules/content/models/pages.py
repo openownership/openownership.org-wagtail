@@ -80,6 +80,7 @@ class HomePage(PageHeroMixin, LandingPageType):
         "content.MapPage",
         "content.TaxonomyPage",
         "content.PublicationsIndexPage",
+        "content.PressLinksPage",
     ]
     max_count = 1
 
@@ -139,11 +140,12 @@ class SectionPage(PageHeroMixin, LandingPageType):
         Get the URL for the PressLinksPage within this section, if any.
         I couldn't think how else to do this.
         """
-        page = (
-            self.get_children().live().public()
-            .filter(locale=Locale.get_active())
-            .type(PressLinksPage).first()
-        )
+        # page = (
+        #     self.get_children().live().public()
+        #     .filter(locale=Locale.get_active())
+        #     .type(PressLinksPage).first()
+        # )
+        page = PressLinksPage.objects.filter(locale=Locale.get_active()).first()
         if page:
             return page.url
         else:
@@ -191,11 +193,12 @@ class SectionListingPage(SectionPage):
         Get the URL for the PressLinksPage within this section, if any.
         I couldn't think how else to do this.
         """
-        page = (
-            self.get_children().live().public()
-            .filter(locale=Locale.get_active())
-            .type(PressLinksPage).first()
-        )
+        # page = (
+        #     self.get_children().live().public()
+        #     .filter(locale=Locale.get_active())
+        #     .type(PressLinksPage).first()
+        # )
+        page = PressLinksPage.objects.filter(locale=Locale.get_active()).first()
         if page:
             return page.url
         else:
@@ -1196,7 +1199,7 @@ class TagPage(IndexPageType):
     ]
 
     def get_order_by(self):
-        return ['-last_published_at']
+        return ['-first_published_at']
 
     def base_queryset(self):
         """
@@ -1275,7 +1278,7 @@ class PressLinksPage(IndexPageType):
     """
 
     template = 'content/press_links.jinja'
-    parent_page_types = ['content.SectionPage', 'content.SectionListingPage']
+    parent_page_types = ['content.HomePage', ]
     subpage_types: list = []
 
     def get_order_by(self):
@@ -1284,7 +1287,8 @@ class PressLinksPage(IndexPageType):
     def base_queryset(self):
         from modules.content.models import PressLink
 
-        return PressLink.objects.filter(section_page=self.section_page)
+        # return PressLink.objects.filter(section_page=self.section_page)
+        return PressLink.objects
 
 
 class MapPage(BasePage):

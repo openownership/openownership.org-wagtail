@@ -2,11 +2,11 @@
     <p>
         <strong>{% trans %}Publication type{% endtrans %}</strong>
         {% if page.publication_type %}
-            {% set tag_link = page.publication_type.get_url(page.section_page) %}
+            {% set tag_link = page.publication_type.get_url() %}
         {% else %}
             {% set tag_link = '' %}
         {% endif %}
-        {% if tag_link %}<a href="{{ page.publication_type.get_url(page.section_page) }}">{% endif %}
+        {% if tag_link %}<a href="{{ page.publication_type.get_url() }}">{% endif %}
             {% if page.publication_type %}<br>{{ page.publication_type }}{% endif %}
         {% if tag_link %}</a>{% endif %}
         {% if page.page_type and page.index_link %}

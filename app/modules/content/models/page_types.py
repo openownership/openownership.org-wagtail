@@ -84,10 +84,11 @@ class BasePage(WagtailCacheMixin, Page):
         try:
             translations = self.get_translations().public().live()
             for page in translations:
-                result.append({
-                    'language': page.locale.get_display_name(),
-                    'url': page.url
-                })
+                if not page.alias_of:  # If the page is just a mirror, alias_of returns the source
+                    result.append({
+                        'language': page.locale.get_display_name(),
+                        'url': page.url
+                    })
         except Exception as e:
             console.warn(e)
         else:
@@ -182,6 +183,13 @@ class BasePage(WagtailCacheMixin, Page):
     @cached_property
     def page_type(self):
         return str(self.__class__.__name__)
+
+    @cached_property
+    def all_pks(self):
+        """
+        Returns a list of IDs of this Page and all its translated versions, if any.
+        """
+        return [self.pk] + [p.pk for p in self.get_translations()]
 
     @cached_property
     def section_page(cls):

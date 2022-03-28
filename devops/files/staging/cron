@@ -1,0 +1,1 @@
+*/5 * * * * /srv/www/openownership.org/app/.venv/bin/python /srv/www/openownership.org/app/manage.py runcrons > /var/log/cronjob.log

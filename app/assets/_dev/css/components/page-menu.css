@@ -1,9 +1,25 @@
 .page-menu__container {
     .heading-m {
-        @apply pl-4;
+        @apply pl-4 mb-5;
         margin-top: rem(50px);
     }
 }
+
+@include max-width(md) {
+    .page-menu__container {
+        display: none;
+    
+        &.show {
+            display: block;
+        }
+    }
+    .aside-layout__menu.--is-publication {
+        .heading-m {
+            display: none;
+        }
+    }    
+}
+
 
 .page-menu {
     list-style: none;
@@ -11,9 +27,20 @@
 
 .page-menu__page {
     @apply p-0;
+
+    a {
+        @apply no-underline;
+        &:hover {
+            @apply underline;
+        }
+    }
     
     &.current {
         @apply bg-white;
+    }
+
+    &.child-current {
+        @apply bg-blue-light;
     }
 }
 
@@ -21,6 +48,7 @@
     @apply px-8 py-3;
     display: block;
     @apply border-y border-grey-medium;
+
 }
 
 .page-menu__children-list {
@@ -28,8 +56,9 @@
 }
 
 .page-menu__children-list__item {
-    @apply px-8 py-3;
-    @apply border-b border-grey-medium;
+    @apply pl-10 pr-8 py-3;
+    @apply text-14;
+    
     &:last-of-type {
         @apply border-0;
     }
@@ -37,5 +66,35 @@
     a {
         @apply text-blue-medium;
         @apply no-underline;
+    }
+
+    &.current {
+        @apply bg-white;
+    }
+}
+
+.report-contents {
+    @apply border-t border-black/50;
+    @apply w-full p-4;
+    @apply flex items-center justify-between;
+    @apply text-16 font-bold text-blue-medium;
+
+
+    .collapse-icon {
+        display: none;
+    }
+
+    &.expanded {
+        .collapse-icon {
+            display: block;
+        }
+
+        .expand-icon {
+            display: none;
+        }
+    }
+
+    @include min-width(md) {
+        display: none;
     }
 }

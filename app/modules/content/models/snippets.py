@@ -3,6 +3,9 @@ from django.db import models
 from django.shortcuts import reverse
 from django.utils.translation import gettext_lazy as _
 
+from taggit.models import ItemBase
+from modelcluster.fields import ParentalKey
+from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.models import ClusterableModel
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -100,10 +103,14 @@ class PressLink(index.Indexed, ClusterableModel):
     section_page = models.ForeignKey(
         'wagtailcore.Page',
         null=True,
-        blank=False,
+        blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
         verbose_name=_('Section'),
+    )
+
+    sections = ClusterTaggableManager(
+        through='taxonomy.SectionTaggedPressLink', blank=True
     )
 
     url = models.URLField(verbose_name=_('URL'), blank=False)
@@ -132,11 +139,12 @@ class PressLink(index.Indexed, ClusterableModel):
     ]
 
     panels = [
-        PageChooserPanel('section_page', 'content.SectionPage'),
+        # PageChooserPanel('section_page', 'content.SectionPage'),
         FieldPanel('url'),
         ImageChooserPanel('thumbnail'),
         FieldPanel('title'),
         FieldPanel('blurb'),
+        FieldPanel('sections', _('Sections')),
         MultiFieldPanel(
             [InlinePanel('author_relationships', label=_('Authors'))], heading=_('Authors')
         )

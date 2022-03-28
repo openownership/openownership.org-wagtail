@@ -4,44 +4,23 @@
     <header class="search-page__header">
       <h1 class="heading-xl">{% trans %}Find content and resources{% endtrans %}</h1>
       <div class="search-form">
-        
+
         <input class="search-form__text-input" type="text" name="q" value="{{ form.q.value() }}" placeholder="Enter your search term">
         <button class="btn" type="submit">
-          <span class="visually-hidden">Search</span>
+          <span class="visually-hidden">{% trans %}Search{% endtrans %}</span>
         </button>
       </div>
     </header>
 
 
+{% if terms %}
     <div class="aside-layout-left">
       <div class="aside-layout__menu">
-
-        <h2 class="search-filter__title">Filter your results</h2>
-        <div class="accordion search-filter">
-          <button id="accordion-open-content-types" class="accordion__button">
-            Content types
-          </button>
-          <div id="accordion-section-content-types" class="accordion__section open">
-            {% for field in form.pt %}
-              {{ field }}
-            {% endfor %}
-          </div>
-        </div>
-
-        <div class="accordion search-filter">
-          <button id="accordion-open-principles" class="accordion__button">
-              Principles
-          </button>
-          <div id="accordion-section-principles" class="accordion__section open">
-            {% for field in form.pr %}
-              {{ field }}
-            {% endfor %}
-          </div>
-        </div>
+        <h2 class="search-filter__title">{% trans %}Filter your results{% endtrans %}</h2>
 
         <div class="accordion search-filter">
           <button id="accordion-open-sections" class="accordion__button">
-              Sections
+            {% trans %}Sections{% endtrans %}
           </button>
           <div id="accordion-section-sections" class="accordion__section open">
             {% for field in form.sn %}
@@ -52,7 +31,7 @@
 
         <div class="accordion search-filter">
           <button id="accordion-open-topics" class="accordion__button">
-              Topics
+            {% trans %}Topics{% endtrans %}
           </button>
           <div id="accordion-section-topics" class="accordion__section open">
             {% for field in form.sr %}
@@ -60,27 +39,80 @@
             {% endfor %}
           </div>
         </div>
+
+        <div class="accordion search-filter">
+          <button id="accordion-open-principles" class="accordion__button">
+            {% trans %}Principles{% endtrans %}
+          </button>
+          <div id="accordion-section-principles" class="accordion__section open">
+            {% for field in form.pr %}
+              {{ field }}
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="accordion search-filter">
+          <button id="accordion-open-content-types" class="accordion__button">
+            {% trans %}Content types{% endtrans %}
+          </button>
+          <div id="accordion-section-content-types" class="accordion__section open">
+            {% for field in form.pt %}
+              {{ field }}
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="accordion search-filter">
+          <button id="accordion-open-countries" class="accordion__button">
+            {% trans %}Countries{% endtrans %}
+          </button>
+          <div id="accordion-section-countries" class="accordion__section open">
+            <div class="accordion countries-filter">
+              {% for region in regions %}
+                <button id="accordion-open-{{region.slug}}" class="accordion__button">
+                  {{ region.name }}
+                </button>
+                <div id="accordion-section-{{region.slug}}" class="accordion__section open">
+                    {% for field in form.co %}
+                      {% if field.data.value in region.countries %}
+                        {{ field }}
+                      {% endif %}
+                    {% endfor %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <button class="btn filter-results__btn" type="submit">{% trans %}Filter{% endtrans %}</button>
       </div>
+{% endif %}
 
       <div class="aside-layout__main aside-layout__no-header">
 
+
+{% if terms %}
         <p class="results__count">
+          <span class="sr-only">{% trans %}Total results:{% endtrans %}</span>
           {{results.paginator.count}} {% trans count=results.paginator.count %}result{% pluralize %}results{% endtrans %}
         </p>
+{% endif %}
 
         {% if filters_list|length %}
-          <p>
+          <span class="sr-only">{% trans %}Current filters:{% endtrans %}</span>
+          <ul class="filter-list">
             {% for obj in filters_list %}
-              <span>{{ obj.name }}</span>
+              <li>{{ obj.name }}</li>
             {% endfor %}
-          </p>
+          </ul>
         {% endif %}
 
         {% if results %}
           {% set objects = results %}
           {% set page_obj = results %}
 
-            {% include '_partials/list_view.jinja' %}
+            {% with card_format='landscape' %}
+              {% include '_partials/list_view.jinja' %}
+            {% endwith %}
 
             {% if results.paginator.num_pages > 1 %}
               {% include '_partials/pagination.jinja' %}
@@ -98,6 +130,21 @@
                       {% endif %}
                   </nav>
               {% endif %} #}
+        {% else %}
+
+            {% if popular|length > 0 %}
+                <div class="card-group">
+                    <header class="card-group__header">
+                        <h2 class="card-group__header-title">{{_('Most read')}}</h2>
+                    </header>
+                    <ul class="grid-cols grid--{{ columns }}-col {{ card_format|default("") }}">
+                        {% for page in popular %}
+                            {% include "_partials/card.jinja" %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
         {% endif %}
       </div>
     </div>

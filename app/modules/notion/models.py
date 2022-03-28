@@ -238,9 +238,30 @@ class DisclosureRegime(NotionModel):
     )
 
     @cached_property
+    def implementation_central(self):
+        """For the Implementation of BOT tab, you'll need to aggregate implementations
+        for a country and then tick 'Implementation of BOT/Central register' where any
+        implementations listed in the Disclosure regimes tracker have the '4 Central'
+        field = Yes plus the 0 Stage field = Publish.
+        """
+        if self.central_register == "Yes" and self.stage and 'Publish' in self.stage:
+            return True
+        return False
+
+    @cached_property
+    def implementation_public(self):
+        """'Implementation of BOT/Public register' tick box, this should be ticked for a
+        country page where any implementations listed where the
+        '5.1 Public access' field = Yes plus the 0 Stage field = Publish.
+        """
+        if self.public_access == "Yes" and self.stage and 'Publish' in self.stage:
+            return True
+        return False
+
+    @cached_property
     def display_scope(self):
         try:
-            return self.coverage_scope.first().name
+            return ', '.join([item.name for item in self.coverage_scope.all()])
         except Exception as e:
             console.warn(e)
             console.warn(f"No scope for {self.name}")
@@ -359,6 +380,10 @@ class CountryTag(NotionModel, BaseTag):
 
     body = fields.StreamField(tag_page_body_blocks, blank=True)
 
+    blurb = fields.RichTextField(
+        blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
+    )
+
     map_image = models.ForeignKey(
         settings.IMAGE_MODEL,
         null=True,
@@ -405,6 +430,7 @@ class CountryTag(NotionModel, BaseTag):
 
     main_panels = [
         FieldPanel('name'),
+        FieldPanel('blurb'),
         ImageChooserPanel('map_image'),
         FieldPanel('regions', widget=CheckboxSelectMultiple),
         PageChooserPanel('consultant'),
@@ -522,29 +548,30 @@ class CountryTag(NotionModel, BaseTag):
     @cached_property
     def first_public_regime_with_url(self):
         """Find the first regime that has a value for both
-        public_access_register_url and title
+        public_access_register_url and title and `stage` == 'Publish'
         """
         rv = {}
-        for item in self.regimes:
+        for item in self.regimes.filter(stage__icontains='Publish'):
             if item.title and item.public_access_register_url:
                 rv['title'] = item.title
                 rv['url'] = item.public_access_register_url
                 return rv
 
     @cached_property
-    def first_central_regime_with_url(self):
+    def first_central_regime(self):
         """Find the first regime that has...
             * YES for central_register
             * a title
+            * `stage` contains 'Publish'
+            * COVERAGE SCOPE
         """
         rv = {}
-        for item in self.regimes:
-            if item.central_register and item.central_register.lower() == 'yes':
-                if item.title:
-                    rv['title'] = item.title
+        for item in self.regimes.filter(stage__icontains='Publish', central_register='Yes'):
+            if item.title:
+                rv['title'] = item.title
 
-                if item.public_access_register_url:
-                    rv['url'] = item.public_access_register_url
+            if item.public_access_register_url:
+                rv['url'] = item.public_access_register_url
 
                 return rv
 

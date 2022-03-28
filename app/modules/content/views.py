@@ -13,9 +13,10 @@ from django.utils.functional import cached_property
 from django.utils.datastructures import MultiValueDictKeyError
 
 # Project
+from modules.stats.models import ViewCount
 from config.template import author_url
 from helpers.context import global_context
-from modules.notion.models import CountryTag
+from modules.notion.models import CountryTag, Region
 from modules.content.forms import SearchForm
 from modules.content.models import content_page_models, HomePage, SectionPage
 from modules.taxonomy.models import PrincipleTag, PublicationType, SectionTag, SectorTag
@@ -35,12 +36,20 @@ class DummyCountryPage(object):
         return self.country.blurb
 
     @cached_property
+    def rich_blurb(self):
+        return self.blurb
+
+    @cached_property
     def url(self):
         return self.country.url
 
     @cached_property
     def specific(self):
         return self
+
+    @cached_property
+    def thumbnail(self):
+        return self.country.map_image
 
     def get_url(self):
         return self.url
@@ -120,6 +129,7 @@ class SearchView(TemplateView):
     def __init__(self, *args, **kwargs):
         self.page_num = 1
         self.mode = 'and'
+        self.filter_mode = 'or'
 
         # Will be the search terms:
         self.terms = ''
@@ -155,6 +165,13 @@ class SearchView(TemplateView):
 
         pages = self._get_pages(self.terms)
 
+        if not len(pages):
+            popular_ids = ViewCount.objects.popular(7, 100)
+            context['popular'] = Page.objects.filter(
+                id__in=popular_ids,
+                locale=Locale.get_active(),
+            ).live().public()[:6]
+
         self.paginator = self._get_paginator(pages)
         self.page_obj = self.paginator
         context['form'] = SearchForm(initial={
@@ -163,11 +180,22 @@ class SearchView(TemplateView):
             'pr': self.request.GET.getlist('pr', []),
             'sn': self.request.GET.getlist('sn', []),
             'sr': self.request.GET.getlist('sr', []),
+            'co': self.request.GET.getlist('co', []),
         })
         context['terms'] = self.terms
         context['page'] = self
         context['results'] = self.paginator
         context['filters_list'] = self.filters_list
+
+        # Add regions and their countries to help us split up the country
+        # checkboxes by region.
+        context['regions'] = []
+        for region in Region.objects.all():
+            context['regions'].append({
+                'name': region.name,
+                'slug': region.slug,
+                'countries': list(region.countries.values_list('id', flat=True))
+            })
 
         if self.terms:
             context['meta_title'] = f"Search: {self.terms}"
@@ -199,6 +227,10 @@ class SearchView(TemplateView):
         f['sector_tags'] = SectorTag.objects.filter(id__in=ids)
         self.filters_list += list(f['sector_tags'])
 
+        ids = [int(n) for n in request.GET.getlist('co', [])]
+        f['country_tags'] = CountryTag.objects.filter(id__in=ids)
+        self.filters_list += list(f['country_tags'])
+
         self.filters = f
 
         if len(self.filters_list) > 0:
@@ -210,6 +242,10 @@ class SearchView(TemplateView):
         return result_set
 
     def _get_pages(self, terms):
+        if not terms or terms == '':
+            qs = Page.objects.none()
+            return qs
+
         query = Query.get(terms)
         query.add_hit()
 
@@ -223,7 +259,7 @@ class SearchView(TemplateView):
 
             def add_ids(a, b):
                 "Combines and returns two lists of IDs, a and b."
-                if self.mode == 'and' and len(a) > 0:
+                if self.filter_mode == 'and' and len(a) > 0:
                     # a will contain only IDs that are in BOTH lists
                     a = list(set(a).intersection(b))
                 else:
@@ -255,6 +291,11 @@ class SearchView(TemplateView):
             if len(f['sector_tags']):
                 for tag in f['sector_tags']:
                     ids = list(tag.sector_related_pages.values_list('content_object__id', flat=True))
+                    page_ids = add_ids(page_ids, ids)
+
+            if len(f['country_tags']):
+                for tag in f['country_tags']:
+                    ids = list(tag.country_related_pages.values_list('content_object__id', flat=True))
                     page_ids = add_ids(page_ids, ids)
 
             # Restrict to the only page types that have taxonomies
