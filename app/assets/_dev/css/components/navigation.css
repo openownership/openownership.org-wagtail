@@ -40,7 +40,7 @@
     }
 
     @include min-width(lg) {
-        align-self: self-end;
+        align-self: flex-end;
         @apply mb-4;
     }
 }
