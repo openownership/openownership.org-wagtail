@@ -238,9 +238,30 @@ class DisclosureRegime(NotionModel):
     )
 
     @cached_property
+    def implementation_central(self):
+        """For the Implementation of BOT tab, you'll need to aggregate implementations
+        for a country and then tick 'Implementation of BOT/Central register' where any
+        implementations listed in the Disclosure regimes tracker have the '4 Central'
+        field = Yes plus the 0 Stage field = Publish.
+        """
+        if self.central_register == "Yes" and self.stage and 'Publish' in self.stage:
+            return True
+        return False
+
+    @cached_property
+    def implementation_public(self):
+        """'Implementation of BOT/Public register' tick box, this should be ticked for a
+        country page where any implementations listed where the
+        '5.1 Public access' field = Yes plus the 0 Stage field = Publish.
+        """
+        if self.public_access == "Yes" and self.stage and 'Publish' in self.stage:
+            return True
+        return False
+
+    @cached_property
     def display_scope(self):
         try:
-            return self.coverage_scope.first().name
+            return ', '.join([item.name for item in self.coverage_scope.all()])
         except Exception as e:
             console.warn(e)
             console.warn(f"No scope for {self.name}")
@@ -530,7 +551,7 @@ class CountryTag(NotionModel, BaseTag):
         public_access_register_url and title and `stage` == 'Publish'
         """
         rv = {}
-        for item in self.regimes.filter(stage='Publish'):
+        for item in self.regimes.filter(stage__icontains='Publish'):
             if item.title and item.public_access_register_url:
                 rv['title'] = item.title
                 rv['url'] = item.public_access_register_url
@@ -541,10 +562,11 @@ class CountryTag(NotionModel, BaseTag):
         """Find the first regime that has...
             * YES for central_register
             * a title
-            * `stage` == 'Publish'
+            * `stage` contains 'Publish'
+            * COVERAGE SCOPE
         """
         rv = {}
-        for item in self.regimes.filter(stage='Publish', central_register='Yes'):
+        for item in self.regimes.filter(stage__icontains='Publish', central_register='Yes'):
             if item.title:
                 rv['title'] = item.title
 

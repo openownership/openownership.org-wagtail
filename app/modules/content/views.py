@@ -13,6 +13,7 @@ from django.utils.functional import cached_property
 from django.utils.datastructures import MultiValueDictKeyError
 
 # Project
+from modules.stats.models import ViewCount
 from config.template import author_url
 from helpers.context import global_context
 from modules.notion.models import CountryTag, Region
@@ -163,6 +164,13 @@ class SearchView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         pages = self._get_pages(self.terms)
+
+        if not len(pages):
+            popular_ids = ViewCount.objects.popular(7, 100)
+            context['popular'] = Page.objects.filter(
+                id__in=popular_ids,
+                locale=Locale.get_active(),
+            ).live().public()[:6]
 
         self.paginator = self._get_paginator(pages)
         self.page_obj = self.paginator

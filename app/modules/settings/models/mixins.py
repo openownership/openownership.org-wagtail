@@ -146,82 +146,6 @@ class SocialMediaSettings(BaseSetting):
     ]
 
 
-# class UpdateBannerSettings(BaseSetting):
-
-#     class Meta:
-#         abstract = True
-
-#     body = models.CharField(
-#         null=True,
-#         blank=True,
-#         max_length=255
-#     )
-
-#     link_page = models.ForeignKey(
-#         'wagtailcore.Page',
-#         null=True,
-#         blank=True,
-#         on_delete=models.SET_NULL
-#     )
-
-#     link_label = models.CharField(
-#         null=True,
-#         blank=True,
-#         max_length=255,
-#         default="Find out more"
-#     )
-
-#     live = models.BooleanField(
-#         null=True,
-#         blank=True
-#     )
-
-#     show_on_all_pages = models.BooleanField(
-#         null=True,
-#         blank=True
-#     )
-
-#     limit_to_pages = models.ManyToManyField(
-#         'wagtailcore.Page',
-#         blank=True,
-#         related_name='update_banners'
-#     )
-
-#     @classmethod
-#     @cached(timeout=settings.MONTH_IN_SECONDS)
-#     def get_for_banner_context(cls, site, page):
-#         obj = cls.for_site(site)
-#         context = {}
-#         if obj.live and any([
-#             obj.show_on_all_pages, page.id in obj.limit_to_pages.values_list('id', flat=True)
-#         ]):
-#             context.update({
-#                 'show_update_banner': True,
-#                 'update_banner_body': obj.body,
-#             })
-
-#             if obj.link_page:
-#                 context.update({
-#                     'update_banner_link_href': url_from_path(getattr(obj.link_page, 'url_path')),
-#                     'update_banner_link_label': obj.link_label
-#                 })
-
-#         return context
-
-#     navigation_panels = [
-#         MultiFieldPanel([
-#             FieldPanel('body'),
-#             MultiFieldPanel([
-#                 PageChooserPanel('link_page'),
-#                 FieldPanel('link_label'),
-#             ], heading="CTA"),
-#             FieldPanel('live', widget=forms.CheckboxInput),
-#             FieldPanel('show_on_all_pages', widget=forms.CheckboxInput),
-#             AutocompletePanel('limit_to_pages')
-#         ], heading="Update banner settings")
-#     ]
-
-
 ####################################################################################################
 # Navigation settings mixins
 ####################################################################################################
@@ -303,13 +227,21 @@ class Footer(BaseSetting):
         null=True
     )
 
+    footer_nav2 = StreamField(
+        footer_nav_blocks,
+        blank=True,
+        null=True
+    )
+
     @classmethod
     def get_footer_nav_fields(cls):
         footer_nav = cls._meta.get_field('footer_nav').name
-        return [footer_nav]
+        footer_nav2 = cls._meta.get_field('footer_nav2').name
+        return [footer_nav, footer_nav2]
 
     navigation_panels = [
         MultiFieldPanel([
-            StreamFieldPanel('footer_nav'),
+            StreamFieldPanel('footer_nav', _('Legal')),
+            StreamFieldPanel('footer_nav2', _('Contact')),
         ], heading=_("Footer")),
     ]

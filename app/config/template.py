@@ -111,10 +111,12 @@ def author_url(slug: str) -> str:
 
 
 def nicedate(value):
+    if not value:
+        return ""
     try:
         d = arrow.get(value)
     except Exception:
-        return None
+        return ""
     else:
         return d.format('DD MMMM YYYY')
 
