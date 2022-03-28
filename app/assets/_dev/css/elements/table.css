@@ -1,5 +1,15 @@
 table {
     @apply border-collapse w-full;
+
+    @include max-width(lg) {
+        width: calc(100vw - 20px);
+        overflow-x: scroll;
+        display: block;
+        max-width: -moz-fit-content;
+        max-width: fit-content;
+        margin: 0 auto;
+        overflow-x: auto;
+    }
 }
 
 table td, table th {
