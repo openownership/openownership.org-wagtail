@@ -1,5 +1,5 @@
    
-.btn {
+.btn, .button {
     @apply bg-blue-medium;
     @apply text-white;
     @apply text-center;
@@ -11,7 +11,7 @@
 }
 
 
-.btn {
+.btn, .button {
     &:hover, &:active, &:focus {
         @apply text-white;
         @apply bg-links-hover;
