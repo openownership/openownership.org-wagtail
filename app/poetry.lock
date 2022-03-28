@@ -1313,7 +1313,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "wagtail-localize"
-version = "1.1"
+version = "1.1.1"
 description = "Translation plugin for Wagtail CMS"
 category = "main"
 optional = false
@@ -2101,8 +2101,8 @@ wagtail-font-awesome-svg = [
     {file = "wagtail_font_awesome_svg-0.0.2-py3-none-any.whl", hash = "sha256:cf57cc9be4d2f929f8b5af0b4e03a5ba1ae75d56984208afae2b345e5091988a"},
 ]
 wagtail-localize = [
-    {file = "wagtail-localize-1.1.tar.gz", hash = "sha256:d56fc18ec07e241666822aedd47513f9b4364accd256ce5baec0d69a14ba73b3"},
-    {file = "wagtail_localize-1.1-py3-none-any.whl", hash = "sha256:f20b640cab2cb83f139c31f3a44b385eb841b1f72f12a2726f3f397ea1bbdb40"},
+    {file = "wagtail-localize-1.1.1.tar.gz", hash = "sha256:ef583e58563d8a758541df2a37f1b48b797044c25eb4996a8a9531112b7ad3f3"},
+    {file = "wagtail_localize-1.1.1-py3-none-any.whl", hash = "sha256:1d6c04c61390a2b7f5fb4b7934e9ab2c1fcbd04238bd7e013ce678018e14609d"},
 ]
 wagtail-modelchooser = [
     {file = "wagtail-modelchooser-2.13.1.tar.gz", hash = "sha256:e49da09f1a9ebfbcbccf9a1fd0ad8d375e48e250535697ee4d76c126219bfd85"},
