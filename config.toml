@@ -17,7 +17,7 @@ BUCKET = "cdn-openownership.org-staging"
 GIT_DEPLOY = "This server can only be deployed with Git. Speak to Andy."
 
 [envs.prod]
-HOSTS = ['', ]
+HOSTS = ['167.99.201.240', ]
 TAG = "production"
 BUCKET = "cdn-openownership.org-production"
 GIT_DEPLOY = "This server can only be deployed with Git. Speak to Andy."

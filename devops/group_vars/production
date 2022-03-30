@@ -64,10 +64,6 @@ hactar_firewall_allow:
     name: https
     port: 443
     protocol: tcp
-  -
-    name: et
-    port: 2022
-    protocol: tcp
 
 
 ####################################################################################################
@@ -130,7 +126,7 @@ hactar_supervisor:
 
 gunicorn:
   bind: 127.0.0.1:8000
-  workers: 3
+  workers: 5
   worker_class: sync
   worker_connections: 1000
   timeout: 30
