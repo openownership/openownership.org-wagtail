@@ -1,3 +1,5 @@
+import os
+import envkey  # NOQA
 from .base import *  # NOQA
 from .remote import *  # NOQA
 
@@ -5,10 +7,10 @@ from .remote import *  # NOQA
 DEBUG = False
 
 DOMAIN_NAME = 'openownership.org'
-BASE_URL = f'https://{DOMAIN_NAME}'
+BASE_URL = f'https://prod.{DOMAIN_NAME}'
 
-AWS_S3_CUSTOM_DOMAIN = ''
-AWS_STORAGE_BUCKET_NAME = "cdn-openownership.org-production"
+AWS_S3_CUSTOM_DOMAIN = 'openownershiporgprod-1b54.kxcdn.com'
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET')
 
 MEDIA_ROOT = 'media/'
 
