@@ -11,6 +11,7 @@ ALLOWED_HOSTS = [
     'openownership.org',
     'staging.openownership.org',
     'www.openownership.org',
+    'prod.openownership.org',
     'openownership.hactar.work'
 ]
 
