@@ -123,12 +123,12 @@
 
             <ul>
                 {% for commitment in country.commitments.all() %}
-                {% if commitment.summary_text %}
+                {# {% if commitment.summary_text %}
                     {% set summary = commitment.summary_text %}
                 {% else %}
                     {% set summary = commitment_summary(commitment.commitment_type_name, country) %}
-                {% endif %}
-
+                {% endif %} #}
+                {% set summary = commitment.display_summary %}
                 <li>
                     {{ summary }} {% if commitment.date %}[{{ commitment.date|nicedate }}]{% endif %}
                     {% if commitment.link %}<a href="{{ commitment.link }}">link to commitment</a>{% endif %}

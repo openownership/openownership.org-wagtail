@@ -625,6 +625,7 @@ class SyncCommitments(NotionCronBase):
         obj.central_register = self._get_bool(commitment, 'Central register')
         obj.public_register = self._get_bool(commitment, 'Public register')
         obj.summary_text = self._get_rich_text(commitment, 'Summary Text')
+        obj.all_sectors = self._get_bool(commitment, 'All sectors')
 
         try:
             obj.save()

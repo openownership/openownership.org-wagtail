@@ -23,6 +23,7 @@ from wagtail.admin.edit_handlers import (
 from modules.content.blocks import tag_page_body_blocks
 from modules.taxonomy.models.core import BaseTag
 from modules.notion.data import CAPITALS
+from config.template import commitment_summary
 
 
 class NotionModel(models.Model):
@@ -109,12 +110,34 @@ class Commitment(NotionModel):
         default=False
     )
 
+    all_sectors = models.BooleanField(  # All sectors
+        _("All sectors"),
+        blank=False,
+        null=False,
+        default=False
+    )
+
     summary_text = fields.RichTextField(
         _("Summary Text"),
         blank=True,
         null=True,
         features=settings.RICHTEXT_INLINE_FEATURES
     )
+
+    @cached_property
+    def display_summary(self):
+        """
+        Replaces this in the template
+            {% if commitment.summary_text %}
+                {% set summary = commitment.summary_text %}
+            {% else %}
+                {% set summary = commitment_summary(commitment.commitment_type_name, country) %}
+            {% endif %}
+        """
+        if self.summary_text:
+            return self.summary_text
+        else:
+            return commitment_summary(self.commitment_type_name, self.country)
 
 
 class DisclosureRegime(NotionModel):
@@ -451,6 +474,87 @@ class CountryTag(NotionModel, BaseTag):
     edit_handler = TabbedInterface(base_tabs)
 
     @cached_property
+    def last_updated(self):
+        dates = [self.notion_updated, ]
+        for item in self.regimes:
+            dates.append(item.notion_updated)
+        for item in self.all_commitments:
+            dates.append(item.notion_updated)
+        return max(dates)
+
+    @cached_property
+    def committed(self):
+        if len(self.all_commitments):
+            return True
+        else:
+            return False
+
+    @cached_property
+    def involved(self):
+        VALID = [
+            'Standard',
+            'Medium',
+            'High',
+            'Past engagement'
+        ]
+        return self.oo_support in VALID
+
+    @cached_property
+    def involvement(self):
+        if not self.involved:
+            return "None"
+
+        value = self.oo_support
+        if value == 'Past engagement':
+            return 'Historic'
+        else:
+            return 'Current'
+
+    @cached_property
+    def combined_commitments(self):
+        """Adapted from the OG csv generator
+
+        Returns:
+            dict: Some stuff in a dict ¯\\_(ツ)_/¯
+        """
+        central_register = any(commitment.central_register for commitment in self.all_commitments)
+        public_register = any(commitment.public_register for commitment in self.all_commitments)
+        all_sectors = any(commitment.all_sectors for commitment in self.all_commitments)
+        score = 0
+        level = 0
+
+        if central_register:
+            score += 1
+        if public_register:
+            score += 1
+        if all_sectors:
+            score += 1
+
+        # We map to a 0-1-2 scale, where you have to make 2/3 of central, public
+        # and all sectors to get 1, or all three to get 2.
+        if(score == 2):
+            level = 1
+        if(score == 3):
+            level = 2
+
+        return {
+            'central': central_register,
+            'public': public_register,
+            'all_sectors': all_sectors,
+            'level': level,
+            'html': self._commitments_summary_html
+        }
+
+    @cached_property
+    def _commitments_summary_html(self):
+        commitments = self.all_commitments
+        html = "<ul>"
+        for commitment in commitments:
+            html += f"<li>{commitment.display_summary}</li>"
+        html += "</ul>"
+        return html
+
+    @cached_property
     def committed_central(self):
         """The behaviour we'd like to see is that the 'Commitment to BOT/Central register'
         field is ticked for a country if the Central register field in any commitments
@@ -519,7 +623,7 @@ class CountryTag(NotionModel, BaseTag):
             return None
 
     @cached_property
-    def commitments(self):
+    def all_commitments(self):
         try:
             return self.commitments.all()
         except Exception as e:
