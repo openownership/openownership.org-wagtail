@@ -7,18 +7,8 @@ set -U fish_color_command '39d'
 
 function fish_prompt
 
-  if [ $SERVER_ENV = 'development' ]
-    set_color -b '00a600'
-    set_color '000'
-  else if [ $SERVER_ENV = 'staging' ]
-    set_color -b 'd8b500'
-    set_color '000'
-  else if [ $SERVER_ENV = 'production' ]
-    set_color -b 'e60000'
-    set_color 'fff'
-  else
-    set_color -b 999
-  end
+  set_color -b 'e60000'
+  set_color 'fff'
 
   printf ' '
   printf $SERVER_ENV
