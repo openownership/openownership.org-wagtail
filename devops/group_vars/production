@@ -72,12 +72,22 @@ hactar_firewall_allow:
 
 hactar_caddy_sites:
   -
-    domains: https://prod.openownership.org
+    domains: https://www.openownership.org
     proxy: 127.0.0.1:8000
-    tls: "systems@hactar.is"
+    tls: "systems+1@hactar.is"
     features:
       - gzip
       - expires
+  -
+    domains: https://openownership.org
+    redirect: https://www.openownership.org
+  # -
+  #   domains: https://prod.openownership.org
+  #   proxy: 127.0.0.1:8000
+  #   tls: "systems@hactar.is"
+  #   features:
+  #     - gzip
+  #     - expires
 
 hactar_caddy_fail2ban: true
 hactar_caddy_force_build: true

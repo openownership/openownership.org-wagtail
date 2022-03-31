@@ -1,0 +1,65 @@
+;;
+;; Domain:     openownership.org.
+;; Exported:   2022-03-31 08:43:45
+;;
+;; This file is intended for use for informational and archival
+;; purposes ONLY and MUST be edited before use on a production
+;; DNS server.  In particular, you must:
+;;   -- update the SOA record with the correct authoritative name server
+;;   -- update the SOA record with the contact e-mail address information
+;;   -- update the NS record(s) with the authoritative name servers for this domain.
+;;
+;; For further information, please consult the BIND documentation
+;; located on the following website:
+;;
+;; http://www.isc.org/
+;;
+;; And RFC 1035:
+;;
+;; http://www.ietf.org/rfc/rfc1035.txt
+;;
+;; Please note that we do NOT offer technical support for any use
+;; of this zone data, the BIND name server, or any other third-party
+;; DNS software.
+;;
+;; Use at your own risk.
+;; SOA Record
+openownership.org	3600	IN	SOA	openownership.org root.openownership.org 2040038282 7200 3600 86400 3600
+
+;; A Records
+assess.openownership.org.	1	IN	A	63.35.221.31
+datareview.openownership.org.	1	IN	A	46.43.19.93
+*.dev.datareview.openownership.org.	1	IN	A	46.43.19.146
+dev.datareview.openownership.org.	1	IN	A	46.43.19.146
+openownership.org.	1	IN	A	104.198.14.52
+prod.openownership.org.	1	IN	A	167.99.201.240
+
+;; CNAME Records
+bods-data-datasette.openownership.org.	1	IN	CNAME	bodsdata-datasette-zalh.onrender.com.
+bods-data.openownership.org.	1	IN	CNAME	bodsdata-website.onrender.com.
+em5060.openownership.org.	1	IN	CNAME	u24986431.wl182.sendgrid.net.
+em7255.openownership.org.	1	IN	CNAME	u23605208.wl209.sendgrid.net.
+k2._domainkey.openownership.org.	1	IN	CNAME	dkim2.mcsv.net.
+k3._domainkey.openownership.org.	1	IN	CNAME	dkim3.mcsv.net.
+mwn2._domainkey.openownership.org.	1	IN	CNAME	mwn2.domainkey.u23605208.wl209.sendgrid.net.
+mwn._domainkey.openownership.org.	1	IN	CNAME	mwn.domainkey.u23605208.wl209.sendgrid.net.
+mwo2._domainkey.openownership.org.	1	IN	CNAME	mwo2.domainkey.u24986431.wl182.sendgrid.net.
+mwo._domainkey.openownership.org.	1	IN	CNAME	mwo.domainkey.u24986431.wl182.sendgrid.net.
+register.openownership.org.	1	IN	CNAME	register.openownership.org.herokudns.com.
+standard.openownership.org.	1	IN	CNAME	readthedocs.io.
+www.openownership.org.	1	IN	CNAME	open-ownership.netlify.com.
+
+;; MX Records
+openownership.org.	1	IN	MX	5 alt2.aspmx.l.google.com.
+openownership.org.	1	IN	MX	5 alt1.aspmx.l.google.com.
+openownership.org.	1	IN	MX	1 aspmx.l.google.com.
+openownership.org.	1	IN	MX	10 aspmx3.googlemail.com.
+openownership.org.	1	IN	MX	10 aspmx2.googlemail.com.
+
+;; TXT Records
+20170319160117pm._domainkey.openownership.org.	1	IN	TXT	"k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCfRt2GnYAiEPrRQe3YkgXYXty6ITUiTis1VI5UvjtJf/RWaQx1HO8tPPkV1KMze1BcLD+tEsvQmUnXtBZa1jmI0zAwHTfxjKi6f+iL7wmZqpKUN4d0CTeItiwN7bMJr0WI/Z6iwRrzTslSMvzxSm15bZXtzzlEQjsP6WRZku1lTwIDAQAB"
+_dmarc.openownership.org.	1	IN	TXT	"v=DMARC1; p=none; rua=mailto:tech+cloudflare@openownership.org"
+google._domainkey._domainkey.openownership.org.	1	IN	TXT	"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCABK5elOF/wmgoW5lo9bQPCInA0Ce7J80rp+RaPZJtt8HvdjhWD/18a/XAgFv9FATwLFBKlqM606c58plUh7bN4+23w35ZVa2Dv6kSng3pTOM5YD26v1doLvuOk9atelpNMKlxGTFH20fKpwu8BHiTBiAcuSvJBL4zIIM/PAQ+WQIDAQAB"
+google._domainkey.openownership.org.	1	IN	TXT	"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCABK5elOF/wmgoW5lo9bQPCInA0Ce7J80rp+RaPZJtt8HvdjhWD/18a/XAgFv9FATwLFBKlqM606c58plUh7bN4+23w35ZVa2Dv6kSng3pTOM5YD26v1doLvuOk9atelpNMKlxGTFH20fKpwu8BHiTBiAcuSvJBL4zIIM/PAQ+WQIDAQAB"
+mx._domainkey.openownership.org.	1	IN	TXT	"k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDJB8bKNIadP/JzHzrBHNQ+iqHhc1rqO+Bbbkz0PER74IjoaDEJ9XF8e4FpeOGJjPsC/N+1Nu1PQv449B2eeXdFs1iyrSuj637P1NhbMMMK5h4TUj7wWjEfdRU+9wjp5qbthANxOUFFL55e8KHQVLaV0tnN27LdVqzp0JMRmJ2x8QIDAQAB"
+openownership.org.	1	IN	TXT	"v=spf1 include:_spf.google.com include:mailgun.org include:spf.mtasv.net ~all"
