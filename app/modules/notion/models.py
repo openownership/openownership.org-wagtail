@@ -306,7 +306,7 @@ class DisclosureRegime(NotionModel):
         except Exception as e:
             console.warn(e)
             console.warn(f"No stage for {self.name}")
-            return None
+            return ""
 
     @cached_property
     def display_structured_data(self):
