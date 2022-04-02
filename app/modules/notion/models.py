@@ -302,7 +302,10 @@ class DisclosureRegime(NotionModel):
     @cached_property
     def implementation_stage(self):
         try:
-            return self.stage
+            if self.stage:
+                return self.stage
+            else:
+                return ""
         except Exception as e:
             console.warn(e)
             console.warn(f"No stage for {self.name}")
