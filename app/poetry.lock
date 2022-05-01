@@ -1158,7 +1158,7 @@ tests = ["pytest", "typeguard", "pygments", "littleutils", "cython"]
 
 [[package]]
 name = "tablib"
-version = "3.2.0"
+version = "3.2.1"
 description = "Format agnostic tabular data library (XLS, JSON, YAML, CSV)"
 category = "main"
 optional = false
@@ -1313,7 +1313,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "wagtail-localize"
-version = "1.1"
+version = "1.1.2"
 description = "Translation plugin for Wagtail CMS"
 category = "main"
 optional = false
@@ -2054,8 +2054,8 @@ stack-data = [
     {file = "stack_data-0.2.0.tar.gz", hash = "sha256:45692d41bd633a9503a5195552df22b583caf16f0b27c4e58c98d88c8b648e12"},
 ]
 tablib = [
-    {file = "tablib-3.2.0-py3-none-any.whl", hash = "sha256:1ba12da7b0b17e33f5997fb1bc8ed560aae3535f5892ae5e5c01a056c47d4d78"},
-    {file = "tablib-3.2.0.tar.gz", hash = "sha256:12d8686454c721de88d8ca5adf07e1f419ef6dbcecedf65e8950d4a329daf3a0"},
+    {file = "tablib-3.2.1-py3-none-any.whl", hash = "sha256:870d7e688f738531a14937a055e8bba404fbc388e77d4d500b2c904075d1019c"},
+    {file = "tablib-3.2.1.tar.gz", hash = "sha256:a57f2770b8c225febec1cb1e65012a69cf30dd28be810e0ff98d024768c7d0f1"},
 ]
 telepath = [
     {file = "telepath-0.2-py35-none-any.whl", hash = "sha256:801615094d3d964e178183099bf04020f4ff9c84ec43945d40b096df0a5767ee"},
@@ -2101,8 +2101,8 @@ wagtail-font-awesome-svg = [
     {file = "wagtail_font_awesome_svg-0.0.2-py3-none-any.whl", hash = "sha256:cf57cc9be4d2f929f8b5af0b4e03a5ba1ae75d56984208afae2b345e5091988a"},
 ]
 wagtail-localize = [
-    {file = "wagtail-localize-1.1.tar.gz", hash = "sha256:d56fc18ec07e241666822aedd47513f9b4364accd256ce5baec0d69a14ba73b3"},
-    {file = "wagtail_localize-1.1-py3-none-any.whl", hash = "sha256:f20b640cab2cb83f139c31f3a44b385eb841b1f72f12a2726f3f397ea1bbdb40"},
+    {file = "wagtail-localize-1.1.2.tar.gz", hash = "sha256:475d2ad2aa14ef9e0a2d9ad5dd950ecdef8f117d1a085ffebc7b2c4a4e903449"},
+    {file = "wagtail_localize-1.1.2-py3-none-any.whl", hash = "sha256:06c6229215a7ecf8e592d23a4a011a27626a39659fc840da799afa79b03da938"},
 ]
 wagtail-modelchooser = [
     {file = "wagtail-modelchooser-2.13.1.tar.gz", hash = "sha256:e49da09f1a9ebfbcbccf9a1fd0ad8d375e48e250535697ee4d76c126219bfd85"},
