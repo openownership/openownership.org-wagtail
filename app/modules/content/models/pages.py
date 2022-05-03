@@ -84,7 +84,9 @@ class HomePage(PageHeroMixin, LandingPageType):
     ]
     max_count = 1
 
-    search_fields: list = []
+    search_fields: list = BasePage.search_fields + [
+        index.SearchField('body')
+    ]
 
     body = fields.StreamField(home_page_blocks, blank=True)
 
@@ -126,7 +128,9 @@ class SectionPage(PageHeroMixin, LandingPageType):
         'content.PressLinksPage',
     ]
 
-    search_fields: list = []
+    search_fields: list = BasePage.search_fields + [
+        index.SearchField('body')
+    ]
 
     body = fields.StreamField(section_page_blocks, blank=True)
 
@@ -343,6 +347,10 @@ class JobPage(TaggedPageMixin, ContentPageType):
     template = 'content/job_page.jinja'
     parent_page_types: list = ['content.JobsIndexPage']
     subpage_types: list = []
+
+    search_fields: list = ContentPageType.search_fields + [
+        index.SearchField('location')
+    ]
 
     application_url = models.URLField(
         blank=True,

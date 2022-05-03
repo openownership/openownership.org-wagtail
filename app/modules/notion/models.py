@@ -24,6 +24,7 @@ from modules.content.blocks import tag_page_body_blocks
 from modules.taxonomy.models.core import BaseTag
 from modules.notion.data import CAPITALS
 from config.template import commitment_summary
+from helpers.query import coalesce_and_sort
 
 
 class NotionModel(models.Model):
@@ -680,6 +681,24 @@ class CountryTag(NotionModel, BaseTag):
                 return rv
 
     @cached_property
+    def display_date_related_pages(self):
+        """Try to return related pages ordered by display date.
+        """
+        try:
+            page_ids = [item.content_object_id for item in self.country_related_pages.all()]
+            pages = Page.objects.filter(
+                id__in=page_ids,
+                locale=Locale.get_active()
+            ).specific().live().public()
+            pages = sorted(pages, key=lambda x: x.display_date, reverse=True)
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No related pages found for {self.name}")
+            return self.related_pages
+        else:
+            return pages
+
+    @cached_property
     def related_pages(self):
         try:
             page_ids = [item.content_object_id for item in self.country_related_pages.all()]
@@ -690,14 +709,14 @@ class CountryTag(NotionModel, BaseTag):
         except Exception as e:
             console.warn(e)
             console.warn(f"No related pages found for {self.name}")
-            return None
+            return []
         else:
             return pages
 
     def latest_related(self, count):
-        if self.related_pages is not None:
+        if self.display_date_related_pages:
             try:
-                return self.related_pages[:3]
+                return self.display_date_related_pages[:3]
             except Exception as e:
                 console.warn(e)
 
