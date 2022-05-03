@@ -1,5 +1,7 @@
 from .core import Category
 
+from consoler import console
+from django.utils.functional import cached_property
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from wagtailmodelchooser import register_model_chooser
@@ -30,6 +32,12 @@ class PublicationType(Category):
         """
         from modules.content.models import TagPage
 
+        if self.name == "News article":
+            return self.news_index
+
+        if self.name == "Blog post":
+            return self.blog_index
+
         qs = TagPage.objects
 
         page = (
@@ -40,3 +48,29 @@ class PublicationType(Category):
             return page.get_url()
         else:
             return ''
+
+    @cached_property
+    def news_index(self):
+        from modules.content.models import NewsIndexPage
+        try:
+            indx = NewsIndexPage.objects.filter(
+                locale=Locale.get_active()
+            ).live().public().first()
+        except Exception as e:
+            console.info(e)
+            indx = NewsIndexPage.objects.live().public().first()
+        if indx:
+            return indx.url
+
+    @cached_property
+    def blog_index(self):
+        from modules.content.models import BlogIndexPage
+        try:
+            indx = BlogIndexPage.objects.filter(
+                locale=Locale.get_active()
+            ).live().public().first()
+        except Exception as e:
+            console.info(e)
+            indx = BlogIndexPage.objects.live().public().first()
+        if indx:
+            return indx.url
