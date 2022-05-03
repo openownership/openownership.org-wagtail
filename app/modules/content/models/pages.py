@@ -1236,13 +1236,14 @@ class TagPage(IndexPageType):
             related_pages = getattr(tag, tag.__class__.related_pages_name)
             page_ids = related_pages.values_list('content_object__id', flat=True)
 
-            return (
+            query = (
                 Page.objects.live().public()
                 .specific()
                 .filter(locale=Locale.get_active())
                 .filter(id__in=page_ids)
                 .select_related('thumbnail')
             )
+            return query
         else:
             # Shouldn't get here.
             return Page.objects.none()
