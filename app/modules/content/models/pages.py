@@ -1212,7 +1212,7 @@ class TagPage(IndexPageType):
     def base_queryset(self):
         """
         Get pages that are in the chosen category, or tagged with the
-        chosen tag.
+        chosen tag. Passes the query to IndexPageType
         """
         tag = None
         category = None
