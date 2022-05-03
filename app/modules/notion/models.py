@@ -24,7 +24,6 @@ from modules.content.blocks import tag_page_body_blocks
 from modules.taxonomy.models.core import BaseTag
 from modules.notion.data import CAPITALS
 from config.template import commitment_summary
-from helpers.query import coalesce_and_sort
 
 
 class NotionModel(models.Model):
@@ -584,9 +583,11 @@ class CountryTag(NotionModel, BaseTag):
         implementations listed in the Disclosure regimes tracker have the '4 Central'
         field = Yes plus the 0 Stage field = Publish.
         """
+        subnational = CoverageScope.objects.get(name='Subnational')
         for item in self.disclosure_regimes.all():
             if item.central_register == "Yes" and item.stage and 'Publish' in item.stage:
-                return True
+                if subnational not in item.coverage_scope.all():
+                    return True
         return False
 
     @cached_property
@@ -595,9 +596,11 @@ class CountryTag(NotionModel, BaseTag):
         country page where any implementations listed where the
         '5.1 Public access' field = Yes plus the 0 Stage field = Publish.
         """
+        subnational = CoverageScope.objects.get(name='Subnational')
         for item in self.disclosure_regimes.all():
             if item.public_access == "Yes" and item.stage and 'Publish' in item.stage:
-                return True
+                if subnational not in item.coverage_scope.all():
+                    return True
         return False
 
     @cached_property
