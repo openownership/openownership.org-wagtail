@@ -126,7 +126,9 @@ class SectionPage(PageHeroMixin, LandingPageType):
         'content.PressLinksPage',
     ]
 
-    search_fields: list = LandingPageType.search_fields + []
+    search_fields: list = BasePage.search_fields + [
+        index.SearchField('body')
+    ]
 
     body = fields.StreamField(section_page_blocks, blank=True)
 
@@ -346,7 +348,9 @@ class JobPage(TaggedPageMixin, ContentPageType):
     parent_page_types: list = ['content.JobsIndexPage']
     subpage_types: list = []
 
-    search_fields: list = ContentPageType.search_fields + []
+    search_fields: list = ContentPageType.search_fields + [
+        index.SearchField('location')
+    ]
 
     application_url = models.URLField(
         blank=True,
@@ -1208,7 +1212,7 @@ class TagPage(IndexPageType):
     def base_queryset(self):
         """
         Get pages that are in the chosen category, or tagged with the
-        chosen tag.
+        chosen tag. Passes the query to IndexPageType
         """
         tag = None
         category = None
@@ -1232,13 +1236,14 @@ class TagPage(IndexPageType):
             related_pages = getattr(tag, tag.__class__.related_pages_name)
             page_ids = related_pages.values_list('content_object__id', flat=True)
 
-            return (
+            query = (
                 Page.objects.live().public()
                 .specific()
                 .filter(locale=Locale.get_active())
                 .filter(id__in=page_ids)
                 .select_related('thumbnail')
             )
+            return query
         else:
             # Shouldn't get here.
             return Page.objects.none()

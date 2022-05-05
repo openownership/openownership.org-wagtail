@@ -27,7 +27,7 @@
         {% endif %}
 
         <div class="country-page__details">
-            <p><strong>Records last updated: {{ country.notion_updated|nicedate }}</strong></p>
+            <p><strong>Records last updated: {{ country.last_updated|nicedate }}</strong></p>
             
             {% if country.consultant %}
                 <p>

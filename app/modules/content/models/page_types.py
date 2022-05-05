@@ -357,9 +357,15 @@ class IndexPageType(BasePage):
         This returns the queryset needed to paginate the objects on the page. It pulls all the
         valid filters from get_filter_options and carries out the respective logic on the queryset.
         """
-        query = self.base_queryset()
+        query = self.base_queryset().distinct()
 
-        return query.distinct().order_by(*self.get_order_by())
+        try:
+            pages = sorted(query, key=lambda x: x.display_date, reverse=True)
+        except Exception as e:
+            console.warn(e)
+            return query.order_by('-first_published_at')
+        else:
+            return pages
 
     def paginate_objects(self, request):
         queryset = self.get_queryset(request)
