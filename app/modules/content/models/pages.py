@@ -84,9 +84,7 @@ class HomePage(PageHeroMixin, LandingPageType):
     ]
     max_count = 1
 
-    search_fields: list = BasePage.search_fields + [
-        index.SearchField('body')
-    ]
+    search_fields: list = Page.search_fields + []
 
     body = fields.StreamField(home_page_blocks, blank=True)
 
@@ -164,6 +162,8 @@ class SectionListingPage(SectionPage):
     """
     class Meta:
         verbose_name = _('Section listing (About)')
+
+    search_fields: list = BasePage.search_fields + []
 
     template: str = 'content/section_listing_page.jinja'
     parent_page_types: list = ["content.HomePage", ]

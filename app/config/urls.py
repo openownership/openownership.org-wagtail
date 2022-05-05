@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^500/$', error_500_view, ),
     # Server / Robots / Verification etc
     url(r'^robots\.txt$', robots),
-    url(r'^sitemap\.xml$', sitemap, {'template_name': 'sitemap.xml.html'}),
+    url(r'^sitemap\.xml$', sitemap),
     url(r'^googleverfication\.html$',
         lambda r: HttpResponse(
             "google-site-verification: foo.html", content_type="text/plain")),
