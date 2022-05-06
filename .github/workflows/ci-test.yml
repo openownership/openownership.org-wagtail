@@ -54,9 +54,6 @@ jobs:
           pip3 install codacy-coverage
           python-codacy-coverage -r ${{github.workspace}}/app/coverage.xml
 
-      - name: Push to GHCR
-        run: docker-compose -f docker-compose.test.yml push
-
   deploy_staging:
     # Requires these vars in github secrets
     # * ENVKEY

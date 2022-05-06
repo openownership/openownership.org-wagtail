@@ -15,6 +15,7 @@ from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger
 from django.utils.functional import cached_property
 from django.utils.html import strip_tags
+from jinja2.filters import do_truncate
 from django.utils.translation import gettext_lazy as _
 
 from wagtail.admin.edit_handlers import FieldPanel, ObjectList, TabbedInterface, StreamFieldPanel
@@ -117,6 +118,8 @@ class BasePage(WagtailCacheMixin, Page):
             **self.get_metadata_settings(site)
         )
 
+        context['meta_description'] = self.page_meta_description
+
         return context
 
     @cached_classmethod
@@ -145,20 +148,28 @@ class BasePage(WagtailCacheMixin, Page):
         else:
             return self.title
 
-    def get_meta_description(self):
+    @cached_property
+    def page_meta_description(self):
         if self.search_description:
             return self.search_description
+
         if getattr(self, 'blurb', False):
             return self.blurb
-        try:
-            for item in self.body.stream_data:
-                if item['type'] == 'rich_text':
-                    return strip_tags(item['value'])
-        except Exception:
-            pass
-        return None
 
-    def get_metadata_settings(self, site):
+        if hasattr(self, 'body'):
+            try:
+                for block in self.body.get_prep_value():
+                    if block['type'] == 'rich_text':
+                        txt = strip_tags(block['value'])
+                        return do_truncate({}, txt, 200, leeway=5)
+            except Exception:
+                site_settings = self.get_metadata_settings()
+                return site_settings['meta_description']
+
+        site_settings = self.get_metadata_settings()
+        return site_settings['meta_description']
+
+    def get_metadata_settings(self, site=None):
         from modules.settings.models import SiteSettings
 
         if not site:
