@@ -152,6 +152,7 @@ class BasePage(WagtailCacheMixin, Page):
     def page_meta_description(self):
         if self.search_description:
             return self.search_description
+
         if getattr(self, 'blurb', False):
             return self.blurb
 
@@ -168,7 +169,7 @@ class BasePage(WagtailCacheMixin, Page):
         site_settings = self.get_metadata_settings()
         return site_settings['meta_description']
 
-    def get_metadata_settings(self, site):
+    def get_metadata_settings(self, site=None):
         from modules.settings.models import SiteSettings
 
         if not site:
