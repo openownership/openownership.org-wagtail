@@ -586,9 +586,11 @@ class CountryTag(NotionModel, BaseTag):
         implementations listed in the Disclosure regimes tracker have the '4 Central'
         field = Yes plus the 0 Stage field = Publish.
         """
+        subnational = CoverageScope.objects.get(name='Subnational')
         for item in self.disclosure_regimes.all():
             if item.central_register == "Yes" and item.stage and 'Publish' in item.stage:
-                return True
+                if subnational not in item.coverage_scope.all():
+                    return True
         return False
 
     @cached_property
@@ -597,9 +599,11 @@ class CountryTag(NotionModel, BaseTag):
         country page where any implementations listed where the
         '5.1 Public access' field = Yes plus the 0 Stage field = Publish.
         """
+        subnational = CoverageScope.objects.get(name='Subnational')
         for item in self.disclosure_regimes.all():
             if item.public_access == "Yes" and item.stage and 'Publish' in item.stage:
-                return True
+                if subnational not in item.coverage_scope.all():
+                    return True
         return False
 
     @cached_property
@@ -683,6 +687,24 @@ class CountryTag(NotionModel, BaseTag):
                 return rv
 
     @cached_property
+    def display_date_related_pages(self):
+        """Try to return related pages ordered by display date.
+        """
+        try:
+            page_ids = [item.content_object_id for item in self.country_related_pages.all()]
+            pages = Page.objects.filter(
+                id__in=page_ids,
+                locale=Locale.get_active()
+            ).specific().live().public()
+            pages = sorted(pages, key=lambda x: x.display_date, reverse=True)
+        except Exception as e:
+            console.warn(e)
+            console.warn(f"No related pages found for {self.name}")
+            return self.related_pages
+        else:
+            return pages
+
+    @cached_property
     def related_pages(self):
         try:
             page_ids = [item.content_object_id for item in self.country_related_pages.all()]
@@ -693,14 +715,14 @@ class CountryTag(NotionModel, BaseTag):
         except Exception as e:
             console.warn(e)
             console.warn(f"No related pages found for {self.name}")
-            return None
+            return []
         else:
             return pages
 
     def latest_related(self, count):
-        if self.related_pages is not None:
+        if self.display_date_related_pages:
             try:
-                return self.related_pages[:3]
+                return self.display_date_related_pages[:3]
             except Exception as e:
                 console.warn(e)
 

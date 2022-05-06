@@ -3,6 +3,7 @@ import pytest
 import arrow
 from wagtail.core.models import Page
 
+from modules.settings.models.site_settings import SiteSettings
 from modules.content.models import (
     ArticlePage,
     Author,
@@ -247,6 +248,13 @@ def blog_index_page(section_page):
 def home_page(site_root):
     p = _create_home_page("Test Site Home", site_root)
     return p
+
+
+@pytest.fixture(scope="function")
+def site_settings(site):
+    settings, created = SiteSettings.objects.get_or_create(site_id=site.id)
+    settings.save()
+    return settings
 
 
 @pytest.fixture(scope="function")
