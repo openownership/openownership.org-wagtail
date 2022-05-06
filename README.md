@@ -18,8 +18,9 @@ Make sure you have developer access to the EnvKey project and generate yourself 
 1. `git submodule update --init --recursive`
 2. `goenv`
 3. `gofab` (and then probably `cd ..`)
-4. `docker-compose up --build -d`
-5. `fab docker.fish` to get a shell inside the running web container
+4. `docker pull ghcr.io/hactar-is/openownership:latest`
+5. `docker-compose up --build -d`
+6. `fab docker.fish` to get a shell inside the running web container
 
 
 ### If you don't have access to Hactar tooling...
@@ -34,7 +35,7 @@ You'll need all the project's environment variables in a .env file expanded into
 1. `manpy migrate`
 2. `manpy createsuperuser`
 3. `manpy populate_taxonomies`  # To create tags
-3. `runserver`
+4. `runserver`
 
 Site should now be accessible at `http://openownership.org.test:5000` (or http://0.0.0.0.test:5000)
 
