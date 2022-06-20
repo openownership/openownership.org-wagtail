@@ -249,7 +249,7 @@ class SearchView(TemplateView):
         query = Query.get(terms)
         query.add_hit()
 
-        promoted = Query.get(terms).editors_picks.all()
+        promoted = [item.page.specific for item in Query.get(terms).editors_picks.all()]
         exclude_ids = [p.id for p in promoted]
 
         qs = Page.objects
@@ -280,22 +280,27 @@ class SearchView(TemplateView):
 
             if len(f['principle_tags']):
                 for tag in f['principle_tags']:
-                    ids = list(tag.principle_tag_related_pages.values_list('content_object__id', flat=True))
+                    ids = list(
+                        tag.principle_tag_related_pages.values_list(
+                            'content_object__id', flat=True))
                     page_ids = add_ids(page_ids, ids)
 
             if len(f['section_tags']):
                 for tag in f['section_tags']:
-                    ids = list(tag.section_tag_related_pages.values_list('content_object__id', flat=True))
+                    ids = list(
+                        tag.section_tag_related_pages.values_list('content_object__id', flat=True))
                     page_ids = add_ids(page_ids, ids)
 
             if len(f['sector_tags']):
                 for tag in f['sector_tags']:
-                    ids = list(tag.sector_related_pages.values_list('content_object__id', flat=True))
+                    ids = list(
+                        tag.sector_related_pages.values_list('content_object__id', flat=True))
                     page_ids = add_ids(page_ids, ids)
 
             if len(f['country_tags']):
                 for tag in f['country_tags']:
-                    ids = list(tag.country_related_pages.values_list('content_object__id', flat=True))
+                    ids = list(
+                        tag.country_related_pages.values_list('content_object__id', flat=True))
                     page_ids = add_ids(page_ids, ids)
 
             # Restrict to the only page types that have taxonomies
@@ -316,7 +321,7 @@ class SearchView(TemplateView):
         # Unify stuff
         objects = []
         objects += countries
-        objects += [r.page for r in promoted]
+        objects += promoted
         if searched:
             objects = objects + [r for r in searched]
             return objects
