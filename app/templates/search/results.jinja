@@ -13,9 +13,9 @@
     </header>
 
 
-{% if terms %}
+{# {% if terms %} #}
     <div class="aside-layout-left">
-      <div class="aside-layout__menu">
+      <div class="aside-layout__menu"{% if not terms %} style="pointer-events: none; opacity: 0.4;"{% endif%}>
         <h2 class="search-filter__title">{% trans %}Filter your results{% endtrans %}</h2>
 
         <div class="accordion search-filter">
@@ -85,7 +85,7 @@
         </div>
         <button class="btn filter-results__btn" type="submit">{% trans %}Filter{% endtrans %}</button>
       </div>
-{% endif %}
+{# {% endif %} #}
 
       <div class="aside-layout__main aside-layout__no-header">
 
