@@ -6,6 +6,7 @@ from .mixins import (
     AnalyticsSettings,
     MetaTagSettings,
     SocialMediaSettings,
+    SearchSettings,
     # UpdateBannerSettings
 )
 
@@ -19,6 +20,7 @@ class SiteSettings(
     AnalyticsSettings,
     MetaTagSettings,
     SocialMediaSettings,
+    SearchSettings,
     # UpdateBannerSettings
 ):
 
@@ -35,6 +37,7 @@ class SiteSettings(
         ObjectList(AnalyticsSettings.navigation_panels, heading=_('Analytics')),
         ObjectList(MetaTagSettings.navigation_panels, heading=_('Meta Tags')),
         ObjectList(SocialMediaSettings.navigation_panels, heading=_('Social media')),
+        ObjectList(SearchSettings.search_panels, heading=_('Search')),
         # Not sure this is needed for OO:
         # ObjectList(UpdateBannerSettings.navigation_panels, heading=_('Update banner')),
     ]

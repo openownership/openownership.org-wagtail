@@ -5,12 +5,13 @@ from consoler import console
 from django.conf import settings
 from django.http import Http404
 from django.utils.text import slugify
-from wagtail.core.models import Locale, Page
+from wagtail.core.models import Locale, Page, Site
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator
 from wagtail.search.models import Query
 from django.utils.functional import cached_property
 from django.utils.datastructures import MultiValueDictKeyError
+from modules.settings.models import SiteSettings
 
 # Project
 from modules.stats.models import ViewCount
@@ -200,7 +201,11 @@ class SearchView(TemplateView):
         if self.terms:
             context['meta_title'] = f"Search: {self.terms}"
         else:
+            site = Site.objects.get(is_default_site=True)
+            search_body = SiteSettings.get_search_body(site)
             context['meta_title'] = "Search"
+            context['search_body'] = search_body
+
         global_context(context)  # Adds in nav settings etc.
         return context
 

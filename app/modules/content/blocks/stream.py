@@ -702,7 +702,8 @@ class HighlightPagesBlock(blocks.StructBlock):
     pages = blocks.ListBlock(
         blocks.StructBlock([
             ('page', blocks.PageChooserBlock(required=True)),
-            ('card_format', blocks.ChoiceBlock(required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE)),
+            ('card_format', blocks.ChoiceBlock(
+                required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE)),
         ]),
         min_num=1
     )
@@ -1412,3 +1413,56 @@ class DisclosureBlock(blocks.StructBlock):
         ('table', TableBlock()),
         ('image', ArticleImageBlock()),
     ], max_num=1)
+
+
+####################################################################################################
+# Search
+####################################################################################################
+
+
+class EditorsPicksBlock(blocks.StructBlock):
+    """
+    For choosing a few pages from ALL of the pages to highlight on a Home,
+    Section page, or Article.
+    """
+
+    class Meta:
+        label = _("Editor's picks")
+        icon = 'doc-full'
+        template = "_partials/search_stream.jinja"
+
+    title = blocks.CharBlock(
+        default="Editor's picks",
+        required=False,
+    )
+
+    pages = blocks.ListBlock(
+        blocks.StructBlock([
+            ('page', blocks.PageChooserBlock(required=True)),
+        ]),
+        min_num=1, max_num=3
+    )
+
+    def get_context(self, value, parent_context={}):
+        context = super().get_context(value, parent_context=parent_context)
+        pages = []
+        for struct_value in value.get('pages'):
+            page = struct_value.get('page')
+            pages.append(page.specific)
+
+        context.update({
+            'title': value.get('title', ''),
+            'pages': pages,
+        })
+        value.pages = pages
+        return context
+
+
+class SearchLatestContentBlock(LatestContentBlock):
+
+    class Meta:
+        label = 'Latest content'
+        icon = 'doc-full'
+        template = "_partials/search_stream.jinja"
+        value_class = LatestContentValue
+        help_text = "Shows latest blog posts, news and job pages"

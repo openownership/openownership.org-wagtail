@@ -21,10 +21,33 @@ from wagtail.core.fields import StreamField
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtailautocomplete.edit_handlers import AutocompletePanel
 
+from modules.content.blocks import SEARCH_BLOCKS
+
 
 ####################################################################################################
 # Site settings mixins
 ####################################################################################################
+
+
+class SearchSettings(BaseSetting):
+
+    class Meta:
+        abstract = True
+
+    body = StreamField(
+        SEARCH_BLOCKS,
+        blank=True,
+        null=True
+    )
+
+    search_panels = [
+        StreamFieldPanel('body')
+    ]
+
+    @classmethod
+    def get_search_body(cls, site):
+        obj = cls.for_site(site)
+        return obj.body
 
 
 class AnalyticsSettings(BaseSetting):

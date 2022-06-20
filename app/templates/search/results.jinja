@@ -131,7 +131,7 @@
                   </nav>
               {% endif %} #}
         {% else %}
-
+            {{render_stream(search_body)}}
             {% if popular|length > 0 %}
                 <div class="card-group">
                     <header class="card-group__header">
