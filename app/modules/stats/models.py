@@ -1,10 +1,24 @@
 import arrow
 import datetime
+from consoler import console
+from django.conf import settings
 from typing import Optional
 from django.db import models
+from .redis import RedisViewCounts
 
 
 class ViewCountManager(models.Manager):
+
+    def __init__(self, *args, **kwargs):
+        self._use_redis = False
+        try:
+            if settings.STATS_USE_REDIS:
+                self._use_redis = True
+                self.r = RedisViewCounts()
+        except Exception as error:
+            console.warn(error)
+
+        super().__init__(*args, **kwargs)
 
     def hit(self, page_id: int, date: Optional[datetime.date] = None) -> int:
         """Records a hit for a page for ``date``
@@ -16,6 +30,9 @@ class ViewCountManager(models.Manager):
         Returns:
             View: Description
         """
+        if self._use_redis:
+            return self.r.hit(page_id)
+
         date = self._check_date(date)
         record = self.find(page_id=page_id, date=date)
         record.count = record.count + 1
@@ -31,6 +48,9 @@ class ViewCountManager(models.Manager):
             days (int): The number of days to look back
             limit (int, optional): The number of records to return
         """
+        if self._use_redis:
+            return self.r.popular_with_counts(limit=limit)
+
         shift = days * -1
         date = arrow.now().shift(days=shift).datetime.date()
         q = self.filter(date__gt=date).order_by('-count').values('page_id', 'count')[:limit]
@@ -45,6 +65,9 @@ class ViewCountManager(models.Manager):
             days (int): The number of days to look back
             limit (int, optional): The number of records to return
         """
+        if self._use_redis:
+            return self.r.popular(limit=limit)
+
         shift = days * -1
         date = arrow.now().shift(days=shift).datetime.date()
         q = self.filter(date__gt=date).order_by('-count').values_list('page_id', flat=True)[:limit]
@@ -84,6 +107,7 @@ class ViewCountManager(models.Manager):
 
 
 class ViewCount(models.Model):
+
     class Meta:
         unique_together = ['page_id', 'date']
 
