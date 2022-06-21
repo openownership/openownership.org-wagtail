@@ -171,7 +171,7 @@ class SearchView(TemplateView):
             context['popular'] = Page.objects.filter(
                 id__in=popular_ids,
                 locale=Locale.get_active(),
-            ).live().public()[:6]
+            ).live().public().specific()[:6]
 
         self.paginator = self._get_paginator(pages)
         self.page_obj = self.paginator

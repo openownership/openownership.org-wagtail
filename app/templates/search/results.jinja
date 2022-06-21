@@ -137,7 +137,7 @@
                     <header class="card-group__header">
                         <h2 class="card-group__header-title">{{_('Most read')}}</h2>
                     </header>
-                    <ul class="grid-cols grid--{{ columns }}-col {{ card_format|default("") }}">
+                    <ul class="grid-cols grid--1-col landscape">
                         {% for page in popular %}
                             {% include "_partials/card.jinja" %}
                         {% endfor %}
