@@ -32,7 +32,6 @@ class RedisViewCounts():
         key = self._key(page_id)
         result = self.conn.hincrby(name=self._hash, key=key)
         self.conn.zadd(self._set, {key: result})
-        console.info(result)
         return result
 
     def popular_with_counts(self, limit: int = 100):
@@ -132,3 +131,7 @@ class RedisViewCounts():
         """
         date = arrow.now().format("YYYY-MM-DD")
         return f"{date}_{page_id}"
+
+    def _purge(self):
+        self.conn.delete(self._set)
+        self.conn.delete(self._hash)

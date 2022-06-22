@@ -6,7 +6,12 @@ pytestmark = pytest.mark.django_db
 from modules.stats.models import ViewCount
 
 
-def test_hit_method():
+####################################################################################################
+# DB Version
+####################################################################################################
+
+
+def test_hit_method(stats_db):
     count = ViewCount.objects.hit(1)
 
     assert count == 1
@@ -17,7 +22,7 @@ def test_hit_method():
     assert record.count == 1
 
 
-def test_many_hits():
+def test_many_hits(stats_db):
     for i in range(0, 100):
         count = ViewCount.objects.hit(1)
 
@@ -29,7 +34,7 @@ def test_many_hits():
     assert record.count == 100
 
 
-def test_hit_method_with_older_records():
+def test_hit_method_with_older_records(stats_db):
     old = arrow.now().shift(days=-10).datetime.date()
     for i in range(0, 10):
         ViewCount.objects.hit(1, old)
@@ -47,32 +52,76 @@ def test_hit_method_with_older_records():
     assert record.count == 1
 
 
-def test_popular():
+def test_popular(stats_db):
     for i in range(0, 10):
         date = arrow.now().shift(days=i * -1).datetime.date()
         ViewCount.objects.hit(i, date)
 
     # We should have records for going back 10 days, but also we only want
     # popular in the last 7 days, so this should return 7 I think.
-    rv = ViewCount.objects.popular_with_counts(7)
-    assert rv.count() == 7
+    result = ViewCount.objects.popular_with_counts(7)
+    assert result.count() == 7
 
 
-def test_popular_returns_most_visited():
+def test_popular_returns_most_visited(stats_db):
     for i in range(0, 10):
         date = arrow.now().shift(days=i * -1).datetime.date()
         ViewCount.objects.hit(i, date)
 
-    rv = ViewCount.objects.popular_with_counts(7)
-    assert rv.count() == 7
+    result = ViewCount.objects.popular_with_counts(7)
+    assert result.count() == 7
 
     for i in range(0, 4):
         date = arrow.now().shift(days=i * -1).datetime.date()
         ViewCount.objects.hit(i, date)
 
     # our first 4 returned records should now have a count of 2
-    assert rv[0]['count'] == 2
-    assert rv[1]['count'] == 2
-    assert rv[2]['count'] == 2
-    assert rv[3]['count'] == 2
-    assert rv[4]['count'] == 1
+    assert result[0]['count'] == 2
+    assert result[1]['count'] == 2
+    assert result[2]['count'] == 2
+    assert result[3]['count'] == 2
+    assert result[4]['count'] == 1
+
+
+####################################################################################################
+# DB Version
+####################################################################################################
+
+
+def test_hit_method_redis(stats_redis):
+    count = ViewCount.objects.hit(1)
+    assert count == 1
+
+
+def test_many_hits_redis(stats_redis):
+    for i in range(0, 100):
+        count = ViewCount.objects.hit(2)
+
+    assert count == 100
+
+
+def test_popular_redis(stats_redis):
+    for i in range(0, 10):
+        ViewCount.objects.hit(i + 10)
+
+    result = ViewCount.objects.popular_with_counts(limit=7)
+    assert len(result) == 7
+
+
+def test_popular_returns_most_visited_redis(stats_redis):
+    for i in range(0, 10):
+        ViewCount.objects.hit(i)
+
+    result = ViewCount.objects.popular_with_counts(limit=7)
+    assert len(result) == 7
+
+    for i in range(0, 4):
+        ViewCount.objects.hit(i)
+
+    result = ViewCount.objects.popular_with_counts(limit=7)
+    # our first 4 returned records should now have a count of 2
+    assert result[0][1] == 2
+    assert result[1][1] == 2
+    assert result[2][1] == 2
+    assert result[3][1] == 2
+    assert result[4][1] == 1

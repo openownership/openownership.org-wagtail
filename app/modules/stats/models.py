@@ -10,11 +10,8 @@ from .redis import RedisViewCounts
 class ViewCountManager(models.Manager):
 
     def __init__(self, *args, **kwargs):
-        self._use_redis = False
         try:
-            if settings.STATS_USE_REDIS:
-                self._use_redis = True
-                self.r = RedisViewCounts()
+            self.r = RedisViewCounts()
         except Exception as error:
             console.warn(error)
 
@@ -30,7 +27,7 @@ class ViewCountManager(models.Manager):
         Returns:
             View: Description
         """
-        if self._use_redis:
+        if settings.STATS_USE_REDIS:
             return self.r.hit(page_id)
 
         date = self._check_date(date)
@@ -48,7 +45,7 @@ class ViewCountManager(models.Manager):
             days (int): The number of days to look back
             limit (int, optional): The number of records to return
         """
-        if self._use_redis:
+        if settings.STATS_USE_REDIS:
             return self.r.popular_with_counts(limit=limit)
 
         shift = days * -1
@@ -65,7 +62,7 @@ class ViewCountManager(models.Manager):
             days (int): The number of days to look back
             limit (int, optional): The number of records to return
         """
-        if self._use_redis:
+        if settings.STATS_USE_REDIS:
             return self.r.popular(limit=limit)
 
         shift = days * -1
