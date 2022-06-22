@@ -1,5 +1,5 @@
 # stdlib
-from typing import Optional
+from typing import Optional, Union
 from datetime import datetime
 
 # 3rd party
@@ -110,6 +110,28 @@ class NotionCronBase(CronJobBase):
         except Exception as e:
             console.warn(e)
             return DEFAULT_DATE
+
+    def _get_value(self, data: dict, property_name: str) -> Optional[Union[int, str]]:
+        """Will try to access any Notion data type by inspecting
+        data['properties'][property_name]['type'] and then handing it off to the right method.
+        """
+        notion_type = data['properties'][property_name]['type']
+        if notion_type == 'number':
+            return self._get_number(data, property_name)
+        elif notion_type == 'rich_text':
+            return self._get_rich_text(data, property_name)
+        elif notion_type == 'select':
+            return self._get_select_name(data, property_name)
+        elif notion_type == 'relation':
+            return self._get_rel_id(data, property_name)
+        elif notion_type == 'url':
+            return self._get_url(data, property_name)
+        elif notion_type == 'checkbox':
+            return self._get_bool(data, property_name)
+        elif notion_type == 'date':
+            return self._get_date(data, property_name)
+
+        return ""
 
     def _get_title(self, data: dict) -> str:
         """
@@ -728,7 +750,7 @@ class SyncRegimes(NotionCronBase):
         obj.data_in_bods = self._get_select_name(regime, '6.4 Data published in BODS')
         obj.on_oo_register = self._get_bool(regime, '6.5 Data on OO Register')
         obj.legislation_url = self._get_url(regime, '8.4 Legislation URL')
-        obj.threshold = self._get_number(regime, '1.2 Threshold')
+        obj.threshold = self._get_value(regime, '1.2 Threshold')
 
         try:
             obj.save()
