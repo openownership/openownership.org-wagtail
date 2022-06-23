@@ -5,12 +5,13 @@ from consoler import console
 from django.conf import settings
 from django.http import Http404
 from django.utils.text import slugify
-from wagtail.core.models import Locale, Page
+from wagtail.core.models import Locale, Page, Site
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator
 from wagtail.search.models import Query
 from django.utils.functional import cached_property
 from django.utils.datastructures import MultiValueDictKeyError
+from modules.settings.models import SiteSettings
 
 # Project
 from modules.stats.models import ViewCount
@@ -170,7 +171,7 @@ class SearchView(TemplateView):
             context['popular'] = Page.objects.filter(
                 id__in=popular_ids,
                 locale=Locale.get_active(),
-            ).live().public()[:6]
+            ).live().public().specific()[:6]
 
         self.paginator = self._get_paginator(pages)
         self.page_obj = self.paginator
@@ -200,7 +201,11 @@ class SearchView(TemplateView):
         if self.terms:
             context['meta_title'] = f"Search: {self.terms}"
         else:
+            site = Site.objects.get(is_default_site=True)
+            search_body = SiteSettings.get_search_body(site)
             context['meta_title'] = "Search"
+            context['search_body'] = search_body
+
         global_context(context)  # Adds in nav settings etc.
         return context
 
@@ -249,7 +254,7 @@ class SearchView(TemplateView):
         query = Query.get(terms)
         query.add_hit()
 
-        promoted = Query.get(terms).editors_picks.all()
+        promoted = [item.page.specific for item in Query.get(terms).editors_picks.all()]
         exclude_ids = [p.id for p in promoted]
 
         qs = Page.objects
@@ -280,22 +285,27 @@ class SearchView(TemplateView):
 
             if len(f['principle_tags']):
                 for tag in f['principle_tags']:
-                    ids = list(tag.principle_tag_related_pages.values_list('content_object__id', flat=True))
+                    ids = list(
+                        tag.principle_tag_related_pages.values_list(
+                            'content_object__id', flat=True))
                     page_ids = add_ids(page_ids, ids)
 
             if len(f['section_tags']):
                 for tag in f['section_tags']:
-                    ids = list(tag.section_tag_related_pages.values_list('content_object__id', flat=True))
+                    ids = list(
+                        tag.section_tag_related_pages.values_list('content_object__id', flat=True))
                     page_ids = add_ids(page_ids, ids)
 
             if len(f['sector_tags']):
                 for tag in f['sector_tags']:
-                    ids = list(tag.sector_related_pages.values_list('content_object__id', flat=True))
+                    ids = list(
+                        tag.sector_related_pages.values_list('content_object__id', flat=True))
                     page_ids = add_ids(page_ids, ids)
 
             if len(f['country_tags']):
                 for tag in f['country_tags']:
-                    ids = list(tag.country_related_pages.values_list('content_object__id', flat=True))
+                    ids = list(
+                        tag.country_related_pages.values_list('content_object__id', flat=True))
                     page_ids = add_ids(page_ids, ids)
 
             # Restrict to the only page types that have taxonomies
@@ -316,7 +326,7 @@ class SearchView(TemplateView):
         # Unify stuff
         objects = []
         objects += countries
-        objects += [r.page for r in promoted]
+        objects += promoted
         if searched:
             objects = objects + [r for r in searched]
             return objects

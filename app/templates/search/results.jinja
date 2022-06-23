@@ -13,9 +13,9 @@
     </header>
 
 
-{% if terms %}
+{# {% if terms %} #}
     <div class="aside-layout-left">
-      <div class="aside-layout__menu">
+      <div class="aside-layout__menu"{% if not terms %} style="pointer-events: none; opacity: 0.4;"{% endif%}>
         <h2 class="search-filter__title">{% trans %}Filter your results{% endtrans %}</h2>
 
         <div class="accordion search-filter">
@@ -85,7 +85,7 @@
         </div>
         <button class="btn filter-results__btn" type="submit">{% trans %}Filter{% endtrans %}</button>
       </div>
-{% endif %}
+{# {% endif %} #}
 
       <div class="aside-layout__main aside-layout__no-header">
 
@@ -131,13 +131,13 @@
                   </nav>
               {% endif %} #}
         {% else %}
-
+            {{render_stream(search_body)}}
             {% if popular|length > 0 %}
                 <div class="card-group">
                     <header class="card-group__header">
                         <h2 class="card-group__header-title">{{_('Most read')}}</h2>
                     </header>
-                    <ul class="grid-cols grid--{{ columns }}-col {{ card_format|default("") }}">
+                    <ul class="grid-cols grid--1-col landscape">
                         {% for page in popular %}
                             {% include "_partials/card.jinja" %}
                         {% endfor %}
