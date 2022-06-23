@@ -1,0 +1,10 @@
+<div class="card-group">
+    <header class="card-group__header">
+        <h2 class="card-group__header-title">{{ value.title }}</h2>
+    </header>
+    <ul class="grid-cols grid--1-col landscape">
+        {% for page in value.pages %}
+            {% include "_partials/card.jinja" %}
+        {% endfor %}
+    </ul>
+</div>

@@ -1,9 +1,10 @@
 # stdlib
-from typing import Optional
+from typing import Optional, Union
 from datetime import datetime
 
 # 3rd party
 import arrow
+from django.conf import settings
 from consoler import console
 from django_cron import Schedule, CronJobBase
 from django.db.models import Model
@@ -51,10 +52,14 @@ class NotionCronBase(CronJobBase):
                 initial_data['results'] += data['results']
                 self.has_more = data['has_more']
         except KeyboardInterrupt:
-            import ipdb; ipdb.set_trace()
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
+            else:
+                raise
         except Exception as e:
             console.error(e)
-            import ipdb; ipdb.set_trace()
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
             raise
 
         return initial_data
@@ -110,6 +115,28 @@ class NotionCronBase(CronJobBase):
         except Exception as e:
             console.warn(e)
             return DEFAULT_DATE
+
+    def _get_value(self, data: dict, property_name: str) -> Optional[Union[int, str]]:
+        """Will try to access any Notion data type by inspecting
+        data['properties'][property_name]['type'] and then handing it off to the right method.
+        """
+        notion_type = data['properties'][property_name]['type']
+        if notion_type == 'number':
+            return self._get_number(data, property_name)
+        elif notion_type == 'rich_text':
+            return self._get_rich_text(data, property_name)
+        elif notion_type == 'select':
+            return self._get_select_name(data, property_name)
+        elif notion_type == 'relation':
+            return self._get_rel_id(data, property_name)
+        elif notion_type == 'url':
+            return self._get_url(data, property_name)
+        elif notion_type == 'checkbox':
+            return self._get_bool(data, property_name)
+        elif notion_type == 'date':
+            return self._get_date(data, property_name)
+
+        return ""
 
     def _get_title(self, data: dict) -> str:
         """
@@ -188,7 +215,8 @@ class NotionCronBase(CronJobBase):
         except Exception as e:
             console.warn(f"Failed to get select for {property_name}")
             console.warn(e)
-            import ipdb; ipdb.set_trace()
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
             return None
 
     def _get_rel_id(self, data: dict, property_name: str) -> str:
@@ -510,7 +538,8 @@ class SyncCountries(NotionCronBase):
             except Exception as e:
                 console.error("Failed to save")
                 console.error(e)
-                import ipdb; ipdb.set_trace()
+                if settings.DEBUG:
+                    import ipdb; ipdb.set_trace()
 
     def _get_country_name(self, data: dict) -> str:
         """
@@ -598,21 +627,44 @@ class SyncCommitments(NotionCronBase):
             console.warn(commitment)
             console.error("No notion ID found")
 
-        country_id = self._get_rel_id(commitment, 'Country')
-        if country_id is None:
+        try:
+            country_id = self._get_rel_id(commitment, 'Country')
+            if country_id is None:
+                return False
+        except Exception as error:
+            console.error(error)
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
+
+        try:
+            country = None
+            if country_id:
+                country = self._get_country(country_id)
+        except Exception as error:
+            console.error(error)
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
+
+        try:
+            if country:
+                obj, created = Commitment.objects.get_or_create(
+                    notion_id=notion_id, country=country)
+            else:
+                console.warn("No related country found, skipping")
+                return False
+        except Exception as error:
+            console.error(error)
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
             return False
 
-        country = None
-        if country_id:
-            country = self._get_country(country_id)
-
-        if country:
-            obj, created = Commitment.objects.get_or_create(notion_id=notion_id, country=country)
-        else:
-            console.warn("No related country found, skipping")
-            return False
-
-        if not self._is_updated(obj, commitment):
+        try:
+            if not self._is_updated(obj, commitment):
+                return False
+        except Exception as error:
+            console.error(error)
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
             return False
 
         # This is either a new row, or it has been updated, so save stuff
@@ -632,7 +684,8 @@ class SyncCommitments(NotionCronBase):
         except Exception as e:
             console.error("Failed to save")
             console.error(e)
-            import ipdb; ipdb.set_trace()
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
 
 
 class SyncRegimes(NotionCronBase):
@@ -728,14 +781,15 @@ class SyncRegimes(NotionCronBase):
         obj.data_in_bods = self._get_select_name(regime, '6.4 Data published in BODS')
         obj.on_oo_register = self._get_bool(regime, '6.5 Data on OO Register')
         obj.legislation_url = self._get_url(regime, '8.4 Legislation URL')
-        obj.threshold = self._get_number(regime, '1.2 Threshold')
+        obj.threshold = str(self._get_value(regime, '1.2 Threshold'))
 
         try:
             obj.save()
         except Exception as e:
             console.error("Failed to save")
             console.error(e)
-            import ipdb; ipdb.set_trace()
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
 
     def _get_scope_tags(self, data: dict) -> list:
         """Takes this dict, creates a CoverageScope tag for each `name` and returns a list of them

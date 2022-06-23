@@ -44,6 +44,8 @@ from .stream import (
     # NewsletterBlock,
     # VideoGalleryBlock,
     DisclosureBlock,
+    EditorsPicksBlock,
+    SearchLatestContentBlock,
 )
 
 landing_page_blocks: list = [
@@ -114,4 +116,9 @@ category_page_body_blocks: list = article_page_body_blocks
 additional_content_blocks: list = [
     ('similar_content', SimilarContentBlock()),
     ('highlight_pages', HighlightPagesBlock()),
+]
+
+SEARCH_BLOCKS: list = [
+    ('editors_picks', EditorsPicksBlock()),
+    ('latest_content', SearchLatestContentBlock()),
 ]

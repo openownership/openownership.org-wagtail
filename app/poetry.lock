@@ -1158,7 +1158,7 @@ tests = ["pytest", "typeguard", "pygments", "littleutils", "cython"]
 
 [[package]]
 name = "tablib"
-version = "3.2.0"
+version = "3.2.1"
 description = "Format agnostic tabular data library (XLS, JSON, YAML, CSV)"
 category = "main"
 optional = false
@@ -1313,7 +1313,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "wagtail-localize"
-version = "1.1"
+version = "1.2"
 description = "Translation plugin for Wagtail CMS"
 category = "main"
 optional = false
@@ -1322,11 +1322,12 @@ python-versions = "*"
 [package.dependencies]
 Django = ">=2.2,<4.1"
 polib = ">=1.1,<2.0"
-Wagtail = ">=2.11,<2.17"
+typing-extensions = ">=4.0"
+Wagtail = ">=2.11,<4.0"
 
 [package.extras]
-documentation = ["mkdocs (==1.1.2)", "mkdocs-material (==6.2.8)", "mkdocs-mermaid2-plugin (==0.5.1)", "mkdocstrings (==0.14.0)", "mkdocs-include-markdown-plugin (==2.8.0)"]
-testing = ["dj-database-url (==0.5.0)", "freezegun (==1.1.0)"]
+documentation = ["mkdocs (==1.1.2)", "mkdocs-material (==6.2.8)", "mkdocs-mermaid2-plugin (==0.5.1)", "mkdocstrings (==0.14.0)", "mkdocs-include-markdown-plugin (==2.8.0)", "pygments (==2.11.2)"]
+testing = ["dj-database-url (==0.5.0)", "freezegun (==1.1.0)", "django-rq (>=2.5,<3.0)"]
 
 [[package]]
 name = "wagtail-modelchooser"
@@ -1449,7 +1450,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.10"
-content-hash = "3a22668eba7b28f716c981050fd0b69f2f12db9d66f10d00958725ca1d6c1228"
+content-hash = "9e8da306266bb63bdc66a77448a23f6c9bec79d1c3e17f86bf7cf26a65382793"
 
 [metadata.files]
 anyascii = [
@@ -2054,8 +2055,8 @@ stack-data = [
     {file = "stack_data-0.2.0.tar.gz", hash = "sha256:45692d41bd633a9503a5195552df22b583caf16f0b27c4e58c98d88c8b648e12"},
 ]
 tablib = [
-    {file = "tablib-3.2.0-py3-none-any.whl", hash = "sha256:1ba12da7b0b17e33f5997fb1bc8ed560aae3535f5892ae5e5c01a056c47d4d78"},
-    {file = "tablib-3.2.0.tar.gz", hash = "sha256:12d8686454c721de88d8ca5adf07e1f419ef6dbcecedf65e8950d4a329daf3a0"},
+    {file = "tablib-3.2.1-py3-none-any.whl", hash = "sha256:870d7e688f738531a14937a055e8bba404fbc388e77d4d500b2c904075d1019c"},
+    {file = "tablib-3.2.1.tar.gz", hash = "sha256:a57f2770b8c225febec1cb1e65012a69cf30dd28be810e0ff98d024768c7d0f1"},
 ]
 telepath = [
     {file = "telepath-0.2-py35-none-any.whl", hash = "sha256:801615094d3d964e178183099bf04020f4ff9c84ec43945d40b096df0a5767ee"},
@@ -2101,8 +2102,8 @@ wagtail-font-awesome-svg = [
     {file = "wagtail_font_awesome_svg-0.0.2-py3-none-any.whl", hash = "sha256:cf57cc9be4d2f929f8b5af0b4e03a5ba1ae75d56984208afae2b345e5091988a"},
 ]
 wagtail-localize = [
-    {file = "wagtail-localize-1.1.tar.gz", hash = "sha256:d56fc18ec07e241666822aedd47513f9b4364accd256ce5baec0d69a14ba73b3"},
-    {file = "wagtail_localize-1.1-py3-none-any.whl", hash = "sha256:f20b640cab2cb83f139c31f3a44b385eb841b1f72f12a2726f3f397ea1bbdb40"},
+    {file = "wagtail-localize-1.2.tar.gz", hash = "sha256:e078da7ac5403c9be7ef688491d10b38bbace8cc37b4ca75b74c54cb567bbd61"},
+    {file = "wagtail_localize-1.2-py3-none-any.whl", hash = "sha256:e70e16f5078c17ec86aece5ad59820fee4b7e3c01282b9c99e39ec82ffb6e738"},
 ]
 wagtail-modelchooser = [
     {file = "wagtail-modelchooser-2.13.1.tar.gz", hash = "sha256:e49da09f1a9ebfbcbccf9a1fd0ad8d375e48e250535697ee4d76c126219bfd85"},

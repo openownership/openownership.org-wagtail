@@ -656,7 +656,7 @@ class CountryTag(NotionModel, BaseTag):
     @cached_property
     def first_public_regime_with_url(self):
         """Find the first regime that has a value for both
-        public_access_register_url and title and `stage` == 'Publish'
+        public_access_register_url and title, and `stage` contains 'Publish'
         """
         rv = {}
         for item in self.regimes.filter(stage__icontains='Publish'):
@@ -681,7 +681,7 @@ class CountryTag(NotionModel, BaseTag):
             if item.public_access_register_url:
                 rv['url'] = item.public_access_register_url
 
-                return rv
+        return rv
 
     @cached_property
     def display_date_related_pages(self):
