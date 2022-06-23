@@ -1,31 +1,55 @@
+# 3rd party
 from django import forms
-from django_select2.forms import Select2Widget
+from wagtail.admin.widgets import AdminDateInput
+from wagtail.documents.forms import BaseDocumentForm
+from wagtail.images.edit_handlers import AdminImageChooser
 
 
 class DocumentDownloadFilterForm(forms.Form):
-    user = forms.ModelChoiceField(
-        queryset=None,
-        widget=Select2Widget(attrs={
-            'onchange': 'go_from_select("?user=" + this.options[this.selectedIndex].value)'
-        }),
+
+    title = forms.CharField(required=False)
+
+    download_start_date = forms.DateField(
+        label="Downloaded since (inclusive)",
+        required=False,
+        widget=AdminDateInput
     )
 
-    document = forms.ModelChoiceField(
-        queryset=None,
-        widget=Select2Widget(attrs={
-            'onchange': 'go_from_select("?document=" + this.options[this.selectedIndex].value)'
-        }),
+    download_end_date = forms.DateField(
+        label="Downloaded before (inclusive)",
+        required=False,
+        widget=AdminDateInput
     )
 
-    def get_document_name(self, obj):
-        try:
-            if obj.title.startswith('Session '):
-                return '{} ({})'.format(obj.title, obj.filename)
-        except Exception:
-            pass
-        return obj.title
+    upload_start_date = forms.DateField(
+        label="Uploaded since (inclusive)",
+        required=False,
+        widget=AdminDateInput
+    )
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['document'].label_from_instance = \
-            lambda obj: self.get_document_name(obj)
+    upload_end_date = forms.DateField(
+        label="Uploaded before (inclusive)",
+        required=False,
+        widget=AdminDateInput
+    )
+
+    exclude_authenticated = forms.BooleanField(
+        label='Exclude logged-in users',
+        required=False
+    )
+
+    exclude_empty = forms.BooleanField(
+        label='Exclude documents with zero downloads',
+        required=False
+    )
+
+
+# 3rd party
+class SiteDocumentForm(BaseDocumentForm):
+
+    class Meta(BaseDocumentForm.Meta):
+
+        widgets = BaseDocumentForm.Meta.widgets
+        widgets.update({
+            'thumbnail': AdminImageChooser
+        })

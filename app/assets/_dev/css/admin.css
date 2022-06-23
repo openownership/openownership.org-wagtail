@@ -22,3 +22,85 @@
         background-color: transparent;
     }
 }
+
+
+.link-block-form {
+    .link-block-form__link_type {
+        .field-content .input > div > div {
+            display: inline-block;
+            margin-right: 20px;
+        }
+    }
+    li[class^="link-block-form__link_"]:not(.link-block-form__link_type) {
+        display: none;
+        padding-left: 3em;
+        width: 40em;
+    }
+
+    &.nav-settings {
+        ul.fields li.link-block-form__link_page, ul.fields li.link-block-form__link_label {
+            display: block;
+        }
+    }
+
+    .input ul li input[type="radio"] {
+        padding: 0;
+        background-color: transparent;
+    }
+}
+
+.download-filter {
+    @media screen and (min-width: 50em) {
+        position: sticky;
+        top: 0;
+    }
+    label {
+        display:  block;
+        width: 100%;
+        float: none;
+        margin-bottom: 2px;
+        font-size: 0.9em;
+    }
+    .date-shortcut {
+        margin-top: 5px;
+        font-size: 0.9em;
+        margin-bottom: 0px;
+    }
+    .checkbox-input {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: auto;
+        input {
+            margin-right: 10px;
+        }
+        span {
+            max-width: 80%;
+        }
+    }
+}
+
+.downloads-list {
+    .col10 {
+        padding: 0;
+    }
+    th.sortable {
+        padding: 0;
+        a {
+            display: block;
+            padding: .6em 1em;
+        }
+        a:hover, a:active {
+            background-color: #efefef;
+        }
+    }
+    .listing td {
+        padding: 1em;
+    }
+    .listing th:first-child {
+        padding: 0;
+    }
+    .listing td:first-child {
+        padding: 1em;
+    }
+}

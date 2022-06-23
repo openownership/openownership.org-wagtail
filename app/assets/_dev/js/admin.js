@@ -33,4 +33,11 @@ $(document).ready(function() {
         }
         return false;
     });
+
+    $('a[data-set-date]').on('click', function() {
+        var field_name = $(this).attr('data-field'),
+            $field = $('input[name="' + field_name + '"]'),
+            data = $(this).attr('data-set-date');
+        $field.val(data);
+    });
 })

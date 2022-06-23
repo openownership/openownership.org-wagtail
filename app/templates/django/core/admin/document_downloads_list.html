@@ -1,0 +1,83 @@
+{% extends "wagtailadmin/base.html" %}
+{% load wagtailimages_tags static wagtail_template %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'wagtailmodeladmin/css/index.css' %}" type="text/css" />
+    {{ filter_form.media.css }}
+{% endblock %}
+{% block extra_js %}
+    {{ filter_form.media.js }}
+{% endblock %}
+
+{% block content %}
+{% include "wagtailadmin/shared/header.html" with title='Document downloads' icon='download' merged=True action_url=export_csv_url action_text='Export results as CSV' action_icon='download' %}
+<div class="downloads-list">
+    <div class="row">
+        {% if filter_form %}
+        <form class="download-filter col2">
+            <h2>Filter</h2>
+            {% for field in filter_form %}
+                {% if field|field_type == 'CheckboxInput' %}
+                <label class="checkbox-input">
+                {{field}}
+                <span>{{field.label}}</span>
+                </label>
+                {% else %}
+                <label for="{{field.auto_id}}">{{field.label}}</label>
+                {{field}}
+                {% endif %}
+                {% if field.name == 'download_start_date' or field.name == 'upload_start_date' %}
+                    <p class="date-shortcut">
+                        Days ago:
+                        <a data-field="{{field.name}}" data-set-date="{{today|shift_days:-30}}">30</a> |
+                        <a data-field="{{field.name}}" data-set-date="{{today|shift_days:-60}}">60</a> |
+                        <a data-field="{{field.name}}" data-set-date="{{today|shift_days:-90}}">90</a>
+                    </p>
+                {% endif %}
+            {% endfor %}<br>
+            <input type="hidden" value="{{sort_order}}" name="sort_order">
+            <input type="hidden" value="{{sort_field}}" name="sort_field">
+            <button type="submit" class="button">Filter</button>
+        </form>
+        {% endif %}
+        <div class="divider-before col10">
+            {% if objs %}
+            <table class="listing full-width">
+                <thead>
+                    <tr>
+                        <th scope="col" class="sortable {% if sort_field == 'title' %}sorted {{sort_order}}{% endif %}">
+                            <a href="{% sort_link 'title' %}" class="icon {% if sort_field == 'title' and sort_order == 'asc' %}icon-arrow-up-after{% else %}icon-arrow-down-after{% endif %}">
+                                Document
+                            </a>
+                        </th>
+                        <th scope="col" class="sortable {% if sort_field == 'download_count' %}sorted {{sort_order}}{% endif %}">
+                            <a href="{% sort_link 'download_count' %}" class="icon {% if sort_field == 'download_count' and sort_order == 'asc' %}icon-arrow-up-after{% else %}icon-arrow-down-after{% endif %}">
+                                Downloads
+                            </a>
+                        </th>
+                        <th scope="col" class="sortable {% if sort_field == 'last_downloaded_at' %}sorted {{sort_order}}{% endif %}">
+                            <a href="{% sort_link 'last_downloaded_at' %}" class="icon {% if sort_field == 'last_downloaded_at' and sort_order == 'asc' %}icon-arrow-up-after{% else %}icon-arrow-down-after{% endif %}">
+                                Last downloaded
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for obj in objs %}
+                    <tr>
+                        <td><a href="{% url 'wagtaildocs:edit' obj.pk %}">{{obj.title}}</a><br><small>{{obj.filename}}</small></td>
+                        <td>{{obj.download_count}}</td>
+                        <td>{{obj.last_downloaded_at|default_if_none:'Never'}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% include "wagtailadmin/shared/pagination_nav.html" with items=page_obj %}
+        {% else %}
+        <div style="height: 90vh">
+            <h3 class="nice-padding">No downloads found for your search</h3>
+        </div>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
