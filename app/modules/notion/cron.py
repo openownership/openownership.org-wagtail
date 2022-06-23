@@ -627,21 +627,44 @@ class SyncCommitments(NotionCronBase):
             console.warn(commitment)
             console.error("No notion ID found")
 
-        country_id = self._get_rel_id(commitment, 'Country')
-        if country_id is None:
+        try:
+            country_id = self._get_rel_id(commitment, 'Country')
+            if country_id is None:
+                return False
+        except Exception as error:
+            console.error(error)
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
+
+        try:
+            country = None
+            if country_id:
+                country = self._get_country(country_id)
+        except Exception as error:
+            console.error(error)
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
+
+        try:
+            if country:
+                obj, created = Commitment.objects.get_or_create(
+                    notion_id=notion_id, country=country)
+            else:
+                console.warn("No related country found, skipping")
+                return False
+        except Exception as error:
+            console.error(error)
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
             return False
 
-        country = None
-        if country_id:
-            country = self._get_country(country_id)
-
-        if country:
-            obj, created = Commitment.objects.get_or_create(notion_id=notion_id, country=country)
-        else:
-            console.warn("No related country found, skipping")
-            return False
-
-        if not self._is_updated(obj, commitment):
+        try:
+            if not self._is_updated(obj, commitment):
+                return False
+        except Exception as error:
+            console.error(error)
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
             return False
 
         # This is either a new row, or it has been updated, so save stuff
