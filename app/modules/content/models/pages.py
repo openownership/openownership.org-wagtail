@@ -453,6 +453,12 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         related_name='+'
     )
 
+    external_link = models.URLField(
+        blank=True,
+        null=True,
+        help_text="Use document download OR external link"
+    )
+
     download_document = models.ForeignKey(
         settings.WAGTAILDOCS_DOCUMENT_MODEL,
         null=True,
@@ -505,6 +511,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
             [
                 ImageChooserPanel('cover_image'),
                 DocumentChooserPanel('download_document'),
+                FieldPanel('external_link')
             ],
             heading=_("Cover and document")
         ),
