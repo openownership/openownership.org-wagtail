@@ -47,8 +47,8 @@
     </p>
 {% elif page.external_link %}
     <p class="download-document">
-    {% include "svg/download-document.jinja" %}
-    <a href="{{ page.external_link }}">{% trans %}Download document{% endtrans %}</a>
+    {% include "svg/external-link.jinja" %}
+    <a href="{{ page.external_link }}">{% trans %}External link{% endtrans %}</a>
     </p>
 {% endif %}
 
