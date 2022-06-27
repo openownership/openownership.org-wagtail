@@ -22,19 +22,22 @@
 
     <div class="publication-front-page__content">
         {% if page.summary %}
-            <h2>{% trans %}Summary{% endtrans %}</h2>
+            {# <h2>{% trans %}Summary{% endtrans %}</h2> #}
+            <h2>{{ page.summary_title or _('Summary') }}</h2>
             {{ page.summary|richtext }}
         {% endif %}
 
         {% if page.outcomes %}
             <div class="key-learning-outcomes">
-                <h2>{% trans %}Key Learning Outcomes{% endtrans %}</h2>
+                {# <h2>{% trans %}Key Learning Outcomes{% endtrans %}</h2> #}
+                <h2>{{ page.outcomes_title or _('Key Learning Outcomes') }}</h2>
                 {{ page.outcomes|richtext }}
             </div>
         {% endif %}
 
         {% if page.impact %}
-            <h2>{% trans %}Benefit / Impact{% endtrans %}</h2>
+            {# <h2>{% trans %}Benefit / Impact{% endtrans %}</h2> #}
+            <h2>{{ page.impact_title or _('Benefit / Impact') }}</h2>
             {{ page.impact|richtext }}
         {% endif %}
     </div>
