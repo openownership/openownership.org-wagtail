@@ -467,12 +467,22 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         related_name='+'
     )
 
+    summary_title = models.CharField(
+        max_length=255,
+        blank=True,
+        default=_("Summary")
+    )
     summary = fields.RichTextField(
         blank=True,
         null=True,
-        features=settings.RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_BODY_FEATURES
     )
 
+    outcomes_title = models.CharField(
+        max_length=255,
+        blank=True,
+        default=_("Key Learning Outcomes")
+    )
     outcomes = fields.RichTextField(
         blank=True,
         null=True,
@@ -480,10 +490,15 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         verbose_name=_("Key Learning Outcomes")
     )
 
+    impact_title = models.CharField(
+        max_length=255,
+        blank=True,
+        default=_("Benefit / Impact")
+    )
     impact = fields.RichTextField(
         blank=True,
         null=True,
-        features=settings.RICHTEXT_INLINE_FEATURES,
+        features=settings.RICHTEXT_BODY_FEATURES,
         verbose_name=_("Benefit / Impact")
     )
 
@@ -517,8 +532,11 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         ),
         MultiFieldPanel(
             [
+                FieldPanel('summary_title'),
                 FieldPanel('summary'),
+                FieldPanel('outcomes_title'),
                 FieldPanel('outcomes'),
+                FieldPanel('impact_title'),
                 FieldPanel('impact'),
             ],
             heading=_('Content')
