@@ -1,0 +1,20 @@
+{#
+Render a list of principle tags.
+
+Optional:
+
+title - Title for the block.
+#}
+
+{% if page.principles %}
+    {% with principles=page.principles.all() %}
+        {% if principles|length > 0 %}
+            <p>
+                <strong>{% if title %}{{ title }}{% else %}{% trans %}Open Ownership Principles{% endtrans %}{% endif %}</strong><br>
+                {% for principle in principles %}
+                    <a href="{{ principle.get_url() }}">{{ principle.name }}</a>{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        {% endif %}
+    {% endwith %}
+{% endif %}
