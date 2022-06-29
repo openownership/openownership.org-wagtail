@@ -1,0 +1,20 @@
+{#
+Render a list of section tags.
+
+Optional:
+
+title - Title for the block.
+#}
+
+{% if page.sections %}
+    {% with sections=page.sections.all() %}
+        {% if sections|length > 0 %}
+            <p>
+                <strong>{% if title %}{{ title }}{% else %}{% trans %}Sections{% endtrans %}{% endif %}</strong><br>
+                {% for section in sections %}
+                    <a href="{{ section.get_url() }}">{{ section.name }}</a>{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        {% endif %}
+    {% endwith %}
+{% endif %}
