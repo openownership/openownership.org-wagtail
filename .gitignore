@@ -37,6 +37,7 @@ app/media/**/*
 .DS_Store
 *.sublime-workspace
 *.sublime-project
+redirects.csv
 app/countries.csv
 app/capitals.csv
 
