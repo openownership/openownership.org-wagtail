@@ -3,57 +3,51 @@
 """
     content.models.pages
     ~~~~~~~~~~~~~~~~~
-    Site-wide page modules.
+    Site-wide page models.
 """
 
+# stdlib
 import copy
 from itertools import chain
-from re import I
 
 # 3rd party
 from consoler import console
-from django.conf import settings
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
-from django.forms import CheckboxSelectMultiple
+from django.conf import settings
+from wagtail.core import fields
+from wagtail.search import index
+from modelcluster.fields import ParentalKey
+from wagtail.admin.forms import WagtailAdminPageForm
+from wagtail.core.blocks import StreamBlock
+from wagtail.core.models import Page, Locale, Orderable
+from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
+from wagtail.search.models import Query
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
-
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from modelcluster.fields import ParentalKey, ParentalManyToManyField
-
 from wagtail.admin.edit_handlers import (
-    FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
+    FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
 )
-from wagtail.admin.forms import WagtailAdminPageForm
-from wagtail.core import fields
-from wagtail.core.blocks import StreamBlock
-from wagtail.core.models import Locale, Orderable, Page
-from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.search import index
-from wagtail.search.models import Query
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
+from wagtail.documents.edit_handlers import DocumentChooserPanel
 
 # Project
-
 from config.template import url_from_path
+from modules.stats.mixins import Countable
+from modules.notion.models import Region, CountryTag
 from modules.content.blocks import (
-    ADDITIONAL_CONTENT_BLOCKS,
-    ARTICLE_PAGE_BODY_BLOCKS,
-    HOME_PAGE_BLOCKS,
-    SECTION_PAGE_BLOCKS,
-    TEAM_PROFILE_PAGE_BODY_BLOCKS,
-    HighlightPagesBlock,
+    HOME_PAGE_BLOCKS, SECTION_PAGE_BLOCKS, ARTICLE_PAGE_BODY_BLOCKS, ADDITIONAL_CONTENT_BLOCKS,
+    TEAM_PROFILE_PAGE_BODY_BLOCKS, HighlightPagesBlock
 )
-from modules.notion.helpers import countries_json, map_json
-from modules.notion.models import CountryTag, Region
+from modules.notion.helpers import map_json, countries_json
+from modules.taxonomy.models import PublicationType
 from modules.content.blocks.stream import GlossaryItemBlock
 from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
-from modules.taxonomy.models import FocusAreaTag, PublicationType, SectorTag
-from modules.stats.mixins import Countable
-from .mixins import TaggedAuthorsPageMixin, TaggedPageMixin, PageHeroMixin
-from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageType
+
+# Module
+from .mixins import PageHeroMixin, TaggedPageMixin, TaggedAuthorsPageMixin
+from .page_types import BasePage, IndexPageType, ContentPageType, LandingPageType
 
 
 ####################################################################################################
@@ -142,11 +136,6 @@ class SectionPage(PageHeroMixin, LandingPageType):
         Get the URL for the PressLinksPage within this section, if any.
         I couldn't think how else to do this.
         """
-        # page = (
-        #     self.get_children().live().public()
-        #     .filter(locale=Locale.get_active())
-        #     .type(PressLinksPage).first()
-        # )
         page = PressLinksPage.objects.filter(locale=Locale.get_active()).first()
         if page:
             return page.url
@@ -197,11 +186,6 @@ class SectionListingPage(SectionPage):
         Get the URL for the PressLinksPage within this section, if any.
         I couldn't think how else to do this.
         """
-        # page = (
-        #     self.get_children().live().public()
-        #     .filter(locale=Locale.get_active())
-        #     .type(PressLinksPage).first()
-        # )
         page = PressLinksPage.objects.filter(locale=Locale.get_active()).first()
         if page:
             return page.url
@@ -253,16 +237,6 @@ class NewsArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
 
     search_fields = ContentPageType.search_fields + TaggedAuthorsPageMixin.search_fields
 
-    # Also has:
-    # author_relationships from NewsArticleAuthorRelationship
-    # authors from AuthorsPageMixin
-
-    # def get_publication_type_choices(self):
-    #     """Get the only PublicationType allowd for this kind of Page.
-    #     Used by PublicationTypeFieldPanel() for the list of choices.
-    #     """
-    #     return PublicationType.objects.filter(name='News article')
-
     def get_publication_type_choices(self):
         """We now allow any publication type category on these pages.
         """
@@ -296,12 +270,6 @@ class BlogArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
 
     class Meta:
         verbose_name = _('Blog post page')
-
-    # def get_publication_type_choices(self):
-    #     """Get the only PublicationType allowd for this kind of Page.
-    #     Used by PublicationTypeFieldPanel() for the list of choices.
-    #     """
-    #     return PublicationType.objects.filter(name='Blog post')
 
     def get_publication_type_choices(self):
         """We now allow any publication type category on these pages.
@@ -384,12 +352,6 @@ class JobPage(TaggedPageMixin, ContentPageType):
     def human_application_deadline(self):
         if self.application_deadline:
             return self.application_deadline.strftime('%d %B %Y')
-
-    # def get_publication_type_choices(self):
-    #     """Get the only PublicationType allowd for this kind of Page.
-    #     Used by PublicationTypeFieldPanel() for the list of choices."""
-
-    #     return PublicationType.objects.filter(name='Job')
 
     def get_publication_type_choices(self):
         """We now allow any publication type category on these pages.
@@ -600,19 +562,6 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
 
         return context
 
-    # def get_publication_type_choices(self):
-    #     """Get the only PublicationType allowd for this kind of Page.
-    #     Used by PublicationTypeFieldPanel() for the list of choices.
-    #     """
-    #     publication_types = (
-    #         'Briefing',
-    #         'Case study',
-    #         # 'Consultation',  # No longer valid
-    #         'Guidance',
-    #         # 'Report',  # No longer valid
-    #     )
-    #     return PublicationType.objects.filter(name__in=publication_types)
-
     def get_publication_type_choices(self):
         """We now allow any publication type category on these pages.
         """
@@ -775,11 +724,11 @@ class TeamProfilePage(BasePage):
     role = models.CharField(max_length=255, blank=True)
 
     portrait_image = models.ForeignKey(
-            settings.IMAGE_MODEL,
-            null=True,
-            blank=True,
-            on_delete=models.SET_NULL,
-            related_name='+'
+        settings.IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
     )
 
     countries = ClusterTaggableManager(

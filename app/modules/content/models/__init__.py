@@ -6,37 +6,17 @@
     We have to import stuff here because Django magic.
 """
 
+# Module
 from .pages import (  # NOQA
-    ArticlePage,
-    BlogArticlePage,
-    BlogIndexPage,
-    GlossaryPage,
-    HomePage,
-    JobPage,
-    JobsIndexPage,
-    NewsArticlePage,
-    NewsIndexPage,
-    PublicationFrontPage,
-    PublicationInnerPage,
-    SearchPage,
-    SearchPageSuggestedSearch,
-    SectionListingPage,
-    SectionPage,
-    TagPage,
-    TaxonomyPage,
-    TeamPage,
-    TeamProfilePage,
-    UtilityPage,
-    MapPage
+    JobPage, MapPage, TagPage, HomePage, TeamPage, SearchPage, ArticlePage, SectionPage,
+    UtilityPage, GlossaryPage, TaxonomyPage, BlogIndexPage, JobsIndexPage, NewsIndexPage,
+    BlogArticlePage, NewsArticlePage, TeamProfilePage, SectionListingPage, PublicationFrontPage,
+    PublicationInnerPage, SearchPageSuggestedSearch
 )
-
 from .inlines import (  # NOQA
-    BlogArticleAuthorRelationship,
-    NewsArticleAuthorRelationship,
-    PublicationAuthorRelationship,
-    PressLinkAuthorRelationship,
+    PressLinkAuthorRelationship, BlogArticleAuthorRelationship, NewsArticleAuthorRelationship,
+    PublicationAuthorRelationship
 )
-
 from .snippets import Author, PressLink  # NOQA
 
 

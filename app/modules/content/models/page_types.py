@@ -9,26 +9,23 @@
 
 # 3rd party
 from consoler import console
-from django.apps import apps
 from django.db import models
+from django.apps import apps
 from django.conf import settings
-from django.core.paginator import EmptyPage, PageNotAnInteger
-from django.utils.functional import cached_property
-from django.utils.html import strip_tags
-from jinja2.filters import do_truncate
-from django.utils.translation import gettext_lazy as _
-
-from wagtail.admin.edit_handlers import FieldPanel, ObjectList, TabbedInterface, StreamFieldPanel
 from wagtail.core import fields
-from wagtail.core.models import Locale, Page
-from wagtail.images.edit_handlers import ImageChooserPanel
+from jinja2.filters import do_truncate
 from wagtail.search import index
-from wagtail.utils.decorators import cached_classmethod
-
+from django.utils.html import strip_tags
 from wagtailcache.cache import WagtailCacheMixin
+from wagtail.core.models import Page, Locale
+from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
+from django.utils.functional import cached_property
+from django.utils.translation import gettext_lazy as _
+from wagtail.utils.decorators import cached_classmethod
+from wagtail.admin.edit_handlers import FieldPanel, ObjectList, TabbedInterface, StreamFieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 # Project
-from django.core.paginator import Paginator
 from modules.core.utils import get_site_context
 from modules.content.blocks import (
     LANDING_PAGE_BLOCKS, ARTICLE_PAGE_BODY_BLOCKS, ADDITIONAL_CONTENT_BLOCKS
@@ -397,7 +394,6 @@ class IndexPageType(BasePage):
         pagination_params = query_string.pop('page', None) and query_string.urlencode()
 
         context.update({
-            # 'object_filters': self.get_filters_for_template(request),
             'page_obj': self.paginate_objects(request),
             'pagination_params': pagination_params
         })

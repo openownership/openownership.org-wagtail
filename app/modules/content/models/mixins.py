@@ -6,23 +6,22 @@
     Mixins and abstract page classes.
 """
 
+# stdlib
 from collections import OrderedDict
 
 # 3rd party
 from django.db import models
 from django.conf import settings
+from wagtail.core import fields
 from wagtail.search import index
-from django_extensions.db.fields import AutoSlugField
-from django.utils.translation import gettext_lazy as _
-from django.forms import CheckboxSelectMultiple
-from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalManyToManyField
 from modelcluster.models import ClusterableModel
-
-from wagtail.core import fields
+from django.utils.translation import gettext_lazy as _
+from django_extensions.db.fields import AutoSlugField
+from modelcluster.contrib.taggit import ClusterTaggableManager
 from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
 
+# Project
 from modules.taxonomy.models import PublicationType
 from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
 
@@ -298,8 +297,8 @@ class TaxonomyHelperMixin(object):
     @classmethod
     def taxonomy_fields(cls):
         fields = []
-        for _ in cls.taxonomy_panels:
-            fields.append(getattr(cls, _.field_name).field)
+        for item in cls.taxonomy_panels:
+            fields.append(getattr(cls, item.field_name).field)
         return fields
 
     @classmethod
