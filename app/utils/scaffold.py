@@ -1,10 +1,11 @@
+# 3rd party
 import click
 from django.conf import settings
-from django.utils.text import slugify
-
-from wagtail.core.models import Site, Page
 from utils.console import console
+from django.utils.text import slugify
+from wagtail.core.models import Page, Site
 
+# Project
 from modules.content.models.pages import HomePage
 
 
