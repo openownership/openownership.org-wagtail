@@ -1,27 +1,19 @@
+# 3rd party
 from cacheops import cached
-# from config.template import url_from_path
-# from django import forms
+from django.db import models
 from django.conf import settings
 from django.core.cache import cache
-from django.db import models
-from django.utils.translation import gettext_lazy as _
-
-from modules.settings.blocks import (
-    footer_nav_blocks,
-    navbar_blocks,
-    social_media_blocks
-)
-
-from wagtail.admin.edit_handlers import (
-    FieldPanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
-)
-
-from wagtail.contrib.settings.models import BaseSetting
 from wagtail.core.fields import StreamField
+from django.utils.translation import gettext_lazy as _
+from wagtail.admin.edit_handlers import (
+    FieldPanel, MultiFieldPanel, StreamFieldPanel
+)
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtailautocomplete.edit_handlers import AutocompletePanel
+from wagtail.contrib.settings.models import BaseSetting
 
+# Project
 from modules.content.blocks import SEARCH_BLOCKS
+from modules.settings.blocks import navbar_blocks, footer_nav_blocks, social_media_blocks
 
 
 ####################################################################################################
