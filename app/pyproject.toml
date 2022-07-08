@@ -39,8 +39,6 @@ wagtail-modelchooser = "^2.13.1"
 
 
 [tool.poetry.dev-dependencies]
-# Django Dev Panel has an incompatibility with Wagtail-Cache, this is "fixed" in my fork, so we're installing from there until my PR gets merged.
-django-developer-panel = {git = "https://github.com/drcongo/django-developer-panel.git", rev="55a6721e3df846a97f829a19374103037ba1cb29"}
 coverage = "*"
 pytest = "*"
 pytest-cov = "*"
