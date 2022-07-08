@@ -1,26 +1,24 @@
+# stdlib
 from typing import Optional
 
 # 3rd party
 from consoler import console
-from django.conf import settings
 from django.http import Http404
-from django.utils.text import slugify
-from wagtail.core.models import Locale, Page, Site
+from wagtail.core.models import Page, Site, Locale
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator
 from wagtail.search.models import Query
 from django.utils.functional import cached_property
 from django.utils.datastructures import MultiValueDictKeyError
-from modules.settings.models import SiteSettings
 
 # Project
-from modules.stats.models import ViewCount
-from config.template import author_url
 from helpers.context import global_context
-from modules.notion.models import CountryTag, Region
+from modules.stats.models import ViewCount
 from modules.content.forms import SearchForm
-from modules.content.models import content_page_models, HomePage, SectionPage
-from modules.taxonomy.models import PrincipleTag, PublicationType, SectionTag, SectorTag
+from modules.notion.models import Region, CountryTag
+from modules.content.models import HomePage, SectionPage, content_page_models
+from modules.settings.models import SiteSettings
+from modules.taxonomy.models import SectorTag, SectionTag, PrincipleTag, PublicationType
 
 
 class DummyCountryPage(object):

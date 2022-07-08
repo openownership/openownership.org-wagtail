@@ -1,23 +1,10 @@
+# 3rd party
 from consoler import console
-from wagtail.contrib.modeladmin.options import (
-    ModelAdmin, modeladmin_register
-)
 from wagtail.core import hooks
+from wagtail.contrib.modeladmin.options import ModelAdmin
+
+# Module
 from .models import Author
-
-
-# class NewsCategoryModelAdmin(ModelAdmin):
-#     add_to_settings_menu = False
-#     list_display = ('name', )
-#     search_fields = ('name', )
-#     prepopulated_fields = {"slug": ("name",)}
-#     menu_order = 400
-#     menu_icon = 'tag'
-#     menu_label = 'Categories'
-#     model = NewsCategory
-
-
-# modeladmin_register(NewsCategoryModelAdmin)
 
 
 class AuthorModelAdmin(ModelAdmin):
