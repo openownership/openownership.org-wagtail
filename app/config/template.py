@@ -2,7 +2,6 @@
 import os
 
 # 3rd party
-import json
 import arrow
 import jinja2
 from cacheops import cached
@@ -11,9 +10,11 @@ from jinja2.ext import Extension
 from django.conf import settings
 from django.utils import translation
 from django.shortcuts import reverse
+from jinja2.utils import Markup
 from django.utils.safestring import mark_safe
 from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
+from django.utils.safestring import SafeString
 from django.contrib.staticfiles.storage import staticfiles_storage
 from wagtail.contrib.routable_page.templatetags.wagtailroutablepage_tags import routablepageurl
 
@@ -34,9 +35,9 @@ def picture(img: SiteImage, w: int, h: int, style: str = "fill", alt: str = '') 
     sm = img.get_rendition(f"{style}-{int(w/2)}x{int(h/2)}")
     x1 = img.get_rendition(f"{style}-{w}x{h}")
     x2 = img.get_rendition(f"{style}-{w*2}x{h*2}")
-    sm_url = sm.url  # Faster if we only access this once
-    x1_url = x1.url  # Faster if we only access this once
-    x2_url = x2.url  # Faster if we only access this once
+    sm_url = sm.url
+    x1_url = x1.url
+    x2_url = x2.url
     if not len(alt):
         try:
             alt = img.alt
@@ -57,17 +58,19 @@ def contains_filter(haystack, needle):
     return False
 
 
-def nl2br(self):
-    # Escape, then convert newlines to br tags, then wrap with Markup object
+def nl2br(value: str) -> Markup:
+    """Escape, then convert newlines to br tags, then wrap with Markup object
     # so that the <br> tags don't get escaped.
+
+    Returns:
+        str: value but with new lines converted to br tags
+    """
     def escape(s):
-        # unicode() forces the conversion to happen immediately,
-        # instead of at substitution time (else <br> would get escaped too)
         return str(jinja2.escape(s))
-    return jinja2.Markup(escape(self).replace('\n', '<br>'))
+    return Markup(escape(value).replace('\n', '<br>'))
 
 
-def richtext_custom(value, wrapper=False):
+def richtext_custom(value: str, wrapper=False) -> SafeString:
     from wagtail.core.rich_text import RichText, expand_db_html
 
     if isinstance(value, RichText):
@@ -79,13 +82,6 @@ def richtext_custom(value, wrapper=False):
         html = expand_db_html(value)
 
     return mark_safe(html)
-
-
-def isabsolutepath(value):
-    if value.lower().startswith(("http://", 'https://')):
-        return True
-    else:
-        return False
 
 
 def checkbox(value):
@@ -110,7 +106,7 @@ def author_url(slug: str) -> str:
         console.warn(e)
 
 
-def nicedate(value):
+def nicedate(value: str) -> str:
     if not value:
         return ""
     try:
@@ -121,7 +117,7 @@ def nicedate(value):
         return d.format('DD MMMM YYYY')
 
 
-def shortdate(value):
+def shortdate(value: str) -> str:
     try:
         d = arrow.get(value)
     except Exception:
@@ -130,14 +126,14 @@ def shortdate(value):
         return d.format('DD/M/YY')
 
 
-def nicedatetime(value):
+def nicedatetime(value: str) -> str:
     if value is None or value == '':
         return ''
     d = arrow.get(value)
     return d.format('DD MMM YYYY - h:mma')
 
 
-def datestamp(value):
+def datestamp(value: str) -> str:
     try:
         d = arrow.get(value)
     except Exception:
@@ -154,27 +150,17 @@ def static(path):
     return '{}{}'.format(settings.STATIC_URL, path)
 
 
-def time_now():
-    from datetime import datetime
-    return datetime.utcnow()
-
-
-def date_now():
-    from datetime import date
-    return date.today()
-
-
-def yesno(value):
+def yesno(value: str) -> str:
     if value is None:
         return
-    console.info(value)
+    # console.info(value)
     if value:
         return _('Yes')
     else:
         return _('No')
 
 
-def rich_text(value, class_name=None):
+def rich_text(value: str, class_name=None) -> SafeString:
     from django.utils.safestring import mark_safe
     from wagtail.core.rich_text import RichText, expand_db_html
 
@@ -203,7 +189,18 @@ def url_from_path(value):
     return value.replace('/home', '', 1)
 
 
-def commitment_summary(commitment_type, country):
+def commitment_summary(commitment_type: str, country) -> SafeString:
+    """Ported from the old map generator.
+
+    Args:
+        commitment_type (str): The commitment type
+        country (CountryTag): A CountryTag
+
+    Returns:
+        SafeString: Description
+    """
+    root_domain = "https://www.openownership.org"
+    gov = "https://www.gov.uk"
     if commitment_type == 'EU':
         return mark_safe(
             f"As a European Union member, {country.name} is obliged to "
@@ -221,13 +218,13 @@ def commitment_summary(commitment_type, country):
         return mark_safe(
             f"{country.name} has made a commitment to beneficial ownership "
             f"transparency as part of the "
-            f"<a href='https://www.openownership.org/what-we-do/the-beneficial-ownership-leadership-group/'>"
+            f"<a href='{root_domain}/what-we-do/the-beneficial-ownership-leadership-group/'>"
             f"Beneficial Ownership Leadership Group</a>."
         )
     elif commitment_type == 'UK Anti-Corruption Summit':
         return mark_safe(
             f"At the "
-            f"<a href='https://www.gov.uk/government/topical-events/anti-corruption-summit-london-2016'>"
+            f"<a href='{gov}/government/topical-events/anti-corruption-summit-london-2016'>"
             f"2016 UK Anti-Corruption Summit</a>, {country.name} made a "
             f"commitment to beneficial ownership disclosure."
         )
@@ -274,7 +271,9 @@ def get_top_level_navpage(page, navbar_blocks):
     * page is probably a Wagtail Page but it could also be a view
     * navbar_blocks is the navbar_blocks that was passed in the template context
     """
-    from modules.content.models import JobPage, PublicationFrontPage, PublicationInnerPage, TeamProfilePage
+    from modules.content.models import (
+        JobPage, PublicationFrontPage, PublicationInnerPage, TeamProfilePage
+    )
     from modules.content.views import CountryView
 
     navpage = None
@@ -337,14 +336,8 @@ class TemplateGlobalsExtension(Extension):
             'checkbox': checkbox,
             'commitment_summary': commitment_summary,
             'static': staticfiles_storage.url,
-            'absolutepath': isabsolutepath,
             'picture': picture,
             'routablepageurl': jinja2.pass_context(routablepageurl),
-            'now': time_now,
-            'today': date_now,
             'get_top_level_navpage': get_top_level_navpage,
-        })
-        environment.tests.update({
-            'absolutepath': isabsolutepath
         })
         environment.install_gettext_translations(translation)

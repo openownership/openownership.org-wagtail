@@ -2,6 +2,11 @@ import os
 
 from .base import DJANGO_ROOT
 
+try:
+    import envkey  # NOQA
+except Exception:
+    pass
+
 
 DEBUG = False
 
@@ -50,7 +55,7 @@ AWS_STORAGE_BUCKET_NAME = "openownership.org"
 ####################################################################################################
 
 BUGSNAG = {
-    "api_key": os.environ['BUGSNAG_API_KEY'],
+    "api_key": os.environ.get('BUGSNAG_API_KEY'),
     "project_root": DJANGO_ROOT,
     "release_stage": os.environ.get('SERVER_ENV', 'development'),
     "ignore_classes": [

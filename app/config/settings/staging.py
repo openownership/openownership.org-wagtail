@@ -1,7 +1,12 @@
 import os
-import envkey  # NOQA
 from .base import *  # NOQA
 from .remote import *  # NOQA
+
+try:
+    import envkey  # NOQA
+except Exception:
+    pass
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False

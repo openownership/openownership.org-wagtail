@@ -92,7 +92,6 @@ WAGTAIL_APPS = [
     'wagtail.documents',
     'wagtail.images',
     'wagtail.search',
-    # 'wagtail.contrib.postgres_search',  # Deprecated, replaced by...
     'wagtail.search.backends.database',
     'wagtail.admin',
     'wagtail.core',
@@ -144,7 +143,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-    # 'middleware.request.AnalyticsMiddleware',  # Possible future extra
     'wagtailcache.cache.FetchFromCacheMiddleware',
 ]
 
@@ -276,13 +274,11 @@ JINJA2_EXTENSIONS = [
     'wagtail.core.jinja2tags.core',
     'wagtail.admin.jinja2tags.userbar',
     'wagtail.images.jinja2tags.images',
-    # 'jinja2.ext.with_',  # Deprecated, now built in
     'jinja2.ext.i18n',
     'wagtail.contrib.settings.jinja2tags.settings',
     'config.template.TemplateGlobalsExtension',
     "jinja2.ext.do",
     "jinja2.ext.loopcontrols",
-    # "jinja2.ext.autoescape",  # Deprecated, now built in
     'cacheops.jinja2.cache'
 ]
 
