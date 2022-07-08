@@ -12,7 +12,7 @@ from wagtail.admin.rich_text.converters.html_to_contentstate import InlineStyleE
 from modules.core.models import DocumentDownload
 
 # Module
-from .admin.views import admin_menus, admin_urls
+from .admin.views import admin_urls, admin_menus
 
 
 ####################################################################################################

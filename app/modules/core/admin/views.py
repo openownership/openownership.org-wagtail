@@ -1,7 +1,7 @@
-# 3rd party
 # stdlib
 import csv
 
+# 3rd party
 import arrow
 from django.db import models
 from django.http import HttpResponse
