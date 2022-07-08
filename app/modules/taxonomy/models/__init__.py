@@ -1,10 +1,11 @@
-from .categories import PublicationType
-from .core import Category, BaseTag  # NOQA
-from .pages import DummyPage
+# Module
+from .core import BaseTag, Category  # NOQA
 from .tags import (
-    FocusAreaTag, FocusAreaTaggedPage, SectorTag, SectorTaggedPage, SectionTag, SectionTaggedPage,
-    PrincipleTag, PrincipleTaggedPage
+    SectorTag, SectionTag, FocusAreaTag, PrincipleTag, SectorTaggedPage, SectionTaggedPage,
+    FocusAreaTaggedPage, PrincipleTaggedPage
 )
+from .pages import DummyPage
+from .categories import PublicationType
 
 
 __all__ = [

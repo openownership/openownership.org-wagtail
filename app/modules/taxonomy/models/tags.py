@@ -1,11 +1,12 @@
 # 3rd party
 from django.db import models
-from django.utils.translation import gettext_lazy as _
-from modelcluster.fields import ParentalKey
 from taggit.models import ItemBase
+from modelcluster.fields import ParentalKey
 from wagtail.core.models import Locale
 from wagtailmodelchooser import register_model_chooser
+from django.utils.translation import gettext_lazy as _
 
+# Module
 from .core import BaseTag
 
 

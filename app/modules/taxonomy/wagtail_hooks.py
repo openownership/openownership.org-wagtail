@@ -4,15 +4,12 @@
     Adds the Taxonomy menu to the Wagtail sidebar
 """
 
-# Wagtail
-from wagtail.contrib.modeladmin.helpers import PermissionHelper
-from wagtail.contrib.modeladmin.options import (
-    ModelAdmin, ModelAdminGroup, modeladmin_register
-)
+# 3rd party
+from wagtail.contrib.modeladmin.options import ModelAdmin, ModelAdminGroup, modeladmin_register
 
-
+# Project
 from modules.taxonomy.models import (
-    PublicationType, FocusAreaTag, SectorTag, SectionTag, PrincipleTag
+    SectorTag, SectionTag, FocusAreaTag, PrincipleTag, PublicationType
 )
 
 

@@ -1,19 +1,15 @@
-from django.conf import settings
+# 3rd party
 from django.db import models
-from django.shortcuts import reverse
+from taggit.models import TagBase
+from wagtail.core.models import Page, Locale
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
-
 from django_extensions.db.fields import AutoSlugField
-from taggit.models import TagBase
-from wagtail.core import fields
-from wagtail.core.models import Locale
 from wagtail.admin.edit_handlers import (
-    FieldPanel, ObjectList, MultiFieldPanel, StreamFieldPanel, TabbedInterface
+    FieldPanel, ObjectList, MultiFieldPanel, TabbedInterface
 )
-from wagtail.core.models import Page
 
-from modules.content.blocks import CATEGORY_PAGE_BODY_BLOCKS, TAG_PAGE_BODY_BLOCKS
+# Module
 from .pages import DummyPage
 
 
@@ -150,25 +146,3 @@ class BaseTag(TagBase):
         page.url = self.get_url()
         page.blurb = self.blurb
         return page
-
-    # @property
-    # def pages(self):
-    #     rel = getattr(self, self.rel_name)
-    #     ids = [item.content_object.id for item in rel.all()]
-    #     pages = Page.objects.filter(
-    #         id__in=ids).order_by('-first_published_at').specific().all()
-    #     return pages
-
-    # def latest(self, count=1):
-    #     pages = self.pages[:count]
-    #     return pages
-
-    # @cached_property
-    # def url(self):
-    #     """Here we need to return the url for either a TopicPage if one exists for this tag,
-    #     or the root tag view.
-    #     """
-    #     try:
-    #         return self.topic_page.url
-    #     except Exception:
-    #         return reverse('tagged', kwargs={'slug': self.slug})
