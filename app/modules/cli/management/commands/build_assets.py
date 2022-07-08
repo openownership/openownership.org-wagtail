@@ -1,4 +1,7 @@
+# stdlib
 import subprocess
+
+# 3rd party
 from consoler import console
 from django.core.management.base import BaseCommand
 
@@ -30,3 +33,4 @@ class Command(BaseCommand):
             print('Exited')
         else:
             console.success("Assets built")
+            return result
