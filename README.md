@@ -4,6 +4,8 @@
 
 This is a Wagtail site.
 
+[Sprint planner](https://github.com/hactar-is/openownership.org/projects/1)
+
 
 ## First run
 
