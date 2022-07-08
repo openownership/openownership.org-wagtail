@@ -1,29 +1,27 @@
 # 3rd party
-from re import I
 from consoler import console
 from django.db import models
 from django.conf import settings
-from wagtail.core import fields
-from django.shortcuts import reverse
-from taggit.models import ItemBase
 from django.forms import CheckboxSelectMultiple
-from wagtail.core.models import Locale, Page
-from modelcluster.fields import ParentalKey
-from wagtail.snippets.models import register_snippet
-from django.utils.translation import gettext_lazy as _
+from wagtail.core import fields
+from taggit.models import ItemBase
+from django.shortcuts import reverse
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.models import ClusterableModel
-from modelcluster.fields import ParentalManyToManyField
-from django_extensions.db.fields import AutoSlugField
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.core.models import Page, Locale
 from django.utils.functional import cached_property
+from django.utils.translation import gettext_lazy as _
+from django_extensions.db.fields import AutoSlugField
 from wagtail.admin.edit_handlers import (
-    FieldPanel, ObjectList, PageChooserPanel, StreamFieldPanel, TabbedInterface, InlinePanel
+    FieldPanel, ObjectList, TabbedInterface, PageChooserPanel
 )
+from wagtail.images.edit_handlers import ImageChooserPanel
 
+# Project
+from config.template import commitment_summary
+from modules.notion.data import CAPITALS
 from modules.content.blocks import TAG_PAGE_BODY_BLOCKS
 from modules.taxonomy.models.core import BaseTag
-from modules.notion.data import CAPITALS
-from config.template import commitment_summary
 
 
 class NotionModel(models.Model):

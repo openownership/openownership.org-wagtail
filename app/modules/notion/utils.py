@@ -1,5 +1,8 @@
-from consoler import console
+# stdlib
 from typing import Optional
+
+# 3rd party
+from consoler import console
 from notion_client.client import Client
 
 

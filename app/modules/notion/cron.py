@@ -1,11 +1,11 @@
 # stdlib
-from typing import Optional, Union
+from typing import Union, Optional
 from datetime import datetime
 
 # 3rd party
 import arrow
-from django.conf import settings
 from consoler import console
+from django.conf import settings
 from django_cron import Schedule, CronJobBase
 from django.db.models import Model
 from django.template.defaultfilters import slugify

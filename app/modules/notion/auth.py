@@ -1,11 +1,15 @@
+# stdlib
 import os
+
+# 3rd party
 from consoler import console
+from notion_client import Client
+
+
 try:
     import envkey  # NOQA
 except Exception:
     console.warn("No EnvKey / .env file found - running anyway")
-
-from notion_client import Client
 
 
 # Ensure we have a token
