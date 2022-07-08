@@ -39,11 +39,11 @@ from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from config.template import url_from_path
 from modules.content.blocks import (
-    additional_content_blocks,
-    article_page_body_blocks,
-    home_page_blocks,
-    section_page_blocks,
-    team_profile_page_body_blocks,
+    ADDITIONAL_CONTENT_BLOCKS,
+    ARTICLE_PAGE_BODY_BLOCKS,
+    HOME_PAGE_BLOCKS,
+    SECTION_PAGE_BLOCKS,
+    TEAM_PROFILE_PAGE_BODY_BLOCKS,
     HighlightPagesBlock,
 )
 from modules.notion.helpers import countries_json, map_json
@@ -86,7 +86,7 @@ class HomePage(PageHeroMixin, LandingPageType):
 
     search_fields: list = Page.search_fields + []
 
-    body = fields.StreamField(home_page_blocks, blank=True)
+    body = fields.StreamField(HOME_PAGE_BLOCKS, blank=True)
 
     content_panels = BasePage.content_panels + [
         StreamFieldPanel('body')
@@ -130,7 +130,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
         index.SearchField('body')
     ]
 
-    body = fields.StreamField(section_page_blocks, blank=True)
+    body = fields.StreamField(SECTION_PAGE_BLOCKS, blank=True)
 
     content_panels = BasePage.content_panels + [
         StreamFieldPanel('body'),
@@ -226,7 +226,7 @@ class ArticlePage(ContentPageType):
     parent_page_types: list = ['content.SectionListingPage']
     subpage_types: list = []
 
-    body = fields.StreamField(article_page_body_blocks, blank=True)
+    body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True)
 
     highlight_pages = fields.StreamField(
         StreamBlock(
@@ -508,7 +508,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         verbose_name=_('Show Display Date?')
     )
 
-    additional_content = fields.StreamField(additional_content_blocks, blank=True)
+    additional_content = fields.StreamField(ADDITIONAL_CONTENT_BLOCKS, blank=True)
 
     # Also has:
     # author_relationships from PublicationAuthorRelationship
@@ -804,7 +804,7 @@ class TeamProfilePage(BasePage):
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES
     )
 
-    body = fields.StreamField(team_profile_page_body_blocks, blank=True)
+    body = fields.StreamField(TEAM_PROFILE_PAGE_BODY_BLOCKS, blank=True)
 
     content_panels = BasePage.content_panels + [
         FieldPanel('role'),
@@ -941,7 +941,7 @@ class GlossaryPage(BasePage):
     subpage_types: list = []
     max_count = 1
 
-    body = fields.StreamField(article_page_body_blocks, blank=True)
+    body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True)
 
     glossary = fields.StreamField([
         ('glossary_item', GlossaryItemBlock()),

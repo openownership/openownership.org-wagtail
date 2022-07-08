@@ -1,75 +1,28 @@
+# 3rd party
 from django.conf import settings
-
 from wagtail.core import blocks
 from wagtail.contrib.table_block.blocks import TableBlock
 
-from .generic import (
-    ArticleImageBlock,
-    CTABlock,
-)
-
+# Module
 from .stream import (
-    GlossaryItemBlock,
-    SimilarContentBlock,
-    EmbedBlock,
-    # StepsBlock,
-    # StatsBlock,
-    PullQuoteBlock,
-    # BlockQuoteBlock,
-    SummaryBoxBlock,
-    # EmbedBannerBlock,
-    # LogoListBlock,
-    # BannerBlock,
-    # LatestNewsBlock,
-    HighlightPagesBlock,
-    LatestSectionContentBlock,
-    AreasOfFocusBlock,
-    SectorsBlock,
-    PublicationTypesBlock,
-    LatestFocusAreaBlock,
-    LatestPublicationTypeBlock,
-    LatestSectorBlock,
-    LatestSectionTagBlock,
-    LatestPrincipleTagBlock,
-    PressLinksBlock,
-    LatestBlogBlock,
-    LatestNewsBlock,
-    LatestPublicationsBlock,
-    LatestContentBlock,
-    # CardGroupBlock,
-    # TextColumnsBlock,
-    # NotificationBlock,
-    # SocialMediaBlock,
-    # IconListBlock,
-    # NewsletterBlock,
-    # VideoGalleryBlock,
-    DisclosureBlock,
-    EditorsPicksBlock,
-    SearchLatestContentBlock,
+    EmbedBlock, SectorsBlock, PullQuoteBlock, DisclosureBlock, LatestBlogBlock, LatestNewsBlock,
+    PressLinksBlock, SummaryBoxBlock, EditorsPicksBlock, LatestSectorBlock, LatestContentBlock,
+    HighlightPagesBlock, SimilarContentBlock, LatestSectionTagBlock, PublicationTypesBlock,
+    LatestPrincipleTagBlock, LatestPublicationsBlock, SearchLatestContentBlock,
+    LatestSectionContentBlock, LatestPublicationTypeBlock
 )
+from .generic import CTABlock, ArticleImageBlock
 
-landing_page_blocks: list = [
-    # ('steps', StepsBlock()),
-    # ('stats', StatsBlock()),
-    # ('embed_banner', EmbedBannerBlock()),
-    # ('logo_list', LogoListBlock()),
-    # ('slim_banner', BannerBlock()),
-    # ('latest_news', LatestNewsBlock()),
-    # ('card_group', CardGroupBlock()),
-    # ('text_columns', TextColumnsBlock()),
-    # ('notification', NotificationBlock()),
-    # ('social_media', SocialMediaBlock()),
-    # ('icon_list', IconListBlock()),
-    # ('newsletter', NewsletterBlock()),
-    # ('video_gallery', VideoGalleryBlock()),
+
+LANDING_PAGE_BLOCKS: list = [
+
 ]
 
 
-home_page_blocks: list = [
+HOME_PAGE_BLOCKS: list = [
     ('highlight_pages', HighlightPagesBlock()),
     ('publication_types', PublicationTypesBlock(label='Content types')),
     ('latest_section_content', LatestSectionContentBlock()),
-    # ('latest_by_focus_area', LatestFocusAreaBlock()),
     ('latest_by_publication_type', LatestPublicationTypeBlock(label='Latest by content type')),
     ('latest_by_topic', LatestSectorBlock()),
     ('latest_by_section_tag', LatestSectionTagBlock()),
@@ -80,9 +33,8 @@ home_page_blocks: list = [
     ('latest_content', LatestContentBlock()),
 ]
 
-section_page_blocks: list = [
+SECTION_PAGE_BLOCKS: list = [
     ('highlight_pages', HighlightPagesBlock()),
-    # ('areas_of_focus_block', AreasOfFocusBlock()),
     ('topics_block', SectorsBlock(label="Topics")),
     ('latest_section_content', LatestSectionContentBlock()),
     ('publication_types', PublicationTypesBlock(label='Content types')),
@@ -92,7 +44,7 @@ section_page_blocks: list = [
     ('latest_publications', LatestPublicationsBlock()),
 ]
 
-article_page_body_blocks: list = [
+ARTICLE_PAGE_BODY_BLOCKS: list = [
     (
         "rich_text",
         blocks.RichTextBlock(features=settings.RICHTEXT_BODY_FEATURES),
@@ -107,13 +59,13 @@ article_page_body_blocks: list = [
     ('raw_html', blocks.RawHTMLBlock(label='Raw HTML')),
 ]
 
-team_profile_page_body_blocks: list = article_page_body_blocks
+TEAM_PROFILE_PAGE_BODY_BLOCKS: list = ARTICLE_PAGE_BODY_BLOCKS
 
-tag_page_body_blocks: list = article_page_body_blocks
+TAG_PAGE_BODY_BLOCKS: list = ARTICLE_PAGE_BODY_BLOCKS
 
-category_page_body_blocks: list = article_page_body_blocks
+CATEGORY_PAGE_BODY_BLOCKS: list = ARTICLE_PAGE_BODY_BLOCKS
 
-additional_content_blocks: list = [
+ADDITIONAL_CONTENT_BLOCKS: list = [
     ('similar_content', SimilarContentBlock()),
     ('highlight_pages', HighlightPagesBlock()),
 ]

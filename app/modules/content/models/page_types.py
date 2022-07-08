@@ -31,7 +31,7 @@ from wagtailcache.cache import WagtailCacheMixin
 from django.core.paginator import Paginator
 from modules.core.utils import get_site_context
 from modules.content.blocks import (
-    landing_page_blocks, article_page_body_blocks, additional_content_blocks
+    LANDING_PAGE_BLOCKS, ARTICLE_PAGE_BODY_BLOCKS, ADDITIONAL_CONTENT_BLOCKS
 )
 
 
@@ -262,7 +262,7 @@ class LandingPageType(BasePage):
     class Meta:
         abstract = True
 
-    body = fields.StreamField(landing_page_blocks, blank=True)
+    body = fields.StreamField(LANDING_PAGE_BLOCKS, blank=True)
 
     model_content_panels = [
         StreamFieldPanel('body')
@@ -294,8 +294,8 @@ class ContentPageType(BasePage):
 
     template = 'content/article_page.jinja'
 
-    body = fields.StreamField(article_page_body_blocks, blank=True)
-    additional_content = fields.StreamField(additional_content_blocks, blank=True)
+    body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True)
+    additional_content = fields.StreamField(ADDITIONAL_CONTENT_BLOCKS, blank=True)
 
     model_content_panels = [
         StreamFieldPanel('body'),

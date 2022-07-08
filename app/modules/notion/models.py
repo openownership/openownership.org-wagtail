@@ -20,7 +20,7 @@ from wagtail.admin.edit_handlers import (
     FieldPanel, ObjectList, PageChooserPanel, StreamFieldPanel, TabbedInterface, InlinePanel
 )
 
-from modules.content.blocks import tag_page_body_blocks
+from modules.content.blocks import TAG_PAGE_BODY_BLOCKS
 from modules.taxonomy.models.core import BaseTag
 from modules.notion.data import CAPITALS
 from config.template import commitment_summary
@@ -401,7 +401,7 @@ class CountryTag(NotionModel, BaseTag):
         verbose_name = _("Country")
         verbose_name_plural = _("Countries")
 
-    body = fields.StreamField(tag_page_body_blocks, blank=True)
+    body = fields.StreamField(TAG_PAGE_BODY_BLOCKS, blank=True)
 
     blurb = fields.RichTextField(
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,

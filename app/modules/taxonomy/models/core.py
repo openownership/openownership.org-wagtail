@@ -13,7 +13,7 @@ from wagtail.admin.edit_handlers import (
 )
 from wagtail.core.models import Page
 
-from modules.content.blocks import category_page_body_blocks, tag_page_body_blocks
+from modules.content.blocks import CATEGORY_PAGE_BODY_BLOCKS, TAG_PAGE_BODY_BLOCKS
 from .pages import DummyPage
 
 

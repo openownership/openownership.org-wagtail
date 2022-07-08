@@ -1,9 +1,10 @@
 """
     StructValues
 """
+# 3rd party
 from consoler import console
-from wagtail.core.models import Page, Locale
 from wagtail.core import blocks
+from wagtail.core.models import Page, Locale
 
 
 class SectionLatestValue(blocks.StructValue):

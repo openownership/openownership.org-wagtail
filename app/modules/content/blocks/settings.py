@@ -1,9 +1,10 @@
+# 3rd party
 from django import forms
 from django.conf import settings
-
 from wagtail.core import blocks
 from wagtail.documents.blocks import DocumentChooserBlock
 
+# Module
 from .mixins import CTABlockStructValue
 
 
