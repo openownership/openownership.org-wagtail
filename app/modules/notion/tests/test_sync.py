@@ -4,7 +4,16 @@ from modules.notion.samples.regimes import REGIMES
 
 from modules.notion.models import CountryTag, Commitment
 from modules.notion.cron import (
-    SyncRegimes, SyncCountries, SyncCommitments, DisclosureRegime, CoverageScope
+    SyncRegimes, SyncCountries, SyncCommitments, DisclosureRegime, CoverageScope, NotionCronBase
+)
+
+from .data import (
+    LEGISLATION_RICHTEXT,
+    LEGISLATION_RICHTEXT_TARGET,
+    COMPLEX_RICHTEXT,
+    COMPLEX_RICHTEXT_TARGET,
+    MEGA_RICHTEXT,
+    MEGA_RICHTEXT_TARGET,
 )
 
 
@@ -45,3 +54,38 @@ def test_sync_regimes():
     assert DisclosureRegime.objects.count() == 59
     assert CoverageScope.objects.count() == 6
     assert DisclosureRegime.objects.filter(coverage_scope__isnull=False).first() is not None
+
+
+def test_legislation_rich_text():
+    """The data in LEGISLATION_RICHTEXT should get transformed into...
+    <a href="https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056">
+        https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056
+    </a>
+    """
+    data = LEGISLATION_RICHTEXT
+    cron = NotionCronBase()
+    value = cron._get_value(data, '2.3 Coverage: Legislation URL')
+    assert value is not None
+    assert '<a href="https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056">' in value
+    assert 'forskrift/2021-06-21-2056</a>' in value
+    assert value == LEGISLATION_RICHTEXT_TARGET
+
+
+def test_complex_rich_text():
+    """
+    """
+    data = COMPLEX_RICHTEXT
+    cron = NotionCronBase()
+    value = cron._get_value(data, 'Summary Text')
+    assert value is not None
+    assert value == COMPLEX_RICHTEXT_TARGET
+
+
+def test_mega_rich_text():
+    """
+    """
+    data = MEGA_RICHTEXT
+    cron = NotionCronBase()
+    value = cron._get_value(data, '1.1 Definition: Legislation URL')
+    assert value is not None
+    assert value == MEGA_RICHTEXT_TARGET

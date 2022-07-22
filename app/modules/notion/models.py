@@ -166,14 +166,14 @@ class DisclosureRegime(NotionModel):
         max_length=255
     )
 
-    definition_legislation_url = models.URLField(  # 1.1 Definition: Legislation URL
+    definition_legislation_url = models.TextField(  # 1.1 Definition: Legislation URL
         _('Definition: Legislation URL'),
         blank=True,
         null=True,
         max_length=1000
     )
 
-    coverage_legislation_url = models.URLField(  # 2.3 Coverage: Legislation URL
+    coverage_legislation_url = models.TextField(  # 2.3 Coverage: Legislation URL
         _('Coverage: Legislation URL'),
         blank=True,
         null=True,
