@@ -663,10 +663,12 @@ class CountryTag(NotionModel, BaseTag):
         """
         rv = {}
         for item in self.regimes.filter(stage__icontains='Publish'):
-            if item.title and item.public_access_register_url:
-                rv['title'] = item.title
-                rv['url'] = item.public_access_register_url
-                return rv
+            scope_names = [scope.name for scope in item.coverage_scope.all()]
+            if 'Subnational' not in scope_names:
+                if item.title and item.public_access_register_url:
+                    rv['title'] = item.title
+                    rv['url'] = item.public_access_register_url
+                    return rv
 
     @cached_property
     def first_central_regime(self):
@@ -678,11 +680,16 @@ class CountryTag(NotionModel, BaseTag):
         """
         rv = {}
         for item in self.regimes.filter(stage__icontains='Publish', central_register='Yes'):
-            if item.title:
-                rv['title'] = item.title
+            try:
+                scope_names = [scope.name for scope in item.coverage_scope.all()]
+                if 'Subnational' not in scope_names:
+                    if item.title:
+                        rv['title'] = item.title
 
-            if item.public_access_register_url:
-                rv['url'] = item.public_access_register_url
+                    if item.public_access_register_url:
+                        rv['url'] = item.public_access_register_url
+            except Exception as e:
+                console.warn(e)
 
         return rv
 
