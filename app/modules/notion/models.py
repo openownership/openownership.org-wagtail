@@ -632,7 +632,7 @@ class CountryTag(NotionModel, BaseTag):
     @cached_property
     def all_commitments(self):
         try:
-            return self.commitments.all()
+            return self.commitments.filter(deleted=False).all()
         except Exception as e:
             console.warn(e)
             console.warn(f"No commitments found for {self.name}")
