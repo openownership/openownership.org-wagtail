@@ -4,28 +4,31 @@ volumes:
   media: {}
 
 services:
-  # Postgres
-  db:
-    image: postgres:12
-    restart: always
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
-    volumes:
-      - ./docker/db/data/:/var/lib/postgresql/data:delegated
 
-  # Redis
-  redis:
-    restart: always
-    image: redis:5.0
-    command: redis-server --requirepass ${REDIS_PASSWORD}
-    ports:
-      - "6379:6379"
-    volumes:
-      - ./docker/redis:/var/lib/redis:delegated
-    environment:
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
+  # NOTE: DB AND REDIS AREN'T ACTUALLY NEEDED FOR TESTS
+
+  # Postgres
+  # db:
+  #   image: postgres:12
+  #   restart: always
+  #   environment:
+  #     - POSTGRES_USER=${POSTGRES_USER}
+  #     - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+  #     - POSTGRES_DB=${POSTGRES_DB}
+  #   volumes:
+  #     - ./docker/db/data/:/var/lib/postgresql/data:delegated
+
+  # # Redis
+  # redis:
+  #   restart: always
+  #   image: redis:5.0
+  #   command: redis-server --requirepass ${REDIS_PASSWORD}
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - ./docker/redis:/var/lib/redis:delegated
+  #   environment:
+  #     - REDIS_PASSWORD=${REDIS_PASSWORD}
 
   # Application
   web:
