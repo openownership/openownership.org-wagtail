@@ -143,8 +143,8 @@
 
 {% for regime in country.regimes %}
     {# only when "publish" #}
-    {% if 'Publish' in regime.implementation_stage %}
-    {% if 'Subnational' not in regime.display_scope %}
+    {% if regime.implementation_stage and 'Publish' in regime.implementation_stage %}
+    {% if regime.display_scope and 'Subnational' not in regime.display_scope %}
             <p>{{ regime.title }}</p>
 
             <details>
@@ -212,10 +212,18 @@
 {% endfor %}
 </section>
 
-        {# This section will come post-launch #}
+
         {# <section>
             <hr/>
             <h2>{% trans %}Legislation Detail{% endtrans %}</h2>
+            {% for regime in country.regimes %}
+                {% if regime.implementation_stage and 'Publish' in regime.implementation_stage %}
+                {% if regime.display_scope and 'Subnational' not in regime.display_scope %}
+                    <h3>{{ regime.title }}</h3>
+
+                {% endif %}
+                {% endif %}
+            {% endfor %}
         </section> #}
     </div>
 
