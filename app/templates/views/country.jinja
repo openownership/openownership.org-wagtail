@@ -213,7 +213,7 @@
 </section>
 
 
-        {# <section>
+        <section>
             <hr/>
             <h2>{% trans %}Legislation Detail{% endtrans %}</h2>
             {% for regime in country.regimes %}
@@ -221,10 +221,45 @@
                 {% if regime.display_scope and 'Subnational' not in regime.display_scope %}
                     <h3>{{ regime.title }}</h3>
 
+                    {% if regime.definition_legislation_url %}
+                    <h4>{{_('Legal definition of beneficial ownership')}}</h4>
+                    <p>{{ regime.definition_legislation_url|richtext }}</p>
+                    {% endif %}
+
+                    {% if regime.coverage_legislation_url %}
+                    <h4>{{_('Coverage')}}</h4>
+                    <p>{{ regime.coverage_legislation_url|richtext }}</p>
+                    {% endif %}
+
+                    {% if regime.sufficient_detail_legislation_url %}
+                    <h4>{{_('Sufficient detail')}}</h4>
+                    <p>{{ regime.sufficient_detail_legislation_url|richtext }}</p>
+                    {% endif %}
+
+                    {% if regime.public_access_protection_regime_url %}
+                    <h4>{{_('Public access: protection regime')}}</h4>
+                    <p>{{ regime.public_access_protection_regime_url|richtext }}</p>
+                    {% endif %}
+
+                    {% if regime.public_access_legal_basis_url %}
+                    <h4>{{_('Public access: legal basis')}}</h4>
+                    <p>{{ regime.public_access_legal_basis_url|richtext }}</p>
+                    {% endif %}
+
+                    {% if regime.legislation_url %}
+                    <h4>{{_('Beneficial ownership legislation')}}</h4>
+                    <p>{{ regime.legislation_url|richtext }}</p>
+                    {% endif %}
+
+                    {% if regime.sanctions_enforcement_legislation_url %}
+                    <h4>{{_('Sanctions and enforcement legislation')}}</h4>
+                    <p>{{ regime.sanctions_enforcement_legislation_url|richtext }}</p>
+                    {% endif %}
+
                 {% endif %}
                 {% endif %}
             {% endfor %}
-        </section> #}
+        </section>
     </div>
 
 </article>
