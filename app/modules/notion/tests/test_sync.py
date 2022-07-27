@@ -51,8 +51,8 @@ def test_sync_regimes():
     # for item in COMMITMENTS['results']:
     #     com = Commitment.objects.filter(notion_id=item['id']).first()
     #     assert com is not None
-    assert DisclosureRegime.objects.count() == 59
-    assert CoverageScope.objects.count() == 6
+    assert DisclosureRegime.objects.count() == 68
+    assert CoverageScope.objects.count() == 7
     assert DisclosureRegime.objects.filter(coverage_scope__isnull=False).first() is not None
 
 
