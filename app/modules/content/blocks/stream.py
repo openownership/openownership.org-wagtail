@@ -156,16 +156,19 @@ class SimilarContentBlock(blocks.StructBlock):
 
     suggest_by = blocks.ChoiceBlock(choices=options, required=True, default='focus_area')
 
-    def _ranked_pages(self, all_ids, count=3):
+    def _ranked_pages(self, all_ids, count=3, relevance=True):
         ranked_ids = Counter(all_ids).most_common()
-        ids = [element[0] for element in ranked_ids[:count]]
+        if relevance:
+            ids = [element[0] for element in ranked_ids[:count]]
+        else:
+            ids = [element[0] for element in ranked_ids]
         objects = (
             Page.objects
             .live().public().filter(locale=Locale.get_active())
             .filter(id__in=ids).specific()
             .order_by('-first_published_at').all()
         )
-        return objects
+        return objects[count]
 
     @property
     def by_focus_area(self):
@@ -190,7 +193,7 @@ class SimilarContentBlock(blocks.StructBlock):
                 if item.content_object.id != self.page.id:
                     all_ids.append(item.content_object.id)
 
-        objects = self._ranked_pages(all_ids, 3)
+        objects = self._ranked_pages(all_ids, 3, relevance=False)
         return objects
 
     @property
