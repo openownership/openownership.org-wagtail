@@ -340,9 +340,10 @@ class NotionCronBase(CronJobBase):
         try:
             result = ''
             for item in data['properties'][property_name]['rich_text']:
+                link = item['text']['link']
                 if item['type'] == 'text' and item['text']['link'] is None:
                     result += f"{item['text']['content']}"
-                elif item['type'] == 'text' and item['text']['link'] is not None:
+                elif item['type'] == 'text' and link is not None and link != {}:
                     url = item['text']['link']['url']
                     linked_text = item['text']['content']
                     href = f'<a href="{url}">{linked_text}</a>'
@@ -350,6 +351,8 @@ class NotionCronBase(CronJobBase):
             return result
         except Exception as e:
             console.warn(e)
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
             return ''
 
     def _get_url(self, data: dict, property_name: str) -> Optional[str]:
@@ -783,6 +786,19 @@ class SyncRegimes(NotionCronBase):
         obj.on_oo_register = self._get_value(regime, '6.5 Data on OO Register')
         obj.legislation_url = self._get_value(regime, '8.4 Legislation URL')
         obj.threshold = str(self._get_value(regime, '1.2 Threshold'))
+        # New legislation fields
+        obj.sufficient_detail_legislation_url = self._get_value(
+            regime, "3.1 Sufficient detail: Legislation URL"
+        )
+        obj.public_access_protection_regime_url = self._get_value(
+            regime, "5.4.1 Protection regime URL"
+        )
+        obj.public_access_legal_basis_url = self._get_value(
+            regime, "5.5 Legal basis for publication URL"
+        )
+        obj.sanctions_enforcement_legislation_url = self._get_value(
+            regime, "9 Sanctions and enforcement: Legislation URL"
+        )
 
         try:
             obj.save()

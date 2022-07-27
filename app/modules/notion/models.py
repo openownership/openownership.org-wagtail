@@ -166,18 +166,52 @@ class DisclosureRegime(NotionModel):
         max_length=255
     )
 
-    definition_legislation_url = models.TextField(  # 1.1 Definition: Legislation URL
+    # 1.1 Definition: Legislation URL
+    definition_legislation_url = models.TextField(
         _('Definition: Legislation URL'),
         blank=True,
         null=True,
-        max_length=1000
+        max_length=10000
     )
 
-    coverage_legislation_url = models.TextField(  # 2.3 Coverage: Legislation URL
+    # 2.3 Coverage: Legislation URL
+    coverage_legislation_url = models.TextField(
         _('Coverage: Legislation URL'),
         blank=True,
         null=True,
-        max_length=1000
+        max_length=10000
+    )
+
+    # 3.1 Sufficient detail: Legislation URL
+    sufficient_detail_legislation_url = models.TextField(
+        _('Sufficient detail: Legislation URL'),
+        blank=True,
+        null=True,
+        max_length=10000
+    )
+
+    # 5.4.1 Public access: Protection regime URL
+    public_access_protection_regime_url = models.TextField(
+        _('Public access: Protection regime URL'),
+        blank=True,
+        null=True,
+        max_length=10000
+    )
+
+    # 5.5 Public access: Legal basis URL
+    public_access_legal_basis_url = models.TextField(
+        _('Public access: Legal basis URL'),
+        blank=True,
+        null=True,
+        max_length=10000
+    )
+
+    # 9 Sanctions and enforcement: Legislation URL
+    sanctions_enforcement_legislation_url = models.TextField(
+        _('Public access: Legal basis URL'),
+        blank=True,
+        null=True,
+        max_length=10000
     )
 
     central_register = models.CharField(  # 4.1 Central register
@@ -236,11 +270,11 @@ class DisclosureRegime(NotionModel):
         default=False
     )
 
-    legislation_url = models.URLField(  # 8.4 Legislation URL
+    legislation_url = models.TextField(  # 8.4 Legislation URL
         _('Legislation URL'),
         blank=True,
         null=True,
-        max_length=1000
+        max_length=10000
     )
 
     coverage_scope = ParentalManyToManyField(
