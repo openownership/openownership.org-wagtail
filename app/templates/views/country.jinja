@@ -215,7 +215,7 @@
 
         <section>
             <hr/>
-            <h2>{% trans %}Legislation Detail{% endtrans %}</h2>
+            <h2>{% trans %}Legislation details{% endtrans %}</h2>
             {% for regime in country.regimes %}
                 {% if regime.implementation_stage and 'Publish' in regime.implementation_stage %}
                 {% if regime.display_scope and 'Subnational' not in regime.display_scope %}
