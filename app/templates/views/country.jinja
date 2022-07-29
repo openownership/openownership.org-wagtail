@@ -119,7 +119,7 @@
 
     <div class="country-page__content">
         <section class="country-page__section">
-            <h2>{% trans %}Commitment Detail{% endtrans %}</h2>
+            <h2>{% trans %}Commitment details{% endtrans %}</h2>
 
             <ul>
                 {% for commitment in country.commitments.all() %}
@@ -139,7 +139,7 @@
         </section>
 
 <section class="country-page__section">
-    <h2>{% trans %}Implementation Detail{% endtrans %}</h2>
+    <h2>{% trans %}Implementation details{% endtrans %}</h2>
 
 {% for regime in country.regimes %}
     {# only when "publish" #}
@@ -215,7 +215,7 @@
         {# This section will come post-launch #}
         {# <section>
             <hr/>
-            <h2>{% trans %}Legislation Detail{% endtrans %}</h2>
+            <h2>{% trans %}Legislation details{% endtrans %}</h2>
         </section> #}
     </div>
 
