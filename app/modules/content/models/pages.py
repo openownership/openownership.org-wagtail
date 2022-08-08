@@ -39,7 +39,7 @@ from modules.stats.mixins import Countable
 from modules.notion.models import Region, CountryTag
 from modules.content.blocks import (
     HOME_PAGE_BLOCKS, SECTION_PAGE_BLOCKS, ARTICLE_PAGE_BODY_BLOCKS, ADDITIONAL_CONTENT_BLOCKS,
-    TEAM_PROFILE_PAGE_BODY_BLOCKS, HighlightPagesBlock
+    TEAM_PROFILE_PAGE_BODY_BLOCKS, HighlightPagesBlock, TAG_PAGE_BODY_BLOCKS
 )
 from modules.notion.helpers import map_json, countries_json
 from modules.taxonomy.models import PublicationType
@@ -1172,6 +1172,8 @@ class TagPage(IndexPageType):
 
     video = models.URLField(blank=True, null=True)
 
+    body = fields.StreamField(TAG_PAGE_BODY_BLOCKS, blank=True)
+
     focus_area = models.ForeignKey(
         'taxonomy.FocusAreaTag',
         blank=True,
@@ -1220,7 +1222,8 @@ class TagPage(IndexPageType):
             FieldPanel('section'),
             FieldPanel('principle'),
         ], heading=_('Tag')),
-        FieldPanel('video'),
+        StreamFieldPanel('body'),
+        # FieldPanel('video'),
         FieldPanel('intro')
     ]
 
@@ -1275,10 +1278,6 @@ class TagPage(IndexPageType):
         try:
             embed = embeds.get_embed(self.video, max_width=100, max_height=100)
             html = str(embed.html)
-            console.info(html)
-            html.replace('width="200"', '')
-            html.replace('height="150"', '')
-            console.info(html)
             ctx['video_embed'] = html
         except Exception as e:
             console.warn(e)
