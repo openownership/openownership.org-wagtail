@@ -1180,6 +1180,8 @@ class TagPage(IndexPageType):
         blank=True, null=True, features=settings.RICHTEXT_BODY_FEATURES,
     )
 
+    video = models.URLField(blank=True, null=True)
+
     focus_area = models.ForeignKey(
         'taxonomy.FocusAreaTag',
         blank=True,
@@ -1228,6 +1230,7 @@ class TagPage(IndexPageType):
             FieldPanel('section'),
             FieldPanel('principle'),
         ], heading=_('Tag')),
+        FieldPanel('video'),
         FieldPanel('intro')
     ]
 
@@ -1272,6 +1275,26 @@ class TagPage(IndexPageType):
         else:
             # Shouldn't get here.
             return Page.objects.none()
+
+    def get_context(self, request, *args, **kwargs) -> dict:
+        """Extending this to add in the video embed
+        """
+        ctx = super().get_context(request, *args, **kwargs)
+        from wagtail.embeds import embeds
+
+        try:
+            embed = embeds.get_embed(self.video, max_width=100, max_height=100)
+            html = str(embed.html)
+            console.info(html)
+            html.replace('width="200"', '')
+            html.replace('height="150"', '')
+            console.info(html)
+            ctx['video_embed'] = html
+        except Exception as e:
+            console.warn(e)
+            ctx['video_embed'] = self.video
+
+        return ctx
 
     @classmethod
     def can_create_at(cls, parent) -> bool:

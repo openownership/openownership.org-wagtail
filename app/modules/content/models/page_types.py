@@ -391,18 +391,17 @@ class IndexPageType(BasePage):
             return paginator.page(paginator.num_pages)
 
     def get_context(self, request, *args, **kwargs) -> dict:
-        context = super().get_context(request, *args, **kwargs)
+        ctx = super().get_context(request, *args, **kwargs)
 
         query_string = request.GET.copy()
         pagination_params = query_string.pop('page', None) and query_string.urlencode()
 
-        context.update({
-            # 'object_filters': self.get_filters_for_template(request),
+        ctx.update({
             'page_obj': self.paginate_objects(request),
             'pagination_params': pagination_params
         })
 
-        return context
+        return ctx
 
     @classmethod
     def can_create_at(cls, parent) -> bool:
