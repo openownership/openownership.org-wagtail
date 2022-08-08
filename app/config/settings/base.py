@@ -442,7 +442,7 @@ THEME_CHOICES = []
 ICON_CHOICES = []
 
 SOCIAL_MEDIA_CHOICES = [
-    'Facebook', 'Twitter', 'LinkedIn'
+    'Facebook', 'Twitter', 'LinkedIn', 'GitHub'
 ]
 
 
