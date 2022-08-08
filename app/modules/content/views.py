@@ -60,6 +60,7 @@ class CountryView(TemplateView):
 
     def __init__(self, *args, **kwargs):
         self.page_num = 1
+        super().__init__(*args, **kwargs)
 
     def setup(self, request, *args, **kwargs):
         try:
@@ -71,14 +72,22 @@ class CountryView(TemplateView):
         super().setup(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        ctx = super().get_context_data(**kwargs)
         slug = kwargs.pop('slug')
         self.tag = self._get_tag(slug)
-        context['country'] = self.tag
-        context['page'] = self
-        context['meta_title'] = f"{self.tag.name}"
-        global_context(context)  # Adds in nav settings etc.
-        return context
+        ctx['country'] = self.tag
+        ctx['page'] = self
+        ctx['meta_title'] = f"{self.tag.name}"
+        global_context(ctx)  # Adds in nav settings etc.
+        # Add in pagination for related articles
+        try:
+            related_pages = self.tag.display_date_related_pages
+            paginator = self._get_paginator(related_pages)
+            ctx['results'] = paginator
+            ctx['page_obj'] = paginator
+        except Exception as e:
+            console.warn(e)
+        return ctx
 
     @cached_property
     def title(self):
@@ -120,6 +129,11 @@ class CountryView(TemplateView):
         else:
             return tag
 
+    def _get_paginator(self, results):
+        p = Paginator(results, 10)
+        result_set = p.page(self.page_num)
+        return result_set
+
 
 class SearchView(TemplateView):
 
@@ -139,6 +153,7 @@ class SearchView(TemplateView):
         self.filters_list = []
         # Were any filters chosen?
         self.is_filtered = False
+        super().__init__(*args, **kwargs)
 
     def setup(self, request, *args, **kwargs):
         try:
