@@ -168,7 +168,7 @@ class SimilarContentBlock(blocks.StructBlock):
             .filter(id__in=ids).specific()
             .order_by('-first_published_at').all()
         )
-        return objects[count]
+        return objects[:count]
 
     @property
     def by_focus_area(self):
