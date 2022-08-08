@@ -4,6 +4,11 @@
 {% block content %}
 
     <article>
+        <section class="embed">
+            <div class="embed__wrapper--responsive">
+                {{ video_embed|richtext }}
+            </div>
+        </section>
         <div class="intro">
             {{ page.intro|richtext }}
         </div>

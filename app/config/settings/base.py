@@ -30,6 +30,8 @@ guru.add("/var/log/openownership.org/output.log", rotation="100 MB", backtrace=T
 
 WHITENOISE_MANIFEST_STRICT = False
 
+WAGTAILEMBEDS_RESPONSIVE_HTML = True
+
 
 # Tell the stats module to store view counts in Redis
 STATS_USE_REDIS = True
