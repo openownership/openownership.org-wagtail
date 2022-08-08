@@ -69,13 +69,25 @@
     </div>
 </article>
 
-{% if page.authorship %}
+{% if page._authorship %}
+    <div class="search-results">
     <div class="team-profile__articles">
     <h2>{% trans %}Relevant articles and publications{% endtrans %}</h2>
-    {% with pages=page.authorship.get_content_pages(), columns=1, card_format='landscape' %}
+    {# {% with pages=page.authorship.get_content_pages(), columns=1, card_format='landscape' %}
+        {% include "_partials/card_group.jinja" %}
+    {% endwith %} #}
+
+
+    {% with pages=results, columns=1, card_format='landscape' %}
         {% include "_partials/card_group.jinja" %}
     {% endwith %}
     </div>
+    </div>
+
+    {% if results.paginator.num_pages > 1 %}
+        {% include '_partials/pagination.jinja' %}
+    {% endif %}
+
 {% endif %}
 
 

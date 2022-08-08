@@ -25,6 +25,7 @@ from wagtail.search.models import Query
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
+from django.utils.datastructures import MultiValueDictKeyError
 from wagtail.admin.edit_handlers import (
     FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
 )
@@ -708,6 +709,10 @@ class TeamProfilePage(BasePage):
     And it labels areas_of_focus and countries differently.
     """
 
+    def __init__(self, *args, **kwargs):
+        self.page_num = 1
+        super().__init__(*args, **kwargs)
+
     template = 'content/team_profile_page.jinja'
     parent_page_types: list = ['content.TeamPage']
     subpage_types: list = []
@@ -786,6 +791,24 @@ class TeamProfilePage(BasePage):
         index.SearchField('email_address'),
     ]
 
+    def get_context(self, request, *args, **kwargs):
+        ctx = super().get_context(request, *args, **kwargs)
+        try:
+            self.page_num = int(request.GET['page'])
+        except MultiValueDictKeyError:
+            self.page_num = 1
+        except Exception as e:
+            console.error(e)
+
+        try:
+            authored_pages = self._authorship._authored_pages
+            paginator = self._get_paginator(authored_pages)
+            ctx['results'] = paginator
+            ctx['page_obj'] = paginator
+        except Exception as e:
+            console.warn(e)
+        return ctx
+
     @cached_property
     def card_blurb(self):
         "Display role instead of blurb on cards"
@@ -798,6 +821,24 @@ class TeamProfilePage(BasePage):
         tabs = super().get_admin_tabs()
         tabs.insert(1, (cls.about_panels, _("About")))
         return tabs
+
+    def _get_paginator(self, results):
+        p = Paginator(results, 5)
+        result_set = p.page(self.page_num)
+        return result_set
+
+    @cached_property
+    def _authorship(self):
+        """For some reason, translated versions have no authorship model, so we're returning
+        the authorship from first locale version of this page that does have one. For an `en`
+        page, that _should_ be self, so we check that first.
+        """
+        if self.authorship is not None:
+            return self.authorship
+        all_locales = Page.objects.filter(translation_key=self.translation_key).specific().all()
+        for item in all_locales:
+            if item.authorship is not None:
+                return item.authorship
 
 
 ####################################################################################################
