@@ -12,7 +12,11 @@ title - Title for the block.
             <p>
                 <strong>{% if title %}{{ title }}{% else %}{% trans %}Sections{% endtrans %}{% endif %}</strong><br>
                 {% for section in sections %}
-                    <a href="{{ section.get_url() }}">{{ section.name }}</a>{% if not loop.last %}, {% endif %}
+                    {% if section.url %}
+                    <a href="{{ section.url }}">{{ section.name }}</a>{% if not loop.last %}, {% endif %}
+                    {% else %}
+                    {{ section.name }}{% if not loop.last %}, {% endif %}
+                    {% endif %}
                 {% endfor %}
             </p>
         {% endif %}

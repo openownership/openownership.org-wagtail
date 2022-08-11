@@ -5,6 +5,7 @@ from modelcluster.fields import ParentalKey
 from taggit.models import ItemBase
 from wagtail.core.models import Locale
 from wagtailmodelchooser import register_model_chooser
+from django.utils.functional import cached_property
 
 from .core import BaseTag
 

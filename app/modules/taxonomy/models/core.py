@@ -137,9 +137,6 @@ class BaseTag(TagBase):
         ObjectList(panels, heading=_('Tag')),
     ])
 
-    def __str__(self):
-        return self.name
-
     def to_dummy_page(self):
         """
         Returns a DummyPage representing this tag.
@@ -151,24 +148,9 @@ class BaseTag(TagBase):
         page.blurb = self.blurb
         return page
 
-    # @property
-    # def pages(self):
-    #     rel = getattr(self, self.rel_name)
-    #     ids = [item.content_object.id for item in rel.all()]
-    #     pages = Page.objects.filter(
-    #         id__in=ids).order_by('-first_published_at').specific().all()
-    #     return pages
+    @cached_property
+    def url(self):
+        return self.get_url()
 
-    # def latest(self, count=1):
-    #     pages = self.pages[:count]
-    #     return pages
-
-    # @cached_property
-    # def url(self):
-    #     """Here we need to return the url for either a TopicPage if one exists for this tag,
-    #     or the root tag view.
-    #     """
-    #     try:
-    #         return self.topic_page.url
-    #     except Exception:
-    #         return reverse('tagged', kwargs={'slug': self.slug})
+    def __str__(self):
+        return self.name
