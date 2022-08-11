@@ -12,7 +12,11 @@ title - Title for the block.
             <p>
                 <strong>{% if title %}{{ title }}{% else %}{% trans %}Open Ownership Principles{% endtrans %}{% endif %}</strong><br>
                 {% for principle in principles %}
-                    <a href="{{ principle.get_url() }}">{{ principle.name }}</a>{% if not loop.last %}, {% endif %}
+                    {% if principle.url %}
+                    <a href="{{ principle.url }}">{{ principle.name }}</a>{% if not loop.last %}, {% endif %}
+                    {% else %}
+                    {{ principle.name }}{% if not loop.last %}, {% endif %}
+                    {% endif %}
                 {% endfor %}
             </p>
         {% endif %}

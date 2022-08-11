@@ -1,9 +1,7 @@
 {#
-Render a list of country tags.
 
-Optional:
+    These are called Topics on the front end.
 
-title - Title for the block.
 #}
 
 {% if page.sectors %}
@@ -12,7 +10,11 @@ title - Title for the block.
             <p>
                 <strong>{% if title %}{{ title }}{% else %}{% trans %}Topics{% endtrans %}{% endif %}</strong><br>
                 {% for sector in sectors %}
-                    <a href="{{ sector.get_url() }}">{{ sector.name }}</a>{% if not loop.last %}, {% endif %}
+                    {% if sector.url %}
+                    <a href="{{ sector.url }}">{{ sector.name }}</a>{% if not loop.last %}, {% endif %}
+                    {% else %}
+                    {{ sector.name }}{% if not loop.last %}, {% endif %}
+                    {% endif %}
                 {% endfor %}
             </p>
         {% endif %}

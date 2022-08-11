@@ -12,7 +12,11 @@ title - Title for the block.
             <p>
                 <strong>{% if title %}{{ title }}{% else %}{% trans %}Areas of focus{% endtrans %}{% endif %}</strong><br>
                 {% for area in areas %}
-                    <a href="{{ area.get_url() }}">{{ area.name }}</a>{% if not loop.last %}, {% endif %}
+                    {% if area.url %}
+                    <a href="{{ area.url }}">{{ area.name }}</a>{% if not loop.last %}, {% endif %}
+                    {% else %}
+                    {{ area.name }}{% if not loop.last %}, {% endif %}
+                    {% endif %}
                 {% endfor %}
             </p>
         {% endif %}

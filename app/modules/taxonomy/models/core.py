@@ -133,9 +133,6 @@ class BaseTag(TagBase):
         ObjectList(panels, heading=_('Tag')),
     ])
 
-    def __str__(self):
-        return self.name
-
     def to_dummy_page(self):
         """
         Returns a DummyPage representing this tag.
@@ -146,3 +143,10 @@ class BaseTag(TagBase):
         page.url = self.get_url()
         page.blurb = self.blurb
         return page
+
+    @cached_property
+    def url(self):
+        return self.get_url()
+
+    def __str__(self):
+        return self.name
