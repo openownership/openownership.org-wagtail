@@ -4,21 +4,22 @@
 {% block content %}
 
     <article>
-        {# <section class="embed">
-            <div class="embed__wrapper--responsive">
-                {{ video_embed|richtext }}
-            </div>
-        </section> #}
+
         {% if page.body|length %}
             <div class="intro">
                 {{render_stream(page.body, page)}}
             </div>
         {% endif %}
-        {% if page.intro %}
-            <div class="intro">
-                {{ page.intro|richtext }}
+
+        <section class="embed">
+            <div class="embed__wrapper--responsive">
+                {{ video_embed|richtext }}
             </div>
-        {% endif %}
+        </section>
+        <div class="intro">
+            {{ page.intro|richtext }}
+        </div>
+
     </article>
 
     {% if page_obj %}

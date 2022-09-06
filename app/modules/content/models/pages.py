@@ -1222,8 +1222,9 @@ class TagPage(IndexPageType):
             FieldPanel('section'),
             FieldPanel('principle'),
         ], heading=_('Tag')),
+
         StreamFieldPanel('body'),
-        # FieldPanel('video'),
+        FieldPanel('video'),
         FieldPanel('intro')
     ]
 
@@ -1278,6 +1279,11 @@ class TagPage(IndexPageType):
         try:
             embed = embeds.get_embed(self.video, max_width=100, max_height=100)
             html = str(embed.html)
+
+            console.info(html)
+            html.replace('width="200"', '')
+            html.replace('height="150"', '')
+            console.info(html)
             ctx['video_embed'] = html
         except Exception as e:
             console.warn(e)

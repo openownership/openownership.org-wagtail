@@ -334,7 +334,10 @@ class DisclosureRegime(NotionModel):
     @cached_property
     def implementation_stage(self):
         try:
-            return self.stage
+            if self.stage:
+                return self.stage
+            else:
+                return ""
         except Exception as e:
             console.warn(e)
             console.warn(f"No stage for {self.name}")
@@ -405,6 +408,8 @@ class DisclosureRegime(NotionModel):
 
     @cached_property
     def display_threshold(self):
+        if self.threshold is None:
+            return ""
         try:
             if self.threshold:
                 if "%" not in self.threshold:
@@ -414,7 +419,7 @@ class DisclosureRegime(NotionModel):
         except Exception as e:
             console.warn(e)
             console.warn(f"No threshold for {self.name}")
-            return None
+            return ""
 
 
 class CountryTag(NotionModel, BaseTag):
