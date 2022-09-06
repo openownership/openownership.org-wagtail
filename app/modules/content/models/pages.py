@@ -1142,12 +1142,12 @@ class TagPageForm(WagtailAdminPageForm):
         num_selected = len([t for t in tags if t])
         if num_selected == 0:
             self.add_error(
-                'focus_area',
+                'sector',
                 f'Please choose a tag from one of the {len(tags)} taxonomies.'
             )
         elif num_selected > 1:
             self.add_error(
-                'focus_area',
+                'sector',
                 f'Please only choose a single tag from the {len(tags)} taxonomies.'
             )
 
