@@ -45,6 +45,7 @@ from modules.content.blocks import (
     section_page_blocks,
     team_profile_page_body_blocks,
     HighlightPagesBlock,
+    TAG_PAGE_BODY_BLOCKS
 )
 from modules.notion.helpers import countries_json, map_json
 from modules.notion.models import CountryTag, Region
@@ -1152,12 +1153,12 @@ class TagPageForm(WagtailAdminPageForm):
         num_selected = len([t for t in tags if t])
         if num_selected == 0:
             self.add_error(
-                'focus_area',
+                'sector',
                 f'Please choose a tag from one of the {len(tags)} taxonomies.'
             )
         elif num_selected > 1:
             self.add_error(
-                'focus_area',
+                'sector',
                 f'Please only choose a single tag from the {len(tags)} taxonomies.'
             )
 
@@ -1181,6 +1182,8 @@ class TagPage(IndexPageType):
     )
 
     video = models.URLField(blank=True, null=True)
+
+    body = fields.StreamField(TAG_PAGE_BODY_BLOCKS, blank=True)
 
     focus_area = models.ForeignKey(
         'taxonomy.FocusAreaTag',
@@ -1230,6 +1233,8 @@ class TagPage(IndexPageType):
             FieldPanel('section'),
             FieldPanel('principle'),
         ], heading=_('Tag')),
+
+        StreamFieldPanel('body'),
         FieldPanel('video'),
         FieldPanel('intro')
     ]
@@ -1285,6 +1290,7 @@ class TagPage(IndexPageType):
         try:
             embed = embeds.get_embed(self.video, max_width=100, max_height=100)
             html = str(embed.html)
+
             console.info(html)
             html.replace('width="200"', '')
             html.replace('height="150"', '')
