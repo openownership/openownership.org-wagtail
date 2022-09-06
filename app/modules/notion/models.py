@@ -376,7 +376,7 @@ class DisclosureRegime(NotionModel):
 
     @cached_property
     def display_threshold(self):
-        if self.threshold is None:
+        if not self.threshold or self.threshold == "None":
             return ""
         try:
             if self.threshold:
