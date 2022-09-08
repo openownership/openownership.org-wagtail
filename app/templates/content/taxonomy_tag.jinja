@@ -10,12 +10,13 @@
                 {{render_stream(page.body, page)}}
             </div>
         {% endif %}
-
-        <section class="embed">
-            <div class="embed__wrapper--responsive">
-                {{ video_embed|richtext }}
-            </div>
-        </section>
+        {% if video_embed %}
+            <section class="embed">
+                <div class="embed__wrapper--responsive">
+                    {{ video_embed|richtext }}
+                </div>
+            </section>
+        {% endif %}
         <div class="intro">
             {{ page.intro|richtext }}
         </div>
