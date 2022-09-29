@@ -1,4 +1,4 @@
-FROM ghcr.io/hactar-is/ubuntu-20-multi:latest AS builder
+FROM ghcr.io/hactar-is/ubuntu-20:latest AS builder
 
 # Create our working directory
 RUN mkdir -p /usr/srv/app/
@@ -45,18 +45,18 @@ ENV PYTHONUNBUFFERED 1
 
 # POETRY (working and installed in django-base)
 WORKDIR /usr/srv/app/
-COPY ./config.toml /usr/srv/app/config.toml
 COPY ./pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./poetry.lock /usr/srv/app/poetry.lock
-RUN export PATH="$HOME/.poetry/bin:$PATH" && \
-    poetry self update && \
-    poetry install
+RUN poetry self update 1.2.0 && \
+    mkdir -p /root/.cache/pypoetry/virtualenvs/ && \
+    cd /root/.cache/pypoetry/virtualenvs/ && \
+    python -m venv .venv && \
+    . /root/.cache/pypoetry/virtualenvs/.venv/bin/activate && \
+    cd /usr/srv/app/ && poetry install
 
-# Install envkey-fetch at /usr/local/lib/python3.8/dist-packages/envkey/ext/envkey-fetch_1.2.9_linux_arm64/envkey-fetch
-RUN curl -s https://raw.githubusercontent.com/envkey/envkey-fetch/master/install.sh | bash  && \
-    mkdir -p /usr/local/lib/python3.8/dist-packages/envkey/ext/envkey-fetch_1.2.9_linux_arm64/ && \
-    cp /usr/local/bin/envkey-fetch /usr/local/lib/python3.8/dist-packages/envkey/ext/envkey-fetch_1.2.9_linux_arm64/envkey-fetch
 
+RUN mkdir -p /root/.cache/pypoetry/virtualenvs/.venv/lib/python3.8/site-packages/envkey/ext/envkey-fetch_1.2.9_linux_arm64 && \
+    cp /usr/local/bin/envkey-fetch /root/.cache/pypoetry/virtualenvs/.venv/lib/python3.8/site-packages/envkey/ext/envkey-fetch_1.2.9_linux_arm64/envkey-fetch
 
 RUN whoami
 RUN ls -la
