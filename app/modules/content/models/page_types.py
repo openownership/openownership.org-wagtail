@@ -12,18 +12,17 @@ from consoler import console
 from django.db import models
 from django.apps import apps
 from django.conf import settings
-from wagtail.core import fields
+from wagtail import fields
 from jinja2.filters import do_truncate
 from wagtail.search import index
 from django.utils.html import strip_tags
 from wagtailcache.cache import WagtailCacheMixin
-from wagtail.core.models import Page, Locale
+from wagtail.models import Page, Locale
 from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from wagtail.utils.decorators import cached_classmethod
-from wagtail.admin.edit_handlers import FieldPanel, ObjectList, TabbedInterface, StreamFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import ObjectList, TabbedInterface, FieldPanel
 
 # Project
 from modules.core.utils import get_site_context
@@ -63,7 +62,7 @@ class BasePage(WagtailCacheMixin, Page):
     content_panels = Page.content_panels
 
     promote_panels = [
-        ImageChooserPanel('thumbnail'),
+        FieldPanel('thumbnail'),
         FieldPanel('blurb'),
     ] + Page.promote_panels
 
@@ -130,14 +129,12 @@ class BasePage(WagtailCacheMixin, Page):
 
     @cached_classmethod
     def get_edit_handler(cls):  # NOQA
-
         tabs = cls.get_admin_tabs()
-
         edit_handler = TabbedInterface([
             ObjectList(tab[0], heading=tab[1]) for tab in tabs
         ])
-
-        return edit_handler.bind_to(model=cls)
+        res = edit_handler.bind_to_model(model=cls)
+        return res
 
     def get_meta_title(self):
         if self.seo_title:
@@ -259,10 +256,10 @@ class LandingPageType(BasePage):
     class Meta:
         abstract = True
 
-    body = fields.StreamField(LANDING_PAGE_BLOCKS, blank=True)
+    body = fields.StreamField(LANDING_PAGE_BLOCKS, blank=True, use_json_field=True)
 
     model_content_panels = [
-        StreamFieldPanel('body')
+        FieldPanel('body')
     ]
 
     content_panels = BasePage.content_panels + model_content_panels
@@ -291,12 +288,14 @@ class ContentPageType(BasePage):
 
     template = 'content/article_page.jinja'
 
-    body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True)
-    additional_content = fields.StreamField(ADDITIONAL_CONTENT_BLOCKS, blank=True)
+    body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True, use_json_field=True)
+    additional_content = fields.StreamField(
+        ADDITIONAL_CONTENT_BLOCKS, blank=True, use_json_field=True
+    )
 
     model_content_panels = [
-        StreamFieldPanel('body'),
-        StreamFieldPanel('additional_content'),
+        FieldPanel('body'),
+        FieldPanel('additional_content'),
     ]
 
     content_panels = BasePage.content_panels + model_content_panels
@@ -339,7 +338,7 @@ class IndexPageType(BasePage):
 
     content_panels = BasePage.content_panels + [
         FieldPanel('intro')
-        # StreamFieldPanel('child_page_stream')
+        # FieldPanel('child_page_stream')
     ]
 
     def get_objects_model(self):

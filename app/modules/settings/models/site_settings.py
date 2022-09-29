@@ -3,7 +3,7 @@ from cacheops import invalidate_all
 from django.core.cache import cache
 from wagtailcache.cache import clear_cache
 from django.utils.translation import gettext_lazy as _
-from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
+from wagtail.admin.panels import ObjectList, TabbedInterface
 from wagtail.contrib.settings.models import register_setting
 
 # Module

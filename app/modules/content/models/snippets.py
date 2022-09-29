@@ -8,8 +8,7 @@ from modelcluster.models import ClusterableModel
 from wagtail.snippets.models import register_snippet
 from django.utils.translation import gettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
 
 
 @register_snippet
@@ -145,7 +144,7 @@ class PressLink(index.Indexed, ClusterableModel):
     panels = [
         # PageChooserPanel('section_page', 'content.SectionPage'),
         FieldPanel('url'),
-        ImageChooserPanel('thumbnail'),
+        FieldPanel('thumbnail'),
         FieldPanel('title'),
         FieldPanel('blurb'),
         FieldPanel('sections', _('Sections')),

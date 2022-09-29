@@ -2,11 +2,9 @@
 from django.db import models
 from django.conf import settings
 from modelcluster.fields import ParentalKey
-from wagtail.core.models import Orderable
+from wagtail.models import Orderable
 from django.utils.translation import gettext_lazy as _
-from wagtail.admin.edit_handlers import InlinePanel, PageChooserPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.snippets.edit_handlers import SnippetChooserPanel
+from wagtail.admin.panels import InlinePanel, PageChooserPanel, FieldPanel
 
 
 class NestedInlinePanel(InlinePanel):
@@ -87,7 +85,7 @@ class ImageLink(Orderable):
     objects = InlineImageManager()
 
     panels = [
-        ImageChooserPanel('image')
+        FieldPanel('image')
     ]
 
 
@@ -116,7 +114,7 @@ class BlogArticleAuthorRelationship(Orderable, models.Model):
         verbose_name_plural = _('Post authors')
 
     panels = [
-        SnippetChooserPanel('author'),
+        FieldPanel('author'),
     ]
 
     def __str__(self):
@@ -143,7 +141,7 @@ class NewsArticleAuthorRelationship(Orderable, models.Model):
         verbose_name_plural = _('Article authors')
 
     panels = [
-        SnippetChooserPanel('author'),
+        FieldPanel('author'),
     ]
 
     def __str__(self):
@@ -170,7 +168,7 @@ class PublicationAuthorRelationship(Orderable, models.Model):
         verbose_name_plural = _('Publication authors')
 
     panels = [
-        SnippetChooserPanel('author'),
+        FieldPanel('author'),
     ]
 
     def __str__(self):
@@ -195,7 +193,7 @@ class PressLinkAuthorRelationship(Orderable, models.Model):
         verbose_name_plural = _('Press link authors')
 
     panels = [
-        SnippetChooserPanel('author'),
+        FieldPanel('author'),
     ]
 
     def __str__(self):

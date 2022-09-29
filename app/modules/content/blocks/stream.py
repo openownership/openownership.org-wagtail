@@ -11,9 +11,9 @@ from collections import Counter
 from django import forms
 from consoler import console
 from django.conf import settings
-from wagtail.core import blocks
+from wagtail import blocks
 from wagtail.embeds import embeds
-from wagtail.core.models import Page, Locale
+from wagtail.models import Page, Locale
 from wagtail.embeds.blocks import EmbedBlock as WagtailEmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
@@ -768,7 +768,7 @@ class LatestFocusAreaBlock(blocks.StructBlock):
     )
 
     def get_context(self, value, parent_context={}):
-        from wagtail.core.models import Page
+        from wagtail.models import Page
         context = super().get_context(value, parent_context=parent_context)
 
         focus_area = value.get('focus_area', None)
@@ -820,7 +820,7 @@ class LatestSectorBlock(blocks.StructBlock):
     )
 
     def get_context(self, value, parent_context={}):
-        from wagtail.core.models import Page
+        from wagtail.models import Page
         context = super().get_context(value, parent_context=parent_context)
 
         sector = value.get('sector', None)
@@ -919,7 +919,7 @@ class LatestSectionTagBlock(blocks.StructBlock):
     )
 
     def get_context(self, value, parent_context={}):
-        from wagtail.core.models import Page
+        from wagtail.models import Page
         context = super().get_context(value, parent_context=parent_context)
 
         section = value.get('section', None)
@@ -971,7 +971,7 @@ class LatestPrincipleTagBlock(blocks.StructBlock):
     )
 
     def get_context(self, value, parent_context={}):
-        from wagtail.core.models import Page
+        from wagtail.models import Page
         context = super().get_context(value, parent_context=parent_context)
 
         principle = value.get('principle', None)

@@ -2,7 +2,7 @@
 from django.db import models
 from taggit.models import ItemBase
 from modelcluster.fields import ParentalKey
-from wagtail.core.models import Locale
+from wagtail.models import Locale
 from wagtailmodelchooser import register_model_chooser
 from django.utils.translation import gettext_lazy as _
 

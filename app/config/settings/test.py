@@ -5,6 +5,7 @@ from .base import *  # NOQA
 DEBUG = True
 
 BASE_URL = 'http://openownership.org.test:5000'
+WAGTAILADMIN_BASE_URL = 'http://openownership.org.test:5000'
 
 COLLECTFAST_ENABLED = False
 
@@ -33,7 +34,7 @@ STATICFILES_STORAGE = (
 
 WAGTAILSEARCH_BACKENDS = {
     'default': {
-        'BACKEND': 'wagtail.search.backends.db',
+        'BACKEND': 'wagtail.search.backends.database',
     },
 }
 

@@ -1,6 +1,6 @@
 # 3rd party
 from consoler import console
-from wagtail.core.models import Locale
+from wagtail.models import Locale
 from wagtailmodelchooser import register_model_chooser
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _

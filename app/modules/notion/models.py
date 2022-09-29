@@ -3,19 +3,18 @@ from consoler import console
 from django.db import models
 from django.conf import settings
 from django.forms import CheckboxSelectMultiple
-from wagtail.core import fields
+from wagtail import fields
 from taggit.models import ItemBase
 from django.shortcuts import reverse
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.models import ClusterableModel
-from wagtail.core.models import Page, Locale
+from wagtail.models import Page, Locale
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from django_extensions.db.fields import AutoSlugField
-from wagtail.admin.edit_handlers import (
+from wagtail.admin.panels import (
     FieldPanel, ObjectList, TabbedInterface, PageChooserPanel
 )
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 # Project
 from config.template import commitment_summary
@@ -438,7 +437,7 @@ class CountryTag(NotionModel, BaseTag):
         verbose_name = _("Country")
         verbose_name_plural = _("Countries")
 
-    body = fields.StreamField(TAG_PAGE_BODY_BLOCKS, blank=True)
+    body = fields.StreamField(TAG_PAGE_BODY_BLOCKS, blank=True, use_json_field=True)
 
     blurb = fields.RichTextField(
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
@@ -491,11 +490,11 @@ class CountryTag(NotionModel, BaseTag):
     main_panels = [
         FieldPanel('name'),
         FieldPanel('blurb'),
-        ImageChooserPanel('map_image'),
+        FieldPanel('map_image'),
         FieldPanel('regions', widget=CheckboxSelectMultiple),
         PageChooserPanel('consultant'),
         # FieldPanel('blurb'),
-        # StreamFieldPanel('body')
+        # FieldPanel('body')
     ]
 
     notion_panels = [

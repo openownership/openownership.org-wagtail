@@ -3,9 +3,9 @@
 from django.db import migrations, models
 import django.db.models.deletion
 import taggit.managers
-import wagtail.core.blocks
-import wagtail.core.fields
-import wagtail.core.models
+import wagtail.blocks
+import wagtail.fields
+import wagtail.models
 import wagtail.documents.blocks
 import wagtail.images.models
 import wagtail.search.index
@@ -54,8 +54,8 @@ class Migration(migrations.Migration):
             name='NavigationSettings',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('primary_nav', wagtail.core.fields.StreamField([('nav_item', wagtail.core.blocks.StructBlock([('link_type', wagtail.core.blocks.ChoiceBlock(choices=[('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.core.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.core.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.core.blocks.CharBlock(required=True))])), ('sub_nav', wagtail.core.blocks.StructBlock([('text', wagtail.core.blocks.CharBlock(required=True)), ('objects', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('link_type', wagtail.core.blocks.ChoiceBlock(choices=[('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.core.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.core.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.core.blocks.CharBlock(required=True))])))]))], null=True)),
-                ('footer_nav', wagtail.core.fields.StreamField([('nav_item', wagtail.core.blocks.StructBlock([('link_type', wagtail.core.blocks.ChoiceBlock(choices=[('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.core.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.core.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.core.blocks.CharBlock(required=True))]))], null=True)),
+                ('primary_nav', wagtail.fields.StreamField([('nav_item', wagtail.blocks.StructBlock([('link_type', wagtail.blocks.ChoiceBlock(choices=[('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.blocks.CharBlock(required=True))])), ('sub_nav', wagtail.blocks.StructBlock([('text', wagtail.blocks.CharBlock(required=True)), ('objects', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('link_type', wagtail.blocks.ChoiceBlock(choices=[('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.blocks.CharBlock(required=True))])))]))], null=True)),
+                ('footer_nav', wagtail.fields.StreamField([('nav_item', wagtail.blocks.StructBlock([('link_type', wagtail.blocks.ChoiceBlock(choices=[('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.blocks.CharBlock(required=True))]))], null=True)),
             ],
             options={
                 'abstract': False,
@@ -94,7 +94,7 @@ class Migration(migrations.Migration):
                 ('file_size', models.PositiveIntegerField(editable=False, null=True)),
                 ('file_hash', models.CharField(blank=True, editable=False, max_length=40)),
                 ('alt_text', models.CharField(blank=True, max_length=255, null=True, verbose_name='Alt text')),
-                ('collection', models.ForeignKey(default=wagtail.core.models.get_root_collection_id, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='wagtailcore.collection', verbose_name='collection')),
+                ('collection', models.ForeignKey(default=wagtail.models.get_root_collection_id, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='wagtailcore.collection', verbose_name='collection')),
                 ('tags', taggit.managers.TaggableManager(blank=True, help_text=None, through='taggit.TaggedItem', to='taggit.Tag', verbose_name='tags')),
             ],
             options={
@@ -122,7 +122,7 @@ class Migration(migrations.Migration):
             name='SocialMediaSettings',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('accounts', wagtail.core.fields.StreamField([('social_links', wagtail.core.blocks.StructBlock([('service', wagtail.core.blocks.ChoiceBlock(choices=[('facebook', 'Facebook'), ('twitter', 'Twitter'), ('linkedin', 'LinkedIn')])), ('url', wagtail.core.blocks.URLBlock(required=True))], required=True))], null=True)),
+                ('accounts', wagtail.fields.StreamField([('social_links', wagtail.blocks.StructBlock([('service', wagtail.blocks.ChoiceBlock(choices=[('facebook', 'Facebook'), ('twitter', 'Twitter'), ('linkedin', 'LinkedIn')])), ('url', wagtail.blocks.URLBlock(required=True))], required=True))], null=True)),
                 ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.site')),
             ],
             options={

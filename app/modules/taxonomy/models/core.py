@@ -1,11 +1,11 @@
 # 3rd party
 from django.db import models
 from taggit.models import TagBase
-from wagtail.core.models import Page, Locale
+from wagtail.models import Page, Locale
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from django_extensions.db.fields import AutoSlugField
-from wagtail.admin.edit_handlers import (
+from wagtail.admin.panels import (
     FieldPanel, ObjectList, MultiFieldPanel, TabbedInterface
 )
 
@@ -41,7 +41,7 @@ class Category(models.Model):
         MultiFieldPanel([
             FieldPanel('name'),
             FieldPanel('blurb'),
-            # StreamFieldPanel('body')
+            # FieldPanel('body')
         ], heading=_("Public fields")),
     ]
 
@@ -125,7 +125,7 @@ class BaseTag(TagBase):
         MultiFieldPanel([
             FieldPanel('name'),
             FieldPanel('blurb'),
-            # StreamFieldPanel('body')
+            # FieldPanel('body')
         ], heading=_("Public fields")),
     ]
 

@@ -11,7 +11,8 @@ except Exception:
 DEBUG = False
 
 DOMAIN_NAME = 'openownership.org'
-BASE_URL = f'https://prod.{DOMAIN_NAME}'
+BASE_URL = f'https://{DOMAIN_NAME}'
+WAGTAILADMIN_BASE_URL = f'https://{DOMAIN_NAME}'
 
 AWS_S3_CUSTOM_DOMAIN = 'openownershiporgprod-1b54.kxcdn.com'
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET')

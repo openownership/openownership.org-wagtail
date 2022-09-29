@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.fields
+import wagtail.fields
 import wagtailcache.cache
 
 
@@ -22,8 +22,8 @@ class Migration(migrations.Migration):
                 ('blurb', models.TextField(blank=True, null=True)),
                 ('display_date', models.DateField(blank=True, help_text='If blank, this will be set to the date the page was first published', null=True)),
                 ('headline', models.CharField(help_text='Displayed at the top of the page', max_length=255, null=True)),
-                ('additional_content', wagtail.core.fields.StreamField([], blank=True, help_text='The blocks you create here will be displayed below the listing')),
-                ('child_page_stream', wagtail.core.fields.StreamField([], blank=True, help_text='The blocks you create here will be displayed below all child pages')),
+                ('additional_content', wagtail.fields.StreamField([], blank=True, help_text='The blocks you create here will be displayed below the listing')),
+                ('child_page_stream', wagtail.fields.StreamField([], blank=True, help_text='The blocks you create here will be displayed below all child pages')),
                 ('thumbnail', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='core.siteimage')),
             ],
             options={
@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('blurb', models.TextField(blank=True, null=True)),
                 ('display_date', models.DateField(blank=True, help_text='If blank, this will be set to the date the page was first published', null=True)),
-                ('body', wagtail.core.fields.StreamField([], blank=True)),
+                ('body', wagtail.fields.StreamField([], blank=True)),
                 ('application_url', models.URLField(blank=True, help_text='URL of the page where people can apply for the job', max_length=255)),
                 ('application_deadline', models.DateField(blank=True)),
                 ('thumbnail', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='core.siteimage')),

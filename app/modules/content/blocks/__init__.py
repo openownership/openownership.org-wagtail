@@ -1,6 +1,6 @@
 # 3rd party
 from django.conf import settings
-from wagtail.core import blocks
+from wagtail import blocks
 from wagtail.contrib.table_block.blocks import TableBlock
 
 # Module

@@ -12,14 +12,14 @@ from collections import OrderedDict
 # 3rd party
 from django.db import models
 from django.conf import settings
-from wagtail.core import fields
+from wagtail import fields
 from wagtail.search import index
 from modelcluster.fields import ParentalManyToManyField
 from modelcluster.models import ClusterableModel
 from django.utils.translation import gettext_lazy as _
 from django_extensions.db.fields import AutoSlugField
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
+from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
 
 # Project
 from modules.taxonomy.models import PublicationType

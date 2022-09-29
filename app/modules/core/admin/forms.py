@@ -2,7 +2,7 @@
 from django import forms
 from wagtail.admin.widgets import AdminDateInput
 from wagtail.documents.forms import BaseDocumentForm
-from wagtail.images.edit_handlers import AdminImageChooser
+from wagtail.images.widgets import AdminImageChooser
 
 
 class DocumentDownloadFilterForm(forms.Form):

@@ -2,8 +2,8 @@
 from django import forms
 from cacheops import cached  # NOQA
 from django.apps import apps
-from wagtail.core import blocks
-from wagtail.core.models import Page
+from wagtail import blocks
+from wagtail.models import Page
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 

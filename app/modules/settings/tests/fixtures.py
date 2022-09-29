@@ -4,7 +4,7 @@ import random
 from modules.content.models import HomePage
 from modules.core.models import SiteImage
 from modules.settings.models import NavigationSettings, SiteSettings
-from wagtail.core.models import Page, Site
+from wagtail.models import Page, Site
 from wagtail.images.tests.utils import get_test_image_file
 
 

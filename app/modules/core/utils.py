@@ -1,5 +1,5 @@
 from django.conf import settings
-from wagtail.core.models import Site
+from wagtail.models import Site
 
 
 def get_site_context(site=None) -> dict:

@@ -3,12 +3,9 @@ from cacheops import cached
 from django.db import models
 from django.conf import settings
 from django.core.cache import cache
-from wagtail.core.fields import StreamField
+from wagtail.fields import StreamField
 from django.utils.translation import gettext_lazy as _
-from wagtail.admin.edit_handlers import (
-    FieldPanel, MultiFieldPanel, StreamFieldPanel
-)
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.contrib.settings.models import BaseSetting
 
 # Project
@@ -29,11 +26,12 @@ class SearchSettings(BaseSetting):
     body = StreamField(
         SEARCH_BLOCKS,
         blank=True,
-        null=True
+        null=True,
+        use_json_field=True
     )
 
     search_panels = [
-        StreamFieldPanel('body')
+        FieldPanel('body')
     ]
 
     @classmethod
@@ -114,7 +112,7 @@ class MetaTagSettings(BaseSetting):
     navigation_panels = [
         MultiFieldPanel([
             FieldPanel('meta_description'),
-            ImageChooserPanel('meta_image')
+            FieldPanel('meta_image')
         ], heading=_("Meta Tag settings"))
     ]
 
@@ -127,7 +125,8 @@ class SocialMediaSettings(BaseSetting):
     social_accounts = StreamField(
         social_media_blocks,
         blank=True,
-        null=True
+        null=True,
+        use_json_field=True
     )
 
     @classmethod
@@ -157,7 +156,7 @@ class SocialMediaSettings(BaseSetting):
         return context
 
     navigation_panels = [
-        StreamFieldPanel('social_accounts')
+        FieldPanel('social_accounts')
     ]
 
 
@@ -174,7 +173,8 @@ class NavBar(BaseSetting):
     navbar_blocks = StreamField(
         navbar_blocks,
         blank=True,
-        null=True
+        null=True,
+        use_json_field=True
     )
 
     def build_mega_menu(self, block, menu):
@@ -226,7 +226,7 @@ class NavBar(BaseSetting):
 
     navigation_panels = [
         MultiFieldPanel([
-            StreamFieldPanel('navbar_blocks'),
+            FieldPanel('navbar_blocks'),
         ], heading=_("Navbar")),
     ]
 
@@ -239,13 +239,15 @@ class Footer(BaseSetting):
     footer_nav = StreamField(
         footer_nav_blocks,
         blank=True,
-        null=True
+        null=True,
+        use_json_field=True
     )
 
     footer_nav2 = StreamField(
         footer_nav_blocks,
         blank=True,
-        null=True
+        null=True,
+        use_json_field=True
     )
 
     @classmethod
@@ -256,7 +258,7 @@ class Footer(BaseSetting):
 
     navigation_panels = [
         MultiFieldPanel([
-            StreamFieldPanel('footer_nav', _('Legal')),
-            StreamFieldPanel('footer_nav2', _('Contact')),
+            FieldPanel('footer_nav', _('Legal')),
+            FieldPanel('footer_nav2', _('Contact')),
         ], heading=_("Footer")),
     ]

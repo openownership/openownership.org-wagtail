@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from .mixins import Footer, NavBar
 
-from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
+from wagtail.admin.panels import ObjectList, TabbedInterface
 from wagtail.contrib.settings.models import register_setting
 from wagtailcache.cache import clear_cache
 

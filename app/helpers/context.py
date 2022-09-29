@@ -1,7 +1,7 @@
 from consoler import console
 from cacheops import cached
-from wagtail.core.models import Site
-from wagtail.core.models import Locale
+from wagtail.models import Site
+from wagtail.models import Locale
 from modules.settings.models import NavigationSettings, SiteSettings
 
 

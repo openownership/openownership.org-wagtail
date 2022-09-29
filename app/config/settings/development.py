@@ -6,6 +6,7 @@ from .base import *  # NOQA
 DEBUG = True
 
 BASE_URL = 'http://0.0.0.0:5000'
+WAGTAILADMIN_BASE_URL = 'http://0.0.0.0:5000'
 
 COLLECTFAST_ENABLED = False
 

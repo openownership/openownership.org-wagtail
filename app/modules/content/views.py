@@ -4,7 +4,7 @@ from typing import Optional
 # 3rd party
 from consoler import console
 from django.http import Http404
-from wagtail.core.models import Page, Site, Locale
+from wagtail.models import Page, Site, Locale
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator
 from wagtail.search.models import Query

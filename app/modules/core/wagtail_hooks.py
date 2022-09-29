@@ -2,10 +2,10 @@
 import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from cacheops import invalidate_all
 from django.conf import settings
-from wagtail.core import hooks
+from wagtail import hooks
 from django.utils.html import format_html_join
 from wagtailcache.cache import clear_cache
-from wagtail.core.models import PageViewRestriction
+from wagtail.models import PageViewRestriction
 from wagtail.admin.rich_text.converters.html_to_contentstate import InlineStyleElementHandler
 
 # Project

@@ -5,7 +5,7 @@ import os
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render
-from wagtail.core.models import Page, Locale
+from wagtail.models import Page, Locale
 from django.utils.translation import gettext_lazy as _
 
 # Project
@@ -15,7 +15,7 @@ from modules.content.models import HomePage
 
 
 def error_context():
-    from wagtail.core.models import Site
+    from wagtail.models import Site
     from modules.settings.models import NavigationSettings, SiteSettings
 
     context = {}

@@ -96,7 +96,7 @@ WAGTAIL_APPS = [
     'wagtail.search',
     'wagtail.search.backends.database',
     'wagtail.admin',
-    'wagtail.core',
+    'wagtail',
     "wagtail_localize",
     "wagtail.locales",
     'wagtail.contrib.forms',
@@ -157,6 +157,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
 BASE_URL = 'https://openownership.org'
+WAGTAILADMIN_BASE_URL = 'https://openownership.org'
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 INTERNAL_IPS = ['127.0.0.1']
 APPEND_SLASH = True
@@ -274,7 +275,7 @@ WAGTAILSEARCH_BACKENDS = {
 ####################################################################################################
 
 JINJA2_EXTENSIONS = [
-    'wagtail.core.jinja2tags.core',
+    'wagtail.jinja2tags.core',
     'wagtail.admin.jinja2tags.userbar',
     'wagtail.images.jinja2tags.images',
     'jinja2.ext.i18n',

@@ -10,7 +10,7 @@ from jinja2.ext import Extension
 from django.conf import settings
 from django.utils import translation
 from django.shortcuts import reverse
-from jinja2.utils import Markup
+from markupsafe import Markup
 from django.utils.safestring import mark_safe
 from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
@@ -71,7 +71,7 @@ def nl2br(value: str) -> Markup:
 
 
 def richtext_custom(value: str, wrapper=False) -> SafeString:
-    from wagtail.core.rich_text import RichText, expand_db_html
+    from wagtail.rich_text import RichText, expand_db_html
 
     if isinstance(value, RichText):
         # passing a RichText value through the |richtext filter should have no effect
@@ -162,7 +162,7 @@ def yesno(value: str) -> str:
 
 def rich_text(value: str, class_name=None) -> SafeString:
     from django.utils.safestring import mark_safe
-    from wagtail.core.rich_text import RichText, expand_db_html
+    from wagtail.rich_text import RichText, expand_db_html
 
     if isinstance(value, RichText):
         # passing a RichText value through the |richtext filter should have no effect

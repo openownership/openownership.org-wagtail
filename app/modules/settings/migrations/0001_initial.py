@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 import wagtail.documents.blocks
 
 
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('analytics_property_id', models.CharField(blank=True, help_text='Analytics property ID (starting UA-...)', max_length=32, null=True)),
                 ('tag_manager_property_id', models.CharField(blank=True, help_text='Tag Manager property ID (starting GTM...)', max_length=32, null=True)),
                 ('meta_description', models.TextField(blank=True, help_text='The short description shown in search results (160 characters max)', null=True)),
-                ('social_accounts', wagtail.core.fields.StreamField([('social_links', wagtail.core.blocks.StructBlock([('service', wagtail.core.blocks.ChoiceBlock(choices=[('facebook', 'Facebook'), ('twitter', 'Twitter'), ('linkedin', 'LinkedIn')])), ('url', wagtail.core.blocks.URLBlock(required=True))]))], blank=True, null=True)),
+                ('social_accounts', wagtail.fields.StreamField([('social_links', wagtail.blocks.StructBlock([('service', wagtail.blocks.ChoiceBlock(choices=[('facebook', 'Facebook'), ('twitter', 'Twitter'), ('linkedin', 'LinkedIn')])), ('url', wagtail.blocks.URLBlock(required=True))]))], blank=True, null=True)),
                 ('body', models.CharField(blank=True, max_length=255, null=True)),
                 ('link_label', models.CharField(blank=True, default='Find out more', max_length=255, null=True)),
                 ('live', models.BooleanField(blank=True, null=True)),
@@ -42,8 +42,8 @@ class Migration(migrations.Migration):
             name='NavigationSettings',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('navbar_blocks', wagtail.core.fields.StreamField([('nav_item', wagtail.core.blocks.StructBlock([('link_type', wagtail.core.blocks.ChoiceBlock(choices=[('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.core.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.core.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.core.blocks.CharBlock(required=True))])), ('mega_menu', wagtail.core.blocks.StructBlock([('text', wagtail.core.blocks.CharBlock(required=False)), ('objects', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('section_title', wagtail.core.blocks.CharBlock(required=False)), ('links', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('link_type', wagtail.core.blocks.ChoiceBlock(choices=[('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.core.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.core.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.core.blocks.CharBlock(required=True))])))])))]))], blank=True, null=True)),
-                ('footer_nav', wagtail.core.fields.StreamField([('nav_item', wagtail.core.blocks.StructBlock([('link_type', wagtail.core.blocks.ChoiceBlock(choices=[('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.core.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.core.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.core.blocks.CharBlock(required=True))]))], blank=True, null=True)),
+                ('navbar_blocks', wagtail.fields.StreamField([('nav_item', wagtail.blocks.StructBlock([('link_type', wagtail.blocks.ChoiceBlock(choices=[('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.blocks.CharBlock(required=True))])), ('mega_menu', wagtail.blocks.StructBlock([('text', wagtail.blocks.CharBlock(required=False)), ('objects', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('section_title', wagtail.blocks.CharBlock(required=False)), ('links', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('link_type', wagtail.blocks.ChoiceBlock(choices=[('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.blocks.CharBlock(required=True))])))])))]))], blank=True, null=True)),
+                ('footer_nav', wagtail.fields.StreamField([('nav_item', wagtail.blocks.StructBlock([('link_type', wagtail.blocks.ChoiceBlock(choices=[('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.blocks.CharBlock(required=True))]))], blank=True, null=True)),
                 ('site', models.OneToOneField(editable=False, on_delete=django.db.models.deletion.CASCADE, to='wagtailcore.site')),
             ],
             options={

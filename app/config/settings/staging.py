@@ -12,6 +12,7 @@ except Exception:
 DEBUG = False
 
 BASE_URL = 'https://openownership.hactar.work'
+WAGTAILADMIN_BASE_URL = 'https://openownership.hactar.work'
 DOMAIN_NAME = f'staging.{BASE_URL}'
 
 AWS_S3_CUSTOM_DOMAIN = 'oownershipstage-1b54.kxcdn.com'

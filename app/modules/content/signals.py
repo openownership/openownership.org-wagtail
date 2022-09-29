@@ -1,5 +1,5 @@
 import arrow
-from wagtail.core.signals import page_published
+from wagtail.signals import page_published
 
 
 def publish_page(sender, **kwargs):

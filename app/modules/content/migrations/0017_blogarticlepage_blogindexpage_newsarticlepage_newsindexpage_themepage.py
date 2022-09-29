@@ -4,8 +4,8 @@ from django.db import migrations, models
 import django.db.models.deletion
 import modules.content.blocks.stream
 import wagtail.contrib.table_block.blocks
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 import wagtail.documents.blocks
 import wagtail.images.blocks
 import wagtailcache.cache
@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('blurb', models.TextField(blank=True, null=True)),
                 ('display_date', models.DateField(blank=True, help_text='If blank, this will be set to the date the page was first published', null=True)),
-                ('intro', wagtail.core.fields.RichTextField(blank=True, null=True)),
+                ('intro', wagtail.fields.RichTextField(blank=True, null=True)),
                 ('thumbnail', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='core.siteimage')),
             ],
             options={
@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('blurb', models.TextField(blank=True, null=True)),
                 ('display_date', models.DateField(blank=True, help_text='If blank, this will be set to the date the page was first published', null=True)),
-                ('intro', wagtail.core.fields.RichTextField(blank=True, null=True)),
+                ('intro', wagtail.fields.RichTextField(blank=True, null=True)),
                 ('thumbnail', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='core.siteimage')),
             ],
             options={
@@ -54,7 +54,7 @@ class Migration(migrations.Migration):
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('blurb', models.TextField(blank=True, null=True)),
                 ('display_date', models.DateField(blank=True, help_text='If blank, this will be set to the date the page was first published', null=True)),
-                ('body', wagtail.core.fields.StreamField([('rich_text', wagtail.core.blocks.RichTextBlock(features=['h2', 'h3', 'h4', 'h5', 'h6', 'bold', 'italic', 'small', 'ol', 'ul', 'link', 'document-link'])), ('embed', modules.content.blocks.stream.EmbedBlock()), ('table', wagtail.contrib.table_block.blocks.TableBlock()), ('pull_quote', wagtail.core.blocks.StructBlock([('quote', wagtail.core.blocks.TextBlock(required=True))])), ('block_quote', wagtail.core.blocks.StructBlock([('quote', wagtail.core.blocks.TextBlock(required=True))])), ('image', wagtail.core.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=True))])), ('cta_block_form', wagtail.core.blocks.StructBlock([('link_type', wagtail.core.blocks.ChoiceBlock(choices=[('none', 'None'), ('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.core.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.core.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.core.blocks.CharBlock(help_text="If blank will display 'Find out more'", required=False))]))], blank=True)),
+                ('body', wagtail.fields.StreamField([('rich_text', wagtail.blocks.RichTextBlock(features=['h2', 'h3', 'h4', 'h5', 'h6', 'bold', 'italic', 'small', 'ol', 'ul', 'link', 'document-link'])), ('embed', modules.content.blocks.stream.EmbedBlock()), ('table', wagtail.contrib.table_block.blocks.TableBlock()), ('pull_quote', wagtail.blocks.StructBlock([('quote', wagtail.blocks.TextBlock(required=True))])), ('block_quote', wagtail.blocks.StructBlock([('quote', wagtail.blocks.TextBlock(required=True))])), ('image', wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=True))])), ('cta_block_form', wagtail.blocks.StructBlock([('link_type', wagtail.blocks.ChoiceBlock(choices=[('none', 'None'), ('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.blocks.CharBlock(help_text="If blank will display 'Find out more'", required=False))]))], blank=True)),
                 ('thumbnail', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='core.siteimage')),
             ],
             options={
@@ -68,7 +68,7 @@ class Migration(migrations.Migration):
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('blurb', models.TextField(blank=True, null=True)),
                 ('display_date', models.DateField(blank=True, help_text='If blank, this will be set to the date the page was first published', null=True)),
-                ('intro', wagtail.core.fields.RichTextField(blank=True, null=True)),
+                ('intro', wagtail.fields.RichTextField(blank=True, null=True)),
                 ('thumbnail', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='core.siteimage')),
             ],
             options={
@@ -82,7 +82,7 @@ class Migration(migrations.Migration):
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('blurb', models.TextField(blank=True, null=True)),
                 ('display_date', models.DateField(blank=True, help_text='If blank, this will be set to the date the page was first published', null=True)),
-                ('body', wagtail.core.fields.StreamField([('rich_text', wagtail.core.blocks.RichTextBlock(features=['h2', 'h3', 'h4', 'h5', 'h6', 'bold', 'italic', 'small', 'ol', 'ul', 'link', 'document-link'])), ('embed', modules.content.blocks.stream.EmbedBlock()), ('table', wagtail.contrib.table_block.blocks.TableBlock()), ('pull_quote', wagtail.core.blocks.StructBlock([('quote', wagtail.core.blocks.TextBlock(required=True))])), ('block_quote', wagtail.core.blocks.StructBlock([('quote', wagtail.core.blocks.TextBlock(required=True))])), ('image', wagtail.core.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=True))])), ('cta_block_form', wagtail.core.blocks.StructBlock([('link_type', wagtail.core.blocks.ChoiceBlock(choices=[('none', 'None'), ('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.core.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.core.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.core.blocks.CharBlock(help_text="If blank will display 'Find out more'", required=False))]))], blank=True)),
+                ('body', wagtail.fields.StreamField([('rich_text', wagtail.blocks.RichTextBlock(features=['h2', 'h3', 'h4', 'h5', 'h6', 'bold', 'italic', 'small', 'ol', 'ul', 'link', 'document-link'])), ('embed', modules.content.blocks.stream.EmbedBlock()), ('table', wagtail.contrib.table_block.blocks.TableBlock()), ('pull_quote', wagtail.blocks.StructBlock([('quote', wagtail.blocks.TextBlock(required=True))])), ('block_quote', wagtail.blocks.StructBlock([('quote', wagtail.blocks.TextBlock(required=True))])), ('image', wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=True))])), ('cta_block_form', wagtail.blocks.StructBlock([('link_type', wagtail.blocks.ChoiceBlock(choices=[('none', 'None'), ('page', 'Page'), ('document', 'Document'), ('url', 'URL')])), ('link_page', wagtail.blocks.PageChooserBlock(label='Linked Page', required=False)), ('link_document', wagtail.documents.blocks.DocumentChooserBlock(label='Linked Document', required=False)), ('link_url', wagtail.blocks.CharBlock(label='URL', required=False)), ('link_label', wagtail.blocks.CharBlock(help_text="If blank will display 'Find out more'", required=False))]))], blank=True)),
                 ('thumbnail', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='core.siteimage')),
             ],
             options={

@@ -1,7 +1,7 @@
 # 3rd party
 import pytest
 import arrow
-from wagtail.core.models import Page
+from wagtail.models import Page
 
 from modules.settings.models.site_settings import SiteSettings
 from modules.content.models import (

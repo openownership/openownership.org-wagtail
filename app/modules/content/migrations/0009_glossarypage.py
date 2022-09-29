@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 import wagtailcache.cache
 
 
@@ -22,8 +22,8 @@ class Migration(migrations.Migration):
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('blurb', models.TextField(blank=True, null=True)),
                 ('display_date', models.DateField(blank=True, help_text='If blank, this will be set to the date the page was first published', null=True)),
-                ('body', wagtail.core.fields.StreamField([], blank=True)),
-                ('glossary', wagtail.core.fields.StreamField([('glossary_item', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(required=True)), ('body', wagtail.core.blocks.RichTextBlock(features=['bold', 'italic', 'underline', 'small', 'link', 'document-link'], required=True))]))])),
+                ('body', wagtail.fields.StreamField([], blank=True)),
+                ('glossary', wagtail.fields.StreamField([('glossary_item', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock(required=True)), ('body', wagtail.blocks.RichTextBlock(features=['bold', 'italic', 'underline', 'small', 'link', 'document-link'], required=True))]))])),
                 ('thumbnail', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='core.siteimage')),
             ],
             options={

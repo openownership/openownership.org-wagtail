@@ -1,5 +1,5 @@
 from django import forms
-from wagtail.core import blocks
+from wagtail import blocks
 from wagtail.documents.blocks import DocumentChooserBlock
 from modules.content.blocks.mixins import CTABlockStructValue
 

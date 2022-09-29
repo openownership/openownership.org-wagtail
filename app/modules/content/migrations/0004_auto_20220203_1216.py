@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.fields
+import wagtail.fields
 import wagtailcache.cache
 
 
@@ -22,11 +22,11 @@ class Migration(migrations.Migration):
             name='SectionPage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
-                ('hero_headline', wagtail.core.fields.RichTextField(blank=True, null=True, verbose_name='Headline')),
-                ('hero_body', wagtail.core.fields.RichTextField(blank=True, null=True, verbose_name='Body text')),
+                ('hero_headline', wagtail.fields.RichTextField(blank=True, null=True, verbose_name='Headline')),
+                ('hero_body', wagtail.fields.RichTextField(blank=True, null=True, verbose_name='Body text')),
                 ('blurb', models.TextField(blank=True, null=True)),
                 ('display_date', models.DateField(blank=True, help_text='If blank, this will be set to the date the page was first published', null=True)),
-                ('body', wagtail.core.fields.StreamField([], blank=True)),
+                ('body', wagtail.fields.StreamField([], blank=True)),
                 ('thumbnail', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='core.siteimage')),
             ],
             options={

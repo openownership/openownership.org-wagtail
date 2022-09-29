@@ -14,24 +14,21 @@ from itertools import chain
 from consoler import console
 from django.db import models
 from django.conf import settings
-from wagtail.core import fields
+from wagtail import fields
 from wagtail.search import index
 from modelcluster.fields import ParentalKey
 from wagtail.admin.forms import WagtailAdminPageForm
-from wagtail.core.blocks import StreamBlock
-from wagtail.core.models import Page, Locale, Orderable
+from wagtail.blocks import StreamBlock
+from wagtail.models import Page, Locale, Orderable
 from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 from wagtail.search.models import Query
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from django.utils.datastructures import MultiValueDictKeyError
-from wagtail.admin.edit_handlers import (
-    FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
+from wagtail.admin.panels import (
+    InlinePanel, MultiFieldPanel, PageChooserPanel, FieldPanel
 )
-from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.snippets.edit_handlers import SnippetChooserPanel
-from wagtail.documents.edit_handlers import DocumentChooserPanel
 
 # Project
 from config.template import url_from_path
@@ -81,10 +78,10 @@ class HomePage(PageHeroMixin, LandingPageType):
 
     search_fields: list = Page.search_fields + []
 
-    body = fields.StreamField(HOME_PAGE_BLOCKS, blank=True)
+    body = fields.StreamField(HOME_PAGE_BLOCKS, blank=True, use_json_field=True)
 
     content_panels = BasePage.content_panels + [
-        StreamFieldPanel('body')
+        FieldPanel('body')
     ]
 
     def get_context(self, request, *args, **kwargs) -> dict:
@@ -125,10 +122,10 @@ class SectionPage(PageHeroMixin, LandingPageType):
         index.SearchField('body')
     ]
 
-    body = fields.StreamField(SECTION_PAGE_BLOCKS, blank=True)
+    body = fields.StreamField(SECTION_PAGE_BLOCKS, blank=True, use_json_field=True)
 
     content_panels = BasePage.content_panels + [
-        StreamFieldPanel('body'),
+        FieldPanel('body'),
     ]
 
     @cached_property
@@ -211,7 +208,7 @@ class ArticlePage(ContentPageType):
     parent_page_types: list = ['content.SectionListingPage']
     subpage_types: list = []
 
-    body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True)
+    body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True, use_json_field=True)
 
     highlight_pages = fields.StreamField(
         StreamBlock(
@@ -220,12 +217,13 @@ class ArticlePage(ContentPageType):
             ],
             max_num=1
         ),
-        blank=True
+        blank=True,
+        use_json_field=True
     )
 
     content_panels = BasePage.content_panels + [
-        StreamFieldPanel('body'),
-        StreamFieldPanel('highlight_pages'),
+        FieldPanel('body'),
+        FieldPanel('highlight_pages'),
     ]
 
 
@@ -471,7 +469,9 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         verbose_name=_('Show Display Date?')
     )
 
-    additional_content = fields.StreamField(ADDITIONAL_CONTENT_BLOCKS, blank=True)
+    additional_content = fields.StreamField(
+        ADDITIONAL_CONTENT_BLOCKS, blank=True, use_json_field=True
+    )
 
     # Also has:
     # author_relationships from PublicationAuthorRelationship
@@ -487,8 +487,8 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         ),
         MultiFieldPanel(
             [
-                ImageChooserPanel('cover_image'),
-                DocumentChooserPanel('download_document'),
+                FieldPanel('cover_image'),
+                FieldPanel('download_document'),
                 FieldPanel('external_link')
             ],
             heading=_("Cover and document")
@@ -504,7 +504,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
             ],
             heading=_('Content')
         ),
-        StreamFieldPanel('additional_content'),
+        FieldPanel('additional_content'),
     ]
 
     settings_panels = [
@@ -758,17 +758,17 @@ class TeamProfilePage(BasePage):
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES
     )
 
-    body = fields.StreamField(TEAM_PROFILE_PAGE_BODY_BLOCKS, blank=True)
+    body = fields.StreamField(TEAM_PROFILE_PAGE_BODY_BLOCKS, blank=True, use_json_field=True)
 
     content_panels = BasePage.content_panels + [
         FieldPanel('role'),
-        ImageChooserPanel('portrait_image'),
+        FieldPanel('portrait_image'),
         FieldPanel('intro'),
-        StreamFieldPanel('body'),
+        FieldPanel('body'),
     ]
 
     about_panels = [
-        SnippetChooserPanel('authorship'),
+        FieldPanel('authorship'),
         FieldPanel('countries', _('Regional experience')),
         FieldPanel('areas_of_focus', _('Specialist area')),
         FieldPanel('location'),
@@ -931,15 +931,15 @@ class GlossaryPage(BasePage):
     subpage_types: list = []
     max_count = 1
 
-    body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True)
+    body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True, use_json_field=True)
 
     glossary = fields.StreamField([
         ('glossary_item', GlossaryItemBlock()),
-    ])
+    ], use_json_field=True)
 
     content_panels = BasePage.content_panels + [
-        StreamFieldPanel('body'),
-        StreamFieldPanel('glossary')
+        FieldPanel('body'),
+        FieldPanel('glossary')
     ]
 
     search_fields = BasePage.search_fields + [
@@ -1172,7 +1172,7 @@ class TagPage(IndexPageType):
 
     video = models.URLField(blank=True, null=True)
 
-    body = fields.StreamField(TAG_PAGE_BODY_BLOCKS, blank=True)
+    body = fields.StreamField(TAG_PAGE_BODY_BLOCKS, blank=True, use_json_field=True)
 
     focus_area = models.ForeignKey(
         'taxonomy.FocusAreaTag',
@@ -1223,7 +1223,7 @@ class TagPage(IndexPageType):
             FieldPanel('principle'),
         ], heading=_('Tag')),
 
-        StreamFieldPanel('body'),
+        FieldPanel('body'),
         FieldPanel('video'),
         FieldPanel('intro')
     ]

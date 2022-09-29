@@ -4,8 +4,8 @@ from django.db import migrations, models
 import django.db.models.deletion
 import modelcluster.fields
 import modules.content.blocks.stream
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 import wagtail.search.index
 import wagtail.snippets.blocks
 
@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='sectionpage',
             name='body',
-            field=wagtail.core.fields.StreamField([('areas_of_focus_block', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(help_text='Leave empty to use default: "Areas of Focus"', required=False)), ('tags', wagtail.core.blocks.ListBlock(wagtail.snippets.blocks.SnippetChooserBlock('taxonomy.FocusAreaTag', required=True), label='Areas of Focus', max_num=3, min_num=1))])), ('sectors_block', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(help_text='Leave empty to use default: "Sectors"', required=False)), ('tags', wagtail.core.blocks.ListBlock(wagtail.snippets.blocks.SnippetChooserBlock('taxonomy.SectorTag', required=True), label='Sectors', max_num=3, min_num=1))])), ('latest_section_content', wagtail.core.blocks.StructBlock([('section_page', wagtail.core.blocks.PageChooserBlock(label='Front page of section', page_type=['content.SectionPage'], required=True))])), ('publication_types', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(help_text='Leave empty to use default: "View by publication type"', required=False)), ('types', wagtail.core.blocks.MultipleChoiceBlock(choices=modules.content.blocks.stream.get_publication_type_choices))])), ('press_links', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(help_text='Leave empty to use default: "Press links"', required=False)), ('limit_number', wagtail.core.blocks.IntegerBlock(default=3, required=True))]))], blank=True),
+            field=wagtail.fields.StreamField([('areas_of_focus_block', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock(help_text='Leave empty to use default: "Areas of Focus"', required=False)), ('tags', wagtail.blocks.ListBlock(wagtail.snippets.blocks.SnippetChooserBlock('taxonomy.FocusAreaTag', required=True), label='Areas of Focus', max_num=3, min_num=1))])), ('sectors_block', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock(help_text='Leave empty to use default: "Sectors"', required=False)), ('tags', wagtail.blocks.ListBlock(wagtail.snippets.blocks.SnippetChooserBlock('taxonomy.SectorTag', required=True), label='Sectors', max_num=3, min_num=1))])), ('latest_section_content', wagtail.blocks.StructBlock([('section_page', wagtail.blocks.PageChooserBlock(label='Front page of section', page_type=['content.SectionPage'], required=True))])), ('publication_types', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock(help_text='Leave empty to use default: "View by publication type"', required=False)), ('types', wagtail.blocks.MultipleChoiceBlock(choices=modules.content.blocks.stream.get_publication_type_choices))])), ('press_links', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock(help_text='Leave empty to use default: "Press links"', required=False)), ('limit_number', wagtail.blocks.IntegerBlock(default=3, required=True))]))], blank=True),
         ),
         migrations.CreateModel(
             name='PressLinkAuthorRelationship',
