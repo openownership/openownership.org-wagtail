@@ -57,4 +57,4 @@ services:
       - db
       - redis
 
-    command: bash -c "coverage run --source . -m py.test && coverage xml"
+    command: bash -c "/root/.cache/pypoetry/virtualenvs/.venv/bin/coverage run --source . -m py.test && /root/.cache/pypoetry/virtualenvs/.venv/bin/coverage xml"
