@@ -44,7 +44,7 @@ python-dateutil = "*"
 
 [[package]]
 name = "asgiref"
-version = "3.5.0"
+version = "3.5.2"
 description = "ASGI specs, helper code, and adapters"
 category = "main"
 optional = false
@@ -96,6 +96,17 @@ description = "Specifications for callback functions passed in to an API"
 category = "main"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "backports.zoneinfo"
+version = "0.2.1"
+description = "Backport of the standard library zoneinfo module"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+tzdata = ["tzdata"]
 
 [[package]]
 name = "beautifulsoup4"
@@ -290,17 +301,18 @@ wrapt = ">=1.10,<2"
 dev = ["PyTest", "PyTest (<5)", "PyTest-Cov", "PyTest-Cov (<2.6)", "bump2version (<1)", "configparser (<5)", "importlib-metadata (<3)", "importlib-resources (<4)", "sphinx (<2)", "sphinxcontrib-websupport (<2)", "tox", "zipp (<2)"]
 
 [[package]]
-name = "django"
-version = "3.2.12"
-description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
+name = "Django"
+version = "4.1.2"
+description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.8"
 
 [package.dependencies]
-asgiref = ">=3.3.2,<4"
-pytz = "*"
+asgiref = ">=3.5.2,<4"
+"backports.zoneinfo" = {version = "*", markers = "python_version < \"3.9\""}
 sqlparse = ">=0.2.2"
+tzdata = {version = "*", markers = "sys_platform == \"win32\""}
 
 [package.extras]
 argon2 = ["argon2-cffi (>=19.1.0)"]
@@ -332,27 +344,15 @@ redis = ">=3.0.0"
 six = ">=1.4.0"
 
 [[package]]
-name = "django-common-helpers"
-version = "0.9.2"
-description = "Common things every Django app needs!"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-Django = ">=1.8.0"
-
-[[package]]
 name = "django-cron"
-version = "0.5.1"
+version = "0.6.0"
 description = "Running python crons in a Django project"
 category = "main"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-Django = ">=1.8.0"
-django-common-helpers = ">=0.6.4"
+Django = ">=3.2"
 
 [[package]]
 name = "django-extensions"
@@ -456,14 +456,14 @@ sftp = ["paramiko"]
 
 [[package]]
 name = "django-taggit"
-version = "2.1.0"
+version = "3.0.0"
 description = "django-taggit is a reusable Django application for simple tagging."
 category = "main"
 optional = false
 python-versions = ">=3.6"
 
 [package.dependencies]
-Django = ">=2.2"
+Django = ">=3.2"
 
 [[package]]
 name = "django-treebeard"
@@ -1249,6 +1249,14 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "tzdata"
+version = "2022.6"
+description = "Provider of IANA time zone data"
+category = "main"
+optional = false
+python-versions = ">=2"
+
+[[package]]
 name = "urllib3"
 version = "1.26.8"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -1263,7 +1271,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
 name = "wagtail"
-version = "3.0.3"
+version = "4.0.4"
 description = "A Django content management system."
 category = "main"
 optional = false
@@ -1271,12 +1279,12 @@ python-versions = ">=3.7"
 
 [package.dependencies]
 anyascii = ">=0.1.5"
-beautifulsoup4 = ">=4.8,<4.10"
-Django = ">=3.2,<4.1"
-django-filter = ">=2.2,<22"
+beautifulsoup4 = ">=4.8,<4.12"
+Django = ">=3.2,<4.2"
+django-filter = ">=2.2,<23"
 django-modelcluster = ">=6.0,<7.0"
 django-permissionedforms = ">=0.1,<1.0"
-django-taggit = ">=2.0,<3.0"
+django-taggit = ">=2.0,<4.0"
 django-treebeard = ">=4.5.1,<5.0"
 djangorestframework = ">=3.11.1,<4.0"
 draftjs-exporter = ">=2.1.5,<3.0"
@@ -1290,7 +1298,7 @@ Willow = ">=1.4,<1.5"
 xlsxwriter = ">=1.2.8,<4.0"
 
 [package.extras]
-docs = ["Sphinx (>=1.5.2)", "myst-parser (==0.17.0)", "pyenchant (>=3.1.1,<4)", "sphinx-autobuild (>=0.6.0)", "sphinx-wagtail-theme (==5.1.1)", "sphinxcontrib-spelling (>=5.4.0,<6)"]
+docs = ["Sphinx (>=1.5.2)", "myst-parser (==0.17.0)", "pyenchant (>=3.1.1,<4)", "sphinx-autobuild (>=0.6.0)", "sphinx-wagtail-theme (==5.3.0)", "sphinxcontrib-spelling (>=5.4.0,<6)"]
 testing = ["Jinja2 (>=3.0,<3.2)", "azure-mgmt-cdn (>=5.1,<6.0)", "azure-mgmt-frontdoor (>=0.3,<0.4)", "black (==22.3.0)", "boto3 (>=1.16,<1.17)", "coverage (>=3.7.0)", "curlylint (==0.13.1)", "django-pattern-library (>=0.7,<0.8)", "djhtml (==1.4.13)", "doc8 (==0.8.1)", "elasticsearch (>=5.0,<6.0)", "flake8 (>=3.6.0)", "flake8-assertive (==2.0.0)", "flake8-blind-except (==0.1.1)", "flake8-comprehensions (==3.8.0)", "flake8-print (==5.0.0)", "freezegun (>=0.3.8)", "isort (==5.6.4)", "openpyxl (>=2.6.4)", "polib (>=1.1,<2.0)", "python-dateutil (>=2.7)", "pytz (>=2014.7)"]
 
 [[package]]
@@ -1310,14 +1318,14 @@ test = ["beautifulsoup4 (>=4.8)", "html5lib (>=0.999999999)", "pytest (>=3.5)", 
 
 [[package]]
 name = "wagtail-cache"
-version = "1.0.2"
+version = "2.2.0"
 description = "A simple page cache for Wagtail based on the Django cache middleware."
 category = "main"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-wagtail = ">=2.0"
+wagtail = ">=3.0,<5.0"
 
 [[package]]
 name = "wagtail-font-awesome-svg"
@@ -1329,17 +1337,17 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "wagtail-localize"
-version = "1.2.1"
+version = "1.3.1"
 description = "Translation plugin for Wagtail CMS"
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.7"
 
 [package.dependencies]
-Django = ">=2.2,<4.1"
+Django = ">=3.2,<4.2"
 polib = ">=1.1,<2.0"
-typing-extensions = ">=4.0"
-Wagtail = ">=2.11,<4.0"
+typing_extensions = ">=4.0"
+Wagtail = ">=2.15,<5.0"
 
 [package.extras]
 documentation = ["mkdocs (==1.1.2)", "mkdocs-include-markdown-plugin (==2.8.0)", "mkdocs-material (==6.2.8)", "mkdocs-mermaid2-plugin (==0.5.1)", "mkdocstrings (==0.14.0)", "pygments (==2.11.2)"]
@@ -1348,7 +1356,7 @@ testing = ["dj-database-url (==0.5.0)", "django-rq (>=2.5,<3.0)", "freezegun (==
 
 [[package]]
 name = "wagtail-modelchooser"
-version = "2.13.1"
+version = "2.14.1"
 description = "Model choosers for Wagtail admin"
 category = "main"
 optional = false
@@ -1467,7 +1475,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.10"
-content-hash = "3dae68325f488084baff9f6d7832d7633312c1eabe39953c93da35df772b8b34"
+content-hash = "6e640d135dd18001ee00fdfb67deeccf86267177702373f34c1b94a64c9ca171"
 
 [metadata.files]
 anyascii = [
@@ -1487,8 +1495,8 @@ arrow = [
     {file = "arrow-0.15.8.tar.gz", hash = "sha256:edc31dc051db12c95da9bac0271cd1027b8e36912daf6d4580af53b23e62721a"},
 ]
 asgiref = [
-    {file = "asgiref-3.5.0-py3-none-any.whl", hash = "sha256:88d59c13d634dcffe0510be048210188edd79aeccb6a6c9028cdad6f31d730a9"},
-    {file = "asgiref-3.5.0.tar.gz", hash = "sha256:2f8abc20f7248433085eda803936d98992f1343ddb022065779f37c5da0181d0"},
+    {file = "asgiref-3.5.2-py3-none-any.whl", hash = "sha256:1d2880b792ae8757289136f1db2b7b99100ce959b2aa57fd69dab783d05afac4"},
+    {file = "asgiref-3.5.2.tar.gz", hash = "sha256:4a29362a6acebe09bf1d6640db38c1dc3d9217c68e6f9f6204d72667fc19a424"},
 ]
 asttokens = [
     {file = "asttokens-2.0.5-py2.py3-none-any.whl", hash = "sha256:0844691e88552595a6f4a4281a9f7f79b8dd45ca4ccea82e5e05b4bbdb76705c"},
@@ -1505,6 +1513,24 @@ attrs = [
 backcall = [
     {file = "backcall-0.2.0-py2.py3-none-any.whl", hash = "sha256:fbbce6a29f263178a1f7915c1940bde0ec2b2a967566fe1c65c1dfb7422bd255"},
     {file = "backcall-0.2.0.tar.gz", hash = "sha256:5cbdbf27be5e7cfadb448baf0aa95508f91f2bbc6c6437cd9cd06e2a4c215e1e"},
+]
+"backports.zoneinfo" = [
+    {file = "backports.zoneinfo-0.2.1-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:da6013fd84a690242c310d77ddb8441a559e9cb3d3d59ebac9aca1a57b2e18bc"},
+    {file = "backports.zoneinfo-0.2.1-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:89a48c0d158a3cc3f654da4c2de1ceba85263fafb861b98b59040a5086259722"},
+    {file = "backports.zoneinfo-0.2.1-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:1c5742112073a563c81f786e77514969acb58649bcdf6cdf0b4ed31a348d4546"},
+    {file = "backports.zoneinfo-0.2.1-cp36-cp36m-win32.whl", hash = "sha256:e8236383a20872c0cdf5a62b554b27538db7fa1bbec52429d8d106effbaeca08"},
+    {file = "backports.zoneinfo-0.2.1-cp36-cp36m-win_amd64.whl", hash = "sha256:8439c030a11780786a2002261569bdf362264f605dfa4d65090b64b05c9f79a7"},
+    {file = "backports.zoneinfo-0.2.1-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:f04e857b59d9d1ccc39ce2da1021d196e47234873820cbeaad210724b1ee28ac"},
+    {file = "backports.zoneinfo-0.2.1-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:17746bd546106fa389c51dbea67c8b7c8f0d14b5526a579ca6ccf5ed72c526cf"},
+    {file = "backports.zoneinfo-0.2.1-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:5c144945a7752ca544b4b78c8c41544cdfaf9786f25fe5ffb10e838e19a27570"},
+    {file = "backports.zoneinfo-0.2.1-cp37-cp37m-win32.whl", hash = "sha256:e55b384612d93be96506932a786bbcde5a2db7a9e6a4bb4bffe8b733f5b9036b"},
+    {file = "backports.zoneinfo-0.2.1-cp37-cp37m-win_amd64.whl", hash = "sha256:a76b38c52400b762e48131494ba26be363491ac4f9a04c1b7e92483d169f6582"},
+    {file = "backports.zoneinfo-0.2.1-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:8961c0f32cd0336fb8e8ead11a1f8cd99ec07145ec2931122faaac1c8f7fd987"},
+    {file = "backports.zoneinfo-0.2.1-cp38-cp38-manylinux1_i686.whl", hash = "sha256:e81b76cace8eda1fca50e345242ba977f9be6ae3945af8d46326d776b4cf78d1"},
+    {file = "backports.zoneinfo-0.2.1-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:7b0a64cda4145548fed9efc10322770f929b944ce5cee6c0dfe0c87bf4c0c8c9"},
+    {file = "backports.zoneinfo-0.2.1-cp38-cp38-win32.whl", hash = "sha256:1b13e654a55cd45672cb54ed12148cd33628f672548f373963b0bff67b217328"},
+    {file = "backports.zoneinfo-0.2.1-cp38-cp38-win_amd64.whl", hash = "sha256:4a0f800587060bf8880f954dbef70de6c11bbe59c673c3d818921f042f9954a6"},
+    {file = "backports.zoneinfo-0.2.1.tar.gz", hash = "sha256:fadbfe37f74051d024037f223b8e001611eac868b5c5b06144ef4d8b799862f2"},
 ]
 beautifulsoup4 = [
     {file = "beautifulsoup4-4.9.3-py2-none-any.whl", hash = "sha256:4c98143716ef1cb40bf7f39a8e3eec8f8b009509e74904ba3a7b315431577e35"},
@@ -1627,9 +1653,9 @@ deprecated = [
     {file = "Deprecated-1.2.13-py2.py3-none-any.whl", hash = "sha256:64756e3e14c8c5eea9795d93c524551432a0be75629f8f29e67ab8caf076c76d"},
     {file = "Deprecated-1.2.13.tar.gz", hash = "sha256:43ac5335da90c31c24ba028af536a91d41d53f9e6901ddb021bcc572ce44e38d"},
 ]
-django = [
-    {file = "Django-3.2.12-py3-none-any.whl", hash = "sha256:9b06c289f9ba3a8abea16c9c9505f25107809fb933676f6c891ded270039d965"},
-    {file = "Django-3.2.12.tar.gz", hash = "sha256:9772e6935703e59e993960832d66a614cf0233a1c5123bc6224ecc6ad69e41e2"},
+Django = [
+    {file = "Django-4.1.2-py3-none-any.whl", hash = "sha256:26dc24f99c8956374a054bcbf58aab8dc0cad2e6ac82b0fe036b752c00eee793"},
+    {file = "Django-4.1.2.tar.gz", hash = "sha256:b8d843714810ab88d59344507d4447be8b2cf12a49031363b6eed9f1b9b2280f"},
 ]
 django-appconf = [
     {file = "django-appconf-1.0.5.tar.gz", hash = "sha256:be3db0be6c81fa84742000b89a81c016d70ae66a7ccb620cdef592b1f1a6aaa4"},
@@ -1639,11 +1665,9 @@ django-cacheops = [
     {file = "django-cacheops-6.0.tar.gz", hash = "sha256:78e161ebd96a32e28e19ec7da31f2afed9e62a79726b8b5f0ed12dd16c2e5841"},
     {file = "django_cacheops-6.0-py2.py3-none-any.whl", hash = "sha256:ee38b969c9fc68f7c88e769b6c811e19563cca1ae08210d9f553ff758b6c3e17"},
 ]
-django-common-helpers = [
-    {file = "django-common-helpers-0.9.2.tar.gz", hash = "sha256:2d56be6fa261d829a6a224f189bf276267b9082a17d613fe5f015dd4d65c17b4"},
-]
 django-cron = [
-    {file = "django-cron-0.5.1.tar.gz", hash = "sha256:08d22708c8b2ecab8cda989019a66c7e1e2424c59d822796fd45abf7731d261d"},
+    {file = "django-cron-0.6.0.tar.gz", hash = "sha256:dc3c0d3433a2e4e7012f77f6d8415ad90367ba068649db2674325bc36f935841"},
+    {file = "django_cron-0.6.0-py3-none-any.whl", hash = "sha256:016203554748512b7f19d7363b4fde8741c6ff63fe8a15051f3031f4a0506a41"},
 ]
 django-extensions = [
     {file = "django-extensions-3.1.5.tar.gz", hash = "sha256:28e1e1bf49f0e00307ba574d645b0af3564c981a6dfc87209d48cb98f77d0b1a"},
@@ -1674,8 +1698,8 @@ django-storages = [
     {file = "django_storages-1.12.3-py3-none-any.whl", hash = "sha256:204a99f218b747c46edbfeeb1310d357f83f90fa6a6024d8d0a3f422570cee84"},
 ]
 django-taggit = [
-    {file = "django-taggit-2.1.0.tar.gz", hash = "sha256:a9f41e4ad58efe4b28d86f274728ee87eb98eeae90c9eb4b4efad39e5068184e"},
-    {file = "django_taggit-2.1.0-py3-none-any.whl", hash = "sha256:61547a23fc99967c9304107414a09e662b459f4163dbbae32e60b8ba40c34d05"},
+    {file = "django-taggit-3.0.0.tar.gz", hash = "sha256:e645b8e3dd4f85989d5ef5c5a3d5ebbe5badf5d1e51b53e42d0af726240b00b9"},
+    {file = "django_taggit-3.0.0-py3-none-any.whl", hash = "sha256:ca2df20399a11321db75988404afb640a08eff61e52bde35f6c16f307004ec9e"},
 ]
 django-treebeard = [
     {file = "django-treebeard-4.5.1.tar.gz", hash = "sha256:80150017725239702054e5fa64dc66e383dc13ac262c8d47ee5a82cb005969da"},
@@ -2108,33 +2132,37 @@ typing-extensions = [
     {file = "typing_extensions-4.1.1-py3-none-any.whl", hash = "sha256:21c85e0fe4b9a155d0799430b0ad741cdce7e359660ccbd8b530613e8df88ce2"},
     {file = "typing_extensions-4.1.1.tar.gz", hash = "sha256:1a9462dcc3347a79b1f1c0271fbe79e844580bb598bafa1ed208b94da3cdcd42"},
 ]
+tzdata = [
+    {file = "tzdata-2022.6-py2.py3-none-any.whl", hash = "sha256:04a680bdc5b15750c39c12a448885a51134a27ec9af83667663f0b3a1bf3f342"},
+    {file = "tzdata-2022.6.tar.gz", hash = "sha256:91f11db4503385928c15598c98573e3af07e7229181bee5375bd30f1695ddcae"},
+]
 urllib3 = [
     {file = "urllib3-1.26.8-py2.py3-none-any.whl", hash = "sha256:000ca7f471a233c2251c6c7023ee85305721bfdf18621ebff4fd17a8653427ed"},
     {file = "urllib3-1.26.8.tar.gz", hash = "sha256:0e7c33d9a63e7ddfcb86780aac87befc2fbddf46c58dbb487e0855f7ceec283c"},
 ]
 wagtail = [
-    {file = "wagtail-3.0.3-py3-none-any.whl", hash = "sha256:111ed9a0a6ff26d5d881d52deb4bf52b627d79a53c43829611752dbb68a9192f"},
-    {file = "wagtail-3.0.3.tar.gz", hash = "sha256:23b3e541401355ea183372582050ea52b049c956dd5b506197f957bb68423ab3"},
+    {file = "wagtail-4.0.4-py3-none-any.whl", hash = "sha256:43b35e8e29bcc83a3ddf60f08e8c22fea1e819f338bcba73a4b290771233809a"},
+    {file = "wagtail-4.0.4.tar.gz", hash = "sha256:8799c7550cc033c8e85aeeaf6f91b5343d7dee72fecd5d4093499af9d3aeaa1d"},
 ]
 wagtail-autocomplete = [
     {file = "wagtail-autocomplete-0.7.0.tar.gz", hash = "sha256:69d4b72407532781014c9766a57977eb56f16bb1ad97a0e9133d2c67383e4596"},
     {file = "wagtail_autocomplete-0.7.0-py3-none-any.whl", hash = "sha256:f8f8b2e2e4d0229946a20fa439af17f252e3865a6cb9b27903c284a0c065edd8"},
 ]
 wagtail-cache = [
-    {file = "wagtail-cache-1.0.2.tar.gz", hash = "sha256:589e523262fc0c39ecb82856a56bac8f3dec1c5276cea9e1ba23b1b843b9551b"},
-    {file = "wagtail_cache-1.0.2-py3-none-any.whl", hash = "sha256:04a638f1cb8c32e89d6227799e6b59d9d472c8a5577355600ae4ed4a6f2b90b5"},
+    {file = "wagtail-cache-2.2.0.tar.gz", hash = "sha256:e9e6a8391795d5faab877183c025451c82905ea94b7a0d5eb4aca29ea136499f"},
+    {file = "wagtail_cache-2.2.0-py3-none-any.whl", hash = "sha256:a231bc3941eb3ce3e8c73b9aea5d9a54e2f580009a0c87bf86ac59a6545a9609"},
 ]
 wagtail-font-awesome-svg = [
     {file = "wagtail-font-awesome-svg-0.0.2.tar.gz", hash = "sha256:5b329c1c8ef78f118a57197fcbfe5cde78d58bcee27571a6d26584cd07553455"},
     {file = "wagtail_font_awesome_svg-0.0.2-py3-none-any.whl", hash = "sha256:cf57cc9be4d2f929f8b5af0b4e03a5ba1ae75d56984208afae2b345e5091988a"},
 ]
 wagtail-localize = [
-    {file = "wagtail-localize-1.2.1.tar.gz", hash = "sha256:7873ec1b7b85d092f2070667286b96a1202a5362cbb9dce9905c9521af5224ad"},
-    {file = "wagtail_localize-1.2.1-py3-none-any.whl", hash = "sha256:8102dd749465724bf429bb8e036fb566905521e70e65b912897ffcc202d93ca0"},
+    {file = "wagtail-localize-1.3.1.tar.gz", hash = "sha256:016056c77f18c7f6049269feebe64e50efb894e5e6ed1b33288b004f7d9eb281"},
+    {file = "wagtail_localize-1.3.1-py3-none-any.whl", hash = "sha256:a9f699e8bf32c3cfa95330cdc214d36a0bcff007a8263dafe3a7a4ac21c39696"},
 ]
 wagtail-modelchooser = [
-    {file = "wagtail-modelchooser-2.13.1.tar.gz", hash = "sha256:e49da09f1a9ebfbcbccf9a1fd0ad8d375e48e250535697ee4d76c126219bfd85"},
-    {file = "wagtail_modelchooser-2.13.1-py2.py3-none-any.whl", hash = "sha256:b5cd87731c667ede411eeb5487544ead829fd9761e4dbc8ec1e0031d2bf9f64a"},
+    {file = "wagtail-modelchooser-2.14.1.tar.gz", hash = "sha256:a406eb27f5023bf9f42d461e8900e2b915082479c23102e7115e8d177f446e8f"},
+    {file = "wagtail_modelchooser-2.14.1-py2.py3-none-any.whl", hash = "sha256:47f3d90f235d46c1c9b1887632bd419b65fdbba91a364ae6691504e1366ba993"},
 ]
 wagtailfontawesome = [
     {file = "wagtailfontawesome-1.2.1-py2.py3-none-any.whl", hash = "sha256:76b1c64c4f1042d468a83e4352f74b57bda4a4aa09cdfeeb8663dead5ed632be"},

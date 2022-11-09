@@ -3,7 +3,7 @@ import csv
 
 # 3rd party
 from django.http import HttpResponse
-from django.conf.urls import url
+from django.urls import url
 from django.shortcuts import reverse
 from django.utils.encoding import smart_str
 from django.utils.decorators import method_decorator

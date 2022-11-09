@@ -1,11 +1,11 @@
 # 3rd party
 from django.conf import settings
-from django.conf.urls import url, include
+from django.urls import path, re_path
+from django.conf.urls import include
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.http import HttpResponse
-from django.urls import path
 from django.contrib import admin
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
@@ -22,17 +22,20 @@ from modules.content.views import CountryView, SearchView
 
 urlpatterns = [
     # Django and Wagtail views
-    url(r'^admin/', include(wagtailadmin_urls)),
+    re_path(r'^admin/', include(wagtailadmin_urls)),
     path('django-admin/', admin.site.urls),
-    url(r'^documents/', include(wagtaildocs_urls)),
-    url(r'^404/$', error_404_test, ),
-    url(r'^500/$', error_500_view, ),
+    re_path(r'^documents/', include(wagtaildocs_urls)),
+    re_path(r'^404/$', error_404_test, ),
+    re_path(r'^500/$', error_500_view, ),
     # Server / Robots / Verification etc
-    url(r'^robots\.txt$', robots),
-    url(r'^sitemap\.xml$', sitemap),
-    url(r'^googleverfication\.html$',
+    re_path(r'^robots\.txt$', robots),
+    re_path(r'^sitemap\.xml$', sitemap),
+    re_path(
+        r'^googleverfication\.html$',
         lambda r: HttpResponse(
-            "google-site-verification: foo.html", content_type="text/plain")),
+            "google-site-verification: foo.html", content_type="text/plain"
+        )
+    ),
 ]
 
 if settings.DEBUG:
@@ -49,5 +52,5 @@ handler500 = error_500_view
 urlpatterns = urlpatterns + i18n_patterns(
     path('map/country/<str:slug>/', CountryView.as_view(), name="country-tag"),
     path("search/", SearchView.as_view(), name="search"),
-    url(r'', include(wagtail_urls)),
+    re_path(r'', include(wagtail_urls)),
 )
