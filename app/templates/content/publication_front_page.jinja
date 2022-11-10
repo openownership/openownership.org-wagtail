@@ -14,13 +14,28 @@
         {% endif %}
 
         <div class="publication-front-page__details">
+            {% if page.download_document %}
+                <p class="download-document">
+                {% include "svg/download-document.jinja" %}
+                <a href="{{ page.download_document.url }}">{% trans %}Download document{% endtrans %}</a>
+                </p>
+            {% elif page.external_link %}
+                <p class="download-document">
+                {% include "svg/external-link.jinja" %}
+                <a href="{{ page.external_link }}">{% trans %}External link{% endtrans %}</a>
+                </p>
+            {% endif %}
 
-        {% include "_partials/taxonomies.jinja" %}
+
+            {% include "_partials/share_page.jinja" %}
+        
 
         </div>
     </div>
 
     <div class="publication-front-page__content">
+        {% include "_partials/taxonomies.jinja" %}
+
         {% if page.summary %}
             {# <h2>{% trans %}Summary{% endtrans %}</h2> #}
             <h2>{{ page.summary_title or _('Summary') }}</h2>
