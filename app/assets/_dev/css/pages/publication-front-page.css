@@ -19,6 +19,18 @@
     p {
         @apply mb-4;
     }
+
+    .btn {
+        @apply w-full;
+    }
+
+    .navbar__choose-language {
+        @apply text-white;
+    }
+
+    .navbar__language-list {
+        @apply top-full;
+    }
 }
 
 .download-document {

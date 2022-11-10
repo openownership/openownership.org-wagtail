@@ -13,24 +13,7 @@
         </div>
         {% endif %}
 
-        <div class="publication-front-page__details">
-            {% if page.download_document %}
-                <p class="download-document">
-                {% include "svg/download-document.jinja" %}
-                <a href="{{ page.download_document.url }}">{% trans %}Download document{% endtrans %}</a>
-                </p>
-            {% elif page.external_link %}
-                <p class="download-document">
-                {% include "svg/external-link.jinja" %}
-                <a href="{{ page.external_link }}">{% trans %}External link{% endtrans %}</a>
-                </p>
-            {% endif %}
-
-
-            {% include "_partials/share_page.jinja" %}
-        
-
-        </div>
+        {% include "_partials/publication_front_page_details.jinja" %}
     </div>
 
     <div class="publication-front-page__content">
