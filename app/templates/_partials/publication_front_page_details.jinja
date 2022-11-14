@@ -12,8 +12,8 @@
 
     {% if page.translations %}
         <nav class="navbar__language" aria-label="Publication language">
-            <button class="btn" aria-expanded="false" aria-label="Choose language.">
-                Language options
+            <button class="btn navbar__choose-language" aria-expanded="false" aria-label="Choose language.">
+                Language options {% include 'svg/expand.jinja' %}
             </button>
 
             <ul class="navbar__language-list">
@@ -24,9 +24,7 @@
         </nav>
      {% endif %}
 
-    <p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfm2KK475JG8OrpW99ih8RMKSLXyIiS1KF7BdQbogMUUPPJHQ/viewform" class="btn">{% trans %}Feedback{% endtrans %}</a>
-    </p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfm2KK475JG8OrpW99ih8RMKSLXyIiS1KF7BdQbogMUUPPJHQ/viewform" class="btn">{% trans %}Feedback{% endtrans %}</a>
 
     <div class="share-page">
         <button class="btn" id="share-page" aria-controls="share-page-links">
