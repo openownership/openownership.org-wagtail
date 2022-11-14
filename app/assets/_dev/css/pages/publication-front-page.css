@@ -2,7 +2,7 @@
     @apply flex flex-row gap-8;
     @apply border-b border-black/50;
     @apply pb-10;
-    @apply my-10;
+    @apply my-4;
 }
 
 .publication-front-page__cover, .publication-front-page__details {
@@ -18,6 +18,18 @@
 .publication-front-page__details {
     p {
         @apply mb-4;
+    }
+
+    .btn {
+        @apply w-full;
+    }
+
+    .navbar__choose-language {
+        @apply text-white;
+    }
+
+    .navbar__language-list {
+        @apply top-full;
     }
 }
 
