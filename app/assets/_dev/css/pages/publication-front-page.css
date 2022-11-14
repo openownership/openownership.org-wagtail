@@ -20,6 +20,26 @@
         @apply w-full;
     }
 
+    .navbar__language .btn {
+        @apply text-white;
+        @apply flex items-center justify-center;
+
+        svg {
+            @apply ml-2;
+            @apply relative;
+
+            top: 1px;
+        }
+
+        g {
+            @apply stroke-white;
+        }
+    }
+
+    .navbar__language-list {
+        top: 42px;
+    }
+
     > * {
         @apply mb-4;
     }

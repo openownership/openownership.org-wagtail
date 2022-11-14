@@ -24,7 +24,7 @@ For mega menu containing nav items:
 
             {% if page.translations %}
             <nav class="navbar__language" aria-label="Language">
-                <button class="btn navbar__choose-language" aria-expanded="false" aria-label="Choose language.">
+                <button class="navbar__choose-language" aria-expanded="false" aria-label="Choose language.">
                     {{ page.locale }} {% include 'svg/expand.jinja' %}
                 </button>
 
@@ -42,6 +42,25 @@ For mega menu containing nav items:
 
             <nav class="navbar__main-navigation --hidden" aria-label="Main navigation">
                 <ul class="navigation__level-one">
+                    
+                    {% if page.translations %}
+                    <li class="navigation__level-one__item --has-submenu navigation__level-one__language-menu">
+                        <button aria-expanded="false" class="navigation__subnav-button --level-one navigation__subnav-button__language">
+                            {% trans %}Language{% endtrans %}: {{ page.locale }} 
+                            {% include 'svg/mobile-expand-icon.jinja' %}
+                            {% include 'svg/mobile-collapse-icon.jinja' %}
+                            <span class="sr-only">{% trans %}Expand{% endtrans %} language {% trans %}menu{% endtrans %}.</span>
+                        </button>
+
+                        <ul class="navigation__level-two subnav--hidden">
+                            {% for item in page.translations %}
+                                <li class="navigation__level-two__item">
+                                    <a href="{{item.url}}">{{ item.language }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% endif %}
 
                     {% set top_level_navpage = get_top_level_navpage(page, navbar_blocks) %}
 
