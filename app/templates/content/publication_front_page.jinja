@@ -13,14 +13,12 @@
         </div>
         {% endif %}
 
-        <div class="publication-front-page__details">
-
-        {% include "_partials/taxonomies.jinja" %}
-
-        </div>
+        {% include "_partials/publication_front_page_details.jinja" %}
     </div>
 
     <div class="publication-front-page__content">
+        {% include "_partials/taxonomies.jinja" %}
+
         {% if page.summary %}
             {# <h2>{% trans %}Summary{% endtrans %}</h2> #}
             <h2>{{ page.summary_title or _('Summary') }}</h2>
