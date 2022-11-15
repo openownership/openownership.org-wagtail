@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 14:32+0000\n"
+"POT-Creation-Date: 2022-11-15 14:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,6 +52,97 @@ msgstr ""
 
 #: config/settings/base.py:72
 msgid "Ukrainian"
+msgstr ""
+
+#: config/settings/base.py:512
+msgid "Home"
+msgstr ""
+
+#: config/settings/base.py:513
+msgid "Research"
+msgstr ""
+
+#: config/settings/base.py:514
+msgid "Implementation"
+msgstr ""
+
+#: config/settings/base.py:515
+msgid "Technology"
+msgstr ""
+
+#: config/settings/base.py:516
+msgid "Impact"
+msgstr ""
+
+#: config/settings/base.py:517
+msgid "Register"
+msgstr ""
+
+#: config/settings/base.py:518 modules/settings/models/site_settings.py:34
+#: templates/errors/404.jinja:10
+msgid "Search"
+msgstr ""
+
+#: config/settings/base.py:519 modules/content/models/mixins.py:162
+#: modules/content/models/mixins.py:241 modules/content/models/pages.py:822
+msgid "About"
+msgstr ""
+
+#: config/settings/base.py:521 modules/settings/models/mixins.py:259
+msgid "Legal"
+msgstr ""
+
+#: config/settings/base.py:522
+msgid "Terms"
+msgstr ""
+
+#: config/settings/base.py:523
+msgid "Privacy"
+msgstr ""
+
+#: config/settings/base.py:524
+msgid "Press mentions"
+msgstr ""
+
+#: config/settings/base.py:525
+msgid "Helpdesk"
+msgstr ""
+
+#: config/settings/base.py:526
+msgid "Jobs with Open Ownership"
+msgstr ""
+
+#: config/settings/base.py:527
+msgid "Contact us"
+msgstr ""
+
+#: config/settings/base.py:528
+msgid "Follow us"
+msgstr ""
+
+#: config/settings/base.py:529
+msgid "Content rights"
+msgstr ""
+
+#: config/settings/base.py:530
+msgid ""
+"This work by Open Ownership, unless otherwise noted, is licensed under a"
+msgstr ""
+
+#: config/settings/base.py:531
+msgid "Creative Commons Attribution 4.0 International License"
+msgstr ""
+
+#: config/settings/base.py:533
+msgid "Open Ownership newsletter"
+msgstr ""
+
+#: config/settings/base.py:534
+msgid "Sign up to receive our latest reports, news and updates"
+msgstr ""
+
+#: config/settings/base.py:535
+msgid "Sign up"
 msgstr ""
 
 #: config/template.py:158
@@ -250,11 +341,6 @@ msgstr ""
 
 #: modules/content/models/mixins.py:149 modules/content/models/snippets.py:153
 msgid "Authors"
-msgstr ""
-
-#: modules/content/models/mixins.py:162 modules/content/models/mixins.py:241
-#: modules/content/models/pages.py:822
-msgid "About"
 msgstr ""
 
 #: modules/content/models/mixins.py:219 modules/content/models/pages.py:347
@@ -623,10 +709,6 @@ msgstr ""
 msgid "Navbar"
 msgstr ""
 
-#: modules/settings/models/mixins.py:259
-msgid "Legal"
-msgstr ""
-
 #: modules/settings/models/mixins.py:261
 #: modules/settings/models/navigation_settings.py:70
 msgid "Footer"
@@ -650,10 +732,6 @@ msgstr ""
 
 #: modules/settings/models/site_settings.py:33
 msgid "Social media"
-msgstr ""
-
-#: modules/settings/models/site_settings.py:34 templates/errors/404.jinja:10
-msgid "Search"
 msgstr ""
 
 #: modules/taxonomy/models/categories.py:29
