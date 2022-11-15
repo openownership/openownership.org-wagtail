@@ -59,6 +59,9 @@ header "Running migrations"
 header "Collecting static"
 /srv/www/openownership.org/app/.venv/bin/python /srv/www/openownership.org/app/manage.py collectstatic --no-input
 
+header "Building translation files"
+/srv/www/openownership.org/app/.venv/bin/python /srv/www/openownership.org/app/manage.py compilemessages
+
 header "Clearing cache"
 /srv/www/openownership.org/app/.venv/bin/python /srv/www/openownership.org/app/manage.py clear_wagtail_cache
 

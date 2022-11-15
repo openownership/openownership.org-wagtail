@@ -1,0 +1,785 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-15 14:32+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: config/settings/base.py:64
+msgid "English"
+msgstr ""
+
+#: config/settings/base.py:65
+msgid "French"
+msgstr ""
+
+#: config/settings/base.py:66
+msgid "Spanish"
+msgstr ""
+
+#: config/settings/base.py:67
+msgid "Bahasa Indonesia"
+msgstr ""
+
+#: config/settings/base.py:68
+msgid "German"
+msgstr ""
+
+#: config/settings/base.py:69
+msgid "Russian"
+msgstr ""
+
+#: config/settings/base.py:70
+msgid "Armenian"
+msgstr ""
+
+#: config/settings/base.py:71
+msgid "Mongolian"
+msgstr ""
+
+#: config/settings/base.py:72
+msgid "Ukrainian"
+msgstr ""
+
+#: config/template.py:158
+msgid "Yes"
+msgstr ""
+
+#: config/template.py:160
+msgid "No"
+msgstr ""
+
+#: modules/content/blocks/stream.py:142
+msgid "Similar Content"
+msgstr ""
+
+#: modules/content/blocks/stream.py:143 modules/content/blocks/stream.py:647
+#: modules/content/blocks/stream.py:704 modules/content/blocks/stream.py:755
+#: modules/content/blocks/stream.py:807 modules/content/blocks/stream.py:859
+#: modules/content/blocks/stream.py:906 modules/content/blocks/stream.py:958
+#: modules/content/blocks/stream.py:1014 modules/content/blocks/stream.py:1079
+#: modules/content/blocks/stream.py:1118 modules/content/blocks/stream.py:1180
+msgid "Card group"
+msgstr ""
+
+#: modules/content/blocks/stream.py:149 modules/content/models/pages.py:1220
+#: modules/taxonomy/models/tags.py:82
+msgid "Topic"
+msgstr ""
+
+#: modules/content/blocks/stream.py:150
+msgid "Content Type"
+msgstr ""
+
+#: modules/content/blocks/stream.py:151
+msgid "Author"
+msgstr ""
+
+#: modules/content/blocks/stream.py:152 modules/notion/models.py:438
+msgid "Country"
+msgstr ""
+
+#: modules/content/blocks/stream.py:153 modules/content/models/snippets.py:113
+#: modules/taxonomy/models/tags.py:122
+msgid "Section"
+msgstr ""
+
+#: modules/content/blocks/stream.py:154 modules/content/models/mixins.py:224
+#: modules/taxonomy/models/tags.py:198
+msgid "Open Ownership Principles"
+msgstr ""
+
+#: modules/content/blocks/stream.py:293
+msgid "Related articles and publications"
+msgstr ""
+
+#: modules/content/blocks/stream.py:646
+msgid "Highlight pages"
+msgstr ""
+
+#: modules/content/blocks/stream.py:655 modules/content/blocks/stream.py:1025
+#: modules/content/blocks/stream.py:1129
+msgid "Landscape"
+msgstr ""
+
+#: modules/content/blocks/stream.py:656 modules/content/blocks/stream.py:1026
+#: modules/content/blocks/stream.py:1130
+msgid "Portrait"
+msgstr ""
+
+#: modules/content/blocks/stream.py:661
+msgid "e.g. “Examples of our work”, or leave empty"
+msgstr ""
+
+#: modules/content/blocks/stream.py:703
+msgid "Latest section content"
+msgstr ""
+
+#: modules/content/blocks/stream.py:712
+msgid "Front page of section"
+msgstr ""
+
+#: modules/content/blocks/stream.py:736
+msgid "Latest {}"
+msgstr ""
+
+#: modules/content/blocks/stream.py:754
+msgid "Latest by Focus Area"
+msgstr ""
+
+#: modules/content/blocks/stream.py:763 modules/content/blocks/stream.py:815
+#: modules/content/blocks/stream.py:867 modules/content/blocks/stream.py:914
+#: modules/content/blocks/stream.py:966
+msgid "If blank, will use \"Latest\""
+msgstr ""
+
+#: modules/content/blocks/stream.py:806
+msgid "Latest by Topic"
+msgstr ""
+
+#: modules/content/blocks/stream.py:858
+msgid "Latest by Publication Type"
+msgstr ""
+
+#: modules/content/blocks/stream.py:905
+msgid "Latest by Section Tag"
+msgstr ""
+
+#: modules/content/blocks/stream.py:957
+msgid "Latest by Open Ownership Principle"
+msgstr ""
+
+#: modules/content/blocks/stream.py:1013 modules/content/models/pages.py:348
+msgid "Areas of focus"
+msgstr ""
+
+#: modules/content/blocks/stream.py:1031 modules/content/blocks/stream.py:1088
+msgid "Leave empty to use default: \"{}\""
+msgstr ""
+
+#: modules/content/blocks/stream.py:1078 modules/content/models/mixins.py:221
+#: modules/content/models/pages.py:349 modules/taxonomy/models/tags.py:83
+msgid "Topics"
+msgstr ""
+
+#: modules/content/blocks/stream.py:1117
+msgid "Publication types"
+msgstr ""
+
+#: modules/content/blocks/stream.py:1135 modules/content/blocks/stream.py:1189
+#, python-brace-format
+msgid "Leave empty to use default: \"{DEFAULT_TITLE}\""
+msgstr ""
+
+#: modules/content/blocks/stream.py:1179
+msgid "Press links"
+msgstr ""
+
+#: modules/content/blocks/stream.py:1306
+msgid "Details"
+msgstr ""
+
+#: modules/content/blocks/stream.py:1332
+msgid "Editor's picks"
+msgstr ""
+
+#: modules/content/models/inlines.py:38
+msgid "Page collection"
+msgstr ""
+
+#: modules/content/models/inlines.py:76
+msgid "Image collection"
+msgstr ""
+
+#: modules/content/models/inlines.py:115
+msgid "Post author"
+msgstr ""
+
+#: modules/content/models/inlines.py:116
+msgid "Post authors"
+msgstr ""
+
+#: modules/content/models/inlines.py:142
+msgid "Article author"
+msgstr ""
+
+#: modules/content/models/inlines.py:143
+msgid "Article authors"
+msgstr ""
+
+#: modules/content/models/inlines.py:169
+msgid "Publication author"
+msgstr ""
+
+#: modules/content/models/inlines.py:170
+msgid "Publication authors"
+msgstr ""
+
+#: modules/content/models/inlines.py:194
+msgid "Press link author"
+msgstr ""
+
+#: modules/content/models/inlines.py:195
+msgid "Press link authors"
+msgstr ""
+
+#: modules/content/models/mixins.py:85
+msgid "Headline"
+msgstr ""
+
+#: modules/content/models/mixins.py:92
+msgid "Body text"
+msgstr ""
+
+#: modules/content/models/mixins.py:99 modules/content/models/mixins.py:130
+msgid "Hero"
+msgstr ""
+
+#: modules/content/models/mixins.py:149 modules/content/models/snippets.py:153
+msgid "Authors"
+msgstr ""
+
+#: modules/content/models/mixins.py:162 modules/content/models/mixins.py:241
+#: modules/content/models/pages.py:822
+msgid "About"
+msgstr ""
+
+#: modules/content/models/mixins.py:219 modules/content/models/pages.py:347
+#: modules/taxonomy/models/categories.py:28
+msgid "Content type"
+msgstr ""
+
+#: modules/content/models/mixins.py:222 modules/notion/models.py:439
+msgid "Countries"
+msgstr ""
+
+#: modules/content/models/mixins.py:223 modules/content/models/snippets.py:151
+#: modules/taxonomy/models/tags.py:123
+msgid "Sections"
+msgstr ""
+
+#: modules/content/models/mixins.py:324
+msgid "Name"
+msgstr ""
+
+#: modules/content/models/mixins.py:325
+msgid "Slug"
+msgstr ""
+
+#: modules/content/models/page_types.py:60
+msgid "If blank, this will be set to the date the page was first published"
+msgstr ""
+
+#: modules/content/models/page_types.py:126 modules/content/models/pages.py:505
+msgid "Content"
+msgstr ""
+
+#: modules/content/models/page_types.py:127
+msgid "Promote"
+msgstr ""
+
+#: modules/content/models/page_types.py:128
+msgid "Settings"
+msgstr ""
+
+#: modules/content/models/pages.py:62
+msgid "Home page"
+msgstr ""
+
+#: modules/content/models/pages.py:112
+msgid "Section (Impact, etc.)"
+msgstr ""
+
+#: modules/content/models/pages.py:154
+msgid "Section listing (About)"
+msgstr ""
+
+#: modules/content/models/pages.py:169
+msgid "Display cards linking to all the child pages"
+msgstr ""
+
+#: modules/content/models/pages.py:248
+msgid "News article"
+msgstr ""
+
+#: modules/content/models/pages.py:273
+msgid "Blog post page"
+msgstr ""
+
+#: modules/content/models/pages.py:282
+msgid "Blog post"
+msgstr ""
+
+#: modules/content/models/pages.py:364
+msgid "Job"
+msgstr ""
+
+#: modules/content/models/pages.py:387
+msgid "Publication title"
+msgstr ""
+
+#: modules/content/models/pages.py:388
+msgid "The publication title as you'd like it to be seen by the public"
+msgstr ""
+
+#: modules/content/models/pages.py:408
+msgid "e.g. ‘Introduction’"
+msgstr ""
+
+#: modules/content/models/pages.py:436
+msgid "Summary"
+msgstr ""
+
+#: modules/content/models/pages.py:447 modules/content/models/pages.py:453
+msgid "Key Learning Outcomes"
+msgstr ""
+
+#: modules/content/models/pages.py:459 modules/content/models/pages.py:465
+msgid "Benefit / Impact"
+msgstr ""
+
+#: modules/content/models/pages.py:470
+msgid "Should this date be displayed as the publication's date?"
+msgstr ""
+
+#: modules/content/models/pages.py:471
+msgid "Show Display Date?"
+msgstr ""
+
+#: modules/content/models/pages.py:486
+msgid "Titles"
+msgstr ""
+
+#: modules/content/models/pages.py:494
+msgid "Cover and document"
+msgstr ""
+
+#: modules/content/models/pages.py:514
+msgid "Display date"
+msgstr ""
+
+#: modules/content/models/pages.py:549
+msgid "Publication"
+msgstr ""
+
+#: modules/content/models/pages.py:598
+msgid "Page title"
+msgstr ""
+
+#: modules/content/models/pages.py:600
+msgid ""
+"Short title of this page within the publication e.g. 'Overview', "
+"'Comprehensive coverage', etc."
+msgstr ""
+
+#: modules/content/models/pages.py:726
+msgid "Link team member to their authorship of articles on the site"
+msgstr ""
+
+#: modules/content/models/pages.py:748
+msgid "e.g. ‘London, England’"
+msgstr ""
+
+#: modules/content/models/pages.py:772
+msgid "Regional experience"
+msgstr ""
+
+#: modules/content/models/pages.py:773
+msgid "Specialist area"
+msgstr ""
+
+#: modules/content/models/pages.py:782 modules/settings/models/mixins.py:260
+msgid "Contact"
+msgstr ""
+
+#: modules/content/models/pages.py:966
+msgid "Link to an external URL"
+msgstr ""
+
+#: modules/content/models/pages.py:1003
+msgid "People commonly search for"
+msgstr ""
+
+#: modules/content/models/pages.py:1107
+msgid "Will appear above the cards linking to each Tag Page"
+msgstr ""
+
+#: modules/content/models/pages.py:1224 modules/taxonomy/models/core.py:110
+#: modules/taxonomy/models/core.py:133
+msgid "Tag"
+msgstr ""
+
+#: modules/content/models/snippets.py:120
+msgid "URL"
+msgstr ""
+
+#: modules/content/models/snippets.py:132
+msgid "Logo"
+msgstr ""
+
+#: modules/core/admin/helpers.py:34
+msgid "Export {}"
+msgstr ""
+
+#: modules/core/views.py:51
+msgid "404: page not found"
+msgstr ""
+
+#: modules/notion/models.py:33
+msgid "Notion ID"
+msgstr ""
+
+#: modules/notion/models.py:40
+msgid "Notion Created"
+msgstr ""
+
+#: modules/notion/models.py:45
+msgid "Notion Updated"
+msgstr ""
+
+#: modules/notion/models.py:50
+msgid "Archived"
+msgstr ""
+
+#: modules/notion/models.py:56
+msgid "Soft deleted"
+msgstr ""
+
+#: modules/notion/models.py:66
+msgid "Commitment"
+msgstr ""
+
+#: modules/notion/models.py:67
+msgid "Commitments"
+msgstr ""
+
+#: modules/notion/models.py:77
+msgid "Date"
+msgstr ""
+
+#: modules/notion/models.py:83
+msgid "Link"
+msgstr ""
+
+#: modules/notion/models.py:91
+msgid "Commitment Type"
+msgstr ""
+
+#: modules/notion/models.py:98 modules/notion/models.py:218
+msgid "Central Register"
+msgstr ""
+
+#: modules/notion/models.py:105
+msgid "Public Register"
+msgstr ""
+
+#: modules/notion/models.py:112
+msgid "All sectors"
+msgstr ""
+
+#: modules/notion/models.py:119
+msgid "Summary Text"
+msgstr ""
+
+#: modules/notion/models.py:144
+msgid "Disclosure Regime"
+msgstr ""
+
+#: modules/notion/models.py:145
+msgid "Disclosure Regimes"
+msgstr ""
+
+#: modules/notion/models.py:156
+msgid "Title"
+msgstr ""
+
+#: modules/notion/models.py:163
+msgid "Stage"
+msgstr ""
+
+#: modules/notion/models.py:171
+msgid "Definition: Legislation URL"
+msgstr ""
+
+#: modules/notion/models.py:179
+msgid "Coverage: Legislation URL"
+msgstr ""
+
+#: modules/notion/models.py:187
+msgid "Sufficient detail: Legislation URL"
+msgstr ""
+
+#: modules/notion/models.py:195
+msgid "Public access: Protection regime URL"
+msgstr ""
+
+#: modules/notion/models.py:203 modules/notion/models.py:211
+msgid "Public access: Legal basis URL"
+msgstr ""
+
+#: modules/notion/models.py:225
+msgid "Public Access"
+msgstr ""
+
+#: modules/notion/models.py:232
+msgid "Public Access Register URL"
+msgstr ""
+
+#: modules/notion/models.py:239
+msgid "Year Launched"
+msgstr ""
+
+#: modules/notion/models.py:246
+msgid "Structured data"
+msgstr ""
+
+#: modules/notion/models.py:253
+msgid "API available"
+msgstr ""
+
+#: modules/notion/models.py:260
+msgid "Data published in BODS"
+msgstr ""
+
+#: modules/notion/models.py:267
+msgid "On OO Register"
+msgstr ""
+
+#: modules/notion/models.py:274
+msgid "Legislation URL"
+msgstr ""
+
+#: modules/notion/models.py:289
+msgid "Threshold"
+msgstr ""
+
+#: modules/notion/models.py:456
+msgid "Icon"
+msgstr ""
+
+#: modules/notion/models.py:478
+msgid "OO Support"
+msgstr ""
+
+#: modules/notion/models.py:485
+msgid "ISO2"
+msgstr ""
+
+#: modules/notion/models.py:801
+msgid "Coverage Scope"
+msgstr ""
+
+#: modules/notion/models.py:802
+msgid "Coverage Scopes"
+msgstr ""
+
+#: modules/notion/models.py:814
+msgid "Region"
+msgstr ""
+
+#: modules/notion/models.py:815
+msgid "Regions"
+msgstr ""
+
+#: modules/settings/models/mixins.py:51
+msgid "Analytics property ID (starting UA-...)"
+msgstr ""
+
+#: modules/settings/models/mixins.py:58
+msgid "Tag Manager property ID (starting GTM...)"
+msgstr ""
+
+#: modules/settings/models/mixins.py:79
+msgid "Analytics settings"
+msgstr ""
+
+#: modules/settings/models/mixins.py:89
+msgid "The short description shown in search results (160 characters max)"
+msgstr ""
+
+#: modules/settings/models/mixins.py:96
+msgid "A default image to use when shared on Facebook (aim for 1200x630)"
+msgstr ""
+
+#: modules/settings/models/mixins.py:118
+msgid "Meta Tag settings"
+msgstr ""
+
+#: modules/settings/models/mixins.py:230
+#: modules/settings/models/navigation_settings.py:69
+msgid "Navbar"
+msgstr ""
+
+#: modules/settings/models/mixins.py:259
+msgid "Legal"
+msgstr ""
+
+#: modules/settings/models/mixins.py:261
+#: modules/settings/models/navigation_settings.py:70
+msgid "Footer"
+msgstr ""
+
+#: modules/settings/models/navigation_settings.py:17
+msgid "Navigation settings"
+msgstr ""
+
+#: modules/settings/models/site_settings.py:22
+msgid "Site settings"
+msgstr ""
+
+#: modules/settings/models/site_settings.py:31
+msgid "Analytics"
+msgstr ""
+
+#: modules/settings/models/site_settings.py:32
+msgid "Meta Tags"
+msgstr ""
+
+#: modules/settings/models/site_settings.py:33
+msgid "Social media"
+msgstr ""
+
+#: modules/settings/models/site_settings.py:34 templates/errors/404.jinja:10
+msgid "Search"
+msgstr ""
+
+#: modules/taxonomy/models/categories.py:29
+msgid "Content types"
+msgstr ""
+
+#: modules/taxonomy/models/core.py:25
+msgid "Category"
+msgstr ""
+
+#: modules/taxonomy/models/core.py:26
+msgid "Categories"
+msgstr ""
+
+#: modules/taxonomy/models/core.py:37 modules/taxonomy/models/core.py:121
+msgid "Used when showing a card linking to this tag"
+msgstr ""
+
+#: modules/taxonomy/models/core.py:45 modules/taxonomy/models/core.py:129
+msgid "Public fields"
+msgstr ""
+
+#: modules/taxonomy/models/core.py:111
+msgid "Tags"
+msgstr ""
+
+#: modules/taxonomy/models/tags.py:32
+msgid "Area of Focus"
+msgstr ""
+
+#: modules/taxonomy/models/tags.py:33
+msgid "Areas of Focus"
+msgstr ""
+
+#: modules/taxonomy/models/tags.py:197
+msgid "Open Ownership Principle"
+msgstr ""
+
+#: modules/users/models.py:60
+msgid "user"
+msgstr ""
+
+#: modules/users/models.py:61
+msgid "users"
+msgstr ""
+
+#: modules/users/models.py:66
+msgid "email address"
+msgstr ""
+
+#: modules/users/models.py:67
+msgid "first name"
+msgstr ""
+
+#: modules/users/models.py:68
+msgid "last name"
+msgstr ""
+
+#: modules/users/models.py:70
+msgid "staff status"
+msgstr ""
+
+#: modules/users/models.py:72
+msgid "Designates whether the user can log into this admin site."
+msgstr ""
+
+#: modules/users/models.py:75
+msgid "active"
+msgstr ""
+
+#: modules/users/models.py:77
+msgid ""
+"Unsetting this should be used to deactivate a user instead of deleting them."
+msgstr ""
+
+#: modules/users/models.py:79
+msgid "date joined"
+msgstr ""
+
+#: modules/users/models.py:80
+msgid "confirmed at"
+msgstr ""
+
+#: templates/content/publication_front_page.jinja:1
+#: templates/content/publication_inner_page.jinja:1
+msgid "Contents"
+msgstr ""
+
+#: templates/errors/404.jinja:20 templates/search/results.jinja:138
+msgid "Most read"
+msgstr ""
+
+#: templates/views/country.jinja:117
+msgid ""
+"Data is drawn from publicly-available sources and may not be comprehensive "
+"for all countries. If data is incorrect"
+msgstr ""
+
+#: templates/views/country.jinja:117
+msgid "please let us know"
+msgstr ""
+
+#: templates/views/country.jinja:225
+msgid "Legal definition of beneficial ownership"
+msgstr ""
+
+#: templates/views/country.jinja:230
+msgid "Coverage"
+msgstr ""
+
+#: templates/views/country.jinja:235
+msgid "Sufficient detail"
+msgstr ""
+
+#: templates/views/country.jinja:240
+msgid "Public access: protection regime"
+msgstr ""
+
+#: templates/views/country.jinja:245
+msgid "Public access: legal basis"
+msgstr ""
+
+#: templates/views/country.jinja:250
+msgid "Beneficial ownership legislation"
+msgstr ""
+
+#: templates/views/country.jinja:255
+msgid "Sanctions and enforcement legislation"
+msgstr ""
