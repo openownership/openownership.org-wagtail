@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 # 3rd party
 import envkey  # NOQA
 from loguru import logger as guru
+from django.utils.translation import gettext_lazy as _
 
 
 SHELL_PLUS = "ipython"
@@ -60,17 +61,21 @@ USE_I18N = True
 USE_TZ = True
 
 WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
-    ('en', "English"),
-    ('fr', 'French'),
-    ('es', 'Spanish'),
-    ('id', 'Bahasa Indonesia'),
-    ('de', 'German'),
-    ('ru', 'Russian'),
-    ('hy', 'Armenian'),
-    ('mn', 'Mongolian'),
-    ('uk', 'Ukrainian'),
+    ('en', _("English")),
+    ('fr', _("French")),
+    ('es', _("Spanish")),
+    ('id', _("Bahasa Indonesia")),
+    ('de', _("German")),
+    ('ru', _("Russian")),
+    ('hy', _("Armenian")),
+    ('mn', _("Mongolian")),
+    ('uk', _("Ukrainian")),
 ]
 
+
+LOCALE_PATHS = (
+    os.path.join(DJANGO_ROOT, 'locale'),
+)
 
 ####################################################################################################
 # Installed Apps
