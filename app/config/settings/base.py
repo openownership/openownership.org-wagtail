@@ -67,6 +67,8 @@ WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
     ('de', 'German'),
     ('ru', 'Russian'),
     ('hy', 'Armenian'),
+    ('mn', 'Mongolian'),
+    ('uk', 'Ukrainian'),
 ]
 
 
