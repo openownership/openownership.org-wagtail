@@ -41,13 +41,13 @@ body {
     grid-template-columns: 1fr;
     grid-gap: 2rem;
 
-    @include min-width(lg) {
+    @include min-width(md) {
         grid-template-columns: 300px minmax(10px, 1fr);
     }
 
     .aside-layout__menu {
         display: none;
-        @include min-width(lg) {
+        @include min-width(md) {
             display: block;
         }
 
@@ -63,7 +63,7 @@ body {
     grid-gap: 2rem;
     @apply pt-10;
 
-    @include min-width(lg) {
+    @include min-width(md) {
         grid-template-columns: minmax(10px, 1fr) 300px;
     }
 
