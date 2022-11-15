@@ -40,9 +40,12 @@ def picture(img: SiteImage, w: int, h: int, style: str = "fill", alt: str = '') 
     x2_url = x2.url
     if not len(alt):
         try:
-            alt = img.alt
+            alt = img.alt_text
         except Exception as e:
             console.error(e)
+
+        if alt is None:
+            alt = ""
     rv = f"""
         <picture>
             <source srcset="{x1_url}, {x2_url} 2x" media="(min-width: 800px)">
