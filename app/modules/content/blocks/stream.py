@@ -683,7 +683,6 @@ class HighlightPagesBlock(blocks.StructBlock):
         context.update({
             'title': value.get('title', ''),
             'pages': pages,
-            'columns': 1
         })
         return context
 
