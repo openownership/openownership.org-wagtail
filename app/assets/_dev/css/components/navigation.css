@@ -1,19 +1,14 @@
 .navbar {
     @apply bg-white;
-    
     @include min-width(lg) {
         height: 100px;
     }
 
     .navbar__logo {
         height: 57px;
-        margin: 5px 0;
+        margin: 15px 0;
         width: 200px;
         display: flex;
-
-        @include min-width(lg) {
-            margin: 15px 0;
-        }
 
         svg {
             width: 197px;
@@ -261,54 +256,42 @@
   #LANGUAGE
 \*------------------------------------*/
 
-.navbar {
+@include max-width(lg) {
     .navbar__language {
-        margin-bottom: 5px;
-    }
-
-    .navbar__choose-language {
-        @apply text-14 text-white;
+        display: none;
     }
 }
 
 .navbar__language {
     position: relative;
-
     &:hover, &:focus-within {
         .navbar__language-list {
             display: block;
         }
 
-        svg {
-            @apply rotate-180;
-        }
     }
 }
 
 .navbar__choose-language {
-    @apply flex items-center justify-center;
+    @apply flex;
+    align-items: center;
+    @apply text-14 text-blue-medium;
+    padding: 5px;
+    padding-bottom: 20px;
 
     svg {
         @apply ml-2;
-        @apply relative;
-        
-        top: 1px;
     }
-
-    g {
-        @apply stroke-white;
-    }
-
 }
 
 .navbar__language-list {
     @apply text-14 text-blue-medium;
-    @apply top-full;
     display: none;
     position: absolute;
     background-color: white;
     z-index: 2;
     padding: 5px;
+    top: 30px;
     width: 100%;
     left: 0;
 
@@ -323,7 +306,7 @@
 
 .navigation__toggle {
     position: absolute;
-    top: 40px;
+    top: 45px;
     display: flex;
     align-items: center;
 
