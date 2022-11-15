@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 14:52+0000\n"
+"POT-Creation-Date: 2022-11-15 17:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,23 +136,23 @@ msgstr ""
 msgid "Creative Commons Attribution 4.0 International License"
 msgstr ""
 
-#: config/settings/base.py:533
+#: config/settings/base.py:533 templates/_partials/footer.jinja:18
 msgid "Open Ownership newsletter"
 msgstr ""
 
-#: config/settings/base.py:534
+#: config/settings/base.py:534 templates/_partials/footer.jinja:19
 msgid "Sign up to receive our latest reports, news and updates"
 msgstr ""
 
-#: config/settings/base.py:535
+#: config/settings/base.py:535 templates/_partials/footer.jinja:26
 msgid "Sign up"
 msgstr ""
 
-#: config/template.py:158
+#: config/template.py:161
 msgid "Yes"
 msgstr ""
 
-#: config/template.py:160
+#: config/template.py:163
 msgid "No"
 msgstr ""
 
@@ -161,11 +161,11 @@ msgid "Similar Content"
 msgstr ""
 
 #: modules/content/blocks/stream.py:143 modules/content/blocks/stream.py:647
-#: modules/content/blocks/stream.py:704 modules/content/blocks/stream.py:755
-#: modules/content/blocks/stream.py:807 modules/content/blocks/stream.py:859
-#: modules/content/blocks/stream.py:906 modules/content/blocks/stream.py:958
-#: modules/content/blocks/stream.py:1014 modules/content/blocks/stream.py:1079
-#: modules/content/blocks/stream.py:1118 modules/content/blocks/stream.py:1180
+#: modules/content/blocks/stream.py:703 modules/content/blocks/stream.py:754
+#: modules/content/blocks/stream.py:806 modules/content/blocks/stream.py:858
+#: modules/content/blocks/stream.py:905 modules/content/blocks/stream.py:957
+#: modules/content/blocks/stream.py:1013 modules/content/blocks/stream.py:1078
+#: modules/content/blocks/stream.py:1117 modules/content/blocks/stream.py:1179
 msgid "Card group"
 msgstr ""
 
@@ -204,13 +204,13 @@ msgstr ""
 msgid "Highlight pages"
 msgstr ""
 
-#: modules/content/blocks/stream.py:655 modules/content/blocks/stream.py:1025
-#: modules/content/blocks/stream.py:1129
+#: modules/content/blocks/stream.py:655 modules/content/blocks/stream.py:1024
+#: modules/content/blocks/stream.py:1128
 msgid "Landscape"
 msgstr ""
 
-#: modules/content/blocks/stream.py:656 modules/content/blocks/stream.py:1026
-#: modules/content/blocks/stream.py:1130
+#: modules/content/blocks/stream.py:656 modules/content/blocks/stream.py:1025
+#: modules/content/blocks/stream.py:1129
 msgid "Portrait"
 msgstr ""
 
@@ -218,75 +218,75 @@ msgstr ""
 msgid "e.g. “Examples of our work”, or leave empty"
 msgstr ""
 
-#: modules/content/blocks/stream.py:703
+#: modules/content/blocks/stream.py:702
 msgid "Latest section content"
 msgstr ""
 
-#: modules/content/blocks/stream.py:712
+#: modules/content/blocks/stream.py:711
 msgid "Front page of section"
 msgstr ""
 
-#: modules/content/blocks/stream.py:736
+#: modules/content/blocks/stream.py:735
 msgid "Latest {}"
 msgstr ""
 
-#: modules/content/blocks/stream.py:754
+#: modules/content/blocks/stream.py:753
 msgid "Latest by Focus Area"
 msgstr ""
 
-#: modules/content/blocks/stream.py:763 modules/content/blocks/stream.py:815
-#: modules/content/blocks/stream.py:867 modules/content/blocks/stream.py:914
-#: modules/content/blocks/stream.py:966
+#: modules/content/blocks/stream.py:762 modules/content/blocks/stream.py:814
+#: modules/content/blocks/stream.py:866 modules/content/blocks/stream.py:913
+#: modules/content/blocks/stream.py:965
 msgid "If blank, will use \"Latest\""
 msgstr ""
 
-#: modules/content/blocks/stream.py:806
+#: modules/content/blocks/stream.py:805
 msgid "Latest by Topic"
 msgstr ""
 
-#: modules/content/blocks/stream.py:858
+#: modules/content/blocks/stream.py:857
 msgid "Latest by Publication Type"
 msgstr ""
 
-#: modules/content/blocks/stream.py:905
+#: modules/content/blocks/stream.py:904
 msgid "Latest by Section Tag"
 msgstr ""
 
-#: modules/content/blocks/stream.py:957
+#: modules/content/blocks/stream.py:956
 msgid "Latest by Open Ownership Principle"
 msgstr ""
 
-#: modules/content/blocks/stream.py:1013 modules/content/models/pages.py:348
+#: modules/content/blocks/stream.py:1012 modules/content/models/pages.py:348
 msgid "Areas of focus"
 msgstr ""
 
-#: modules/content/blocks/stream.py:1031 modules/content/blocks/stream.py:1088
+#: modules/content/blocks/stream.py:1030 modules/content/blocks/stream.py:1087
 msgid "Leave empty to use default: \"{}\""
 msgstr ""
 
-#: modules/content/blocks/stream.py:1078 modules/content/models/mixins.py:221
+#: modules/content/blocks/stream.py:1077 modules/content/models/mixins.py:221
 #: modules/content/models/pages.py:349 modules/taxonomy/models/tags.py:83
 msgid "Topics"
 msgstr ""
 
-#: modules/content/blocks/stream.py:1117
+#: modules/content/blocks/stream.py:1116
 msgid "Publication types"
 msgstr ""
 
-#: modules/content/blocks/stream.py:1135 modules/content/blocks/stream.py:1189
+#: modules/content/blocks/stream.py:1134 modules/content/blocks/stream.py:1188
 #, python-brace-format
 msgid "Leave empty to use default: \"{DEFAULT_TITLE}\""
 msgstr ""
 
-#: modules/content/blocks/stream.py:1179
+#: modules/content/blocks/stream.py:1178
 msgid "Press links"
 msgstr ""
 
-#: modules/content/blocks/stream.py:1306
+#: modules/content/blocks/stream.py:1305
 msgid "Details"
 msgstr ""
 
-#: modules/content/blocks/stream.py:1332
+#: modules/content/blocks/stream.py:1331
 msgid "Editor's picks"
 msgstr ""
 
@@ -827,40 +827,40 @@ msgstr ""
 msgid "Most read"
 msgstr ""
 
-#: templates/views/country.jinja:117
+#: templates/views/country.jinja:116
 msgid ""
 "Data is drawn from publicly-available sources and may not be comprehensive "
 "for all countries. If data is incorrect"
 msgstr ""
 
-#: templates/views/country.jinja:117
+#: templates/views/country.jinja:116
 msgid "please let us know"
 msgstr ""
 
-#: templates/views/country.jinja:225
+#: templates/views/country.jinja:224
 msgid "Legal definition of beneficial ownership"
 msgstr ""
 
-#: templates/views/country.jinja:230
+#: templates/views/country.jinja:229
 msgid "Coverage"
 msgstr ""
 
-#: templates/views/country.jinja:235
+#: templates/views/country.jinja:234
 msgid "Sufficient detail"
 msgstr ""
 
-#: templates/views/country.jinja:240
+#: templates/views/country.jinja:239
 msgid "Public access: protection regime"
 msgstr ""
 
-#: templates/views/country.jinja:245
+#: templates/views/country.jinja:244
 msgid "Public access: legal basis"
 msgstr ""
 
-#: templates/views/country.jinja:250
+#: templates/views/country.jinja:249
 msgid "Beneficial ownership legislation"
 msgstr ""
 
-#: templates/views/country.jinja:255
+#: templates/views/country.jinja:254
 msgid "Sanctions and enforcement legislation"
 msgstr ""
