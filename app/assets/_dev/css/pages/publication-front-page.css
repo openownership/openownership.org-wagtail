@@ -20,19 +20,23 @@
         @apply w-full;
     }
 
-    .navbar__language .btn {
-        @apply text-white;
-        @apply flex items-center justify-center;
+    .navbar__language {
+        @apply block !important;
+        
+        .btn {
+            @apply text-white;
+            @apply flex items-center justify-center;
 
-        svg {
-            @apply ml-2;
-            @apply relative;
+            svg {
+                @apply ml-2;
+                @apply relative;
 
-            top: 1px;
-        }
+                top: 1px;
+            }
 
-        g {
-            @apply stroke-white;
+            g {
+                @apply stroke-white;
+            }
         }
     }
 
