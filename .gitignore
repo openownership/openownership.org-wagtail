@@ -1,0 +1,61 @@
+.env
+
+devops/files/cloud-init.yml
+devops/keys/deploy_key
+devops/keys/deploy_key.pub
+
+
+_db/
+docker/db/**/*
+docker/redis/**/*
+*.sql
+*.sql.zip
+
+# Compiled static assets
+app/static/**/*
+
+**/.webassets-cache
+**/.webassets-cache/**/*
+app/assets/.webassets-cache
+app/assets/.webassets-cache/*
+**/node_modules/
+**/node_modules/**/*
+app/assets/dist/css/*.min.css
+app/assets/dist/js/*.min.js
+
+# UGC
+app/media/**/*
+
+# virtual env packages
+**/venv/**/*
+
+# Vagrant
+.vagrant
+.vagrant/**/*
+
+# Misc files
+*.scssc
+*.pyc
+.DS_Store
+*.sublime-workspace
+*.sublime-project
+redirects.csv
+app/countries.csv
+app/capitals.csv
+
+# This file is just for me, too dangerous to have on the servers
+app/modules/notion/management/commands/wipe_notion.py
+
+# Coverage
+.coverage
+coverage.xml
+htmlcov/**/*
+
+# Tests
+app/tests/.cache/*
+app/tests/__pycache__/*
+
+
+# Devops
+devops/webserver.retry
+devops/roles/**/*
