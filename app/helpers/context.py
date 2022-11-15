@@ -1,3 +1,4 @@
+from django.conf import settings
 from consoler import console
 from cacheops import cached
 from wagtail.core.models import Site
@@ -39,11 +40,12 @@ def global_context(context: dict = {}) -> dict:
     """
     try:
         site = Site.objects.get(is_default_site=True)
-        context = _locales_context(context)
-        context.update(**SiteSettings.get_analytics_context(site)),
-        context.update(**SiteSettings.get_social_context(site)),
-        context.update(**NavigationSettings.get_nav_context(site)),
-        context['press_links_page_url'] = _get_press_links_page_url()
+        ctx = _locales_context(context)
+        ctx.update(**SiteSettings.get_analytics_context(site)),
+        ctx.update(**SiteSettings.get_social_context(site)),
+        ctx.update(**NavigationSettings.get_nav_context(site)),
+        ctx['press_links_page_url'] = _get_press_links_page_url()
+        ctx['fflags'] = settings.FFLAGS
     except Exception as e:
         console.error(e)
         return {}
