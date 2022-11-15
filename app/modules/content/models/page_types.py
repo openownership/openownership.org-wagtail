@@ -105,19 +105,20 @@ class BasePage(WagtailCacheMixin, Page):
         return breadcrumbs
 
     def get_context(self, request, *args, **kwargs):
-        context = super().get_context(request, *args, **kwargs)
+        ctx = super().get_context(request, *args, **kwargs)
         site = self.get_site()
 
-        context.update(
+        ctx.update(
             **get_site_context(site),
         )
-        context.update(
+        ctx.update(
             **self.get_metadata_settings(site)
         )
 
-        context['meta_description'] = self.page_meta_description
+        ctx['meta_description'] = self.page_meta_description
+        ctx['fflags'] = settings.FFLAGS
 
-        return context
+        return ctx
 
     @cached_classmethod
     def get_admin_tabs(cls):
