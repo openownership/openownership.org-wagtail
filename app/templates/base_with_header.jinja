@@ -46,7 +46,7 @@
 						<li class="article-header__meta-item">{% trans %}Application deadline{% endtrans %}: {{ page.human_application_deadline }}</li>
 					{% endif %}
                     {% if page and page.translations|length %}
-                        <li class="article-header__meta-item">| &nbsp;View in:
+                        <li class="article-header__meta-item">| &nbsp;{{ _("View in") }}:
                             {% for item in page.translations %}
                                 <a href="{{ item.url }}" class="language_tag"><span>{{ _(item.language) }}<span></a>&nbsp;
                             {% endfor %}
