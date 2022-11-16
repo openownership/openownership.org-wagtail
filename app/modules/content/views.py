@@ -307,6 +307,14 @@ class SearchView(TemplateView):
                     ids = list(pt.pages.values_list('id', flat=True))
                     page_ids = add_ids(page_ids, ids)
 
+                # Ensure publication pages show when Publication is set as the content type
+                # on a PublicationPage
+                pub_type = PublicationType.objects.filter(slug='publication').first()
+                if pub_type and pub_type in f['publication_types']:
+                    from modules.content.models.pages import PublicationFrontPage
+                    ids = PublicationFrontPage.objects.live().public().values_list('id', flat=True)
+                    page_ids = add_ids(page_ids, ids)
+
             # The three Tags:
 
             if len(f['principle_tags']):
