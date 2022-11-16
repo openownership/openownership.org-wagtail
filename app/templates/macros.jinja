@@ -1,6 +1,6 @@
-{% macro render_stream(stream, page=None) %}
+{% macro render_stream(stream, page=None, is_footer_content=False) %}
 {% for stream_block in stream %}
-{% with block_id = stream_block.id %}
+{% with block_id = stream_block.id, is_footer_content = is_footer_content %}
     {% include_block stream_block %}
 {% endwith %}
 {% endfor %}
