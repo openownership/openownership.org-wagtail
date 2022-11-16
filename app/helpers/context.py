@@ -46,13 +46,16 @@ def global_context(context: dict = {}) -> dict:
         ctx.update(**NavigationSettings.get_nav_context(site)),
         ctx['press_links_page_url'] = _get_press_links_page_url()
         ctx['fflags'] = settings.FFLAGS
+        console.info("1", ctx)
     except Exception as e:
         console.error(e)
+        console.info("2", ctx)
         return {}
     else:
         context.update({
             'site_name': site.site_name
         })
+        console.info("3", ctx)
         return context
 
 

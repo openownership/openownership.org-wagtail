@@ -26,6 +26,7 @@ from wagtail.admin.edit_handlers import FieldPanel, ObjectList, TabbedInterface,
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 # Project
+from helpers.context import global_context
 from modules.core.utils import get_site_context
 from modules.content.blocks import (
     LANDING_PAGE_BLOCKS, ARTICLE_PAGE_BODY_BLOCKS, ADDITIONAL_CONTENT_BLOCKS
@@ -106,6 +107,7 @@ class BasePage(WagtailCacheMixin, Page):
 
     def get_context(self, request, *args, **kwargs):
         ctx = super().get_context(request, *args, **kwargs)
+        ctx = global_context(ctx)
         site = self.get_site()
 
         ctx.update(
