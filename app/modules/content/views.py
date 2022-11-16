@@ -1,7 +1,10 @@
 # stdlib
 from typing import Optional
+from html import unescape
+from django.utils.text import unescape_entities
 
 # 3rd party
+from django.utils.html import strip_tags
 from consoler import console
 from django.http import Http404
 from wagtail.core.models import Page, Site, Locale
@@ -78,6 +81,7 @@ class CountryView(TemplateView):
         ctx['country'] = self.tag
         ctx['page'] = self
         ctx['meta_title'] = f"{self.tag.name}"
+        ctx['meta_description'] = self._meta_description
         global_context(ctx)  # Adds in nav settings etc.
         # Add in pagination for related articles
         try:
@@ -92,6 +96,15 @@ class CountryView(TemplateView):
     @cached_property
     def title(self):
         return self.tag.name
+
+    @cached_property
+    def _meta_description(self):
+        try:
+            meta_description = unescape_entities(strip_tags(self.tag.blurb))
+            meta_description = meta_description.replace('&#39;', "'")
+        except Exception:
+            meta_description = f"{self.tag.name} on Open Ownership"
+        return meta_description
 
     @cached_property
     def breadcrumb_page(cls):
@@ -292,6 +305,14 @@ class SearchView(TemplateView):
             if len(f['publication_types']):
                 for pt in f['publication_types']:
                     ids = list(pt.pages.values_list('id', flat=True))
+                    page_ids = add_ids(page_ids, ids)
+
+                # Ensure publication pages show when Publication is set as the content type
+                # on a PublicationPage
+                pub_type = PublicationType.objects.filter(slug='publication').first()
+                if pub_type and pub_type in f['publication_types']:
+                    from modules.content.models.pages import PublicationFrontPage
+                    ids = PublicationFrontPage.objects.live().public().values_list('id', flat=True)
                     page_ids = add_ids(page_ids, ids)
 
             # The three Tags:

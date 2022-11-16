@@ -49,7 +49,7 @@
         {% endif %}
     {% endwith %}
 
-    {{render_stream(page.additional_content, page)}}
+    {{render_stream(page.additional_content, page, is_footer_content=True)}}
 
 </article>
 {% endblock %}

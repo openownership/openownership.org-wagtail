@@ -227,6 +227,8 @@ class SimilarContentBlock(blocks.StructBlock):
         """Get the latest 3 articles by SectorTag.
         """
         all_ids = []
+        if not hasattr(self.page, 'sectors'):
+            return []
         for tag in self.page.sectors.all():
             for item in tag.sector_related_pages.all():
                 if item.content_object.id != self.page.id:
@@ -683,7 +685,6 @@ class HighlightPagesBlock(blocks.StructBlock):
         context.update({
             'title': value.get('title', ''),
             'pages': pages,
-            'columns': 1
         })
         return context
 

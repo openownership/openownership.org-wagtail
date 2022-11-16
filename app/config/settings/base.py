@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 # 3rd party
 import envkey  # NOQA
 from loguru import logger as guru
+from django.utils.translation import gettext_lazy as _
 
 
 SHELL_PLUS = "ipython"
@@ -60,17 +61,21 @@ USE_I18N = True
 USE_TZ = True
 
 WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
-    ('en', "English"),
-    ('fr', 'French'),
-    ('es', 'Spanish'),
-    ('id', 'Bahasa Indonesia'),
-    ('de', 'German'),
-    ('ru', 'Russian'),
-    ('hy', 'Armenian'),
-    ('mn', 'Mongolian'),
-    ('uk', 'Ukrainian'),
+    ('en', _("English")),
+    ('fr', _("French")),
+    ('es', _("Spanish")),
+    ('id', _("Bahasa Indonesia")),
+    ('de', _("German")),
+    ('ru', _("Russian")),
+    ('hy', _("Armenian")),
+    ('mn', _("Mongolian")),
+    ('uk', _("Ukrainian")),
 ]
 
+
+LOCALE_PATHS = (
+    os.path.join(DJANGO_ROOT, 'locale'),
+)
 
 ####################################################################################################
 # Installed Apps
@@ -496,4 +501,36 @@ FONTAWESOME_ICONS = [
     'solid/anchor.svg',
     'solid/clock.svg',
     'solid/sticky-note.svg'
+]
+
+
+# This gives us a place to put a list of strings that will need translations but may not
+# get picked up by makemessages (ie: they might be added through the CMS)
+
+TRANS_STRINGS = [
+    # Primary nav
+    _('Home'),
+    _('Research'),
+    _('Implementation'),
+    _('Technology'),
+    _('Impact'),
+    _('Register'),
+    _('Search'),
+    _('About'),
+    # Footer items
+    _('Legal'),
+    _('Terms'),
+    _('Privacy'),
+    _('Press mentions'),
+    _('Helpdesk'),
+    _('Jobs with Open Ownership'),
+    _('Contact us'),
+    _('Follow us'),
+    _('Content rights'),
+    _('This work by Open Ownership, unless otherwise noted, is licensed under a'),
+    _('Creative Commons Attribution 4.0 International License'),
+    # Misc
+    _('Open Ownership newsletter'),
+    _('Sign up to receive our latest reports, news and updates'),
+    _('Sign up'),
 ]
