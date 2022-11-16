@@ -30,7 +30,6 @@
 
 .navbar__navigations-container {
     @apply flex;
-    flex-direction: column;
     width: 100%;
     align-items: flex-end;
     justify-content: flex-end;
@@ -264,6 +263,8 @@
 
 .navbar__language {
     position: relative;
+    top: 10px;
+
     &:hover, &:focus-within {
         .navbar__language-list {
             display: block;
@@ -272,15 +273,12 @@
     }
 }
 
-.navbar__choose-language {
-    @apply flex;
-    align-items: center;
-    @apply text-14 text-blue-medium;
-    padding: 5px;
-    padding-bottom: 20px;
+.navbar .navbar__choose-language {
+    @apply relative;
+    top: 5px;
 
-    svg {
-        @apply ml-2;
+    path {
+        @apply fill-blue-medium;
     }
 }
 
@@ -292,12 +290,16 @@
     z-index: 2;
     padding: 5px;
     top: 30px;
-    width: 100%;
     left: 0;
 
     li a {
         padding: 5px 5px 5px 0;
     }
+}
+
+.navbar .navbar__language-list {
+    width: 70px;
+    top: 100%;
 }
 
 /*------------------------------------*\
