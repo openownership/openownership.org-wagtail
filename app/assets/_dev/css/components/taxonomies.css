@@ -13,3 +13,20 @@
         @apply grid-cols-2;
     }
 }
+
+
+a.language_tag{
+    display: inline-block;
+    padding: 0px 9px;
+    background-color: #3b25d9;
+    color: white;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+a.language_tag:hover{
+    background-color: #616a6f;
+    text-decoration: none;
+}
