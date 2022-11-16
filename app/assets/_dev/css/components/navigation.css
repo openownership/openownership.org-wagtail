@@ -255,14 +255,8 @@
   #LANGUAGE
 \*------------------------------------*/
 
-@include max-width(lg) {
-    .navbar__language {
-
-    }
-}
-
 @include min-width(lg) {
-    .navbar__language {
+    .navbar .navbar__language {
         top: 10px;
     }
 }
@@ -275,19 +269,6 @@
             display: block;
         }
 
-    }
-}
-
-.navbar .navbar__choose-language {
-    @apply flex items-center justify-center;
-
-    path {
-        @apply fill-blue-medium;
-    }
-
-    @include min-width(lg) {
-        height: 50px;
-        width: 50px;
     }
 }
 
@@ -321,6 +302,19 @@
         top: 100%;
         right: -20px;
         left: auto;
+    }
+}
+
+.navbar .navbar__choose-language {
+    @apply flex items-center justify-center;
+
+    path {
+        @apply fill-blue-medium;
+    }
+
+    @include min-width(lg) {
+        height: 50px;
+        width: 50px;
     }
 }
 
