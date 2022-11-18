@@ -1,3 +1,6 @@
+{% set show_page_type = page.page_type and page.index_link %}
+
+{% if page.publication_type or page.sectors or page.sections or page.principles or page.location or page.areas_of_focus or page.countries or show_page_type %}
 <div class="taxonomies">
     {% if page.publication_type or page.page_type %}
         <p>
@@ -40,3 +43,4 @@
 
     {% include "_partials/taxonomy_principles.jinja" %}
 </div>
+{% endif %}
