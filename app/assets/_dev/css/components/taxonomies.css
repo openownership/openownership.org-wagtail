@@ -16,6 +16,7 @@ a.language_tag{
     margin-left: 5px;
     margin-right: 5px;
     text-decoration: none;
+    margin-bottom: 8px;
 }
 
 a.language_tag:hover{
