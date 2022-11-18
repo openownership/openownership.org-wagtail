@@ -6,6 +6,9 @@ from consoler import console
 
 class AnalyticsMiddleware(MiddlewareMixin):
 
+    """Not currently used, but may be expanded on in the future.
+    """
+
     def process_request(self, request):
         # Create sessions for anonymous users
         if not request.session or not request.session.session_key:

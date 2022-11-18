@@ -1,9 +1,11 @@
+# stdlib
+from collections import defaultdict
+
+# 3rd party
+import arrow
 import redis
 import envkey
-import arrow
-# from cacheops import cached
 from consoler import console
-from collections import defaultdict
 
 
 class RedisViewCounts():

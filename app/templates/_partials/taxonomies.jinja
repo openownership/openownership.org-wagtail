@@ -1,56 +1,46 @@
-{% if page.publication_type or page.page_type %}
-    <p>
-        <strong>{% trans %}Publication type{% endtrans %}</strong>
-        {% if page.publication_type %}
-            {% set tag_link = page.publication_type.get_url() %}
-        {% else %}
-            {% set tag_link = '' %}
-        {% endif %}
-        {% if tag_link %}<a href="{{ page.publication_type.get_url() }}">{% endif %}
-            {% if page.publication_type %}<br>{{ page.publication_type }}{% endif %}
-        {% if tag_link %}</a>{% endif %}
-        {% if page.page_type and page.index_link %}
-            {% if page.page_type != page.publication_type.name %}
-                <br><a href="{{ page.index_link }}">{{ page.page_type }}</a>
+{% set show_page_type = page.page_type and page.index_link %}
+
+{% if page.publication_type or page.sectors or page.sections or page.principles or page.location or page.areas_of_focus or page.countries or show_page_type %}
+<div class="taxonomies">
+    {% if page.publication_type or page.page_type %}
+        <p>
+            {% if page.publication_type %}
+                <strong>{% trans %}Publication type{% endtrans %}</strong>
+                {% set tag_link = page.publication_type.get_url() %}
+            {% else %}
+                {% set tag_link = '' %}
             {% endif %}
-        {% endif %}
-    </p>
+            {% if tag_link %}<a href="{{ page.publication_type.get_url() }}">{% endif %}
+                {% if page.publication_type %}<br>{{ page.publication_type }}{% endif %}
+            {% if tag_link %}</a>{% endif %}
+            {% if page.page_type and page.index_link %}
+                {% if page.page_type != page.publication_type.name %}
+                    <br><a href="{{ page.index_link }}">{{ page.page_type }}</a>
+                {% endif %}
+            {% endif %}
+        </p>
+    {% endif %}
+
+
+    {% include "_partials/taxonomy_areas_of_focus.jinja" %}
+
+
+    {% include "_partials/taxonomy_countries.jinja" %}
+
+
+    {% if page.location %}
+        {# For JobPage #}
+        <p>
+            <strong>{% trans %}Location{% endtrans %}</strong><br>
+            {{ page.location }}
+        </p>
+    {% endif %}
+
+
+    {% include "_partials/taxonomy_sectors.jinja" %}
+
+    {% include "_partials/taxonomy_sections.jinja" %}
+
+    {% include "_partials/taxonomy_principles.jinja" %}
+</div>
 {% endif %}
-
-
-{% include "_partials/taxonomy_areas_of_focus.jinja" %}
-
-
-{% include "_partials/taxonomy_countries.jinja" %}
-
-
-{% if page.location %}
-    {# For JobPage #}
-    <p>
-        <strong>{% trans %}Location{% endtrans %}</strong><br>
-        {{ page.location }}
-    </p>
-{% endif %}
-
-
-{% include "_partials/taxonomy_sectors.jinja" %}
-
-{% include "_partials/taxonomy_sections.jinja" %}
-
-{% include "_partials/taxonomy_principles.jinja" %}
-
-
-{% if page.download_document %}
-    <p class="download-document">
-    {% include "svg/download-document.jinja" %}
-    <a href="{{ page.download_document.url }}">{% trans %}Download document{% endtrans %}</a>
-    </p>
-{% elif page.external_link %}
-    <p class="download-document">
-    {% include "svg/external-link.jinja" %}
-    <a href="{{ page.external_link }}">{% trans %}External link{% endtrans %}</a>
-    </p>
-{% endif %}
-
-
-{% include "_partials/share_page.jinja" %}

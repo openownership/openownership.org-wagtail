@@ -1,7 +1,10 @@
+# 3rd party
 from consoler import console
-from django.core.management.base import BaseCommand, CommandError
-from modules.notion.cron import SyncCountries, SyncCommitments, SyncRegimes
-from modules.notion.models import CountryTag, Commitment, DisclosureRegime
+from django.core.management.base import BaseCommand
+
+# Project
+from modules.notion.cron import SyncRegimes, SyncCountries, SyncCommitments
+from modules.notion.models import Commitment, CountryTag, DisclosureRegime
 
 
 class Command(BaseCommand):

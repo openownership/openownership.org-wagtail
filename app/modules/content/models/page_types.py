@@ -9,29 +9,27 @@
 
 # 3rd party
 from consoler import console
-from django.apps import apps
 from django.db import models
+from django.apps import apps
 from django.conf import settings
-from django.core.paginator import EmptyPage, PageNotAnInteger
-from django.utils.functional import cached_property
-from django.utils.html import strip_tags
-from jinja2.filters import do_truncate
-from django.utils.translation import gettext_lazy as _
-
-from wagtail.admin.edit_handlers import FieldPanel, ObjectList, TabbedInterface, StreamFieldPanel
 from wagtail.core import fields
-from wagtail.core.models import Locale, Page
-from wagtail.images.edit_handlers import ImageChooserPanel
+from jinja2.filters import do_truncate
 from wagtail.search import index
-from wagtail.utils.decorators import cached_classmethod
-
+from django.utils.html import strip_tags
 from wagtailcache.cache import WagtailCacheMixin
+from wagtail.core.models import Page, Locale
+from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
+from django.utils.functional import cached_property
+from django.utils.translation import gettext_lazy as _
+from wagtail.utils.decorators import cached_classmethod
+from wagtail.admin.edit_handlers import FieldPanel, ObjectList, TabbedInterface, StreamFieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 # Project
-from django.core.paginator import Paginator
+from helpers.context import global_context
 from modules.core.utils import get_site_context
 from modules.content.blocks import (
-    landing_page_blocks, article_page_body_blocks, additional_content_blocks
+    LANDING_PAGE_BLOCKS, ARTICLE_PAGE_BODY_BLOCKS, ADDITIONAL_CONTENT_BLOCKS
 )
 
 
@@ -108,19 +106,21 @@ class BasePage(WagtailCacheMixin, Page):
         return breadcrumbs
 
     def get_context(self, request, *args, **kwargs):
-        context = super().get_context(request, *args, **kwargs)
+        ctx = super().get_context(request, *args, **kwargs)
+        ctx = global_context(ctx)
         site = self.get_site()
 
-        context.update(
+        ctx.update(
             **get_site_context(site),
         )
-        context.update(
+        ctx.update(
             **self.get_metadata_settings(site)
         )
 
-        context['meta_description'] = self.page_meta_description
+        ctx['meta_description'] = self.page_meta_description
+        ctx['fflags'] = settings.FFLAGS
 
-        return context
+        return ctx
 
     @cached_classmethod
     def get_admin_tabs(cls):
@@ -262,7 +262,7 @@ class LandingPageType(BasePage):
     class Meta:
         abstract = True
 
-    body = fields.StreamField(landing_page_blocks, blank=True)
+    body = fields.StreamField(LANDING_PAGE_BLOCKS, blank=True)
 
     model_content_panels = [
         StreamFieldPanel('body')
@@ -294,8 +294,8 @@ class ContentPageType(BasePage):
 
     template = 'content/article_page.jinja'
 
-    body = fields.StreamField(article_page_body_blocks, blank=True)
-    additional_content = fields.StreamField(additional_content_blocks, blank=True)
+    body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True)
+    additional_content = fields.StreamField(ADDITIONAL_CONTENT_BLOCKS, blank=True)
 
     model_content_panels = [
         StreamFieldPanel('body'),

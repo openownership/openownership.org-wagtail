@@ -1,3 +1,4 @@
+from django.conf import settings
 from consoler import console
 from cacheops import cached
 from wagtail.core.models import Site
@@ -5,14 +6,14 @@ from wagtail.core.models import Locale
 from modules.settings.models import NavigationSettings, SiteSettings
 
 
-def _locales_context(context={}):
+def _locales_context(context: dict = {}) -> dict:
     """Context helper in case you need a list of all available locales in your page
 
     Args:
         context (dict, optional): Description
 
     Returns:
-        TYPE: Description
+        dict: The context with locales added
     """
     locales = Locale.objects.all()
     response = []
@@ -30,7 +31,7 @@ def _locales_context(context={}):
     return context
 
 
-def global_context(context={}):
+def global_context(context: dict = {}) -> dict:
     """Update your context with things needed globally that are often only available on
     a Page model, but using this you can add them to views too.
 
@@ -39,12 +40,12 @@ def global_context(context={}):
     """
     try:
         site = Site.objects.get(is_default_site=True)
-        context = _locales_context(context)
-        context.update(**SiteSettings.get_analytics_context(site)),
-        context.update(**SiteSettings.get_social_context(site)),
-        context.update(**NavigationSettings.get_nav_context(site)),
-        context['press_links_page_url'] = _get_press_links_page_url()
-        # context.update(**GlobalContentSettings.get_global_settings_context(site)),
+        ctx = _locales_context(context)
+        ctx.update(**SiteSettings.get_analytics_context(site)),
+        ctx.update(**SiteSettings.get_social_context(site)),
+        ctx.update(**NavigationSettings.get_nav_context(site)),
+        ctx['press_links_page_url'] = _get_press_links_page_url()
+        ctx['fflags'] = settings.FFLAGS
     except Exception as e:
         console.error(e)
         return {}

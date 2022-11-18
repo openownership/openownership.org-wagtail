@@ -1,17 +1,15 @@
-from cacheops import cached  # NOQA
-
+# 3rd party
 from django import forms
+from cacheops import cached  # NOQA
 from django.apps import apps
-
 from wagtail.core import blocks
-
 from wagtail.core.models import Page
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 
-from wagtail.images.blocks import ImageChooserBlock
-
+# Module
 from .mixins import (
-    PageLinkMixin, DocumentLinkMixin, URLLinkMixin, LinkStructValue, CTABlockStructValue
+    URLLinkMixin, PageLinkMixin, LinkStructValue, DocumentLinkMixin, CTABlockStructValue
 )
 
 
@@ -210,10 +208,6 @@ class ArticleImageBlock(blocks.StructBlock):
         label = "Image"
 
     image = ImageChooserBlock(required=True)
-    # caption = blocks.RichTextBlock(
-    #     required=False,
-    #     features=['bold', 'italic', 'link', 'document-link']
-    # )
 
     def get_context(self, value, parent_context={}):
         from wagtail.images.shortcuts import get_rendition_or_not_found

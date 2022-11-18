@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 # 3rd party
 import envkey  # NOQA
 from loguru import logger as guru
+from django.utils.translation import gettext_lazy as _
 
 
 SHELL_PLUS = "ipython"
@@ -38,6 +39,16 @@ STATS_USE_REDIS = True
 
 
 ####################################################################################################
+# Feature Flags
+####################################################################################################
+
+
+FFLAGS = {
+    'legislation': False,
+}
+
+
+####################################################################################################
 # I18N
 ####################################################################################################
 
@@ -50,15 +61,21 @@ USE_I18N = True
 USE_TZ = True
 
 WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
-    ('en', "English"),
-    ('fr', 'French'),
-    ('es', 'Spanish'),
-    ('id', 'Bahasa Indonesia'),
-    ('de', 'German'),
-    ('ru', 'Russian'),
-    ('hy', 'Armenian'),
+    ('en', _("English")),
+    ('fr', _("French")),
+    ('es', _("Spanish")),
+    ('id', _("Bahasa Indonesia")),
+    ('de', _("German")),
+    ('ru', _("Russian")),
+    ('hy', _("Armenian")),
+    ('mn', _("Mongolian")),
+    ('uk', _("Ukrainian")),
 ]
 
+
+LOCALE_PATHS = (
+    os.path.join(DJANGO_ROOT, 'locale'),
+)
 
 ####################################################################################################
 # Installed Apps
@@ -94,7 +111,6 @@ WAGTAIL_APPS = [
     'wagtail.documents',
     'wagtail.images',
     'wagtail.search',
-    # 'wagtail.contrib.postgres_search',  # Deprecated, replaced by...
     'wagtail.search.backends.database',
     'wagtail.admin',
     'wagtail.core',
@@ -144,9 +160,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    # 'django.middleware.locale.LocaleMiddleware',
+    'middleware.locale.LocaleMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-    # 'middleware.request.AnalyticsMiddleware',  # Possible future extra
     'wagtailcache.cache.FetchFromCacheMiddleware',
 ]
 
@@ -278,13 +294,11 @@ JINJA2_EXTENSIONS = [
     'wagtail.core.jinja2tags.core',
     'wagtail.admin.jinja2tags.userbar',
     'wagtail.images.jinja2tags.images',
-    # 'jinja2.ext.with_',  # Deprecated, now built in
     'jinja2.ext.i18n',
     'wagtail.contrib.settings.jinja2tags.settings',
     'config.template.TemplateGlobalsExtension',
     "jinja2.ext.do",
     "jinja2.ext.loopcontrols",
-    # "jinja2.ext.autoescape",  # Deprecated, now built in
     'cacheops.jinja2.cache'
 ]
 
@@ -445,7 +459,7 @@ THEME_CHOICES = []
 ICON_CHOICES = []
 
 SOCIAL_MEDIA_CHOICES = [
-    'Facebook', 'Twitter', 'LinkedIn'
+    'Facebook', 'Twitter', 'LinkedIn', 'GitHub'
 ]
 
 
@@ -487,4 +501,36 @@ FONTAWESOME_ICONS = [
     'solid/anchor.svg',
     'solid/clock.svg',
     'solid/sticky-note.svg'
+]
+
+
+# This gives us a place to put a list of strings that will need translations but may not
+# get picked up by makemessages (ie: they might be added through the CMS)
+
+TRANS_STRINGS = [
+    # Primary nav
+    _('Home'),
+    _('Research'),
+    _('Implementation'),
+    _('Technology'),
+    _('Impact'),
+    _('Register'),
+    _('Search'),
+    _('About'),
+    # Footer items
+    _('Legal'),
+    _('Terms'),
+    _('Privacy'),
+    _('Press mentions'),
+    _('Helpdesk'),
+    _('Jobs with Open Ownership'),
+    _('Contact us'),
+    _('Follow us'),
+    _('Content rights'),
+    _('This work by Open Ownership, unless otherwise noted, is licensed under a'),
+    _('Creative Commons Attribution 4.0 International License'),
+    # Misc
+    _('Open Ownership newsletter'),
+    _('Sign up to receive our latest reports, news and updates'),
+    _('Sign up'),
 ]

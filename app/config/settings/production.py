@@ -1,9 +1,13 @@
 import os
-import envkey  # NOQA
 from .base import *  # NOQA
 from .remote import *  # NOQA
 
-# SECURITY WARNING: don't run with debug turned on in production!
+try:
+    import envkey  # NOQA
+except Exception:
+    pass
+
+
 DEBUG = False
 
 DOMAIN_NAME = 'openownership.org'

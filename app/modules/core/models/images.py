@@ -5,9 +5,11 @@
     Custom image models.
 """
 
+# 3rd party
 from django.db import models
+from wagtail.images.models import Image as WagtailImage
+from wagtail.images.models import AbstractImage, AbstractRendition
 from django.utils.functional import cached_property
-from wagtail.images.models import Image as WagtailImage, AbstractImage, AbstractRendition
 
 
 class SiteImage(AbstractImage):

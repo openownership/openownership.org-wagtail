@@ -5,9 +5,11 @@
     Custom document models.
 """
 
-from django.conf import settings
+# 3rd party
 from django.db import models
-from wagtail.documents.models import Document as WagtailDocument, AbstractDocument
+from django.conf import settings
+from wagtail.documents.models import Document as WagtailDocument
+from wagtail.documents.models import AbstractDocument
 
 
 class SiteDocument(AbstractDocument):

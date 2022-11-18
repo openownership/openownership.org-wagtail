@@ -2,16 +2,16 @@
 import os
 
 # 3rd party
-from wagtail.core.models import Page, Locale
-from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.core.paginator import Paginator
+from wagtail.core.models import Page, Locale
+from django.utils.translation import gettext_lazy as _
 
+# Project
+from modules.stats.models import ViewCount
 from modules.content.forms import SearchForm
 from modules.content.models import HomePage
-from modules.stats.models import ViewCount
 
 
 def error_context():

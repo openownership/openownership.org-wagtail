@@ -6,14 +6,11 @@
     Add functionality to other blocks.
 """
 
+# 3rd party
 from django import forms
-
 from wagtail.core import blocks
-
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
-
-from modules.content.utils import get_faq
 
 
 ALIGN_OPTIONS = [

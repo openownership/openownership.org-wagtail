@@ -4,29 +4,27 @@
     Primary stream blocks.
 """
 
+# stdlib
 from collections import Counter
-from consoler import console
-from django import forms
-from django.conf import settings
-from django.urls import reverse
-from django.utils.translation import gettext_lazy as _
 
-from wagtail.contrib.table_block.blocks import TableBlock
-from wagtail.core import blocks, fields
-from wagtail.core.models import Locale, Page
+# 3rd party
+from django import forms
+from consoler import console
+from django.conf import settings
+from wagtail.core import blocks
 from wagtail.embeds import embeds
+from wagtail.core.models import Page, Locale
 from wagtail.embeds.blocks import EmbedBlock as WagtailEmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
+from django.utils.translation import gettext_lazy as _
 from wagtailmodelchooser.blocks import ModelChooserBlock
+from wagtail.contrib.table_block.blocks import TableBlock
 
 # Module
-from .values import LatestBlogValue, LatestNewsValue, LatestPublicationsValue, LatestContentValue
-from .generic import ArticleImageBlock, CTABlock
-from .mixins import (  # NOQA
-    TitleMixin, TitleBodyMixin, EyebrowTitleMixin,
-    EyebrowTitleBodyMixin
-)
+from .mixins import TitleMixin, TitleBodyMixin, EyebrowTitleMixin, EyebrowTitleBodyMixin  # NOQA
+from .values import LatestBlogValue, LatestNewsValue, LatestContentValue, LatestPublicationsValue
+from .generic import CTABlock, ArticleImageBlock
 
 
 ####################################################################################################
@@ -158,16 +156,19 @@ class SimilarContentBlock(blocks.StructBlock):
 
     suggest_by = blocks.ChoiceBlock(choices=options, required=True, default='focus_area')
 
-    def _ranked_pages(self, all_ids, count=3):
+    def _ranked_pages(self, all_ids, count=3, relevance=True):
         ranked_ids = Counter(all_ids).most_common()
-        ids = [element[0] for element in ranked_ids[:count]]
+        if relevance:
+            ids = [element[0] for element in ranked_ids[:count]]
+        else:
+            ids = [element[0] for element in ranked_ids]
         objects = (
             Page.objects
             .live().public().filter(locale=Locale.get_active())
             .filter(id__in=ids).specific()
             .order_by('-first_published_at').all()
         )
-        return objects
+        return objects[:count]
 
     @property
     def by_focus_area(self):
@@ -192,7 +193,7 @@ class SimilarContentBlock(blocks.StructBlock):
                 if item.content_object.id != self.page.id:
                     all_ids.append(item.content_object.id)
 
-        objects = self._ranked_pages(all_ids, 3)
+        objects = self._ranked_pages(all_ids, 3, relevance=False)
         return objects
 
     @property
@@ -226,6 +227,8 @@ class SimilarContentBlock(blocks.StructBlock):
         """Get the latest 3 articles by SectorTag.
         """
         all_ids = []
+        if not hasattr(self.page, 'sectors'):
+            return []
         for tag in self.page.sectors.all():
             for item in tag.sector_related_pages.all():
                 if item.content_object.id != self.page.id:
@@ -630,45 +633,6 @@ def get_news_category_choices():
     return NewsCategory.objects.values_list('id', 'name')
 
 
-""" DEPRECATED """
-
-# class LatestNewsBlock(TitleMixin):
-
-#     class Meta:
-#         icon = 'fa-newspaper-o'
-#         template = "blocks/news_listing.jinja"
-
-#     DEFAULT_LIMIT = 4
-#     limit_number = blocks.IntegerBlock(required=True, default=DEFAULT_LIMIT)
-#     limit_to_categories = blocks.MultipleChoiceBlock(
-#         choices=get_news_category_choices,
-#         required=False,
-#         widget=forms.CheckboxSelectMultiple
-#     )
-
-#     def get_context(self, value, parent_context={}):
-#         from modules.content.models import NewsArticlePage
-#         context = super().get_context(value, parent_context=parent_context)
-
-#         query = NewsArticlePage.objects.live()
-
-#         categories = value.get('limit_to_categories')
-
-#         if categories:
-#             query = query.filter(categories__id__in=categories)
-
-#         objects = list(
-#             query.distinct().order_by('-display_date')[:value.get('limit', self.DEFAULT_LIMIT)]
-#         )
-
-#         context.update({
-#             'objects': objects,
-#             'highlight_first': True
-#         })
-
-#         return context
-
-
 ####################################################################################################
 # Pages
 ####################################################################################################
@@ -744,26 +708,13 @@ class LatestSectionContentBlock(blocks.StructBlock):
 
     DEFAULT_LIMIT = 3
 
-    # FORMAT_LANDSCAPE = 'landscape'
-    # FORMAT_PORTRAIT = 'portrait'
-
-    # FORMAT_CHOICES = (
-    #     (FORMAT_LANDSCAPE, _('Landscape')),
-    #     (FORMAT_PORTRAIT, _('Portrait')),
-    # )
-
     section_page = blocks.PageChooserBlock(
         required=True,
         label=_("Front page of section"),
         page_type=(
-            'content.SectionPage',            # Research, Impact, Implement
-            # 'content.SectionListingPage',   # About
+            'content.SectionPage',  # Research, Impact, Implement
         )
     )
-
-    # card_format = blocks.ChoiceBlock(
-    #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
-    # )
 
     def get_context(self, value, parent_context={}):
         from modules.content.models import content_page_models
@@ -808,14 +759,6 @@ class LatestFocusAreaBlock(blocks.StructBlock):
 
     DEFAULT_LIMIT = 3
 
-    # FORMAT_LANDSCAPE = 'landscape'
-    # FORMAT_PORTRAIT = 'portrait'
-
-    # FORMAT_CHOICES = (
-    #     (FORMAT_LANDSCAPE, _('Landscape')),
-    #     (FORMAT_PORTRAIT, _('Portrait')),
-    # )
-
     title = blocks.CharBlock(
         required=False,
         help_text=_('If blank, will use "Latest"')
@@ -825,10 +768,6 @@ class LatestFocusAreaBlock(blocks.StructBlock):
         'taxonomy.FocusAreaTag',
         required=True,
     )
-
-    # card_format = blocks.ChoiceBlock(
-    #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
-    # )
 
     def get_context(self, value, parent_context={}):
         from wagtail.core.models import Page
@@ -872,14 +811,6 @@ class LatestSectorBlock(blocks.StructBlock):
 
     DEFAULT_LIMIT = 3
 
-    # FORMAT_LANDSCAPE = 'landscape'
-    # FORMAT_PORTRAIT = 'portrait'
-
-    # FORMAT_CHOICES = (
-    #     (FORMAT_LANDSCAPE, _('Landscape')),
-    #     (FORMAT_PORTRAIT, _('Portrait')),
-    # )
-
     title = blocks.CharBlock(
         required=False,
         help_text=_('If blank, will use "Latest"')
@@ -889,10 +820,6 @@ class LatestSectorBlock(blocks.StructBlock):
         'taxonomy.SectorTag',
         required=True,
     )
-
-    # card_format = blocks.ChoiceBlock(
-    #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
-    # )
 
     def get_context(self, value, parent_context={}):
         from wagtail.core.models import Page
@@ -946,10 +873,6 @@ class LatestPublicationTypeBlock(blocks.StructBlock):
         required=True,
     )
 
-    # card_format = blocks.ChoiceBlock(
-    #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
-    # )
-
     def get_context(self, value, parent_context={}):
         context = super().get_context(value, parent_context=parent_context)
 
@@ -996,10 +919,6 @@ class LatestSectionTagBlock(blocks.StructBlock):
         'taxonomy.SectionTag',
         required=True,
     )
-
-    # card_format = blocks.ChoiceBlock(
-    #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
-    # )
 
     def get_context(self, value, parent_context={}):
         from wagtail.core.models import Page
@@ -1052,10 +971,6 @@ class LatestPrincipleTagBlock(blocks.StructBlock):
         'taxonomy.PrincipleTag',
         required=True,
     )
-
-    # card_format = blocks.ChoiceBlock(
-    #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
-    # )
 
     def get_context(self, value, parent_context={}):
         from wagtail.core.models import Page
@@ -1270,14 +1185,6 @@ class PressLinksBlock(blocks.StructBlock):
     DEFAULT_LIMIT = 3
     DEFAULT_TITLE = 'Press links'
 
-    # FORMAT_LANDSCAPE = 'landscape'
-    # FORMAT_PORTRAIT = 'portrait'
-
-    # FORMAT_CHOICES = (
-    #     (FORMAT_LANDSCAPE, _('Landscape')),
-    #     (FORMAT_PORTRAIT, _('Portrait')),
-    # )
-
     title = blocks.CharBlock(
         required=False,
         help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"')
@@ -1288,10 +1195,6 @@ class PressLinksBlock(blocks.StructBlock):
         required=False,
         help_text="Optional, restrict to press links tagged by section"
     )
-
-    # card_format = blocks.ChoiceBlock(
-    #     required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
-    # )
 
     limit_number = blocks.IntegerBlock(required=True, default=DEFAULT_LIMIT)
 

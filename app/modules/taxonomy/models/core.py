@@ -1,19 +1,15 @@
-from django.conf import settings
+# 3rd party
 from django.db import models
-from django.shortcuts import reverse
+from taggit.models import TagBase
+from wagtail.core.models import Page, Locale
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
-
 from django_extensions.db.fields import AutoSlugField
-from taggit.models import TagBase
-from wagtail.core import fields
-from wagtail.core.models import Locale
 from wagtail.admin.edit_handlers import (
-    FieldPanel, ObjectList, MultiFieldPanel, StreamFieldPanel, TabbedInterface
+    FieldPanel, ObjectList, MultiFieldPanel, TabbedInterface
 )
-from wagtail.core.models import Page
 
-from modules.content.blocks import category_page_body_blocks, TAG_PAGE_BODY_BLOCKS
+# Module
 from .pages import DummyPage
 
 

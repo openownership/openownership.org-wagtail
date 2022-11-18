@@ -1,26 +1,27 @@
+# stdlib
 from typing import Optional
+from html import unescape
+from django.utils.text import unescape_entities
 
 # 3rd party
+from django.utils.html import strip_tags
 from consoler import console
-from django.conf import settings
 from django.http import Http404
-from django.utils.text import slugify
-from wagtail.core.models import Locale, Page, Site
+from wagtail.core.models import Page, Site, Locale
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator
 from wagtail.search.models import Query
 from django.utils.functional import cached_property
 from django.utils.datastructures import MultiValueDictKeyError
-from modules.settings.models import SiteSettings
 
 # Project
-from modules.stats.models import ViewCount
-from config.template import author_url
 from helpers.context import global_context
-from modules.notion.models import CountryTag, Region
+from modules.stats.models import ViewCount
 from modules.content.forms import SearchForm
-from modules.content.models import content_page_models, HomePage, SectionPage
-from modules.taxonomy.models import PrincipleTag, PublicationType, SectionTag, SectorTag
+from modules.notion.models import Region, CountryTag
+from modules.content.models import HomePage, SectionPage, content_page_models
+from modules.settings.models import SiteSettings
+from modules.taxonomy.models import SectorTag, SectionTag, PrincipleTag, PublicationType
 
 
 class DummyCountryPage(object):
@@ -62,6 +63,7 @@ class CountryView(TemplateView):
 
     def __init__(self, *args, **kwargs):
         self.page_num = 1
+        super().__init__(*args, **kwargs)
 
     def setup(self, request, *args, **kwargs):
         try:
@@ -73,18 +75,36 @@ class CountryView(TemplateView):
         super().setup(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        ctx = super().get_context_data(**kwargs)
         slug = kwargs.pop('slug')
         self.tag = self._get_tag(slug)
-        context['country'] = self.tag
-        context['page'] = self
-        context['meta_title'] = f"{self.tag.name}"
-        global_context(context)  # Adds in nav settings etc.
-        return context
+        ctx['country'] = self.tag
+        ctx['page'] = self
+        ctx['meta_title'] = f"{self.tag.name}"
+        ctx['meta_description'] = self._meta_description
+        global_context(ctx)  # Adds in nav settings etc.
+        # Add in pagination for related articles
+        try:
+            related_pages = self.tag.display_date_related_pages
+            paginator = self._get_paginator(related_pages)
+            ctx['results'] = paginator
+            ctx['page_obj'] = paginator
+        except Exception as e:
+            console.warn(e)
+        return ctx
 
     @cached_property
     def title(self):
         return self.tag.name
+
+    @cached_property
+    def _meta_description(self):
+        try:
+            meta_description = unescape_entities(strip_tags(self.tag.blurb))
+            meta_description = meta_description.replace('&#39;', "'")
+        except Exception:
+            meta_description = f"{self.tag.name} on Open Ownership"
+        return meta_description
 
     @cached_property
     def breadcrumb_page(cls):
@@ -122,6 +142,11 @@ class CountryView(TemplateView):
         else:
             return tag
 
+    def _get_paginator(self, results):
+        p = Paginator(results, 10)
+        result_set = p.page(self.page_num)
+        return result_set
+
 
 class SearchView(TemplateView):
 
@@ -141,6 +166,7 @@ class SearchView(TemplateView):
         self.filters_list = []
         # Were any filters chosen?
         self.is_filtered = False
+        super().__init__(*args, **kwargs)
 
     def setup(self, request, *args, **kwargs):
         try:
@@ -279,6 +305,14 @@ class SearchView(TemplateView):
             if len(f['publication_types']):
                 for pt in f['publication_types']:
                     ids = list(pt.pages.values_list('id', flat=True))
+                    page_ids = add_ids(page_ids, ids)
+
+                # Ensure publication pages show when Publication is set as the content type
+                # on a PublicationPage
+                pub_type = PublicationType.objects.filter(slug='publication').first()
+                if pub_type and pub_type in f['publication_types']:
+                    from modules.content.models.pages import PublicationFrontPage
+                    ids = PublicationFrontPage.objects.live().public().values_list('id', flat=True)
                     page_ids = add_ids(page_ids, ids)
 
             # The three Tags:

@@ -4,13 +4,12 @@
     Adds the Notion menu to the Wagtail sidebar
 """
 
-# Wagtail
+# 3rd party
 from wagtail.contrib.modeladmin.helpers import PermissionHelper
-from wagtail.contrib.modeladmin.options import (
-    ModelAdmin, ModelAdminGroup, modeladmin_register
-)
+from wagtail.contrib.modeladmin.options import ModelAdmin, ModelAdminGroup, modeladmin_register
 
-from .models import Commitment, DisclosureRegime, CountryTag, CoverageScope, Region
+# Module
+from .models import Region, Commitment, CountryTag, CoverageScope, DisclosureRegime
 
 
 class ReadOnlyPermissionHelper(PermissionHelper):

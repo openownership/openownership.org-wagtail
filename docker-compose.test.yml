@@ -4,16 +4,19 @@ volumes:
   media: {}
 
 services:
+
+  # NOTE: DB ISN'T ACTUALLY NEEDED FOR TESTS
+
   # Postgres
-  db:
-    image: postgres:12
-    restart: always
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
-    volumes:
-      - ./docker/db/data/:/var/lib/postgresql/data:delegated
+  # db:
+  #   image: postgres:12
+  #   restart: always
+  #   environment:
+  #     - POSTGRES_USER=${POSTGRES_USER}
+  #     - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+  #     - POSTGRES_DB=${POSTGRES_DB}
+  #   volumes:
+  #     - ./docker/db/data/:/var/lib/postgresql/data:delegated
 
   # Redis
   redis:
@@ -51,10 +54,8 @@ services:
       - "8000:8000"
       - "5000:5000"
     links:
-      - db
       - redis
     depends_on:
-      - db
       - redis
 
     command: bash -c "/root/.cache/pypoetry/virtualenvs/.venv/bin/coverage run --source . -m py.test && /root/.cache/pypoetry/virtualenvs/.venv/bin/coverage xml"

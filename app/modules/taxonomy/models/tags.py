@@ -1,12 +1,12 @@
 # 3rd party
 from django.db import models
-from django.utils.translation import gettext_lazy as _
-from modelcluster.fields import ParentalKey
 from taggit.models import ItemBase
+from modelcluster.fields import ParentalKey
 from wagtail.core.models import Locale
 from wagtailmodelchooser import register_model_chooser
-from django.utils.functional import cached_property
+from django.utils.translation import gettext_lazy as _
 
+# Module
 from .core import BaseTag
 
 
@@ -118,6 +118,10 @@ class SectorTaggedPage(ItemBase):
 @register_model_chooser
 class SectionTag(BaseTag):
 
+    class Meta:
+        verbose_name = _("Section")
+        verbose_name_plural = _("Sections")
+
     free_tagging = False
 
     # Name of the URL for viewing things with this Tag.
@@ -129,18 +133,14 @@ class SectionTag(BaseTag):
     # Convenient way of accessing the related_name that links to pages:
     related_pages_name = 'section_tag_related_pages'
 
-    class Meta:
-        verbose_name = _("Section")
-        verbose_name_plural = _("Sections")
-
     def get_url(self):
         "Generate the URL to this tag's TagPage."
-        from modules.content.models import TagPage
+        from modules.content.models.pages import SectionPage
 
         page = (
-            TagPage.objects
+            SectionPage.objects
             .live().public().filter(locale=Locale.get_active())
-            .filter(section=self).first()
+            .filter(title=self.name).first()
         )
         if page:
             return page.get_url()

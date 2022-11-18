@@ -1,0 +1,36 @@
+.taxonomies {
+    @apply grid grid-cols-1 gap-4;
+
+    p {
+        @apply m-0;
+    }
+}
+
+
+a.language_tag{
+    display: inline-block;
+    padding: 0px 9px;
+    background-color: #3b25d9;
+    color: white;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+
+a.language_tag:hover{
+    background-color: #616a6f;
+    text-decoration: none;
+}
+
+.publication-front-page__content {
+    .taxonomies {
+        @apply border-b border-blue-dark;
+        @apply pb-4;
+        
+        @include min-width(lg) {
+            @apply grid-cols-2;
+        }
+    }
+}

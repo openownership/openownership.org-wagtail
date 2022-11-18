@@ -1,11 +1,10 @@
-from django.conf import settings
+# 3rd party
 from django.db import models
-from django.utils.translation import gettext_lazy as _
-
+from django.conf import settings
 from modelcluster.fields import ParentalKey
-
 from wagtail.core.models import Orderable
-from wagtail.admin.edit_handlers import InlinePanel, PageChooserPanel, FieldPanel
+from django.utils.translation import gettext_lazy as _
+from wagtail.admin.edit_handlers import InlinePanel, PageChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
@@ -90,28 +89,6 @@ class ImageLink(Orderable):
     panels = [
         ImageChooserPanel('image')
     ]
-
-
-# class FeaturedNewsArticle(Orderable):
-
-#     news_index_page = ParentalKey(
-#         'content.NewsIndexPage',
-#         related_name='featured_articles',
-#         null=True,
-#         on_delete=models.CASCADE
-#     )
-
-#     link_page = models.ForeignKey(
-#         'wagtailcore.Page',
-#         null=True,
-#         blank=False,
-#         related_name='+',
-#         on_delete=models.SET_NULL
-#     )
-
-#     panels = [
-#         PageChooserPanel('link_page', page_type='content.NewsArticlePage')
-#     ]
 
 
 ####################################################################################################

@@ -1,10 +1,12 @@
+# stdlib
 import os
 from tempfile import SpooledTemporaryFile
-from django.core.exceptions import SuspiciousOperation
-from django.conf import settings
 
-from storages.backends.s3boto3 import S3Boto3Storage
+# 3rd party
+from django.conf import settings
 from boto.s3.connection import S3Connection
+from django.core.exceptions import SuspiciousOperation
+from storages.backends.s3boto3 import S3Boto3Storage
 
 
 # By default the S3Connection is using s3.amazonaws.com

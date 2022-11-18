@@ -3,6 +3,5591 @@ REGIMES = {
     'results': [
         {
             'object': 'page',
+            'id': '78612aa2-0e23-447e-b790-8086c8488b8d',
+            'created_time': '2022-05-26T17:33:00.000Z',
+            'last_edited_time': '2022-05-26T17:41:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '1703e054-58b6-40d2-aab4-aff006900163'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': '1703e054-58b6-40d2-aab4-aff006900163'
+            },
+            'cover': None,
+            'icon': None,
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-05-26T17:41:00.000Z'
+                },
+                '6.5 Data on OO Register': {
+                    'id': '%24Fhj',
+                    'type': 'checkbox',
+                    'checkbox': False
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': None
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '4.1 Central register': {
+                    'id': '5tav',
+                    'type': 'select',
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '15fa8446-065e-441a-8b8a-bd43cf384ea7'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': 'https://pbo.eiti.tj/'
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '859da0c6-cb5b-40f8-b238-8c7e913fb3e5',
+                            'name': 'Sectoral: Extractives',
+                            'color': 'purple'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
+                        'name': 'Stephen Abbott Pugh',
+                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
+                        'type': 'person',
+                        'person': {
+                            'email': 'stephen@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'In December 2021, Tajikistan EITI launched a ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'In December 2021, Tajikistan EITI launched a ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'BO portal',
+                                'link': {
+                                    'url': 'https://pbo.eiti.tj/'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'BO portal',
+                            'href': 'https://pbo.eiti.tj/'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ', through which is available information from the Tax Committee. The portal is available in three languages and covers data from 41 extractives companies engaged in exploration, oil, gas, and mining which had valid licences in 2021. The information provided in the portal includes the legal – and, where available beneficial owners, the level of ownership, postal address, links to the stock exchange, and identification of PEPs. In practice, however, none of the companies disclose the PEP status. The portal does not mention the definition of BO used for the disclosure, nor does it comment on verification procedures. Several companies disclose foreign states as their beneficial owners. According to the Tax Committee, there is no regulation in place to enable regular updating of the BO information.\n\nTaken from Ramandeep’s Asia and BOT report ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ', through which is available information from the Tax Committee. The portal is available in three languages and covers data from 41 extractives companies engaged in exploration, oil, gas, and mining which had valid licences in 2021. The information provided in the portal includes the legal – and, where available beneficial owners, the level of ownership, postal address, links to the stock exchange, and identification of PEPs. In practice, however, none of the companies disclose the PEP status. The portal does not mention the definition of BO used for the disclosure, nor does it comment on verification procedures. Several companies disclose foreign states as their beneficial owners. According to the Tax Committee, there is no regulation in place to enable regular updating of the BO information.\n\nTaken from Ramandeep’s Asia and BOT report ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://docs.google.com/document/d/1U4jjF4kTtSvzEE_6KUYmgVk4R7S8rrBC/edit',
+                                'link': {
+                                    'url': 'https://docs.google.com/document/d/1U4jjF4kTtSvzEE_6KUYmgVk4R7S8rrBC/edit'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://docs.google.com/document/d/1U4jjF4kTtSvzEE_6KUYmgVk4R7S8rrBC/edit',
+                            'href': 'https://docs.google.com/document/d/1U4jjF4kTtSvzEE_6KUYmgVk4R7S8rrBC/edit'
+                        }
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': {
+                        'id': '7c1e2c7e-1d2c-44f1-ae2f-ff02d7302527',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Article 11(1), Law on State Registration of Legal Entities and Individual Entrepreneurs, 2009',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Article 11(1), Law on State Registration of Legal Entities and Individual Entrepreneurs, 2009',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Tajikistan Extractive Industry Beneficial Owners Web Portal',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': True,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Tajikistan Extractive Industry Beneficial Owners Web Portal',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/Tajikistan-Extractive-Industry-Beneficial-Owners-Web-Portal-78612aa20e23447eb7908086c8488b8d'
+        },
+        {
+            'object': 'page',
+            'id': '950cf20b-67f4-49fe-a313-3b4de5fbf1a0',
+            'created_time': '2022-05-17T14:51:00.000Z',
+            'last_edited_time': '2022-05-26T13:30:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'cover': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇧🇼'
+            },
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-05-26T13:30:00.000Z'
+                },
+                '6.5 Data on OO Register': {
+                    'id': '%24Fhj',
+                    'type': 'checkbox',
+                    'checkbox': False
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': None
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': None
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': None
+                },
+                '4.1 Central register': {
+                    'id': '5tav',
+                    'type': 'select',
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '67aa4cee-82cb-4576-bec4-145523b0955f'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Section 21 and 345 of the ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Section 21 and 345 of the ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies (Amendment) Act 2018',
+                                'link': {
+                                    'url': 'https://www.cipa.co.bw/wp-content/uploads/2019/06/22-Act-29-06-2018-COMPANIES.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies (Amendment) Act 2018',
+                            'href': 'https://www.cipa.co.bw/wp-content/uploads/2019/06/22-Act-29-06-2018-COMPANIES.pdf'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '; ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '; ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies (Amendment) Act, 2019',
+                                'link': {
+                                    'url': 'https://botswanalaws.com/Botswana2019Pdf/16of2019.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies (Amendment) Act, 2019',
+                            'href': 'https://botswanalaws.com/Botswana2019Pdf/16of2019.pdf'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '; ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '; ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Financial Intelligence Agency (FIA) Act',
+                                'link': {
+                                    'url': 'http://www.baoa.org.bw/sites/default/files/legal/Financial%20Intelligence%20Act%202019.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Financial Intelligence Agency (FIA) Act',
+                            'href': 'http://www.baoa.org.bw/sites/default/files/legal/Financial%20Intelligence%20Act%202019.pdf'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '; Financial Intelligence (Amendment) Act, 2021; Companies Act (Amendment), 2022',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '; Financial Intelligence (Amendment) Act, 2021; Companies Act (Amendment), 2022',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': None
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies (Amendment) Act, 2019',
+                                'link': {
+                                    'url': 'https://botswanalaws.com/Botswana2019Pdf/16of2019.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies (Amendment) Act, 2019',
+                            'href': 'https://botswanalaws.com/Botswana2019Pdf/16of2019.pdf'
+                        }
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': None
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'From a presentation at the RSA High Level Meeting it was suggested they have increased the definition from 1 share (supported by',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'From a presentation at the RSA High Level Meeting it was suggested they have increased the definition from 1 share (supported by',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ' this TJN analysis',
+                                'link': {
+                                    'url': 'https://taxjustice.net/2020/07/01/beneficial-ownership-transparency-in-africa-the-state-of-play-in-2020/'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' this TJN analysis',
+                            'href': 'https://taxjustice.net/2020/07/01/beneficial-ownership-transparency-in-africa-the-state-of-play-in-2020/'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ') to 10%',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ') to 10%',
+                            'href': None
+                        }
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Presentation from the CIPA Compliance and Enforcement Manager (17 May 2022)',
+                                'link': {
+                                    'url': 'https://docs.google.com/presentation/d/1E3HPscm-pNpA2yi5PuWqfXl7YZ3SKjNK/edit#slide=id.p9'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Presentation from the CIPA Compliance and Enforcement Manager (17 May 2022)',
+                            'href': 'https://docs.google.com/presentation/d/1E3HPscm-pNpA2yi5PuWqfXl7YZ3SKjNK/edit#slide=id.p9'
+                        }
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': None
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Online Business Registration System (OBRS)',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Online Business Registration System (OBRS)',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/Online-Business-Registration-System-OBRS-950cf20b67f449fea3133b4de5fbf1a0'
+        },
+        {
+            'object': 'page',
+            'id': '5b0b79ef-3e2e-418e-a8d5-202e6e812ded',
+            'created_time': '2022-03-31T08:26:00.000Z',
+            'last_edited_time': '2022-05-12T11:02:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'cover': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇧🇲'
+            },
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-05-12T11:02:00.000Z'
+                },
+                '6.5 Data on OO Register': {
+                    'id': '%24Fhj',
+                    'type': 'checkbox',
+                    'checkbox': False
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': None
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': None
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': {
+                        'id': 'b1e9850e-0e1e-40af-9c14-be1f796ad19f',
+                        'name': 'Implementing',
+                        'color': 'yellow'
+                    }
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': None
+                },
+                '4.1 Central register': {
+                    'id': '5tav',
+                    'type': 'select',
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '486a37df-ec33-4f48-a513-c734ec2d7d8c',
+                            'name': 'Systems',
+                            'color': 'yellow'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '58d5dccf-34c7-42fd-8f8e-8e2a1018e671'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': None
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'd91ae0a2-7402-42e1-a3da-c8fc7e415138',
+                            'name': 'Overseas Territory',
+                            'color': 'red'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': None
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Foster Moore contracted to deliver register (BODS compliant) this year (2022)',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Foster Moore contracted to deliver register (BODS compliant) this year (2022)',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': None
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Bermuda beneficial ownership register',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Bermuda beneficial ownership register',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/Bermuda-beneficial-ownership-register-5b0b79ef3e2e418ea8d5202e6e812ded'
+        },
+        {
+            'object': 'page',
+            'id': '8dd64aa6-8fbb-4cdd-b774-1d763e2fd1ed',
+            'created_time': '2022-03-25T15:43:00.000Z',
+            'last_edited_time': '2022-07-06T11:25:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'cover': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇬🇭'
+            },
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-07-06T11:25:00.000Z'
+                },
+                '6.5 Data on OO Register': {
+                    'id': '%24Fhj',
+                    'type': 'checkbox',
+                    'checkbox': False
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': None
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': None
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '4.1 Central register': {
+                    'id': '5tav',
+                    'type': 'select',
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://rgd.gov.gh/docs/Act 992.pdf',
+                                'link': {
+                                    'url': 'https://rgd.gov.gh/docs/Act%20992.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://rgd.gov.gh/docs/Act 992.pdf',
+                            'href': 'https://rgd.gov.gh/docs/Act%20992.pdf'
+                        }
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'An incorporated company may be\n(a) a company limited by shares;\n(b) a company limited by guarantee;\n(c) an unlimited company; or\n(d) an external company',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'An incorporated company may be\n(a) a company limited by shares;\n(b) a company limited by guarantee;\n(c) an unlimited company; or\n(d) an external company',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '80244a78-949a-441f-b9cd-7ad197e68b74'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://rgd.gov.gh/docs/Act 992.pdf',
+                                'link': {
+                                    'url': 'https://rgd.gov.gh/docs/Act%20992.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://rgd.gov.gh/docs/Act 992.pdf',
+                            'href': 'https://rgd.gov.gh/docs/Act%20992.pdf'
+                        }
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': 'https://egovonline.gegov.gov.gh/RGDPortalWeb/portal/RGDHome/eghana.portal?_nfpb=true&_st=&_pageLabel=home#wlp_home'
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                        {
+                            'name': 'OKANAT COMPANY LTD FORM_BO_CS(334).pdf',
+                            'type': 'file',
+                            'file': {
+                                'url': 'https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1f642e5c-95b8-46ce-bbd5-c3f7cfc3d5cd/OKANAT_COMPANY_LTD_FORM_BO_CS%28334%29.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220722%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220722T101033Z&X-Amz-Expires=3600&X-Amz-Signature=d0660521e92cc434560b3f199154f172a6e592cd698c861645c9834a6d9700fa&X-Amz-SignedHeaders=host&x-id=GetObject',
+                                'expiry_time': '2022-07-22T11:10:33.474Z'
+                            }
+                        }
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '28 days',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '28 days',
+                            'href': None
+                        }
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': {
+                        'id': '9911560f-933e-42dc-b99a-bffddd52b485',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': {
+                        'id': '9911560f-933e-42dc-b99a-bffddd52b485',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': {
+                        'id': '1f99e093-9fbd-489e-95f5-5cfffa9bb561',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '- 5% for high-risk sectors including extractives, banking, insurance, gaming among others\n- 5% for foreign Politically Exposed Persons\n- 20% for all other sectors\n- No threshold for local Politically Exposed Persons',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '- 5% for high-risk sectors including extractives, banking, insurance, gaming among others\n- 5% for foreign Politically Exposed Persons\n- 20% for all other sectors\n- No threshold for local Politically Exposed Persons',
+                            'href': None
+                        }
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://rgd.gov.gh/docs/Act 992.pdf',
+                                'link': {
+                                    'url': 'https://rgd.gov.gh/docs/Act%20992.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://rgd.gov.gh/docs/Act 992.pdf',
+                            'href': 'https://rgd.gov.gh/docs/Act%20992.pdf'
+                        }
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'The document attached below is a declaration form example of what you get if paying. The cost is 75 GHC per declaration form (around 12 USD)',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'The document attached below is a declaration form example of what you get if paying. The cost is 75 GHC per declaration form (around 12 USD)',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': {
+                        'id': 'b81a9b3e-62b4-47bb-bbc0-3d7fc5ae5303',
+                        'name': '2020',
+                        'color': 'default'
+                    }
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': {
+                        'id': '7c1e2c7e-1d2c-44f1-ae2f-ff02d7302527',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://rgd.gov.gh/docs/Act 992.pdf',
+                                'link': {
+                                    'url': 'https://rgd.gov.gh/docs/Act%20992.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://rgd.gov.gh/docs/Act 992.pdf',
+                            'href': 'https://rgd.gov.gh/docs/Act%20992.pdf'
+                        }
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Annual',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Annual',
+                            'href': None
+                        }
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Central Register',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Central Register',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/Central-Register-8dd64aa68fbb4cddb7741d763e2fd1ed'
+        },
+        {
+            'object': 'page',
+            'id': '293d0984-1628-4f2b-9ae7-24e169b97bd3',
+            'created_time': '2022-03-25T15:35:00.000Z',
+            'last_edited_time': '2022-04-07T15:05:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'cover': None,
+            'icon': None,
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-04-07T15:05:00.000Z'
+                },
+                '6.5 Data on OO Register': {
+                    'id': '%24Fhj',
+                    'type': 'checkbox',
+                    'checkbox': False
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': None
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': None
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': None
+                },
+                '4.1 Central register': {
+                    'id': '5tav',
+                    'type': 'select',
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'They do publish a compliance list (i.e. whether a company has submitted BO information)',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'They do publish a compliance list (i.e. whether a company has submitted BO information)',
+                            'href': None
+                        }
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '3025c7c6-de31-46a2-a953-873e55f77bd7'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '(1) ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '(1) ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'http://digesto.senado.gov.py/detalles&id=10995',
+                                'link': {
+                                    'url': 'http://digesto.senado.gov.py/detalles&id=10995'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'http://digesto.senado.gov.py/detalles&id=10995',
+                            'href': 'http://digesto.senado.gov.py/detalles&id=10995'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '\n (2) https://www.bacn.gov.py/leyes-paraguayas/9116/ley-n-6446-crea-el-registro-administrativo-de-personas-y-estructuras-juridicas-y-el-registro-administrativo-de-beneficiarios-finales-del-paraguay',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '\n (2) https://www.bacn.gov.py/leyes-paraguayas/9116/ley-n-6446-crea-el-registro-administrativo-de-personas-y-estructuras-juridicas-y-el-registro-administrativo-de-beneficiarios-finales-del-paraguay',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': None
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': None
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Variable thresholds:\n10% ownership; 25% control',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Variable thresholds:\n10% ownership; 25% control',
+                            'href': None
+                        }
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': {
+                        'id': 'b81a9b3e-62b4-47bb-bbc0-3d7fc5ae5303',
+                        'name': '2020',
+                        'color': 'default'
+                    }
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': None
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Administrative Registry of Final Beneficiaries of Paraguay',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': True,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Administrative Registry of Final Beneficiaries of Paraguay',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/Administrative-Registry-of-Final-Beneficiaries-of-Paraguay-293d098416284f2b9ae724e169b97bd3'
+        },
+        {
+            'object': 'page',
+            'id': 'b7d6004f-1693-4040-adbc-1b28935e5001',
+            'created_time': '2022-03-25T13:58:00.000Z',
+            'last_edited_time': '2022-04-07T15:04:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'cover': None,
+            'icon': None,
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-04-07T15:04:00.000Z'
+                },
+                '6.5 Data on OO Register': {
+                    'id': '%24Fhj',
+                    'type': 'checkbox',
+                    'checkbox': False
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': 51
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': None
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': None
+                },
+                '4.1 Central register': {
+                    'id': '5tav',
+                    'type': 'select',
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': 'ffd870a2-60d1-4ce1-8344-102a302fee15'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.japarliament.gov.jm/attachments/article/339/The Companies (Amendment) Act, 2017.pdf',
+                                'link': {
+                                    'url': 'https://www.japarliament.gov.jm/attachments/article/339/The%20Companies%20(Amendment)%20Act,%202017.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.japarliament.gov.jm/attachments/article/339/The Companies (Amendment) Act, 2017.pdf',
+                            'href': 'https://www.japarliament.gov.jm/attachments/article/339/The%20Companies%20(Amendment)%20Act,%202017.pdf'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '; ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '; ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.orcjamaica.com/uploads/Companies Act 2004 (Bookmark Version).pdf',
+                                'link': {
+                                    'url': 'https://www.orcjamaica.com/uploads/Companies%20Act%202004%20(Bookmark%20Version).pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.orcjamaica.com/uploads/Companies Act 2004 (Bookmark Version).pdf',
+                            'href': 'https://www.orcjamaica.com/uploads/Companies%20Act%202004%20(Bookmark%20Version).pdf'
+                        }
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': None
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': None
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': None
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Jamaica beneficial ownership register',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Jamaica beneficial ownership register',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/Jamaica-beneficial-ownership-register-b7d6004f16934040adbc1b28935e5001'
+        },
+        {
+            'object': 'page',
+            'id': '84e70e1c-8e10-488f-9480-ee101c242568',
+            'created_time': '2022-03-23T11:21:00.000Z',
+            'last_edited_time': '2022-03-23T11:48:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'f8622e2c-ebaf-4d8e-ba3a-7d83f3d03589'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'f8622e2c-ebaf-4d8e-ba3a-7d83f3d03589'
+            },
+            'cover': None,
+            'icon': None,
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-03-23T11:48:00.000Z'
+                },
+                '6.5 Data on OO Register': {
+                    'id': '%24Fhj',
+                    'type': 'checkbox',
+                    'checkbox': False
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': None
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': None
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': None
+                },
+                '4.1 Central register': {
+                    'id': '5tav',
+                    'type': 'select',
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '5d3d079e-f56f-4466-bfa0-ed61cbe99061',
+                            'name': 'Legal',
+                            'color': 'brown'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Strengthening Transparency in the Petroleum Sector Law\n\xa0(STPS)',
+                                'link': {
+                                    'url': 'https://www.lpa.gov.lb/Library/Assets/Gallery/asdasdas/Laws/%D8%AF%D8%B9%D9%85%20%D8%A7%D9%84%D8%B4%D9%81%D8%A7%D9%81%D9%8A%D8%A9%20%D9%81%D9%8A%20%D9%82%D8%B7%D8%A7%D8%B9%20%D8%A7%D9%84%D8%A8%D8%AA%D8%B1%D9%88%D9%84%20-%20%D9%82%D8%A7%D9%86%D9%88%D9%86%2084-2018.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Strengthening Transparency in the Petroleum Sector Law\n\xa0(STPS)',
+                            'href': 'https://www.lpa.gov.lb/Library/Assets/Gallery/asdasdas/Laws/%D8%AF%D8%B9%D9%85%20%D8%A7%D9%84%D8%B4%D9%81%D8%A7%D9%81%D9%8A%D8%A9%20%D9%81%D9%8A%20%D9%82%D8%B7%D8%A7%D8%B9%20%D8%A7%D9%84%D8%A8%D8%AA%D8%B1%D9%88%D9%84%20-%20%D9%82%D8%A7%D9%86%D9%88%D9%86%2084-2018.pdf'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '; Article 10.7',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '; Article 10.7',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Register covers disclosure of BO of direct extractive license-holders and disclosure of BO of all subcontracted companies',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Register covers disclosure of BO of direct extractive license-holders and disclosure of BO of all subcontracted companies',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '241aecc7-e8b5-4d30-9b4e-a020bcb2a248'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Decree on Registration, Mortgaging and Transfer of Petroleum Rights (under preparation)',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Decree on Registration, Mortgaging and Transfer of Petroleum Rights (under preparation)',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': None
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '859da0c6-cb5b-40f8-b238-8c7e913fb3e5',
+                            'name': 'Sectoral: Extractives',
+                            'color': 'purple'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': None
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'f8622e2c-ebaf-4d8e-ba3a-7d83f3d03589',
+                        'name': 'Alanna',
+                        'avatar_url': None,
+                        'type': 'person',
+                        'person': {
+                            'email': 'alanna@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': None
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Lebanon',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Lebanon',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/Lebanon-84e70e1c8e10488f9480ee101c242568'
+        },
+        {
+            'object': 'page',
+            'id': '0332c61d-3203-4a2b-9f67-0c87855761e2',
+            'created_time': '2022-03-23T09:13:00.000Z',
+            'last_edited_time': '2022-06-23T10:02:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': '1703e054-58b6-40d2-aab4-aff006900163'
+            },
+            'cover': None,
+            'icon': None,
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-06-23T10:02:00.000Z'
+                },
+                '6.5 Data on OO Register': {
+                    'id': '%24Fhj',
+                    'type': 'checkbox',
+                    'checkbox': False
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': None
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': None
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': None
+                },
+                '4.1 Central register': {
+                    'id': '5tav',
+                    'type': 'select',
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '878268e4-dbc5-47f7-a649-88be1c683c35',
+                            'name': 'Data',
+                            'color': 'red'
+                        },
+                        {
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Search through my LTSA (',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Search through my LTSA (',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://apps.ltsa.ca/iam/login',
+                                'link': {
+                                    'url': 'https://apps.ltsa.ca/iam/login'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://apps.ltsa.ca/iam/login',
+                            'href': 'https://apps.ltsa.ca/iam/login'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '); CA$5 fee',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '); CA$5 fee',
+                            'href': None
+                        }
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '9371fe85-aa99-4d68-98f1-b674c0f6c94e'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/19023',
+                                'link': {
+                                    'url': 'https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/19023'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/19023',
+                            'href': 'https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/19023'
+                        }
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': 'https://landtransparency.ca/search/'
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '1a769b22-a61a-4a62-a42c-1794a8e218e4',
+                            'name': 'Subnational',
+                            'color': 'yellow'
+                        },
+                        {
+                            'id': 'd164cdd6-1378-4d15-89a9-207d095568ff',
+                            'name': 'Sectoral: Land',
+                            'color': 'purple'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
+                        'name': 'Stephen Abbott Pugh',
+                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
+                        'type': 'person',
+                        'person': {
+                            'email': 'stephen@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': None
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'British Columbia Land Owner Transparency Registry (LOTR)',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'British Columbia Land Owner Transparency Registry (LOTR)',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/British-Columbia-Land-Owner-Transparency-Registry-LOTR-0332c61d32034a2b9f670c87855761e2'
+        },
+        {
+            'object': 'page',
+            'id': '5a19e40c-9f59-4585-b65b-40a1679053e8',
+            'created_time': '2022-03-23T09:09:00.000Z',
+            'last_edited_time': '2022-03-23T09:10:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'cover': None,
+            'icon': None,
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-03-23T09:10:00.000Z'
+                },
+                '6.5 Data on OO Register': {
+                    'id': '%24Fhj',
+                    'type': 'checkbox',
+                    'checkbox': False
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': None
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': None
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': None
+                },
+                '4.1 Central register': {
+                    'id': '5tav',
+                    'type': 'select',
+                    'select': {
+                        'id': 'dfe58e83-4471-4ca6-aa35-5e9bdb423674',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '5d3d079e-f56f-4466-bfa0-ed61cbe99061',
+                            'name': 'Legal',
+                            'color': 'brown'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Limited Liability Companies',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Limited Liability Companies',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '6dd3f376-9e86-473c-a1b3-1ed498920620'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://nyassembly.gov/leg/?default_fld=&leg_video=&bn=A09415&term=0&Summary=Y&Actions=Y&Memo=Y&Text=Y',
+                                'link': {
+                                    'url': 'https://nyassembly.gov/leg/?default_fld=&leg_video=&bn=A09415&term=0&Summary=Y&Actions=Y&Memo=Y&Text=Y'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://nyassembly.gov/leg/?default_fld=&leg_video=&bn=A09415&term=0&Summary=Y&Actions=Y&Memo=Y&Text=Y',
+                            'href': 'https://nyassembly.gov/leg/?default_fld=&leg_video=&bn=A09415&term=0&Summary=Y&Actions=Y&Memo=Y&Text=Y'
+                        }
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': None
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '1a769b22-a61a-4a62-a42c-1794a8e218e4',
+                            'name': 'Subnational',
+                            'color': 'yellow'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': None
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': None
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'New York State LLC BO register',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'New York State LLC BO register',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/New-York-State-LLC-BO-register-5a19e40c9f594585b65b40a1679053e8'
+        },
+        {
+            'object': 'page',
+            'id': 'abba4c61-7bf1-45cc-a5cd-03b17ed703da',
+            'created_time': '2022-03-15T14:07:00.000Z',
+            'last_edited_time': '2022-07-06T14:49:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'cover': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇬🇧'
+            },
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-07-06T14:49:00.000Z'
+                },
+                '6.5 Data on OO Register': {
+                    'id': '%24Fhj',
+                    'type': 'checkbox',
+                    'checkbox': False
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': 25
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': None
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': None
+                },
+                '4.1 Central register': {
+                    'id': '5tav',
+                    'type': 'select',
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '486a37df-ec33-4f48-a513-c734ec2d7d8c',
+                            'name': 'Systems',
+                            'color': 'yellow'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Economic Crime (Transparency and Enforcement) Act 2022 Part 1',
+                                'link': {
+                                    'url': 'https://www.legislation.gov.uk/ukpga/2022/10/part/1/crossheading/financial-penalties/enacted'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Economic Crime (Transparency and Enforcement) Act 2022 Part 1',
+                            'href': 'https://www.legislation.gov.uk/ukpga/2022/10/part/1/crossheading/financial-penalties/enacted'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ' covers fields that will not be published',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' covers fields that will not be published',
+                            'href': None
+                        }
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Overseas entities owning UK property',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Overseas entities owning UK property',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '8b2d8ba0-a4cb-482f-82ea-d2cff6d6ecc9'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Economic Crime (Transparency and Enforcement) Act 2022 Schedule 2',
+                                'link': {
+                                    'url': 'https://www.legislation.gov.uk/ukpga/2022/10/schedule/2/enacted'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Economic Crime (Transparency and Enforcement) Act 2022 Schedule 2',
+                            'href': 'https://www.legislation.gov.uk/ukpga/2022/10/schedule/2/enacted'
+                        }
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': None
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'd164cdd6-1378-4d15-89a9-207d095568ff',
+                            'name': 'Sectoral: Land',
+                            'color': 'purple'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Economic Crime (Transparency and Enforcement) Act 2022 Part 3',
+                                'link': {
+                                    'url': 'https://www.legislation.gov.uk/ukpga/2022/10/part/3/enacted'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Economic Crime (Transparency and Enforcement) Act 2022 Part 3',
+                            'href': 'https://www.legislation.gov.uk/ukpga/2022/10/part/3/enacted'
+                        }
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': {
+                        'id': '79b81d80-2e4e-4555-b96f-8072aacef85b',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': None
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': {
+                        'id': '6ee82c45-a25e-4dbc-9526-0359b2bcf14d',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': None
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Register of Overseas Entities Beneficial Ownership',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Register of Overseas Entities Beneficial Ownership',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/Register-of-Overseas-Entities-Beneficial-Ownership-abba4c617bf145cca5cd03b17ed703da'
+        },
+        {
+            'object': 'page',
+            'id': 'becd663e-7b95-4ac5-810e-b27cda5b3894',
+            'created_time': '2022-03-14T11:02:00.000Z',
+            'last_edited_time': '2022-06-14T08:33:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'd254d0fd-a5b1-43af-94b8-67fcc54326d9'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'cover': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇰🇪'
+            },
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-06-14T08:33:00.000Z'
+                },
+                '6.5 Data on OO Register': {
+                    'id': '%24Fhj',
+                    'type': 'checkbox',
+                    'checkbox': False
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': 10
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': None
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': None
+                },
+                '4.1 Central register': {
+                    'id': '5tav',
+                    'type': 'select',
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies (Beneficial Ownership) Regulation of 2020',
+                                'link': {
+                                    'url': 'https://brs.go.ke/assets/downloads/The%20Companies%20(Beneficial%20Ownership%20Information)%20Regulation%202020.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies (Beneficial Ownership) Regulation of 2020',
+                            'href': 'https://brs.go.ke/assets/downloads/The%20Companies%20(Beneficial%20Ownership%20Information)%20Regulation%202020.pdf'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ' ;  BRS Manual ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' ;  BRS Manual ',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'All legal entities registered in Kenya but excludes foreign owned entities, trusts, PLCs. Partnerships and Sole Proprietorships are not covered by the BO legislation but are covered by the Executive Order 2 of 2018. This Executive Order also includes wide exemptions (e.g. essential utilities, procurement of classified nature). Limited Liability Partnerships are not covered.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'All legal entities registered in Kenya but excludes foreign owned entities, trusts, PLCs. Partnerships and Sole Proprietorships are not covered by the BO legislation but are covered by the Executive Order 2 of 2018. This Executive Order also includes wide exemptions (e.g. essential utilities, procurement of classified nature). Limited Liability Partnerships are not covered.',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Access only to competent authorities, and through an amendment in 2022, access to public authorities ( PPRA) ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Access only to competent authorities, and through an amendment in 2022, access to public authorities ( PPRA) ',
+                            'href': None
+                        }
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': 'f21350a7-eb04-4145-a5f4-e9319a3007b5'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies (Beneficial Ownership) Regulation of 2020',
+                                'link': {
+                                    'url': 'https://brs.go.ke/assets/downloads/The%20Companies%20(Beneficial%20Ownership%20Information)%20Regulation%202020.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies (Beneficial Ownership) Regulation of 2020',
+                            'href': 'https://brs.go.ke/assets/downloads/The%20Companies%20(Beneficial%20Ownership%20Information)%20Regulation%202020.pdf'
+                        }
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': None
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Section 872 of the Companies Act makes it an offence to lodge false or misleading statements. “All companies registered in Kenya should ensure that their beneficial owners register is correct and up to date. Failure to do so may result in significant fines of up to KES500,000, on conviction, and a continuing fine of KES50,000 per day for each day of non-compliance. Further, the company will risk disqualification from tender applications as this will soon become a prerequisite.” Section 1006 obligates companies to take measures to ensure their records are not falsified. Failure to declare oneself as BO to a company leads to interest in the company being restricted.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Section 872 of the Companies Act makes it an offence to lodge false or misleading statements. “All companies registered in Kenya should ensure that their beneficial owners register is correct and up to date. Failure to do so may result in significant fines of up to KES500,000, on conviction, and a continuing fine of KES50,000 per day for each day of non-compliance. Further, the company will risk disqualification from tender applications as this will soon become a prerequisite.” Section 1006 obligates companies to take measures to ensure their records are not falsified. Failure to declare oneself as BO to a company leads to interest in the company being restricted.',
+                            'href': None
+                        }
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '14 days',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '14 days',
+                            'href': None
+                        }
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': None
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'BRS verifies information for citizens and resident foreigners against the Integrated Population Registration Service and the local companies against the Companies Registry. There is no verification for foreigners and foreign companies, incorporated in other jurisdictions. (Malachi Adedeh, from 30 March 2022 workshop).\n\nBRS Integration with IPRS (Integrated Population Registration System) makes it possible to verify personal information.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'BRS verifies information for citizens and resident foreigners against the Integrated Population Registration Service and the local companies against the Companies Registry. There is no verification for foreigners and foreign companies, incorporated in other jurisdictions. (Malachi Adedeh, from 30 March 2022 workshop).\n\nBRS Integration with IPRS (Integrated Population Registration System) makes it possible to verify personal information.',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': {
+                        'id': 'b81a9b3e-62b4-47bb-bbc0-3d7fc5ae5303',
+                        'name': '2020',
+                        'color': 'default'
+                    }
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Section 93A requires companies to update the Registrar within 14 days of amendment of BO register.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Section 93A requires companies to update the Registrar within 14 days of amendment of BO register.',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': None
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': None
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Business Registration Service',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Business Registration Service',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/Business-Registration-Service-becd663e7b954ac5810eb27cda5b3894'
+        },
+        {
+            'object': 'page',
+            'id': 'a0416831-d6a3-44c8-8f5d-defe34f79909',
+            'created_time': '2022-03-14T09:18:00.000Z',
+            'last_edited_time': '2022-07-08T08:21:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': '501d8cc1-3319-40fc-b29d-99d7ac8b6621'
+            },
+            'cover': None,
+            'icon': None,
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-07-08T08:21:00.000Z'
+                },
+                '6.5 Data on OO Register': {
+                    'id': '%24Fhj',
+                    'type': 'checkbox',
+                    'checkbox': False
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': 5
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': {
+                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': {
+                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
+                },
+                '4.1 Central register': {
+                    'id': '5tav',
+                    'type': 'select',
+                    'select': {
+                        'id': 'dfe58e83-4471-4ca6-aa35-5e9bdb423674',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '486a37df-ec33-4f48-a513-c734ec2d7d8c',
+                            'name': 'Systems',
+                            'color': 'yellow'
+                        },
+                        {
+                            'id': '878268e4-dbc5-47f7-a649-88be1c683c35',
+                            'name': 'Data',
+                            'color': 'red'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies and Allied Matters Act 2020',
+                                'link': {
+                                    'url': 'https://www.cac.gov.ng/wp-content/uploads/2020/12/CAMA-NOTE-BOOK-FULL-VERSION.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies and Allied Matters Act 2020',
+                            'href': 'https://www.cac.gov.ng/wp-content/uploads/2020/12/CAMA-NOTE-BOOK-FULL-VERSION.pdf'
+                        }
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Name, email, gender, date of appointment, service address/residential address, tax residency, Nature of Ownership, Nature of control',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Name, email, gender, date of appointment, service address/residential address, tax residency, Nature of Ownership, Nature of control',
+                            'href': None
+                        }
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'All companies (Private or Public) and Limited Liability Partnerships ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'All companies (Private or Public) and Limited Liability Partnerships ',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': 'Page 171 of the Bidding Document Issued by CAC - https://docs.google.com/document/d/1RYDFhY0mp0hw184Y01Uks9ZbhccIr-Vn/edit'
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Access thought to be: Public',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Access thought to be: Public',
+                            'href': None
+                        }
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '2269a272-4705-40df-aa10-8c4070c73cf3'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies and Allied Matters Act 2020',
+                                'link': {
+                                    'url': 'https://www.cac.gov.ng/wp-content/uploads/2020/12/CAMA-NOTE-BOOK-FULL-VERSION.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies and Allied Matters Act 2020',
+                            'href': 'https://www.cac.gov.ng/wp-content/uploads/2020/12/CAMA-NOTE-BOOK-FULL-VERSION.pdf'
+                        }
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': 'Not yet live, although some BO information is currently accessible here: https://post.cac.gov.ng/search/type/all'
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies Regulations 2021',
+                                'link': {
+                                    'url': 'https://www.cac.gov.ng/wp-content/uploads/2021/01/COMPANIES-REGULATIONS-2021-published.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies Regulations 2021',
+                            'href': 'https://www.cac.gov.ng/wp-content/uploads/2021/01/COMPANIES-REGULATIONS-2021-published.pdf'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ' although the sanctions are not spelt out. It just says “...such fine as the Commission may prescribe by Regulation” ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' although the sanctions are not spelt out. It just says “...such fine as the Commission may prescribe by Regulation” ',
+                            'href': None
+                        }
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'No later than one month',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'No later than one month',
+                            'href': None
+                        }
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': {
+                        'id': '9911560f-933e-42dc-b99a-bffddd52b485',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': {
+                        'id': '79b81d80-2e4e-4555-b96f-8072aacef85b',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Section 791(3) of ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Section 791(3) of ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies Regulations 2021',
+                                'link': {
+                                    'url': 'https://www.cac.gov.ng/wp-content/uploads/2021/01/COMPANIES-REGULATIONS-2021-published.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies Regulations 2021',
+                            'href': 'https://www.cac.gov.ng/wp-content/uploads/2021/01/COMPANIES-REGULATIONS-2021-published.pdf'
+                        }
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': 'Open'
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': {
+                        'id': '7ce0db95-0a97-493d-8339-e08f5f55a52f',
+                        'name': 'For companies only',
+                        'color': 'brown'
+                    }
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'From mid July, all natural persons with a Nigerian ID (citizens and foreign residents) will have their ID checked against National ID database, (national ID required for passport and bank account creation)',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'From mid July, all natural persons with a Nigerian ID (citizens and foreign residents) will have their ID checked against National ID database, (national ID required for passport and bank account creation)',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': {
+                        'id': '7c1e2c7e-1d2c-44f1-ae2f-ff02d7302527',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': '501d8cc1-3319-40fc-b29d-99d7ac8b6621',
+                        'name': 'Thom Townsend',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/3ea64949-06e3-43dd-b64e-dbd0fc7b97fc/202006_TT_OpenOwnership_Photograph.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'thom@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies Regulations 2021',
+                                'link': {
+                                    'url': 'https://www.cac.gov.ng/wp-content/uploads/2021/01/COMPANIES-REGULATIONS-2021-published.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies Regulations 2021',
+                            'href': 'https://www.cac.gov.ng/wp-content/uploads/2021/01/COMPANIES-REGULATIONS-2021-published.pdf'
+                        }
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Important to note that the CAC is developing its BO register which should be live by June 2022. However, information about PSCs (for companies that have submitted PSC information) can be accessed vide the ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Important to note that the CAC is developing its BO register which should be live by June 2022. However, information about PSCs (for companies that have submitted PSC information) can be accessed vide the ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'search portal',
+                                'link': {
+                                    'url': 'https://search.cac.gov.ng/home'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'search portal',
+                            'href': 'https://search.cac.gov.ng/home'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ' ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' ',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': {
+                        'id': '1e8ecc32-2b01-40dc-a535-e31260dd88d5',
+                        'name': '2022',
+                        'color': 'brown'
+                    }
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': {
+                        'id': '6ee82c45-a25e-4dbc-9526-0359b2bcf14d',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies Regulations 2021',
+                                'link': {
+                                    'url': 'https://www.cac.gov.ng/wp-content/uploads/2021/01/COMPANIES-REGULATIONS-2021-published.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies Regulations 2021',
+                            'href': 'https://www.cac.gov.ng/wp-content/uploads/2021/01/COMPANIES-REGULATIONS-2021-published.pdf'
+                        }
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Annual - when yearly annual returns are filed ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Annual - when yearly annual returns are filed ',
+                            'href': None
+                        }
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': {
+                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Nigeria beneficial ownership register',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Nigeria beneficial ownership register',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/Nigeria-beneficial-ownership-register-a0416831d6a344c88f5ddefe34f79909'
+        },
+        {
+            'object': 'page',
             'id': '73632a63-620d-44a2-8f7b-efab219f656a',
             'created_time': '2022-02-08T07:09:00.000Z',
             'last_edited_time': '2022-02-10T07:47:00.000Z',
@@ -85,13 +5670,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -114,6 +5700,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -147,8 +5739,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -168,8 +5761,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -198,8 +5798,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -254,10 +5855,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -278,8 +5885,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -335,7 +5943,7 @@ REGIMES = {
             'object': 'page',
             'id': '3cb3f724-5074-47e9-b8f1-b4190f47cd8a',
             'created_time': '2022-01-05T11:45:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'last_edited_time': '2022-03-04T16:55:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
@@ -355,7 +5963,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
+                    'last_edited_time': '2022-03-04T16:55:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -415,19 +6023,37 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
                     'id': "ApR'",
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'All companies',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'All companies',
+                            'href': None
+                        }
                     ]
                 },
                 '5.4.1 Protection regime URL': {
@@ -444,6 +6070,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -477,8 +6109,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -498,8 +6131,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -524,8 +6164,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -580,10 +6221,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -604,8 +6251,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -653,7 +6301,7 @@ REGIMES = {
             'object': 'page',
             'id': 'd54f27a8-d25a-4816-95f7-c2eb08b18c45',
             'created_time': '2022-01-05T11:13:00.000Z',
-            'last_edited_time': '2022-02-23T13:17:00.000Z',
+            'last_edited_time': '2022-04-07T15:04:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
@@ -673,7 +6321,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:17:00.000Z'
+                    'last_edited_time': '2022-04-07T15:04:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -733,13 +6381,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -762,6 +6411,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -812,8 +6467,28 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/مستند 5 ea.pdf'
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/مستند 5 ea.pdf',
+                                'link': {
+                                    'url': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/مستند 5 ea.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/مستند 5 ea.pdf',
+                            'href': 'https://www.moic.gov.bh/ar/Tiles/TrademarksAndPatents/Documents/مستند 5 ea.pdf'
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -828,8 +6503,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -854,8 +6536,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -906,10 +6589,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -1074,8 +6763,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -1123,7 +6813,7 @@ REGIMES = {
             'object': 'page',
             'id': '9e56358d-d47f-4166-916f-444d6f7efc86',
             'created_time': '2022-01-05T10:23:00.000Z',
-            'last_edited_time': '2022-02-23T12:49:00.000Z',
+            'last_edited_time': '2022-04-07T15:03:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
@@ -1143,7 +6833,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:49:00.000Z'
+                    'last_edited_time': '2022-04-07T15:03:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -1207,13 +6897,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -1254,6 +6945,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -1286,8 +6983,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -1298,12 +6996,24 @@ REGIMES = {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
                     ]
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -1332,8 +7042,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -1388,10 +7099,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -1448,8 +7165,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -1501,14 +7219,14 @@ REGIMES = {
             'object': 'page',
             'id': 'b88796af-436a-40e8-ae4a-d2f3935102b5',
             'created_time': '2021-11-01T17:31:00.000Z',
-            'last_edited_time': '2021-11-01T17:50:00.000Z',
+            'last_edited_time': '2022-07-01T14:16:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': '7621276b-7bbb-49ae-92b3-b5b0a8184232'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+                'id': '7bd368f7-9440-4d8f-ad8e-2d0a81043a7f'
             },
             'cover': None,
             'icon': None,
@@ -1521,7 +7239,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-11-01T17:50:00.000Z'
+                    'last_edited_time': '2022-07-01T14:16:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -1531,7 +7249,7 @@ REGIMES = {
                 '1.2 Threshold': {
                     'id': '%24I.J',
                     'type': 'number',
-                    'number': None
+                    'number': 5
                 },
                 '6.3.1 API URL': {
                     'id': '%24UM7',
@@ -1556,7 +7274,11 @@ REGIMES = {
                 '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
@@ -1572,18 +7294,48 @@ REGIMES = {
                             'id': '5d3d079e-f56f-4466-bfa0-ed61cbe99061',
                             'name': 'Legal',
                             'color': 'brown'
+                        },
+                        {
+                            'id': '486a37df-ec33-4f48-a513-c734ec2d7d8c',
+                            'name': 'Systems',
+                            'color': 'yellow'
+                        },
+                        {
+                            'id': '878268e4-dbc5-47f7-a649-88be1c683c35',
+                            'name': 'Data',
+                            'color': 'red'
                         }
                     ]
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.dian.gov.co/normatividad/Normatividad/Resolución 000164 de 27-12-2021.pdf',
+                                'link': {
+                                    'url': 'https://www.dian.gov.co/normatividad/Normatividad/Resoluci%C3%B3n%20000164%20de%2027-12-2021.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.dian.gov.co/normatividad/Normatividad/Resolución 000164 de 27-12-2021.pdf',
+                            'href': 'https://www.dian.gov.co/normatividad/Normatividad/Resoluci%C3%B3n%20000164%20de%2027-12-2021.pdf'
+                        }
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -1607,6 +7359,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -1616,6 +7374,23 @@ REGIMES = {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Internal government use only.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Internal government use only.',
+                            'href': None
+                        }
                     ]
                 },
                 '8.3 Data retention (years)': {
@@ -1639,8 +7414,28 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.dian.gov.co/normatividad/Normatividad/Resolución 000164 de 27-12-2021.pdf',
+                                'link': {
+                                    'url': 'https://www.dian.gov.co/normatividad/Normatividad/Resoluci%C3%B3n%20000164%20de%2027-12-2021.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.dian.gov.co/normatividad/Normatividad/Resolución 000164 de 27-12-2021.pdf',
+                            'href': 'https://www.dian.gov.co/normatividad/Normatividad/Resoluci%C3%B3n%20000164%20de%2027-12-2021.pdf'
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -1651,12 +7446,24 @@ REGIMES = {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
                     ]
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -1672,7 +7479,11 @@ REGIMES = {
                 '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 '3.2 Sufficient information for full ownership chains': {
                     'id': 'cm%5Eg',
@@ -1681,8 +7492,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -1703,7 +7515,11 @@ REGIMES = {
                 '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
@@ -1720,19 +7536,25 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
-                        'name': 'Tymon',
-                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'id': '7bd368f7-9440-4d8f-ad8e-2d0a81043a7f',
+                        'name': 'Peter Low',
+                        'avatar_url': None,
                         'type': 'person',
                         'person': {
-                            'email': 'tymon@openownership.org'
+                            'email': 'peter@openownership.org'
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -1869,7 +7691,11 @@ REGIMES = {
                 '5.1.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '1e8ecc32-2b01-40dc-a535-e31260dd88d5',
+                        'name': '2022',
+                        'color': 'brown'
+                    }
                 },
                 '6.1 Structured data': {
                     'id': 'x%7BQ%5D',
@@ -1878,8 +7704,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -1904,7 +7731,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Columbia Single Registry of Beneficial Owners (RUB)',
+                                'content': 'Colombia Single Registry of Beneficial Owners (RUB)',
                                 'link': None
                             },
                             'annotations': {
@@ -1915,19 +7742,19 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Columbia Single Registry of Beneficial Owners (RUB)',
+                            'plain_text': 'Colombia Single Registry of Beneficial Owners (RUB)',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Columbia-Single-Registry-of-Beneficial-Owners-RUB-b88796af436a40e8ae4ad2f3935102b5'
+            'url': 'https://www.notion.so/Colombia-Single-Registry-of-Beneficial-Owners-RUB-b88796af436a40e8ae4ad2f3935102b5'
         },
         {
             'object': 'page',
             'id': 'cc2c3dbe-c3ca-45c9-bd04-1a314aa92f10',
             'created_time': '2021-08-04T14:40:00.000Z',
-            'last_edited_time': '2022-02-23T13:04:00.000Z',
+            'last_edited_time': '2022-04-25T10:46:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': '7621276b-7bbb-49ae-92b3-b5b0a8184232'
@@ -1937,7 +7764,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇿🇲'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -1947,7 +7777,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:04:00.000Z'
+                    'last_edited_time': '2022-04-25T10:46:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -1983,9 +7813,9 @@ REGIMES = {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
-                        'id': 'fd88b61b-4d53-4f17-8668-a97142a9c55e',
-                        'name': 'Implementing',
-                        'color': 'yellow'
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
                     }
                 },
                 '5.2.4.1 Registration details': {
@@ -1999,26 +7829,41 @@ REGIMES = {
                     'type': 'multi_select',
                     'multi_select': [
                         {
-                            'id': '878268e4-dbc5-47f7-a649-88be1c683c35',
-                            'name': 'Data',
-                            'color': 'red'
-                        },
-                        {
-                            'id': '486a37df-ec33-4f48-a513-c734ec2d7d8c',
-                            'name': 'Systems',
-                            'color': 'yellow'
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
                         }
                     ]
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies Act No 10 of 2017',
+                                'link': {
+                                    'url': 'https://wipolex.wipo.int/en/text/483019'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies Act No 10 of 2017',
+                            'href': 'https://wipolex.wipo.int/en/text/483019'
+                        }
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -2028,7 +7873,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': "PACRA's central register + extractives data through EITI reports",
+                                'content': "PACRA's central register + extractives data through EITI reports (where data is made available to ZEITI) ",
                                 'link': None
                             },
                             'annotations': {
@@ -2039,7 +7884,7 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': "PACRA's central register + extractives data through EITI reports",
+                            'plain_text': "PACRA's central register + extractives data through EITI reports (where data is made available to ZEITI) ",
                             'href': None
                         }
                     ]
@@ -2058,6 +7903,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -2108,8 +7959,81 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'The Companies Act No 10 of 2017',
+                                'link': {
+                                    'url': 'https://wipolex.wipo.int/en/text/483019'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'The Companies Act No 10 of 2017',
+                            'href': 'https://wipolex.wipo.int/en/text/483019'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ' as read together with the ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' as read together with the ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies\n(Amendment) Act No 12 of 2020',
+                                'link': {
+                                    'url': 'https://www.parliament.gov.zm/sites/default/files/documents/acts/The%20Companies%20%28Amendment%29%20Act%2012%20of.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies\n(Amendment) Act No 12 of 2020',
+                            'href': 'https://www.parliament.gov.zm/sites/default/files/documents/acts/The%20Companies%20%28Amendment%29%20Act%2012%20of.pdf'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ' ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' ',
+                            'href': None
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -2124,23 +8048,59 @@ REGIMES = {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
                             'name': 'Full-economy',
                             'color': 'green'
-                        },
-                        {
-                            'id': '859da0c6-cb5b-40f8-b238-8c7e913fb3e5',
-                            'name': 'Sectoral: Extractives',
-                            'color': 'purple'
                         }
                     ]
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'According to section 373 of the Companies Act,\nfailure to disclose Beneficial Ownership\ninformation attracts a fine of K120,000 or to\nimprisonment for a period not exceeding four\nyears, or to both.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'According to section 373 of the Companies Act,\nfailure to disclose Beneficial Ownership\ninformation attracts a fine of K120,000 or to\nimprisonment for a period not exceeding four\nyears, or to both.',
+                            'href': None
+                        }
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '14 days ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '14 days ',
+                            'href': None
+                        }
                     ]
                 },
                 '3.3 Exact ownership values': {
@@ -2164,8 +8124,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -2175,7 +8136,11 @@ REGIMES = {
                 '3.1.1 Unique identifiers used': {
                     'id': 'iHpC',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '7ce0db95-0a97-493d-8339-e08f5f55a52f',
+                        'name': 'For companies only',
+                        'color': 'brown'
+                    }
                 },
                 '7.1 Verification details': {
                     'id': 'iTV%5B',
@@ -2187,9 +8152,9 @@ REGIMES = {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
                     }
                 },
                 '5.2.4 Basic access to BO data does not require registration': {
@@ -2220,10 +8185,52 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies Act No 10 of 2017 ',
+                                'link': {
+                                    'url': 'https://wipolex.wipo.int/en/text/483019'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies Act No 10 of 2017 ',
+                            'href': 'https://wipolex.wipo.int/en/text/483019'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '+ PACRA Forms ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '+ PACRA Forms ',
+                            'href': None
+                        }
                     ]
                 },
                 'Notes': {
@@ -2235,7 +8242,11 @@ REGIMES = {
                 '5.1.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '66bd3173-a0bd-42f7-abcd-1ff05d846263',
+                        'name': '2018',
+                        'color': 'pink'
+                    }
                 },
                 '6.1 Structured data': {
                     'id': 'x%7BQ%5D',
@@ -2244,8 +8255,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -2274,37 +8286,37 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Zambia Register of Companies',
+                                'content': 'Patent And Company Registration Agency',
                                 'link': None
                             },
                             'annotations': {
-                                'bold': False,
+                                'bold': True,
                                 'italic': False,
                                 'strikethrough': False,
                                 'underline': False,
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Zambia Register of Companies',
+                            'plain_text': 'Patent And Company Registration Agency',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Zambia-Register-of-Companies-cc2c3dbec3ca45c9bd041a314aa92f10'
+            'url': 'https://www.notion.so/Patent-And-Company-Registration-Agency-cc2c3dbec3ca45c9bd041a314aa92f10'
         },
         {
             'object': 'page',
             'id': '50cc870d-ad9c-41dd-a83a-5c93982a507d',
             'created_time': '2021-08-04T14:29:00.000Z',
-            'last_edited_time': '2022-02-23T13:03:00.000Z',
+            'last_edited_time': '2022-06-23T10:01:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': '7621276b-7bbb-49ae-92b3-b5b0a8184232'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+                'id': '1703e054-58b6-40d2-aab4-aff006900163'
             },
             'cover': None,
             'icon': None,
@@ -2317,7 +8329,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:03:00.000Z'
+                    'last_edited_time': '2022-06-23T10:01:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -2372,13 +8384,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -2419,6 +8432,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -2428,6 +8447,23 @@ REGIMES = {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'To access BO data from the RCCM, an application must be made and upon approval, the information will be made available',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'To access BO data from the RCCM, an application must be made and upon approval, the information will be made available',
+                            'href': None
+                        }
                     ]
                 },
                 '8.3 Data retention (years)': {
@@ -2440,7 +8476,7 @@ REGIMES = {
                     'type': 'relation',
                     'relation': [
                         {
-                            'id': 'eefeab36-e468-414a-98ec-27f6bf36a6b5'
+                            'id': 'd4cc32a1-ce41-4606-a402-eabf4476f53a'
                         }
                     ]
                 },
@@ -2451,8 +8487,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -2472,8 +8509,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -2502,8 +8546,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -2545,19 +8590,25 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
-                        'name': 'Tymon',
-                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
+                        'name': 'Stephen Abbott Pugh',
+                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
                         'type': 'person',
                         'person': {
-                            'email': 'tymon@openownership.org'
+                            'email': 'stephen@openownership.org'
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -2578,8 +8629,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -2627,14 +8679,14 @@ REGIMES = {
             'object': 'page',
             'id': '1dc23caa-fe5b-453b-841d-6b4b644e4157',
             'created_time': '2021-08-04T14:17:00.000Z',
-            'last_edited_time': '2022-02-23T13:19:00.000Z',
+            'last_edited_time': '2022-07-08T10:37:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': '7621276b-7bbb-49ae-92b3-b5b0a8184232'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+                'id': 'f8622e2c-ebaf-4d8e-ba3a-7d83f3d03589'
             },
             'cover': None,
             'icon': None,
@@ -2647,7 +8699,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:19:00.000Z'
+                    'last_edited_time': '2022-07-08T10:37:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -2657,7 +8709,7 @@ REGIMES = {
                 '1.2 Threshold': {
                     'id': '%24I.J',
                     'type': 'number',
-                    'number': None
+                    'number': 5
                 },
                 '6.3.1 API URL': {
                     'id': '%24UM7',
@@ -2710,13 +8762,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -2739,6 +8792,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -2789,8 +8848,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -2810,8 +8870,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -2840,8 +8907,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -2883,19 +8951,25 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
-                        'name': 'Tymon',
-                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'id': 'f8622e2c-ebaf-4d8e-ba3a-7d83f3d03589',
+                        'name': 'Alanna',
+                        'avatar_url': None,
                         'type': 'person',
                         'person': {
-                            'email': 'tymon@openownership.org'
+                            'email': 'alanna@openownership.org'
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -2916,8 +8990,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -2973,17 +9048,20 @@ REGIMES = {
             'object': 'page',
             'id': 'cca61a29-8fc6-474b-a83a-62225a9b9a05',
             'created_time': '2021-02-10T14:53:00.000Z',
-            'last_edited_time': '2021-02-10T14:57:00.000Z',
+            'last_edited_time': '2022-05-12T11:03:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': '02cea0fa-fe74-47e4-8122-e12855faf1ef'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': '02cea0fa-fe74-47e4-8122-e12855faf1ef'
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇲🇰'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -2993,7 +9071,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-02-10T14:57:00.000Z'
+                    'last_edited_time': '2022-05-12T11:03:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -3053,13 +9131,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -3082,6 +9161,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -3115,8 +9200,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -3131,8 +9217,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -3157,8 +9250,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -3200,13 +9294,25 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '02cea0fa-fe74-47e4-8122-e12855faf1ef'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -3227,8 +9333,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -3276,7 +9383,7 @@ REGIMES = {
             'object': 'page',
             'id': '42fcb9fe-e445-4fa2-b2a4-1d38e3afc3c4',
             'created_time': '2020-10-27T15:20:00.000Z',
-            'last_edited_time': '2022-02-23T13:11:00.000Z',
+            'last_edited_time': '2022-05-26T13:30:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
@@ -3296,7 +9403,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:11:00.000Z'
+                    'last_edited_time': '2022-05-26T13:30:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -3377,13 +9484,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -3424,6 +9532,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -3456,8 +9570,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -3477,8 +9592,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -3507,8 +9629,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -3563,10 +9686,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -3587,8 +9716,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -3728,13 +9858,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -3757,6 +9888,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -3790,8 +9927,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -3811,8 +9949,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -3841,8 +9986,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -3897,10 +10043,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -3921,8 +10073,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -4049,13 +10202,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -4096,6 +10250,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -4128,8 +10288,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -4149,8 +10310,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -4175,8 +10343,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -4223,10 +10392,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -4247,8 +10422,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -4296,17 +10472,20 @@ REGIMES = {
             'object': 'page',
             'id': '02c2ac94-1502-4e58-8349-a27e4de41384',
             'created_time': '2020-10-01T10:52:00.000Z',
-            'last_edited_time': '2020-10-01T10:57:00.000Z',
+            'last_edited_time': '2022-05-12T11:02:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇵🇭'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -4316,7 +10495,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-10-01T10:57:00.000Z'
+                    'last_edited_time': '2022-05-12T11:02:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -4380,13 +10559,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -4427,6 +10607,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -4459,8 +10645,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -4480,8 +10667,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -4510,8 +10704,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -4553,13 +10748,25 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -4580,8 +10787,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -4633,14 +10841,14 @@ REGIMES = {
             'object': 'page',
             'id': '038649d7-219b-4da5-bdbf-a11980af6ae2',
             'created_time': '2020-08-24T13:48:00.000Z',
-            'last_edited_time': '2020-10-29T11:30:00.000Z',
+            'last_edited_time': '2022-03-04T16:43:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': '02cea0fa-fe74-47e4-8122-e12855faf1ef'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
             'icon': None,
@@ -4653,7 +10861,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-10-29T11:30:00.000Z'
+                    'last_edited_time': '2022-03-04T16:43:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -4709,13 +10917,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -4738,6 +10947,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -4771,8 +10986,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -4792,8 +11008,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -4809,7 +11032,11 @@ REGIMES = {
                 '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '3.2 Sufficient information for full ownership chains': {
                     'id': 'cm%5Eg',
@@ -4818,8 +11045,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -4861,13 +11089,25 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -4888,8 +11128,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -4937,7 +11178,7 @@ REGIMES = {
             'object': 'page',
             'id': '2956a55a-f9b1-4307-8fcf-ef88e6e68278',
             'created_time': '2020-06-18T10:22:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'last_edited_time': '2022-04-07T15:04:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
@@ -4957,7 +11198,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
+                    'last_edited_time': '2022-04-07T15:04:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -5017,13 +11258,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -5063,6 +11305,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -5113,8 +11361,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -5134,8 +11383,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -5164,8 +11420,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -5212,10 +11469,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -5236,8 +11499,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -5285,14 +11549,14 @@ REGIMES = {
             'object': 'page',
             'id': '5ea13aa5-c1a3-42b3-8d59-66f4a4d5cf2c',
             'created_time': '2020-05-29T08:30:00.000Z',
-            'last_edited_time': '2020-05-29T08:34:00.000Z',
+            'last_edited_time': '2022-04-07T15:04:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
             'icon': None,
@@ -5305,7 +11569,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-05-29T08:34:00.000Z'
+                    'last_edited_time': '2022-04-07T15:04:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -5377,13 +11641,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -5423,6 +11688,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -5473,13 +11744,14 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
-                    'url': 'https://bo.dica.gov.mm/en/beneficial-ownership-disclosures'
+                    'url': 'https://bo.dica.gov.mm/'
                 },
                 '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
@@ -5494,8 +11766,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -5524,8 +11803,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -5571,13 +11851,25 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -5589,7 +11881,11 @@ REGIMES = {
                 '5.1.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': 'b81a9b3e-62b4-47bb-bbc0-3d7fc5ae5303',
+                        'name': '2020',
+                        'color': 'default'
+                    }
                 },
                 '6.1 Structured data': {
                     'id': 'x%7BQ%5D',
@@ -5598,8 +11894,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -5653,330 +11950,16 @@ REGIMES = {
         },
         {
             'object': 'page',
-            'id': '0ff61315-3685-452d-a67f-656626c5c91a',
-            'created_time': '2020-05-28T08:41:00.000Z',
-            'last_edited_time': '2021-09-22T07:58:00.000Z',
-            'created_by': {
-                'object': 'user',
-                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
-            },
-            'last_edited_by': {
-                'object': 'user',
-                'id': '1703e054-58b6-40d2-aab4-aff006900163'
-            },
-            'cover': None,
-            'icon': None,
-            'parent': {
-                'type': 'database_id',
-                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
-            },
-            'archived': False,
-            'properties': {
-                'Last edited': {
-                    'id': '%23--Y',
-                    'type': 'last_edited_time',
-                    'last_edited_time': '2021-09-22T07:58:00.000Z'
-                },
-                '6.5 Data on OO Register': {
-                    'id': '%24Fhj',
-                    'type': 'checkbox',
-                    'checkbox': False
-                },
-                '1.2 Threshold': {
-                    'id': '%24I.J',
-                    'type': 'number',
-                    'number': None
-                },
-                '6.3.1 API URL': {
-                    'id': '%24UM7',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.2.3 Search by owner': {
-                    'id': "'AyV",
-                    'type': 'select',
-                    'select': None
-                },
-                '6.4 Data published in BODS': {
-                    'id': '%2BTR2',
-                    'type': 'select',
-                    'select': None
-                },
-                '6.3 API available': {
-                    'id': '2BK.',
-                    'type': 'select',
-                    'select': None
-                },
-                '4.1 Central register': {
-                    'id': '5tav',
-                    'type': 'select',
-                    'select': {
-                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
-                },
-                '5.2.4.1 Registration details': {
-                    'id': '7%5E%23l',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '0 Stage': {
-                    'id': '86%605',
-                    'type': 'multi_select',
-                    'multi_select': [
-                        {
-                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
-                            'name': 'Publish',
-                            'color': 'blue'
-                        }
-                    ]
-                },
-                '2.3 Coverage: Legislation URL': {
-                    'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.4.2.1 Fields available to public': {
-                    'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
-                    ]
-                },
-                '2.2 Coverage: Details': {
-                    'id': "ApR'",
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '5.4.1 Protection regime URL': {
-                    'id': 'DRH%3D',
-                    'type': 'url',
-                    'url': None
-                },
-                '6.2.1 Bulk data URL': {
-                    'id': 'EZ%5D1',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.3 Open license for data': {
-                    'id': 'E%5B!F',
-                    'type': 'select',
-                    'select': None
-                },
-                '7.2 Verification information URL': {
-                    'id': 'JRj%7C',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.2 Access and restrictions details': {
-                    'id': 'J~fN',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '8.3 Data retention (years)': {
-                    'id': 'PMcn',
-                    'type': 'number',
-                    'number': None
-                },
-                'Country': {
-                    'id': 'PTKs',
-                    'type': 'relation',
-                    'relation': [
-                        {
-                            'id': '6dd3f376-9e86-473c-a1b3-1ed498920620'
-                        }
-                    ]
-                },
-                '5.4 Protection regime implemented': {
-                    'id': 'Pj%3DK',
-                    'type': 'select',
-                    'select': None
-                },
-                '1.1 Definition: Legislation URL': {
-                    'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.1.1 Public access: Register URL': {
-                    'id': 'X%26sR',
-                    'type': 'url',
-                    'url': 'https://www.secstates.com/FL_Florida_Secretary_of_State_Corporation_Search'
-                },
-                '2.1 Coverage: Scope': {
-                    'id': 'Z%3Dqf',
-                    'type': 'multi_select',
-                    'multi_select': [
-                        {
-                            'id': '1a769b22-a61a-4a62-a42c-1794a8e218e4',
-                            'name': 'Subnational',
-                            'color': 'yellow'
-                        }
-                    ]
-                },
-                '9 Sanctions and enforcement: Legislation URL': {
-                    'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
-                },
-                '8.1 Up to date and auditable: Period for updating changes (days)': {
-                    'id': '%5EqJG',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '3.3 Exact ownership values': {
-                    'id': '%60x%7D%40',
-                    'type': 'select',
-                    'select': None
-                },
-                '5.2.1 Free of charge': {
-                    'id': "c*b'",
-                    'type': 'select',
-                    'select': None
-                },
-                '3.2 Sufficient information for full ownership chains': {
-                    'id': 'cm%5Eg',
-                    'type': 'select',
-                    'select': None
-                },
-                '5.5 Legal basis for publication URL': {
-                    'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.3.1 License information URL': {
-                    'id': 'iFf%3D',
-                    'type': 'url',
-                    'url': None
-                },
-                '3.1.1 Unique identifiers used': {
-                    'id': 'iHpC',
-                    'type': 'select',
-                    'select': None
-                },
-                '7.1 Verification details': {
-                    'id': 'iTV%5B',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '5.1 Public access': {
-                    'id': 'jxf!',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
-                },
-                '5.2.4 Basic access to BO data does not require registration': {
-                    'id': 'l%2F%3Dw',
-                    'type': 'select',
-                    'select': None
-                },
-                '5.4.2 Layered access': {
-                    'id': 'lreI',
-                    'type': 'select',
-                    'select': None
-                },
-                'Last updated by': {
-                    'id': 'm%3D%7BD',
-                    'type': 'last_edited_by',
-                    'last_edited_by': {
-                        'object': 'user',
-                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
-                        'name': 'Stephen Abbott Pugh',
-                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
-                        'type': 'person',
-                        'person': {
-                            'email': 'stephen@openownership.org'
-                        }
-                    }
-                },
-                '3.1 Sufficient detail: Data fields collected': {
-                    'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
-                    ]
-                },
-                'Notes': {
-                    'id': 'wbf%5B',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '5.1.2 Year launched': {
-                    'id': 'x%5EQC',
-                    'type': 'select',
-                    'select': None
-                },
-                '6.1 Structured data': {
-                    'id': 'x%7BQ%5D',
-                    'type': 'select',
-                    'select': None
-                },
-                '8.4 Legislation URL': {
-                    'id': 'yNot',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.2.2 Search by company': {
-                    'id': '%7Ce%7Dn',
-                    'type': 'select',
-                    'select': None
-                },
-                '8.2 Period for confirmation': {
-                    'id': '%7DbTt',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '6.2 Bulk data available': {
-                    'id': '~obq',
-                    'type': 'select',
-                    'select': None
-                },
-                'Title': {
-                    'id': 'title',
-                    'type': 'title',
-                    'title': [
-                        {
-                            'type': 'text',
-                            'text': {
-                                'content': 'Florida Corporation & Business Entity Search',
-                                'link': None
-                            },
-                            'annotations': {
-                                'bold': False,
-                                'italic': False,
-                                'strikethrough': False,
-                                'underline': False,
-                                'code': False,
-                                'color': 'default'
-                            },
-                            'plain_text': 'Florida Corporation & Business Entity Search',
-                            'href': None
-                        }
-                    ]
-                }
-            },
-            'url': 'https://www.notion.so/Florida-Corporation-Business-Entity-Search-0ff613153685452da67f656626c5c91a'
-        },
-        {
-            'object': 'page',
             'id': '6e037fdb-9aff-43f7-a59c-3cb373bea640',
             'created_time': '2020-05-27T10:15:00.000Z',
-            'last_edited_time': '2020-10-29T11:30:00.000Z',
+            'last_edited_time': '2022-05-12T11:01:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': '7bd368f7-9440-4d8f-ad8e-2d0a81043a7f'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
             'icon': {
@@ -5992,7 +11975,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-10-29T11:30:00.000Z'
+                    'last_edited_time': '2022-05-12T11:01:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -6012,7 +11995,11 @@ REGIMES = {
                 '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 '6.4 Data published in BODS': {
                     'id': '%2BTR2',
@@ -6033,6 +12020,23 @@ REGIMES = {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Different accounts for companies, residents and non-residents.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Different accounts for companies, residents and non-residents.',
+                            'href': None
+                        }
                     ]
                 },
                 '0 Stage': {
@@ -6043,13 +12047,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -6071,7 +12076,17 @@ REGIMES = {
                 '5.3 Open license for data': {
                     'id': 'E%5B!F',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -6082,6 +12097,23 @@ REGIMES = {
                     'id': 'J~fN',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Requires registration. Fee (at least for non-resident account) is £2.50.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Requires registration. Fee (at least for non-resident account) is £2.50.',
+                            'href': None
+                        }
                     ]
                 },
                 '8.3 Data retention (years)': {
@@ -6105,8 +12137,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -6126,8 +12159,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -6143,7 +12183,11 @@ REGIMES = {
                 '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 '3.2 Sufficient information for full ownership chains': {
                     'id': 'cm%5Eg',
@@ -6152,8 +12196,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -6195,13 +12240,25 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -6222,13 +12279,18 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '8.2 Period for confirmation': {
                     'id': '%7DbTt',
@@ -6248,7 +12310,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Gibraltar public Ultimate Benificiary Register',
+                                'content': 'Gibraltar public Ultimate Beneficiary Register',
                                 'link': None
                             },
                             'annotations': {
@@ -6259,19 +12321,19 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Gibraltar public Ultimate Benificiary Register',
+                            'plain_text': 'Gibraltar public Ultimate Beneficiary Register',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Gibraltar-public-Ultimate-Benificiary-Register-6e037fdb9aff43f7a59c3cb373bea640'
+            'url': 'https://www.notion.so/Gibraltar-public-Ultimate-Beneficiary-Register-6e037fdb9aff43f7a59c3cb373bea640'
         },
         {
             'object': 'page',
             'id': '74ec2c08-c8ec-4e80-ac92-41cf30aa8ef8',
             'created_time': '2020-05-20T12:52:00.000Z',
-            'last_edited_time': '2022-02-23T13:04:00.000Z',
+            'last_edited_time': '2022-05-12T11:02:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'f631e4fb-0786-4016-86e0-788b967d8a36'
@@ -6281,7 +12343,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇿🇼'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -6291,7 +12356,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:04:00.000Z'
+                    'last_edited_time': '2022-05-12T11:02:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -6351,13 +12416,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -6397,6 +12463,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -6447,8 +12519,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -6468,8 +12541,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -6494,8 +12574,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -6546,10 +12627,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -6570,8 +12657,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -6619,7 +12707,7 @@ REGIMES = {
             'object': 'page',
             'id': 'cac1996c-f637-46ba-aff5-73a462fa927c',
             'created_time': '2020-05-20T11:59:00.000Z',
-            'last_edited_time': '2022-02-23T13:01:00.000Z',
+            'last_edited_time': '2022-03-23T09:34:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'd254d0fd-a5b1-43af-94b8-67fcc54326d9'
@@ -6639,7 +12727,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:01:00.000Z'
+                    'last_edited_time': '2022-03-23T09:34:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -6699,13 +12787,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -6746,6 +12835,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -6778,8 +12873,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -6799,8 +12895,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -6825,8 +12928,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -6877,16 +12981,39 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Control is not defined and the minimum ownership level for disclosure is unspecified',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Control is not defined and the minimum ownership level for disclosure is unspecified',
+                            'href': None
+                        }
                     ]
                 },
                 '5.1.2 Year launched': {
@@ -6901,8 +13028,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -6950,7 +13078,7 @@ REGIMES = {
             'object': 'page',
             'id': 'ac060b62-aa51-4449-b7c3-04a7fe53e79a',
             'created_time': '2020-03-13T16:23:00.000Z',
-            'last_edited_time': '2022-02-23T13:20:00.000Z',
+            'last_edited_time': '2022-05-12T11:02:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'f631e4fb-0786-4016-86e0-788b967d8a36'
@@ -6960,7 +13088,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇸🇰'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -6970,7 +13101,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:20:00.000Z'
+                    'last_edited_time': '2022-05-12T11:02:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -7034,13 +13165,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -7080,6 +13212,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -7130,8 +13268,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -7151,8 +13290,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -7181,8 +13327,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -7237,10 +13384,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -7261,8 +13414,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -7314,17 +13468,20 @@ REGIMES = {
             'object': 'page',
             'id': 'f27867de-2d9b-436b-9561-90eddbeaf310',
             'created_time': '2020-03-13T13:39:00.000Z',
-            'last_edited_time': '2021-11-18T13:23:00.000Z',
+            'last_edited_time': '2022-06-13T09:14:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': 'f8622e2c-ebaf-4d8e-ba3a-7d83f3d03589'
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇺🇸'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -7334,7 +13491,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2021-11-18T13:23:00.000Z'
+                    'last_edited_time': '2022-06-13T09:14:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -7369,7 +13526,11 @@ REGIMES = {
                 '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': 'fd88b61b-4d53-4f17-8668-a97142a9c55e',
+                        'name': 'Implementing',
+                        'color': 'yellow'
+                    }
                 },
                 '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
@@ -7390,13 +13551,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -7406,7 +13568,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'n/a',
+                                'content': 'Quite a few exemptions planned in proposed legislation, but pending approval.',
                                 'link': None
                             },
                             'annotations': {
@@ -7417,7 +13579,7 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'n/a',
+                            'plain_text': 'Quite a few exemptions planned in proposed legislation, but pending approval.',
                             'href': None
                         }
                     ]
@@ -7436,6 +13598,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -7469,8 +13637,28 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.federalregister.gov/documents/2021/12/08/2021-26548/beneficial-ownership-information-reporting-requirements',
+                                'link': {
+                                    'url': 'https://www.congress.gov/bill/116th-congress/house-bill/2513/text#HEEB4075A50364091A7D9634C44D65AF5'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.federalregister.gov/documents/2021/12/08/2021-26548/beneficial-ownership-information-reporting-requirements',
+                            'href': 'https://www.congress.gov/bill/116th-congress/house-bill/2513/text#HEEB4075A50364091A7D9634C44D65AF5'
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -7481,12 +13669,24 @@ REGIMES = {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
                     ]
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -7511,8 +13711,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -7533,7 +13734,11 @@ REGIMES = {
                 '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
@@ -7550,19 +13755,25 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'f8622e2c-ebaf-4d8e-ba3a-7d83f3d03589',
-                        'name': 'Alanna',
-                        'avatar_url': None,
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
                         'type': 'person',
                         'person': {
-                            'email': 'alanna@openownership.org'
+                            'email': 'tymon@openownership.org'
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -7583,8 +13794,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -7609,7 +13821,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'United States of America',
+                                'content': 'Beneficial Ownership Secure System (BOSS)',
                                 'link': None
                             },
                             'annotations': {
@@ -7620,19 +13832,19 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'United States of America',
+                            'plain_text': 'Beneficial Ownership Secure System (BOSS)',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/United-States-of-America-f27867de2d9b436b956190eddbeaf310'
+            'url': 'https://www.notion.so/Beneficial-Ownership-Secure-System-BOSS-f27867de2d9b436b956190eddbeaf310'
         },
         {
             'object': 'page',
             'id': 'bcce98e3-8a6a-45d2-924b-16ba93feb125',
             'created_time': '2020-03-13T13:38:00.000Z',
-            'last_edited_time': '2022-02-23T14:27:00.000Z',
+            'last_edited_time': '2022-05-12T11:04:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -7642,7 +13854,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇬🇧'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -7652,7 +13867,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T14:27:00.000Z'
+                    'last_edited_time': '2022-05-12T11:04:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -7741,42 +13956,68 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': 'https://www.legislation.gov.uk/uksi/2016/339/part/2/made'
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'The Register of People with Significant Control Regulations 2016 Part 2: Application and fees',
+                                'link': {
+                                    'url': 'https://www.legislation.gov.uk/uksi/2016/339/part/2/made'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'The Register of People with Significant Control Regulations 2016 Part 2: Application and fees',
+                            'href': 'https://www.legislation.gov.uk/uksi/2016/339/part/2/made'
+                        }
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                         {
-                            'id': '0d942583-8ee9-4882-929e-99ddc23aa069',
-                            'name': 'Month of birth',
-                            'color': 'default'
+                            'type': 'text',
+                            'text': {
+                                'content': 'Table 1 on p21 of',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Table 1 on p21 of',
+                            'href': None
                         },
                         {
-                            'id': 'b2b20686-159e-43a0-a9d5-086714110176',
-                            'name': 'Year of birth',
-                            'color': 'gray'
-                        },
-                        {
-                            'id': '9f391f20-e226-45d7-9867-f0ecb0e26579',
-                            'name': 'Business address',
-                            'color': 'pink'
-                        },
-                        {
-                            'id': '0b61d07f-fd97-4b68-89ce-6223ce427e6b',
-                            'name': 'Country of residence',
-                            'color': 'yellow'
-                        },
-                        {
-                            'id': '4f5d3263-7e0f-4ab4-a49d-60df8b7ea475',
-                            'name': 'Nature and extent of interest held (ranges)',
-                            'color': 'brown'
-                        },
-                        {
-                            'id': '474f594f-1758-4a29-b75f-5ea9056097c9',
-                            'name': 'Whether an application has been made for the individual’s information to be protected from public disclosure',
-                            'color': 'brown'
+                            'type': 'text',
+                            'text': {
+                                'content': ' REGISTER OF PEOPLE WITH SIGNIFICANT CONTROL GUIDANCE FOR PEOPLE WITH SIGNIFICANT\nCONTROL OVER COMPANIES, SOCIETATES EUROPAEAE, LIMITED LIABILITY PARTNERSHIPS\nAND ELIGIBLE SCOTTISH PARTNERSHIPS',
+                                'link': {
+                                    'url': 'https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/753028/170623_NON-STAT_Guidance_for_PSCs_4MLD.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' REGISTER OF PEOPLE WITH SIGNIFICANT CONTROL GUIDANCE FOR PEOPLE WITH SIGNIFICANT\nCONTROL OVER COMPANIES, SOCIETATES EUROPAEAE, LIMITED LIABILITY PARTNERSHIPS\nAND ELIGIBLE SCOTTISH PARTNERSHIPS',
+                            'href': 'https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/753028/170623_NON-STAT_Guidance_for_PSCs_4MLD.pdf'
                         }
                     ]
                 },
@@ -7821,6 +14062,12 @@ REGIMES = {
                         'name': 'Yes',
                         'color': 'green'
                     }
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -7875,8 +14122,28 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': 'https://www.legislation.gov.uk/ukpga/2006/46/schedule/1A'
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies Act 2006 Schedule 1A',
+                                'link': {
+                                    'url': 'https://www.legislation.gov.uk/ukpga/2006/46/schedule/1A'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies Act 2006 Schedule 1A',
+                            'href': 'https://www.legislation.gov.uk/ukpga/2006/46/schedule/1A'
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -7896,8 +14163,34 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': 'https://www.legislation.gov.uk/ukpga/2006/46/section/790F'
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies Act 2006 Part 21A Chapter 2 Section 790F',
+                                'link': {
+                                    'url': 'https://www.legislation.gov.uk/ukpga/2006/46/section/790F'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies Act 2006 Part 21A Chapter 2 Section 790F',
+                            'href': 'https://www.legislation.gov.uk/ukpga/2006/46/section/790F'
+                        }
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -7943,12 +14236,36 @@ REGIMES = {
                 '3.2 Sufficient information for full ownership chains': {
                     'id': 'cm%5Eg',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '9911560f-933e-42dc-b99a-bffddd52b485',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': 'https://www.gov.uk/government/organisations/companies-house/about/personal-information-charter'
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies House Personal Information Charter',
+                                'link': {
+                                    'url': 'https://www.gov.uk/government/organisations/companies-house/about/personal-information-charter'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies House Personal Information Charter',
+                            'href': 'https://www.gov.uk/government/organisations/companies-house/about/personal-information-charter'
+                        }
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -8028,54 +14345,34 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                         {
-                            'id': '9e10c6c6-ea3e-47c7-85c7-02b79d386723',
-                            'name': 'Month of birth',
-                            'color': 'brown'
-                        },
-                        {
-                            'id': '676faf4f-a92d-40e3-a81a-1aaa9ff80a2b',
-                            'name': 'Day of birth',
-                            'color': 'red'
-                        },
-                        {
-                            'id': '33cf3ba8-0228-4571-b85d-d015f8d08b7d',
-                            'name': 'Year of birth',
-                            'color': 'orange'
-                        },
-                        {
-                            'id': '9767e47c-0ce5-420f-a088-987810e2d4ec',
-                            'name': 'Business address',
-                            'color': 'blue'
-                        },
-                        {
-                            'id': '6a034676-869c-4fc3-854f-a5c3c970d39c',
-                            'name': 'Residential address',
-                            'color': 'purple'
-                        },
-                        {
-                            'id': '61d94183-fce7-4357-81e3-6b9fe99e2a3c',
-                            'name': 'Nationality',
-                            'color': 'purple'
-                        },
-                        {
-                            'id': '790ef979-8627-44d0-a56c-dc7d8833e74d',
-                            'name': 'Date BO started',
-                            'color': 'pink'
-                        },
-                        {
-                            'id': '02214edf-9a06-4dd8-9727-24d919d580b2',
-                            'name': 'Whether an application has been made for the individual’s information to be protected from public disclosure',
-                            'color': 'default'
-                        },
-                        {
-                            'id': '1942c6ef-2d7b-42e7-9a6d-571825aa5fe8',
-                            'name': 'Nature and extent of interest held (ranges)',
-                            'color': 'gray'
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies Act 2006 Part 21A Chapter 2 Section 790K',
+                                'link': {
+                                    'url': 'https://www.legislation.gov.uk/ukpga/2006/46/section/790K'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies Act 2006 Part 21A Chapter 2 Section 790K',
+                            'href': 'https://www.legislation.gov.uk/ukpga/2006/46/section/790K'
                         }
                     ]
                 },
@@ -8122,8 +14419,117 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': 'https://www.legislation.gov.uk/ukpga/2006/46/section/790E (period to update); https://www.legislation.gov.uk/ukpga/2006/46/part/24 (annual confirmation); https://www.gov.uk/government/organisations/companies-house/about/personal-information-charter (data retention)'
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies Act 2006 Part 21A Chapter 2 Section 790 E',
+                                'link': {
+                                    'url': 'https://www.legislation.gov.uk/ukpga/2006/46/section/790E'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies Act 2006 Part 21A Chapter 2 Section 790 E',
+                            'href': 'https://www.legislation.gov.uk/ukpga/2006/46/section/790E'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ' (period to update); ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' (period to update); ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies Act 2006 Part 24',
+                                'link': {
+                                    'url': 'https://www.legislation.gov.uk/ukpga/2006/46/part/24'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies Act 2006 Part 24',
+                            'href': 'https://www.legislation.gov.uk/ukpga/2006/46/part/24'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ' (annual confirmation); ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' (annual confirmation); ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies House Personal Information Charter',
+                                'link': {
+                                    'url': 'https://www.gov.uk/government/organisations/companies-house/about/personal-information-charter'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies House Personal Information Charter',
+                            'href': 'https://www.gov.uk/government/organisations/companies-house/about/personal-information-charter'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ' (data retention)',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' (data retention)',
+                            'href': None
+                        }
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -8173,7 +14579,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'UK People with significant control (PSC) Register',
+                                'content': 'People with significant control (PSC) Register',
                                 'link': None
                             },
                             'annotations': {
@@ -8184,29 +14590,32 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'UK People with significant control (PSC) Register',
+                            'plain_text': 'People with significant control (PSC) Register',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/UK-People-with-significant-control-PSC-Register-bcce98e38a6a45d2924b16ba93feb125'
+            'url': 'https://www.notion.so/People-with-significant-control-PSC-Register-bcce98e38a6a45d2924b16ba93feb125'
         },
         {
             'object': 'page',
             'id': '31634aad-64a4-469c-8d55-42ed90af018c',
             'created_time': '2020-03-13T13:38:00.000Z',
-            'last_edited_time': '2020-03-13T16:16:00.000Z',
+            'last_edited_time': '2022-05-12T11:04:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': 'f631e4fb-0786-4016-86e0-788b967d8a36'
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇺🇦'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -8216,7 +14625,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-03-13T16:16:00.000Z'
+                    'last_edited_time': '2022-05-12T11:04:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -8236,7 +14645,11 @@ REGIMES = {
                 '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '6.4 Data published in BODS': {
                     'id': '%2BTR2',
@@ -8250,7 +14663,11 @@ REGIMES = {
                 '6.3 API available': {
                     'id': '2BK.',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '4.1 Central register': {
                     'id': '5tav',
@@ -8265,6 +14682,23 @@ REGIMES = {
                     'id': '7%5E%23l',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'N/A',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'N/A',
+                            'href': None
+                        }
                     ]
                 },
                 '0 Stage': {
@@ -8280,13 +14714,33 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Order of the Ministry of Finance No 163, “On Approval of the Regulations on the Form and Content of the Ownership Structure”',
+                                'link': {
+                                    'url': 'https://zakon.rada.gov.ua/laws/show/en/z0768-21?lang=uk#Text'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Order of the Ministry of Finance No 163, “On Approval of the Regulations on the Form and Content of the Ownership Structure”',
+                            'href': 'https://zakon.rada.gov.ua/laws/show/en/z0768-21?lang=uk#Text'
+                        }
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -8296,7 +14750,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Ukrainian companies',
+                                'content': 'Legal entities, natural persons\n(entrepreneurs), public and\nnot-for-profit organisations, and\ntrusts',
                                 'link': None
                             },
                             'annotations': {
@@ -8307,7 +14761,7 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Ukrainian companies',
+                            'plain_text': 'Legal entities, natural persons\n(entrepreneurs), public and\nnot-for-profit organisations, and\ntrusts',
                             'href': None
                         }
                     ]
@@ -8331,10 +14785,16 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
-                    'url': None
+                    'url': 'https://www.opengovpartnership.org/members/ukraine/commitments/UA0092/'
                 },
                 '5.2 Access and restrictions details': {
                     'id': 'J~fN',
@@ -8343,7 +14803,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'In order to conduct a record search via the government provided website interface, it is necessary to file a request and pay a small fee.',
+                                'content': 'The user must complete reCAPTCHA for each search. The website housing public access to the register is currently unavailable due to conflict in Ukraine.',
                                 'link': None
                             },
                             'annotations': {
@@ -8354,7 +14814,7 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'In order to conduct a record search via the government provided website interface, it is necessary to file a request and pay a small fee.',
+                            'plain_text': 'The user must complete reCAPTCHA for each search. The website housing public access to the register is currently unavailable due to conflict in Ukraine.',
                             'href': None
                         }
                     ]
@@ -8380,8 +14840,28 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Law of Ukraine, “On State Registration of Legal Entities, Individual Entrepreneurs and Public Associations”',
+                                'link': {
+                                    'url': 'https://zakon.rada.gov.ua/laws/show/755-15/page#Text'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Law of Ukraine, “On State Registration of Legal Entities, Individual Entrepreneurs and Public Associations”',
+                            'href': 'https://zakon.rada.gov.ua/laws/show/755-15/page#Text'
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -8401,38 +14881,90 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Law of Ukraine, “On State Registration of Legal Entities, Individual Entrepreneurs and Public Associations”',
+                                'link': {
+                                    'url': 'https://zakon.rada.gov.ua/laws/show/755-15/page#Text'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Law of Ukraine, “On State Registration of Legal Entities, Individual Entrepreneurs and Public Associations”',
+                            'href': 'https://zakon.rada.gov.ua/laws/show/755-15/page#Text'
+                        }
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Any changes to the ownership structure or owner details must be reported within 30 days',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Any changes to the ownership structure or owner details must be reported within 30 days',
+                            'href': None
+                        }
                     ]
                 },
                 '3.3 Exact ownership values': {
                     'id': '%60x%7D%40',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '79b81d80-2e4e-4555-b96f-8072aacef85b',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
                     'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
                     }
                 },
                 '3.2 Sufficient information for full ownership chains': {
                     'id': 'cm%5Eg',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '9911560f-933e-42dc-b99a-bffddd52b485',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -8442,12 +14974,33 @@ REGIMES = {
                 '3.1.1 Unique identifiers used': {
                     'id': 'iHpC',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '7ce0db95-0a97-493d-8339-e08f5f55a52f',
+                        'name': 'For companies only',
+                        'color': 'brown'
+                    }
                 },
                 '7.1 Verification details': {
                     'id': 'iTV%5B',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'An audit of the beneficial ownership register and recommendations for a verification regime were planned for 2022 through the Open Government Partnership, but results have not been publicly released due to conflictin Ukraine.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'An audit of the beneficial ownership register and recommendations for a verification regime were planned for 2022 through the Open Government Partnership, but results have not been publicly released due to conflictin Ukraine.',
+                            'href': None
+                        }
                     ]
                 },
                 '5.1 Public access': {
@@ -8471,52 +15024,170 @@ REGIMES = {
                 '5.4.2 Layered access': {
                     'id': 'lreI',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '7c1e2c7e-1d2c-44f1-ae2f-ff02d7302527',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'f631e4fb-0786-4016-86e0-788b967d8a36'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Order of the Ministry of Finance No 163, “On Approval of the Regulations on the Form and Content of the Ownership Structure”',
+                                'link': {
+                                    'url': 'https://zakon.rada.gov.ua/laws/show/en/z0768-21?lang=uk#Text'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Order of the Ministry of Finance No 163, “On Approval of the Regulations on the Form and Content of the Ownership Structure”',
+                            'href': 'https://zakon.rada.gov.ua/laws/show/en/z0768-21?lang=uk#Text'
+                        }
                     ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Implementation of planned changes to Ukraine’s BO reporting regime have been interrupted by conflict in Ukraine. Please refer to the 2022 OO publication “',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Implementation of planned changes to Ukraine’s BO reporting regime have been interrupted by conflict in Ukraine. Please refer to the 2022 OO publication “',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Early impacts of public registers of beneficial ownership: Ukraine',
+                                'link': {
+                                    'url': 'https://www.openownership.org/uploads/oo-impact-story-ukraine-2022-02.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Early impacts of public registers of beneficial ownership: Ukraine',
+                            'href': 'https://www.openownership.org/uploads/oo-impact-story-ukraine-2022-02.pdf'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '” for more information.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '” for more information.',
+                            'href': None
+                        }
                     ]
                 },
                 '5.1.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': 'bb2c8924-8dcd-4b6c-8847-4319eebb27db',
+                        'name': '2015',
+                        'color': 'blue'
+                    }
                 },
                 '6.1 Structured data': {
                     'id': 'x%7BQ%5D',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '7c1e2c7e-1d2c-44f1-ae2f-ff02d7302527',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '8.2 Period for confirmation': {
                     'id': '%7DbTt',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Annually within a 14-day window',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Annually within a 14-day window',
+                            'href': None
+                        }
                     ]
                 },
                 '6.2 Bulk data available': {
@@ -8535,7 +15206,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Ukraine Consolidated State Registry',
+                                'content': 'Unified State Registry',
                                 'link': None
                             },
                             'annotations': {
@@ -8546,19 +15217,19 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Ukraine Consolidated State Registry',
+                            'plain_text': 'Unified State Registry',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Ukraine-Consolidated-State-Registry-31634aad64a4469c8d5542ed90af018c'
+            'url': 'https://www.notion.so/Unified-State-Registry-31634aad64a4469c8d5542ed90af018c'
         },
         {
             'object': 'page',
             'id': 'b30eddf7-db66-49ea-bf59-6c1d9e53d02d',
             'created_time': '2020-03-13T13:35:00.000Z',
-            'last_edited_time': '2022-02-23T13:20:00.000Z',
+            'last_edited_time': '2022-05-12T11:04:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -8568,7 +15239,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇸🇪'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -8578,7 +15252,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:20:00.000Z'
+                    'last_edited_time': '2022-05-12T11:04:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -8642,13 +15316,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -8725,6 +15400,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -8774,8 +15455,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -8795,8 +15477,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -8825,8 +15514,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -8881,10 +15571,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -8941,8 +15637,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -8971,7 +15668,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Sweden Register of Real Principals',
+                                'content': 'Register of Real Principals',
                                 'link': None
                             },
                             'annotations': {
@@ -8982,13 +15679,13 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Sweden Register of Real Principals',
+                            'plain_text': 'Register of Real Principals',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Sweden-Register-of-Real-Principals-b30eddf7db6649eabf596c1d9e53d02d'
+            'url': 'https://www.notion.so/Register-of-Real-Principals-b30eddf7db6649eabf596c1d9e53d02d'
         },
         {
             'object': 'page',
@@ -9074,13 +15771,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -9103,6 +15801,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -9153,8 +15857,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -9174,8 +15879,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -9200,8 +15912,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -9252,10 +15965,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -9276,8 +15995,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -9325,14 +16045,14 @@ REGIMES = {
             'object': 'page',
             'id': 'ac066c55-fde8-4485-893b-99c0e54ddd2f',
             'created_time': '2020-03-13T13:33:00.000Z',
-            'last_edited_time': '2020-10-29T11:29:00.000Z',
+            'last_edited_time': '2022-03-04T16:44:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
             'icon': None,
@@ -9345,7 +16065,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-10-29T11:29:00.000Z'
+                    'last_edited_time': '2022-03-04T16:44:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -9365,7 +16085,11 @@ REGIMES = {
                 '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 '6.4 Data published in BODS': {
                     'id': '%2BTR2',
@@ -9392,17 +16116,23 @@ REGIMES = {
                     'id': '86%605',
                     'type': 'multi_select',
                     'multi_select': [
+                        {
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
+                        }
                     ]
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -9425,6 +16155,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -9475,8 +16211,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -9496,8 +16233,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -9513,7 +16257,11 @@ REGIMES = {
                 '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '3.2 Sufficient information for full ownership chains': {
                     'id': 'cm%5Eg',
@@ -9522,8 +16270,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -9565,13 +16314,25 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -9592,13 +16353,18 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '8.2 Period for confirmation': {
                     'id': '%7DbTt',
@@ -9641,17 +16407,20 @@ REGIMES = {
             'object': 'page',
             'id': '73eab438-7918-4022-9dec-fd3ab66e4087',
             'created_time': '2020-03-13T13:33:00.000Z',
-            'last_edited_time': '2020-03-13T16:23:00.000Z',
+            'last_edited_time': '2022-05-26T13:31:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': 'f631e4fb-0786-4016-86e0-788b967d8a36'
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇸🇰'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -9661,7 +16430,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-03-13T16:23:00.000Z'
+                    'last_edited_time': '2022-05-26T13:31:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -9733,13 +16502,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -9779,6 +16549,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -9829,8 +16605,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -9850,8 +16627,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -9880,8 +16664,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -9927,13 +16712,25 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'f631e4fb-0786-4016-86e0-788b967d8a36'
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -9954,8 +16751,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -9988,7 +16786,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Slovakia Public Sector Partners Register',
+                                'content': 'Register of Public Sector Partners',
                                 'link': None
                             },
                             'annotations': {
@@ -9999,13 +16797,13 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Slovakia Public Sector Partners Register',
+                            'plain_text': 'Register of Public Sector Partners',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Slovakia-Public-Sector-Partners-Register-73eab438791840229decfd3ab66e4087'
+            'url': 'https://www.notion.so/Register-of-Public-Sector-Partners-73eab438791840229decfd3ab66e4087'
         },
         {
             'object': 'page',
@@ -10087,13 +16885,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -10134,6 +16933,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -10166,8 +16971,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -10187,8 +16993,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -10213,8 +17026,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -10261,10 +17075,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -10285,8 +17105,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -10334,7 +17155,7 @@ REGIMES = {
             'object': 'page',
             'id': '6d25be62-7cc3-4b99-bc5c-c20711c30e58',
             'created_time': '2020-03-13T13:29:00.000Z',
-            'last_edited_time': '2022-02-23T13:03:00.000Z',
+            'last_edited_time': '2022-05-16T17:00:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -10344,7 +17165,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇵🇹'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -10354,7 +17178,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:03:00.000Z'
+                    'last_edited_time': '2022-05-16T17:00:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -10364,7 +17188,7 @@ REGIMES = {
                 '1.2 Threshold': {
                     'id': '%24I.J',
                     'type': 'number',
-                    'number': None
+                    'number': 25
                 },
                 '6.3.1 API URL': {
                     'id': '%24UM7',
@@ -10418,13 +17242,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -10453,7 +17278,7 @@ REGIMES = {
                 '5.4.1 Protection regime URL': {
                     'id': 'DRH%3D',
                     'type': 'url',
-                    'url': None
+                    'url': 'https://rcbe.justica.gov.pt/Restricao'
                 },
                 '6.2.1 Bulk data URL': {
                     'id': 'EZ%5D1',
@@ -10464,6 +17289,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -10510,12 +17341,163 @@ REGIMES = {
                 '5.4 Protection regime implemented': {
                     'id': 'Pj%3DK',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6ee82c45-a25e-4dbc-9526-0359b2bcf14d',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'The obligation to declare the beneficial owner under the RCBE was established by Law no.\xa0',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'The obligation to declare the beneficial owner under the RCBE was established by Law no.\xa0',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '89/2017\xa0',
+                                'link': {
+                                    'url': 'https://dre.pt/home/-/dre/116130016/details/maximized'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '89/2017\xa0',
+                            'href': 'https://dre.pt/home/-/dre/116130016/details/maximized'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ', of 21 August',
+                                'link': {
+                                    'url': 'https://dre.pt/home/-/dre/108028571/details/maximized'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ', of 21 August',
+                            'href': 'https://dre.pt/home/-/dre/108028571/details/maximized'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '\xa0 , amended by\xa0',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '\xa0 , amended by\xa0',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Law no.\xa0',
+                                'link': {
+                                    'url': 'https://dre.pt/web/guest/home/-/dre/141382321/details/maximized'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Law no.\xa0',
+                            'href': 'https://dre.pt/web/guest/home/-/dre/141382321/details/maximized'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '2018, of August 21',
+                                'link': {
+                                    'url': 'https://dre.pt/home/-/dre/116130016/details/maximized'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '2018, of August 21',
+                            'href': 'https://dre.pt/home/-/dre/116130016/details/maximized'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '\xa0, and by\xa0',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '\xa0, and by\xa0',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Ordinance No. 200/2019, of June 28',
+                                'link': {
+                                    'url': 'https://dre.pt/home/-/dre/122747585/details/maximized'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Ordinance No. 200/2019, of June 28',
+                            'href': 'https://dre.pt/home/-/dre/122747585/details/maximized'
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -10535,8 +17517,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -10565,8 +17554,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -10588,9 +17578,9 @@ REGIMES = {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
                     }
                 },
                 '5.2.4 Basic access to BO data does not require registration': {
@@ -10617,10 +17607,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -10641,8 +17637,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -10671,7 +17668,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Portugal Central Register of Beneficiaries',
+                                'content': 'Central Register of Effective Beneficiaries (RCBE)',
                                 'link': None
                             },
                             'annotations': {
@@ -10682,19 +17679,19 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Portugal Central Register of Beneficiaries',
+                            'plain_text': 'Central Register of Effective Beneficiaries (RCBE)',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Portugal-Central-Register-of-Beneficiaries-6d25be627cc34b99bc5cc20711c30e58'
+            'url': 'https://www.notion.so/Central-Register-of-Effective-Beneficiaries-RCBE-6d25be627cc34b99bc5cc20711c30e58'
         },
         {
             'object': 'page',
             'id': '2e891914-1b42-430a-acc3-0b64de60534a',
             'created_time': '2020-03-13T13:29:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'last_edited_time': '2022-05-12T11:05:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -10704,7 +17701,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇵🇱'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -10714,7 +17714,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
+                    'last_edited_time': '2022-05-12T11:05:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -10782,13 +17782,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -10828,6 +17829,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -10878,8 +17885,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -10899,8 +17907,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -10929,8 +17944,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -10985,10 +18001,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -11009,8 +18031,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -11039,7 +18062,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Poland Central Register of Real Beneficiaries',
+                                'content': 'Central Register of Real Beneficiaries',
                                 'link': None
                             },
                             'annotations': {
@@ -11050,19 +18073,19 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Poland Central Register of Real Beneficiaries',
+                            'plain_text': 'Central Register of Real Beneficiaries',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Poland-Central-Register-of-Real-Beneficiaries-2e8919141b42430aacc30b64de60534a'
+            'url': 'https://www.notion.so/Central-Register-of-Real-Beneficiaries-2e8919141b42430aacc30b64de60534a'
         },
         {
             'object': 'page',
             'id': 'a74c31ae-8b12-411a-a68c-915a683b0229',
             'created_time': '2020-03-13T13:27:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'last_edited_time': '2022-03-22T11:00:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -11082,7 +18105,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
+                    'last_edited_time': '2022-03-22T11:00:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -11092,7 +18115,7 @@ REGIMES = {
                 '1.2 Threshold': {
                     'id': '%24I.J',
                     'type': 'number',
-                    'number': None
+                    'number': 25
                 },
                 '6.3.1 API URL': {
                     'id': '%24UM7',
@@ -11142,13 +18165,33 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056',
+                                'link': {
+                                    'url': 'https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056',
+                            'href': 'https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056'
+                        }
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -11171,6 +18214,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -11204,8 +18253,28 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056',
+                                'link': {
+                                    'url': 'https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056',
+                            'href': 'https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056'
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -11225,8 +18294,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -11251,8 +18327,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -11303,10 +18380,35 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056',
+                                'link': {
+                                    'url': 'https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056',
+                            'href': 'https://lovdata.no/dokument/LTI/forskrift/2021-06-21-2056'
+                        }
                     ]
                 },
                 'Notes': {
@@ -11344,8 +18446,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -11393,14 +18496,14 @@ REGIMES = {
             'object': 'page',
             'id': '8d59d09b-a0c2-4bfa-815c-fcddabe84063',
             'created_time': '2020-03-13T13:25:00.000Z',
-            'last_edited_time': '2020-10-29T11:29:00.000Z',
+            'last_edited_time': '2022-03-14T20:28:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                'id': 'b533228e-eb62-4dae-bde6-11554f3b47fd'
             },
             'cover': None,
             'icon': None,
@@ -11413,7 +18516,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2020-10-29T11:29:00.000Z'
+                    'last_edited_time': '2022-03-14T20:28:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -11433,7 +18536,11 @@ REGIMES = {
                 '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '6.4 Data published in BODS': {
                     'id': '%2BTR2',
@@ -11449,9 +18556,9 @@ REGIMES = {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
-                        'id': 'fd88b61b-4d53-4f17-8668-a97142a9c55e',
-                        'name': 'Implementing',
-                        'color': 'yellow'
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
                     }
                 },
                 '5.2.4.1 Registration details': {
@@ -11465,21 +18572,22 @@ REGIMES = {
                     'type': 'multi_select',
                     'multi_select': [
                         {
-                            'id': '5d3d079e-f56f-4466-bfa0-ed61cbe99061',
-                            'name': 'Legal',
-                            'color': 'brown'
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
                         }
                     ]
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -11489,7 +18597,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Nigerian companies',
+                                'content': 'Nigerian extractive companies',
                                 'link': None
                             },
                             'annotations': {
@@ -11500,7 +18608,7 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Nigerian companies',
+                            'plain_text': 'Nigerian extractive companies',
                             'href': None
                         }
                     ]
@@ -11519,6 +18627,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -11569,8 +18683,28 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies and Allied Matters Act 2020',
+                                'link': {
+                                    'url': 'https://www.cac.gov.ng/wp-content/uploads/2020/12/CAMA-NOTE-BOOK-FULL-VERSION.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies and Allied Matters Act 2020',
+                            'href': 'https://www.cac.gov.ng/wp-content/uploads/2020/12/CAMA-NOTE-BOOK-FULL-VERSION.pdf'
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -11590,8 +18724,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -11607,7 +18748,11 @@ REGIMES = {
                 '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '3.2 Sufficient information for full ownership chains': {
                     'id': 'cm%5Eg',
@@ -11616,8 +18761,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -11647,37 +18793,114 @@ REGIMES = {
                 '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 '5.4.2 Layered access': {
                     'id': 'lreI',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '7c1e2c7e-1d2c-44f1-ae2f-ff02d7302527',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 'Last updated by': {
                     'id': 'm%3D%7BD',
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': '76c8970d-3f75-4f29-a4cf-10d19453c1fa'
+                        'id': 'b533228e-eb62-4dae-bde6-11554f3b47fd',
+                        'name': 'Favour Ime',
+                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJxLb4NlLQNH2lzd674xEQso8gQ9sXsOJM7BgRdg=s100',
+                        'type': 'person',
+                        'person': {
+                            'email': 'favour@openownership.org'
+                        }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
                     'id': 'wbf%5B',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'NEITIs BO portal is not a product of an existing legal/regulatory framework. In fact they used EITIs definition of BO to design their “BO Template” (which I have requested for). For this reason, there is no law or regulation against which an assessment of the principles can be made. Although implicit in its objectives, NEITI does not have the statutory mandate to drive BO reforms. In fact, BO is not mentioned in its ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'NEITIs BO portal is not a product of an existing legal/regulatory framework. In fact they used EITIs definition of BO to design their “BO Template” (which I have requested for). For this reason, there is no law or regulation against which an assessment of the principles can be made. Although implicit in its objectives, NEITI does not have the statutory mandate to drive BO reforms. In fact, BO is not mentioned in its ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'legislation',
+                                'link': {
+                                    'url': 'https://eiti.org/files/documents/neiti_act_2007.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'legislation',
+                            'href': 'https://eiti.org/files/documents/neiti_act_2007.pdf'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '.',
+                            'href': None
+                        }
                     ]
                 },
                 '5.1.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '89be2fa6-731b-41b0-830a-a1a0f449f11d',
+                        'name': '2019',
+                        'color': 'purple'
+                    }
                 },
                 '6.1 Structured data': {
                     'id': 'x%7BQ%5D',
@@ -11686,13 +18909,18 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '8.2 Period for confirmation': {
                     'id': '%7DbTt',
@@ -11735,7 +18963,7 @@ REGIMES = {
             'object': 'page',
             'id': '9418b6ba-536f-47f5-be26-b1156185ef33',
             'created_time': '2020-03-13T13:24:00.000Z',
-            'last_edited_time': '2022-02-23T14:37:00.000Z',
+            'last_edited_time': '2022-05-12T10:04:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -11755,7 +18983,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T14:37:00.000Z'
+                    'last_edited_time': '2022-05-12T10:04:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -11819,47 +19047,30 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                         {
-                            'id': '4f5d3263-7e0f-4ab4-a49d-60df8b7ea475',
-                            'name': 'Nature and extent of interest held (ranges)',
-                            'color': 'brown'
-                        },
-                        {
-                            'id': 'b2b20686-159e-43a0-a9d5-086714110176',
-                            'name': 'Year of birth',
-                            'color': 'gray'
-                        },
-                        {
-                            'id': '0d942583-8ee9-4882-929e-99ddc23aa069',
-                            'name': 'Month of birth',
-                            'color': 'default'
-                        },
-                        {
-                            'id': '710e25ca-b69b-4106-99f4-7b2d1e50b99e',
-                            'name': 'Full name',
-                            'color': 'default'
-                        },
-                        {
-                            'id': '9f391f20-e226-45d7-9867-f0ecb0e26579',
-                            'name': 'Business address',
-                            'color': 'pink'
-                        },
-                        {
-                            'id': '1bd1aaad-aa80-467a-a227-9be096e4221c',
-                            'name': 'Nationality',
-                            'color': 'purple'
-                        },
-                        {
-                            'id': '0b61d07f-fd97-4b68-89ce-6223ce427e6b',
-                            'name': 'Country of residence',
-                            'color': 'yellow'
+                            'type': 'text',
+                            'text': {
+                                'content': 'Nature and extent of interest held (ranges),Year of birth,Month of birth,Full name,Business address,Nationality,Country of residence',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Nature and extent of interest held (ranges),Year of birth,Month of birth,Full name,Business address,Nationality,Country of residence',
+                            'href': None
                         }
                     ]
                 },
@@ -11887,6 +19098,12 @@ REGIMES = {
                         'name': 'No',
                         'color': 'red'
                     }
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -11941,8 +19158,64 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Implementatiewet registratie uiteindelijk\nbelanghebbenden van vennootschappen en\nandere juridische entiteiten 2020',
+                                'link': {
+                                    'url': 'https://www.eerstekamer.nl/behandeling/20200707/publicatie_wet_3/document3/f=/vla4ciefmly6.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Implementatiewet registratie uiteindelijk\nbelanghebbenden van vennootschappen en\nandere juridische entiteiten 2020',
+                            'href': 'https://www.eerstekamer.nl/behandeling/20200707/publicatie_wet_3/document3/f=/vla4ciefmly6.pdf'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '; ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '; ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Handelsregisterwet 2007',
+                                'link': {
+                                    'url': 'https://wetten.overheid.nl/BWBR0021777/2022-03-02#Hoofdstuk2'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Handelsregisterwet 2007',
+                            'href': 'https://wetten.overheid.nl/BWBR0021777/2022-03-02#Hoofdstuk2'
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -11962,8 +19235,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -11996,8 +19276,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -12056,10 +19337,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -12084,8 +19371,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -12221,13 +19509,33 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': 'Companies Act Foundations and Associations Voluntary Organisations Regulations'
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies Act Foundations and Associations Voluntary Organisations Regulations',
+                                'link': {
+                                    'url': 'Companies Act Foundations and Associations Voluntary Organisations Regulations'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies Act Foundations and Associations Voluntary Organisations Regulations',
+                            'href': 'Companies Act Foundations and Associations Voluntary Organisations Regulations'
+                        }
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -12268,6 +19576,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -12300,8 +19614,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -12321,8 +19636,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -12351,8 +19673,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -12407,10 +19730,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -12431,8 +19760,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -12564,13 +19894,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -12610,6 +19941,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -12660,8 +19997,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -12681,8 +20019,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -12711,8 +20056,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -12767,10 +20113,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -12791,8 +20143,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -12844,7 +20197,7 @@ REGIMES = {
             'object': 'page',
             'id': 'c3340f6f-d6ad-4db7-88ff-294d6487e0cf',
             'created_time': '2020-03-13T13:20:00.000Z',
-            'last_edited_time': '2022-02-23T13:02:00.000Z',
+            'last_edited_time': '2022-05-12T11:06:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -12854,7 +20207,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇱🇹'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -12864,7 +20220,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:02:00.000Z'
+                    'last_edited_time': '2022-05-12T11:06:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -12924,13 +20280,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -12970,6 +20327,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -13020,13 +20383,14 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
-                    'url': ''
+                    'url': None
                 },
                 '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
@@ -13041,8 +20405,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -13067,8 +20438,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -13119,10 +20491,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -13160,8 +20538,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -13186,7 +20565,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Lithuania JADIS',
+                                'content': 'Information System of Legal Entities Participants (JADIS)',
                                 'link': None
                             },
                             'annotations': {
@@ -13197,19 +20576,36 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Lithuania JADIS',
+                            'plain_text': 'Information System of Legal Entities Participants (JADIS)',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ' sub-system of beneficial owners (JANGIS)',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': True,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' sub-system of beneficial owners (JANGIS)',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Lithuania-JADIS-c3340f6fd6ad4db788ff294d6487e0cf'
+            'url': 'https://www.notion.so/Information-System-of-Legal-Entities-Participants-JADIS-sub-system-of-beneficial-owners-JANGIS-c3340f6fd6ad4db788ff294d6487e0cf'
         },
         {
             'object': 'page',
             'id': 'c66aaa5d-826e-487f-b19c-fe0012652834',
             'created_time': '2020-03-13T13:18:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'last_edited_time': '2022-05-12T11:07:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -13219,7 +20615,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇱🇻'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -13229,7 +20628,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
+                    'last_edited_time': '2022-05-12T11:07:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -13318,13 +20717,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -13369,6 +20769,12 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -13401,8 +20807,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -13422,8 +20829,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -13452,8 +20866,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -13508,10 +20923,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -13532,8 +20953,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -13566,7 +20988,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Latvia Register of Enterprises',
+                                'content': 'Register of Enterprises',
                                 'link': None
                             },
                             'annotations': {
@@ -13577,13 +20999,13 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Latvia Register of Enterprises',
+                            'plain_text': 'Register of Enterprises',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Latvia-Register-of-Enterprises-c66aaa5d826e487fb19cfe0012652834'
+            'url': 'https://www.notion.so/Register-of-Enterprises-c66aaa5d826e487fb19cfe0012652834'
         },
         {
             'object': 'page',
@@ -13669,13 +21091,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -13716,6 +21139,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -13748,13 +21177,14 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
-                    'url': ''
+                    'url': None
                 },
                 '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
@@ -13769,8 +21199,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -13799,8 +21236,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -13851,10 +21289,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -13911,8 +21355,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -13960,7 +21405,7 @@ REGIMES = {
             'object': 'page',
             'id': '986e647d-9612-4710-aa88-46d1a1773623',
             'created_time': '2020-03-13T13:15:00.000Z',
-            'last_edited_time': '2022-02-23T13:20:00.000Z',
+            'last_edited_time': '2022-04-07T15:04:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -13980,7 +21425,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:20:00.000Z'
+                    'last_edited_time': '2022-04-07T15:04:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -14063,13 +21508,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -14113,6 +21559,12 @@ REGIMES = {
                         'name': 'No',
                         'color': 'red'
                     }
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -14165,8 +21617,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -14186,8 +21639,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -14216,8 +21676,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -14272,10 +21733,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -14313,8 +21780,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -14366,7 +21834,657 @@ REGIMES = {
             'object': 'page',
             'id': 'e515d514-b4c9-43ea-8922-35d40dbc1447',
             'created_time': '2020-03-13T13:15:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'last_edited_time': '2022-05-12T11:07:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+            },
+            'cover': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇮🇩'
+            },
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-05-12T11:07:00.000Z'
+                },
+                '6.5 Data on OO Register': {
+                    'id': '%24Fhj',
+                    'type': 'checkbox',
+                    'checkbox': True
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': 25
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': 'https://panduan.ahu.go.id/api/index.php'
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '4.1 Central register': {
+                    'id': '5tav',
+                    'type': 'select',
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Fill out the form at ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Fill out the form at ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://bo.ahu.go.id/site/register',
+                                'link': {
+                                    'url': 'https://bo.ahu.go.id/site/register'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://bo.ahu.go.id/site/register',
+                            'href': 'https://bo.ahu.go.id/site/register'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ' incl. TIN, National ID Number, Name, Username, Email',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' incl. TIN, National ID Number, Name, Username, Email',
+                            'href': None
+                        }
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '878268e4-dbc5-47f7-a649-88be1c683c35',
+                            'name': 'Data',
+                            'color': 'red'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres Nomor 13 Tahun 2018.pdf',
+                                'link': {
+                                    'url': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres%20Nomor%2013%20Tahun%202018.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres Nomor 13 Tahun 2018.pdf',
+                            'href': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres%20Nomor%2013%20Tahun%202018.pdf'
+                        }
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://ahu.go.id/pencarian/profil-pt',
+                                'link': {
+                                    'url': 'https://ahu.go.id/pencarian/profil-pt'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://ahu.go.id/pencarian/profil-pt',
+                            'href': 'https://ahu.go.id/pencarian/profil-pt'
+                        }
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'all types of corporation',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'all types of corporation',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': 'Not available'
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres Nomor 13 Tahun 2018.pdf'
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Needs registration',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Needs registration',
+                            'href': None
+                        }
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '3e1e3b53-2865-42c5-8ac7-97f4a3c83fa9'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': {
+                        'id': 'dabb87a5-053d-48a7-8fd9-25ff91b77675',
+                        'name': 'Planned',
+                        'color': 'pink'
+                    }
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres Nomor 13 Tahun 2018.pdf',
+                                'link': {
+                                    'url': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres%20Nomor%2013%20Tahun%202018.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres Nomor 13 Tahun 2018.pdf',
+                            'href': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres%20Nomor%2013%20Tahun%202018.pdf'
+                        }
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': 'https://bo.ahu.go.id/site/login'
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://peraturan.go.id/common/dokumen/bn/2019/BN 1112-2019.pdf',
+                                'link': {
+                                    'url': 'https://peraturan.go.id/common/dokumen/bn/2019/BN%201112-2019.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://peraturan.go.id/common/dokumen/bn/2019/BN 1112-2019.pdf',
+                            'href': 'https://peraturan.go.id/common/dokumen/bn/2019/BN%201112-2019.pdf'
+                        }
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'The legal mandate requires companies to update their data at least once a year.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'The legal mandate requires companies to update their data at least once a year.',
+                            'href': None
+                        }
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': {
+                        'id': '79b81d80-2e4e-4555-b96f-8072aacef85b',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': {
+                        'id': '79b81d80-2e4e-4555-b96f-8072aacef85b',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres Nomor 13 Tahun 2018.pdf',
+                                'link': {
+                                    'url': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres%20Nomor%2013%20Tahun%202018.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres Nomor 13 Tahun 2018.pdf',
+                            'href': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres%20Nomor%2013%20Tahun%202018.pdf'
+                        }
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': {
+                        'id': '12f15e6e-6359-4085-87c8-3cf79cc3e684',
+                        'name': 'For individuals only',
+                        'color': 'blue'
+                    }
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Can be done by government agencies or notaries',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Can be done by government agencies or notaries',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': {
+                        'id': '7c1e2c7e-1d2c-44f1-ae2f-ff02d7302527',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
+                        'name': 'Tymon',
+                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'type': 'person',
+                        'person': {
+                            'email': 'tymon@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres Nomor 13 Tahun 2018.pdf',
+                                'link': {
+                                    'url': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres%20Nomor%2013%20Tahun%202018.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres Nomor 13 Tahun 2018.pdf',
+                            'href': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres%20Nomor%2013%20Tahun%202018.pdf'
+                        }
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': {
+                        'id': '6ee82c45-a25e-4dbc-9526-0359b2bcf14d',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres Nomor 13 Tahun 2018.pdf',
+                                'link': {
+                                    'url': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres%20Nomor%2013%20Tahun%202018.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres Nomor 13 Tahun 2018.pdf',
+                            'href': 'https://jdih.setkab.go.id/PUUdoc/175456/Perpres%20Nomor%2013%20Tahun%202018.pdf'
+                        }
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': {
+                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Directory of Industrial Companies',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Directory of Industrial Companies',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/Directory-of-Industrial-Companies-e515d514b4c943ea892235d40dbc1447'
+        },
+        {
+            'object': 'page',
+            'id': '97baee48-d235-4977-9699-2280020b415a',
+            'created_time': '2020-03-13T13:14:00.000Z',
+            'last_edited_time': '2022-04-07T15:04:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -14386,7 +22504,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
+                    'last_edited_time': '2022-04-07T15:04:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -14396,7 +22514,7 @@ REGIMES = {
                 '1.2 Threshold': {
                     'id': '%24I.J',
                     'type': 'number',
-                    'number': None
+                    'number': 10
                 },
                 '6.3.1 API URL': {
                     'id': '%24UM7',
@@ -14406,20 +22524,12 @@ REGIMES = {
                 '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                    'select': None
                 },
                 '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
+                    'select': None
                 },
                 '6.3 API available': {
                     'id': '2BK.',
@@ -14446,21 +22556,41 @@ REGIMES = {
                     'type': 'multi_select',
                     'multi_select': [
                         {
-                            'id': '5d3d079e-f56f-4466-bfa0-ed61cbe99061',
-                            'name': 'Legal',
-                            'color': 'brown'
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
                         }
                     ]
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies (Significant Beneficial Owners) Amendment Rules, 2019',
+                                'link': {
+                                    'url': 'https://www.mca.gov.in/Ministry/pdf/CompaniesOwnersAmendmentRules_08020219.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies (Significant Beneficial Owners) Amendment Rules, 2019',
+                            'href': 'https://www.mca.gov.in/Ministry/pdf/CompaniesOwnersAmendmentRules_08020219.pdf'
+                        }
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -14484,348 +22614,11 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
-                '7.2 Verification information URL': {
-                    'id': 'JRj%7C',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.2 Access and restrictions details': {
-                    'id': 'J~fN',
-                    'type': 'rich_text',
-                    'rich_text': [
-                        {
-                            'type': 'text',
-                            'text': {
-                                'content': 'Access thought to be: Unknown',
-                                'link': None
-                            },
-                            'annotations': {
-                                'bold': False,
-                                'italic': False,
-                                'strikethrough': False,
-                                'underline': False,
-                                'code': False,
-                                'color': 'default'
-                            },
-                            'plain_text': 'Access thought to be: Unknown',
-                            'href': None
-                        }
-                    ]
-                },
-                '8.3 Data retention (years)': {
-                    'id': 'PMcn',
-                    'type': 'number',
-                    'number': None
-                },
-                'Country': {
-                    'id': 'PTKs',
+                'OO Principle focus': {
+                    'id': 'HjEQ',
                     'type': 'relation',
                     'relation': [
-                        {
-                            'id': '3e1e3b53-2865-42c5-8ac7-97f4a3c83fa9'
-                        }
                     ]
-                },
-                '5.4 Protection regime implemented': {
-                    'id': 'Pj%3DK',
-                    'type': 'select',
-                    'select': None
-                },
-                '1.1 Definition: Legislation URL': {
-                    'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.1.1 Public access: Register URL': {
-                    'id': 'X%26sR',
-                    'type': 'url',
-                    'url': 'https://kemenperin.go.id/direktori-perusahaan OR https://ahu.go.id/pencarian/profil-pt'
-                },
-                '2.1 Coverage: Scope': {
-                    'id': 'Z%3Dqf',
-                    'type': 'multi_select',
-                    'multi_select': [
-                        {
-                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'Full-economy',
-                            'color': 'green'
-                        }
-                    ]
-                },
-                '9 Sanctions and enforcement: Legislation URL': {
-                    'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
-                },
-                '8.1 Up to date and auditable: Period for updating changes (days)': {
-                    'id': '%5EqJG',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '3.3 Exact ownership values': {
-                    'id': '%60x%7D%40',
-                    'type': 'select',
-                    'select': None
-                },
-                '5.2.1 Free of charge': {
-                    'id': "c*b'",
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
-                },
-                '3.2 Sufficient information for full ownership chains': {
-                    'id': 'cm%5Eg',
-                    'type': 'select',
-                    'select': None
-                },
-                '5.5 Legal basis for publication URL': {
-                    'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.3.1 License information URL': {
-                    'id': 'iFf%3D',
-                    'type': 'url',
-                    'url': None
-                },
-                '3.1.1 Unique identifiers used': {
-                    'id': 'iHpC',
-                    'type': 'select',
-                    'select': None
-                },
-                '7.1 Verification details': {
-                    'id': 'iTV%5B',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '5.1 Public access': {
-                    'id': 'jxf!',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
-                },
-                '5.2.4 Basic access to BO data does not require registration': {
-                    'id': 'l%2F%3Dw',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
-                },
-                '5.4.2 Layered access': {
-                    'id': 'lreI',
-                    'type': 'select',
-                    'select': None
-                },
-                'Last updated by': {
-                    'id': 'm%3D%7BD',
-                    'type': 'last_edited_by',
-                    'last_edited_by': {
-                        'object': 'user',
-                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
-                        'name': 'Tymon',
-                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
-                        'type': 'person',
-                        'person': {
-                            'email': 'tymon@openownership.org'
-                        }
-                    }
-                },
-                '3.1 Sufficient detail: Data fields collected': {
-                    'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
-                    ]
-                },
-                'Notes': {
-                    'id': 'wbf%5B',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '5.1.2 Year launched': {
-                    'id': 'x%5EQC',
-                    'type': 'select',
-                    'select': None
-                },
-                '6.1 Structured data': {
-                    'id': 'x%7BQ%5D',
-                    'type': 'select',
-                    'select': None
-                },
-                '8.4 Legislation URL': {
-                    'id': 'yNot',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.2.2 Search by company': {
-                    'id': '%7Ce%7Dn',
-                    'type': 'select',
-                    'select': {
-                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
-                },
-                '8.2 Period for confirmation': {
-                    'id': '%7DbTt',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '6.2 Bulk data available': {
-                    'id': '~obq',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
-                },
-                'Title': {
-                    'id': 'title',
-                    'type': 'title',
-                    'title': [
-                        {
-                            'type': 'text',
-                            'text': {
-                                'content': 'Indonesia Directory of Industrial Companies',
-                                'link': None
-                            },
-                            'annotations': {
-                                'bold': False,
-                                'italic': False,
-                                'strikethrough': False,
-                                'underline': False,
-                                'code': False,
-                                'color': 'default'
-                            },
-                            'plain_text': 'Indonesia Directory of Industrial Companies',
-                            'href': None
-                        }
-                    ]
-                }
-            },
-            'url': 'https://www.notion.so/Indonesia-Directory-of-Industrial-Companies-e515d514b4c943ea892235d40dbc1447'
-        },
-        {
-            'object': 'page',
-            'id': '97baee48-d235-4977-9699-2280020b415a',
-            'created_time': '2020-03-13T13:14:00.000Z',
-            'last_edited_time': '2021-10-19T13:49:00.000Z',
-            'created_by': {
-                'object': 'user',
-                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
-            },
-            'last_edited_by': {
-                'object': 'user',
-                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
-            },
-            'cover': None,
-            'icon': None,
-            'parent': {
-                'type': 'database_id',
-                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
-            },
-            'archived': False,
-            'properties': {
-                'Last edited': {
-                    'id': '%23--Y',
-                    'type': 'last_edited_time',
-                    'last_edited_time': '2021-10-19T13:49:00.000Z'
-                },
-                '6.5 Data on OO Register': {
-                    'id': '%24Fhj',
-                    'type': 'checkbox',
-                    'checkbox': False
-                },
-                '1.2 Threshold': {
-                    'id': '%24I.J',
-                    'type': 'number',
-                    'number': None
-                },
-                '6.3.1 API URL': {
-                    'id': '%24UM7',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.2.3 Search by owner': {
-                    'id': "'AyV",
-                    'type': 'select',
-                    'select': None
-                },
-                '6.4 Data published in BODS': {
-                    'id': '%2BTR2',
-                    'type': 'select',
-                    'select': None
-                },
-                '6.3 API available': {
-                    'id': '2BK.',
-                    'type': 'select',
-                    'select': None
-                },
-                '4.1 Central register': {
-                    'id': '5tav',
-                    'type': 'select',
-                    'select': None
-                },
-                '5.2.4.1 Registration details': {
-                    'id': '7%5E%23l',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '0 Stage': {
-                    'id': '86%605',
-                    'type': 'multi_select',
-                    'multi_select': [
-                        {
-                            'id': '5d3d079e-f56f-4466-bfa0-ed61cbe99061',
-                            'name': 'Legal',
-                            'color': 'brown'
-                        }
-                    ]
-                },
-                '2.3 Coverage: Legislation URL': {
-                    'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.4.2.1 Fields available to public': {
-                    'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
-                    ]
-                },
-                '2.2 Coverage: Details': {
-                    'id': "ApR'",
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '5.4.1 Protection regime URL': {
-                    'id': 'DRH%3D',
-                    'type': 'url',
-                    'url': None
-                },
-                '6.2.1 Bulk data URL': {
-                    'id': 'EZ%5D1',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.3 Open license for data': {
-                    'id': 'E%5B!F',
-                    'type': 'select',
-                    'select': None
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -14859,8 +22652,28 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies (Significant Beneficial Owners) Amendment Rules, 2019',
+                                'link': {
+                                    'url': 'https://www.mca.gov.in/Ministry/pdf/CompaniesOwnersAmendmentRules_08020219.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies (Significant Beneficial Owners) Amendment Rules, 2019',
+                            'href': 'https://www.mca.gov.in/Ministry/pdf/CompaniesOwnersAmendmentRules_08020219.pdf'
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -14871,23 +22684,118 @@ REGIMES = {
                     'id': 'Z%3Dqf',
                     'type': 'multi_select',
                     'multi_select': [
+                        {
+                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
+                            'name': 'Full-economy',
+                            'color': 'green'
+                        }
                     ]
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies (Significant Beneficial Owners) Amendment Rules, 2019',
+                                'link': {
+                                    'url': 'https://www.mca.gov.in/Ministry/pdf/CompaniesOwnersAmendmentRules_08020219.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies (Significant Beneficial Owners) Amendment Rules, 2019',
+                            'href': 'https://www.mca.gov.in/Ministry/pdf/CompaniesOwnersAmendmentRules_08020219.pdf'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '; ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '; ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.taxathand.com/article/11142/India/2019/Beneficial-ownership-rules-amended',
+                                'link': {
+                                    'url': 'https://www.taxathand.com/article/11142/India/2019/Beneficial-ownership-rules-amended'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.taxathand.com/article/11142/India/2019/Beneficial-ownership-rules-amended',
+                            'href': 'https://www.taxathand.com/article/11142/India/2019/Beneficial-ownership-rules-amended'
+                        }
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                        {
+                            'name': 'https://www.mca.gov.in/Ministry/pdf/CompaniesOwnersAmendmentRules_08020219.pdf',
+                            'type': 'external',
+                            'external': {
+                                'url': 'https://www.mca.gov.in/Ministry/pdf/CompaniesOwnersAmendmentRules_08020219.pdf'
+                            }
+                        }
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Report to company within 90 days, company to report to registrar within 30 days.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Report to company within 90 days, company to report to registrar within 30 days.',
+                            'href': None
+                        }
                     ]
                 },
                 '3.3 Exact ownership values': {
                     'id': '%60x%7D%40',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '9911560f-933e-42dc-b99a-bffddd52b485',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '5.2.1 Free of charge': {
                     'id': "c*b'",
@@ -14901,8 +22809,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -14912,7 +22821,11 @@ REGIMES = {
                 '3.1.1 Unique identifiers used': {
                     'id': 'iHpC',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '743221da-69ed-4141-ac8d-309f873bcc01',
+                        'name': 'Yes for companies and individuals',
+                        'color': 'green'
+                    }
                 },
                 '7.1 Verification details': {
                     'id': 'iTV%5B',
@@ -14923,7 +22836,11 @@ REGIMES = {
                 '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
@@ -14949,10 +22866,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -14964,7 +22887,11 @@ REGIMES = {
                 '5.1.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '89be2fa6-731b-41b0-830a-a1a0f449f11d',
+                        'name': '2019',
+                        'color': 'purple'
+                    }
                 },
                 '6.1 Structured data': {
                     'id': 'x%7BQ%5D',
@@ -14973,8 +22900,28 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Companies (Significant Beneficial Owners) Amendment Rules, 2019',
+                                'link': {
+                                    'url': 'https://www.mca.gov.in/Ministry/pdf/CompaniesOwnersAmendmentRules_08020219.pdf'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Companies (Significant Beneficial Owners) Amendment Rules, 2019',
+                            'href': 'https://www.mca.gov.in/Ministry/pdf/CompaniesOwnersAmendmentRules_08020219.pdf'
+                        }
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -15022,7 +22969,7 @@ REGIMES = {
             'object': 'page',
             'id': 'a94913a3-57d1-453a-8dd4-746020444b8f',
             'created_time': '2020-03-13T13:14:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'last_edited_time': '2022-04-07T15:04:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -15042,7 +22989,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
+                    'last_edited_time': '2022-04-07T15:04:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -15112,13 +23059,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -15141,6 +23089,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -15191,8 +23145,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -15212,8 +23167,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -15238,8 +23200,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -15290,10 +23253,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -15350,8 +23319,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -15397,340 +23367,9 @@ REGIMES = {
         },
         {
             'object': 'page',
-            'id': '06f25ad4-302e-4255-99f1-2a731ebffc5a',
-            'created_time': '2020-03-13T13:13:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
-            'created_by': {
-                'object': 'user',
-                'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
-            },
-            'last_edited_by': {
-                'object': 'user',
-                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
-            },
-            'cover': None,
-            'icon': None,
-            'parent': {
-                'type': 'database_id',
-                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
-            },
-            'archived': False,
-            'properties': {
-                'Last edited': {
-                    'id': '%23--Y',
-                    'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
-                },
-                '6.5 Data on OO Register': {
-                    'id': '%24Fhj',
-                    'type': 'checkbox',
-                    'checkbox': False
-                },
-                '1.2 Threshold': {
-                    'id': '%24I.J',
-                    'type': 'number',
-                    'number': None
-                },
-                '6.3.1 API URL': {
-                    'id': '%24UM7',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.2.3 Search by owner': {
-                    'id': "'AyV",
-                    'type': 'select',
-                    'select': None
-                },
-                '6.4 Data published in BODS': {
-                    'id': '%2BTR2',
-                    'type': 'select',
-                    'select': None
-                },
-                '6.3 API available': {
-                    'id': '2BK.',
-                    'type': 'select',
-                    'select': None
-                },
-                '4.1 Central register': {
-                    'id': '5tav',
-                    'type': 'select',
-                    'select': {
-                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
-                        'name': 'Yes',
-                        'color': 'green'
-                    }
-                },
-                '5.2.4.1 Registration details': {
-                    'id': '7%5E%23l',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '0 Stage': {
-                    'id': '86%605',
-                    'type': 'multi_select',
-                    'multi_select': [
-                        {
-                            'id': '486a37df-ec33-4f48-a513-c734ec2d7d8c',
-                            'name': 'Systems',
-                            'color': 'yellow'
-                        }
-                    ]
-                },
-                '2.3 Coverage: Legislation URL': {
-                    'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.4.2.1 Fields available to public': {
-                    'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
-                    ]
-                },
-                '2.2 Coverage: Details': {
-                    'id': "ApR'",
-                    'type': 'rich_text',
-                    'rich_text': [
-                        {
-                            'type': 'text',
-                            'text': {
-                                'content': 'all companies',
-                                'link': None
-                            },
-                            'annotations': {
-                                'bold': False,
-                                'italic': False,
-                                'strikethrough': False,
-                                'underline': False,
-                                'code': False,
-                                'color': 'default'
-                            },
-                            'plain_text': 'all companies',
-                            'href': None
-                        }
-                    ]
-                },
-                '5.4.1 Protection regime URL': {
-                    'id': 'DRH%3D',
-                    'type': 'url',
-                    'url': None
-                },
-                '6.2.1 Bulk data URL': {
-                    'id': 'EZ%5D1',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.3 Open license for data': {
-                    'id': 'E%5B!F',
-                    'type': 'select',
-                    'select': None
-                },
-                '7.2 Verification information URL': {
-                    'id': 'JRj%7C',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.2 Access and restrictions details': {
-                    'id': 'J~fN',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '8.3 Data retention (years)': {
-                    'id': 'PMcn',
-                    'type': 'number',
-                    'number': None
-                },
-                'Country': {
-                    'id': 'PTKs',
-                    'type': 'relation',
-                    'relation': [
-                        {
-                            'id': 'ad0e1184-baa5-4970-817b-08f8c359b9f4'
-                        }
-                    ]
-                },
-                '5.4 Protection regime implemented': {
-                    'id': 'Pj%3DK',
-                    'type': 'select',
-                    'select': None
-                },
-                '1.1 Definition: Legislation URL': {
-                    'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.1.1 Public access: Register URL': {
-                    'id': 'X%26sR',
-                    'type': 'url',
-                    'url': None
-                },
-                '2.1 Coverage: Scope': {
-                    'id': 'Z%3Dqf',
-                    'type': 'multi_select',
-                    'multi_select': [
-                        {
-                            'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
-                            'name': 'Full-economy',
-                            'color': 'green'
-                        }
-                    ]
-                },
-                '9 Sanctions and enforcement: Legislation URL': {
-                    'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
-                },
-                '8.1 Up to date and auditable: Period for updating changes (days)': {
-                    'id': '%5EqJG',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '3.3 Exact ownership values': {
-                    'id': '%60x%7D%40',
-                    'type': 'select',
-                    'select': None
-                },
-                '5.2.1 Free of charge': {
-                    'id': "c*b'",
-                    'type': 'select',
-                    'select': None
-                },
-                '3.2 Sufficient information for full ownership chains': {
-                    'id': 'cm%5Eg',
-                    'type': 'select',
-                    'select': None
-                },
-                '5.5 Legal basis for publication URL': {
-                    'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.3.1 License information URL': {
-                    'id': 'iFf%3D',
-                    'type': 'url',
-                    'url': None
-                },
-                '3.1.1 Unique identifiers used': {
-                    'id': 'iHpC',
-                    'type': 'select',
-                    'select': None
-                },
-                '7.1 Verification details': {
-                    'id': 'iTV%5B',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '5.1 Public access': {
-                    'id': 'jxf!',
-                    'type': 'select',
-                    'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
-                    }
-                },
-                '5.2.4 Basic access to BO data does not require registration': {
-                    'id': 'l%2F%3Dw',
-                    'type': 'select',
-                    'select': None
-                },
-                '5.4.2 Layered access': {
-                    'id': 'lreI',
-                    'type': 'select',
-                    'select': None
-                },
-                'Last updated by': {
-                    'id': 'm%3D%7BD',
-                    'type': 'last_edited_by',
-                    'last_edited_by': {
-                        'object': 'user',
-                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
-                        'name': 'Tymon',
-                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
-                        'type': 'person',
-                        'person': {
-                            'email': 'tymon@openownership.org'
-                        }
-                    }
-                },
-                '3.1 Sufficient detail: Data fields collected': {
-                    'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
-                    ]
-                },
-                'Notes': {
-                    'id': 'wbf%5B',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '5.1.2 Year launched': {
-                    'id': 'x%5EQC',
-                    'type': 'select',
-                    'select': None
-                },
-                '6.1 Structured data': {
-                    'id': 'x%7BQ%5D',
-                    'type': 'select',
-                    'select': None
-                },
-                '8.4 Legislation URL': {
-                    'id': 'yNot',
-                    'type': 'url',
-                    'url': None
-                },
-                '5.2.2 Search by company': {
-                    'id': '%7Ce%7Dn',
-                    'type': 'select',
-                    'select': None
-                },
-                '8.2 Period for confirmation': {
-                    'id': '%7DbTt',
-                    'type': 'rich_text',
-                    'rich_text': [
-                    ]
-                },
-                '6.2 Bulk data available': {
-                    'id': '~obq',
-                    'type': 'select',
-                    'select': None
-                },
-                'Title': {
-                    'id': 'title',
-                    'type': 'title',
-                    'title': [
-                        {
-                            'type': 'text',
-                            'text': {
-                                'content': 'Greece',
-                                'link': None
-                            },
-                            'annotations': {
-                                'bold': False,
-                                'italic': False,
-                                'strikethrough': False,
-                                'underline': False,
-                                'code': False,
-                                'color': 'default'
-                            },
-                            'plain_text': 'Greece',
-                            'href': None
-                        }
-                    ]
-                }
-            },
-            'url': 'https://www.notion.so/Greece-06f25ad4302e425599f12a731ebffc5a'
-        },
-        {
-            'object': 'page',
             'id': 'f01c8267-b432-4541-8bcb-3cd330d86f72',
             'created_time': '2020-03-13T13:12:00.000Z',
-            'last_edited_time': '2022-02-23T13:19:00.000Z',
+            'last_edited_time': '2022-05-12T11:08:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -15740,7 +23379,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇩🇪'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -15750,7 +23392,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:19:00.000Z'
+                    'last_edited_time': '2022-05-12T11:08:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -15850,13 +23492,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -15896,6 +23539,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -15946,8 +23595,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -15967,8 +23617,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -15997,8 +23654,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -16053,10 +23711,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -16113,8 +23777,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -16143,7 +23808,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Germany Transparency Register',
+                                'content': 'Transparenzregister',
                                 'link': None
                             },
                             'annotations': {
@@ -16154,19 +23819,19 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Germany Transparency Register',
+                            'plain_text': 'Transparenzregister',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Germany-Transparency-Register-f01c8267b43245418bcb3cd330d86f72'
+            'url': 'https://www.notion.so/Transparenzregister-f01c8267b43245418bcb3cd330d86f72'
         },
         {
             'object': 'page',
             'id': '4360631b-cbe7-4eb3-b7a4-a800deff40f9',
             'created_time': '2020-03-13T13:12:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'last_edited_time': '2022-07-12T09:16:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -16176,7 +23841,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇫🇷'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -16186,7 +23854,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
+                    'last_edited_time': '2022-07-12T09:16:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -16254,13 +23922,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -16305,6 +23974,12 @@ REGIMES = {
                         'color': 'green'
                     }
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -16337,8 +24012,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -16358,8 +24034,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -16388,8 +24071,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -16444,10 +24128,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -16468,8 +24158,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -16498,7 +24189,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'France National Institute of Industrial Property',
+                                'content': 'National Institute of Industrial Property',
                                 'link': None
                             },
                             'annotations': {
@@ -16509,19 +24200,19 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'France National Institute of Industrial Property',
+                            'plain_text': 'National Institute of Industrial Property',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/France-National-Institute-of-Industrial-Property-4360631bcbe74eb3b7a4a800deff40f9'
+            'url': 'https://www.notion.so/National-Institute-of-Industrial-Property-4360631bcbe74eb3b7a4a800deff40f9'
         },
         {
             'object': 'page',
             'id': '511b3de1-8209-45d9-a687-1578beaa46d4',
             'created_time': '2020-03-13T13:12:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'last_edited_time': '2022-04-26T18:24:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -16541,7 +24232,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
+                    'last_edited_time': '2022-04-26T18:24:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -16596,18 +24287,24 @@ REGIMES = {
                             'id': '486a37df-ec33-4f48-a513-c734ec2d7d8c',
                             'name': 'Systems',
                             'color': 'yellow'
+                        },
+                        {
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
                         }
                     ]
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -16684,6 +24381,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -16733,8 +24436,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -16754,8 +24458,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -16784,8 +24495,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -16836,10 +24548,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -16877,8 +24595,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -16926,7 +24645,7 @@ REGIMES = {
             'object': 'page',
             'id': 'bb1eb01b-c892-49ca-808e-a487299e2661',
             'created_time': '2020-03-13T13:11:00.000Z',
-            'last_edited_time': '2022-02-23T13:18:00.000Z',
+            'last_edited_time': '2022-05-12T11:08:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -16936,7 +24655,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇪🇪'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -16946,7 +24668,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:18:00.000Z'
+                    'last_edited_time': '2022-05-12T11:08:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -17010,13 +24732,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -17057,6 +24780,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -17089,8 +24818,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -17110,8 +24840,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -17140,8 +24877,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -17196,10 +24934,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -17256,8 +25000,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -17286,7 +25031,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Estonia Central Commercial Register',
+                                'content': 'Central Commercial Register',
                                 'link': None
                             },
                             'annotations': {
@@ -17297,19 +25042,19 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Estonia Central Commercial Register',
+                            'plain_text': 'Central Commercial Register',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Estonia-Central-Commercial-Register-bb1eb01bc89249ca808ea487299e2661'
+            'url': 'https://www.notion.so/Central-Commercial-Register-bb1eb01bc89249ca808ea487299e2661'
         },
         {
             'object': 'page',
             'id': '6cb12a57-7bf4-4379-9955-1ae0f1eabfbd',
             'created_time': '2020-03-13T13:09:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'last_edited_time': '2022-05-26T13:30:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -17329,7 +25074,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
+                    'last_edited_time': '2022-05-26T13:30:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -17401,13 +25146,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -17448,6 +25194,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -17480,8 +25232,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -17501,8 +25254,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -17531,8 +25291,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -17587,10 +25348,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -17611,8 +25378,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -17668,7 +25436,7 @@ REGIMES = {
             'object': 'page',
             'id': '64f1013c-3aab-4ac4-b060-54a971cc3077',
             'created_time': '2020-03-13T13:07:00.000Z',
-            'last_edited_time': '2022-02-23T13:19:00.000Z',
+            'last_edited_time': '2022-06-22T10:24:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -17678,7 +25446,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇨🇿'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -17688,7 +25459,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:19:00.000Z'
+                    'last_edited_time': '2022-06-22T10:24:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -17752,13 +25523,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -17818,6 +25590,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -17850,8 +25628,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -17871,8 +25650,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -17901,8 +25687,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -17957,10 +25744,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -18017,8 +25810,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -18051,7 +25845,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Czech Republic Information System of Real Owners',
+                                'content': 'Information System of Real Owners',
                                 'link': None
                             },
                             'annotations': {
@@ -18062,26 +25856,26 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Czech Republic Information System of Real Owners',
+                            'plain_text': 'Information System of Real Owners',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Czech-Republic-Information-System-of-Real-Owners-64f1013c3aab4ac4b06054a971cc3077'
+            'url': 'https://www.notion.so/Information-System-of-Real-Owners-64f1013c3aab4ac4b06054a971cc3077'
         },
         {
             'object': 'page',
             'id': '1cfb81cc-a551-4d77-9be5-d53ac00f838c',
             'created_time': '2020-03-13T13:07:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'last_edited_time': '2022-05-23T21:29:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+                'id': '1703e054-58b6-40d2-aab4-aff006900163'
             },
             'cover': None,
             'icon': None,
@@ -18094,7 +25888,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
+                    'last_edited_time': '2022-05-23T21:29:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -18162,13 +25956,31 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': ''
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '',
+                                'link': {
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ''
+                        }
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -18208,6 +26020,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -18258,8 +26076,28 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': 'Prevention and Suppression of Money Laundering Activities Laws of 2007-2021'
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Prevention and Suppression of Money Laundering Activities Laws of 2007-2021',
+                                'link': {
+                                    'url': 'Prevention and Suppression of Money Laundering Activities Laws of 2007-2021'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Prevention and Suppression of Money Laundering Activities Laws of 2007-2021',
+                            'href': 'Prevention and Suppression of Money Laundering Activities Laws of 2007-2021'
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -18279,8 +26117,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -18309,8 +26154,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -18356,19 +26202,25 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
-                        'name': 'Tymon',
-                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
+                        'name': 'Stephen Abbott Pugh',
+                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
                         'type': 'person',
                         'person': {
-                            'email': 'tymon@openownership.org'
+                            'email': 'stephen@openownership.org'
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -18406,8 +26258,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -18579,13 +26432,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -18625,6 +26479,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -18675,8 +26535,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -18696,8 +26557,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -18726,8 +26594,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -18782,10 +26651,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -18806,8 +26681,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -18944,13 +26820,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -18973,6 +26850,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -19006,13 +26889,14 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
-                    'url': ''
+                    'url': None
                 },
                 '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
@@ -19027,8 +26911,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -19053,8 +26944,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -19105,10 +26997,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -19129,8 +27027,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -19178,7 +27077,7 @@ REGIMES = {
             'object': 'page',
             'id': '7fce03f0-69ae-411c-9f63-d8a35a2c23f0',
             'created_time': '2020-03-13T13:03:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'last_edited_time': '2022-04-07T15:04:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -19198,7 +27097,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
+                    'last_edited_time': '2022-04-07T15:04:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -19262,13 +27161,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -19308,6 +27208,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -19358,8 +27264,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -19379,8 +27286,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -19409,8 +27323,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -19465,10 +27380,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -19506,8 +27427,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -19559,7 +27481,7 @@ REGIMES = {
             'object': 'page',
             'id': 'fb3f00de-5578-44c9-b772-27085fa5a491',
             'created_time': '2020-03-13T13:02:00.000Z',
-            'last_edited_time': '2022-02-23T12:45:00.000Z',
+            'last_edited_time': '2022-05-12T11:03:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -19569,7 +27491,10 @@ REGIMES = {
                 'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
             },
             'cover': None,
-            'icon': None,
+            'icon': {
+                'type': 'emoji',
+                'emoji': '🇧🇷'
+            },
             'parent': {
                 'type': 'database_id',
                 'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
@@ -19579,7 +27504,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T12:45:00.000Z'
+                    'last_edited_time': '2022-05-12T11:03:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -19589,7 +27514,7 @@ REGIMES = {
                 '1.2 Threshold': {
                     'id': '%24I.J',
                     'type': 'number',
-                    'number': None
+                    'number': 25
                 },
                 '6.3.1 API URL': {
                     'id': '%24UM7',
@@ -19614,7 +27539,11 @@ REGIMES = {
                 '4.1 Central register': {
                     'id': '5tav',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '5.2.4.1 Registration details': {
                     'id': '7%5E%23l',
@@ -19627,21 +27556,41 @@ REGIMES = {
                     'type': 'multi_select',
                     'multi_select': [
                         {
-                            'id': '486a37df-ec33-4f48-a513-c734ec2d7d8c',
-                            'name': 'Systems',
-                            'color': 'yellow'
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
                         }
                     ]
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Instrucao Normitiva RFB No. 1.634/2016',
+                                'link': {
+                                    'url': 'http://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=73658'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Instrucao Normitiva RFB No. 1.634/2016',
+                            'href': 'http://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=73658'
+                        }
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -19651,7 +27600,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'All companies',
+                                'content': 'All companies, with some exceptions, including PLCs, non-profits, multilateral organisations, social security entities, pension funds, (national) investment funds, and other collective investment vehicles',
                                 'link': None
                             },
                             'annotations': {
@@ -19662,7 +27611,7 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'All companies',
+                            'plain_text': 'All companies, with some exceptions, including PLCs, non-profits, multilateral organisations, social security entities, pension funds, (national) investment funds, and other collective investment vehicles',
                             'href': None
                         }
                     ]
@@ -19682,6 +27631,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -19694,7 +27649,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Access thought to be: Unknown',
+                                'content': 'The information held by the Federal\nTax Authority (RFB) in the CNPJ/CPF database is currently available only to federal, state and municipal\ngovernments, the FIU, and judiciary system',
                                 'link': None
                             },
                             'annotations': {
@@ -19705,7 +27660,7 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Access thought to be: Unknown',
+                            'plain_text': 'The information held by the Federal\nTax Authority (RFB) in the CNPJ/CPF database is currently available only to federal, state and municipal\ngovernments, the FIU, and judiciary system',
                             'href': None
                         }
                     ]
@@ -19731,8 +27686,28 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Instrucao Normitiva RFB No. 1.634/2016',
+                                'link': {
+                                    'url': 'http://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=73658'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Instrucao Normitiva RFB No. 1.634/2016',
+                            'href': 'http://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=73658'
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -19752,8 +27727,51 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Instrucao Normitiva RFB No. 1.634/2016',
+                                'link': {
+                                    'url': 'http://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=73658'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Instrucao Normitiva RFB No. 1.634/2016',
+                            'href': 'http://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=73658'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '; As set forth by Article 9 of Normative Ruling 1,634, of May 6th, 2016, issued by the\nBrazilian Revenue Service (RFB), the entities that do not provide information regarding the beneficial\nowner within the deadline or that do not provide the required documents will have their inscription\nunder the CNPJ suspended and will be forbidden to transact with bank institutions, including with\nrespect to moving bank accounts, financial investments and taking out loans.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '; As set forth by Article 9 of Normative Ruling 1,634, of May 6th, 2016, issued by the\nBrazilian Revenue Service (RFB), the entities that do not provide information regarding the beneficial\nowner within the deadline or that do not provide the required documents will have their inscription\nunder the CNPJ suspended and will be forbidden to transact with bank institutions, including with\nrespect to moving bank accounts, financial investments and taking out loans.',
+                            'href': None
+                        }
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -19778,8 +27796,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -19789,7 +27808,11 @@ REGIMES = {
                 '3.1.1 Unique identifiers used': {
                     'id': 'iHpC',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '7ce0db95-0a97-493d-8339-e08f5f55a52f',
+                        'name': 'For companies only',
+                        'color': 'brown'
+                    }
                 },
                 '7.1 Verification details': {
                     'id': 'iTV%5B',
@@ -19800,7 +27823,11 @@ REGIMES = {
                 '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
@@ -19826,10 +27853,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -19841,7 +27874,11 @@ REGIMES = {
                 '5.1.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '0f1c4f34-175f-4e56-a92d-7bd1681fd754',
+                        'name': '2017',
+                        'color': 'yellow'
+                    }
                 },
                 '6.1 Structured data': {
                     'id': 'x%7BQ%5D',
@@ -19850,8 +27887,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -19876,7 +27914,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Brazil',
+                                'content': 'National Register of Legal Persons (CNPJ)',
                                 'link': None
                             },
                             'annotations': {
@@ -19887,19 +27925,19 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Brazil',
+                            'plain_text': 'National Register of Legal Persons (CNPJ)',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Brazil-fb3f00de557844c9b77227085fa5a491'
+            'url': 'https://www.notion.so/National-Register-of-Legal-Persons-CNPJ-fb3f00de557844c9b77227085fa5a491'
         },
         {
             'object': 'page',
             'id': '54e78957-c878-4e59-9531-692fd606833f',
             'created_time': '2020-03-13T13:01:00.000Z',
-            'last_edited_time': '2022-02-23T13:18:00.000Z',
+            'last_edited_time': '2022-05-17T15:16:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -19919,7 +27957,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:18:00.000Z'
+                    'last_edited_time': '2022-05-17T15:16:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -20000,13 +28038,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -20046,6 +28085,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -20115,8 +28160,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -20136,8 +28182,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -20166,8 +28219,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -20189,9 +28243,9 @@ REGIMES = {
                     'id': 'jxf!',
                     'type': 'select',
                     'select': {
-                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
-                        'name': 'No',
-                        'color': 'red'
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
                     }
                 },
                 '5.2.4 Basic access to BO data does not require registration': {
@@ -20222,10 +28276,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -20282,8 +28342,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -20335,7 +28396,7 @@ REGIMES = {
             'object': 'page',
             'id': '6fcd16e2-a1fd-4ac7-977f-3c6bc3219669',
             'created_time': '2020-03-13T13:00:00.000Z',
-            'last_edited_time': '2022-02-23T13:15:00.000Z',
+            'last_edited_time': '2022-05-26T13:30:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -20355,7 +28416,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:15:00.000Z'
+                    'last_edited_time': '2022-05-26T13:30:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -20440,13 +28501,14 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -20486,6 +28548,12 @@ REGIMES = {
                     'id': 'E%5B!F',
                     'type': 'select',
                     'select': None
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
                 },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
@@ -20536,8 +28604,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -20557,8 +28626,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -20587,8 +28663,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -20643,10 +28720,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -20703,8 +28786,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -20760,14 +28844,14 @@ REGIMES = {
             'object': 'page',
             'id': '561ad58c-9748-415c-b176-ad988aaa8689',
             'created_time': '2020-03-13T12:57:00.000Z',
-            'last_edited_time': '2022-02-23T13:15:00.000Z',
+            'last_edited_time': '2022-06-28T15:54:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
             },
             'last_edited_by': {
                 'object': 'user',
-                'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6'
+                'id': '7bd368f7-9440-4d8f-ad8e-2d0a81043a7f'
             },
             'cover': None,
             'icon': None,
@@ -20780,7 +28864,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:15:00.000Z'
+                    'last_edited_time': '2022-06-28T15:54:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -20790,7 +28874,7 @@ REGIMES = {
                 '1.2 Threshold': {
                     'id': '%24I.J',
                     'type': 'number',
-                    'number': 10
+                    'number': None
                 },
                 '6.3.1 API URL': {
                     'id': '%24UM7',
@@ -20800,12 +28884,20 @@ REGIMES = {
                 '5.2.3 Search by owner': {
                     'id': "'AyV",
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '6.4 Data published in BODS': {
                     'id': '%2BTR2',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '6.3 API available': {
                     'id': '2BK.',
@@ -20816,9 +28908,9 @@ REGIMES = {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
-                        'id': 'fd88b61b-4d53-4f17-8668-a97142a9c55e',
-                        'name': 'Implementing',
-                        'color': 'yellow'
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
                     }
                 },
                 '5.2.4.1 Registration details': {
@@ -20855,13 +28947,33 @@ REGIMES = {
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.arlis.am/DocumentView.aspx?DocID=153756',
+                                'link': {
+                                    'url': 'https://www.arlis.am/DocumentView.aspx?DocID=153756'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.arlis.am/DocumentView.aspx?DocID=153756',
+                            'href': 'https://www.arlis.am/DocumentView.aspx?DocID=153756'
+                        }
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -20871,7 +28983,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Procurement register currently exists; this is managed separately to company register',
+                                'content': 'The register currently covers extractive firms, public utility and media firms. Legislation has been passed for disclosures in the rest of the economy by early 2023.',
                                 'link': None
                             },
                             'annotations': {
@@ -20882,7 +28994,7 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Procurement register currently exists; this is managed separately to company register',
+                            'plain_text': 'The register currently covers extractive firms, public utility and media firms. Legislation has been passed for disclosures in the rest of the economy by early 2023.',
                             'href': None
                         }
                     ]
@@ -20902,6 +29014,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -20914,7 +29032,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Extractive sector disclosures currently available only in PDF format; an online register is due to be released before end 2020',
+                                'content': 'Extractive sector disclosures available to all; small fee payable for access to full BO data in other sectors',
                                 'link': None
                             },
                             'annotations': {
@@ -20925,7 +29043,7 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Extractive sector disclosures currently available only in PDF format; an online register is due to be released before end 2020',
+                            'plain_text': 'Extractive sector disclosures available to all; small fee payable for access to full BO data in other sectors',
                             'href': None
                         }
                     ]
@@ -20933,7 +29051,7 @@ REGIMES = {
                 '8.3 Data retention (years)': {
                     'id': 'PMcn',
                     'type': 'number',
-                    'number': None
+                    'number': 5
                 },
                 'Country': {
                     'id': 'PTKs',
@@ -20951,13 +29069,86 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.arlis.am/DocumentView.aspx?DocID=153756',
+                                'link': {
+                                    'url': 'https://www.arlis.am/DocumentView.aspx?DocID=153756'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.arlis.am/DocumentView.aspx?DocID=153756',
+                            'href': 'https://www.arlis.am/DocumentView.aspx?DocID=153756'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '; ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '; ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.arlis.am/DocumentView.aspx?DocID=153772',
+                                'link': {
+                                    'url': 'https://www.arlis.am/DocumentView.aspx?DocID=153772'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.arlis.am/DocumentView.aspx?DocID=153772',
+                            'href': 'https://www.arlis.am/DocumentView.aspx?DocID=153772'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ' ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ' ',
+                            'href': None
+                        }
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
                     'type': 'url',
-                    'url': 'https://www.eiti.am/hy/%D4%BB%D5%8D-%D5%B0%D5%A1%D5%B5%D5%BF%D5%A1%D6%80%D5%A1%D6%80%D5%A1%D5%A3%D5%A5%D6%80/?tab=88'
+                    'url': 'https://www.e-register.am/en/'
                 },
                 '2.1 Coverage: Scope': {
                     'id': 'Z%3Dqf',
@@ -20972,13 +29163,116 @@ REGIMES = {
                             'id': 'd084a8fc-fbbc-4d63-b184-b6ab5717e644',
                             'name': 'Full-economy',
                             'color': 'green'
+                        },
+                        {
+                            'id': '21175312-0447-4965-8830-64449c4c43b4',
+                            'name': 'Sectoral: Other',
+                            'color': 'pink'
                         }
                     ]
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.arlis.am/DocumentView.aspx?DocID=153776',
+                                'link': {
+                                    'url': 'https://www.arlis.am/DocumentView.aspx?DocID=153776'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.arlis.am/DocumentView.aspx?DocID=153776',
+                            'href': 'https://www.arlis.am/DocumentView.aspx?DocID=153776'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '; ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '; ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.arlis.am/DocumentView.aspx?DocID=153768',
+                                'link': {
+                                    'url': 'https://www.arlis.am/DocumentView.aspx?DocID=153768'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.arlis.am/DocumentView.aspx?DocID=153768',
+                            'href': 'https://www.arlis.am/DocumentView.aspx?DocID=153768'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '; ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '; ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.arlis.am/DocumentView.aspx?DocID=153779',
+                                'link': {
+                                    'url': 'https://www.arlis.am/DocumentView.aspx?DocID=153779'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.arlis.am/DocumentView.aspx?DocID=153779',
+                            'href': 'https://www.arlis.am/DocumentView.aspx?DocID=153779'
+                        }
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -20989,12 +29283,20 @@ REGIMES = {
                 '3.3 Exact ownership values': {
                     'id': '%60x%7D%40',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '9911560f-933e-42dc-b99a-bffddd52b485',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '5.2.1 Free of charge': {
                     'id': "c*b'",
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '3.2 Sufficient information for full ownership chains': {
                     'id': 'cm%5Eg',
@@ -21003,8 +29305,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -21020,6 +29323,23 @@ REGIMES = {
                     'id': 'iTV%5B',
                     'type': 'rich_text',
                     'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Light touch checks at the point of submission to ensure that the entered data corresponds to the expected format and values (e.g. entering a date, and not free text, into a date field). More comprehensive systems planned.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Light touch checks at the point of submission to ensure that the entered data corresponds to the expected format and values (e.g. entering a date, and not free text, into a date field). More comprehensive systems planned.',
+                            'href': None
+                        }
                     ]
                 },
                 '5.1 Public access': {
@@ -21034,7 +29354,11 @@ REGIMES = {
                 '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '5.4.2 Layered access': {
                     'id': 'lreI',
@@ -21046,19 +29370,61 @@ REGIMES = {
                     'type': 'last_edited_by',
                     'last_edited_by': {
                         'object': 'user',
-                        'id': 'dd1fc8e5-01d8-4ef0-a266-a7f1ae63aaf6',
-                        'name': 'Tymon',
-                        'avatar_url': 'https://s3-us-west-2.amazonaws.com/public.notion-static.com/74b2f888-17e4-46e2-af1d-53c49a067476/Screenshot_2021-07-12_at_14.13.49.png',
+                        'id': '7bd368f7-9440-4d8f-ad8e-2d0a81043a7f',
+                        'name': 'Peter Low',
+                        'avatar_url': None,
                         'type': 'person',
                         'person': {
-                            'email': 'tymon@openownership.org'
+                            'email': 'peter@openownership.org'
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': '20% for most sectors; 10% for extractives & 0% for PEPs with interests in that sector.',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': '20% for most sectors; 10% for extractives & 0% for PEPs with interests in that sector.',
+                            'href': None
+                        }
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://www.arlis.am/DocumentView.aspx?DocID=153756',
+                                'link': {
+                                    'url': 'https://www.arlis.am/DocumentView.aspx?DocID=153756'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://www.arlis.am/DocumentView.aspx?DocID=153756',
+                            'href': 'https://www.arlis.am/DocumentView.aspx?DocID=153756'
+                        }
                     ]
                 },
                 'Notes': {
@@ -21070,42 +29436,44 @@ REGIMES = {
                 '5.1.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': 'b81a9b3e-62b4-47bb-bbc0-3d7fc5ae5303',
+                        'name': '2020',
+                        'color': 'default'
+                    }
                 },
                 '6.1 Structured data': {
                     'id': 'x%7BQ%5D',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6ee82c45-a25e-4dbc-9526-0359b2bcf14d',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
                 },
                 '8.2 Period for confirmation': {
                     'id': '%7DbTt',
                     'type': 'rich_text',
                     'rich_text': [
-                    ]
-                },
-                '6.2 Bulk data available': {
-                    'id': '~obq',
-                    'type': 'select',
-                    'select': None
-                },
-                'Title': {
-                    'id': 'title',
-                    'type': 'title',
-                    'title': [
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Armenia Extractives Register',
+                                'content': '20-40 days',
                                 'link': None
                             },
                             'annotations': {
@@ -21116,19 +29484,51 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Armenia Extractives Register',
+                            'plain_text': '20-40 days',
+                            'href': None
+                        }
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': {
+                        'id': 'f0976ff3-09a4-4f49-94ec-734e82381d25',
+                        'name': 'Planned',
+                        'color': 'orange'
+                    }
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Armenia Multi-Sector Register',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Armenia Multi-Sector Register',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Armenia-Extractives-Register-561ad58c9748415cb176ad988aaa8689'
+            'url': 'https://www.notion.so/Armenia-Multi-Sector-Register-561ad58c9748415cb176ad988aaa8689'
         },
         {
             'object': 'page',
             'id': '6901c4b8-3168-4456-8c92-f61c28588249',
             'created_time': '2020-03-13T12:57:00.000Z',
-            'last_edited_time': '2022-02-23T13:00:00.000Z',
+            'last_edited_time': '2022-05-17T16:21:00.000Z',
             'created_by': {
                 'object': 'user',
                 'id': 'a424d639-c44d-4940-bd53-0002529d01b8'
@@ -21148,7 +29548,7 @@ REGIMES = {
                 'Last edited': {
                     'id': '%23--Y',
                     'type': 'last_edited_time',
-                    'last_edited_time': '2022-02-23T13:00:00.000Z'
+                    'last_edited_time': '2022-05-17T16:21:00.000Z'
                 },
                 '6.5 Data on OO Register': {
                     'id': '%24Fhj',
@@ -21184,9 +29584,9 @@ REGIMES = {
                     'id': '5tav',
                     'type': 'select',
                     'select': {
-                        'id': 'fd88b61b-4d53-4f17-8668-a97142a9c55e',
-                        'name': 'Implementing',
-                        'color': 'yellow'
+                        'id': '50c974a8-dc99-410a-ac81-01f8b83bc03f',
+                        'name': 'Yes',
+                        'color': 'green'
                     }
                 },
                 '5.2.4.1 Registration details': {
@@ -21200,21 +29600,22 @@ REGIMES = {
                     'type': 'multi_select',
                     'multi_select': [
                         {
-                            'id': '5d3d079e-f56f-4466-bfa0-ed61cbe99061',
-                            'name': 'Legal',
-                            'color': 'brown'
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
                         }
                     ]
                 },
                 '2.3 Coverage: Legislation URL': {
                     'id': '%3D%5D%40x',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
-                '5.4.2.1 Fields available to public': {
+                '5.4.2.1 Fields available to public: Information URL': {
                     'id': '%40%7Cmi',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 '2.2 Coverage: Details': {
@@ -21255,6 +29656,12 @@ REGIMES = {
                     'type': 'select',
                     'select': None
                 },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
                 '7.2 Verification information URL': {
                     'id': 'JRj%7C',
                     'type': 'url',
@@ -21287,8 +29694,9 @@ REGIMES = {
                 },
                 '1.1 Definition: Legislation URL': {
                     'id': 'PpKg',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.1.1 Public access: Register URL': {
                     'id': 'X%26sR',
@@ -21308,8 +29716,15 @@ REGIMES = {
                 },
                 '9 Sanctions and enforcement: Legislation URL': {
                     'id': 'Zm~c',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
                 },
                 '8.1 Up to date and auditable: Period for updating changes (days)': {
                     'id': '%5EqJG',
@@ -21334,8 +29749,9 @@ REGIMES = {
                 },
                 '5.5 Legal basis for publication URL': {
                     'id': 'c~iw',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.3.1 License information URL': {
                     'id': 'iFf%3D',
@@ -21356,7 +29772,11 @@ REGIMES = {
                 '5.1 Public access': {
                     'id': 'jxf!',
                     'type': 'select',
-                    'select': None
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
                 },
                 '5.2.4 Basic access to BO data does not require registration': {
                     'id': 'l%2F%3Dw',
@@ -21382,10 +29802,16 @@ REGIMES = {
                         }
                     }
                 },
-                '3.1 Sufficient detail: Data fields collected': {
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
                     'id': 'udCF',
-                    'type': 'multi_select',
-                    'multi_select': [
+                    'type': 'rich_text',
+                    'rich_text': [
                     ]
                 },
                 'Notes': {
@@ -21406,8 +29832,9 @@ REGIMES = {
                 },
                 '8.4 Legislation URL': {
                     'id': 'yNot',
-                    'type': 'url',
-                    'url': None
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
                 },
                 '5.2.2 Search by company': {
                     'id': '%7Ce%7Dn',
@@ -21432,7 +29859,7 @@ REGIMES = {
                         {
                             'type': 'text',
                             'text': {
-                                'content': 'Argentina - register for tax authorities',
+                                'content': 'AFIP registro',
                                 'link': None
                             },
                             'annotations': {
@@ -21443,13 +29870,13 @@ REGIMES = {
                                 'code': False,
                                 'color': 'default'
                             },
-                            'plain_text': 'Argentina - register for tax authorities',
+                            'plain_text': 'AFIP registro',
                             'href': None
                         }
                     ]
                 }
             },
-            'url': 'https://www.notion.so/Argentina-register-for-tax-authorities-6901c4b8316844568c92f61c28588249'
+            'url': 'https://www.notion.so/AFIP-registro-6901c4b8316844568c92f61c28588249'
         }
     ],
     'next_cursor': None,

@@ -12,7 +12,6 @@
                 </div>
             {% endif %}
         {% endwith %}
-
     </div>
 {% endblock %}
 
@@ -143,8 +142,8 @@
 
 {% for regime in country.regimes %}
     {# only when "publish" #}
-    {% if 'Publish' in regime.implementation_stage %}
-    {% if 'Subnational' not in regime.display_scope %}
+    {% if regime.implementation_stage and 'Publish' in regime.implementation_stage %}
+    {% if regime.display_scope and 'Subnational' not in regime.display_scope %}
             <p>{{ regime.title }}</p>
 
             <details>
@@ -212,24 +211,79 @@
 {% endfor %}
 </section>
 
-        {# This section will come post-launch #}
-        {# <section>
+{% if fflags and fflags.legislation %}
+        <section>
             <hr/>
             <h2>{% trans %}Legislation details{% endtrans %}</h2>
-        </section> #}
-    </div>
+            {% for regime in country.regimes %}
+                {% if regime.implementation_stage and 'Publish' in regime.implementation_stage %}
+                {% if regime.display_scope and 'Subnational' not in regime.display_scope %}
+                    <h3>{{ regime.title }}</h3>
+
+                    {% if regime.definition_legislation_url %}
+                    <h4>{{_('Legal definition of beneficial ownership')}}</h4>
+                    <p>{{ regime.definition_legislation_url|richtext }}</p>
+                    {% endif %}
+
+                    {% if regime.coverage_legislation_url %}
+                    <h4>{{_('Coverage')}}</h4>
+                    <p>{{ regime.coverage_legislation_url|richtext }}</p>
+                    {% endif %}
+
+                    {% if regime.sufficient_detail_legislation_url %}
+                    <h4>{{_('Sufficient detail')}}</h4>
+                    <p>{{ regime.sufficient_detail_legislation_url|richtext }}</p>
+                    {% endif %}
+
+                    {% if regime.public_access_protection_regime_url %}
+                    <h4>{{_('Public access: protection regime')}}</h4>
+                    <p>{{ regime.public_access_protection_regime_url|richtext }}</p>
+                    {% endif %}
+
+                    {% if regime.public_access_legal_basis_url %}
+                    <h4>{{_('Public access: legal basis')}}</h4>
+                    <p>{{ regime.public_access_legal_basis_url|richtext }}</p>
+                    {% endif %}
+
+                    {% if regime.legislation_url %}
+                    <h4>{{_('Beneficial ownership legislation')}}</h4>
+                    <p>{{ regime.legislation_url|richtext }}</p>
+                    {% endif %}
+
+                    {% if regime.sanctions_enforcement_legislation_url %}
+                    <h4>{{_('Sanctions and enforcement legislation')}}</h4>
+                    <p>{{ regime.sanctions_enforcement_legislation_url|richtext }}</p>
+                    {% endif %}
+
+                {% endif %}
+                {% endif %}
+            {% endfor %}
+        </section>
+{% endif %}
+
+    </div> {# END country-page__content #}
 
 </article>
 
 
-{% set related_pages = country.latest_related(3) %}
-{% if related_pages|length %}
+{% if results|length %}
 <div class="related-pages">
     <h2>{% trans %}Relevant articles and publications{% endtrans %}</h2>
-    {% with pages=related_pages, columns=1, card_format='landscape' %}
+    {# {% with pages=related_pages, columns=1, card_format='landscape' %}
+        {% include "_partials/card_group.jinja" %}
+    {% endwith %} #}
+
+
+    {% with pages=results, columns=1, card_format='landscape' %}
         {% include "_partials/card_group.jinja" %}
     {% endwith %}
-</div>
+    </div>
+
+    {% if results.paginator.num_pages > 1 %}
+        {% include '_partials/pagination.jinja' %}
+    {% endif %}
+
+
 {% endif %}
 
 

@@ -20,6 +20,12 @@ app/assets/.webassets-cache
 app/assets/.webassets-cache/*
 **/node_modules/
 **/node_modules/**/*
+<<<<<<< HEAD
+app/assets/dist/css/*.min.css
+=======
+app/assets/dist/js/*.min.js
+>>>>>>> main
+app/assets/dist/js/*.min.js
 
 # UGC
 app/media/**/*
@@ -37,7 +43,9 @@ app/media/**/*
 .DS_Store
 *.sublime-workspace
 *.sublime-project
+redirects.csv
 app/countries.csv
+app/capitals.csv
 
 # This file is just for me, too dangerous to have on the servers
 app/modules/notion/management/commands/wipe_notion.py

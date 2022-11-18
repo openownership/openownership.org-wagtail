@@ -1,7 +1,11 @@
+# stdlib
 import json
-from consoler import console
-from cacheops import cached
 
+# 3rd party
+from cacheops import cached
+from consoler import console
+
+# Project
 from modules.notion.models import CountryTag
 
 

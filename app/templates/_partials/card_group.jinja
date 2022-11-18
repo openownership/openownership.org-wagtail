@@ -24,7 +24,11 @@ Expects:
     {% if pages|length is divisibleby 3 %}
         {% set columns = 3 %}
     {% else %}
-        {% set columns = 2 %}
+        {% if is_footer_content %}
+            {% set columns = 1 %}
+        {% else %}
+            {% set columns = 2 %}
+        {% endif %}
     {% endif %}
 {% endif %}
 

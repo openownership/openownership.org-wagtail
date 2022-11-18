@@ -1,25 +1,23 @@
 # 3rd party
-from re import I
 from consoler import console
 from django.db import models
 from django.conf import settings
-from wagtail.core import fields
-from django.shortcuts import reverse
-from taggit.models import ItemBase
 from django.forms import CheckboxSelectMultiple
-from wagtail.core.models import Locale, Page
-from modelcluster.fields import ParentalKey
-from wagtail.snippets.models import register_snippet
-from django.utils.translation import gettext_lazy as _
+from wagtail.core import fields
+from taggit.models import ItemBase
+from django.shortcuts import reverse
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.models import ClusterableModel
-from modelcluster.fields import ParentalManyToManyField
-from django_extensions.db.fields import AutoSlugField
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.core.models import Page, Locale
 from django.utils.functional import cached_property
+from django.utils.translation import gettext_lazy as _
+from django_extensions.db.fields import AutoSlugField
 from wagtail.admin.edit_handlers import (
-    FieldPanel, ObjectList, PageChooserPanel, StreamFieldPanel, TabbedInterface, InlinePanel
+    FieldPanel, ObjectList, TabbedInterface, PageChooserPanel
 )
+from wagtail.images.edit_handlers import ImageChooserPanel
 
+# Project
 from modules.content.blocks import TAG_PAGE_BODY_BLOCKS
 from modules.taxonomy.models.core import BaseTag
 from modules.notion.data import CAPITALS
@@ -168,18 +166,52 @@ class DisclosureRegime(NotionModel):
         max_length=255
     )
 
-    definition_legislation_url = models.URLField(  # 1.1 Definition: Legislation URL
+    # 1.1 Definition: Legislation URL
+    definition_legislation_url = models.TextField(
         _('Definition: Legislation URL'),
         blank=True,
         null=True,
-        max_length=1000
+        max_length=10000
     )
 
-    coverage_legislation_url = models.URLField(  # 2.3 Coverage: Legislation URL
+    # 2.3 Coverage: Legislation URL
+    coverage_legislation_url = models.TextField(
         _('Coverage: Legislation URL'),
         blank=True,
         null=True,
-        max_length=1000
+        max_length=10000
+    )
+
+    # 3.1 Sufficient detail: Legislation URL
+    sufficient_detail_legislation_url = models.TextField(
+        _('Sufficient detail: Legislation URL'),
+        blank=True,
+        null=True,
+        max_length=10000
+    )
+
+    # 5.4.1 Public access: Protection regime URL
+    public_access_protection_regime_url = models.TextField(
+        _('Public access: Protection regime URL'),
+        blank=True,
+        null=True,
+        max_length=10000
+    )
+
+    # 5.5 Public access: Legal basis URL
+    public_access_legal_basis_url = models.TextField(
+        _('Public access: Legal basis URL'),
+        blank=True,
+        null=True,
+        max_length=10000
+    )
+
+    # 9 Sanctions and enforcement: Legislation URL
+    sanctions_enforcement_legislation_url = models.TextField(
+        _('Public access: Legal basis URL'),
+        blank=True,
+        null=True,
+        max_length=10000
     )
 
     central_register = models.CharField(  # 4.1 Central register
@@ -238,11 +270,11 @@ class DisclosureRegime(NotionModel):
         default=False
     )
 
-    legislation_url = models.URLField(  # 8.4 Legislation URL
+    legislation_url = models.TextField(  # 8.4 Legislation URL
         _('Legislation URL'),
         blank=True,
         null=True,
-        max_length=1000
+        max_length=10000
     )
 
     coverage_scope = ParentalManyToManyField(

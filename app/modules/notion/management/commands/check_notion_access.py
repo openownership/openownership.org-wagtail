@@ -1,8 +1,11 @@
+# 3rd party
 from consoler import console
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
+
+# Project
 from modules.notion.auth import get_notion_client
-from modules.notion.utils import check_page_access
 from modules.notion.data import COUNTRY_TRACKER, COMMITMENT_TRACKER, DISCLOSURE_REGIMES
+from modules.notion.utils import check_page_access
 
 
 class Command(BaseCommand):

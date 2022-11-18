@@ -1,11 +1,11 @@
 # stdlib
-from typing import Optional, Union
+from typing import Union, Optional
 from datetime import datetime
 
 # 3rd party
 import arrow
-from django.conf import settings
 from consoler import console
+from django.conf import settings
 from django_cron import Schedule, CronJobBase
 from django.db.models import Model
 from django.template.defaultfilters import slugify
@@ -340,16 +340,19 @@ class NotionCronBase(CronJobBase):
         try:
             result = ''
             for item in data['properties'][property_name]['rich_text']:
+                link = item['text']['link']
                 if item['type'] == 'text' and item['text']['link'] is None:
                     result += f"{item['text']['content']}"
-                elif item['type'] == 'text' and item['text']['link'] is not None:
-                    url = item['text']['link']
+                elif item['type'] == 'text' and link is not None and link != {}:
+                    url = item['text']['link']['url']
                     linked_text = item['text']['content']
                     href = f'<a href="{url}">{linked_text}</a>'
                     result += href
             return result
         except Exception as e:
             console.warn(e)
+            if settings.DEBUG:
+                import ipdb; ipdb.set_trace()
             return ''
 
     def _get_url(self, data: dict, property_name: str) -> Optional[str]:
@@ -370,6 +373,7 @@ class NotionCronBase(CronJobBase):
             return data['properties'][property_name]['url']
         except Exception as e:
             console.warn(e)
+            # import ipdb; ipdb.set_trace()
             return None
 
     def _get_number(self, data: dict, property_name: str) -> Optional[str]:
@@ -671,13 +675,13 @@ class SyncCommitments(NotionCronBase):
         self._set_universals(obj, commitment)
 
         obj.oo_support = self._get_select_name(commitment, 'OO Support')
-        obj.date = self._get_date(commitment, 'Date')
-        obj.link = self._get_url(commitment, 'Link')
-        obj.commitment_type_name = self._get_plain_text(commitment, 'Commitment type')
-        obj.central_register = self._get_bool(commitment, 'Central register')
-        obj.public_register = self._get_bool(commitment, 'Public register')
-        obj.summary_text = self._get_rich_text(commitment, 'Summary Text')
-        obj.all_sectors = self._get_bool(commitment, 'All sectors')
+        obj.date = self._get_value(commitment, 'Date')
+        obj.link = self._get_value(commitment, 'Link')
+        obj.commitment_type_name = self._get_value(commitment, 'Commitment type')
+        obj.central_register = self._get_value(commitment, 'Central register')
+        obj.public_register = self._get_value(commitment, 'Public register')
+        obj.summary_text = self._get_value(commitment, 'Summary Text')
+        obj.all_sectors = self._get_value(commitment, 'All sectors')
 
         try:
             obj.save()
@@ -759,10 +763,10 @@ class SyncRegimes(NotionCronBase):
         # This is either a new row, or it has been updated, so save stuff
         self._set_universals(obj, regime)
         obj.title = self._get_title(regime)
-        obj.definition_legislation_url = self._get_url(
+        obj.definition_legislation_url = self._get_value(
             regime, '1.1 Definition: Legislation URL'
         )
-        obj.coverage_legislation_url = self._get_url(
+        obj.coverage_legislation_url = self._get_value(
             regime, '2.3 Coverage: Legislation URL'
         )
         scope_tags = self._get_scope_tags(regime)
@@ -772,16 +776,29 @@ class SyncRegimes(NotionCronBase):
                 obj.coverage_scope.commit()
 
         obj.stage = self._get_stages(regime)  # 0 Stage - multi_select
-        obj.central_register = self._get_select_name(regime, '4.1 Central register')
-        obj.public_access = self._get_select_name(regime, '5.1 Public access')
-        obj.public_access_register_url = self._get_url(regime, '5.1.1 Public access: Register URL')
-        obj.year_launched = self._get_select_name(regime, '5.1.2 Year launched')
-        obj.structured_data = self._get_select_name(regime, '6.1 Structured data')
-        obj.api_available = self._get_select_name(regime, '6.3 API available')
-        obj.data_in_bods = self._get_select_name(regime, '6.4 Data published in BODS')
-        obj.on_oo_register = self._get_bool(regime, '6.5 Data on OO Register')
-        obj.legislation_url = self._get_url(regime, '8.4 Legislation URL')
+        obj.central_register = self._get_value(regime, '4.1 Central register')
+        obj.public_access = self._get_value(regime, '5.1 Public access')
+        obj.public_access_register_url = self._get_value(regime, '5.1.1 Public access: Register URL')
+        obj.year_launched = self._get_value(regime, '5.1.2 Year launched')
+        obj.structured_data = self._get_value(regime, '6.1 Structured data')
+        obj.api_available = self._get_value(regime, '6.3 API available')
+        obj.data_in_bods = self._get_value(regime, '6.4 Data published in BODS')
+        obj.on_oo_register = self._get_value(regime, '6.5 Data on OO Register')
+        obj.legislation_url = self._get_value(regime, '8.4 Legislation URL')
         obj.threshold = str(self._get_value(regime, '1.2 Threshold'))
+        # New legislation fields
+        obj.sufficient_detail_legislation_url = self._get_value(
+            regime, "3.1 Sufficient detail: Legislation URL"
+        )
+        obj.public_access_protection_regime_url = self._get_value(
+            regime, "5.4.1 Protection regime URL"
+        )
+        obj.public_access_legal_basis_url = self._get_value(
+            regime, "5.5 Legal basis for publication URL"
+        )
+        obj.sanctions_enforcement_legislation_url = self._get_value(
+            regime, "9 Sanctions and enforcement: Legislation URL"
+        )
 
         try:
             obj.save()

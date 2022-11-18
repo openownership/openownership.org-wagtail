@@ -1,18 +1,13 @@
+# 3rd party
 from cacheops import invalidate_all
 from django.core.cache import cache
+from wagtailcache.cache import clear_cache
 from django.utils.translation import gettext_lazy as _
-
-from .mixins import (
-    AnalyticsSettings,
-    MetaTagSettings,
-    SocialMediaSettings,
-    SearchSettings,
-    # UpdateBannerSettings
-)
-
 from wagtail.admin.edit_handlers import ObjectList, TabbedInterface
 from wagtail.contrib.settings.models import register_setting
-from wagtailcache.cache import clear_cache
+
+# Module
+from .mixins import SearchSettings, MetaTagSettings, AnalyticsSettings, SocialMediaSettings
 
 
 @register_setting(icon="fa-info")
@@ -21,7 +16,6 @@ class SiteSettings(
     MetaTagSettings,
     SocialMediaSettings,
     SearchSettings,
-    # UpdateBannerSettings
 ):
 
     class Meta:
@@ -38,8 +32,6 @@ class SiteSettings(
         ObjectList(MetaTagSettings.navigation_panels, heading=_('Meta Tags')),
         ObjectList(SocialMediaSettings.navigation_panels, heading=_('Social media')),
         ObjectList(SearchSettings.search_panels, heading=_('Search')),
-        # Not sure this is needed for OO:
-        # ObjectList(UpdateBannerSettings.navigation_panels, heading=_('Update banner')),
     ]
 
     edit_handler = TabbedInterface(base_tabs)

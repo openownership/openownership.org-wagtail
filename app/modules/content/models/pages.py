@@ -3,58 +3,52 @@
 """
     content.models.pages
     ~~~~~~~~~~~~~~~~~
-    Site-wide page modules.
+    Site-wide page models.
 """
 
+# stdlib
 import copy
 from itertools import chain
-from re import I
 
 # 3rd party
 from consoler import console
-from django.conf import settings
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
-from django.forms import CheckboxSelectMultiple
+from django.conf import settings
+from wagtail.core import fields
+from wagtail.search import index
+from modelcluster.fields import ParentalKey
+from wagtail.admin.forms import WagtailAdminPageForm
+from wagtail.core.blocks import StreamBlock
+from wagtail.core.models import Page, Locale, Orderable
+from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
+from wagtail.search.models import Query
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
-
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from modelcluster.fields import ParentalKey, ParentalManyToManyField
-
+from django.utils.datastructures import MultiValueDictKeyError
 from wagtail.admin.edit_handlers import (
-    FieldPanel, FieldRowPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
+    FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel, StreamFieldPanel
 )
-from wagtail.admin.forms import WagtailAdminPageForm
-from wagtail.core import fields
-from wagtail.core.blocks import StreamBlock
-from wagtail.core.models import Locale, Orderable, Page
-from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.search import index
-from wagtail.search.models import Query
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
+from wagtail.documents.edit_handlers import DocumentChooserPanel
 
 # Project
-
 from config.template import url_from_path
+from modules.stats.mixins import Countable
+from modules.notion.models import Region, CountryTag
 from modules.content.blocks import (
-    additional_content_blocks,
-    article_page_body_blocks,
-    home_page_blocks,
-    section_page_blocks,
-    team_profile_page_body_blocks,
-    HighlightPagesBlock,
-    TAG_PAGE_BODY_BLOCKS
+    HOME_PAGE_BLOCKS, SECTION_PAGE_BLOCKS, ARTICLE_PAGE_BODY_BLOCKS, ADDITIONAL_CONTENT_BLOCKS,
+    TEAM_PROFILE_PAGE_BODY_BLOCKS, HighlightPagesBlock, TAG_PAGE_BODY_BLOCKS
 )
-from modules.notion.helpers import countries_json, map_json
-from modules.notion.models import CountryTag, Region
+from modules.notion.helpers import map_json, countries_json
+from modules.taxonomy.models import PublicationType
 from modules.content.blocks.stream import GlossaryItemBlock
 from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
-from modules.taxonomy.models import FocusAreaTag, PublicationType, SectorTag
-from modules.stats.mixins import Countable
-from .mixins import TaggedAuthorsPageMixin, TaggedPageMixin, PageHeroMixin
-from .page_types import BasePage, LandingPageType, ContentPageType, IndexPageType
+
+# Module
+from .mixins import PageHeroMixin, TaggedPageMixin, TaggedAuthorsPageMixin
+from .page_types import BasePage, IndexPageType, ContentPageType, LandingPageType
 
 
 ####################################################################################################
@@ -87,7 +81,7 @@ class HomePage(PageHeroMixin, LandingPageType):
 
     search_fields: list = Page.search_fields + []
 
-    body = fields.StreamField(home_page_blocks, blank=True)
+    body = fields.StreamField(HOME_PAGE_BLOCKS, blank=True)
 
     content_panels = BasePage.content_panels + [
         StreamFieldPanel('body')
@@ -132,7 +126,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
         index.SearchField('body')
     ]
 
-    body = fields.StreamField(section_page_blocks, blank=True)
+    body = fields.StreamField(SECTION_PAGE_BLOCKS, blank=True)
 
     content_panels = BasePage.content_panels + [
         StreamFieldPanel('body'),
@@ -144,11 +138,6 @@ class SectionPage(PageHeroMixin, LandingPageType):
         Get the URL for the PressLinksPage within this section, if any.
         I couldn't think how else to do this.
         """
-        # page = (
-        #     self.get_children().live().public()
-        #     .filter(locale=Locale.get_active())
-        #     .type(PressLinksPage).first()
-        # )
         page = PressLinksPage.objects.filter(locale=Locale.get_active()).first()
         if page:
             return page.url
@@ -199,11 +188,6 @@ class SectionListingPage(SectionPage):
         Get the URL for the PressLinksPage within this section, if any.
         I couldn't think how else to do this.
         """
-        # page = (
-        #     self.get_children().live().public()
-        #     .filter(locale=Locale.get_active())
-        #     .type(PressLinksPage).first()
-        # )
         page = PressLinksPage.objects.filter(locale=Locale.get_active()).first()
         if page:
             return page.url
@@ -228,7 +212,7 @@ class ArticlePage(ContentPageType):
     parent_page_types: list = ['content.SectionListingPage', 'content.SectionPage', ]
     subpage_types: list = []
 
-    body = fields.StreamField(article_page_body_blocks, blank=True)
+    body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True)
 
     highlight_pages = fields.StreamField(
         StreamBlock(
@@ -254,16 +238,6 @@ class NewsArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
     subpage_types: list = []
 
     search_fields = ContentPageType.search_fields + TaggedAuthorsPageMixin.search_fields
-
-    # Also has:
-    # author_relationships from NewsArticleAuthorRelationship
-    # authors from AuthorsPageMixin
-
-    # def get_publication_type_choices(self):
-    #     """Get the only PublicationType allowd for this kind of Page.
-    #     Used by PublicationTypeFieldPanel() for the list of choices.
-    #     """
-    #     return PublicationType.objects.filter(name='News article')
 
     def get_publication_type_choices(self):
         """We now allow any publication type category on these pages.
@@ -298,12 +272,6 @@ class BlogArticlePage(TaggedAuthorsPageMixin, Countable, ContentPageType):
 
     class Meta:
         verbose_name = _('Blog post page')
-
-    # def get_publication_type_choices(self):
-    #     """Get the only PublicationType allowd for this kind of Page.
-    #     Used by PublicationTypeFieldPanel() for the list of choices.
-    #     """
-    #     return PublicationType.objects.filter(name='Blog post')
 
     def get_publication_type_choices(self):
         """We now allow any publication type category on these pages.
@@ -386,12 +354,6 @@ class JobPage(TaggedPageMixin, ContentPageType):
     def human_application_deadline(self):
         if self.application_deadline:
             return self.application_deadline.strftime('%d %B %Y')
-
-    # def get_publication_type_choices(self):
-    #     """Get the only PublicationType allowd for this kind of Page.
-    #     Used by PublicationTypeFieldPanel() for the list of choices."""
-
-    #     return PublicationType.objects.filter(name='Job')
 
     def get_publication_type_choices(self):
         """We now allow any publication type category on these pages.
@@ -510,7 +472,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         verbose_name=_('Show Display Date?')
     )
 
-    additional_content = fields.StreamField(additional_content_blocks, blank=True)
+    additional_content = fields.StreamField(ADDITIONAL_CONTENT_BLOCKS, blank=True)
 
     # Also has:
     # author_relationships from PublicationAuthorRelationship
@@ -601,19 +563,6 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         context['menu_pages'] = self._get_menu_pages()
 
         return context
-
-    # def get_publication_type_choices(self):
-    #     """Get the only PublicationType allowd for this kind of Page.
-    #     Used by PublicationTypeFieldPanel() for the list of choices.
-    #     """
-    #     publication_types = (
-    #         'Briefing',
-    #         'Case study',
-    #         # 'Consultation',  # No longer valid
-    #         'Guidance',
-    #         # 'Report',  # No longer valid
-    #     )
-    #     return PublicationType.objects.filter(name__in=publication_types)
 
     def get_publication_type_choices(self):
         """We now allow any publication type category on these pages.
@@ -761,6 +710,10 @@ class TeamProfilePage(BasePage):
     And it labels areas_of_focus and countries differently.
     """
 
+    def __init__(self, *args, **kwargs):
+        self.page_num = 1
+        super().__init__(*args, **kwargs)
+
     template = 'content/team_profile_page.jinja'
     parent_page_types: list = ['content.TeamPage']
     subpage_types: list = []
@@ -777,11 +730,11 @@ class TeamProfilePage(BasePage):
     role = models.CharField(max_length=255, blank=True)
 
     portrait_image = models.ForeignKey(
-            settings.IMAGE_MODEL,
-            null=True,
-            blank=True,
-            on_delete=models.SET_NULL,
-            related_name='+'
+        settings.IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
     )
 
     countries = ClusterTaggableManager(
@@ -806,7 +759,7 @@ class TeamProfilePage(BasePage):
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES
     )
 
-    body = fields.StreamField(team_profile_page_body_blocks, blank=True)
+    body = fields.StreamField(TEAM_PROFILE_PAGE_BODY_BLOCKS, blank=True)
 
     content_panels = BasePage.content_panels + [
         FieldPanel('role'),
@@ -839,6 +792,24 @@ class TeamProfilePage(BasePage):
         index.SearchField('email_address'),
     ]
 
+    def get_context(self, request, *args, **kwargs):
+        ctx = super().get_context(request, *args, **kwargs)
+        try:
+            self.page_num = int(request.GET['page'])
+        except MultiValueDictKeyError:
+            self.page_num = 1
+        except Exception as e:
+            console.error(e)
+
+        try:
+            authored_pages = self._authorship._authored_pages
+            paginator = self._get_paginator(authored_pages)
+            ctx['results'] = paginator
+            ctx['page_obj'] = paginator
+        except Exception as e:
+            console.warn(e)
+        return ctx
+
     @cached_property
     def card_blurb(self):
         "Display role instead of blurb on cards"
@@ -851,6 +822,24 @@ class TeamProfilePage(BasePage):
         tabs = super().get_admin_tabs()
         tabs.insert(1, (cls.about_panels, _("About")))
         return tabs
+
+    def _get_paginator(self, results):
+        p = Paginator(results, 5)
+        result_set = p.page(self.page_num)
+        return result_set
+
+    @cached_property
+    def _authorship(self):
+        """For some reason, translated versions have no authorship model, so we're returning
+        the authorship from first locale version of this page that does have one. For an `en`
+        page, that _should_ be self, so we check that first.
+        """
+        if self.authorship is not None:
+            return self.authorship
+        all_locales = Page.objects.filter(translation_key=self.translation_key).specific().all()
+        for item in all_locales:
+            if item.authorship is not None:
+                return item.authorship
 
 
 ####################################################################################################
@@ -943,7 +932,7 @@ class GlossaryPage(BasePage):
     subpage_types: list = []
     max_count = 1
 
-    body = fields.StreamField(article_page_body_blocks, blank=True)
+    body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True)
 
     glossary = fields.StreamField([
         ('glossary_item', GlossaryItemBlock()),

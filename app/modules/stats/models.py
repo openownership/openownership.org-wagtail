@@ -1,9 +1,14 @@
-import arrow
+# stdlib
 import datetime
-from consoler import console
-from django.conf import settings
 from typing import Optional
+
+# 3rd party
+import arrow
+from consoler import console
 from django.db import models
+from django.conf import settings
+
+# Module
 from .redis import RedisViewCounts
 
 

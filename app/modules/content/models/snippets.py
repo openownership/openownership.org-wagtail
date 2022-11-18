@@ -1,18 +1,15 @@
-from django.conf import settings
+# 3rd party
 from django.db import models
-from django.shortcuts import reverse
-from django.utils.translation import gettext_lazy as _
-
-from taggit.models import ItemBase
-from modelcluster.fields import ParentalKey
-from modelcluster.contrib.taggit import ClusterTaggableManager
-from modelcluster.models import ClusterableModel
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from django.conf import settings
 from wagtail.search import index
+from django.core.paginator import Paginator
+from django.utils.functional import cached_property
+from modelcluster.models import ClusterableModel
 from wagtail.snippets.models import register_snippet
-
-from modules.taxonomy.models import DummyPage, PublicationType
+from django.utils.translation import gettext_lazy as _
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 @register_snippet
@@ -80,14 +77,21 @@ class Author(index.Indexed, models.Model):
         """Returns a list of num Blog Articles and News Articles by
         this author sorted by display_date descending.
         """
+        return self._authored_pages[:num]
+
+    @cached_property
+    def _authored_pages(self):
+        """Returns a list of Blog Articles, News Articles and publications by
+        this author sorted by display_date descending.
+        """
         content = (
-            self.get_blog_articles(num) +
-            self.get_news_articles(num) +
-            self.get_publications(num)
+            self.get_blog_articles(1000) +
+            self.get_news_articles(1000) +
+            self.get_publications(1000)
         )
         return sorted(
             content, key=lambda x: x.first_published_at, reverse=True
-        )[:num]
+        )
 
 
 @register_snippet

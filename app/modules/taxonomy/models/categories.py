@@ -1,11 +1,12 @@
-from .core import Category
-
+# 3rd party
 from consoler import console
-from django.utils.functional import cached_property
-from django.urls import reverse
-from django.utils.translation import gettext_lazy as _
-from wagtailmodelchooser import register_model_chooser
 from wagtail.core.models import Locale
+from wagtailmodelchooser import register_model_chooser
+from django.utils.functional import cached_property
+from django.utils.translation import gettext_lazy as _
+
+# Module
+from .core import Category
 
 
 @register_model_chooser

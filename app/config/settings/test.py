@@ -11,7 +11,6 @@ COLLECTFAST_ENABLED = False
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'DOESNTMATTERINTESTS'
 
 ALLOWED_HOSTS = ['*']

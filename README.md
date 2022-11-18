@@ -4,6 +4,8 @@
 
 This is a Wagtail site.
 
+[Sprint planner](https://github.com/hactar-is/openownership.org/projects/1)
+
 
 ## First run
 
@@ -51,3 +53,10 @@ By default, the admin JS and CSS will be output to `assets/dist/`
 ## Continuous Integration
 
 Pushes to the `staging` branch are automatically deployed, including static assets, to the staging server. 
+
+
+## Build docker cache image
+
+```
+docker buildx bake -f docker-compose.test.yml web --set web.platform=linux/amd64,linux/arm64 --push
+```
