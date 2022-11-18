@@ -119,6 +119,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
         'content.GlossaryPage',
         'content.LatestSectionContentPage',
         'content.PressLinksPage',
+        'content.UtilityPage',
     ]
 
     search_fields: list = BasePage.search_fields + [
@@ -208,7 +209,7 @@ class ArticlePage(ContentPageType):
     """
     template = 'content/article_page.jinja'
 
-    parent_page_types: list = ['content.SectionListingPage']
+    parent_page_types: list = ['content.SectionListingPage', 'content.SectionPage', ]
     subpage_types: list = []
 
     body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True)
@@ -295,7 +296,7 @@ class UtilityPage(ContentPageType):
     """
     template = 'content/utility_page.jinja'
 
-    parent_page_types: list = ['content.HomePage']
+    parent_page_types: list = ['content.HomePage', 'content.SectionPage', ]
     subpage_types: list = []
 
     intro = fields.RichTextField(
