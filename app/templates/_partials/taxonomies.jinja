@@ -1,8 +1,8 @@
 <div class="taxonomies">
     {% if page.publication_type or page.page_type %}
         <p>
-            <strong>{% trans %}Publication type{% endtrans %}</strong>
             {% if page.publication_type %}
+                <strong>{% trans %}Publication type{% endtrans %}</strong>
                 {% set tag_link = page.publication_type.get_url() %}
             {% else %}
                 {% set tag_link = '' %}
