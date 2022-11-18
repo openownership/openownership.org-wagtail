@@ -1,16 +1,8 @@
 .taxonomies {
-    @apply border-b border-blue-dark;
-    @apply pb-4;
     @apply grid grid-cols-1 gap-4;
 
     p {
         @apply m-0;
-    }
-}
-
-.taxonomies {
-    @include min-width(lg) {
-        @apply grid-cols-2;
     }
 }
 
@@ -29,4 +21,15 @@ a.language_tag{
 a.language_tag:hover{
     background-color: #616a6f;
     text-decoration: none;
+}
+
+.publication-front-page__content {
+    .taxonomies {
+        @apply border-b border-blue-dark;
+        @apply pb-4;
+        
+        @include min-width(lg) {
+            @apply grid-cols-2;
+        }
+    }
 }
