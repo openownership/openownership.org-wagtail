@@ -54,7 +54,7 @@
     "focus-visible": "^5.2.0",
     "jquery": "^3.6.0",
     "micromodal": "^0.4.10",
-    "mini-css-extract-plugin": "^2.5.3",
+    "mini-css-extract-plugin": "^2.7.1",
     "postcss-scss": "^4.0.3"
   }
 }
