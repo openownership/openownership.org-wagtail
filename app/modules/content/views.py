@@ -1,7 +1,6 @@
 # stdlib
 from typing import Optional
 from html import unescape
-from django.utils.text import unescape_entities
 
 # 3rd party
 from django.utils.html import strip_tags
@@ -100,7 +99,7 @@ class CountryView(TemplateView):
     @cached_property
     def _meta_description(self):
         try:
-            meta_description = unescape_entities(strip_tags(self.tag.blurb))
+            meta_description = unescape(strip_tags(self.tag.blurb))
             meta_description = meta_description.replace('&#39;', "'")
         except Exception:
             meta_description = f"{self.tag.name} on Open Ownership"

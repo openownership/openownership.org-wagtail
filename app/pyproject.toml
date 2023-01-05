@@ -52,5 +52,17 @@ packaging = "20.4"
 codacy-coverage = "^1.3.11"
 
 [build-system]
-requires = ["poetry>=0.12"]
+requires = ["poetry.core"]
 build-backend = "poetry.masonry.api"
+
+
+[tool.ruff]
+target-version = "py38"  # Change this to match the project
+line-length = 100
+extend-exclude = ["tests", "*/migrations/*"]
+extend-ignore = ["E402", ]
+ignore-init-module-imports = true
+
+[tool.ruff.isort]
+combine-as-imports = true
+force-wrap-aliases = true
