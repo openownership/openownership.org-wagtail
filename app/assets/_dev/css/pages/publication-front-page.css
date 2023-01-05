@@ -2,7 +2,7 @@
     @apply flex flex-row gap-8;
     @apply border-b border-black/50;
     @apply pb-10;
-    @apply my-10;
+    @apply my-4;
 }
 
 .publication-front-page__cover, .publication-front-page__details {
@@ -16,7 +16,36 @@
 }
 
 .publication-front-page__details {
-    p {
+    .btn {
+        @apply w-full;
+    }
+
+    .navbar__language {
+        @apply block !important;
+        
+        .btn {
+            @apply text-white;
+            @apply flex items-center justify-center;
+
+            svg {
+                @apply ml-2;
+                @apply relative;
+
+                top: 1px;
+            }
+
+            g {
+                @apply stroke-white;
+            }
+        }
+    }
+
+    .navbar__language-list {
+        top: 42px;
+        width: 100%;
+    }
+
+    > * {
         @apply mb-4;
     }
 }

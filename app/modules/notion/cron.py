@@ -778,8 +778,9 @@ class SyncRegimes(NotionCronBase):
         obj.stage = self._get_stages(regime)  # 0 Stage - multi_select
         obj.central_register = self._get_value(regime, '4.1 Central register')
         obj.public_access = self._get_value(regime, '5.1 Public access')
-        obj.public_access_register_url = self._get_value(regime, '5.1.1 Public access: Register URL')
-        obj.year_launched = self._get_value(regime, '5.1.2 Year launched')
+        obj.public_access_register_url = self._get_value(
+            regime, '5.1.1 Public access: Register URL')
+        obj.year_launched = self._get_value(regime, '4.2 Year launched')
         obj.structured_data = self._get_value(regime, '6.1 Structured data')
         obj.api_available = self._get_value(regime, '6.3 API available')
         obj.data_in_bods = self._get_value(regime, '6.4 Data published in BODS')

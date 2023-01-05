@@ -25,6 +25,7 @@ from wagtail.utils.decorators import cached_classmethod
 from wagtail.admin.panels import ObjectList, TabbedInterface, FieldPanel
 
 # Project
+from helpers.context import global_context
 from modules.core.utils import get_site_context
 from modules.content.blocks import (
     LANDING_PAGE_BLOCKS, ARTICLE_PAGE_BODY_BLOCKS, ADDITIONAL_CONTENT_BLOCKS
@@ -104,19 +105,21 @@ class BasePage(WagtailCacheMixin, Page):
         return breadcrumbs
 
     def get_context(self, request, *args, **kwargs):
-        context = super().get_context(request, *args, **kwargs)
+        ctx = super().get_context(request, *args, **kwargs)
+        ctx = global_context(ctx)
         site = self.get_site()
 
-        context.update(
+        ctx.update(
             **get_site_context(site),
         )
-        context.update(
+        ctx.update(
             **self.get_metadata_settings(site)
         )
 
-        context['meta_description'] = self.page_meta_description
+        ctx['meta_description'] = self.page_meta_description
+        ctx['fflags'] = settings.FFLAGS
 
-        return context
+        return ctx
 
     @cached_classmethod
     def get_admin_tabs(cls):

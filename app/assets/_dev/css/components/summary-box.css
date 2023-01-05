@@ -11,12 +11,18 @@ article .summary-box, .summary-box{
         }
     }
       
-    ul li::before {
+    ul > li::before {
         content: "\2022";  
         @apply text-blue-medium font-bold;
         display: inline-block;
         width: 1em;
         margin-left: -1em;
         
+    }
+
+    ol {
+        li {
+            @apply pl-0;
+        }
     }
 }

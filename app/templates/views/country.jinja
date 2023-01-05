@@ -12,7 +12,6 @@
                 </div>
             {% endif %}
         {% endwith %}
-
     </div>
 {% endblock %}
 
@@ -212,7 +211,7 @@
 {% endfor %}
 </section>
 
-
+{% if fflags and fflags.legislation %}
         <section>
             <hr/>
             <h2>{% trans %}Legislation details{% endtrans %}</h2>
@@ -260,6 +259,8 @@
                 {% endif %}
             {% endfor %}
         </section>
+{% endif %}
+
     </div> {# END country-page__content #}
 
 </article>

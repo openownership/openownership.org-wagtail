@@ -87,35 +87,35 @@ jobs:
           git remote add staging ssh://deploy@$IP_STAGING/srv/repos/openownership.org.git
           git push staging staging -f
 
-  # deploy_production:
-  #   # Requires these vars in github secrets
-  #   # * ENVKEY
-  #   # * DEPLOY_KEY_PRIVATE
-  #   # Requires the staging IP address in EnvKey
-  #   # * IP_STAGING
-  #   runs-on: ubuntu-latest
-  #   needs: test
-  #   if: github.ref == 'refs/heads/main' && ! contains(github.event.head_commit.message, '[skip ci]') && ! contains(github.event.head_commit.message, '[skip deploy]')
+  deploy_production:
+    # Requires these vars in github secrets
+    # * ENVKEY
+    # * DEPLOY_KEY_PRIVATE
+    # Requires the staging IP address in EnvKey
+    # * IP_STAGING
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main' && ! contains(github.event.head_commit.message, '[skip ci]') && ! contains(github.event.head_commit.message, '[skip deploy]')
 
-  #   steps:
-  #     - name: Checkout staging
-  #       uses: actions/checkout@v2
-  #       with:
-  #         fetch-depth: 0
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-  #     - name: Install EnvKey source
-  #       run: curl -s https://raw.githubusercontent.com/envkey/envkey-source/master/install.sh | bash
+      - name: Install EnvKey source
+        run: curl -s https://raw.githubusercontent.com/envkey/envkey-source/master/install.sh | bash
 
-  #     - name: Configure .ssh and push to staging
-  #       env:
-  #         SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-  #         ENVKEY: ${{ secrets.ENVKEY }}
-  #       run: |
-  #         eval $(envkey-source)
-  #         mkdir -p ~/.ssh
-  #         ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-  #         ssh-keyscan github.com >> ~/.ssh/known_hosts
-  #         ssh-keyscan $IP_PRODUCTION >> ~/.ssh/known_hosts
-  #         ssh-add - <<< "${{ secrets.DEPLOY_KEY_PRIVATE }}"
-  #         git remote add production ssh://deploy@$IP_PRODUCTION/srv/repos/openownership.org.git
-  #         git push production main -f
+      - name: Configure .ssh and push to staging
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+          ENVKEY: ${{ secrets.ENVKEY }}
+        run: |
+          eval $(envkey-source)
+          mkdir -p ~/.ssh
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-keyscan $IP_PRODUCTION >> ~/.ssh/known_hosts
+          ssh-add - <<< "${{ secrets.DEPLOY_KEY_PRIVATE }}"
+          git remote add production ssh://deploy@$IP_PRODUCTION/srv/repos/openownership.org.git
+          git push production main -f

@@ -30,7 +30,6 @@
 
 .navbar__navigations-container {
     @apply flex;
-    flex-direction: column;
     width: 100%;
     align-items: flex-end;
     justify-content: flex-end;
@@ -256,31 +255,21 @@
   #LANGUAGE
 \*------------------------------------*/
 
-@include max-width(lg) {
-    .navbar__language {
-        display: none;
+@include min-width(lg) {
+    .navbar .navbar__language {
+        top: 10px;
     }
 }
 
 .navbar__language {
     position: relative;
-    &:hover .navbar__language-list{
-        display: block;
+
+    &:hover, &:focus-within {
+        .navbar__language-list {
+            display: block;
+        }
 
     }
-}
-.navbar__choose-language {
-    @apply flex;
-    align-items: center;
-    @apply text-14 text-blue-medium;
-    padding: 5px;
-    padding-bottom: 20px;
-
-    svg {
-        @apply ml-2;
-    }
-
-
 }
 
 .navbar__language-list {
@@ -291,11 +280,41 @@
     z-index: 2;
     padding: 5px;
     top: 30px;
-    width: 100%;
     left: 0;
 
     li a {
         padding: 5px 5px 5px 0;
+    }
+}
+
+.navbar .navbar__language-list {
+    width: 80px;
+
+    @include min-width(lg) {
+        top: 50px;
+        width: 70px;
+    }
+
+    @include max-width(lg) {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        top: 100%;
+        right: -20px;
+        left: auto;
+    }
+}
+
+.navbar .navbar__choose-language {
+    @apply flex items-center justify-center;
+
+    path {
+        @apply fill-blue-medium;
+    }
+
+    @include min-width(lg) {
+        height: 50px;
+        width: 50px;
     }
 }
 

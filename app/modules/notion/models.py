@@ -17,10 +17,10 @@ from wagtail.admin.panels import (
 )
 
 # Project
-from config.template import commitment_summary
-from modules.notion.data import CAPITALS
 from modules.content.blocks import TAG_PAGE_BODY_BLOCKS
 from modules.taxonomy.models.core import BaseTag
+from modules.notion.data import CAPITALS
+from config.template import commitment_summary
 
 
 class NotionModel(models.Model):
