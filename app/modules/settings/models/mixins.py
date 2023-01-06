@@ -2,11 +2,11 @@
 from cacheops import cached
 from django.db import models
 from django.conf import settings
-from django.core.cache import cache
 from wagtail.fields import StreamField
-from django.utils.translation import gettext_lazy as _
+from django.core.cache import cache
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
-from wagtail.contrib.settings.models import BaseSetting
+from django.utils.translation import gettext_lazy as _
+from wagtail.contrib.settings.models import BaseSiteSetting
 
 # Project
 from modules.content.blocks import SEARCH_BLOCKS
@@ -18,7 +18,7 @@ from modules.settings.blocks import navbar_blocks, footer_nav_blocks, social_med
 ####################################################################################################
 
 
-class SearchSettings(BaseSetting):
+class SearchSettings(BaseSiteSetting):
 
     class Meta:
         abstract = True
@@ -40,7 +40,7 @@ class SearchSettings(BaseSetting):
         return obj.body
 
 
-class AnalyticsSettings(BaseSetting):
+class AnalyticsSettings(BaseSiteSetting):
 
     class Meta:
         abstract = True
@@ -78,7 +78,7 @@ class AnalyticsSettings(BaseSetting):
     ]
 
 
-class MetaTagSettings(BaseSetting):
+class MetaTagSettings(BaseSiteSetting):
 
     class Meta:
         abstract = True
@@ -117,7 +117,7 @@ class MetaTagSettings(BaseSetting):
     ]
 
 
-class SocialMediaSettings(BaseSetting):
+class SocialMediaSettings(BaseSiteSetting):
 
     class Meta:
         abstract = True
@@ -165,7 +165,7 @@ class SocialMediaSettings(BaseSetting):
 ####################################################################################################
 
 
-class NavBar(BaseSetting):
+class NavBar(BaseSiteSetting):
 
     class Meta:
         abstract = True
@@ -224,14 +224,14 @@ class NavBar(BaseSetting):
         navbar_blocks = cls._meta.get_field('navbar_blocks').name
         return [navbar_blocks]
 
-    navigation_panels = [
+    navbar_panels = [
         MultiFieldPanel([
             FieldPanel('navbar_blocks'),
         ], heading=_("Navbar")),
     ]
 
 
-class Footer(BaseSetting):
+class Footer(BaseSiteSetting):
 
     class Meta:
         abstract = True
@@ -256,9 +256,9 @@ class Footer(BaseSetting):
         footer_nav2 = cls._meta.get_field('footer_nav2').name
         return [footer_nav, footer_nav2]
 
-    navigation_panels = [
+    footer_panels = [
         MultiFieldPanel([
-            FieldPanel('footer_nav', _('Legal')),
-            FieldPanel('footer_nav2', _('Contact')),
+            FieldPanel('footer_nav', heading=_('Legal')),
+            FieldPanel('footer_nav2', heading=_('Contact')),
         ], heading=_("Footer")),
     ]

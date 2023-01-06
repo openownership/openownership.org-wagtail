@@ -1,6 +1,9 @@
+# 3rd party
 from django import forms
 from wagtail import blocks
 from wagtail.documents.blocks import DocumentChooserBlock
+
+# Project
 from modules.content.blocks.mixins import CTABlockStructValue
 
 
@@ -18,7 +21,7 @@ class NavItem(blocks.StructBlock):
             ('document', 'Document'),
             ('url', 'URL'),
         ],
-        widget=forms.RadioSelect,
+        widget=forms.RadioSelect(),
         required=True,
         default='page',
     )

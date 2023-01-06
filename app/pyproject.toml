@@ -17,7 +17,7 @@ django-extensions = "*"
 django-redis = "*"
 django-storages = "*"
 django_select2 = "*"
-envkey = "*"
+envkey = "^1"
 hiredis = "*"
 ipython = "8.0.1"
 jinja2 = "*"
@@ -39,6 +39,7 @@ wagtail-modelchooser = "^2.14.1"
 Jinja2 = "^3.1.2"
 django-taggit = "^3.0.0"
 Django = "^4.1.2"
+django-modelcluster = "^6.0"
 
 
 [tool.poetry.dev-dependencies]

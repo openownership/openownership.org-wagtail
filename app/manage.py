@@ -1,9 +1,14 @@
 #!/usr/bin/env python
 from __future__ import absolute_import, unicode_literals
 
+# stdlib
 import os
 import sys
+
+# 3rd party
 from consoler import console
+
+
 try:
     import envkey  # NOQA
 except Exception:

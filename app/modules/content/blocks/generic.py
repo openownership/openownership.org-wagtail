@@ -1,8 +1,8 @@
 # 3rd party
 from django import forms
+from wagtail import blocks
 from cacheops import cached  # NOQA
 from django.apps import apps
-from wagtail import blocks
 from wagtail.models import Page
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.documents.blocks import DocumentChooserBlock
@@ -131,7 +131,7 @@ class LinkBlock(blocks.StructBlock):
             ('document', 'Document'),
             ('url', 'URL')
         ],
-        widget=forms.RadioSelect,
+        widget=forms.RadioSelect(),
         required=True,
         default='none',
     )

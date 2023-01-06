@@ -1,13 +1,13 @@
-from cacheops import invalidate_all
+# 3rd party
+from cacheops import CacheMiss, cache, invalidate_all
 from django.conf import settings
-from cacheops import cache, CacheMiss
-from django.utils.translation import gettext_lazy as _
-
-from .mixins import Footer, NavBar
-
-from wagtail.admin.panels import ObjectList, TabbedInterface
-from wagtail.contrib.settings.models import register_setting
 from wagtailcache.cache import clear_cache
+from wagtail.admin.panels import ObjectList, TabbedInterface
+from django.utils.translation import gettext_lazy as _
+from wagtail.contrib.settings.models import register_setting
+
+# Module
+from .mixins import Footer, NavBar
 
 
 @register_setting(icon="fa-bars")
@@ -66,8 +66,8 @@ class NavigationSettings(NavBar, Footer):
         return super().save(*args, **kwargs)
 
     base_tabs = [
-        ObjectList(NavBar.navigation_panels, heading=_('Navbar')),
-        ObjectList(Footer.navigation_panels, heading=_('Footer')),
+        ObjectList(NavBar.navbar_panels, heading=_('Navbar')),
+        ObjectList(Footer.footer_panels, heading=_('Footer')),
     ]
 
     edit_handler = TabbedInterface(base_tabs)

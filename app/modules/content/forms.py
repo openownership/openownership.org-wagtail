@@ -1,7 +1,9 @@
+# 3rd party
 from django import forms
 
+# Project
 from modules.notion.models import CountryTag
-from modules.taxonomy.models import PrincipleTag, PublicationType, SectionTag, SectorTag
+from modules.taxonomy.models import SectorTag, SectionTag, PrincipleTag, PublicationType
 
 
 class CookiesForm(forms.Form):
@@ -25,7 +27,7 @@ class CookiesForm(forms.Form):
             self.fields[field_key] = forms.ChoiceField(
                 choices=self.COOKIE_CHOICES,
                 required=True,
-                widget=forms.RadioSelect,
+                widget=forms.RadioSelect(),
                 initial=cookies.get(cookie_key, default)
             )
 

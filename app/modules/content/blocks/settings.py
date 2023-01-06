@@ -1,7 +1,7 @@
 # 3rd party
 from django import forms
-from django.conf import settings
 from wagtail import blocks
+from django.conf import settings
 from wagtail.documents.blocks import DocumentChooserBlock
 
 # Module
@@ -22,7 +22,7 @@ class NavigationItem(blocks.StructBlock):
             ('document', 'Document'),
             ('url', 'URL'),
         ],
-        widget=forms.RadioSelect,
+        widget=forms.RadioSelect(),
         required=True,
         default='page',
     )
