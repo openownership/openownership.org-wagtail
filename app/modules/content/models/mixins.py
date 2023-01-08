@@ -216,12 +216,12 @@ class TaggedPageMixin(PageMixinBase):
     )
 
     about_panels = [
-        PublicationTypeFieldPanel('publication_type', _('Content type')),
+        PublicationTypeFieldPanel('publication_type', heading=_('Content type')),
         # FieldPanel('areas_of_focus', _('Areas of focus')),
-        FieldPanel('sectors', _('Topics')),
-        FieldPanel('countries', _('Countries')),
-        FieldPanel('sections', _('Sections')),
-        FieldPanel('principles', _('Open Ownership Principles')),
+        FieldPanel('sectors', heading=_('Topics')),
+        FieldPanel('countries', heading=_('Countries')),
+        FieldPanel('sections', heading=_('Sections')),
+        FieldPanel('principles', heading=_('Open Ownership Principles')),
     ]
 
     search_fields = [

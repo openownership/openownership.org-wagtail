@@ -1,6 +1,14 @@
 {% set page_menu_title = _("Contents") %}
 {% extends 'base_with_header_and_menu.jinja' %}
 
+{% if page.download_document %}
+    {% set img_link = page.download_document.url %}
+{% elif page.external_link %}
+    {% set img_link = page.external_link %}
+{% else %}
+    {% set img_link = "" %}
+{% endif %}
+
 
 {% block content %}
 
@@ -9,7 +17,9 @@
     <div class="publication-front-page__overview">
         {% if page.cover_image %}
         <div class="publication-front-page__cover">
+            {% if img_link %}<a href="{{ img_link }}">{% endif %}
             {{ picture(page.cover_image, 200, 300, alt="Cover") }}
+            {% if img_link %}</a>{% endif %}
         </div>
         {% endif %}
 
