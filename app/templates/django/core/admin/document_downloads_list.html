@@ -1,13 +1,5 @@
 {% extends "wagtailadmin/base.html" %}
 {% load wagtailimages_tags static wagtail_template %}
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'wagtailmodeladmin/css/index.css' %}" type="text/css" />
-    {{ filter_form.media.css }}
-{% endblock %}
-{% block extra_js %}
-    {{ filter_form.media.js }}
-{% endblock %}
-
 {% block content %}
 {% include "wagtailadmin/shared/header.html" with title='Document downloads' icon='download' merged=True action_url=export_csv_url action_text='Export results as CSV' action_icon='download' %}
 <div class="downloads-list">
