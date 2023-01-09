@@ -592,3 +592,7 @@ TRANS_STRINGS = [
     _('Sign up to receive our latest reports, news and updates'),
     _('Sign up'),
 ]
+
+
+SLACK_HOOK_WAGBOT = os.environ.get('SLACK_HOOK_WAGBOT')
+SLACK_HOOK_NOTIONBOT = os.environ.get('SLACK_HOOK_NOTIONBOT')
