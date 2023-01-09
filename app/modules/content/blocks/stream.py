@@ -1037,7 +1037,7 @@ class AreasOfFocusBlock(blocks.StructBlock):
     )
 
     tags = blocks.ListBlock(
-        SnippetChooserBlock(
+        ModelChooserBlock(
             'taxonomy.FocusAreaTag',
             required=True,
         ),
@@ -1090,7 +1090,7 @@ class SectorsBlock(AreasOfFocusBlock):
     )
 
     tags = blocks.ListBlock(
-        SnippetChooserBlock(
+        ModelChooserBlock(
             'taxonomy.SectorTag',
             required=True,
         ),
