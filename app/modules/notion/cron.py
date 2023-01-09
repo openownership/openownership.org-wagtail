@@ -15,6 +15,9 @@ from modules.notion.auth import get_notion_client
 from modules.notion.data import COUNTRY_TRACKER, COMMITMENT_TRACKER, DISCLOSURE_REGIMES
 from modules.notion.models import Commitment, CountryTag, CoverageScope, DisclosureRegime
 
+# Module
+from .helpers import check_headers
+
 
 DEFAULT_DATE = arrow.get('1970-01-01').datetime
 
@@ -490,8 +493,10 @@ class SyncCountries(NotionCronBase):
         if not data:
             data = self.fetch_all_data(COUNTRY_TRACKER)
 
-        self._process_data(data, force)
-        self._clean_up(data)
+        if check_headers("Country", data):
+            self._process_data(data, force)
+            self._clean_up(data)
+
 
     def _process_data(self, data: dict, force: bool = False) -> bool:
         results = data.get('results', [])
@@ -604,16 +609,17 @@ class SyncCommitments(NotionCronBase):
         if not data:
             data = self.fetch_all_data(COMMITMENT_TRACKER)
 
-        results = data.get('results', [])
-        if len(results):
-            # Do stuff here to save the data from Notion
-            for item in results:
-                self._handle_commitment(item)
-        else:
-            # Notify of failure, probably Slack and logging
-            console.warn("Commitments - Results was zero len")
+        if check_headers("Commitment", data):
+            results = data.get('results', [])
+            if len(results):
+                # Do stuff here to save the data from Notion
+                for item in results:
+                    self._handle_commitment(item)
+            else:
+                # Notify of failure, probably Slack and logging
+                console.warn("Commitments - Results was zero len")
 
-        self._clean_up(data)
+            self._clean_up(data)
 
     def _handle_commitment(self, commitment: dict) -> bool:
         """Gets data from notion (`commitment`) and saves it as a Commitment.
@@ -713,16 +719,17 @@ class SyncRegimes(NotionCronBase):
         if not data:
             data = self.fetch_all_data(DISCLOSURE_REGIMES)
 
-        results = data.get('results', [])
-        if len(results):
-            # Do stuff here to save the data from Notion
-            for item in results:
-                self._handle_regime(item, force)
-        else:
-            # Notify of failure, probably Slack and logging
-            console.warn("Regimes - Results was zero len")
+        if check_headers("Disclosure Regime", data):
+            results = data.get('results', [])
+            if len(results):
+                # Do stuff here to save the data from Notion
+                for item in results:
+                    self._handle_regime(item, force)
+            else:
+                # Notify of failure, probably Slack and logging
+                console.warn("Regimes - Results was zero len")
 
-        self._clean_up(data)
+            self._clean_up(data)
 
     def _handle_regime(self, regime: dict, force: bool = False) -> bool:
         """Gets data from notion (`regime`) and saves it as a DisclosureRegime.

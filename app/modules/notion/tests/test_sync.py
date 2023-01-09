@@ -1,11 +1,12 @@
-from modules.notion.samples.commitments import COMMITMENTS
-from modules.notion.samples.countries import COUNTRIES
-from modules.notion.samples.regimes import REGIMES
+from modules.notion.samples.commitments import COMMITMENTS, COMMITMENTS_WRONG
+from modules.notion.samples.countries import COUNTRIES, COUNTRIES_WRONG
+from modules.notion.samples.regimes import REGIMES, REGIMES_WRONG
 
 from modules.notion.models import CountryTag, Commitment
 from modules.notion.cron import (
     SyncRegimes, SyncCountries, SyncCommitments, DisclosureRegime, CoverageScope, NotionCronBase
 )
+from modules.notion.helpers import check_headers
 
 from .data import (
     LEGISLATION_RICHTEXT,
@@ -89,3 +90,39 @@ def test_mega_rich_text():
     value = cron._get_value(data, '1.1 Definition: Legislation URL')
     assert value is not None
     assert value == MEGA_RICHTEXT_TARGET
+
+
+def test_check_headers_country():
+    data = COUNTRIES
+    res = check_headers("Country", data)
+    assert res is True
+
+
+def test_check_headers_commitment():
+    data = COMMITMENTS
+    res = check_headers("Commitment", data)
+    assert res is True
+
+
+def test_check_headers_regime():
+    data = REGIMES
+    res = check_headers("Disclosure Regime", data)
+    assert res is True
+
+
+def test_check_headers_country_wrong():
+    data = COUNTRIES_WRONG
+    res = check_headers("Country", data)
+    assert res is False
+
+
+def test_check_headers_commitment_wrong():
+    data = COMMITMENTS_WRONG
+    res = check_headers("Commitment", data)
+    assert res is False
+
+
+def test_check_headers_regime_wrong():
+    data = REGIMES_WRONG
+    res = check_headers("Disclosure Regime", data)
+    assert res is False

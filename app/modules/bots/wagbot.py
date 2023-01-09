@@ -23,7 +23,7 @@ class WagBot(object):
         self.channel = "#general"
         self.username = "Wagbot"
         self.success_emoji = ":tada:"
-        self.fail_emoji = ":thinking_face:"
+        self.fail_emoji = ":warning:"
         self.success_prefix = ""
         self.fail_prefix = ""
         self.hook = settings.SLACK_HOOK_WAGBOT
@@ -44,7 +44,10 @@ class WagBot(object):
                 "text": body
             }
             data = json.dumps(payload)
-            rv = requests.post(self.hook, data=data)  # NOQA
+            if not settings.TESTING:
+                rv = requests.post(self.hook, data=data)  # NOQA
+            else:
+                console.info(data)
         except Exception as e:
             logger.warn('failed to post to slack')
             logger.warn(e)

@@ -37,6 +37,8 @@ WAGTAILEMBEDS_RESPONSIVE_HTML = True
 # Tell the stats module to store view counts in Redis
 STATS_USE_REDIS = True
 
+TESTING = False
+
 
 ####################################################################################################
 # Feature Flags

@@ -28,3 +28,5 @@ DOMAIN_NAME = 'openownership.org.test'
 SITE_PORT = 5000
 
 WAGTAIL_CACHE = False
+
+TESTING = True

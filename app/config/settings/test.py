@@ -21,6 +21,8 @@ ASSETS_AUTO_BUILD = True
 
 WAGTAIL_CACHE = False
 
+TESTING = True
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
