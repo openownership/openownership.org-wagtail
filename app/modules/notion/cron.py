@@ -11,15 +11,25 @@ from django.db.models import Model
 from django.template.defaultfilters import slugify
 
 # Project
+from modules.bots.notionbot import notionbot
+
+# Module
+from .helpers import check_headers
 from modules.notion.auth import get_notion_client
 from modules.notion.data import COUNTRY_TRACKER, COMMITMENT_TRACKER, DISCLOSURE_REGIMES
 from modules.notion.models import Commitment, CountryTag, CoverageScope, DisclosureRegime
 
-# Module
-from .helpers import check_headers
-
 
 DEFAULT_DATE = arrow.get('1970-01-01').datetime
+
+
+
+class NotionError(Exception):
+    message = ''
+
+    def __init__(self, message=''):
+        self.message = message
+        notionbot.fail(message)
 
 
 class NotionCronBase(CronJobBase):
@@ -63,7 +73,7 @@ class NotionCronBase(CronJobBase):
             console.error(e)
             if settings.DEBUG:
                 import ipdb; ipdb.set_trace()
-            raise
+            raise NotionError(f"Error fetching data - {e}")
 
         return initial_data
 
@@ -855,7 +865,7 @@ class SyncRegimes(NotionCronBase):
         except Exception as e:
             console.warn("Failed to add scope tags")
             console.warn(e)
-            raise
+            raise NotionError(f"Failed to add scope tags - {e}")
         else:
             # console.info(f"Scope tags: {tags}")
             return tags
@@ -891,4 +901,4 @@ class SyncRegimes(NotionCronBase):
         except Exception as e:
             console.warn("Failed to get Stages")
             console.warn(e)
-            raise
+            raise NotionError(f"Failed to get Stages - {e}")
