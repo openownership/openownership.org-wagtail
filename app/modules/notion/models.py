@@ -292,7 +292,20 @@ class DisclosureRegime(NotionModel):
     )
 
     @cached_property
-    def implementation_central(self):
+    def display(self) -> bool:
+        """Should this regime be displayed on the country page or included in the downloadable
+        csv data?
+
+        Returns:
+            bool: Whether to include it or not
+        """
+        if self.implementation_stage and 'Publish' in self.implementation_stage:
+            if self.display_scope and 'Subnational' not in self.display_scope:
+                return True
+        return False
+
+    @cached_property
+    def implementation_central(self) -> bool:
         """For the Implementation of BOT tab, you'll need to aggregate implementations
         for a country and then tick 'Implementation of BOT/Central register' where any
         implementations listed in the Disclosure regimes tracker have the '4 Central'
@@ -303,7 +316,7 @@ class DisclosureRegime(NotionModel):
         return False
 
     @cached_property
-    def implementation_public(self):
+    def implementation_public(self) -> bool:
         """'Implementation of BOT/Public register' tick box, this should be ticked for a
         country page where any implementations listed where the
         '5.1 Public access' field = Yes plus the 0 Stage field = Publish.
@@ -772,6 +785,14 @@ class CountryTag(NotionModel, BaseTag):
     def url(self):
         try:
             return reverse('country-tag', args=(self.slug, ))
+        except Exception as e:
+            console.warn(e)
+            return "#"
+
+    @cached_property
+    def data_export_url(self):
+        try:
+            return reverse('country-export', args=(self.slug, ))
         except Exception as e:
             console.warn(e)
             return "#"

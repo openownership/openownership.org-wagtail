@@ -108,9 +108,9 @@
         </div>
     </div>
 
-    {# <div>
-        <a href="#" class="ghost-link">{% trans %}Download Country Data{% endtrans %}</a>
-    </div> #}
+    <div>
+        <a href="{{ country.data_export_url }}" class="ghost-link">{% trans %}Download Country Data{% endtrans %}</a>
+    </div>
 
     <div>
         {{ _('Data is drawn from publicly-available sources and may not be comprehensive for all countries. If data is incorrect') }}, <a href="https://share.hsforms.com/1ooDVGfPWQFyc93l3Bds9jA3upv4">{{_('please let us know')}}</a>.
@@ -141,72 +141,69 @@
     <h2>{% trans %}Implementation details{% endtrans %}</h2>
 
 {% for regime in country.regimes %}
-    {# only when "publish" #}
-    {% if regime.implementation_stage and 'Publish' in regime.implementation_stage %}
-    {% if regime.display_scope and 'Subnational' not in regime.display_scope %}
-            <p>{{ regime.title }}</p>
+    {% if regime.display %}
+        <p>{{ regime.title }}</p>
 
-            <details>
-                <summary>{% trans %}Show further detail{% endtrans %}</summary>
-                <div class="implementation-details">
-                    <dl>
-                        {% if regime.implementation_title %}
-                        <dt>{% trans %}Name{% endtrans %}</dt>
-                        <dd>
-                            {% if regime.implementation_title_link %}<a href="{{ regime.implementation_title_link }}">{% endif %}
-                            {{ regime.implementation_title }}
-                            {% if regime.implementation_title_link %}</a>{% endif %}
-                        </dd>
-                        {% endif %}
+        <details>
+            <summary>{% trans %}Show further detail{% endtrans %}</summary>
+            <div class="implementation-details">
+                <dl>
+                    {% if regime.implementation_title %}
+                    <dt>{% trans %}Name{% endtrans %}</dt>
+                    <dd>
+                        {% if regime.implementation_title_link %}<a href="{{ regime.implementation_title_link }}">{% endif %}
+                        {{ regime.implementation_title }}
+                        {% if regime.implementation_title_link %}</a>{% endif %}
+                    </dd>
+                    {% endif %}
 
-                        {% if regime.implementation_central is not none %}
-                        <dt>{% trans %}Central register implemented{% endtrans %}</dt>
-                        <dd>{{ regime.implementation_central|yesno }}</dd>
-                        {% endif %}
+                    {% if regime.implementation_central is not none %}
+                    <dt>{% trans %}Central register implemented{% endtrans %}</dt>
+                    <dd>{{ regime.implementation_central|yesno }}</dd>
+                    {% endif %}
 
-                        {% if regime.implementation_public is not none %}
-                        <dt>{% trans %}Public access{% endtrans %}</dt>
-                        <dd>{{ regime.implementation_public|yesno }}</dd>
-                        {% endif %}
+                    {% if regime.implementation_public is not none %}
+                    <dt>{% trans %}Public access{% endtrans %}</dt>
+                    <dd>{{ regime.implementation_public|yesno }}</dd>
+                    {% endif %}
 
-                        {% if regime.display_scope %}
-                        <dt>{% trans %}Scope{% endtrans %}</dt>
-                        <dd>{{ regime.display_scope }}</dd>
-                        {% endif %}
+                    {% if regime.display_scope %}
+                    <dt>{% trans %}Scope{% endtrans %}</dt>
+                    <dd>{{ regime.display_scope }}</dd>
+                    {% endif %}
 
-                        {% if regime.display_register_launched %}
-                        <dt>{% trans %}Register launched{% endtrans %}</dt>
-                        <dd>{{ regime.display_register_launched }}</dd>
-                        {% endif %}
+                    {% if regime.display_register_launched %}
+                    <dt>{% trans %}Register launched{% endtrans %}</dt>
+                    <dd>{{ regime.display_register_launched }}</dd>
+                    {% endif %}
 
-                        {% if regime.display_threshold %}
-                        <dt>{% trans %}Threshold used to determine beneficial ownership{% endtrans %}</dt>
-                        <dd>{{ regime.display_threshold }}</dd>
-                        {% endif %}
+                    {% if regime.display_threshold %}
+                    <dt>{% trans %}Threshold used to determine beneficial ownership{% endtrans %}</dt>
+                    <dd>{{ regime.display_threshold }}</dd>
+                    {% endif %}
 
-                        {% if regime.display_structured_data is not none %}
-                        <dt>{% trans %}Structured data publicly available{% endtrans %}</dt>
-                        <dd>{{ regime.display_structured_data|yesno }}</dd>
-                        {% endif %}
+                    {% if regime.display_structured_data is not none %}
+                    <dt>{% trans %}Structured data publicly available{% endtrans %}</dt>
+                    <dd>{{ regime.display_structured_data|yesno }}</dd>
+                    {% endif %}
 
-                        {% if regime.display_data_in_bods is not none %}
-                        <dt>{% trans %}Available as BODS{% endtrans %}</dt>
-                        <dd>{{ regime.display_data_in_bods|yesno }}</dd>
-                        {% endif %}
+                    {% if regime.display_data_in_bods is not none %}
+                    <dt>{% trans %}Available as BODS{% endtrans %}</dt>
+                    <dd>{{ regime.display_data_in_bods|yesno }}</dd>
+                    {% endif %}
 
-                        {% if regime.display_api is not none %}
-                        <dt>{% trans %}Available via API{% endtrans %}</dt>
-                        <dd>{{ regime.display_api|yesno }}</dd>
-                        {% endif %}
+                    {% if regime.display_api is not none %}
+                    <dt>{% trans %}Available via API{% endtrans %}</dt>
+                    <dd>{{ regime.display_api|yesno }}</dd>
+                    {% endif %}
 
-                        {% if regime.display_oo_register  %}
-                        <dt>{% trans %}Available on the OO register{% endtrans %}</dt>
-                        <dd>{{ regime.display_oo_register|yesno }}</dd>
-                        {% endif %}
-                    </dl>
-                </div>
-            </details>
-    {% endif %}
+                    {% if regime.display_oo_register  %}
+                    <dt>{% trans %}Available on the OO register{% endtrans %}</dt>
+                    <dd>{{ regime.display_oo_register|yesno }}</dd>
+                    {% endif %}
+                </dl>
+            </div>
+        </details>
     {% endif %}
 {% endfor %}
 </section>

@@ -52,7 +52,7 @@ handler500 = error_500_view
 
 urlpatterns = urlpatterns + i18n_patterns(
     path('map/country/<str:slug>/', CountryView.as_view(), name="country-tag"),
-    path('map/country/<str:slug>.csv', CountryExport.as_view(), name="country-tag"),
+    path('map/country/<str:slug>.csv', CountryExport.as_view(), name="country-export"),
     path("search/", SearchView.as_view(), name="search"),
     re_path(r'', include(wagtail_urls)),
 )
