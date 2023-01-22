@@ -1379,7 +1379,7 @@ dev = ["black (>=19.3b0)", "pytest (>=4.6.2)"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.10"
-content-hash = "957d65f0b5f300e9ecff2f320168e6b8d24e868854524f06e7c25b4166d1a692"
+content-hash = "b43fe721e26ce2cc8e36af883e865ff7678523c4e94bdc7e6bcd8b5ef4e0419f"
 
 [metadata.files]
 anyascii = [
