@@ -147,7 +147,7 @@ class PressLink(index.Indexed, ClusterableModel):
         FieldPanel('thumbnail'),
         FieldPanel('title'),
         FieldPanel('blurb'),
-        FieldPanel('sections', _('Sections')),
+        FieldPanel('sections', heading=_('Sections')),
         MultiFieldPanel(
             [InlinePanel('author_relationships', label=_('Authors'))], heading=_('Authors')
         )

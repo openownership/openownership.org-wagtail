@@ -343,9 +343,9 @@ class JobPage(TaggedPageMixin, ContentPageType):
 
     # Does not use the countries that TaggedPageMixin has:
     about_panels = [
-        PublicationTypeFieldPanel('publication_type', _('Content type')),
-        FieldPanel('areas_of_focus', _('Areas of focus')),
-        FieldPanel('sectors', _('Topics')),
+        PublicationTypeFieldPanel('publication_type', heading=_('Content type')),
+        FieldPanel('areas_of_focus', heading=_('Areas of focus')),
+        FieldPanel('sectors', heading=_('Topics')),
     ]
 
     @cached_property
@@ -770,8 +770,8 @@ class TeamProfilePage(BasePage):
 
     about_panels = [
         FieldPanel('authorship'),
-        FieldPanel('countries', _('Regional experience')),
-        FieldPanel('areas_of_focus', _('Specialist area')),
+        FieldPanel('countries', heading=_('Regional experience')),
+        FieldPanel('areas_of_focus', heading=_('Specialist area')),
         FieldPanel('location'),
         MultiFieldPanel(
             [
@@ -1102,6 +1102,8 @@ class TaxonomyPage(BasePage):
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
+    body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True, use_json_field=True)
+
     tags_title = models.CharField(
         max_length=255,
         blank=True,
@@ -1109,8 +1111,9 @@ class TaxonomyPage(BasePage):
     )
 
     content_panels = BasePage.content_panels + [
-        FieldPanel('intro'),
-        FieldPanel('tags_title'),
+        FieldPanel('intro', heading=_("Intro")),
+        FieldPanel('body', heading=_("Body")),
+        FieldPanel('tags_title', heading=_("Tags title")),
     ]
 
     search_fields = BasePage.search_fields + [
@@ -1218,7 +1221,7 @@ class TagPage(IndexPageType):
     content_panels = BasePage.content_panels + [
         MultiFieldPanel([
             # FieldPanel('focus_area'),
-            FieldPanel('sector', _('Topic')),
+            FieldPanel('sector', heading=_('Topic')),
             FieldPanel('publication_type'),
             FieldPanel('section'),
             FieldPanel('principle'),
