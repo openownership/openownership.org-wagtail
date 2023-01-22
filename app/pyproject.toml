@@ -8,7 +8,7 @@ authors = ["systems@hactar.is"]
 [tool.poetry.dependencies]
 python = ">=3.8,<3.10"
 boto = "*"
-boto3 = "*"
+boto3 = "^1.26.54"
 bugsnag = "*"
 click = "*"
 consoler = "*"
@@ -19,7 +19,7 @@ django-storages = "*"
 django_select2 = "*"
 envkey = "^1"
 hiredis = "*"
-ipython = "8.0.1"
+ipython = "^8.8.0"
 jinja2 = "*"
 loguru = "*"
 psycopg2-binary = "*"
@@ -34,7 +34,7 @@ wagtail-font-awesome-svg = "^0.0.2"
 wagtail-localize = "^1.3.1"
 notion-client = "^0.9.0"
 django-cron = "^0.6.0"
-jedi = "0.17.2"
+jedi = "^0.18.2"
 wagtail-modelchooser = "^2.14.1"
 Jinja2 = "^3.1.2"
 django-taggit = "^3.0.0"
@@ -52,6 +52,9 @@ pytest-pythonpath = "*"
 pytest-sugar = "*"
 packaging = "20.4"
 codacy-coverage = "^1.3.11"
+
+[tool.poetry.group.dev.dependencies]
+packaging = "^23.0"
 
 [build-system]
 requires = ["poetry.core"]

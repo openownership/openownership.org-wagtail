@@ -5,6 +5,7 @@
 
 <article>
 	{{ page.intro|richtext }}
+    {{ render_stream(page.body, page) }}
 </article>
 
 <div class="related-pages">

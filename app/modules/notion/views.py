@@ -1,4 +1,5 @@
 import csv
+import arrow
 from consoler import console  # NOQA
 from django.http import HttpResponse
 from django.views import View
@@ -13,6 +14,8 @@ HEADERS = [
     'Central',
     'Public access',
     'All sectors',
+    'Date',
+    'Link',
     'Central register implemented',
     'Public access',
     'Scope',
@@ -57,6 +60,13 @@ class CountryExport(View):
                 writer.writerow(self._get_regime_row(regime))
         return writer
 
+    def _format_date(self, val):
+        try:
+            dt = arrow.get(val)
+            return dt.format('YYYY-MM-DD')
+        except Exception:
+            return ""
+
     def _get_commitment_row(self, commitment):
         row = []
         row.append("Commitment")
@@ -64,6 +74,8 @@ class CountryExport(View):
         row.append(self._yes_no(commitment.central_register))
         row.append(self._yes_no(commitment.public_register))
         row.append(self._yes_no(commitment.all_sectors))
+        row.append(self._format_date(commitment.date))
+        row.append(commitment.link)
         # Implementation fields
         row.append("")
         row.append("")
@@ -82,6 +94,8 @@ class CountryExport(View):
         row = []
         row.append("Implementation")
         row.append(regime.implementation_title)
+        row.append("")
+        row.append("")
         row.append("")
         row.append("")
         row.append("")
