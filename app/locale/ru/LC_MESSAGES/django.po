@@ -22,93 +22,93 @@ msgstr ""
 
 #: config/settings/base.py:64
 msgid "English"
-msgstr ""
+msgstr "English"
 
 #: config/settings/base.py:65
 msgid "French"
-msgstr ""
+msgstr "Français"
 
 #: config/settings/base.py:66
 msgid "Spanish"
-msgstr ""
+msgstr "Español"
 
 #: config/settings/base.py:67
 msgid "Bahasa Indonesia"
-msgstr ""
+msgstr "Bahasa Indonesia"
 
 #: config/settings/base.py:68
 msgid "German"
-msgstr ""
+msgstr "Deutsch"
 
 #: config/settings/base.py:69
 msgid "Russian"
-msgstr ""
+msgstr "Русский"
 
 #: config/settings/base.py:70
 msgid "Armenian"
-msgstr ""
+msgstr "հայերեն"
 
 #: config/settings/base.py:71
 msgid "Mongolian"
-msgstr ""
+msgstr "Монгол"
 
 #: config/settings/base.py:72
 msgid "Ukrainian"
-msgstr ""
+msgstr "українська"
 
 #: config/settings/base.py:513
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: config/settings/base.py:514
 msgid "Research"
-msgstr ""
+msgstr "Research"
 
 #: config/settings/base.py:515
 msgid "Implementation"
-msgstr ""
+msgstr "Implementation"
 
 #: config/settings/base.py:516
 msgid "Technology"
-msgstr ""
+msgstr "Technology"
 
 #: config/settings/base.py:517
 msgid "Impact"
-msgstr ""
+msgstr "Impact"
 
 #: config/settings/base.py:518
 msgid "Register"
-msgstr ""
+msgstr "Register"
 
 #: config/settings/base.py:519 modules/settings/models/site_settings.py:34
 #: templates/errors/404.jinja:10
 msgid "Search"
-msgstr ""
+msgstr "Search"
 
 #: config/settings/base.py:520 modules/content/models/mixins.py:162
 #: modules/content/models/mixins.py:241 modules/content/models/pages.py:823
 msgid "About"
-msgstr ""
+msgstr "About"
 
 #: config/settings/base.py:522
 msgid "Publications"
-msgstr ""
+msgstr "Publications"
 
 #: config/settings/base.py:523
 msgid "Reports"
-msgstr ""
+msgstr "Reports"
 
 #: config/settings/base.py:524
 msgid "Briefings"
-msgstr ""
+msgstr "Briefings"
 
 #: config/settings/base.py:525
 msgid "Guidance"
-msgstr ""
+msgstr "Guidance"
 
 #: config/settings/base.py:526
 msgid "Consultations"
-msgstr ""
+msgstr "Consultations"
 
 #: config/settings/base.py:527
 msgid "Other publication categories"
@@ -116,25 +116,25 @@ msgstr ""
 
 #: config/settings/base.py:528
 msgid "News"
-msgstr ""
+msgstr "News"
 
 #: config/settings/base.py:529
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 #: config/settings/base.py:530
 msgid "Videos"
-msgstr ""
+msgstr "Videos"
 
 #: config/settings/base.py:531
 msgid "Full list"
-msgstr ""
+msgstr "Full list"
 
 #: config/settings/base.py:532 modules/content/blocks/stream.py:1079
 #: modules/content/models/mixins.py:221 modules/content/models/pages.py:348
 #: modules/taxonomy/models/tags.py:83
 msgid "Topics"
-msgstr ""
+msgstr "Topics"
 
 #: config/settings/base.py:533
 msgid "Financial Action Task Force"
@@ -146,7 +146,7 @@ msgstr ""
 
 #: config/settings/base.py:535
 msgid "Procurement"
-msgstr ""
+msgstr "Procurement"
 
 #: config/settings/base.py:536
 msgid "Private sector"
@@ -159,39 +159,39 @@ msgstr ""
 
 #: config/settings/base.py:538
 msgid "Robust definition"
-msgstr ""
+msgstr "Definition"
 
 #: config/settings/base.py:539
 msgid "Comprehensive coverage"
-msgstr ""
+msgstr "Coverage"
 
 #: config/settings/base.py:540 templates/views/country.jinja:234
 msgid "Sufficient detail"
-msgstr ""
+msgstr "Detail"
 
 #: config/settings/base.py:541
 msgid "A central register"
-msgstr ""
+msgstr "Central register"
 
 #: config/settings/base.py:542
 msgid "Public access"
-msgstr ""
+msgstr "Access"
 
 #: config/settings/base.py:543 modules/notion/models.py:245
 msgid "Structured data"
-msgstr ""
+msgstr "Structured data"
 
 #: config/settings/base.py:544
 msgid "Verification"
-msgstr ""
+msgstr "Verification"
 
 #: config/settings/base.py:545
 msgid "Up to date and auditable"
-msgstr ""
+msgstr "Up-to-date and historical records"
 
 #: config/settings/base.py:546
 msgid "Sanctions and enforcement"
-msgstr ""
+msgstr "Sanctions and enforcement"
 
 #: config/settings/base.py:547
 msgid "Implementation guide"
@@ -211,7 +211,7 @@ msgstr ""
 
 #: config/settings/base.py:551
 msgid "Glossary"
-msgstr ""
+msgstr "Glossary"
 
 #: config/settings/base.py:552
 msgid "Beneficial Ownership Data Standard"
@@ -223,7 +223,7 @@ msgstr ""
 
 #: config/settings/base.py:554
 msgid "Technical guidance"
-msgstr ""
+msgstr "Technical guidance"
 
 #: config/settings/base.py:555
 msgid "Technology tools"
@@ -263,11 +263,11 @@ msgstr ""
 
 #: config/settings/base.py:564
 msgid "Map"
-msgstr ""
+msgstr "Map"
 
 #: config/settings/base.py:565
 msgid "Case studies"
-msgstr ""
+msgstr "Case studies"
 
 #: config/settings/base.py:566
 msgid "The Beneficial Ownership Leadership Group"
@@ -279,19 +279,19 @@ msgstr ""
 
 #: config/settings/base.py:568
 msgid "What we do"
-msgstr ""
+msgstr "What we do"
 
 #: config/settings/base.py:569
 msgid "Working with us"
-msgstr ""
+msgstr "Working with us"
 
 #: config/settings/base.py:570 config/settings/base.py:583
 msgid "Helpdesk"
-msgstr ""
+msgstr "Helpdesk"
 
 #: config/settings/base.py:571
 msgid "Team"
-msgstr ""
+msgstr "Team"
 
 #: config/settings/base.py:572
 msgid "Governance"
@@ -319,15 +319,15 @@ msgstr ""
 
 #: config/settings/base.py:579 modules/settings/models/mixins.py:261
 msgid "Legal"
-msgstr ""
+msgstr "Legal"
 
 #: config/settings/base.py:580
 msgid "Terms"
-msgstr ""
+msgstr "Terms"
 
 #: config/settings/base.py:581
 msgid "Privacy"
-msgstr ""
+msgstr "Privacy"
 
 #: config/settings/base.py:582
 msgid "Press mentions"
