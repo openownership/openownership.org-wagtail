@@ -1280,18 +1280,19 @@ class TagPage(IndexPageType):
         ctx = super().get_context(request, *args, **kwargs)
         from wagtail.embeds import embeds
 
-        try:
-            embed = embeds.get_embed(self.video, max_width=100, max_height=100)
-            html = str(embed.html)
+        if self.video:
+            try:
+                embed = embeds.get_embed(self.video, max_width=100, max_height=100)
+                html = str(embed.html)
 
-            console.info(html)
-            html.replace('width="200"', '')
-            html.replace('height="150"', '')
-            console.info(html)
-            ctx['video_embed'] = html
-        except Exception as e:
-            console.warn(e)
-            ctx['video_embed'] = self.video
+                console.info(html)
+                html.replace('width="200"', '')
+                html.replace('height="150"', '')
+                console.info(html)
+                ctx['video_embed'] = html
+            except Exception as e:
+                console.warn(e)
+                ctx['video_embed'] = self.video
 
         return ctx
 
