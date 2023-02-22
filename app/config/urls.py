@@ -18,7 +18,7 @@ from modules.core.views import (
 )
 
 from modules.content.views import CountryView, SearchView
-from modules.notion.views import CountryExport
+from modules.notion.views import CountryExport, CountriesExport
 
 
 urlpatterns = [
@@ -53,6 +53,7 @@ handler500 = error_500_view
 urlpatterns = urlpatterns + i18n_patterns(
     path('map/country/<str:slug>/', CountryView.as_view(), name="country-tag"),
     path('map/country/<str:slug>.csv', CountryExport.as_view(), name="country-export"),
+    path('map/oo_all_country_data.csv', CountriesExport.as_view(), name="countries-export"),
     path("search/", SearchView.as_view(), name="search"),
     re_path(r'', include(wagtail_urls)),
 )
