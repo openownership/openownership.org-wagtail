@@ -27,7 +27,7 @@ from django.utils.translation import gettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from django.utils.datastructures import MultiValueDictKeyError
 from wagtail.admin.panels import (
-    InlinePanel, MultiFieldPanel, PageChooserPanel, FieldPanel
+    InlinePanel, MultiFieldPanel, PageChooserPanel, FieldPanel, FieldRowPanel
 )
 
 # Project
@@ -41,6 +41,7 @@ from modules.content.blocks import (
 from modules.notion.helpers import map_json, countries_json
 from modules.taxonomy.models import PublicationType
 from modules.content.blocks.stream import GlossaryItemBlock
+from modules.content.forms import FeedbackForm
 from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
 
 # Module
@@ -397,6 +398,8 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
 
     base_form_class = PublicationFrontPageForm
 
+    feedback_form = FeedbackForm
+
     template = 'content/publication_front_page.jinja'
     parent_page_types: list = ['content.PublicationsIndexPage', ]
     subpage_types: list = ['content.PublicationInnerPage']
@@ -561,6 +564,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         context = super().get_context(request, *args, **kwargs)
 
         context['menu_pages'] = self._get_menu_pages()
+        context['feedback_form'] = self.feedback_form()
 
         return context
 

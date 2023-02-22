@@ -4,6 +4,27 @@ from django import forms
 # Project
 from modules.notion.models import CountryTag
 from modules.taxonomy.models import SectorTag, SectionTag, PrincipleTag, PublicationType
+from modules.core.forms import HoneyPotForm
+
+
+class FeedbackForm(HoneyPotForm):
+
+    WHY_CHOICES = [
+        ('inform-policymaking-legislation', 'Inform policymaking / legislation'),
+        ('inform-systems-design', 'Inform systems design'),
+        ('inform-advocacy', 'Inform advocacy'),
+        ('academic-research', 'Academic research'),
+    ]
+
+    WHERE_CHOICES = [
+        ('civil-society', 'Civil society'),
+        ('government-implementer-or-contractor', 'Government (implementer or contractor)'),
+        ('government-bo-data-user', 'Government (BO data user)'),
+        ('private-sector', 'Private sector'),
+    ]
+
+    why_downloading = forms.ChoiceField(widget=forms.RadioSelect, choices=WHY_CHOICES)
+    where_work = forms.ChoiceField(widget=forms.RadioSelect, choices=WHERE_CHOICES)
 
 
 class CookiesForm(forms.Form):
