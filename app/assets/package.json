@@ -25,7 +25,7 @@
     "copy-webpack-plugin": "^10.2.4",
     "core-js": "^3.21.0",
     "css-loader": "^6.6.0",
-    "cssnano": "^5.0.17",
+    "cssnano": "^5.1.15",
     "file-loader": "^6.2.0",
     "postcss-advanced-variables": "^3.0.1",
     "postcss-atroot": "^0.2.3",
