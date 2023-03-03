@@ -29,7 +29,7 @@
     "file-loader": "^6.2.0",
     "postcss-advanced-variables": "^3.0.1",
     "postcss-atroot": "^0.2.3",
-    "postcss-cli": "^9.1.0",
+    "postcss-cli": "^10.1.0",
     "postcss-css-variables": "^0.18.0",
     "postcss-easy-import": "^4.0.0",
     "postcss-extend-rule": "^4.0.0",
