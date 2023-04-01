@@ -8,7 +8,7 @@ authors = ["systems@hactar.is"]
 [tool.poetry.dependencies]
 python = ">=3.8,<3.10"
 boto = "*"
-boto3 = "^1.26.54"
+boto3 = "^1.26.104"
 bugsnag = "*"
 click = "*"
 consoler = "^0.1.4"
