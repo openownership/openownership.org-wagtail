@@ -155,7 +155,14 @@ def static(path):
 
 def yesno(value: str) -> str:
     if value is None:
-        return
+        return ""
+
+    # Handle fields sending other strings
+    transformable = ["Yes", "No", True, False]
+    if value not in transformable:
+        console.info(f"Found non-y/n value {value}")
+        return str(value)
+
     # console.info(value)
     if value:
         return _('Yes')
