@@ -318,6 +318,18 @@ python-versions = "*"
 Django = ">=3.2"
 
 [[package]]
+name = "django-dbbackup"
+version = "4.0.2"
+description = "Management commands to help backup and restore a project database and media."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+django = ">=2.2"
+pytz = "*"
+
+[[package]]
 name = "django-extensions"
 version = "3.2.1"
 description = "Extensions for Django"
@@ -999,6 +1011,14 @@ python-versions = ">=3.7"
 cli = ["click (>=5.0)"]
 
 [[package]]
+name = "python-gnupg"
+version = "0.5.0"
+description = "A wrapper for the Gnu Privacy Guard (GPG or GnuPG)"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "pytz"
 version = "2022.7.1"
 description = "World timezone definitions, modern and historical"
@@ -1378,7 +1398,7 @@ dev = ["black (>=19.3b0)", "pytest (>=4.6.2)"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.10"
-content-hash = "568602442a97630791a9985f18d6e792cd44483d0059d582405b1cbd3c86f5cb"
+content-hash = "b6bb8365be60548c03cbc84eacce506b574dd33505c0b4955f6c16e3faa8d1ed"
 
 [metadata.files]
 anyascii = [
@@ -1636,6 +1656,10 @@ django-cacheops = [
 django-cron = [
     {file = "django-cron-0.6.0.tar.gz", hash = "sha256:dc3c0d3433a2e4e7012f77f6d8415ad90367ba068649db2674325bc36f935841"},
     {file = "django_cron-0.6.0-py3-none-any.whl", hash = "sha256:016203554748512b7f19d7363b4fde8741c6ff63fe8a15051f3031f4a0506a41"},
+]
+django-dbbackup = [
+    {file = "django-dbbackup-4.0.2.tar.gz", hash = "sha256:1874d684abc22260972a67668a6db3331b24d7e1e8af89eaffdcd61eb27dbc2a"},
+    {file = "django_dbbackup-4.0.2-py3-none-any.whl", hash = "sha256:3ccde831f1a8268fb031b37a8e7e2de3abb556623023af1e859cd7104c09ea2a"},
 ]
 django-extensions = [
     {file = "django-extensions-3.2.1.tar.gz", hash = "sha256:2a4f4d757be2563cd1ff7cfdf2e57468f5f931cc88b23cf82ca75717aae504a4"},
@@ -2133,6 +2157,10 @@ python-dateutil = [
 python-dotenv = [
     {file = "python-dotenv-0.21.1.tar.gz", hash = "sha256:1c93de8f636cde3ce377292818d0e440b6e45a82f215c3744979151fa8151c49"},
     {file = "python_dotenv-0.21.1-py3-none-any.whl", hash = "sha256:41e12e0318bebc859fcc4d97d4db8d20ad21721a6aa5047dd59f090391cb549a"},
+]
+python-gnupg = [
+    {file = "python-gnupg-0.5.0.tar.gz", hash = "sha256:70758e387fc0e0c4badbcb394f61acbe68b34970a8fed7e0f7c89469fe17912a"},
+    {file = "python_gnupg-0.5.0-py2.py3-none-any.whl", hash = "sha256:345723a03e67b82aba0ea8ae2328b2e4a3906fbe2c18c4082285c3b01068f270"},
 ]
 pytz = [
     {file = "pytz-2022.7.1-py2.py3-none-any.whl", hash = "sha256:78f4f37d8198e0627c5f1143240bb0206b8691d8d7ac6d78fee88b78733f8c4a"},

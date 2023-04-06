@@ -8,6 +8,7 @@ from __future__ import absolute_import, unicode_literals
 
 # stdlib
 import os
+import arrow
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from datetime import datetime, timedelta
 
@@ -98,6 +99,7 @@ DJANGO_APPS = [
     'storages',
     'django.contrib.staticfiles',
     'django_cron',
+    'dbbackup',
     'cacheops',
 ]
 
@@ -182,6 +184,40 @@ INTERNAL_IPS = ['127.0.0.1']
 APPEND_SLASH = True
 AUTH_USER_MODEL = 'users.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+
+################################################################################
+# Django DB Backup
+################################################################################
+
+now = arrow.now()
+month = now.format('MM')
+
+server_env = os.environ.get('SERVER_ENV', 'dev')
+
+def backup_filename(databasename, servername, datetime, extension, content_type):
+    return f'{server_env}-{datetime}.{extension}'
+
+
+DBBACKUP_GPG_ALWAYS_TRUST = True
+DBBACKUP_GPG_RECIPIENT = "Hactar"
+DBBACKUP_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DBBACKUP_FILENAME_TEMPLATE = backup_filename
+DBBACKUP_STORAGE_OPTIONS = {
+    'access_key': os.environ.get('BACKUPS_AWS_ACCESS_KEY_ID', ''),
+    'secret_key': os.environ.get('BACKUPS_AWS_SECRET_ACCESS_KEY', ''),
+    'bucket_name': 'hactar-backups',
+    'region_name': 'eu-west-1',
+    'location': f'postgres/openownership/{now.year}/{month}/',
+    'default_acl': 'private',
+    'endpoint_url': 'https://s3-eu-west-1.amazonaws.com'
+}
+
+# Check the path to python and add this to cron...
+# 0 3 * * * (/srv/www/app/.venv/bin/python /srv/www/app/manage.py dbbackup -ezq --noinput) &>> /var/log/cronjob.log  # NOQA
+
+# Or run it manually...
+# manpy dbbackup -ezq --noinput
 
 
 ####################################################################################################
