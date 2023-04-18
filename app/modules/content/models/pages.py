@@ -41,7 +41,7 @@ from modules.content.blocks import (
 from modules.notion.helpers import map_json, countries_json
 from modules.taxonomy.models import PublicationType
 from modules.content.blocks.stream import GlossaryItemBlock
-from modules.content.forms import FeedbackForm
+from modules.feedback.forms import FeedbackForm
 from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
 
 # Module
@@ -523,6 +523,16 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         index.SearchField('outcomes'),
         index.SearchField('impact'),
     ]
+
+    def post(self, request, *args, **kwargs):
+        form = self(request.POST)
+        console.info("Form submat!")
+        if form.is_valid():
+            console.info("Form valid!")
+            return self.form_valid(form)
+        else:
+            console.info("Form invalid!")
+            return self.form_invalid(form)
 
     @property
     def date(self):

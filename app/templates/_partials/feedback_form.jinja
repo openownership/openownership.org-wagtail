@@ -2,7 +2,8 @@
 
     <h3>Help us understand how you are making use of resources from the Open Ownership website by filling out this short survey</h3>
 
-    <form action="">
+    <form action="" method="post">
+        {{ csrf_input }}
 
     <div class="hidden">
         <label for="id_x_phone">Please fill this in:</label>

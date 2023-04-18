@@ -40,6 +40,8 @@ STATS_USE_REDIS = True
 
 TESTING = False
 
+CSRF_USE_SESSIONS = True
+
 
 ####################################################################################################
 # Feature Flags
@@ -153,14 +155,16 @@ INSTALLED_APPS = DJANGO_APPS + WAGTAIL_APPS + SITE_APPS
 
 MIDDLEWARE = [
     'modules.stats.middleware.ViewCountMiddleware',
+    'middleware.csrf.CSRFCookieMiddleware',
     'wagtailcache.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     'bugsnag.django.middleware.BugsnagMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'middleware.devpanel.DebugMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',

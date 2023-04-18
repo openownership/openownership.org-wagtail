@@ -18,7 +18,7 @@ from django.conf import settings
 from django.core import serializers
 from django.core.checks import run_checks
 from django.views.debug import SafeExceptionReporterFilter
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.functional import Promise
 from django.views.generic.base import ContextMixin
 from django.core.serializers.json import DjangoJSONEncoder
@@ -36,7 +36,7 @@ _HTML_TYPES = ("text/html", "application/xhtml+xml")
 class LazyEncoder(DjangoJSONEncoder):
     def default(self, obj):
         if isinstance(obj, Promise):
-            return force_text(obj)
+            return force_str(obj)
         return super(LazyEncoder, self).default(obj)
 
 
@@ -218,7 +218,7 @@ class DebugMiddleware:
         ):
             return response
 
-        content = force_text(response.content, encoding=settings.DEFAULT_CHARSET)
+        content = force_str(response.content, encoding=settings.DEFAULT_CHARSET)
 
         pattern = re.escape("</body>")
         bits = re.split(pattern, content, flags=re.IGNORECASE)
