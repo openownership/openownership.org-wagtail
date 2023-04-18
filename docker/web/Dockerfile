@@ -1,4 +1,4 @@
-FROM ghcr.io/hactar-is/ubuntu-20:latest AS builder
+FROM ghcr.io/hactar-is/ubuntu-20:envkey2 AS builder
 
 # Create our working directory
 RUN mkdir -p /usr/srv/app/
@@ -54,9 +54,6 @@ RUN poetry self update 1.2.0 && \
     . /root/.cache/pypoetry/virtualenvs/.venv/bin/activate && \
     cd /usr/srv/app/ && poetry install
 
-
-RUN mkdir -p /root/.cache/pypoetry/virtualenvs/.venv/lib/python3.8/site-packages/envkey/ext/envkey-fetch_1.2.9_linux_arm64 && \
-    cp /usr/local/bin/envkey-fetch /root/.cache/pypoetry/virtualenvs/.venv/lib/python3.8/site-packages/envkey/ext/envkey-fetch_1.2.9_linux_arm64/envkey-fetch
 
 RUN whoami
 RUN ls -la

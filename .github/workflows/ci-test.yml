@@ -35,11 +35,11 @@ jobs:
           python-version: '3.x'
 
       - name: Install EnvKey source
-        run: curl -s https://raw.githubusercontent.com/envkey/envkey-source/master/install.sh | bash
+        run: VERSION=$(curl https://envkey-releases.s3.amazonaws.com/latest/envkeysource-version.txt) && curl -s https://envkey-releases.s3.amazonaws.com/envkeysource/release_artifacts/$VERSION/install.sh | bash
 
       - name: Run tests
         env:
-          ENVKEY: ${{ secrets.ENVKEY }}
+          ENVKEY: ${{ secrets.ENVKEY2 }}
         run: |
           eval $(envkey-source)
           echo $GHCR_TOKEN | docker login ghcr.io -u hactarbot3000 --password-stdin
@@ -48,7 +48,7 @@ jobs:
 
       - name: Report coverage to Codacy
         env:
-          ENVKEY: ${{ secrets.ENVKEY }}
+          ENVKEY: ${{ secrets.ENVKEY2 }}
         run: |
           eval $(envkey-source)
           pip3 install codacy-coverage
@@ -71,12 +71,12 @@ jobs:
           fetch-depth: 0
 
       - name: Install EnvKey source
-        run: curl -s https://raw.githubusercontent.com/envkey/envkey-source/master/install.sh | bash
+        run: VERSION=$(curl https://envkey-releases.s3.amazonaws.com/latest/envkeysource-version.txt) && curl -s https://envkey-releases.s3.amazonaws.com/envkeysource/release_artifacts/$VERSION/install.sh | bash
 
       - name: Configure .ssh and push to staging
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-          ENVKEY: ${{ secrets.ENVKEY }}
+          ENVKEY: ${{ secrets.ENVKEY2 }}
         run: |
           eval $(envkey-source)
           mkdir -p ~/.ssh
@@ -104,12 +104,12 @@ jobs:
           fetch-depth: 0
 
       - name: Install EnvKey source
-        run: curl -s https://raw.githubusercontent.com/envkey/envkey-source/master/install.sh | bash
+        run: VERSION=$(curl https://envkey-releases.s3.amazonaws.com/latest/envkeysource-version.txt) && curl -s https://envkey-releases.s3.amazonaws.com/envkeysource/release_artifacts/$VERSION/install.sh | bash
 
       - name: Configure .ssh and push to staging
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-          ENVKEY: ${{ secrets.ENVKEY }}
+          ENVKEY: ${{ secrets.ENVKEY2 }}
         run: |
           eval $(envkey-source)
           mkdir -p ~/.ssh

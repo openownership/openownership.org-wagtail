@@ -36,6 +36,9 @@ class PublicationType(Category):
         if self.name == "News article":
             return self.news_index
 
+        if self.name == "Publication":
+            return self.publications_index
+
         if self.name == "Blog post":
             return self.blog_index
 
@@ -49,6 +52,19 @@ class PublicationType(Category):
             return page.get_url()
         else:
             return ''
+
+    @cached_property
+    def publications_index(self):
+        from modules.content.models.pages import PublicationsIndexPage
+        try:
+            indx = PublicationsIndexPage.objects.filter(
+                locale=Locale.get_active()
+            ).live().public().first()
+        except Exception as e:
+            console.info(e)
+            indx = PublicationsIndexPage.objects.live().public().first()
+        if indx:
+            return indx.url
 
     @cached_property
     def news_index(self):

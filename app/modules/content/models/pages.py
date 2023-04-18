@@ -913,6 +913,16 @@ class TeamPage(IndexPageType):
     subpage_types: list = ['content.TeamProfilePage']
     max_count = 1
 
+    def get_queryset(self, request):
+
+        """
+        This returns the queryset needed to paginate the objects on the page. It pulls all the
+        valid filters from get_filter_options and carries out the respective logic on the queryset.
+        """
+        query = self.base_queryset().distinct()
+        pages = query.order_by('path')
+        return pages
+
     def get_order_by(self):
         "Order by the order that's been set in Wagtail Admin"
         return ['path']
