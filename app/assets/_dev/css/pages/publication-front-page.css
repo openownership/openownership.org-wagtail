@@ -59,3 +59,21 @@
         margin-right: 1rem;
     }
 }
+
+
+/* Footnotes */
+ol.footnotes{
+    list-style-type: decimal;
+    list-style-position: outside;
+}
+
+.footnotes__item {
+  scroll-margin-top: 20px;
+
+    .footnotes__item-anchor{
+        margin-top: -45px;
+        text-decoration: none;
+        float: right;
+        font-size: 1.4rem;
+    }
+}
