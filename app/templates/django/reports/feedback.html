@@ -1,0 +1,31 @@
+{% extends 'wagtailadmin/reports/base_report.html' %}
+{% load wagtailadmin_tags %}
+{% load wagtailimages_tags %}
+{% load i18n l10n %}
+
+{% block results %}
+
+    {% trans "Feedback" as fb_str %}
+
+    <div class="nice-padding">
+        {% with page_obj as pages %}
+        <div id="page-results">
+            {% if pages %}
+                {% block listing %}
+                    {% include "reports/listing/_list_feedback.html" %}
+                {% endblock %}
+            {% else %}
+                {% block no_results %}
+                    <p>{% trans "No pages match this report's criteria." %}</p>
+                {% endblock %}
+            {% endif %}
+        </div>
+        {% endwith %}
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script defer src="{% versioned_static 'wagtailadmin/js/bulk-actions.js' %}"></script>
+{% endblock %}
