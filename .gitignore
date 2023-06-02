@@ -1,4 +1,5 @@
 .env
+.env.BAK
 
 devops/files/cloud-init.yml
 devops/keys/deploy_key
