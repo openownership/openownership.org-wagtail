@@ -137,13 +137,14 @@ WAGTAIL_APPS = [
 
 SITE_APPS = [
     'modules.cli',
-    'modules.settings',
-    'modules.users',
-    'modules.core',
-    'modules.taxonomy',
     'modules.content',
+    'modules.core',
+    'modules.feedback',
     'modules.notion',
+    'modules.settings',
     'modules.stats',
+    'modules.taxonomy',
+    'modules.users',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + WAGTAIL_APPS + SITE_APPS

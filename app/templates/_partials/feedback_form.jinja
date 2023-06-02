@@ -8,6 +8,8 @@
     <div class="hidden">
         <label for="id_x_phone">Please fill this in:</label>
         <input type="text" name="x_phone" id="id_x_phone">
+        <input type="hidden" name="page_id" id="id_page_id" value="{{ feedback_form.page_id.value() }}">
+        <input type="hidden" name="submission_id" id="id_submission_id" value="{{ feedback_form.submission_id.value() }}">
     </div>
     <div id="id_why_downloading" class="publication-front-page__form-section">
         <label class="publication-front-page__question">Why are you downloading this resource?</label>
@@ -41,8 +43,8 @@
             </label>
         </div>
         <div>
-            <label for="id_why_downloading_4">
-                <input type="text" name="why_downloading" value="" required="" id="id_why_downloading_4" />
+            <label for="id_why_other">
+                <textarea id="id_why_other" name="why_other" rows="5"></textarea>
             </label>
         </div>
     </div>
@@ -79,8 +81,8 @@
             </label>
         </div>
         <div>
-            <label for="id_where_work_4">
-                <input type="text" name="where_work" value="" required="" id="id_where_work_4" />
+            <label for="id_where_other">
+                <textarea id="id_where_other" name="where_other" rows="5"></textarea>
             </label>
         </div>
     </div>

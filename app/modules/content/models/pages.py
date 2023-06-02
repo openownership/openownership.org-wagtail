@@ -42,6 +42,7 @@ from modules.notion.helpers import map_json, countries_json
 from modules.taxonomy.models import PublicationType
 from modules.content.blocks.stream import GlossaryItemBlock
 from modules.feedback.forms import FeedbackForm
+from modules.feedback.models import FeedbackMixin
 from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
 
 # Module
@@ -388,7 +389,7 @@ class PublicationFrontPageForm(WagtailAdminPageForm):
         title.help_text = _("The publication title as you'd like it to be seen by the public")
 
 
-class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
+class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, FeedbackMixin, BasePage):
     """The front and main page of a Publication.
 
     This defines all the information about the Publication as a whole.
@@ -397,8 +398,6 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
     """
 
     base_form_class = PublicationFrontPageForm
-
-    feedback_form = FeedbackForm
 
     template = 'content/publication_front_page.jinja'
     parent_page_types: list = ['content.PublicationsIndexPage', ]
@@ -524,16 +523,6 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
         index.SearchField('impact'),
     ]
 
-    def post(self, request, *args, **kwargs):
-        form = self(request.POST)
-        console.info("Form submat!")
-        if form.is_valid():
-            console.info("Form valid!")
-            return self.form_valid(form)
-        else:
-            console.info("Form invalid!")
-            return self.form_invalid(form)
-
     @property
     def date(self):
         return self.display_date
@@ -572,9 +561,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, BasePage):
 
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)
-
         context['menu_pages'] = self._get_menu_pages()
-        context['feedback_form'] = self.feedback_form()
 
         return context
 

@@ -10,6 +10,7 @@ class FeedbackForm(HoneyPotForm):
         ('inform-systems-design', 'Inform systems design'),
         ('inform-advocacy', 'Inform advocacy'),
         ('academic-research', 'Academic research'),
+        ('other', 'Other'),
     ]
 
     WHERE_CHOICES = [
@@ -17,15 +18,15 @@ class FeedbackForm(HoneyPotForm):
         ('government-implementer-or-contractor', 'Government (implementer or contractor)'),
         ('government-bo-data-user', 'Government (BO data user)'),
         ('private-sector', 'Private sector'),
+        ('other', 'Other'),
     ]
 
     why_downloading = forms.ChoiceField(widget=forms.RadioSelect, choices=WHY_CHOICES)
     where_work = forms.ChoiceField(widget=forms.RadioSelect, choices=WHERE_CHOICES)
 
-    def post(self, request, *args, **kwargs):
-        form = self(request.POST)
-        console.info("Form submat!")
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+    why_other = forms.CharField(required=False, widget=forms.Textarea)
+    where_other = forms.CharField(required=False, widget=forms.Textarea)
+
+    page_id = forms.IntegerField(required=True, widget=forms.HiddenInput())
+    submission_id = forms.UUIDField(required=True, widget=forms.HiddenInput())
+
