@@ -5,6 +5,10 @@ textarea {
     @apply p-2;
 }
 
+textarea {
+    @apply border border-grey-medium w-full;
+}
+
 input[type="text"] {
     @apply border border-border-newsletter;
 }
@@ -40,24 +44,3 @@ input[type="checkbox"] {
     }
 }
 
-
-.publication-front-page__feedback {
-    label{
-        margin-left: 20px;
-        line-height: 30px;
-    }
-    label.publication-front-page__question {
-        margin: 15px 0px;
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
-
-    .publication-front-page__form-section {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-
-    h3{
-        margin-top: 0px;
-    }
-}
