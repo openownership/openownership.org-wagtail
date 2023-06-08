@@ -158,13 +158,14 @@ def yesno(value: str) -> str:
         return ""
 
     # Handle fields sending other strings
-    transformable = ["Yes", "No", True, False]
+    truthy = ["Yes", "yes", "YES", "True", "true", "TRUE", True]
+    falsey = ["No", "NO", "no", "False", "false", "FALSE", False]
+    transformable = truthy + falsey
     if value not in transformable:
         console.info(f"Found non-y/n value {value}")
         return str(value)
 
-    # console.info(value)
-    if value:
+    if value and value in truthy:
         return _('Yes')
     else:
         return _('No')
