@@ -40,6 +40,8 @@ STATS_USE_REDIS = True
 
 TESTING = False
 
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 1500
+
 
 ####################################################################################################
 # Feature Flags

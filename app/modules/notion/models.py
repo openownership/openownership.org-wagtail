@@ -526,9 +526,11 @@ class CountryTag(NotionModel, BaseTag):
     def last_updated(self):
         dates = [self.notion_updated, ]
         for item in self.regimes:
-            dates.append(item.notion_updated)
+            if item is not None and item.notion_updated is not None:
+                dates.append(item.notion_updated)
         for item in self.all_commitments:
-            dates.append(item.notion_updated)
+            if item is not None and item.notion_updated is not None:
+                dates.append(item.notion_updated)
         return max(dates)
 
     @cached_property
