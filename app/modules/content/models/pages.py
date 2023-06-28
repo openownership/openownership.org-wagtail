@@ -15,6 +15,7 @@ from consoler import console
 from django.db import models
 from django.conf import settings
 from wagtail import fields
+from bs4 import BeautifulSoup
 from wagtail.search import index
 from modelcluster.fields import ParentalKey
 from wagtail.admin.forms import WagtailAdminPageForm
@@ -34,6 +35,7 @@ from wagtail.admin.panels import (
 from config.template import url_from_path
 from modules.stats.mixins import Countable
 from modules.notion.models import Region, CountryTag
+from modules.content.blocks.stream import FootnoteBlock
 from modules.content.blocks import (
     HOME_PAGE_BLOCKS, SECTION_PAGE_BLOCKS, ARTICLE_PAGE_BODY_BLOCKS, ADDITIONAL_CONTENT_BLOCKS,
     TEAM_PROFILE_PAGE_BODY_BLOCKS, HighlightPagesBlock, TAG_PAGE_BODY_BLOCKS
@@ -620,8 +622,71 @@ class PublicationInnerPage(ContentPageType):
     # So we don't show display_date:
     settings_panels = Page.settings_panels
 
+    # Override this to add footnotes
+    BLOCKS = ARTICLE_PAGE_BODY_BLOCKS + [
+        ('footnote', FootnoteBlock()),
+    ]
+    body = fields.StreamField(BLOCKS, blank=True, use_json_field=True)
+
     def __str__(self):
         return f"{self.get_parent().title}: {self.title}"
+
+    def get_context(self, request, *args, **kwargs) -> dict:
+        ctx = super().get_context(request, *args, **kwargs)
+        self.footnotes = []
+        stream_dict = self.body.get_prep_value()
+        self._find_footnotes(stream_dict)
+        self._rewrite_anchors(stream_dict)
+        ctx['menu_pages'] = self._get_menu_pages()
+        return ctx
+
+    def _rewrite_anchors(self, stream) -> None:
+        search_in = ['rich_text', 'highlighted_content']
+        for block in stream:
+            if block['type'] in search_in:
+                self._rewrite_anchor(block)
+
+    def _rewrite_anchor(self, block) -> None:
+        soup = BeautifulSoup(block['value'], "html.parser")
+        links = soup.findAll('a')
+        for link in links:
+            href = link.get('href', None)
+            if href and href.startswith('#'):
+                foot_num = self._footnote_index(link['href']) + 1
+                link.string = f"[{foot_num}]"
+                link['name'] = f"source-{foot_num}"
+                block['value'] = str(soup)
+
+    def _footnote_index(self, href: str) -> int:
+        """Takes an anchor href - ie: #test-anchor - and finds the index of that in self.footnotes
+
+        Args:
+            href (str): The anchor we're looking for
+
+        Returns:
+            int: The index
+        """
+        href = href.replace('#', '')
+        for i, dic in enumerate(self.footnotes):
+            if dic['anchor'] == href:
+                return i
+        return -1
+
+    def _find_footnotes(self, stream: dict):
+        """Find every footnote block, and collect their contents for use in page furniture.
+        """
+        footnotes = []
+        for block in stream:
+            if block.get('type', None) == 'footnote':
+                try:
+                    footnotes.append({
+                        'anchor': block['value']['anchor'],
+                        'body': block['value']['body']
+                    })
+                except Exception as e:
+                    console.warn(e)
+
+        self.footnotes = footnotes
 
     @property
     def display_title(self):
@@ -660,13 +725,6 @@ class PublicationInnerPage(ContentPageType):
     def show_display_date_on_page(self):
         "Whether to show the date when displaying the page."
         return self.get_parent().specific.show_display_date
-
-    def get_context(self, request, *args, **kwargs) -> dict:
-        context = super().get_context(request, *args, **kwargs)
-
-        context['menu_pages'] = self._get_menu_pages()
-
-        return context
 
     def get_next_page(self):
         """Returns the next page, according to the order set in Admin.

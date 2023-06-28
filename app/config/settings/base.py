@@ -41,6 +41,7 @@ STATS_USE_REDIS = True
 TESTING = False
 
 CSRF_USE_SESSIONS = True
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 1500
 
 
 ####################################################################################################

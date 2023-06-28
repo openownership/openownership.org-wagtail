@@ -28,6 +28,36 @@ from .generic import CTABlock, ArticleImageBlock
 
 
 ####################################################################################################
+# Footnotes
+####################################################################################################
+
+
+class FootnoteBlock(blocks.StructBlock):
+
+    """The template for these is blank because we don't actually want them
+    to render inline in the stream.
+    """
+
+    class Meta:
+        label = "Footnote"
+        icon = "anchor"
+        template = "blocks/footnote_block.jinja"
+
+    anchor = blocks.CharBlock(
+        max_length=50,
+        help_text="""This is the anchor that you link to in your RichText.
+            Try to make it URL-safe, using `-` characters instead of spaces and punctuation
+            characters."""
+    )
+    body = blocks.RichTextBlock(
+        required=False,
+        features=['bold', 'italic', 'underline', 'small', 'link'],
+        help_text="""Body for the footnote. Wherever you place this block in the stream, it
+            will render at the foot of the page."""
+    )
+
+
+####################################################################################################
 # Glossary
 ####################################################################################################
 

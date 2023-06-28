@@ -9,6 +9,20 @@
 
     {{render_stream(page.body)}}
 
+    {# footnotes #}
+    {% if page.footnotes|length %}
+        <div class="main-column-width">
+            <h2 class="footnotes__title">{{ _("Footnotes") }}</h2>
+            <ol class="footnotes">
+                {% for item in page.footnotes %}
+                    <li class="footnotes__item" id="{{ item.anchor }}">
+                        {{ item.body|richtext }} &nbsp; <a href="#source-{{ loop.index }}" class="footnotes__item-anchor long-read__anchor block flex items-center justify-start static-underline"><pre> &#8617;</pre></a>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+    {% endif %}
+
     {% with next_page=page.get_next_page() %}
         {% if next_page %}
             <p>
