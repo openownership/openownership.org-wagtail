@@ -131,7 +131,6 @@ class FeedbackMixin(PageMixinBase):
     def form_invalid(self, form):
         data = form.cleaned_data
         console.error(data)
-        import ipdb; ipdb.set_trace()
         return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
 
     def _inject_form(self, ctx):
