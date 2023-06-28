@@ -1,0 +1,32 @@
+.publication-front-page__feedback {
+    &.collapsed {
+        display: none;
+    }
+
+    label {
+        margin-left: 20px;
+        line-height: 30px;
+        display: block;
+    }
+    label.publication-front-page__question {
+        margin: 15px 0px;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .publication-front-page__form-section {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    h3{
+        margin-top: 0px;
+    }
+
+    #text-area-why-other, #text-area-where-other  {
+        display: none;
+        &.expanded {
+            display: block;
+        }
+    }
+}

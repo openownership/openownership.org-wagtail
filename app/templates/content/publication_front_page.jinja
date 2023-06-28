@@ -24,7 +24,13 @@
         {% endif %}
 
         {% include "_partials/publication_front_page_details.jinja" %}
+
     </div>
+
+    {% if feedback_form %}
+        {% include "_partials/feedback_form.jinja" %}
+    {% endif %}
+
 
     <div class="publication-front-page__content">
         {% include "_partials/taxonomies.jinja" %}
@@ -49,6 +55,7 @@
             {{ page.impact|richtext }}
         {% endif %}
     </div>
+
 
     {% with next_page=page.get_next_page() %}
         {% if next_page %}
