@@ -1,15 +1,12 @@
 # 3rd party
 import django_filters
 from wagtail.core.models import Page
-from wagtail.admin.widgets import ButtonSelect
 from django.apps import apps
-from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from wagtail.admin.auth import permission_denied
 from wagtail.admin.views.reports import ReportView
 from wagtail.admin.filters import (
     DateRangePickerWidget,
-    FilteredModelChoiceFilter,
     WagtailFilterSet,
 )
 from ..models import FeedbackFormSubmission
@@ -23,6 +20,11 @@ def get_feedback_page_queryset(request):
 
 
 class FeedbackFilterSet(WagtailFilterSet):
+
+    class Meta:
+        model = FeedbackFormSubmission
+        fields = ["page", "why_option", "where_option", "created_at"]
+
     created_at = django_filters.DateFromToRangeFilter(
         label=_("Created at"), widget=DateRangePickerWidget
     )
@@ -40,9 +42,6 @@ class FeedbackFilterSet(WagtailFilterSet):
         empty_label=_("All"),
     )
 
-    class Meta:
-        model = FeedbackFormSubmission
-        fields = ["page", "why_option", "where_option", "created_at"]
 
 
 class FeedbackReportView(ReportView):

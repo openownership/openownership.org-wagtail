@@ -20,7 +20,7 @@ class FeedbackFormSubmission(models.Model):
         verbose_name_plural = 'Feedback'
         ordering = ['-created_at']
 
-    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, editable=False)
 
     page = models.ForeignKey(
         'wagtailcore.Page',
@@ -117,7 +117,7 @@ class FeedbackMixin(PageMixinBase):
             console.info(data)
             sub = FeedbackFormSubmission()
             sub.page_id = int(data['page_id'])
-            sub.id = data['submission_id']
+            sub.id = uuid4()
             sub.why_option = data['why_downloading']
             sub.where_option = data['where_work']
             sub.why_other = data['why_other']
@@ -144,22 +144,22 @@ class FeedbackMixin(PageMixinBase):
         )
         return ctx
 
-    @classmethod
-    def get_feedback_counts(cls):
+    # @classmethod
+    # def get_feedback_counts(cls):
 
-        option_ids = FeedbackFormOption.objects.values_list('pk', flat=True)
-        count_queries = {}
+    #     option_ids = FeedbackFormOption.objects.values_list('pk', flat=True)
+    #     count_queries = {}
 
-        for option_id in option_ids:
-            key = 'option_{}_count'.format(option_id)
-            count_queries[key] = \
-                Count(Case(When(
-                    feedback__option_id=option_id, then=1), output_field=models.IntegerField()
-                )
-            )
+    #     for option_id in option_ids:
+    #         key = 'option_{}_count'.format(option_id)
+    #         count_queries[key] = \
+    #             Count(Case(When(
+    #                 feedback__option_id=option_id, then=1), output_field=models.IntegerField()
+    #             )
+    #         )
 
-        return Page.objects.filter(
-            feedback__isnull=False).distinct().annotate(
-            **count_queries).values(
-            'id', 'title', *count_queries.keys()
-        )
+    #     return Page.objects.filter(
+    #         feedback__isnull=False).distinct().annotate(
+    #         **count_queries).values(
+    #         'id', 'title', *count_queries.keys()
+    #     )
