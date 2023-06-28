@@ -29,5 +29,5 @@ class FeedbackForm(HoneyPotForm):
     where_other = forms.CharField(required=False, widget=forms.Textarea)
 
     page_id = forms.IntegerField(required=True, widget=forms.HiddenInput())
-    submission_id = forms.UUIDField(required=True, widget=forms.HiddenInput())
+    # submission_id = forms.UUIDField(required=True, widget=forms.HiddenInput())
 
