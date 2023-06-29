@@ -27,6 +27,13 @@ PRIVATE_FOLDER = '/usr/srv/private/'
 DOMAIN_NAME = 'openownership.org.test'
 SITE_PORT = 5000
 
-WAGTAIL_CACHE = False
+WAGTAIL_CACHE = True
 
 TESTING = True
+
+
+# CSRF cookies etc.
+CSRF_USE_SESSIONS = False
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_HTTPONLY = True
+CSRF_HEADER_NAME = "X-CSRFToken"
