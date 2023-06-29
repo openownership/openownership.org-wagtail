@@ -47,6 +47,11 @@ if (giveFeedbackButton) {
             giveFeedbackButton.setAttribute('aria-expanded', true);
             feedbackForm.classList.remove('collapsed');
 
+            // remove success message if a new form is opened
+            if (successMessage && !successMessage.classList.contains('collapsed')) {
+                successMessage.classList.add('collapsed');
+            }
+
             //attach event listener to the radio buttons and check if "other" was chosen
             document.querySelectorAll("input[name='why_downloading']").forEach((input) => {
                 if (!input.getAttribute('data-event-listener')) {
