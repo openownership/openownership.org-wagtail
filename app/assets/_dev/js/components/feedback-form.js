@@ -59,6 +59,7 @@ if (giveFeedbackButton) {
                 }
             });
 
+            feedbackForm.scrollIntoView();
         } else {
             giveFeedbackButton.setAttribute('aria-expanded', false);
 
