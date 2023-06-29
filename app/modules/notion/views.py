@@ -27,7 +27,7 @@ COUNTRY_HEADERS = [
     'Register launched',
     'Threshold used to determine beneficial ownership',
     'Structured data publicly available',
-    'Available as BODS',
+    'Published as BODS',
     'Available via API',
     'Available on the OO register'
 ]
