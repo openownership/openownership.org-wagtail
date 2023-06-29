@@ -30,7 +30,16 @@
     {% if feedback_form %}
         {% include "_partials/feedback_form.jinja" %}
     {% endif %}
-
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <div id="success-message" class="publication-front-page__feedback key-learning-outcomes">
+                    <p>Thank you for letting us know. This helps us understand our audience, so we can make our resources more useful.</p>
+                    <div id="dismiss-success-message"><small>Click here to dismiss message</small></div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
     <div class="publication-front-page__content">
         {% include "_partials/taxonomies.jinja" %}

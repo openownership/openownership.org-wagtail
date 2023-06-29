@@ -7,6 +7,9 @@ var textAreaWhereOther = document.getElementById('text-area-where-other');
 var whyOtherRadioButton = document.getElementById('id_why_downloading_4');
 var whereOtherRadioButton = document.getElementById('id_where_downloading_4');
 
+var successMessage = document.getElementById('success-message');
+var dismissMessage = document.getElementById('dismiss-success-message');
+
 if (giveFeedbackButton) {
     giveFeedbackButton.addEventListener('click', (e) => {
         e.preventDefault();
@@ -78,7 +81,9 @@ if (giveFeedbackButton) {
     }); 
 }
 
-
-
-
-
+if (successMessage) {
+    dismissMessage.addEventListener('click', (e) => {
+        e.preventDefault();
+        successMessage.classList.add('collapsed');
+    });
+}

@@ -48,7 +48,7 @@ class FeedbackReportView(ReportView):
 
     menu_title = "Feedback"
     title = "Feedback form submissions"
-    header_icon = "questionmark"
+    header_icon = "help"
     template_name = "reports/feedback.html"
     filterset_class = FeedbackFilterSet
 

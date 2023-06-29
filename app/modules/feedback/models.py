@@ -1,6 +1,7 @@
 # 3rd party
 from consoler import console
 from uuid import uuid4
+from django.contrib import messages
 from django.db import models
 from django.http import HttpResponseRedirect
 from django_extensions.db.fields import (
@@ -77,6 +78,7 @@ class FeedbackMixin(PageMixinBase):
     def get_context(self, request, *args, **kwargs) -> dict:
         ctx = super().get_context(request, *args, **kwargs)
         ctx = self._inject_form(ctx)
+        ctx['messages'] = messages.get_messages(request)
         return ctx
 
     def serve(self, request, *args, **kwargs):
@@ -87,6 +89,7 @@ class FeedbackMixin(PageMixinBase):
             console.info("FeedbackMixin - Form submat!")
             if form.is_valid():
                 console.info("FeedbackMixin - Form valid!")
+                messages.success(request, 'Form submitted')
                 return self.form_valid(form)
             else:
                 console.warn("FeedbackMixin - Form invalid!")
