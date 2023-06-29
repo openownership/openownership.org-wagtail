@@ -41,6 +41,13 @@
         </div>
     </div>
 
+    {% if country.oo_ongoing_work_title and country.oo_ongoing_work_body %}
+        <div class="country-page__ongoing_work">
+            <h3>{{ country.oo_ongoing_work_title }}</h3>
+            <p>{{ country.oo_ongoing_work_body|richtext }}</p>
+        </div>
+    {% endif %}
+
     <div class="country-page__country-data">
 
         <div class="country-page__country-data-box">
