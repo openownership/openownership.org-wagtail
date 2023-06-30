@@ -43,7 +43,6 @@ class FeedbackFilterSet(WagtailFilterSet):
     )
 
 
-
 class FeedbackReportView(ReportView):
 
     menu_title = "Feedback"

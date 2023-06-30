@@ -24,7 +24,6 @@ app/assets/.webassets-cache/*
 **/node_modules/**/*
 app/assets/dist/css/*.min.css
 app/assets/dist/js/*.min.js
-app/assets/dist/js/*.min.js
 
 # UGC
 app/media/**/*
