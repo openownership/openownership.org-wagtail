@@ -47,8 +47,7 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /usr/srv/app/
 COPY ./pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./poetry.lock /usr/srv/app/poetry.lock
-RUN poetry self update 1.2.0 && \
-    mkdir -p /root/.cache/pypoetry/virtualenvs/ && \
+RUN mkdir -p /root/.cache/pypoetry/virtualenvs/ && \
     cd /root/.cache/pypoetry/virtualenvs/ && \
     python -m venv .venv && \
     . /root/.cache/pypoetry/virtualenvs/.venv/bin/activate && \

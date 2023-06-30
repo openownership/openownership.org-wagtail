@@ -1,3 +1,8 @@
+#dismiss-success-message{
+    cursor: pointer;
+}
+
+
    
 .btn, .button {
     @apply bg-blue-medium;

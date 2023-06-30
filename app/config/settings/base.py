@@ -131,7 +131,6 @@ WAGTAIL_APPS = [
     'wagtail.contrib.search_promotions',
     # Enable styleguide to see icons available for use in blocks etc:
     # 'wagtail.contrib.styleguide',
-    'wagtailfontawesome',
     'wagtailfontawesomesvg',
     'wagtailmodelchooser',
 ]
