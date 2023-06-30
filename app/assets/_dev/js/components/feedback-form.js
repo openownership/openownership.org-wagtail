@@ -7,6 +7,9 @@ var textAreaWhereOther = document.getElementById('text-area-where-other');
 var whyOtherRadioButton = document.getElementById('id_why_downloading_4');
 var whereOtherRadioButton = document.getElementById('id_where_downloading_4');
 
+var successMessage = document.getElementById('success-message');
+var dismissMessage = document.getElementById('dismiss-success-message');
+
 if (giveFeedbackButton) {
     giveFeedbackButton.addEventListener('click', (e) => {
         e.preventDefault();
@@ -44,6 +47,11 @@ if (giveFeedbackButton) {
             giveFeedbackButton.setAttribute('aria-expanded', true);
             feedbackForm.classList.remove('collapsed');
 
+            // remove success message if a new form is opened
+            if (successMessage && !successMessage.classList.contains('collapsed')) {
+                successMessage.classList.add('collapsed');
+            }
+
             //attach event listener to the radio buttons and check if "other" was chosen
             document.querySelectorAll("input[name='why_downloading']").forEach((input) => {
                 if (!input.getAttribute('data-event-listener')) {
@@ -79,7 +87,9 @@ if (giveFeedbackButton) {
     }); 
 }
 
-
-
-
-
+if (successMessage) {
+    dismissMessage.addEventListener('click', (e) => {
+        e.preventDefault();
+        successMessage.classList.add('collapsed');
+    });
+}

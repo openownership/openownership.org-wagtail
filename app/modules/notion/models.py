@@ -456,6 +456,20 @@ class CountryTag(NotionModel, BaseTag):
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
+    oo_ongoing_work_title = models.CharField(
+        _("Open Ownership Ongoing Work Title"),
+        blank=True,
+        null=True,
+        max_length=255
+    )
+
+    oo_ongoing_work_body = fields.RichTextField(
+        _("Open Ownership Ongoing Work Body"),
+        blank=True,
+        null=True,
+        features=settings.RICHTEXT_INLINE_FEATURES
+    )
+
     map_image = models.ForeignKey(
         settings.IMAGE_MODEL,
         null=True,
@@ -503,6 +517,8 @@ class CountryTag(NotionModel, BaseTag):
     main_panels = [
         FieldPanel('name'),
         FieldPanel('blurb'),
+        FieldPanel('oo_ongoing_work_title'),
+        FieldPanel('oo_ongoing_work_body'),
         FieldPanel('map_image'),
         FieldPanel('regions', widget=CheckboxSelectMultiple),
         PageChooserPanel('consultant'),
