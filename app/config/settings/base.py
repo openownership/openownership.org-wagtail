@@ -40,6 +40,7 @@ STATS_USE_REDIS = True
 
 TESTING = False
 
+CSRF_USE_SESSIONS = True
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 1500
 
 
@@ -130,20 +131,20 @@ WAGTAIL_APPS = [
     'wagtail.contrib.search_promotions',
     # Enable styleguide to see icons available for use in blocks etc:
     # 'wagtail.contrib.styleguide',
-    'wagtailfontawesome',
     'wagtailfontawesomesvg',
     'wagtailmodelchooser',
 ]
 
 SITE_APPS = [
     'modules.cli',
-    'modules.settings',
-    'modules.users',
-    'modules.core',
-    'modules.taxonomy',
     'modules.content',
+    'modules.core',
+    'modules.feedback',
     'modules.notion',
+    'modules.settings',
     'modules.stats',
+    'modules.taxonomy',
+    'modules.users',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + WAGTAIL_APPS + SITE_APPS
@@ -155,14 +156,16 @@ INSTALLED_APPS = DJANGO_APPS + WAGTAIL_APPS + SITE_APPS
 
 MIDDLEWARE = [
     'modules.stats.middleware.ViewCountMiddleware',
+    'middleware.csrf.CSRFCookieMiddleware',
     'wagtailcache.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     'bugsnag.django.middleware.BugsnagMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'middleware.devpanel.DebugMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',

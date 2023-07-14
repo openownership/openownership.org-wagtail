@@ -76,3 +76,9 @@ CRON_CLASSES = [
     "modules.notion.cron.SyncCommitments",
     "modules.notion.cron.SyncRegimes",
 ]
+
+
+# CSRF cookies etc.
+CSRF_USE_SESSIONS = False
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_HTTPONLY = False

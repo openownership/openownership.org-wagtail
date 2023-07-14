@@ -5,6 +5,12 @@
     @apply my-10;
 }
 
+.country-page__ongoing_work {
+    @apply border-b border-black/50;
+    @apply my-10;
+    @apply pb-5;
+}
+
 .country-page__cover, .country-page__details {
     @apply basis-1/2;
 }

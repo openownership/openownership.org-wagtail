@@ -1,0 +1,94 @@
+<div class="publication-front-page__feedback key-learning-outcomes collapsed" id="feedback-form">
+    <h3>Help us understand how you are making use of resources from the Open Ownership website by filling out this short survey</h3>
+
+    <form action="" method="post">
+        {{ csrf_input }}
+
+    <div class="hidden">
+        <label for="id_x_phone">Please fill this in:</label>
+        <input type="text" name="x_phone" id="id_x_phone">
+        <input type="hidden" name="page_id" id="id_page_id" value="{{ feedback_form.page_id.value() }}">
+    </div>
+    <div id="id_why_downloading" class="publication-front-page__form-section">
+        <label class="publication-front-page__question">Why are you downloading this resource?</label>
+        <div>
+            <label for="id_why_downloading_0">
+                <input type="radio" name="why_downloading" value="inform-policymaking-legislation" required="" id="id_why_downloading_0">
+                Inform policymaking / legislation
+            </label>
+        </div>
+        <div>
+            <label for="id_why_downloading_1">
+                <input type="radio" name="why_downloading" value="inform-systems-design" required="" id="id_why_downloading_1">
+                Inform systems design
+            </label>
+        </div>
+        <div>
+            <label for="id_why_downloading_2">
+                <input type="radio" name="why_downloading" value="inform-advocacy" required="" id="id_why_downloading_2">
+                Inform advocacy</label>
+        </div>
+        <div>
+            <label for="id_why_downloading_3">
+                <input type="radio" name="why_downloading" value="academic-research" required="" id="id_why_downloading_3">
+                Academic research
+            </label>
+        </div>
+        <div>
+            <label for="id_why_downloading_4">
+                <input type="radio" name="why_downloading" value="other" required="" id="id_why_downloading_4">
+                Other
+            </label>
+        </div>
+        <div id="text-area-why-other">
+            <label for="id_why_other">
+                <span class="visually-hidden">Other response</span>
+                <textarea id="id_why_other" name="why_other" rows="5"></textarea>
+            </label>
+        </div>
+    </div>
+    <div id="id_where_work" class="publication-front-page__form-section">
+        <label class="publication-front-page__question">Where do you work?</label>
+        <div>
+            <label for="id_where_work_0">
+            <input type="radio" name="where_work" value="civil-society" required="" id="id_where_work_0">
+                Civil society
+            </label>
+        </div>
+        <div>
+            <label for="id_where_work_1">
+                <input type="radio" name="where_work" value="government-implementer-or-contractor" required="" id="id_where_work_1">
+                Government (implementer or contractor)
+            </label>
+        </div>
+        <div>
+            <label for="id_where_work_2">
+                <input type="radio" name="where_work" value="government-bo-data-user" required="" id="id_where_work_2">
+                    Government (BO data user)
+            </label>
+        </div>
+        <div>
+            <label for="id_where_work_3">
+                <input type="radio" name="where_work" value="private-sector" required="" id="id_where_work_3">
+                Private sector
+            </label>
+        </div>
+        <div>
+            <label for="id_where_work_4">
+                <input type="radio" name="where_work" value="other" required="" id="id_where_work_4">
+                Other
+            </label>
+        </div>
+        <div id="text-area-where-other">
+            <label for="id_where_other">
+                <span class="visually-hidden">Other response</span>
+                <textarea id="id_where_other" name="where_other" rows="5"></textarea>
+            </label>
+        </div>
+    </div>
+    <button class="btn" type="submit">
+        Submit
+    </button>
+
+    </form>
+</div>
