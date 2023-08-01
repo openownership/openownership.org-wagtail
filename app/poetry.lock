@@ -1933,13 +1933,13 @@ testing = ["Jinja2 (>=3.0,<3.2)", "azure-mgmt-cdn (>=12.0,<13.0)", "azure-mgmt-f
 
 [[package]]
 name = "wagtail-autocomplete"
-version = "0.9.0"
+version = "0.10.0"
 description = "An Autocomplete edit handler for Pages, Snippets, and more."
 optional = false
 python-versions = "*"
 files = [
-    {file = "wagtail-autocomplete-0.9.0.tar.gz", hash = "sha256:b64828d35f370453c84bc4094174872822798e54414f5fb9fc8a43c2a6c3e727"},
-    {file = "wagtail_autocomplete-0.9.0-py3-none-any.whl", hash = "sha256:d85789543308d344447656725b9aac8d1c4c6fb271221a3340008a3c9f2ab6fa"},
+    {file = "wagtail-autocomplete-0.10.0.tar.gz", hash = "sha256:281a76f5dab23f4e82175f81c7d63982353aa7ec349a0fef4dd73555ccdcc0c5"},
+    {file = "wagtail_autocomplete-0.10.0-py3-none-any.whl", hash = "sha256:70221551d19a43bbd2db56cc659f48d790cde8d6f0b1a48753f4b197302847eb"},
 ]
 
 [package.dependencies]
@@ -2092,4 +2092,4 @@ dev = ["black (>=19.3b0)", "pytest (>=4.6.2)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.10"
-content-hash = "a011c2a844a3519f1fd84f0968028d8e0d5e12ec43a0be2965632f6c39994fde"
+content-hash = "716bf8f1d8a94e1462cbd73424f5a22533dc7be2eb96034880ea84d93a6194ec"
