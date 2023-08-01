@@ -38,7 +38,7 @@
     "postcss-map-get": "^0.3.0",
     "postcss-preset-env": "^7.8.2",
     "postcss-property-lookup": "^3.0.0",
-    "postcss-rem": "^2.0.2",
+    "postcss-rem": "^2.0.4",
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.0.19",
     "url-loader": "^4.1.1",
