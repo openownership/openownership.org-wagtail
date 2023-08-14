@@ -655,6 +655,7 @@ class PublicationInnerPage(ContentPageType):
                 foot_num = self._footnote_index(link['href']) + 1
                 link.string = f"[{foot_num}]"
                 link['name'] = f"source-{foot_num}"
+                link.wrap(soup.new_tag("sup"))
                 block['value'] = str(soup)
 
     def _footnote_index(self, href: str) -> int:
