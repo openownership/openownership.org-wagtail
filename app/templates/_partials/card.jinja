@@ -2,10 +2,18 @@
 <li class="card-group__card {% if page.thumbnail %}card-group__card--with-thumbnail{% else %}card-group__card--without-thumbnail{% endif %}{% if page.specific.card_format %} {{ page.specific.card_format }}{% endif %}">
 
     <div class="card-group__card-decoration">
-        {% if page.thumbnail %}
-        <div class="card-group__thumbnail">
-            {{image(page.thumbnail,'fill-415x300')}}
-        </div>
+        {% if page.card_embed %}
+            {% if page.card_embed.ratio %}
+                <div class="embed__wrapper--responsive">
+                    {{page.card_embed.embed_html|safe}}
+                </div>
+            {% else %}
+                {{page.card_embed.embed_html|safe}}
+            {% endif %}
+        {% elif page.thumbnail %}
+            <div class="card-group__thumbnail">
+                {{image(page.thumbnail,'fill-415x300')}}
+            </div>
         {% endif %}
 
         <div class="card-group__meta">

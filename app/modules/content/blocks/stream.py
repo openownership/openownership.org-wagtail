@@ -698,6 +698,7 @@ class HighlightPagesBlock(blocks.StructBlock):
             ('page', blocks.PageChooserBlock(required=True)),
             ('card_format', blocks.ChoiceBlock(
                 required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE)),
+            ('embed', EmbedBlock(required=False, help_text=_("Optional, replaces the page's image"))),
         ]),
         min_num=1
     )
@@ -710,6 +711,16 @@ class HighlightPagesBlock(blocks.StructBlock):
         for struct_value in value.get('pages'):
             page = struct_value.get('page')
             page.specific.card_format = struct_value.get('card_format')
+            embed_url = getattr(struct_value.get('embed'), 'url', None)
+            if embed_url:
+                embed = embeds.get_embed(embed_url)
+                embed_dict = {
+                    'embed_html': embed.html,
+                    'embed_url': embed_url,
+                    'ratio': embed.ratio,
+                    'emebd_id': embed.pk,
+                }
+                page.specific.card_embed = embed_dict
             pages.append(page.specific)
 
         context.update({
