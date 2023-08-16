@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-06 17:01+0000\n"
+"POT-Creation-Date: 2023-08-16 15:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,485 +20,485 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: config/settings/base.py:64
+#: config/settings/base.py:70
 msgid "English"
 msgstr "English"
 
-#: config/settings/base.py:65
+#: config/settings/base.py:71
 msgid "French"
 msgstr "Français"
 
-#: config/settings/base.py:66
+#: config/settings/base.py:72
 msgid "Spanish"
 msgstr "Español"
 
-#: config/settings/base.py:67
+#: config/settings/base.py:73
 msgid "Bahasa Indonesia"
 msgstr "Bahasa Indonesia"
 
-#: config/settings/base.py:68
+#: config/settings/base.py:74
 msgid "German"
 msgstr "Deutsch"
 
-#: config/settings/base.py:69
+#: config/settings/base.py:75
 msgid "Russian"
 msgstr "Русский"
 
-#: config/settings/base.py:70
+#: config/settings/base.py:76
 msgid "Armenian"
 msgstr "հայերեն"
 
-#: config/settings/base.py:71
+#: config/settings/base.py:77
 msgid "Mongolian"
 msgstr "Монгол"
 
-#: config/settings/base.py:72
+#: config/settings/base.py:78
 msgid "Ukrainian"
 msgstr "українська"
 
-#: config/settings/base.py:513
+#: config/settings/base.py:557
 msgid "Home"
 msgstr "Home"
 
-#: config/settings/base.py:514
+#: config/settings/base.py:558
 msgid "Research"
 msgstr "Research"
 
-#: config/settings/base.py:515
+#: config/settings/base.py:559
 msgid "Implementation"
 msgstr "Implementation"
 
-#: config/settings/base.py:516
+#: config/settings/base.py:560
 msgid "Technology"
 msgstr "Technology"
 
-#: config/settings/base.py:517
+#: config/settings/base.py:561
 msgid "Impact"
 msgstr "Impact"
 
-#: config/settings/base.py:518
+#: config/settings/base.py:562
 msgid "Register"
 msgstr "Register"
 
-#: config/settings/base.py:519 modules/settings/models/site_settings.py:34
+#: config/settings/base.py:563 modules/settings/models/site_settings.py:34
 #: templates/errors/404.jinja:10
 msgid "Search"
 msgstr "Search"
 
-#: config/settings/base.py:520 modules/content/models/mixins.py:162
-#: modules/content/models/mixins.py:241 modules/content/models/pages.py:823
+#: config/settings/base.py:564 modules/content/models/mixins.py:162
+#: modules/content/models/mixins.py:241 modules/content/models/pages.py:883
 msgid "About"
 msgstr "About"
 
-#: config/settings/base.py:522
+#: config/settings/base.py:566
 msgid "Publications"
 msgstr "Publications"
 
-#: config/settings/base.py:523
+#: config/settings/base.py:567
 msgid "Reports"
 msgstr "Reports"
 
-#: config/settings/base.py:524
+#: config/settings/base.py:568
 msgid "Briefings"
 msgstr "Briefings"
 
-#: config/settings/base.py:525
+#: config/settings/base.py:569
 msgid "Guidance"
 msgstr "Guidance"
 
-#: config/settings/base.py:526
+#: config/settings/base.py:570
 msgid "Consultations"
 msgstr "Consultations"
 
-#: config/settings/base.py:527
+#: config/settings/base.py:571
 msgid "Other publication categories"
 msgstr ""
 
-#: config/settings/base.py:528
+#: config/settings/base.py:572
 msgid "News"
 msgstr "News"
 
-#: config/settings/base.py:529
+#: config/settings/base.py:573
 msgid "Blog"
 msgstr "Blog"
 
-#: config/settings/base.py:530
+#: config/settings/base.py:574
 msgid "Videos"
 msgstr "Videos"
 
-#: config/settings/base.py:531
+#: config/settings/base.py:575
 msgid "Full list"
 msgstr "Full list"
 
-#: config/settings/base.py:532 modules/content/blocks/stream.py:1079
-#: modules/content/models/mixins.py:221 modules/content/models/pages.py:348
+#: config/settings/base.py:576 modules/content/blocks/stream.py:1109
+#: modules/content/models/mixins.py:221 modules/content/models/pages.py:352
 #: modules/taxonomy/models/tags.py:83
 msgid "Topics"
 msgstr "Topics"
 
-#: config/settings/base.py:533
+#: config/settings/base.py:577
 msgid "Financial Action Task Force"
 msgstr ""
 
-#: config/settings/base.py:534
+#: config/settings/base.py:578
 msgid "Opening Extractives"
 msgstr ""
 
-#: config/settings/base.py:535
+#: config/settings/base.py:579
 msgid "Procurement"
 msgstr "Procurement"
 
-#: config/settings/base.py:536
+#: config/settings/base.py:580
 msgid "Private sector"
 msgstr ""
 
-#: config/settings/base.py:537 modules/content/blocks/stream.py:154
+#: config/settings/base.py:581 modules/content/blocks/stream.py:184
 #: modules/content/models/mixins.py:224 modules/taxonomy/models/tags.py:198
 msgid "Open Ownership Principles"
 msgstr ""
 
-#: config/settings/base.py:538
+#: config/settings/base.py:582
 msgid "Robust definition"
 msgstr "Definition"
 
-#: config/settings/base.py:539
+#: config/settings/base.py:583
 msgid "Comprehensive coverage"
 msgstr "Coverage"
 
-#: config/settings/base.py:540 templates/views/country.jinja:234
+#: config/settings/base.py:584 templates/views/country.jinja:238
 msgid "Sufficient detail"
 msgstr "Detail"
 
-#: config/settings/base.py:541
+#: config/settings/base.py:585
 msgid "A central register"
 msgstr "Central register"
 
-#: config/settings/base.py:542
+#: config/settings/base.py:586
 msgid "Public access"
 msgstr "Access"
 
-#: config/settings/base.py:543 modules/notion/models.py:245
+#: config/settings/base.py:587 modules/notion/models.py:245
 msgid "Structured data"
 msgstr "Structured data"
 
-#: config/settings/base.py:544
+#: config/settings/base.py:588
 msgid "Verification"
 msgstr "Verification"
 
-#: config/settings/base.py:545
+#: config/settings/base.py:589
 msgid "Up to date and auditable"
 msgstr "Up-to-date and historical records"
 
-#: config/settings/base.py:546
+#: config/settings/base.py:590
 msgid "Sanctions and enforcement"
 msgstr "Sanctions and enforcement"
 
-#: config/settings/base.py:547
+#: config/settings/base.py:591
 msgid "Implementation guide"
 msgstr ""
 
-#: config/settings/base.py:548
+#: config/settings/base.py:592
 msgid "Implementation tools"
 msgstr ""
 
-#: config/settings/base.py:549
+#: config/settings/base.py:593
 msgid "Beneficial ownership disclosure workbook"
 msgstr ""
 
-#: config/settings/base.py:550
+#: config/settings/base.py:594
 msgid "Sample data collection forms"
 msgstr ""
 
-#: config/settings/base.py:551
+#: config/settings/base.py:595
 msgid "Glossary"
 msgstr "Glossary"
 
-#: config/settings/base.py:552
+#: config/settings/base.py:596
 msgid "Beneficial Ownership Data Standard"
 msgstr ""
 
-#: config/settings/base.py:553
+#: config/settings/base.py:597
 msgid "Open Ownership Register"
 msgstr ""
 
-#: config/settings/base.py:554
+#: config/settings/base.py:598
 msgid "Technical guidance"
 msgstr "Technical guidance"
 
-#: config/settings/base.py:555
+#: config/settings/base.py:599
 msgid "Technology tools"
 msgstr ""
 
-#: config/settings/base.py:556
+#: config/settings/base.py:600
 msgid "Data analysis notebook and dashboards"
 msgstr ""
 
-#: config/settings/base.py:557
+#: config/settings/base.py:601
 msgid "Data analysis tools"
 msgstr ""
 
-#: config/settings/base.py:558
+#: config/settings/base.py:602
 msgid "Data review tool"
 msgstr ""
 
-#: config/settings/base.py:559
+#: config/settings/base.py:603
 msgid "Data standard feature tracker"
 msgstr ""
 
-#: config/settings/base.py:560
+#: config/settings/base.py:604
 msgid "BODS data generator"
 msgstr ""
 
-#: config/settings/base.py:561
+#: config/settings/base.py:605
 msgid "Data visualiser"
 msgstr ""
 
-#: config/settings/base.py:562
+#: config/settings/base.py:606
 msgid "RDF vocabulary for beneficial ownership data"
 msgstr ""
 
-#: config/settings/base.py:563
+#: config/settings/base.py:607
 msgid "Technology showcases"
 msgstr ""
 
-#: config/settings/base.py:564
+#: config/settings/base.py:608
 msgid "Map"
 msgstr "Map"
 
-#: config/settings/base.py:565
+#: config/settings/base.py:609
 msgid "Case studies"
 msgstr "Case studies"
 
-#: config/settings/base.py:566
+#: config/settings/base.py:610
 msgid "The Beneficial Ownership Leadership Group"
 msgstr ""
 
-#: config/settings/base.py:567
+#: config/settings/base.py:611
 msgid "What is beneficial ownership transparency?"
 msgstr ""
 
-#: config/settings/base.py:568
+#: config/settings/base.py:612
 msgid "What we do"
 msgstr "What we do"
 
-#: config/settings/base.py:569
+#: config/settings/base.py:613
 msgid "Working with us"
 msgstr "Working with us"
 
-#: config/settings/base.py:570 config/settings/base.py:583
+#: config/settings/base.py:614 config/settings/base.py:627
 msgid "Helpdesk"
 msgstr "Helpdesk"
 
-#: config/settings/base.py:571
+#: config/settings/base.py:615
 msgid "Team"
 msgstr "Team"
 
-#: config/settings/base.py:572
+#: config/settings/base.py:616
 msgid "Governance"
 msgstr ""
 
-#: config/settings/base.py:573
+#: config/settings/base.py:617
 msgid "Jobs"
 msgstr ""
 
-#: config/settings/base.py:574
+#: config/settings/base.py:618
 msgid "Funding"
 msgstr ""
 
-#: config/settings/base.py:575
+#: config/settings/base.py:619
 msgid "Who funds Open Ownership?"
 msgstr ""
 
-#: config/settings/base.py:576
+#: config/settings/base.py:620
 msgid "Why fund Open Ownership? Why we do the work we do"
 msgstr ""
 
-#: config/settings/base.py:577
+#: config/settings/base.py:621
 msgid "Joining us - what you could support as a partner"
 msgstr ""
 
-#: config/settings/base.py:579 modules/settings/models/mixins.py:261
+#: config/settings/base.py:623 modules/settings/models/mixins.py:261
 msgid "Legal"
 msgstr "Legal"
 
-#: config/settings/base.py:580
+#: config/settings/base.py:624
 msgid "Terms"
 msgstr "Terms"
 
-#: config/settings/base.py:581
+#: config/settings/base.py:625
 msgid "Privacy"
 msgstr "Privacy"
 
-#: config/settings/base.py:582
+#: config/settings/base.py:626
 msgid "Press mentions"
 msgstr ""
 
-#: config/settings/base.py:584
+#: config/settings/base.py:628
 msgid "Jobs with Open Ownership"
 msgstr ""
 
-#: config/settings/base.py:585
+#: config/settings/base.py:629
 msgid "Contact us"
 msgstr ""
 
-#: config/settings/base.py:586
+#: config/settings/base.py:630
 msgid "Follow us"
 msgstr ""
 
-#: config/settings/base.py:587
+#: config/settings/base.py:631
 msgid "Content rights"
 msgstr ""
 
-#: config/settings/base.py:588
+#: config/settings/base.py:632
 msgid ""
 "This work by Open Ownership, unless otherwise noted, is licensed under a"
 msgstr ""
 
-#: config/settings/base.py:589
+#: config/settings/base.py:633
 msgid "Creative Commons Attribution 4.0 International License"
 msgstr ""
 
-#: config/settings/base.py:591 templates/_partials/footer.jinja:18
+#: config/settings/base.py:635 templates/_partials/footer.jinja:18
 msgid "Open Ownership newsletter"
 msgstr ""
 
-#: config/settings/base.py:592 templates/_partials/footer.jinja:19
+#: config/settings/base.py:636 templates/_partials/footer.jinja:19
 msgid "Sign up to receive our latest reports, news and updates"
 msgstr ""
 
-#: config/settings/base.py:593 templates/_partials/footer.jinja:26
+#: config/settings/base.py:637 templates/_partials/footer.jinja:26
 msgid "Sign up"
 msgstr ""
 
-#: config/template.py:161
+#: config/template.py:169
 msgid "Yes"
 msgstr ""
 
-#: config/template.py:163
+#: config/template.py:171
 msgid "No"
 msgstr ""
 
-#: modules/content/blocks/stream.py:142
+#: modules/content/blocks/stream.py:172
 msgid "Similar Content"
 msgstr ""
 
-#: modules/content/blocks/stream.py:143 modules/content/blocks/stream.py:649
-#: modules/content/blocks/stream.py:705 modules/content/blocks/stream.py:756
-#: modules/content/blocks/stream.py:808 modules/content/blocks/stream.py:860
-#: modules/content/blocks/stream.py:907 modules/content/blocks/stream.py:959
-#: modules/content/blocks/stream.py:1015 modules/content/blocks/stream.py:1080
-#: modules/content/blocks/stream.py:1119 modules/content/blocks/stream.py:1181
+#: modules/content/blocks/stream.py:173 modules/content/blocks/stream.py:679
+#: modules/content/blocks/stream.py:735 modules/content/blocks/stream.py:786
+#: modules/content/blocks/stream.py:838 modules/content/blocks/stream.py:890
+#: modules/content/blocks/stream.py:937 modules/content/blocks/stream.py:989
+#: modules/content/blocks/stream.py:1045 modules/content/blocks/stream.py:1110
+#: modules/content/blocks/stream.py:1149 modules/content/blocks/stream.py:1211
 msgid "Card group"
 msgstr ""
 
-#: modules/content/blocks/stream.py:149 modules/content/models/pages.py:1221
+#: modules/content/blocks/stream.py:179 modules/content/models/pages.py:1294
 #: modules/taxonomy/models/tags.py:82
 msgid "Topic"
 msgstr ""
 
-#: modules/content/blocks/stream.py:150
+#: modules/content/blocks/stream.py:180
 msgid "Content Type"
 msgstr ""
 
-#: modules/content/blocks/stream.py:151
+#: modules/content/blocks/stream.py:181
 msgid "Author"
 msgstr ""
 
-#: modules/content/blocks/stream.py:152 modules/notion/models.py:437
+#: modules/content/blocks/stream.py:182 modules/notion/models.py:450
 msgid "Country"
 msgstr ""
 
-#: modules/content/blocks/stream.py:153 modules/content/models/snippets.py:112
+#: modules/content/blocks/stream.py:183 modules/content/models/snippets.py:112
 #: modules/taxonomy/models/tags.py:122
 msgid "Section"
 msgstr ""
 
-#: modules/content/blocks/stream.py:295
+#: modules/content/blocks/stream.py:325
 msgid "Related articles and publications"
 msgstr ""
 
-#: modules/content/blocks/stream.py:648
+#: modules/content/blocks/stream.py:678
 msgid "Highlight pages"
 msgstr ""
 
-#: modules/content/blocks/stream.py:657 modules/content/blocks/stream.py:1026
-#: modules/content/blocks/stream.py:1130
+#: modules/content/blocks/stream.py:687 modules/content/blocks/stream.py:1056
+#: modules/content/blocks/stream.py:1160
 msgid "Landscape"
 msgstr ""
 
-#: modules/content/blocks/stream.py:658 modules/content/blocks/stream.py:1027
-#: modules/content/blocks/stream.py:1131
+#: modules/content/blocks/stream.py:688 modules/content/blocks/stream.py:1057
+#: modules/content/blocks/stream.py:1161
 msgid "Portrait"
 msgstr ""
 
-#: modules/content/blocks/stream.py:663
+#: modules/content/blocks/stream.py:693
 msgid "e.g. “Examples of our work”, or leave empty"
 msgstr ""
 
-#: modules/content/blocks/stream.py:704
+#: modules/content/blocks/stream.py:734
 msgid "Latest section content"
 msgstr ""
 
-#: modules/content/blocks/stream.py:713
+#: modules/content/blocks/stream.py:743
 msgid "Front page of section"
 msgstr ""
 
-#: modules/content/blocks/stream.py:737
+#: modules/content/blocks/stream.py:767
 msgid "Latest {}"
 msgstr ""
 
-#: modules/content/blocks/stream.py:755
+#: modules/content/blocks/stream.py:785
 msgid "Latest by Focus Area"
 msgstr ""
 
-#: modules/content/blocks/stream.py:764 modules/content/blocks/stream.py:816
-#: modules/content/blocks/stream.py:868 modules/content/blocks/stream.py:915
-#: modules/content/blocks/stream.py:967
+#: modules/content/blocks/stream.py:794 modules/content/blocks/stream.py:846
+#: modules/content/blocks/stream.py:898 modules/content/blocks/stream.py:945
+#: modules/content/blocks/stream.py:997
 msgid "If blank, will use \"Latest\""
 msgstr ""
 
-#: modules/content/blocks/stream.py:807
+#: modules/content/blocks/stream.py:837
 msgid "Latest by Topic"
 msgstr ""
 
-#: modules/content/blocks/stream.py:859
+#: modules/content/blocks/stream.py:889
 msgid "Latest by Publication Type"
 msgstr ""
 
-#: modules/content/blocks/stream.py:906
+#: modules/content/blocks/stream.py:936
 msgid "Latest by Section Tag"
 msgstr ""
 
-#: modules/content/blocks/stream.py:958
+#: modules/content/blocks/stream.py:988
 msgid "Latest by Open Ownership Principle"
 msgstr ""
 
-#: modules/content/blocks/stream.py:1014 modules/content/models/pages.py:347
+#: modules/content/blocks/stream.py:1044 modules/content/models/pages.py:351
 msgid "Areas of focus"
 msgstr ""
 
-#: modules/content/blocks/stream.py:1032 modules/content/blocks/stream.py:1089
+#: modules/content/blocks/stream.py:1062 modules/content/blocks/stream.py:1119
 msgid "Leave empty to use default: \"{}\""
 msgstr ""
 
-#: modules/content/blocks/stream.py:1118
+#: modules/content/blocks/stream.py:1148
 msgid "Publication types"
 msgstr ""
 
-#: modules/content/blocks/stream.py:1136 modules/content/blocks/stream.py:1190
+#: modules/content/blocks/stream.py:1166 modules/content/blocks/stream.py:1220
 #, python-brace-format
 msgid "Leave empty to use default: \"{DEFAULT_TITLE}\""
 msgstr ""
 
-#: modules/content/blocks/stream.py:1180
+#: modules/content/blocks/stream.py:1210
 msgid "Press links"
 msgstr ""
 
-#: modules/content/blocks/stream.py:1307
+#: modules/content/blocks/stream.py:1337
 msgid "Details"
 msgstr ""
 
-#: modules/content/blocks/stream.py:1333
+#: modules/content/blocks/stream.py:1363
 msgid "Editor's picks"
 msgstr ""
 
@@ -558,12 +558,12 @@ msgstr ""
 msgid "Authors"
 msgstr ""
 
-#: modules/content/models/mixins.py:219 modules/content/models/pages.py:346
+#: modules/content/models/mixins.py:219 modules/content/models/pages.py:350
 #: modules/taxonomy/models/categories.py:28
 msgid "Content type"
 msgstr ""
 
-#: modules/content/models/mixins.py:222 modules/notion/models.py:438
+#: modules/content/models/mixins.py:222 modules/notion/models.py:451
 msgid "Countries"
 msgstr ""
 
@@ -584,7 +584,7 @@ msgstr ""
 msgid "If blank, this will be set to the date the page was first published"
 msgstr ""
 
-#: modules/content/models/page_types.py:127 modules/content/models/pages.py:506
+#: modules/content/models/page_types.py:127 modules/content/models/pages.py:510
 msgid "Content"
 msgstr ""
 
@@ -596,129 +596,141 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: modules/content/models/pages.py:59
+#: modules/content/models/pages.py:63
 msgid "Home page"
 msgstr ""
 
-#: modules/content/models/pages.py:109
+#: modules/content/models/pages.py:113
 msgid "Section (Impact, etc.)"
 msgstr ""
 
-#: modules/content/models/pages.py:152
+#: modules/content/models/pages.py:156
 msgid "Section listing (About)"
 msgstr ""
 
-#: modules/content/models/pages.py:167
+#: modules/content/models/pages.py:171
 msgid "Display cards linking to all the child pages"
 msgstr ""
 
-#: modules/content/models/pages.py:247
+#: modules/content/models/pages.py:251
 msgid "News article"
 msgstr ""
 
-#: modules/content/models/pages.py:272
+#: modules/content/models/pages.py:276
 msgid "Blog post page"
 msgstr ""
 
-#: modules/content/models/pages.py:281
+#: modules/content/models/pages.py:285
 msgid "Blog post"
 msgstr ""
 
-#: modules/content/models/pages.py:363
+#: modules/content/models/pages.py:367
 msgid "Job"
 msgstr ""
 
-#: modules/content/models/pages.py:386
+#: modules/content/models/pages.py:390
 msgid "Publication title"
 msgstr ""
 
-#: modules/content/models/pages.py:387
+#: modules/content/models/pages.py:391
 msgid "The publication title as you'd like it to be seen by the public"
 msgstr ""
 
-#: modules/content/models/pages.py:407
+#: modules/content/models/pages.py:411
 msgid "e.g. ‘Introduction’"
 msgstr ""
 
-#: modules/content/models/pages.py:435
+#: modules/content/models/pages.py:439
 msgid "Summary"
 msgstr ""
 
-#: modules/content/models/pages.py:446 modules/content/models/pages.py:452
+#: modules/content/models/pages.py:450 modules/content/models/pages.py:456
 msgid "Key Learning Outcomes"
 msgstr ""
 
-#: modules/content/models/pages.py:458 modules/content/models/pages.py:464
+#: modules/content/models/pages.py:462 modules/content/models/pages.py:468
 msgid "Benefit / Impact"
 msgstr ""
 
-#: modules/content/models/pages.py:469
+#: modules/content/models/pages.py:473
 msgid "Should this date be displayed as the publication's date?"
 msgstr ""
 
-#: modules/content/models/pages.py:470
+#: modules/content/models/pages.py:474
 msgid "Show Display Date?"
 msgstr ""
 
-#: modules/content/models/pages.py:487
+#: modules/content/models/pages.py:491
 msgid "Titles"
 msgstr ""
 
-#: modules/content/models/pages.py:495
+#: modules/content/models/pages.py:499
 msgid "Cover and document"
 msgstr ""
 
-#: modules/content/models/pages.py:515
+#: modules/content/models/pages.py:519
 msgid "Display date"
 msgstr ""
 
-#: modules/content/models/pages.py:550
+#: modules/content/models/pages.py:554
 msgid "Publication"
 msgstr ""
 
-#: modules/content/models/pages.py:599
+#: modules/content/models/pages.py:602
 msgid "Page title"
 msgstr ""
 
-#: modules/content/models/pages.py:601
+#: modules/content/models/pages.py:604
 msgid ""
 "Short title of this page within the publication e.g. 'Overview', "
 "'Comprehensive coverage', etc."
 msgstr ""
 
-#: modules/content/models/pages.py:727
+#: modules/content/models/pages.py:787
 msgid "Link team member to their authorship of articles on the site"
 msgstr ""
 
-#: modules/content/models/pages.py:749
+#: modules/content/models/pages.py:809
 msgid "e.g. ‘London, England’"
 msgstr ""
 
-#: modules/content/models/pages.py:773
+#: modules/content/models/pages.py:833
 msgid "Regional experience"
 msgstr ""
 
-#: modules/content/models/pages.py:774
+#: modules/content/models/pages.py:834
 msgid "Specialist area"
 msgstr ""
 
-#: modules/content/models/pages.py:783 modules/settings/models/mixins.py:262
+#: modules/content/models/pages.py:843 modules/settings/models/mixins.py:262
 msgid "Contact"
 msgstr ""
 
-#: modules/content/models/pages.py:967
+#: modules/content/models/pages.py:1037
 msgid "Link to an external URL"
 msgstr ""
 
-#: modules/content/models/pages.py:1004
+#: modules/content/models/pages.py:1074
 msgid "People commonly search for"
 msgstr ""
 
-#: modules/content/models/pages.py:1108
+#: modules/content/models/pages.py:1180
 msgid "Will appear above the cards linking to each Tag Page"
 msgstr ""
 
-#: modules/content/models/pages.py:1225 modules/taxonomy/models/core.py:110
+#: modules/content/models/pages.py:1184
+msgid "Intro"
+msgstr ""
+
+#: modules/content/models/pages.py:1185
+msgid "Body"
+msgstr ""
+
+#: modules/content/models/pages.py:1186
+msgid "Tags title"
+msgstr ""
+
+#: modules/content/models/pages.py:1298 modules/taxonomy/models/core.py:110
 #: modules/taxonomy/models/core.py:133
 msgid "Tag"
 msgstr ""
@@ -737,6 +749,41 @@ msgstr ""
 
 #: modules/core/views.py:51
 msgid "404: page not found"
+msgstr ""
+
+#: modules/feedback/views/reports.py:29
+msgid "Created at"
+msgstr ""
+
+#: modules/feedback/views/reports.py:35 modules/feedback/views/reports.py:56
+#: templates/django/reports/listing/_list_feedback.html:11
+msgid "Why"
+msgstr ""
+
+#: modules/feedback/views/reports.py:37 modules/feedback/views/reports.py:42
+msgid "All"
+msgstr ""
+
+#: modules/feedback/views/reports.py:40 modules/feedback/views/reports.py:57
+#: templates/django/reports/listing/_list_feedback.html:17
+msgid "Where"
+msgstr ""
+
+#: modules/feedback/views/reports.py:55
+#: templates/django/reports/listing/_list_feedback.html:8
+msgid "Page"
+msgstr ""
+
+#: modules/feedback/views/reports.py:58
+msgid "Why (other)"
+msgstr ""
+
+#: modules/feedback/views/reports.py:59
+msgid "Where (other)"
+msgstr ""
+
+#: modules/feedback/views/reports.py:60
+msgid "Submitted at"
 msgstr ""
 
 #: modules/notion/models.py:32
@@ -863,31 +910,39 @@ msgstr ""
 msgid "Threshold"
 msgstr ""
 
-#: modules/notion/models.py:455
+#: modules/notion/models.py:460
+msgid "Open Ownership Ongoing Work Title"
+msgstr ""
+
+#: modules/notion/models.py:467
+msgid "Open Ownership Ongoing Work Body"
+msgstr ""
+
+#: modules/notion/models.py:482
 msgid "Icon"
 msgstr ""
 
-#: modules/notion/models.py:477
+#: modules/notion/models.py:504
 msgid "OO Support"
 msgstr ""
 
-#: modules/notion/models.py:484
+#: modules/notion/models.py:511
 msgid "ISO2"
 msgstr ""
 
-#: modules/notion/models.py:800
+#: modules/notion/models.py:839
 msgid "Coverage Scope"
 msgstr ""
 
-#: modules/notion/models.py:801
+#: modules/notion/models.py:840
 msgid "Coverage Scopes"
 msgstr ""
 
-#: modules/notion/models.py:813
+#: modules/notion/models.py:852
 msgid "Region"
 msgstr ""
 
-#: modules/notion/models.py:814
+#: modules/notion/models.py:853
 msgid "Regions"
 msgstr ""
 
@@ -1035,40 +1090,70 @@ msgstr ""
 msgid "Contents"
 msgstr ""
 
+#: templates/content/publication_inner_page.jinja:15
+msgid "Footnotes"
+msgstr ""
+
+#: templates/django/reports/feedback.html:8
+msgid "Feedback"
+msgstr ""
+
+#: templates/django/reports/feedback.html:19
+msgid "No pages match this report's criteria."
+msgstr ""
+
+#: templates/django/reports/listing/_list_base.html:4
+msgid ""
+"Press enter to select an item, use up and down arrows to move the item, "
+"press enter to complete the move or escape to cancel the current move."
+msgstr ""
+
+#: templates/django/reports/listing/_list_feedback.html:14
+msgid "Why other"
+msgstr ""
+
+#: templates/django/reports/listing/_list_feedback.html:20
+msgid "Where other"
+msgstr ""
+
+#: templates/django/reports/listing/_list_feedback.html:38
+msgid "No pages found."
+msgstr ""
+
 #: templates/errors/404.jinja:20 templates/search/results.jinja:138
 msgid "Most read"
 msgstr ""
 
-#: templates/views/country.jinja:116
+#: templates/views/country.jinja:123
 msgid ""
 "Data is drawn from publicly-available sources and may not be comprehensive "
 "for all countries. If data is incorrect"
 msgstr ""
 
-#: templates/views/country.jinja:116
+#: templates/views/country.jinja:123
 msgid "please let us know"
 msgstr ""
 
-#: templates/views/country.jinja:224
+#: templates/views/country.jinja:228
 msgid "Legal definition of beneficial ownership"
 msgstr ""
 
-#: templates/views/country.jinja:229
+#: templates/views/country.jinja:233
 msgid "Coverage"
 msgstr ""
 
-#: templates/views/country.jinja:239
+#: templates/views/country.jinja:243
 msgid "Public access: protection regime"
 msgstr ""
 
-#: templates/views/country.jinja:244
+#: templates/views/country.jinja:248
 msgid "Public access: legal basis"
 msgstr ""
 
-#: templates/views/country.jinja:249
+#: templates/views/country.jinja:253
 msgid "Beneficial ownership legislation"
 msgstr ""
 
-#: templates/views/country.jinja:254
+#: templates/views/country.jinja:258
 msgid "Sanctions and enforcement legislation"
 msgstr ""
