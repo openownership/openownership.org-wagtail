@@ -126,7 +126,6 @@
         {# See the convert_map_topojson.py management command for how to make the topoJSON file #}
         var topojsonPath = "{{static('data/worldmap_topo.json')}}";
         var mapData = {{ map_json|safe }};
-        console.log("mapData", mapData);
         var countryData = {{ countries_json|safe }};
         var ooEngagedValues = {{ oo_engaged_values|safe }};
     </script>
