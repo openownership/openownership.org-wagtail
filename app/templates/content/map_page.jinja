@@ -119,12 +119,14 @@
 {% endblock content %}
 
 {% block js_prepend %}
-    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://unpkg.com/d3@5.6.0/dist/d3.min.js"></script>
+    <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
 
     <script type="text/javascript">
-        {# countries.json from https://geojson-maps.ash.ms #}
-        var geojsonPath = "{{static('data/countries.json')}}";
+        {# See the convert_map_topojson.py management command for how to make the topoJSON file #}
+        var topojsonPath = "{{static('data/worldmap_topo.json')}}";
         var mapData = {{ map_json|safe }};
+        console.log("mapData", mapData);
         var countryData = {{ countries_json|safe }};
         var ooEngagedValues = {{ oo_engaged_values|safe }};
     </script>

@@ -5,9 +5,14 @@
  * the variables it requires. See the end of the file, where it checks for their
  * presence before initialising and passing those into worldMap.init().
  *
+ * See the Django managment command for how we generate the topoJSON map file.
+ *
  * What it expects:
  *
- * geojsonPath - The path to a geojson file for generating the map.
+ * topojsonPath - The path to a topoJSON file for generating the map.
+ *  Each country should have these properties (others are ignored):
+ *    - ISO_A2 - e.g. "DJ"
+ *    - NAME - e.g. "Djibouti"
  *
  * mapData - An array of objects, each one about a country, like this:
  *     {
@@ -28,9 +33,8 @@
  *
  * A div with the selector defined in mapSelector, below.
  *
- * Assumes d3.js version 7 has been loaded.
+ * Assumes d3.js v5 and topojson.js v3 have been loaded.
  */
-
 
 // The selector we use to find the element into which we put the map:
 const mapSelector = ".js-map";
@@ -40,7 +44,7 @@ const worldMap = (function () {
 
   var publicAPIs = {};
 
-  // Variables that will be set elsewhere inthe code:
+  // Variables that will be set elsewhere in the code:
   var mapData = {};
   var ooEngagedValues = [];
   var container = null;
@@ -56,10 +60,9 @@ const worldMap = (function () {
    * @param {object} options Should have:
    *  mapSelector: string, the selector of the element into which we put the map
    *  mapData: array of objects, one per country with OO data.
-   *  geojsonPath: path to geojson file to draw the map with.
+   *  topojsonPath: path to topoJSON file to draw the map with.
    */
   publicAPIs.init = function (options) {
-
     ooEngagedValues = options.ooEngagedValues;
 
     container = d3.select(options.mapSelector);
@@ -69,13 +72,15 @@ const worldMap = (function () {
     initTooltip();
     initListeners();
 
-    d3.json(options.geojsonPath).then(function (geojsonData) {
-      generateMap(geojsonData);
+    d3.json(options.topojsonPath).then(function (topojsonData) {
+      generateMap(topojsonData);
 
       // On load we set the initial state by setting this button to be active:
-      setActiveButton(document.querySelector(
-        ".js-map-filter[data-map-hilites='committed-central|committed-public']"
-      ));
+      setActiveButton(
+        document.querySelector(
+          ".js-map-filter[data-map-hilites='committed-central|committed-public']"
+        )
+      );
     });
   };
 
@@ -87,13 +92,12 @@ const worldMap = (function () {
    * Sets the mapData object.
    * @param {array} data
    */
-  var initMapData = function(data) {
-    mapData = data;
-    for (var i=0; i <data.length; i++) {
+  var initMapData = function (data) {
+    for (var i = 0; i < data.length; i++) {
       var country = data[i];
       mapData[country.iso2] = country;
     }
-  }
+  };
 
   /**
    * Set up the basic elements and projection etc.
@@ -117,9 +121,9 @@ const worldMap = (function () {
   };
 
   /**
-    * Create the tooltip element if it doesn't already exist.
-    */
-   var initTooltip = function () {
+   * Create the tooltip element if it doesn't already exist.
+   */
+  var initTooltip = function () {
     if (document.getElementsByClassName("js-map-tooltip").length == 0) {
       tooltip = d3
         .select("body")
@@ -138,17 +142,16 @@ const worldMap = (function () {
    *  data-map-hilites="committed-central|committed-public"
    */
   var initListeners = function () {
-
-    document.addEventListener('click', function (event) {
+    document.addEventListener("click", function (event) {
       // Is it a click on one of the buttons:
-      if (event.target.matches('.js-map-filter')) {
+      if (event.target.matches(".js-map-filter")) {
         setActiveButton(event.target);
         event.preventDefault();
       }
     });
 
     // Just clicking on the background removes any existing hiliting.
-    svg.on("click", function(event, d) {
+    svg.on("click", function (event, d) {
       setActiveButton();
     });
   };
@@ -158,8 +161,7 @@ const worldMap = (function () {
    * @param {object} btnEl The element whose parent is to be active. Or null if none of them should be.
    */
   var setActiveButton = function (btnEl) {
-
-    document.querySelectorAll(".map__country-data-box").forEach(function(el) {
+    document.querySelectorAll(".map__country-data-box").forEach(function (el) {
       el.classList.remove("--active");
     });
 
@@ -173,49 +175,56 @@ const worldMap = (function () {
     } else {
       hiliteCountries([]);
     }
-  }
+  };
 
   /**
    * Draw the map using supplied data.
-   * @param {object} geojsonData
+   * @param {object} topojsonData
    */
-  var generateMap = function (geojsonData) {
-
+  var generateMap = function (topojsonData) {
     ///////////////////////////////////////////////////////
     // ADD COUNTRIES
 
+    // The ne_50m_admin_0_countries key is set in the data we originally
+    // download from Natural Earth. It will change if we download different
+    // data, e.g. a different resolution.
+    const countries = topojson.feature(
+      topojsonData,
+      topojsonData.objects.countries,
+    );
+
     svg
       .selectAll("path")
-      .data(geojsonData.features)
+      .data(countries.features)
       .enter()
-        .append("path")
-        .attr("class", function(d) {
-          var cls = ' js-map-country';
-          if (getCountryProp(d, 'committed_central')) {
-            cls += ' js-map-committed-central';
-          }
-          if (getCountryProp(d, 'committed_public')) {
-            cls += ' js-map-committed-public';
-          }
-          if (getCountryProp(d, 'implementation_central')) {
-            cls += ' js-map-implementation-central';
-          }
-          if (getCountryProp(d, 'implementation_public')) {
-            cls += ' js-map-implementation-public';
-          }
+      .append("path")
+      .attr("class", function (d) {
+        var cls = " js-map-country";
+        if (getCountryProp(d, "committed_central")) {
+          cls += " js-map-committed-central";
+        }
+        if (getCountryProp(d, "committed_public")) {
+          cls += " js-map-committed-public";
+        }
+        if (getCountryProp(d, "implementation_central")) {
+          cls += " js-map-implementation-central";
+        }
+        if (getCountryProp(d, "implementation_public")) {
+          cls += " js-map-implementation-public";
+        }
 
-          // if (ooEngagedValues.indexOf(getCountryProp(d, 'oo_support')) > -1) {
-          //   cls += ' map-engaged';
-          // }
+        // if (ooEngagedValues.indexOf(getCountryProp(d, 'oo_support')) > -1) {
+        //   cls += ' map-engaged';
+        // }
 
-          return cls;
-        })
-        .attr("d", path)
-          .on("click", onClick)
-          .on("mouseover", onMouseover)
-          .on("mousemove", onMousemove)
-          .on("mouseout", onMouseout)
-          .on("zoom", zoom);
+        return cls;
+      })
+      .attr("d", path)
+      .on("click", onClick)
+      .on("mouseover", onMouseover)
+      .on("mousemove", onMousemove)
+      .on("mouseout", onMouseout)
+      .on("zoom", zoom);
 
     ///////////////////////////////////////////////////////
     // ADD CIRCLES
@@ -227,10 +236,12 @@ const worldMap = (function () {
     for (var iso in mapData) {
       if (mapData[iso].lon) {
         if (ooEngagedValues.indexOf(mapData[iso].oo_support) > -1) {
-          circles.push(projection([
-            parseFloat(mapData[iso].lon),
-            parseFloat(mapData[iso].lat)
-          ]))
+          circles.push(
+            projection([
+              parseFloat(mapData[iso].lon),
+              parseFloat(mapData[iso].lat),
+            ])
+          );
         }
       }
     }
@@ -241,8 +252,12 @@ const worldMap = (function () {
       .enter()
       .append("circle")
       .attr("class", "map__circle")
-      .attr("cx", function (d) { return d[0]; })
-      .attr("cy", function (d) { return d[1]; })
+      .attr("cx", function (d) {
+        return d[0];
+      })
+      .attr("cy", function (d) {
+        return d[1];
+      })
       .attr("r", "3px");
 
     ///////////////////////////////////////////////////////
@@ -252,23 +267,20 @@ const worldMap = (function () {
       .zoom()
       .scaleExtent([1, 5])
       .on("zoom", function (event) {
-        svg.selectAll("path").attr("transform", event.transform);
-        svg.selectAll("circle").attr("transform", event.transform);
+        svg.selectAll("path").attr("transform", d3.event.transform);
+        svg.selectAll("circle").attr("transform", d3.event.transform);
       });
 
     svg.call(zoom);
 
     function onZoomClick(zoomLevel) {
-      svg.transition()
-        .delay(50)
-        .duration(300)
-        .call(zoom.scaleBy, zoomLevel);
+      svg.transition().delay(50).duration(300).call(zoom.scaleBy, zoomLevel);
     }
 
-    d3.selectAll('.js-map-zoomin').on('click', function() {
+    d3.selectAll(".js-map-zoomin").on("click", function () {
       onZoomClick(1.5);
     });
-    d3.selectAll('.js-map-zoomout').on('click', function() {
+    d3.selectAll(".js-map-zoomout").on("click", function () {
       onZoomClick(0.5);
     });
   };
@@ -278,71 +290,71 @@ const worldMap = (function () {
    * @param {object} event The event.
    * @param {object} d The country object.
    */
-  var onClick = function (event, d) {
+  var onClick = function (d, i) {
     var url = getCountryProp(d, "url");
     if (url) {
       window.location = url;
     }
   };
 
-    /**
-    * Cursor has entered a country - show the tooltip.
-    * @param {object} event The event.
-    * @param {object} d The country object.
-    */
-     var onMouseover = function (event, d) {
-      let html = tooltipFormat(d);
-      if (html) {
-        tooltip.html(html);
-        tooltip.style("visibility", "visible");
-      }
-    };
+  /**
+   * Cursor has entered a country - show the tooltip.
+   * @param {object} event The event.
+   * @param {object} d The country object.
+   */
+  var onMouseover = function (d, i) {
+    let html = tooltipFormat(d);
+    if (html) {
+      tooltip.html(html);
+      tooltip.style("visibility", "visible");
+    }
+  };
 
-    /**
-     * Position the tooltip in relation to cursor.
-     * @param {object} event The event.
-     * @param {object} d The country object.
-     */
-    var onMousemove = function (event, d) {
-      var tooltipRect = d3
-        .select(".js-map-tooltip")
-        .node()
-        .getBoundingClientRect();
-      var tooltipHeight = tooltipRect.height;
-      var tooltipWidth = tooltipRect.width;
+  /**
+   * Position the tooltip in relation to cursor.
+   * @param {object} event The event.
+   * @param {object} d The country object.
+   */
+  var onMousemove = function (d, i) {
+    var tooltipRect = d3
+      .select(".js-map-tooltip")
+      .node()
+      .getBoundingClientRect();
+    var tooltipHeight = tooltipRect.height;
+    var tooltipWidth = tooltipRect.width;
 
-      // Position above the cursor:
-      tooltip
-        .style("top", event.pageY - (tooltipHeight + 7) + "px")
-        .style("left", event.pageX - tooltipWidth / 2 + "px");
-    };
+    // Position above the cursor:
+    tooltip
+      .style("top", event.pageY - (tooltipHeight + 7) + "px")
+      .style("left", event.pageX - tooltipWidth / 2 + "px");
+  };
 
-    /**
-     * The cursor has left a country - hide the tooltip.
-     * @param {object} event The event.
-     * @param {object} d The country object.
-     */
-    var onMouseout = function (event, d) {
-      tooltip.style("visibility", "hidden");
-    };
+  /**
+   * The cursor has left a country - hide the tooltip.
+   * @param {object} event The event.
+   * @param {object} d The country object.
+   */
+  var onMouseout = function (d, i) {
+    tooltip.style("visibility", "hidden");
+  };
 
-    /**
-     * Set the content of the tooltip.
-     * @param {object} d The country object.
-     * @returns string HTML for the tooltip.
-     */
-    var tooltipFormat = function (d) {
-      let name = getCountryProp(d, "name");
-      let html = '';
-      if (name) {
-        html = "<strong>" + getCountryProp(d, "name") + "</strong>";
-      }
-      // text += "<br>Committed central: " + getCountryProp(d, "committed_central");
-      // text += "<br>Committed public: " + getCountryProp(d, "committed_public");
-      // text += "<br>Implementation central: " + getCountryProp(d, "implementation_central");
-      // text += "<br>Implementation public: " + getCountryProp(d, "implementation_public");
-      return html;
-    };
+  /**
+   * Set the content of the tooltip.
+   * @param {object} d The country object.
+   * @returns string HTML for the tooltip.
+   */
+  var tooltipFormat = function (d) {
+    let name = getCountryProp(d, "name");
+    let html = "";
+    if (name) {
+      html = "<strong>" + getCountryProp(d, "name") + "</strong>";
+    }
+    // text += "<br>Committed central: " + getCountryProp(d, "committed_central");
+    // text += "<br>Committed public: " + getCountryProp(d, "committed_public");
+    // text += "<br>Implementation central: " + getCountryProp(d, "implementation_central");
+    // text += "<br>Implementation public: " + getCountryProp(d, "implementation_public");
+    return html;
+  };
 
   /**
    * Get a property about a country from its path element.
@@ -356,22 +368,27 @@ const worldMap = (function () {
    * @returns string
    */
   var getCountryProp = function (d, key) {
-    let iso = d.properties.iso_a2;
+    let iso = d.properties.ISO_A2;
     if (iso in mapData) {
       if (key in mapData[iso]) {
         return mapData[iso][key];
       } else {
         console.error(
-          "No '" + key +"' property found in mapData for ISO '" + iso + "'"
+          "No '" + key + "' property found in mapData for ISO '" + iso + "'"
         );
       }
     } else {
       console.error(
-        "No iso_a2 value found for " + d.properties.name + " when looking for " + key
+        "No iso_a2 value found for " +
+          d.properties.NAME +
+          " (" +
+          iso +
+          ") when looking for " +
+          key
       );
     }
-    return '';
-  }
+    return "";
+  };
 
   /**
    * Add classes to countries based on whether they've committed/implemented.
@@ -380,38 +397,42 @@ const worldMap = (function () {
    *  ["committed-central", "committed-public"]
    *  If it's an empty array then all hilite classes will be removed.
    */
-  var hiliteCountries = function(kinds) {
+  var hiliteCountries = function (kinds) {
     // Turn off any existing hiliting:
-    d3.selectAll(".js-map-country.map__hilite-central").classed("map__hilite-central", false);
-    d3.selectAll(".js-map-country.map__hilite-public").classed("map__hilite-public", false);
+    d3.selectAll(".js-map-country.map__hilite-central").classed(
+      "map__hilite-central",
+      false
+    );
+    d3.selectAll(".js-map-country.map__hilite-public").classed(
+      "map__hilite-public",
+      false
+    );
 
     // Hilite this kind of country:
-    for (var i=0; i<kinds.length; i++) {
+    for (var i = 0; i < kinds.length; i++) {
       var clss = "map__hilite-central";
       if (kinds[i].endsWith("public")) {
         clss = "map__hilite-public";
       }
       d3.selectAll(".js-map-" + kinds[i]).classed(clss, true);
     }
-  }
+  };
 
   return publicAPIs;
 })();
 
-
-
 // Ensure we have everything required before initialising:
 if (
-  typeof d3 !== 'undefined' &&
-  typeof geojsonPath !== 'undefined' &&
-  typeof mapData !== 'undefined' &&
-  typeof ooEngagedValues !== 'undefined' &&
+  typeof d3 !== "undefined" &&
+  typeof topojsonPath !== "undefined" &&
+  typeof mapData !== "undefined" &&
+  typeof ooEngagedValues !== "undefined" &&
   document.querySelectorAll(mapSelector).length
 ) {
   worldMap.init({
     mapSelector: mapSelector,
     mapData: mapData,
-    geojsonPath: geojsonPath,
-    ooEngagedValues: ooEngagedValues
+    topojsonPath: topojsonPath,
+    ooEngagedValues: ooEngagedValues,
   });
 }
