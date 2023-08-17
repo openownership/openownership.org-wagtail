@@ -1,1 +1,20 @@
 {% extends 'base_with_header.jinja' %}
+
+{% block main_inner %}
+	{# Additionaly .aside-layout-right-fill class, and no .aside-layout__right-aside div. #}
+	<div class="aside-layout-right aside-layout-right--mainfill">
+		<div class="aside-layout__main">
+			{% block content %}
+				{% if page.intro %}
+					<div class="intro">
+						{{ page.intro|richtext }}
+					</div>
+				{% endif %}
+
+				{{render_stream(page.body)}}
+
+				{{render_stream(page.additional_content, page, is_footer_content=True)}}
+			{% endblock %}
+		</div>
+	</div>
+{% endblock %}

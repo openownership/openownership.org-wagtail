@@ -56,7 +56,7 @@ ARTICLE_PAGE_BODY_BLOCKS: list = [
     ('image', ArticleImageBlock()),
     ('cta_block_form', CTABlock()),
     ('disclosure', DisclosureBlock()),
-    ('raw_html', blocks.RawHTMLBlock(label='Raw HTML')),
+    ('raw_html', blocks.RawHTMLBlock(label='Raw HTML', template="blocks/raw_html.jinja")),
 ]
 
 TEAM_PROFILE_PAGE_BODY_BLOCKS: list = ARTICLE_PAGE_BODY_BLOCKS
