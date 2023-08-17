@@ -305,19 +305,9 @@ class UtilityPage(ContentPageType):
         blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES
     )
 
-    show_sharing_buttons = models.BooleanField(
-        default=True,
-        help_text=_("Should the sharing buttons be displayed?"),
-        verbose_name=_('Show Sharing Buttons?')
-    )
-
     content_panels = BasePage.content_panels + [
         FieldPanel('intro')
     ] + ContentPageType.model_content_panels
-
-    settings_panels = ContentPageType.settings_panels + [
-        FieldPanel('show_sharing_buttons'),
-    ]
 
     @property
     def show_display_date_on_card(self):

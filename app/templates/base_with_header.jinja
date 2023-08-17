@@ -72,9 +72,7 @@
 
 					<div class="aside-layout__right-aside">
 						{% include "_partials/taxonomies.jinja" %}
-						{% if page.show_sharing_buttons|default(true) is true %}
-							{% include "_partials/share_page.jinja" %}
-						{% endif %}
+						{% include "_partials/share_page.jinja" %}
 					</div>
 				</div>
 			{% endblock %}
