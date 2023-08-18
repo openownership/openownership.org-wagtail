@@ -605,7 +605,7 @@ class PullQuoteBlock(blocks.StructBlock):
 
 class SummaryBoxBlock(blocks.StructBlock):
     class Meta:
-        icon = 'placeholder'
+        icon = 'doc-full-inverse'
         template = 'blocks/summary_box.jinja'
         label = "Summary / highlight box"
 
@@ -647,7 +647,7 @@ class LogoListBlock(EyebrowTitleBodyMixin):
 
 class BannerBlock(EyebrowTitleMixin):
     class Meta:
-        icon = 'fa-minus'
+        icon = 'minus'
         template = 'blocks/banner.jinja'
 
     cta = CTABlock(required=False)

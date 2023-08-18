@@ -264,6 +264,7 @@ BUGSNAG = {
 ####################################################################################################
 
 REDIS_HOST = os.environ.get('REDIS_HOST', 'localhost')
+REDIS_PASSWORD = os.environ.get('REDIS_PASSWORD')
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
@@ -272,25 +273,13 @@ WAGTAIL_CACHE_BACKEND = 'wagtailcache'
 
 CACHES = {
     'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': f'redis://{REDIS_HOST}:6379/0',
-        'OPTIONS': {
-            "PARSER_CLASS": "redis.connection.HiredisParser",
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'PASSWORD': os.environ.get('REDIS_PASSWORD'),
-            "IGNORE_EXCEPTIONS": True
-        }
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:6379/0',
     },
     'wagtailcache': {
-        "BACKEND": "wagtailcache.compat_backends.django_redis.RedisCache",
-        'LOCATION': f'redis://{REDIS_HOST}:6379/1',
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        'LOCATION': f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:6379/1',
         'TIMEOUT': 60 * 60 * 24 * 7,
-        'OPTIONS': {
-            "PARSER_CLASS": "redis.connection.HiredisParser",
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'PASSWORD': os.environ.get('REDIS_PASSWORD'),
-            "IGNORE_EXCEPTIONS": True
-        }
     },
 }
 
