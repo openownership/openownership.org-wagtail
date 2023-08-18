@@ -74,6 +74,24 @@ body {
     }
 }
 
+/* The main column is like .aside-layout-right but there's no right-hand
+   aside colum. So we can stretch some elements out to fill that space. */
+.aside-layout-right--mainfill {
+    .embed,
+    .image--with-caption,
+    .raw-html,
+    table {
+        width: calc(100vw - 40px);
+        @include min-width(md) {
+            width: calc(100vw - rem(60px));
+            max-width: calc(100vw - rem(60px));
+        }
+        @include min-width(xl) {
+            width: calc($max-width - rem(310px));
+        }
+    }
+}
+
 .aside-layout__main {
     width: 100%;
 }

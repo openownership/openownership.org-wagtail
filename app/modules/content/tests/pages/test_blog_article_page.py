@@ -2,9 +2,13 @@ import arrow
 import pytest
 
 from django.core.management import call_command
+from django.test import Client
 
 from modules.content.models import BlogArticlePage
 from modules.taxonomy.models import PublicationType
+
+
+client = Client()
 
 
 def test_human_display_date(blog_article_page):
@@ -35,3 +39,9 @@ def test_breadcrumb_page(blog_article_page):
 def test_card_blurb(blog_article_page):
     blog_article_page.blurb = "My blurb"
     assert blog_article_page.card_blurb == "My blurb"
+
+
+def test_show_sharing_buttons(blog_article_page):
+    "With no show_sharing_buttons setting, the page should still show sharing buttons"
+    res = client.get(blog_article_page.url)
+    assert '<div class="share-page">' in res.rendered_content
