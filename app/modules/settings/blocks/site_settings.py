@@ -5,7 +5,7 @@ from wagtail import blocks
 class SocialMediaItem(blocks.StructBlock):
 
     class Meta:
-        icon = 'fa-connectdevelop'
+        icon = 'comment'
         label = "Social media account"
 
     service = blocks.ChoiceBlock(

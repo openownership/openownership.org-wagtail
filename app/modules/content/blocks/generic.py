@@ -76,7 +76,7 @@ class DocumentCardBlock(DocumentLinkMixin):
 
 class URLCardBlock(URLLinkMixin):
     class Meta:
-        icon = "fa-external-link-square"
+        icon = "link-external"
         template = 'blocks/card.jinja'
         value_class = LinkStructValue
 
@@ -148,7 +148,7 @@ class CTABlock(LinkBlock):
         template = 'blocks/cta.jinja'
         label = "Link"
         value_class = CTABlockStructValue
-        icon = "fa-link"
+        icon = "link"
 
     link_label = blocks.CharBlock(
         required=False,
@@ -203,7 +203,7 @@ class PageListBlock(blocks.StructBlock):
 class ArticleImageBlock(blocks.StructBlock):
 
     class Meta:
-        icon = "fa-file-image-o"
+        icon = "image"
         template = "blocks/article_image.jinja"
         label = "Image"
 

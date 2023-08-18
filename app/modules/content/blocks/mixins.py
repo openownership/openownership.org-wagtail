@@ -225,7 +225,7 @@ class DocumentCTABlock(blocks.StructBlock):
 
 class URLCTABlock(blocks.StructBlock):
     class Meta:
-        icon = "fa-external-link-square"
+        icon = "link-external"
         value_class = LinkStructValue
 
     link_url = blocks.CharBlock(required=True, label="URL")

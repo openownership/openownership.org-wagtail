@@ -13,7 +13,7 @@ class NavigationItem(blocks.StructBlock):
         form_template = 'wagtail/cta_block_form.html'
         label = "Link"
         value_class = CTABlockStructValue
-        icon = 'fa-link'
+        icon = 'link'
         form_classname = 'nav-settings'
 
     link_type = blocks.ChoiceBlock(
@@ -37,7 +37,7 @@ class SubNavigationMenu(blocks.StructBlock):
 
     class Meta:
         label = 'Submenu'
-        icon = 'fa-bars'
+        icon = 'bars'
 
     text = blocks.CharBlock(required=True)
     objects = blocks.ListBlock(
@@ -56,7 +56,7 @@ class TwoTieredNavigationMenu(blocks.StructBlock):
 class SocialMediaItem(blocks.StructBlock):
 
     class Meta:
-        icon = 'fa-connectdevelop'
+        icon = 'comment'
         label = "Social media account"
 
     service = blocks.ChoiceBlock(
