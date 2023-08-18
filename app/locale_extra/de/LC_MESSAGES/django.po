@@ -1,0 +1,6 @@
+# Extra translations that will override Django's in-built ones.
+# For example use this to reinforce things that we want to stay
+# in English and not be translated to the local language.
+
+msgid "Search"
+msgstr "Search"

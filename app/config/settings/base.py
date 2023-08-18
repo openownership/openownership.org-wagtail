@@ -81,6 +81,7 @@ WAGTAIL_CONTENT_LANGUAGES = LANGUAGES = [
 
 LOCALE_PATHS = (
     os.path.join(DJANGO_ROOT, 'locale'),
+    os.path.join(DJANGO_ROOT, 'locale_extra'),
 )
 
 ####################################################################################################
