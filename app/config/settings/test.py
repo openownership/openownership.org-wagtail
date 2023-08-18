@@ -1,5 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 
+import os
+
 from .base import *  # NOQA
 
 DEBUG = True
@@ -29,6 +31,13 @@ DATABASES = {
         'NAME': ':memory:'
     }
 }
+
+# Change the numbers of the databases to avoid conflicting cache data
+REDIS_HOST = os.environ.get('REDIS_HOST', 'localhost')
+REDIS_PASSWORD = os.environ.get('REDIS_PASSWORD')
+CACHES['default']['LOCATION'] = f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:6379/2'
+CACHES['wagtailcache']['LOCATION'] = f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:6379/3'
+
 
 STATICFILES_STORAGE = (
     'django.contrib.staticfiles.storage.StaticFilesStorage'
