@@ -171,9 +171,7 @@ class RegionView(TemplateView):
     @cached_property
     def _meta_description(self):
         try:
-            # TODO, when Region has a blurb/description field
-            meta_description = ""
-            # meta_description = unescape(strip_tags(self.tag.blurb))
+            meta_description = unescape(strip_tags(self.region.blurb))
             meta_description = meta_description.replace('&#39;', "'")
         except Exception:
             meta_description = f"{self.region.name} on Open Ownership"

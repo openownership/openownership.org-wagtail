@@ -18,6 +18,10 @@
 {% block content %}
 
 	<article>
+		{% if region.blurb %}
+			{{ region.blurb|richtext }}
+		{% endif %}
+
 		{% if country_list %}
 			<ul>
 				{% for country in country_list %}

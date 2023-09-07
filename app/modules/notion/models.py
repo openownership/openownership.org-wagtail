@@ -855,5 +855,9 @@ class Region(ClusterableModel):
     name = models.CharField(blank=False, null=False, max_length=255)
     slug = AutoSlugField(populate_from='name')
 
+    blurb = fields.RichTextField(
+        blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
+    )
+
     def __str__(self):
         return self.name
