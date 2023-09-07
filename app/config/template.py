@@ -285,14 +285,14 @@ def get_top_level_navpage(page, navbar_blocks):
     from modules.content.models import (
         JobPage, PublicationFrontPage, PublicationInnerPage, TeamProfilePage
     )
-    from modules.content.views import CountryView
+    from modules.content.views import CountryView, RegionView
 
     navpage = None
 
-    if isinstance(page, CountryView):
-        # Special case. If it's a CountryView, we want to show the same
-        # nav as the Map page. Which is what a CountryView has as its
-        # breadcrumb_page. So:
+    if isinstance(page, CountryView) or isinstance(page, RegionView):
+        # Special case. If it's a CountryView or RegionView we want to
+        # show the same nav as the Map page. Which is what those views
+        # have as their breadcrumb_page. So:
         page = page.breadcrumb_page
     elif isinstance(page, PublicationFrontPage):
         page = page.get_parent()

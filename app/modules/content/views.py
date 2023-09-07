@@ -10,6 +10,7 @@ from wagtail.models import Page, Site, Locale
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator
 from wagtail.search.models import Query
+from django.shortcuts import get_object_or_404
 from django.utils.functional import cached_property
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -145,6 +146,70 @@ class CountryView(TemplateView):
         p = Paginator(results, 10)
         result_set = p.page(self.page_num)
         return result_set
+
+
+class RegionView(TemplateView):
+
+    template_name = 'views/region.jinja'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        slug = kwargs.pop('slug')
+        self.region = get_object_or_404(Region, slug=slug)
+        ctx['region'] = self.region
+        ctx['page'] = self
+        ctx['meta_title'] = f"{self.region.name}"
+        ctx['meta_description'] = self._meta_description
+        ctx['country_list'] = self._get_countries()
+        global_context(ctx)  # Adds in nav settings etc.
+        return ctx
+
+    @cached_property
+    def title(self):
+        return self.region.name
+
+    @cached_property
+    def _meta_description(self):
+        try:
+            # TODO, when Region has a blurb/description field
+            meta_description = ""
+            # meta_description = unescape(strip_tags(self.tag.blurb))
+            meta_description = meta_description.replace('&#39;', "'")
+        except Exception:
+            meta_description = f"{self.region.name} on Open Ownership"
+        return meta_description
+
+    @cached_property
+    def breadcrumb_page(cls):
+        """For pages that have a 'Back to ...' breadcrumb link, returns the page to
+        go 'back' to. For most it's the parent, but some require going a bit higher;
+        they can override this method.
+        """
+        from modules.content.models import MapPage
+        try:
+            return MapPage.objects.filter(locale=Locale.get_active()).first()
+        except Exception as e:
+            console.warn(e)
+            return
+
+    @cached_property
+    def section_page(self):
+        """Region views appear as though inside the Impact section, so we look this up
+        for the menu etc. first for the current locale, secondly for any locale, and
+        if it fails to find one, it returns the HomePage just so that there's something.
+        """
+        try:
+            page = SectionPage.objects.filter(locale=Locale.get_active(), slug='impact').get()
+        except SectionPage.DoesNotExist:
+            page = SectionPage.objects.filter(slug='impact').first()
+            if not page:
+                page = HomePage.objects.filter(locale=Locale.get_active()).first()
+
+        return page
+
+    def _get_countries(self):
+        countries = self.region.countries.exclude(oo_support__isnull=True).order_by('name')
+        return countries
 
 
 class SearchView(TemplateView):
