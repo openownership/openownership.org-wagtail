@@ -103,10 +103,11 @@ def map_json():
                 'lat': item.lat,
                 'lon': item.lon,
                 'oo_support': item.oo_support,
-                'committed_central': item.committed_central,
-                'committed_public': item.committed_public,
-                'implementation_central': item.implementation_central,
-                'implementation_public': item.implementation_public,
+                # 'committed_central': item.committed_central,
+                # 'committed_public': item.committed_public,
+                # 'implementation_central': item.implementation_central,
+                # 'implementation_public': item.implementation_public,
+                'category': item.category,
             })
         rv = data
     except Exception as e:

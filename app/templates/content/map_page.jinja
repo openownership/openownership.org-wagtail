@@ -30,33 +30,21 @@
 
     <div class="map__country-data">
         <div class="map__country-data-box">
-            <button class="map__country-data-header js-map-filter" data-map-hilites="committed-central|committed-public">
-                {% include "svg/commitment-icon.jinja" %}
-                <span>
-                {% trans %}Commitment to <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}</span>
-            </button>
-            <button class="country__header-card_row --committed-central js-map-filter" data-map-hilites="committed-central">
-                {% include "svg/filled-circle-icon.jinja" %}
-                {% trans %}Central Register{% endtrans %} ({{ country_counts.committed_central }})</button>
-            <button class="country__header-card_row --committed-public js-map-filter" data-map-hilites="committed-public">
-                {% include "svg/filled-circle-icon.jinja" %}
-                {% trans %}Public Register{% endtrans %} ({{ country_counts.committed_public }})</button>
-        </div>
 
-        <div class="map__country-data-box">
-            <button class="map__country-data-header js-map-filter" data-map-hilites="implementation-central|implementation-public">
-                {% include "svg/implementation-icon.jinja" %}
-                <span>
-                {% trans %}Implementation of <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}
-                </span>
+            <div class="map__country-data-header">
+                Category
+            </div>
+            <button class="country__header-card_row js-map-filter --active" data-map-hilites="planned">
+                (Red)
+                {% trans %}Planned{% endtrans %} ({{ country_counts.planned }})
             </button>
-            <button class="country__header-card_row --implementation-central js-map-filter" data-map-hilites="implementation-central">
-                {% include "svg/filled-circle-icon.jinja" %}
-                {% trans %}Central Register{% endtrans %} ({{ country_counts.implementation_central }})
+            <button class="country__header-card_row js-map-filter --active" data-map-hilites="implementing">
+                (Yellow)
+                {% trans %}Implementing{% endtrans %} ({{ country_counts.implementing }})
             </button>
-            <button class="country__header-card_row --implementation-public js-map-filter" data-map-hilites="implementation-public">
-                {% include "svg/filled-circle-icon.jinja" %}
-                {% trans %}Public Register{% endtrans %} ({{ country_counts.implementation_public }})
+            <button class="country__header-card_row js-map-filter --active" data-map-hilites="liveregister">
+                (Blue)
+                {% trans %}Live register{% endtrans %} ({{ country_counts.liveregister }})
             </button>
         </div>
     </div>

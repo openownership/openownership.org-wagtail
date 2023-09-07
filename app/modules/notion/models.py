@@ -622,6 +622,39 @@ class CountryTag(NotionModel, BaseTag):
         return html
 
     @cached_property
+    def category(self):
+        """
+        Returns a string or None:
+
+        - "liveregister": Has any implmentations where stage is publish
+        - "implementing": Has any implementations where stage is not publish
+        - "planned": Only has commitments, no implementations
+        - None: Has no commitments and no implementations
+        """
+        category = None
+
+        subnational = CoverageScope.objects.get(name='Subnational')
+        disclosure_regimes = self.disclosure_regimes.all()
+
+        # Any "publish" implementations at all?
+        for item in disclosure_regimes:
+            if item.stage and 'Publish' in item.stage:
+                if subnational not in item.coverage_scope.all():
+                    category = "liveregister"
+                    break
+
+        if category is None:
+            # There were no "publish" implementations, so:
+            if disclosure_regimes:
+                # There are some non-publish implementations
+                category = "implementing"
+            elif self.commitments.count() > 0:
+                # It has commitments but no implementations
+                category = "planned"
+
+        return category
+
+    @cached_property
     def committed_central(self):
         """The behaviour we'd like to see is that the 'Commitment to BOT/Central register'
         field is ticked for a country if the Central register field in any commitments

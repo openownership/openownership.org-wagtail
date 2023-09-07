@@ -21,17 +21,27 @@
     fill: #f00;
   } */
 
+  path.map__hilite-planned {
+    fill: red;
+  }
+  path.map__hilite-implementing {
+    fill: yellow;
+  }
+  path.map__hilite-liveregister {
+    fill: blue;
+  }
+
+  /* UNUSED; from outgoing design
   path.map__hilite-central {
     fill: #7F12E0;
   }
-
   path.map__hilite-public {
     fill: #1BB0A7;
   }
-
   path.map__hilite-public.map__hilite-central {
     fill: url(#diagonalHatch) #90c;
   }
+  */
 }
 
 .map__hatch-bg {
