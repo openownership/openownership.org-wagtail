@@ -121,11 +121,15 @@
 {% block js_prepend %}
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
+    {{ map_json|json_script("js-map-json") }}
+    {{ countries_json|json_script("js-countries-json") }}
+    {{ oo_engaged_values|json_script("js-oo-engaged-values") }}
+
     <script type="text/javascript">
         {# countries.json from https://geojson-maps.ash.ms #}
         var geojsonPath = "{{static('data/countries.json')}}";
-        var mapData = {{ map_json|safe }};
-        var countryData = {{ countries_json|safe }};
-        var ooEngagedValues = {{ oo_engaged_values|safe }};
+        var mapData = JSON.parse(document.getElementById("js-map-json").textContent);
+        var countryData = JSON.parse(document.getElementById("js-countries-json").textContent);
+        var ooEngagedValues = JSON.parse(document.getElementById("js-oo-engaged-values").textContent);
     </script>
 {% endblock %}

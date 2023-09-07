@@ -12,7 +12,7 @@ from django.utils import translation
 from django.shortcuts import reverse
 from markupsafe import Markup
 from django.utils.safestring import mark_safe
-from django.template.defaultfilters import slugify
+from django.template.defaultfilters import json_script, slugify
 from django.utils.translation import gettext_lazy as _
 from django.utils.safestring import SafeString
 from django.contrib.staticfiles.storage import staticfiles_storage
@@ -335,6 +335,7 @@ class TemplateGlobalsExtension(Extension):
             'yesno': yesno,
             'datestamp': datestamp,
             'fieldtype': fieldtype,
+            'json_script': json_script,
             'nl2br': nl2br,
             'contains': contains_filter,
             'rich_text': rich_text,

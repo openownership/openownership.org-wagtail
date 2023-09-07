@@ -84,7 +84,7 @@ def countries_json():
                 'iso2': item.iso2,
                 'url': item.url
             })
-        rv = json.dumps(data)
+        rv = data
     except Exception as e:
         console.warn(e)
     else:
@@ -108,7 +108,7 @@ def map_json():
                 'implementation_central': item.implementation_central,
                 'implementation_public': item.implementation_public,
             })
-        rv = json.dumps(data)
+        rv = data
     except Exception as e:
         console.warn(e)
     else:
