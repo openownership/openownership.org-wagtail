@@ -18,6 +18,16 @@
 {% block content %}
 
 <article>
+    <div style="border:2px solid red; width:100%;">
+        <p>How to do things with the new 'category' fields...</p>
+
+        {% if country.category == 'liveregister' %}
+            <p>This country is in the Live Register category. Display its registers as we currently do for "Central register(s)" and "Public register(s)" below.</p>
+        {% endif %}
+
+        <p>Category: {% if country.category %}{{ country.category_display }}{% else %}[None]{% endif %}</p>
+    </div>
+
     <div class="country-page__overview">
         {% if country.map_image %}
         <div class="country-page__map">
