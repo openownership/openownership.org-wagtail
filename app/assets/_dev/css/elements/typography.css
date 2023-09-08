@@ -69,3 +69,7 @@ blockquote {
     @apply border-l-2 border-blue-medium pl-8;
     @apply pl-8 py-4 my-8;
 }
+
+sup {
+    font-size: 1em;
+}
