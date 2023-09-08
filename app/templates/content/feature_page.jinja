@@ -1,0 +1,49 @@
+{% extends 'base.jinja' %}
+
+{% block main %}
+
+	<div class="contained-width {{ main_classes }}">
+
+		<article>
+            <header>
+				<h1>{{ page.specific.display_title }}</h1>
+				{% if page.specific.subtitle %}
+					{{ page.specific.subtitle|richtext }}
+				{% endif %}
+				{% if page.specific.banner_intro %}
+					{{ page.banner_intro|richtext }}
+				{% endif %}
+
+				{% if page.specific.banner_image %}
+					{{image(page.specific.banner_image,'fill-415x300')}}
+				{% endif %}
+
+				{% if page.download_document %}
+					<p class="download-document">
+						<a href="{{ page.specific.download_document.url }}" class="btn">{{ page.specific.download_button_text }}</a>
+						{% if page.specific.download_button_alternative %}
+							{{ page.specific.download_button_alternative }}
+						{% endif %}
+					</p>
+				{% endif %}
+			</header>
+
+			{# Additional .aside-layout-right--mainfill class, and no .aside-layout__right-aside div. No sidebar containing sharing buttons here. #}
+			<div class="aside-layout-right aside-layout-right--mainfill">
+				<div class="aside-layout__main">
+					{% block content %}
+						{% if page.intro %}
+							<div class="intro">
+								{{ page.intro|richtext }}
+							</div>
+						{% endif %}
+
+						{{render_stream(page.body)}}
+
+						{{render_stream(page.additional_content, page, is_footer_content=True)}}
+					{% endblock %}
+				</div>
+			</div>
+		</article>
+	</div>
+{% endblock %}

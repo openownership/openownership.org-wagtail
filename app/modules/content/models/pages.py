@@ -71,6 +71,7 @@ class HomePage(PageHeroMixin, LandingPageType):
         "content.SectionPage",
         "content.SectionListingPage",
         "content.UtilityPage",
+        "content.FeaturePage",
         "content.NewsIndexPage",
         "content.BlogIndexPage",
         "content.MapPage",
@@ -121,6 +122,7 @@ class SectionPage(PageHeroMixin, LandingPageType):
         'content.LatestSectionContentPage',
         'content.PressLinksPage',
         'content.UtilityPage',
+        'content.FeaturePage',
     ]
 
     search_fields: list = BasePage.search_fields + [
@@ -307,6 +309,80 @@ class UtilityPage(ContentPageType):
 
     content_panels = BasePage.content_panels + [
         FieldPanel('intro')
+    ] + ContentPageType.model_content_panels
+
+    @property
+    def show_display_date_on_card(self):
+        "Whether to show the date when displaying a card about this page."
+        return False
+
+
+class FeaturePage(ContentPageType):
+    """For annual report.
+    Like UtilityPage but with option of a more complex banner.
+    """
+
+    template = 'content/feature_page.jinja'
+
+    parent_page_types: list = ['content.HomePage', 'content.SectionPage',]
+    subpage_types: list = []
+
+    subtitle = fields.RichTextField(
+        blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES
+    )
+
+    banner_intro = fields.RichTextField(
+        blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES
+    )
+
+    download_document = models.ForeignKey(
+        settings.WAGTAILDOCS_DOCUMENT_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+    download_button_text = models.CharField(
+        max_length=30,
+        default=_('Download'),
+        blank=True,
+        null=False,
+    )
+
+    download_button_alternative = models.CharField(
+        max_length=100,
+        default='',
+        blank=True,
+        null=False,
+        help_text=_('Appears next to the download button, if any'),
+    )
+
+    banner_image = models.ForeignKey(
+        settings.IMAGE_MODEL,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+
+    intro = fields.RichTextField(
+        blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES
+    )
+
+    content_panels = BasePage.content_panels + [
+        FieldPanel('subtitle'),
+        FieldPanel('banner_intro'),
+        FieldPanel('banner_image'),
+        MultiFieldPanel(
+            [
+                FieldPanel('download_document'),
+                FieldPanel('download_button_text'),
+                FieldPanel('download_button_alternative'),
+            ],
+            heading='Download button',
+        ),
+        FieldPanel('intro'),
     ] + ContentPageType.model_content_panels
 
     @property
