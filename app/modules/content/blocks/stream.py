@@ -698,7 +698,12 @@ class HighlightPagesBlock(blocks.StructBlock):
             ('page', blocks.PageChooserBlock(required=True)),
             ('card_format', blocks.ChoiceBlock(
                 required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE)),
-            ('embed', EmbedBlock(required=False, help_text=_("Optional, replaces the page's image"))),
+            ('embed', EmbedBlock(
+                required=False,
+                help_text=_(
+                    "Optional, replaces the page's image. Only appears if Card format is Landscape."
+                )
+            )),
         ]),
         min_num=1
     )

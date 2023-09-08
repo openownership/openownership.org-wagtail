@@ -2,7 +2,7 @@
 <li class="card-group__card {% if page.thumbnail %}card-group__card--with-thumbnail{% else %}card-group__card--without-thumbnail{% endif %}{% if page.specific.card_format %} {{ page.specific.card_format }}{% endif %}">
 
     <div class="card-group__card-decoration">
-        {% if page.card_embed %}
+        {% if page.card_embed and page.specific.card_format == 'landscape' %}
             {% if page.card_embed.ratio %}
                 <div class="embed__wrapper--responsive">
                     {{page.card_embed.embed_html|safe}}
