@@ -658,9 +658,9 @@ class CountryTag(NotionModel, BaseTag):
     def category_display(self):
         "Returns a friendly version of the category string."
         labels = {
-            "implementing": "Implementing",
-            "liveregister": "Live register",
-            "planned": "Planned",
+            "implementing": _("Implementing"),
+            "liveregister": _("Live register"),
+            "planned": _("Planned"),
         }
         if self.category in labels:
             return labels[self.category]
