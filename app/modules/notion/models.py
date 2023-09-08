@@ -655,6 +655,19 @@ class CountryTag(NotionModel, BaseTag):
         return category
 
     @cached_property
+    def category_display(self):
+        "Returns a friendly version of the category string."
+        labels = {
+            "implementing": "Implementing",
+            "liveregister": "Live register",
+            "planned": "Planned",
+        }
+        if self.category in labels:
+            return labels[self.category]
+        else:
+            return ""
+
+    @cached_property
     def committed_central(self):
         """The behaviour we'd like to see is that the 'Commitment to BOT/Central register'
         field is ticked for a country if the Central register field in any commitments
