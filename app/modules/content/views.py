@@ -11,6 +11,7 @@ from django.views.generic import TemplateView
 from django.core.paginator import Paginator
 from wagtail.search.models import Query
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -52,6 +53,26 @@ class DummyCountryPage(object):
     @cached_property
     def thumbnail(self):
         return self.country.map_image
+
+    def get_url(self):
+        return self.url
+
+
+class DummyRegionPage(object):
+    def __init__(self, region: Region):
+        self.region = region
+
+    @cached_property
+    def title(self):
+        return self.region.name
+
+    @cached_property
+    def specific(self):
+        return self
+
+    @cached_property
+    def url(self):
+        return reverse("region", kwargs={"slug": self.region.slug})
 
     def get_url(self):
         return self.url
@@ -161,6 +182,11 @@ class RegionView(TemplateView):
         ctx['meta_title'] = f"{self.region.name}"
         ctx['meta_description'] = self._meta_description
         ctx['country_list'] = self._get_countries()
+
+        # For side menu
+        ctx['page_menu_title'] = 'Regions'
+        ctx['menu_pages'] = self._get_menu_pages()
+
         global_context(ctx)  # Adds in nav settings etc.
         return ctx
 
@@ -191,6 +217,11 @@ class RegionView(TemplateView):
             return
 
     @cached_property
+    def url(self):
+        "To make this look more like a Page to the template."
+        return reverse("region", kwargs={"slug": self.region.slug})
+
+    @cached_property
     def section_page(self):
         """Region views appear as though inside the Impact section, so we look this up
         for the menu etc. first for the current locale, secondly for any locale, and
@@ -208,6 +239,13 @@ class RegionView(TemplateView):
     def _get_countries(self):
         countries = self.region.countries.exclude(oo_support__isnull=True).order_by('name')
         return countries
+
+    def _get_menu_pages(self):
+        menu_pages = []
+        for region in Region.objects.all().order_by("name"):
+            menu_pages.append(DummyRegionPage(region))
+        return menu_pages
+
 
 
 class SearchView(TemplateView):

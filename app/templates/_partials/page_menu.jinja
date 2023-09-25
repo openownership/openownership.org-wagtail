@@ -18,8 +18,8 @@ Other possible variables:
 
         <ul class="page-menu">
             {% for p in menu_pages %}
-                <li class="page-menu__page {% if p.pk == page.pk %}current{% endif %}">
-                    {% if p.pk == page.pk %}
+                <li class="page-menu__page {% if p.url == page.url %}current{% endif %}">
+                    {% if p.url == page.url %}
                         <span class="page-menu__page-title">{{ p.title }}</span>
                     {% else %}
                         <a class="page-menu__page-title" href="{{ p.url }}">{{ p.title }}</a>
