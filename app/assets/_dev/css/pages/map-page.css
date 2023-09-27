@@ -148,6 +148,13 @@
 .note {
     @apply text-14 text-grey-dark;
 }
+.note-source {
+    text-align: right;
+    margin-right: -300px;
+    a {
+        @apply text-grey-dark;
+    }
+}
 
 .country__suggestions {
     position: absolute;

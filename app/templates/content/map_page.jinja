@@ -24,7 +24,7 @@
         <button class="map__zoom map__zoom-in js-map-zoomin">+</button>
         <button class="map__zoom map__zoom-out js-map-zoomout">−</button>
     </div>
-    <p class="note">{% trans %}NOTE: Country boundaries <a href="https://geojson-maps.ash.ms">source</a>{% endtrans%}</p>
+    <p class="note note-source">{% trans %}NOTE: Country boundaries <a href="https://geojson-maps.ash.ms">source</a>{% endtrans%}</p>
     <p class="note">{% trans %}Data on the Open Ownership map is drawn from publicly-available sources and may not be comprehensive for all countries. If data is incorrect, <a href="https://share.hsforms.com/1ooDVGfPWQFyc93l3Bds9jA3upv4">please let us know</a>{% endtrans%}</p>
 
 
@@ -55,7 +55,7 @@
         <div class="map__country-data-box">
             <div class="country__card-no-action">
                 {% include "svg/filled-circle-icon.jinja" %}
-                Countries where Open Ownership is engaged ({{ country_counts.engaged }})
+                Countries where Open Ownership has engaged ({{ country_counts.engaged }})
             </div>
             
         </div>
