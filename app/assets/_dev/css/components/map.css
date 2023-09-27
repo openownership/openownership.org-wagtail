@@ -107,3 +107,21 @@
     fill: #1BB0A7;
   }
 }
+
+.--liveregister {
+  svg g {
+    fill: #1BB0A7;
+  }
+}
+
+.--planned {
+  svg g {
+    fill: #00C7E2;
+  }
+}
+
+.--implementing {
+  svg g {
+    fill: #009BFE;
+  }
+}

@@ -18,16 +18,6 @@
 {% block content %}
 
 <article>
-    <div style="border:2px solid red; width:100%;">
-        <p>How to do things with the new 'category' fields...</p>
-
-        {% if country.category == 'liveregister' %}
-            <p>This country is in the Live Register category. Display its registers as we currently do for "Central register(s)" and "Public register(s)" below.</p>
-        {% endif %}
-
-        <p>Category: {% if country.category %}{{ country.category_display }}{% else %}[None]{% endif %}</p>
-    </div>
-
     <div class="country-page__overview">
         {% if country.map_image %}
         <div class="country-page__map">
@@ -61,66 +51,68 @@
     <div class="country-page__country-data">
 
         <div class="country-page__country-data-box">
-            <h2 class="country-page__country-data-box-header">
-                {% include "svg/commitment-icon.jinja" %}
+            <h2 class="sr-only">
                 {% trans %}Committed to one or more{% endtrans %}
             </h2>
 
             <ul class="country-page__country-data-box-list">
                 <li class="country-page__country-data-box-list-item">
-                    {% if checkbox(country.committed_central) == 'YES' %}
-                        {% include "svg/confirm-icon.jinja" %}
-                    {% else %}
-                        {% include "svg/not-confirm-icon.jinja" %}
-                    {% endif %}
-                    
-                    {% trans %}Central register(s){% endtrans %}
-                </li>
+                    {% if country.category %}
+                        {% if country.category == 'liveregister' %}
+                            <div class="--liveregister">
+                                {% include "svg/filled-circle-icon.jinja" %}
+                            </div>
+                        {% endif %}
 
-                <li  class="country-page__country-data-box-list-item">
-                    {% if checkbox(country.committed_public) == 'YES' %}
-                        {% include "svg/confirm-icon.jinja" %}
+                        {% if country.category == 'implementing' %}
+                            <div class="--implementing">
+                                {% include "svg/filled-circle-icon.jinja" %}
+                            </div>
+                        {% endif %}
+
+                        {% if country.category == 'planned' %}
+                            <div class="--planned">
+                                {% include "svg/filled-circle-icon.jinja" %}
+                            </div>
+                        {% endif %}
+
+                        {{ country.category_display }}
+
                     {% else %}
-                        {% include "svg/not-confirm-icon.jinja" %}
+
+                        [None]
+
                     {% endif %}
-                    {% trans %}Public register(s){% endtrans %}
                 </li>
             </ul>
         </div>
 
         <div class="country-page__country-data-box">
-            <h2 class="country-page__country-data-box-header">
-                {% include "svg/implementation-icon.jinja" %}
+            <h2 class="sr-only">
                 {% trans %}Implemented one or more{% endtrans %}
             </h2>
 
             <ul class="country-page__country-data-box-list">
-                <li class="country-page__country-data-box-list-item">
-                    {% if checkbox(country.implementation_central) == 'YES' %}
-                        {% include "svg/confirm-icon.jinja" %}
-                    {% else %}
-                        {% include "svg/not-confirm-icon.jinja" %}
-                    {% endif %}
+                {% if country.first_central_regime %}
+                    <li class="country-page__country-data-box-list-item">
+                        {% if country.first_central_regime.url %}<a href="{{ country.first_central_regime.url }}">{% endif %}
+                            {% trans %}Central register(s):{% endtrans %} {{ country.first_central_regime.title }}
+                        {% if country.first_central_regime.url %}
+                        </a>
+                        {% include "svg/external-link.jinja" %}
+                        {% endif %}
+                    </li>
+                {% endif %}
+                {% if country.first_public_regime_with_url %}
+                    <li  class="country-page__country-data-box-list-item">
+                        
+                            <a href="{{ country.first_public_regime_with_url.url }}">
+                                {% trans %}Public register(s):{% endtrans %} {{ country.first_public_regime_with_url.title }}
+                            </a>
+                            {% include "svg/external-link.jinja" %}
                     
-                    {% trans %}Central register(s):{% endtrans %}<br>
-                    {% if country.first_central_regime %}
-                    {% if country.first_central_regime.url %}<a href="{{ country.first_central_regime.url }}">{% endif %}
-                        {{ country.first_central_regime.title }}
-                    {% if country.first_central_regime.url %}</a>{% endif %}
-                    {% endif %}
-                </li>
-
-                <li  class="country-page__country-data-box-list-item">
-                    {% if checkbox(country.implementation_public) == 'YES' %}
-                        {% include "svg/confirm-icon.jinja" %}
-                    {% else %}
-                        {% include "svg/not-confirm-icon.jinja" %}
-                    {% endif %}
-                    {% trans %}Public register(s):{% endtrans %}
-                    {% if country.first_public_regime_with_url %}
-                        <a href="{{ country.first_public_regime_with_url.url }}">{{ country.first_public_regime_with_url.title }}</a>
-                    {% endif %}
-                </li>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -161,66 +153,65 @@
     {% if regime.display %}
         <p>{{ regime.title }}</p>
 
-        <details>
-            <summary>{% trans %}Show further detail{% endtrans %}</summary>
-            <div class="implementation-details">
-                <dl>
-                    {% if regime.implementation_title %}
-                    <dt>{% trans %}Name{% endtrans %}</dt>
-                    <dd>
-                        {% if regime.implementation_title_link %}<a href="{{ regime.implementation_title_link }}">{% endif %}
-                        {{ regime.implementation_title }}
-                        {% if regime.implementation_title_link %}</a>{% endif %}
-                    </dd>
-                    {% endif %}
 
-                    {% if regime.implementation_central is not none %}
-                    <dt>{% trans %}Central register implemented{% endtrans %}</dt>
-                    <dd>{{ regime.implementation_central|yesno }}</dd>
-                    {% endif %}
+        <div class="implementation-details">
+            <dl>
+                {% if regime.implementation_title %}
+                <dt>{% trans %}Name{% endtrans %}</dt>
+                <dd>
+                    {% if regime.implementation_title_link %}<a href="{{ regime.implementation_title_link }}">{% endif %}
+                    {{ regime.implementation_title }}
+                    {% if regime.implementation_title_link %}</a>{% endif %}
+                </dd>
+                {% endif %}
 
-                    {% if regime.implementation_public is not none %}
-                    <dt>{% trans %}Public access{% endtrans %}</dt>
-                    <dd>{{ regime.implementation_public|yesno }}</dd>
-                    {% endif %}
+                {% if regime.implementation_central is not none %}
+                <dt>{% trans %}Central register implemented{% endtrans %}</dt>
+                <dd>{{ regime.implementation_central|yesno }}</dd>
+                {% endif %}
 
-                    {% if regime.display_scope %}
-                    <dt>{% trans %}Scope{% endtrans %}</dt>
-                    <dd>{{ regime.display_scope }}</dd>
-                    {% endif %}
+                {% if regime.implementation_public is not none %}
+                <dt>{% trans %}Public access{% endtrans %}</dt>
+                <dd>{{ regime.implementation_public|yesno }}</dd>
+                {% endif %}
 
-                    {% if regime.display_register_launched %}
-                    <dt>{% trans %}Register launched{% endtrans %}</dt>
-                    <dd>{{ regime.display_register_launched }}</dd>
-                    {% endif %}
+                {% if regime.display_scope %}
+                <dt>{% trans %}Scope{% endtrans %}</dt>
+                <dd>{{ regime.display_scope }}</dd>
+                {% endif %}
 
-                    {% if regime.display_threshold %}
-                    <dt>{% trans %}Threshold used to determine beneficial ownership{% endtrans %}</dt>
-                    <dd>{{ regime.display_threshold }}</dd>
-                    {% endif %}
+                {% if regime.display_register_launched %}
+                <dt>{% trans %}Register launched{% endtrans %}</dt>
+                <dd>{{ regime.display_register_launched }}</dd>
+                {% endif %}
 
-                    {% if regime.display_structured_data is not none %}
-                    <dt>{% trans %}Structured data publicly available{% endtrans %}</dt>
-                    <dd>{{ regime.display_structured_data|yesno }}</dd>
-                    {% endif %}
+                {% if regime.display_threshold %}
+                <dt>{% trans %}Threshold used to determine beneficial ownership{% endtrans %}</dt>
+                <dd>{{ regime.display_threshold }}</dd>
+                {% endif %}
 
-                    {% if regime.display_data_in_bods is not none %}
-                    <dt>{% trans %}Published as BODS{% endtrans %}</dt>
-                    <dd>{{ regime.display_data_in_bods|yesno }}</dd>
-                    {% endif %}
+                {% if regime.display_structured_data is not none %}
+                <dt>{% trans %}Structured data publicly available{% endtrans %}</dt>
+                <dd>{{ regime.display_structured_data|yesno }}</dd>
+                {% endif %}
 
-                    {% if regime.display_api is not none %}
-                    <dt>{% trans %}Available via API{% endtrans %}</dt>
-                    <dd>{{ regime.display_api|yesno }}</dd>
-                    {% endif %}
+                {% if regime.display_data_in_bods is not none %}
+                <dt>{% trans %}Published as BODS{% endtrans %}</dt>
+                <dd>{{ regime.display_data_in_bods|yesno }}</dd>
+                {% endif %}
 
-                    {% if regime.display_oo_register  %}
-                    <dt>{% trans %}Available on the OO register{% endtrans %}</dt>
-                    <dd>{{ regime.display_oo_register|yesno }}</dd>
-                    {% endif %}
-                </dl>
-            </div>
-        </details>
+                {% if regime.display_api is not none %}
+                <dt>{% trans %}Available via API{% endtrans %}</dt>
+                <dd>{{ regime.display_api|yesno }}</dd>
+                {% endif %}
+
+                {% if regime.display_oo_register  %}
+                <dt>{% trans %}Available on the OO register{% endtrans %}</dt>
+                <dd>{{ regime.display_oo_register|yesno }}</dd>
+                {% endif %}
+            </dl>
+        </div>
+
     {% endif %}
 {% endfor %}
 </section>

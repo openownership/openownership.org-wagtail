@@ -62,7 +62,7 @@
 }
 
 .country-page__country-data {
-    @apply flex flex-row gap-8;
+    @apply flex flex-row;
     @apply my-10;
 
     @include max-width(lg) {
