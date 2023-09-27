@@ -171,7 +171,7 @@
 }
 
 
-.map-page__intro {
+.map-page__intro, .region-page__intro {
     @apply border-b border-black/50;
     @apply pb-10;
     @apply my-10;

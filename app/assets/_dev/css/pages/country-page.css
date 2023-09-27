@@ -117,3 +117,26 @@
     }
 
 }
+
+.region-page__list {
+    background-color: white;
+    @apply list-none;
+    @apply py-8;
+
+    li {
+        @apply px-8;
+
+        a {
+            @apply text-blue-medium font-bold no-underline;
+            &:hover {
+                @apply underline;
+            }
+        }
+    }
+}
+
+.region-page__list-item-country-details {
+    @apply flex;
+    @apply gap-4;
+    @apply my-2;
+}

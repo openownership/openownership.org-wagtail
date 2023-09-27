@@ -19,15 +19,40 @@
 
 	<article>
 		{% if region.blurb %}
-			{{ region.blurb|richtext }}
+			<div class="region-page__intro">
+				{{ region.blurb|richtext }}
+			</div>
 		{% endif %}
 
 		{% if country_list %}
-			<ul>
+			<h2>{% trans %}Countries in the region{% endtrans %}</h2>
+			<ul class="region-page__list">
 				{% for country in country_list %}
 					<li>
 						<a href="{{ country.url }}">{{ country }}</a>
+						<div class="region-page__list-item-country-details">
+						{% if country.category %}
+							{% if country.category == 'liveregister' %}
+								<div class="--liveregister">
+									{% include "svg/filled-circle-icon.jinja" %}
+								</div>
+							{% endif %}
+
+							{% if country.category == 'implementing' %}
+								<div class="--implementing">
+									{% include "svg/filled-circle-icon.jinja" %}
+								</div>
+							{% endif %}
+
+							{% if country.category == 'planned' %}
+								<div class="--planned">
+									{% include "svg/filled-circle-icon.jinja" %}
+								</div>
+							{% endif %}
+                    	{% endif %}
+
 						{{ country.blurb|richtext }}
+						</div>
 					</li>
 				{% endfor %}
 			</ul>
