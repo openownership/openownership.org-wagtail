@@ -12,7 +12,7 @@ from django.utils import translation
 from django.shortcuts import reverse
 from markupsafe import Markup
 from django.utils.safestring import mark_safe
-from django.template.defaultfilters import slugify
+from django.template.defaultfilters import json_script, slugify
 from django.utils.translation import gettext_lazy as _
 from django.utils.safestring import SafeString
 from django.contrib.staticfiles.storage import staticfiles_storage
@@ -285,14 +285,14 @@ def get_top_level_navpage(page, navbar_blocks):
     from modules.content.models import (
         JobPage, PublicationFrontPage, PublicationInnerPage, TeamProfilePage
     )
-    from modules.content.views import CountryView
+    from modules.content.views import CountryView, RegionView
 
     navpage = None
 
-    if isinstance(page, CountryView):
-        # Special case. If it's a CountryView, we want to show the same
-        # nav as the Map page. Which is what a CountryView has as its
-        # breadcrumb_page. So:
+    if isinstance(page, CountryView) or isinstance(page, RegionView):
+        # Special case. If it's a CountryView or RegionView we want to
+        # show the same nav as the Map page. Which is what those views
+        # have as their breadcrumb_page. So:
         page = page.breadcrumb_page
     elif isinstance(page, PublicationFrontPage):
         page = page.get_parent()
@@ -335,6 +335,7 @@ class TemplateGlobalsExtension(Extension):
             'yesno': yesno,
             'datestamp': datestamp,
             'fieldtype': fieldtype,
+            'json_script': json_script,
             'nl2br': nl2br,
             'contains': contains_filter,
             'rich_text': rich_text,

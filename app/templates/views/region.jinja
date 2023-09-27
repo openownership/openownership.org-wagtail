@@ -1,0 +1,65 @@
+{% set body_classes = "region-page" %}
+{% extends 'base_with_menu.jinja' %}
+
+
+{% block crumbs %}
+    <div class="contained-width {{ main_classes }}">
+
+        {% with breadcrumb_page=page.breadcrumb_page %}
+            {% if breadcrumb_page %}
+                <div class="breadcrumbs">
+                    <a class="reverse-underline" href="{{ breadcrumb_page.get_url() }}"><span aria-hidden="true"> < </span>{% trans %}Back to{% endtrans %} {{ breadcrumb_page.title }}</a>
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+{% endblock %}
+
+{% block content %}
+
+	<article>
+		{% if region.blurb %}
+			<div class="region-page__intro">
+				{{ region.blurb|richtext }}
+			</div>
+		{% endif %}
+
+		{% if country_list %}
+			<h2>{% trans %}Countries in the region{% endtrans %}</h2>
+			<ul class="region-page__list">
+				{% for country in country_list %}
+					<li>
+						<a href="{{ country.url }}">{{ country }}</a>
+						<div class="region-page__list-item-country-details">
+						{% if country.category %}
+							{% if country.category == 'liveregister' %}
+								<div class="--liveregister">
+									{% include "svg/filled-circle-icon.jinja" %}
+								</div>
+							{% endif %}
+
+							{% if country.category == 'implementing' %}
+								<div class="--implementing">
+									{% include "svg/filled-circle-icon.jinja" %}
+								</div>
+							{% endif %}
+
+							{% if country.category == 'planned' %}
+								<div class="--planned">
+									{% include "svg/filled-circle-icon.jinja" %}
+								</div>
+							{% endif %}
+                    	{% endif %}
+
+						{{ country.blurb|richtext }}
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+
+	</article>
+
+	{{ super() }}
+
+{% endblock %}

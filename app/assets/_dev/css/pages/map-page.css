@@ -1,10 +1,12 @@
-.find-country {
+.find-country, .browse-by-region {
     @apply my-8;
     @apply border-t border-black/50;
 }
 
 .find-country__title,
-.find-country__blurb, 
+.find-country__blurb,
+.browse-by-region__title,
+.browse-by-region__blurb,
 .country-search__form {
     @apply my-4;
 }
@@ -22,14 +24,17 @@
 }
 
 .map__country-data {
-    @apply flex flex-row;
+    @apply flex flex-col;
     @apply my-4;
+    background-color: white;
 
     @include min-width(lg) {
         @apply gap-8;
+        @apply flex-row;
     }
 
     &.--no-filters {
+        background-color: transparent; 
         @include max-width(lg) {
             @apply flex-col;
 
@@ -58,6 +63,7 @@
     }
 }
 
+
 .map__country-data-header {
     @apply flex items-center w-full;
     @apply m-0 p-2 font-bold font-body text-16;
@@ -84,6 +90,7 @@
 .map__country-data-box.--active {
     @apply bg-white;
 
+
     .map__country-data-header{
         @apply bg-blue-light;
         @apply border-2 border-blue-light;
@@ -98,19 +105,6 @@
     }
     .country__header-card_row {    
         @apply text-black;
-        &.--committed-central,
-        &.--implementation-central {
-            g {
-                fill: #7F12E0;
-            }
-        }
-    
-        &.--committed-public,
-        &.--implementation-public {
-            g {
-                fill: #1bb0a7;
-            }
-        }
     }
        
 }
@@ -118,7 +112,7 @@
 .country__header-card_row {
     @apply w-full py-4 px-0;
     @apply flex items-center;
-    @apply text-grey-medium;
+    @apply text-black;
     text-align: left;
 
     @include min-width(lg) {
@@ -129,20 +123,6 @@
         @apply mr-4;
         width: 100%;
         max-width: 30px;
-    }
-
-    &.--committed-central,
-    &.--implementation-central {
-        g {
-            fill: #D9D9D9;
-        }
-    }
-
-    &.--committed-public,
-    &.--implementation-public {
-        g {
-            fill: #D9D9D9;
-        }
     }
 }
 
@@ -168,6 +148,13 @@
 .note {
     @apply text-14 text-grey-dark;
 }
+.note-source {
+    text-align: right;
+    margin-right: -300px;
+    a {
+        @apply text-grey-dark;
+    }
+}
 
 .country__suggestions {
     position: absolute;
@@ -183,3 +170,28 @@
     @apply p-2;
 }
 
+
+.map-page__intro, .region-page__intro {
+    @apply border-b border-black/50;
+    @apply pb-10;
+    @apply my-10;
+}
+
+.region-list {
+    @apply flex flex-wrap;
+    @apply gap-6;
+}
+
+.region-list__list-item {
+    @apply font-bold text-19 text-white;
+
+    a {
+        @apply inline-block;
+        @apply py-1 px-3;
+        @apply bg-blue-medium;
+        @apply text-white no-underline;
+        &:hover {
+            @apply bg-blue-light text-blue-medium;
+        }
+    }
+}

@@ -30,7 +30,7 @@ Make sure you have developer access to the EnvKey project and generate yourself 
 You'll need all the project's environment variables in a .env file expanded into the shell session.
 
 1. `docker-compose up --build -d`
-2. `docker exec -it openownershiporg_web_1 fish` or `docker exec -it openownershiporg_web_1 zsh` depending on your preference
+2. `docker exec -it openownership_web_1 fish` or `docker exec -it openownership_web_1 zsh` depending on your preference
 
 ### Once you have a shell inside the web container
 
