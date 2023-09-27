@@ -22,13 +22,13 @@
   } */
 
   path.map__hilite-planned {
-    fill: red;
+    fill: #00C7E2;
   }
   path.map__hilite-implementing {
-    fill: yellow;
+    fill: #009BFE;
   }
   path.map__hilite-liveregister {
-    fill: blue;
+    fill: #1BB0A7;
   }
 
   /* UNUSED; from outgoing design
@@ -42,6 +42,10 @@
     fill: url(#diagonalHatch) #90c;
   }
   */
+
+  @include min-width(lg) {
+    margin-right: -300px;
+  }
 }
 
 .map__hatch-bg {
@@ -53,7 +57,7 @@
 
 .map__circle {
   fill: #DB00C9;
-  stroke-width: 0.25px;
+  stroke-width: 1px;
   stroke: #fff;
 }
 
@@ -84,4 +88,22 @@
   width: auto;
   font-size: 12px;
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.33);
+}
+
+.country__header-card_row.--planned {
+  svg g {
+    fill: #00C7E2;
+  }
+}
+
+.country__header-card_row.--implementing {
+  svg g {
+    fill: #009BFE;
+  }
+}
+
+.country__header-card_row.--liveregister {
+  svg g {
+    fill: #1BB0A7;
+  }
 }

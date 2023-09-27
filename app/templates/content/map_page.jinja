@@ -1,7 +1,7 @@
-{% extends 'base_with_menu.jinja' %}
+{% extends 'base_without_sidebar.jinja' %}
 
 {% block content %}
-    <div class="intro">
+    <div class="intro map-page__intro">
         {{ page.intro|richtext }}
     </div>
 
@@ -30,22 +30,24 @@
 
     <div class="map__country-data">
         <div class="map__country-data-box">
-
-            <div class="map__country-data-header">
+            <h2 class="sr-only">
                 Category
-            </div>
-            <button class="country__header-card_row js-map-filter --active" data-map-hilites="planned">
-                (Red)
+            </h2>
+            <button class="country__header-card_row js-map-filter --active --planned" data-map-hilites="planned">
+                {% include "svg/filled-circle-icon.jinja" %}
                 {% trans %}Planned{% endtrans %} ({{ country_counts.planned }})
             </button>
-            <button class="country__header-card_row js-map-filter --active" data-map-hilites="implementing">
-                (Yellow)
+            <button class="country__header-card_row js-map-filter --active --implementing" data-map-hilites="implementing">
+                {% include "svg/filled-circle-icon.jinja" %}
                 {% trans %}Implementing{% endtrans %} ({{ country_counts.implementing }})
             </button>
-            <button class="country__header-card_row js-map-filter --active" data-map-hilites="liveregister">
-                (Blue)
+            <button class="country__header-card_row js-map-filter --active --liveregister" data-map-hilites="liveregister">
+                {% include "svg/filled-circle-icon.jinja" %}
                 {% trans %}Live register{% endtrans %} ({{ country_counts.liveregister }})
             </button>
+        </div>
+        <div class="map__country-data-box">
+            Once a country makes at least a commitment to beneficial ownership transparency, they will be labelled as Planned. After work starts on implementing a register, it will be labelled as Implementing. Following the launch of one or more beneficial ownership registers, the country will be labelled as Live register.
         </div>
     </div>
 
@@ -102,6 +104,21 @@
 
             {% endfor %}
         </div>
+    </section>
+
+
+    <section>
+        <div class="browse-by-region">
+            <h2 class="browse-by-region__title">{% trans %}Browse by region{% endtrans %}</h2>
+            <p class="browse-by-region__blurb">{% trans %}Find out more.{% endtrans %}</p>
+        </div>
+        <ul>
+            {% for region in regions %}
+                <li>
+                    <a href="{{ url('region', kwargs={'slug': region.slug}) }}">{{region.name}}</a>
+                </li>
+            {% endfor %}
+        </ul>
     </section>
 
 {% endblock content %}

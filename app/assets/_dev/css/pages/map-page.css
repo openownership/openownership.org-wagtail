@@ -24,6 +24,7 @@
 .map__country-data {
     @apply flex flex-row;
     @apply my-4;
+    background-color: white;
 
     @include min-width(lg) {
         @apply gap-8;
@@ -58,6 +59,7 @@
     }
 }
 
+/* todo: check if this is being used anywhere. if not, delete */
 .map__country-data-header {
     @apply flex items-center w-full;
     @apply m-0 p-2 font-bold font-body text-16;
@@ -84,6 +86,7 @@
 .map__country-data-box.--active {
     @apply bg-white;
 
+    /* todo: check if this is being used anywhere. if not, delete */
     .map__country-data-header{
         @apply bg-blue-light;
         @apply border-2 border-blue-light;
@@ -98,19 +101,6 @@
     }
     .country__header-card_row {    
         @apply text-black;
-        &.--committed-central,
-        &.--implementation-central {
-            g {
-                fill: #7F12E0;
-            }
-        }
-    
-        &.--committed-public,
-        &.--implementation-public {
-            g {
-                fill: #1bb0a7;
-            }
-        }
     }
        
 }
@@ -118,7 +108,7 @@
 .country__header-card_row {
     @apply w-full py-4 px-0;
     @apply flex items-center;
-    @apply text-grey-medium;
+    @apply text-black;
     text-align: left;
 
     @include min-width(lg) {
@@ -129,20 +119,6 @@
         @apply mr-4;
         width: 100%;
         max-width: 30px;
-    }
-
-    &.--committed-central,
-    &.--implementation-central {
-        g {
-            fill: #D9D9D9;
-        }
-    }
-
-    &.--committed-public,
-    &.--implementation-public {
-        g {
-            fill: #D9D9D9;
-        }
     }
 }
 
@@ -183,3 +159,9 @@
     @apply p-2;
 }
 
+
+.map-page__intro {
+    @apply border-b border-black/50;
+    @apply pb-10;
+    @apply my-10;
+}
