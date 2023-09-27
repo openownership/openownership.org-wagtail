@@ -1,0 +1,19 @@
+{% extends "base.jinja" %}
+
+{% block main_inner %}
+	<div class="aside-layout-right aside-layout-right--mainfill">
+		<div class="aside-layout__main aside-layout__no-header">
+			<h1 class="heading-xl">{{ page.title }}</h1>
+
+            {% if country and country.blurb %}
+                <h3>{{ country.blurb|richtext }}</h3>
+            {% endif %}
+
+			{% block content %}
+				{{render_stream(page.body)}}
+			{% endblock %}
+		</div>
+	</div>
+{% endblock %}
+
+

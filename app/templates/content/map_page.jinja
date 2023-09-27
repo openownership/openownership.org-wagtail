@@ -47,7 +47,7 @@
             </button>
         </div>
         <div class="map__country-data-box">
-            Once a country makes at least a commitment to beneficial ownership transparency, they will be labelled as Planned. After work starts on implementing a register, it will be labelled as Implementing. Following the launch of one or more beneficial ownership registers, the country will be labelled as Live register.
+            Once a country makes at least a commitment to beneficial ownership transparency, they will be labelled as <b>Planned</b>. After work starts on implementing a register, it will be labelled as <b>Implementing</b>. Following the launch of one or more beneficial ownership registers, the country will be labelled as <b>Live register</b>. 
         </div>
     </div>
 
@@ -64,13 +64,7 @@
         </div>
     </div>
 
-
-    
-
-
-
     <section>
-
         <div class="find-country">
             <h2 class="find-country__title">{% trans %}Find a specific country{% endtrans %}</h2>
             <p class="find-country__blurb">{% trans %}Find country activity through the map, search or from the regions listed below{% endtrans %}</p>
@@ -110,11 +104,11 @@
     <section>
         <div class="browse-by-region">
             <h2 class="browse-by-region__title">{% trans %}Browse by region{% endtrans %}</h2>
-            <p class="browse-by-region__blurb">{% trans %}Find out more.{% endtrans %}</p>
+            <p class="browse-by-region__blurb">{% trans %}Learn more about Open Ownership's work.{% endtrans %}</p>
         </div>
-        <ul>
+        <ul class="region-list">
             {% for region in regions %}
-                <li>
+                <li class="region-list__list-item">
                     <a href="{{ url('region', kwargs={'slug': region.slug}) }}">{{region.name}}</a>
                 </li>
             {% endfor %}

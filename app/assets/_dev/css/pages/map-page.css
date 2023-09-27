@@ -1,10 +1,12 @@
-.find-country {
+.find-country, .browse-by-region {
     @apply my-8;
     @apply border-t border-black/50;
 }
 
 .find-country__title,
-.find-country__blurb, 
+.find-country__blurb,
+.browse-by-region__title,
+.browse-by-region__blurb,
 .country-search__form {
     @apply my-4;
 }
@@ -22,15 +24,17 @@
 }
 
 .map__country-data {
-    @apply flex flex-row;
+    @apply flex flex-col;
     @apply my-4;
     background-color: white;
 
     @include min-width(lg) {
         @apply gap-8;
+        @apply flex-row;
     }
 
     &.--no-filters {
+        background-color: transparent; 
         @include max-width(lg) {
             @apply flex-col;
 
@@ -59,7 +63,7 @@
     }
 }
 
-/* todo: check if this is being used anywhere. if not, delete */
+
 .map__country-data-header {
     @apply flex items-center w-full;
     @apply m-0 p-2 font-bold font-body text-16;
@@ -86,7 +90,7 @@
 .map__country-data-box.--active {
     @apply bg-white;
 
-    /* todo: check if this is being used anywhere. if not, delete */
+
     .map__country-data-header{
         @apply bg-blue-light;
         @apply border-2 border-blue-light;
@@ -164,4 +168,23 @@
     @apply border-b border-black/50;
     @apply pb-10;
     @apply my-10;
+}
+
+.region-list {
+    @apply flex flex-wrap;
+    @apply gap-6;
+}
+
+.region-list__list-item {
+    @apply font-bold text-19 text-white;
+
+    a {
+        @apply inline-block;
+        @apply py-1 px-3;
+        @apply bg-blue-medium;
+        @apply text-white no-underline;
+        &:hover {
+            @apply bg-blue-light text-blue-medium;
+        }
+    }
 }
