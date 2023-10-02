@@ -74,6 +74,22 @@ body {
     }
 }
 
+.map-page-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+
+    @include min-width(md) {
+        grid-template-columns: minmax(10px, 1fr) 300px !important;
+    }
+
+    .aside-layout__right-aside {
+        > * {
+            @apply mb-5;
+        }
+    }
+}
+
 /* The main column is like .aside-layout-right but there's no right-hand
    aside colum. So we can stretch some elements out to fill that space. */
 .aside-layout-right--mainfill {
@@ -101,5 +117,14 @@ body {
         @apply border-b border-black/50;
         @apply pb-10;
         @apply my-10;
+    }
+}
+
+.map-page-layout {
+    .aside-layout__no-header {
+        h1 {
+            @apply mb-10;
+            @apply mt-0;
+        }
     }
 }

@@ -21,7 +21,7 @@
     <div class="country-page__overview">
         {% if country.map_image %}
         <div class="country-page__map">
-            {{ picture(country.map_image, 300, 194) }}
+            {{ picture(country.map_image, 192, 124) }}
         </div>
         {% endif %}
 
@@ -55,18 +55,32 @@
                 {% trans %}Committed to one or more{% endtrans %}
             </h2>
 
+            
             <ul class="country-page__country-data-box-list">
-                <li class="country-page__country-data-box-list-item">
+                <li class="country-page__country-data-box-list-item --categories">
                     {% if country.category %}
                         {% if country.category == 'liveregister' %}
                             <div class="--liveregister">
                                 {% include "svg/filled-circle-icon.jinja" %}
                             </div>
+
+                            {{ country.category_display }}
+
+                            <div class="country-page__category">
+                                Following the launch of one or more beneficial ownership registers, a country is labelled as Live register.
+                            </div>
+
                         {% endif %}
 
                         {% if country.category == 'implementing' %}
                             <div class="--implementing">
                                 {% include "svg/filled-circle-icon.jinja" %}
+                            </div>
+
+                            {{ country.category_display }}
+
+                            <div class="country-page__category">
+                                After work starts on implementing a register, a country is in the Implementing stage.
                             </div>
                         {% endif %}
 
@@ -74,13 +88,19 @@
                             <div class="--planned">
                                 {% include "svg/filled-circle-icon.jinja" %}
                             </div>
+
+                            {{ country.category_display }}
+
+                            <div class="country-page__category">
+                                Once a country makes at least a commitment to beneficial ownership transparency, it is at Planned stage.
+                            </div>
                         {% endif %}
 
-                        {{ country.category_display }}
+                        
 
                     {% else %}
 
-                        [None]
+                        This country has not made any commitments relating to beneficial ownership transparency
 
                     {% endif %}
                 </li>
