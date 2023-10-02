@@ -116,6 +116,15 @@
         }
     }
 
+    &.--categories {
+        @apply flex-wrap;
+    }
+
+}
+
+.country-page__category {
+    @apply border-t-2 border-border-data;
+    @apply pt-4 mt-4;
 }
 
 .region-page__list {

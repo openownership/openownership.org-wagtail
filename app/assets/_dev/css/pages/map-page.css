@@ -1,5 +1,8 @@
 .find-country, .browse-by-region {
     @apply my-8;
+}
+
+.find-country {
     @apply border-t border-black/50;
 }
 
