@@ -25,10 +25,10 @@
     fill: #00C7E2;
   }
   path.map__hilite-implementing {
-    fill: #009BFE;
+    fill: #7F12E0;
   }
   path.map__hilite-liveregister {
-    fill: #1BB0A7;
+    fill: #1EC16F;
   }
 
   /* UNUSED; from outgoing design
@@ -36,7 +36,7 @@
     fill: #7F12E0;
   }
   path.map__hilite-public {
-    fill: #1BB0A7;
+    fill: #1EC16F;
   }
   path.map__hilite-public.map__hilite-central {
     fill: url(#diagonalHatch) #90c;
@@ -52,7 +52,7 @@
   fill: #7F12E0;
 }
 .map__hatch-fg {
-  stroke: #1BB0A7;
+  stroke: #1EC16F;
 }
 
 .map__circle {
@@ -98,19 +98,19 @@
 
 .country__header-card_row.--implementing {
   svg g {
-    fill: #009BFE;
+    fill: #7F12E0;
   }
 }
 
 .country__header-card_row.--liveregister {
   svg g {
-    fill: #1BB0A7;
+    fill: #1EC16F;
   }
 }
 
 .--liveregister {
   svg g {
-    fill: #1BB0A7;
+    fill: #1EC16F;
   }
 }
 
@@ -122,6 +122,6 @@
 
 .--implementing {
   svg g {
-    fill: #009BFE;
+    fill: #7F12E0;
   }
 }
