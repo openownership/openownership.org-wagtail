@@ -1,7 +1,7 @@
-{% extends 'base_with_menu.jinja' %}
+{% extends 'base_without_sidebar.jinja' %}
 
 {% block content %}
-    <div class="intro">
+    <div class="intro map-page__intro">
         {{ page.intro|richtext }}
     </div>
 
@@ -24,40 +24,34 @@
         <button class="map__zoom map__zoom-in js-map-zoomin">+</button>
         <button class="map__zoom map__zoom-out js-map-zoomout">−</button>
     </div>
-    <p class="note">{% trans %}NOTE: Country boundaries <a href="https://geojson-maps.ash.ms">source</a>{% endtrans%}</p>
+    <p class="note note-source">
+        {% trans %}
+            NOTE: Country boundaries data is taken from <a href="https://geojson-maps.ash.ms">NaturalEarth</a>.
+        {% endtrans%}
+    </p>
     <p class="note">{% trans %}Data on the Open Ownership map is drawn from publicly-available sources and may not be comprehensive for all countries. If data is incorrect, <a href="https://share.hsforms.com/1ooDVGfPWQFyc93l3Bds9jA3upv4">please let us know</a>{% endtrans%}</p>
 
 
     <div class="map__country-data">
         <div class="map__country-data-box">
-            <button class="map__country-data-header js-map-filter" data-map-hilites="committed-central|committed-public">
-                {% include "svg/commitment-icon.jinja" %}
-                <span>
-                {% trans %}Commitment to <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}</span>
+            <h2 class="sr-only">
+                Category
+            </h2>
+            <button class="country__header-card_row js-map-filter --active --planned" data-map-hilites="planned">
+                {% include "svg/filled-circle-icon.jinja" %}
+                {% trans %}Planned{% endtrans %} ({{ country_counts.planned }})
             </button>
-            <button class="country__header-card_row --committed-central js-map-filter" data-map-hilites="committed-central">
+            <button class="country__header-card_row js-map-filter --active --implementing" data-map-hilites="implementing">
                 {% include "svg/filled-circle-icon.jinja" %}
-                {% trans %}Central Register{% endtrans %} ({{ country_counts.committed_central }})</button>
-            <button class="country__header-card_row --committed-public js-map-filter" data-map-hilites="committed-public">
+                {% trans %}Implementing{% endtrans %} ({{ country_counts.implementing }})
+            </button>
+            <button class="country__header-card_row js-map-filter --active --liveregister" data-map-hilites="liveregister">
                 {% include "svg/filled-circle-icon.jinja" %}
-                {% trans %}Public Register{% endtrans %} ({{ country_counts.committed_public }})</button>
+                {% trans %}Live register{% endtrans %} ({{ country_counts.liveregister }})
+            </button>
         </div>
-
         <div class="map__country-data-box">
-            <button class="map__country-data-header js-map-filter" data-map-hilites="implementation-central|implementation-public">
-                {% include "svg/implementation-icon.jinja" %}
-                <span>
-                {% trans %}Implementation of <abbr title="Beneficial Ownership Transparency">BOT</abbr>{% endtrans %}
-                </span>
-            </button>
-            <button class="country__header-card_row --implementation-central js-map-filter" data-map-hilites="implementation-central">
-                {% include "svg/filled-circle-icon.jinja" %}
-                {% trans %}Central Register{% endtrans %} ({{ country_counts.implementation_central }})
-            </button>
-            <button class="country__header-card_row --implementation-public js-map-filter" data-map-hilites="implementation-public">
-                {% include "svg/filled-circle-icon.jinja" %}
-                {% trans %}Public Register{% endtrans %} ({{ country_counts.implementation_public }})
-            </button>
+            Once a country makes at least a commitment to beneficial ownership transparency, it will be labelled as <b>Planned</b>. After work starts on implementing a register, it will be labelled as <b>Implementing</b>. Following the launch of one or more beneficial ownership registers, the country will be labelled as <b>Live register</b>.
         </div>
     </div>
 
@@ -65,7 +59,7 @@
         <div class="map__country-data-box">
             <div class="country__card-no-action">
                 {% include "svg/filled-circle-icon.jinja" %}
-                Countries where Open Ownership is engaged ({{ country_counts.engaged }})
+                Countries where Open Ownership has engaged ({{ country_counts.engaged }})
             </div>
             
         </div>
@@ -74,13 +68,7 @@
         </div>
     </div>
 
-
-    
-
-
-
     <section>
-
         <div class="find-country">
             <h2 class="find-country__title">{% trans %}Find a specific country{% endtrans %}</h2>
             <p class="find-country__blurb">{% trans %}Find country activity through the map, search or from the regions listed below{% endtrans %}</p>
@@ -116,16 +104,36 @@
         </div>
     </section>
 
+
+    <section>
+        <div class="browse-by-region">
+            <h2 class="browse-by-region__title">{% trans %}Browse by region{% endtrans %}</h2>
+            <p class="browse-by-region__blurb">{% trans %}Learn more about Open Ownership's work.{% endtrans %}</p>
+        </div>
+        <ul class="region-list">
+            {% for region in regions %}
+                <li class="region-list__list-item">
+                    <a href="{{ url('region', kwargs={'slug': region.slug}) }}">{{region.name}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
 {% endblock content %}
 
 {% block js_prepend %}
-    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://unpkg.com/d3@5.6.0/dist/d3.min.js"></script>
+    <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
+
+    {{ map_json|json_script("js-map-json") }}
+    {{ countries_json|json_script("js-countries-json") }}
+    {{ oo_engaged_values|json_script("js-oo-engaged-values") }}
 
     <script type="text/javascript">
-        {# countries.json from https://geojson-maps.ash.ms #}
-        var geojsonPath = "{{static('data/countries.json')}}";
-        var mapData = {{ map_json|safe }};
-        var countryData = {{ countries_json|safe }};
-        var ooEngagedValues = {{ oo_engaged_values|safe }};
+        {# See the convert_map_topojson.py management command for how to make the topoJSON file #}
+        var topojsonPath = "{{static('data/worldmap_topo.json')}}";
+        var mapData = JSON.parse(document.getElementById("js-map-json").textContent);
+        var countryData = JSON.parse(document.getElementById("js-countries-json").textContent);
+        var ooEngagedValues = JSON.parse(document.getElementById("js-oo-engaged-values").textContent);
     </script>
 {% endblock %}

@@ -21,16 +21,30 @@
     fill: #f00;
   } */
 
+  path.map__hilite-planned {
+    fill: #00C7E2;
+  }
+  path.map__hilite-implementing {
+    fill: #7F12E0;
+  }
+  path.map__hilite-liveregister {
+    fill: #1EC16F;
+  }
+
+  /* UNUSED; from outgoing design
   path.map__hilite-central {
     fill: #7F12E0;
   }
-
   path.map__hilite-public {
-    fill: #1BB0A7;
+    fill: #1EC16F;
   }
-
   path.map__hilite-public.map__hilite-central {
     fill: url(#diagonalHatch) #90c;
+  }
+  */
+
+  @include min-width(lg) {
+    margin-right: -300px;
   }
 }
 
@@ -38,12 +52,12 @@
   fill: #7F12E0;
 }
 .map__hatch-fg {
-  stroke: #1BB0A7;
+  stroke: #1EC16F;
 }
 
 .map__circle {
   fill: #DB00C9;
-  stroke-width: 0.25px;
+  stroke-width: 1px;
   stroke: #fff;
 }
 
@@ -74,4 +88,40 @@
   width: auto;
   font-size: 12px;
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.33);
+}
+
+.country__header-card_row.--planned {
+  svg g {
+    fill: #00C7E2;
+  }
+}
+
+.country__header-card_row.--implementing {
+  svg g {
+    fill: #7F12E0;
+  }
+}
+
+.country__header-card_row.--liveregister {
+  svg g {
+    fill: #1EC16F;
+  }
+}
+
+.--liveregister {
+  svg g {
+    fill: #1EC16F;
+  }
+}
+
+.--planned {
+  svg g {
+    fill: #00C7E2;
+  }
+}
+
+.--implementing {
+  svg g {
+    fill: #7F12E0;
+  }
 }
