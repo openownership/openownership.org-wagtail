@@ -27,6 +27,7 @@ from modules.content.models import (
     TaxonomyPage,
     TeamPage,
     TeamProfilePage,
+    UtilityPage,
 )
 
 
@@ -222,6 +223,17 @@ def _create_team_profile_page(
     return p
 
 
+def _create_utility_page(
+    title: str, parent: Page, modifier: int = 1
+) -> UtilityPage:
+    p = UtilityPage()
+    p.title = title
+    p.first_published_at = arrow.now().shift(days=modifier * -1).datetime
+    parent.add_child(instance=p)
+    p.save_revision().publish()
+    return p
+
+
 ########################################################################
 # Fixtures for Pages
 
@@ -332,6 +344,12 @@ def team_page(section_listing_page):
 @pytest.fixture(scope="function")
 def team_profile_page(team_page):
     p = _create_team_profile_page("Team Profile", team_page)
+    return p
+
+
+@pytest.fixture(scope="function")
+def utility_page(home_page):
+    p = _create_utility_page("Utility", home_page)
     return p
 
 

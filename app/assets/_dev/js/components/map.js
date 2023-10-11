@@ -22,10 +22,7 @@
  *       "lat": "11.6",
  *       "lon": "43.15",
  *       "oo_support": "No engagement",
- *       "committed_central": true,
- *       "committed_public": true,
- *       "implementation_central": false,
- *       "implementation_public": false
+ *       "category": "planned",
  *     }
  *
  * ooEngagedValues - An array of strings. The values we count as OO being
@@ -46,6 +43,7 @@ const worldMap = (function () {
 
   // Variables that will be set elsewhere in the code:
   var mapData = {};
+  var categories = [];
   var ooEngagedValues = [];
   var container = null;
   var projection = null;
@@ -75,12 +73,8 @@ const worldMap = (function () {
     d3.json(options.topojsonPath).then(function (topojsonData) {
       generateMap(topojsonData);
 
-      // On load we set the initial state by setting this button to be active:
-      setActiveButton(
-        document.querySelector(
-          ".js-map-filter[data-map-hilites='committed-central|committed-public']"
-        )
-      );
+      // On load we set the initial state by setting all buttons to active:
+      setActiveButtons(document.querySelectorAll(".js-map-filter"));
     });
   };
 
@@ -89,15 +83,18 @@ const worldMap = (function () {
   /**
    * Take the map data array from the back end and transform it into an object
    * keyed by the iso2 values.
-   * Sets the mapData object.
+   * Sets the mapData object and categories array.
    * @param {array} data
    */
   var initMapData = function (data) {
     for (var i = 0; i < data.length; i++) {
       var country = data[i];
       mapData[country.iso2] = country;
+      if (country.category && categories.includes(country.category) === false) {
+        categories.push(country.category);
+      }
     }
-  };
+  }
 
   /**
    * Set up the basic elements and projection etc.
@@ -139,43 +136,53 @@ const worldMap = (function () {
    *
    * Each one should have the "js-map-filter" class.
    * And an attribute like:
-   *  data-map-hilites="committed-central|committed-public"
+   *  data-map-hilites="planned"
+   *
+   * (It should be possible to multiple category values, like
+   *   data-map-hilites="planned|implementing"
+   * but we don't currently use that ability).
    */
   var initListeners = function () {
     document.addEventListener("click", function (event) {
       // Is it a click on one of the buttons:
-      if (event.target.matches(".js-map-filter")) {
-        setActiveButton(event.target);
+      if (event.target.matches('.js-map-filter')) {
+        setActiveButtons([event.target]);
         event.preventDefault();
       }
     });
 
     // Just clicking on the background removes any existing hiliting.
-    svg.on("click", function (event, d) {
-      setActiveButton();
+    svg.on("click", function(event, d) {
+      setActiveButtons();
     });
   };
 
   /**
    * Set which button is now active, and change map hilites accordingly.
-   * @param {object} btnEl The element whose parent is to be active. Or null if none of them should be.
+   * @param {array} btnEls The elements which should be active. Or null if none of them should be.
    */
-  var setActiveButton = function (btnEl) {
-    document.querySelectorAll(".map__country-data-box").forEach(function (el) {
+  var setActiveButtons = function (btnEls) {
+    document.querySelectorAll(".js-map-filter").forEach(function(el) {
       el.classList.remove("--active");
     });
 
-    if (btnEl) {
-      var parentContainer = btnEl.parentElement;
-      parentContainer.classList.add("--active");
+    // We'll hilite countries with these categories:
+    var catsToHilite = [];
 
-      // Get what to filter:
-      var filters = btnEl.getAttribute("data-map-hilites");
-      hiliteCountries(filters.split("|"));
-    } else {
-      hiliteCountries([]);
+    if (btnEls) {
+      btnEls.forEach(function(el) {
+        el.classList.add("--active");
+
+        var cats = el.getAttribute("data-map-hilites").split("|");
+        cats.forEach(function(cat) {
+          if ( ! catsToHilite.includes(cat)) {
+            catsToHilite.push(cat);
+          }
+        })
+      });
     }
-  };
+    hiliteCountries(catsToHilite);
+  }
 
   /**
    * Draw the map using supplied data.
@@ -197,21 +204,13 @@ const worldMap = (function () {
       .selectAll("path")
       .data(countries.features)
       .enter()
-      .append("path")
-      .attr("class", function (d) {
-        var cls = " js-map-country";
-        if (getCountryProp(d, "committed_central")) {
-          cls += " js-map-committed-central";
-        }
-        if (getCountryProp(d, "committed_public")) {
-          cls += " js-map-committed-public";
-        }
-        if (getCountryProp(d, "implementation_central")) {
-          cls += " js-map-implementation-central";
-        }
-        if (getCountryProp(d, "implementation_public")) {
-          cls += " js-map-implementation-public";
-        }
+        .append("path")
+        .attr("class", function(d) {
+          var cls = ' js-map-country';
+          var cat = getCountryProp(d, 'category');
+          if (cat) {
+            cls += ' js-map-'+cat;
+          }
 
         // if (ooEngagedValues.indexOf(getCountryProp(d, 'oo_support')) > -1) {
         //   cls += ' map-engaged';
@@ -338,23 +337,20 @@ const worldMap = (function () {
     tooltip.style("visibility", "hidden");
   };
 
-  /**
-   * Set the content of the tooltip.
-   * @param {object} d The country object.
-   * @returns string HTML for the tooltip.
-   */
-  var tooltipFormat = function (d) {
-    let name = getCountryProp(d, "name");
-    let html = "";
-    if (name) {
-      html = "<strong>" + getCountryProp(d, "name") + "</strong>";
-    }
-    // text += "<br>Committed central: " + getCountryProp(d, "committed_central");
-    // text += "<br>Committed public: " + getCountryProp(d, "committed_public");
-    // text += "<br>Implementation central: " + getCountryProp(d, "implementation_central");
-    // text += "<br>Implementation public: " + getCountryProp(d, "implementation_public");
-    return html;
-  };
+    /**
+     * Set the content of the tooltip.
+     * @param {object} d The country object.
+     * @returns string HTML for the tooltip.
+     */
+    var tooltipFormat = function (d) {
+      let name = getCountryProp(d, "name");
+      let html = '';
+      if (name) {
+        html = "<strong>" + getCountryProp(d, "name") + "</strong>";
+      }
+      // text += "<br>Category: " + getCountryProp(d, "category");
+      return html;
+    };
 
   /**
    * Get a property about a country from its path element.
@@ -364,7 +360,7 @@ const worldMap = (function () {
    * to find the right data in the mapData object.
    *
    * @param {object} d The d3 element that's been clicked, hovered over, etc.
-   * @param {string} key The name of a piece of info like 'name', 'url', implementation_central', etc.
+   * @param {string} key The name of a piece of info like 'name', 'url', 'category', etc.
    * @returns string
    */
   var getCountryProp = function (d, key) {
@@ -391,32 +387,30 @@ const worldMap = (function () {
   };
 
   /**
-   * Add classes to countries based on whether they've committed/implemented.
+   * Add classes to countries based on their category.
    *
-   * @param {array} kinds An array of strings like
-   *  ["committed-central", "committed-public"]
+   * @param {array} hiliteCats An array of strings like
+   *  ["planned", "implementing"]
    *  If it's an empty array then all hilite classes will be removed.
    */
-  var hiliteCountries = function (kinds) {
+  var hiliteCountries = function(hiliteCats) {
     // Turn off any existing hiliting:
-    d3.selectAll(".js-map-country.map__hilite-central").classed(
-      "map__hilite-central",
-      false
-    );
-    d3.selectAll(".js-map-country.map__hilite-public").classed(
-      "map__hilite-public",
-      false
-    );
+    var unHiliteCats = categories.filter(function(c) {
+      return hiliteCats.indexOf(c) < 0;
+    });
+    unHiliteCats.forEach(function(cat) {
+      d3.selectAll(".js-map-country.map__hilite-"+cat).classed("map__hilite-"+cat, false);
+    });
 
     // Hilite this kind of country:
-    for (var i = 0; i < kinds.length; i++) {
-      var clss = "map__hilite-central";
-      if (kinds[i].endsWith("public")) {
-        clss = "map__hilite-public";
+    hiliteCats.forEach(function(cat) {
+      var clss = "map__hilite-"+categories[0];
+      if (categories.includes(cat)) {
+        clss = "map__hilite-"+cat;
       }
-      d3.selectAll(".js-map-" + kinds[i]).classed(clss, true);
-    }
-  };
+      d3.selectAll(".js-map-"+cat).classed(clss, true);
+    });
+  }
 
   return publicAPIs;
 })();

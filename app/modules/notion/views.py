@@ -13,8 +13,7 @@ from cacheops import cached
 from modules.notion.models import Commitment, CountryTag, DisclosureRegime
 
 
-COUNTRY_HEADERS = [
-    'Type',
+BASE_HEADERS = [
     'Name',
     'Central',
     'Public access',
@@ -32,7 +31,9 @@ COUNTRY_HEADERS = [
     'Available on the OO register'
 ]
 
-ALL_HEADERS = ['Country'] + COUNTRY_HEADERS
+COUNTRY_HEADERS = ['Type'] + BASE_HEADERS
+
+ALL_HEADERS = ['Country', 'Stage'] + BASE_HEADERS
 
 
 class DataExportBase(View):
@@ -166,10 +167,14 @@ class CountriesExport(DataExportBase):
         for country in self._all_countries:
             for commitment in country.commitments.all():
                 row = [country.name] + self._get_commitment_row(commitment)
+                # Replace "Commitment" Type with stage/category:
+                row[1] = country.category_display
                 writer.writerow(row)
             for regime in country.regimes.all():
                 if regime.display:
                     row = [country.name] + self._get_regime_row(regime)
+                    # Replace "Implementation" Type with stage/category:
+                    row[1] = country.category_display
                     writer.writerow(row)
         return writer
 
