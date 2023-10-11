@@ -655,6 +655,7 @@ class PublicationInnerPage(ContentPageType):
                 foot_num = self._footnote_index(link['href']) + 1
                 link.string = f"[{foot_num}]"
                 link['name'] = f"source-{foot_num}"
+                link.wrap(soup.new_tag("sup"))
                 block['value'] = str(soup)
 
     def _footnote_index(self, href: str) -> int:
@@ -1452,38 +1453,24 @@ class MapPage(BasePage):
 
     @cached_property
     def _country_counts(self):
-        """Get four counts for the context. These use cached_properties on the
-        country models so we can't do a nice SQL / ORM query to tally them, so
-        we're doing this instead.
+        """Get counts for number of countries in each category.
+
+        These use cached_properties on the country models so we can't do
+        a nice SQL / ORM query to tally them, so we're doing this instead.
         """
-        committed_central = []
-        committed_public = []
-        implementation_central = []
-        implementation_public = []
+        counts = {}
+
         countries = CountryTag.objects.all()
         for country in countries:
-
-            if country.committed_central:
-                committed_central.append(country)
-
-            if country.committed_public:
-                committed_public.append(country)
-
-            if country.implementation_central:
-                implementation_central.append(country)
-
-            if country.implementation_public:
-                implementation_public.append(country)
+            if country.category is not None:
+                if country.category in counts:
+                    counts[country.category] += 1
+                else:
+                    counts[country.category] = 1
 
         # Number of countries in which OO is engaged:
-        engaged_count = (
+        counts["engaged"] = (
             CountryTag.objects.filter(oo_support__in=CountryTag.OO_ENGAGED_VALUES).count()
         )
 
-        return {
-            'committed_central': len(committed_central),
-            'committed_public': len(committed_public),
-            'implementation_central': len(implementation_central),
-            'implementation_public': len(implementation_public),
-            'engaged': engaged_count,
-        }
+        return counts
