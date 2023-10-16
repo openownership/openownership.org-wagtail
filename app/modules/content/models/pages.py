@@ -22,7 +22,7 @@ from wagtail.admin.forms import WagtailAdminPageForm
 from wagtail.blocks import StreamBlock
 from wagtail.models import Page, Locale, Orderable
 from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
-from wagtail.search.models import Query
+from wagtail.contrib.search_promotions.models import Query
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -1105,7 +1105,13 @@ class SearchPage(BasePage):
         objs = []
         if search_query:
             query = Query.get(search_query)
-            promoted_ids = query.editors_picks.values_list('page_id', flat=True)
+            promoted_ids = []
+            try:
+                query = Query.get(search_query)
+                promoted_ids = query.editors_picks.values_list('page_id', flat=True)
+            except Exception as err:
+                console.warn(err)
+
             if promoted_ids:
                 promoted_pages = Page.objects.filter(id__in=promoted_ids).live().specific()
             else:
