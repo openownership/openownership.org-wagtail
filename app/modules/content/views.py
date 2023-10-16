@@ -9,7 +9,7 @@ from django.http import Http404
 from wagtail.models import Page, Site, Locale
 from django.views.generic import TemplateView
 from django.core.paginator import Paginator
-from wagtail.search.models import Query
+from wagtail.contrib.search_promotions.models import Query
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils.functional import cached_property
