@@ -629,7 +629,10 @@ class PublicationInnerPage(ContentPageType):
     body = fields.StreamField(BLOCKS, blank=True, use_json_field=True)
 
     def __str__(self):
-        return f"{self.get_parent().title}: {self.title}"
+        try:
+            return f"{self.get_parent().title}: {self.title}"
+        except Exception:
+            return "New publication inner page"
 
     def get_context(self, request, *args, **kwargs) -> dict:
         ctx = super().get_context(request, *args, **kwargs)
