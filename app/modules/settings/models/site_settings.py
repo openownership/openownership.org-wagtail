@@ -10,7 +10,7 @@ from wagtail.contrib.settings.models import register_setting
 from .mixins import SearchSettings, MetaTagSettings, AnalyticsSettings, SocialMediaSettings
 
 
-@register_setting(icon="fa-info")
+@register_setting(icon="cogs")
 class SiteSettings(
     AnalyticsSettings,
     MetaTagSettings,

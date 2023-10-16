@@ -1,6 +1,6 @@
 # 3rd party
 import django_filters
-from wagtail.core.models import Page
+from wagtail.models import Page
 from django.apps import apps
 from django.utils.translation import gettext_lazy as _
 from wagtail.admin.auth import permission_denied

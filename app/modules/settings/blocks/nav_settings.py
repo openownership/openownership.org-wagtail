@@ -12,7 +12,7 @@ class NavItem(blocks.StructBlock):
         form_template = 'wagtail/cta_block_form.html'
         label = 'Link'
         value_class = CTABlockStructValue
-        icon = 'fa-link'
+        icon = 'link'
         form_classname = 'nav-settings'
 
     link_type = blocks.ChoiceBlock(
@@ -36,7 +36,7 @@ class NavSubMenu(blocks.StructBlock):
 
     class Meta:
         label = 'Link with sub menu'
-        icon = 'fa-bars'
+        icon = 'bars'
 
     nav_item = NavItem()
     links = blocks.ListBlock(
@@ -48,7 +48,7 @@ class NavMegaMenu(blocks.StructBlock):
 
     class Meta:
         label = 'Link with mega menu'
-        icon = 'fa-bars'
+        icon = 'bars'
 
     nav_item = NavItem()
     objects = blocks.StreamBlock([

@@ -65,7 +65,7 @@ class GlossaryItemBlock(blocks.StructBlock):
 
     class Meta:
         label = 'Glossary item'
-        icon = 'fa-help'
+        icon = 'help'
         template = 'blocks/glossary_item.jinja'
 
     title = blocks.CharBlock(required=True)
@@ -366,7 +366,7 @@ class EmbedBlock(EmbedBlockMixin):
 class NotificationBlock(blocks.StructBlock):
 
     class Meta:
-        icon = 'fa-bell-o'
+        icon = 'bell'
         template = 'blocks/notification.jinja'
 
     body = blocks.RichTextBlock(
@@ -393,7 +393,7 @@ class _StepsBlockItem(blocks.StructBlock):
 class StepsBlock(TitleMixin):
 
     class Meta:
-        icon = 'fa-sort-numeric-asc'
+        icon = 'order'
         template = 'blocks/steps.jinja'
 
     objects = blocks.ListBlock(
@@ -411,7 +411,7 @@ class SocialMediaBlock(TitleBodyMixin):
 
     class Meta:
         label = 'Share banner'
-        icon = 'fa-share-alt'
+        icon = 'share-nodes'
         template = "blocks/social_media.jinja"
 
 
@@ -439,7 +439,7 @@ class IconListBlock(blocks.StructBlock):
     class Meta:
         template = 'blocks/features_list.jinja'
         label = 'Features list'
-        icon = 'fa-font-awesome'
+        icon = 'font-awesome'
 
     objects = blocks.ListBlock(_IconListBlockItem(), label="Blocks", required=True)
 
@@ -470,7 +470,7 @@ class _StatBlock(blocks.StructBlock):
 class StatsBlock(TitleBodyMixin):
     class Meta:
         label = 'Stats'
-        icon = 'fa-external-link-square'
+        icon = 'link-external'
         template = "blocks/stats.jinja"
 
     objects = blocks.ListBlock(
@@ -489,7 +489,7 @@ class StatsBlock(TitleBodyMixin):
 class NewsletterBlock(blocks.StructBlock):
     class Meta:
         label = 'Newsletter signup'
-        icon = 'fa-envelope'
+        icon = 'mail'
         template = "blocks/newsletter.jinja"
 
     eyebrow = blocks.CharBlock(
@@ -524,7 +524,7 @@ class NewsletterBlock(blocks.StructBlock):
 class EmbedBannerBlock(EyebrowTitleBodyMixin):
 
     class Meta:
-        icon = 'fa-play-circle'
+        icon = 'media'
         template = "blocks/embed_banner.jinja"
 
     embed = EmbedBlock(required=True)
@@ -568,7 +568,7 @@ class _VideoGalleryItem(blocks.StructBlock):
 
 class VideoGalleryBlock(blocks.StructBlock):
     class Meta:
-        icon = 'fa-quote-left'
+        icon = 'openquote'
         template = 'blocks/video_gallery.jinja'
 
     objects = blocks.ListBlock(
@@ -584,7 +584,7 @@ class VideoGalleryBlock(blocks.StructBlock):
 
 class PullQuoteBlock(blocks.StructBlock):
     class Meta:
-        icon = 'fa-quote-left'
+        icon = 'openquote'
         template = 'blocks/pull_quote.jinja'
 
     quote = blocks.TextBlock(required=True)
@@ -605,7 +605,7 @@ class PullQuoteBlock(blocks.StructBlock):
 
 class SummaryBoxBlock(blocks.StructBlock):
     class Meta:
-        icon = 'fa-square-o'
+        icon = 'doc-full-inverse'
         template = 'blocks/summary_box.jinja'
         label = "Summary / highlight box"
 
@@ -647,7 +647,7 @@ class LogoListBlock(EyebrowTitleBodyMixin):
 
 class BannerBlock(EyebrowTitleMixin):
     class Meta:
-        icon = 'fa-minus'
+        icon = 'minus'
         template = 'blocks/banner.jinja'
 
     cta = CTABlock(required=False)
@@ -1322,7 +1322,7 @@ class TextColumnsBlock(blocks.StructBlock):
 class FormAssemblyBlock(blocks.StructBlock):
 
     class Meta:
-        icon = 'fa-database'
+        icon = 'clipboard-list'
         template = "blocks/formassembly.jinja"
 
     heading = blocks.CharBlock(
@@ -1351,7 +1351,7 @@ class DisclosureBlock(blocks.StructBlock):
 
     class Meta:
         label = _('Details')
-        icon = 'fa-caret-down'
+        icon = 'arrow-down'
         template = 'blocks/disclosure.jinja'
 
     title = blocks.CharBlock(required=True)
