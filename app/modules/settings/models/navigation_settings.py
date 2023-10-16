@@ -10,7 +10,7 @@ from wagtail.contrib.settings.models import register_setting
 from .mixins import Footer, NavBar
 
 
-@register_setting(icon="fa-bars")
+@register_setting(icon="bars")
 class NavigationSettings(NavBar, Footer):
 
     class Meta:

@@ -10,7 +10,7 @@ from .models import Author
 class AuthorModelAdmin(ModelAdmin):
     "Add 'Authors' item to admin sidebar"
     model = Author
-    menu_icon = 'fa-user'
+    icon_name = 'icon icon-user'
     list_display = ('name',)
     ordering = ('name',)
 
