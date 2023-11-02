@@ -2,6 +2,9 @@
 # For example use this to reinforce things that we want to stay
 # in English and not be translated to the local language.
 
+msgid "Language"
+msgstr "Language"
+
 msgid "English"
 msgstr "English"
 
