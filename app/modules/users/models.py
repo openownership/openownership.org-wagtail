@@ -5,7 +5,7 @@
 """
 
 # 3rd party
-import bugsnag
+import sentry_sdk as sentry
 from django.db import models
 from django.utils import timezone
 from django.core.mail import send_mail
@@ -105,7 +105,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         try:
             send_mail(subject, message, from_email, [self.email], **kwargs)
         except Exception as e:
-            bugsnag.notify(e)
+            sentry.capture_exception(e)
 
     def __str__(self):
         if len(self.full_name) > 1:
