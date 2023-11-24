@@ -1,7 +1,7 @@
 import os
 
 from .base import *  # NOQA
-from .base import STORAGES, CACHES
+from .base import CACHES
 
 DEBUG = True
 
@@ -38,7 +38,15 @@ CACHES['default']['LOCATION'] = f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:6379/2'
 CACHES['wagtailcache']['LOCATION'] = f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:6379/3'
 
 
-STORAGES["staticfiles"]["BACKEND"] = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STORAGES = {
+    "default": {
+        "BACKEND": 'django.core.files.storage.InMemoryStorage',
+    },
+    "staticfiles": {
+        "BACKEND": 'django.contrib.staticfiles.storage.StaticFilesStorage',
+    },
+}
+
 
 WAGTAILSEARCH_BACKENDS = {
     'default': {
