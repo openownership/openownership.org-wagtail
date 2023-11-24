@@ -38,13 +38,27 @@ def check_page_access(client: Client, page_id: str) -> bool:
     return True
 
 
-def find_db_id(client: Client, page_id: str, db_name: str) -> Optional[str]:
+def show_dbs_for_page(page_id: str) -> None:
+    from modules.notion.auth import get_notion_client
+    client = get_notion_client()
     try:
         blocks: dict = client.blocks.children.list(block_id=page_id)
         for block in blocks['results']:
             if block['type'] == 'child_database':
-                if _check_db_name(block, db_name):
-                    return block['id']
+                print('-'*80)
+                print(f"{block['child_database']['title']} - {block['id']}")
+                print(block)
+    except Exception as e:
+        console.error(e)
+        console.error("Failed to find database or page")
+
+
+def find_db_id(client: Client, page_id: str, db_name: str) -> Optional[str]:
+    try:
+        blocks: dict = client.blocks.children.list(block_id=page_id)
+        for block in blocks['results']:
+            if block['type'] == 'child_database' and _check_db_name(block, db_name):
+                return block['id']
         return None
     except Exception as e:
         console.error(e)
