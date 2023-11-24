@@ -34,7 +34,7 @@ class NotionError(Exception):
 
 class NotionCronBase(CronJobBase):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # noqa: ARG002
         self.client = get_notion_client()
 
     def _clean_up(self, data: dict) -> None:
@@ -66,14 +66,17 @@ class NotionCronBase(CronJobBase):
                 self.has_more = data['has_more']
         except KeyboardInterrupt:
             if settings.DEBUG:
-                import ipdb; ipdb.set_trace()
+                import ipdb
+                ipdb.set_trace()
             else:
                 raise
-        except Exception as e:
-            console.error(e)
+        except Exception as err:
+            console.error(err)
             if settings.DEBUG:
-                import ipdb; ipdb.set_trace()
-            raise NotionError(f"Error fetching data - {e}")
+                import ipdb
+                ipdb.set_trace()
+            msg = f"Error fetching data - {err}"
+            raise NotionError(msg) from err
 
         return initial_data
 
@@ -136,17 +139,17 @@ class NotionCronBase(CronJobBase):
         notion_type = data['properties'][property_name]['type']
         if notion_type == 'number':
             return self._get_number(data, property_name)
-        elif notion_type == 'rich_text':
+        if notion_type == 'rich_text':
             return self._get_rich_text(data, property_name)
-        elif notion_type == 'select':
+        if notion_type == 'select':
             return self._get_select_name(data, property_name)
-        elif notion_type == 'relation':
+        if notion_type == 'relation':
             return self._get_rel_id(data, property_name)
-        elif notion_type == 'url':
+        if notion_type == 'url':
             return self._get_url(data, property_name)
-        elif notion_type == 'checkbox':
+        if notion_type == 'checkbox':
             return self._get_bool(data, property_name)
-        elif notion_type == 'date':
+        if notion_type == 'date':
             return self._get_date(data, property_name)
 
         return ""
@@ -217,19 +220,19 @@ class NotionCronBase(CronJobBase):
         if 'properties' not in data:
             import ipdb
             ipdb.set_trace()
-        if property_name not in data['properties'].keys():
+        if property_name not in data['properties']:
             return None
         try:
             if data['properties'][property_name]['select'] is not None:
-                if 'name' in data['properties'][property_name]['select'].keys():
+                if 'name' in data['properties'][property_name]['select']:
                     return data['properties'][property_name]['select']['name']
-                else:
-                    return None
+                return None
         except Exception as e:
             console.warn(f"Failed to get select for {property_name}")
             console.warn(e)
             if settings.DEBUG:
-                import ipdb; ipdb.set_trace()
+                import ipdb
+                ipdb.set_trace()
             return None
 
     def _get_rel_id(self, data: dict, property_name: str) -> str:
@@ -365,7 +368,8 @@ class NotionCronBase(CronJobBase):
         except Exception as e:
             console.warn(e)
             if settings.DEBUG:
-                import ipdb; ipdb.set_trace()
+                import ipdb
+                ipdb.set_trace()
             return ''
 
     def _get_url(self, data: dict, property_name: str) -> Optional[str]:
@@ -558,7 +562,9 @@ class SyncCountries(NotionCronBase):
                 console.error("Failed to save")
                 console.error(e)
                 if settings.DEBUG:
-                    import ipdb; ipdb.set_trace()
+                    import ipdb
+                    ipdb.set_trace()
+        return False
 
     def _get_country_name(self, data: dict) -> str:
         """
@@ -705,7 +711,9 @@ class SyncCommitments(NotionCronBase):
             console.error("Failed to save")
             console.error(e)
             if settings.DEBUG:
-                import ipdb; ipdb.set_trace()
+                import ipdb
+                ipdb.set_trace()
+        return False
 
 
 class SyncRegimes(NotionCronBase):
@@ -768,7 +776,7 @@ class SyncRegimes(NotionCronBase):
         if country:
             obj, created = DisclosureRegime.objects.get_or_create(
                 notion_id=notion_id,
-                country=country
+                country=country,
             )
         else:
             console.warn("No related country found, skipping")
@@ -781,10 +789,10 @@ class SyncRegimes(NotionCronBase):
         self._set_universals(obj, regime)
         obj.title = self._get_title(regime)
         obj.definition_legislation_url = self._get_value(
-            regime, '1.1 Definition: Legislation URL'
+            regime, '1.1 Definition: Legislation URL',
         )
         obj.coverage_legislation_url = self._get_value(
-            regime, '2.3 Coverage: Legislation URL'
+            regime, '2.3 Coverage: Legislation URL',
         )
         scope_tags = self._get_scope_tags(regime)
         if scope_tags:
@@ -806,16 +814,16 @@ class SyncRegimes(NotionCronBase):
         obj.threshold = str(self._get_value(regime, '1.2 Threshold'))
         # New legislation fields
         obj.sufficient_detail_legislation_url = self._get_value(
-            regime, "3.1 Sufficient detail: Legislation URL"
+            regime, "3.1 Sufficient detail: Legislation URL",
         )
         obj.public_access_protection_regime_url = self._get_value(
-            regime, "5.4.1 Protection regime URL"
+            regime, "5.4.1 Protection regime URL",
         )
         obj.public_access_legal_basis_url = self._get_value(
-            regime, "5.5 Legal basis for publication URL"
+            regime, "5.5 Legal basis for publication URL",
         )
         obj.sanctions_enforcement_legislation_url = self._get_value(
-            regime, "9 Sanctions and enforcement: Legislation URL"
+            regime, "9 Sanctions and enforcement: Legislation URL",
         )
 
         try:
@@ -824,7 +832,8 @@ class SyncRegimes(NotionCronBase):
             console.error("Failed to save")
             console.error(e)
             if settings.DEBUG:
-                import ipdb; ipdb.set_trace()
+                import ipdb
+                ipdb.set_trace()
 
     def _get_scope_tags(self, data: dict) -> list:
         """Takes this dict, creates a CoverageScope tag for each `name` and returns a list of them
@@ -856,16 +865,17 @@ class SyncRegimes(NotionCronBase):
             tags = []
             scopes = data['properties']['2.1 Coverage: Scope']['multi_select']
             if not len(scopes):
-                return
+                return None
 
             for item in scopes:
                 tag, created = CoverageScope.objects.get_or_create(name=item['name'])
                 tags.append(tag)
 
-        except Exception as e:
+        except Exception as err:
             console.warn("Failed to add scope tags")
-            console.warn(e)
-            raise NotionError(f"Failed to add scope tags - {e}")
+            console.warn(err)
+            f"Failed to add scope tags - {err}"
+            raise NotionError() from err
         else:
             # console.info(f"Scope tags: {tags}")
             return tags
@@ -894,11 +904,12 @@ class SyncRegimes(NotionCronBase):
         try:
             stages = data['properties']['0 Stage']['multi_select']
             if not len(stages):
-                return
+                return None
 
             return ', '.join([item['name'] for item in stages])
 
-        except Exception as e:
+        except Exception as err:
             console.warn("Failed to get Stages")
-            console.warn(e)
-            raise NotionError(f"Failed to get Stages - {e}")
+            console.warn(err)
+            f"Failed to get Stages - {err}"
+            raise NotionError() from err
