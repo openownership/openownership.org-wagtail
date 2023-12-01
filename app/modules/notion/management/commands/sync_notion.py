@@ -3,7 +3,7 @@ from consoler import console
 from django.core.management.base import BaseCommand
 
 # Project
-from modules.notion.cron import SyncRegimes, SyncCountries, SyncCommitments
+from modules.notion.cron import SyncRegimes, SyncCountries, SyncCommitments, SyncRegimesSub
 from modules.notion.models import Commitment, CountryTag, DisclosureRegime
 
 
@@ -31,5 +31,11 @@ class Command(BaseCommand):
 
         total_regimes = DisclosureRegime.objects.count()
         console.info(f"Synced disclosure regimes - {total_regimes}")
+
+        s = SyncRegimesSub()
+        s.do(force=True)
+
+        total_regimes = DisclosureRegime.objects.count()
+        console.info(f"Synced disclosure regimes sub - {total_regimes}")
 
         console.success("Synced stuff from Notion")

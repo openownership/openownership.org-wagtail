@@ -13,7 +13,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from django_extensions.db.fields import AutoSlugField
 from wagtail.admin.panels import (
-    FieldPanel, ObjectList, TabbedInterface, PageChooserPanel
+    FieldPanel, ObjectList, TabbedInterface, PageChooserPanel,
 )
 
 # Project
@@ -33,7 +33,7 @@ class NotionModel(models.Model):
         blank=False,
         null=False,
         max_length=255,
-        unique=True
+        unique=True,
     )
     notion_created = models.DateTimeField(  # created_time
         _("Notion Created"),
@@ -43,19 +43,19 @@ class NotionModel(models.Model):
     notion_updated = models.DateTimeField(  # last_edited_time
         _("Notion Updated"),
         blank=True,
-        null=True
+        null=True,
     )
     archived = models.BooleanField(
         _("Archived"),
         blank=True,
-        null=True
+        null=True,
     )
 
     deleted = models.BooleanField(
         _("Soft deleted"),
         blank=False,
         null=False,
-        default=False
+        default=False,
     )
 
 
@@ -69,56 +69,56 @@ class Commitment(NotionModel):
         "notion.CountryTag",
         related_name="commitments",
         to_field='notion_id',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
 
     date = models.DateField(
         _("Date"),
         blank=True,
-        null=True
+        null=True,
     )
 
     link = models.URLField(
         _("Link"),
         blank=True,
-        null=True,
-        max_length=1000
+        default='',
+        max_length=1000,
     )
 
     # This field is going to be used to link to Snippets
     commitment_type_name = models.CharField(
         _("Commitment Type"),
         blank=True,
-        null=True,
-        max_length=255
+        default='',
+        max_length=255,
     )
 
     central_register = models.BooleanField(
         _("Central Register"),
         blank=False,
         null=False,
-        default=False
+        default=False,
     )
 
     public_register = models.BooleanField(
         _("Public Register"),
         blank=False,
         null=False,
-        default=False
+        default=False,
     )
 
     all_sectors = models.BooleanField(  # All sectors
         _("All sectors"),
         blank=False,
         null=False,
-        default=False
+        default=False,
     )
 
     summary_text = fields.RichTextField(
         _("Summary Text"),
         blank=True,
         null=True,
-        features=settings.RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
     @cached_property
@@ -147,139 +147,146 @@ class DisclosureRegime(NotionModel):
         "notion.CountryTag",
         related_name="disclosure_regimes",
         to_field='notion_id',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
 
     # Specified
     title = models.CharField(  # Title
         _("Title"),
         blank=True,
-        null=True,
-        max_length=255
+        default='',
+        max_length=255,
     )
 
-    stage = models.CharField(  # 0 Stage
+    stage = models.CharField(  # 0 Stage (now Implementation stage)
         _("Stage"),
         blank=True,
-        null=True,
-        max_length=255
+        default='',
+        max_length=255,
     )
 
     # 1.1 Definition: Legislation URL
     definition_legislation_url = models.TextField(
         _('Definition: Legislation URL'),
         blank=True,
-        null=True,
-        max_length=10000
+        default='',
+        max_length=10000,
     )
 
     # 2.3 Coverage: Legislation URL
     coverage_legislation_url = models.TextField(
         _('Coverage: Legislation URL'),
         blank=True,
-        null=True,
-        max_length=10000
+        default='',
+        max_length=10000,
     )
 
     # 3.1 Sufficient detail: Legislation URL
     sufficient_detail_legislation_url = models.TextField(
         _('Sufficient detail: Legislation URL'),
         blank=True,
-        null=True,
-        max_length=10000
+        default='',
+        max_length=10000,
     )
 
     # 5.4.1 Public access: Protection regime URL
     public_access_protection_regime_url = models.TextField(
         _('Public access: Protection regime URL'),
         blank=True,
-        null=True,
-        max_length=10000
+        default='',
+        max_length=10000,
     )
 
     # 5.5 Public access: Legal basis URL
     public_access_legal_basis_url = models.TextField(
         _('Public access: Legal basis URL'),
         blank=True,
-        null=True,
-        max_length=10000
+        default='',
+        max_length=10000,
     )
 
     # 9 Sanctions and enforcement: Legislation URL
     sanctions_enforcement_legislation_url = models.TextField(
         _('Public access: Legal basis URL'),
         blank=True,
-        null=True,
-        max_length=10000
+        default='',
+        max_length=10000,
     )
 
     central_register = models.CharField(  # 4.1 Central register
         _("Central Register"),
         blank=True,
-        null=True,
-        max_length=255
+        default='',
+        max_length=255,
     )
 
     public_access = models.CharField(  # 5.1 Public access
         _("Public Access"),
         blank=True,
-        null=True,
-        max_length=255
+        default='',
+        max_length=255,
     )
 
-    public_access_register_url = models.URLField(  # 5.1.1 Public access: Register URL
+    public_access_register_url = models.URLField(  # 5.1.1 Public access: Register URL (now Register URL)  # noqa: E501
         _('Public Access Register URL'),
         blank=True,
-        null=True,
-        max_length=1000
+        default='',
+        max_length=1000,
     )
 
     year_launched = models.CharField(  # 5.1.2 Year launched
         _("Year Launched"),
         blank=True,
-        null=True,
-        max_length=255
+        default='',
+        max_length=255,
     )
 
     structured_data = models.CharField(  # 6.1 Structured data
         _("Structured data"),
         blank=True,
-        null=True,
-        max_length=255
+        default='',
+        max_length=255,
     )
 
-    api_available = models.CharField(  # 6.3 API available
+    api_available = models.CharField(  # API available
         _("API available"),
         blank=True,
-        null=True,
-        max_length=255
+        default='',
+        max_length=255,
+    )
+
+    bulk_data_available = models.CharField(  # Bulk data available
+        _("Bulk data available"),
+        blank=True,
+        default='',
+        max_length=255,
     )
 
     data_in_bods = models.CharField(  # 6.4 Data published in BODS
         _("Data published in BODS"),
         blank=True,
-        null=True,
-        max_length=255
+        default='',
+        max_length=255,
     )
 
-    on_oo_register = models.BooleanField(  # 6.5 Data on OO Register
+    on_oo_register = models.CharField(  # Used to be bool, now str
         _("On OO Register"),
-        blank=False,
-        null=False,
-        default=False
+        blank=True,
+        default='',
+        max_length=255,
     )
 
     legislation_url = models.TextField(  # 8.4 Legislation URL
         _('Legislation URL'),
         blank=True,
-        null=True,
-        max_length=10000
+        default='',
+        max_length=10000,
     )
 
     coverage_scope = ParentalManyToManyField(
         'notion.CoverageScope',
         related_name="disclosure_regimes",
-        blank=True
+        blank=True,
     )
 
     # New fields needed as of 21/03/22
@@ -287,8 +294,8 @@ class DisclosureRegime(NotionModel):
     threshold = models.CharField(  # 1.2 Threshold
         _("Threshold"),
         blank=True,
-        null=True,
-        max_length=255
+        default='',
+        max_length=255,
     )
 
     @cached_property
@@ -459,15 +466,15 @@ class CountryTag(NotionModel, BaseTag):
     oo_ongoing_work_title = models.CharField(
         _("Open Ownership Ongoing Work Title"),
         blank=True,
-        null=True,
-        max_length=255
+        default='',
+        max_length=255,
     )
 
     oo_ongoing_work_body = fields.RichTextField(
         _("Open Ownership Ongoing Work Body"),
         blank=True,
         null=True,
-        features=settings.RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
     map_image = models.ForeignKey(
@@ -475,20 +482,20 @@ class CountryTag(NotionModel, BaseTag):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name='+',
     )
 
     icon = models.CharField(
         _("Icon"),
         blank=True,
-        null=True,
-        max_length=25
+        default='',
+        max_length=25,
     )
 
     regions = models.ManyToManyField(
         'notion.Region',
         related_name="countries",
-        blank=True
+        blank=True,
     )
 
     consultant = models.ForeignKey(
@@ -496,22 +503,22 @@ class CountryTag(NotionModel, BaseTag):
         related_name="consultant_countries",
         blank=True,
         null=True,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
 
     # Stuff from the Notion Properties dict
     oo_support = models.CharField(
         _("OO Support"),
         blank=True,
-        null=True,
-        max_length=255
+        default='',
+        max_length=255,
     )
 
     iso2 = models.CharField(
         _("ISO2"),
         blank=True,
-        null=True,
-        max_length=10
+        default='',
+        max_length=10,
     )
 
     main_panels = [
@@ -540,7 +547,7 @@ class CountryTag(NotionModel, BaseTag):
 
     @cached_property
     def last_updated(self):
-        dates = [self.notion_updated, ]
+        dates = [self.notion_updated ]
         for item in self.regimes:
             if item is not None and item.notion_updated is not None:
                 dates.append(item.notion_updated)
@@ -553,8 +560,7 @@ class CountryTag(NotionModel, BaseTag):
     def committed(self):
         if len(self.all_commitments):
             return True
-        else:
-            return False
+        return False
 
     @cached_property
     def involved(self):
@@ -562,7 +568,7 @@ class CountryTag(NotionModel, BaseTag):
             'Standard',
             'Medium',
             'High',
-            'Past engagement'
+            'Past engagement',
         ]
         return self.oo_support in VALID
 
@@ -574,8 +580,7 @@ class CountryTag(NotionModel, BaseTag):
         value = self.oo_support
         if value == 'Past engagement':
             return 'Historic'
-        else:
-            return 'Current'
+        return 'Current'
 
     @cached_property
     def combined_commitments(self):
@@ -609,7 +614,7 @@ class CountryTag(NotionModel, BaseTag):
             'public': public_register,
             'all_sectors': all_sectors,
             'level': level,
-            'html': self._commitments_summary_html
+            'html': self._commitments_summary_html,
         }
 
     @cached_property
@@ -811,7 +816,7 @@ class CountryTag(NotionModel, BaseTag):
             page_ids = [item.content_object_id for item in self.country_related_pages.all()]
             pages = Page.objects.filter(
                 id__in=page_ids,
-                locale=Locale.get_active()
+                locale=Locale.get_active(),
             ).specific().live().public()
             pages = sorted(pages, key=lambda x: x.display_date, reverse=True)
         except Exception as e:
@@ -827,7 +832,7 @@ class CountryTag(NotionModel, BaseTag):
             page_ids = [item.content_object_id for item in self.country_related_pages.all()]
             pages = Page.objects.filter(
                 id__in=page_ids,
-                locale=Locale.get_active()
+                locale=Locale.get_active(),
             ).specific().live().public().order_by('-first_published_at')
         except Exception as e:
             console.warn(e)
@@ -870,12 +875,12 @@ class CountryTaggedPage(ItemBase):
     tag = models.ForeignKey(
         CountryTag,
         related_name="country_related_pages",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     content_object = ParentalKey(
         'wagtailcore.Page',
         on_delete=models.CASCADE,
-        related_name="country_related_items"
+        related_name="country_related_items",
     )
 
 

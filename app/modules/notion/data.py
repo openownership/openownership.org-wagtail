@@ -1,6 +1,12 @@
 COUNTRY_TRACKER = 'a7d0fc79-decf-4851-a8f7-8916e23862ba'
 COMMITMENT_TRACKER = '995e7787-e85f-45df-8fa5-68684f30d16b'
-DISCLOSURE_REGIMES = 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+# DISCLOSURE_REGIMES = 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+
+# Implementation tracker (master database)
+DISCLOSURE_REGIMES = '85e52f2f-03c5-4d2a-b93f-1acbee5918f1'
+
+# Implementation (data features)
+DISCLOSURE_REGIMES_SUB = '4e596712-c912-4821-8ecd-1e272f781d0b'
 
 
 # NOTE: There's duplicate keys in here because they were there in the source CSV
