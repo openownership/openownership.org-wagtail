@@ -2,6 +2,7 @@
 from consoler import console
 from django.conf import settings
 from django_cron import Schedule
+from django.db import IntegrityError
 
 # Module
 from modules.notion.helpers import check_headers
@@ -84,6 +85,10 @@ class SyncCommitments(NotionCronBase):
             else:
                 console.warn("No related country found, skipping")
                 return False
+        except IntegrityError:
+            # this probably already exists but with a different country
+            obj = Commitment.objects.get(notion_id=notion_id)
+            obj.country = country
         except Exception as error:
             console.error(error)
             if settings.DEBUG:
