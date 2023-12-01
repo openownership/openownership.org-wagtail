@@ -24,7 +24,7 @@ def test_sync_countries():
     """
     s = SyncCountries()
     s.do(data=COUNTRIES)
-    assert CountryTag.objects.count() == 194
+    assert CountryTag.objects.count() == 209
     assert CountryTag.objects.filter(name='Mexico').count() == 1
 
 
@@ -39,7 +39,7 @@ def test_sync_commitments():
     # for item in COMMITMENTS['results']:
     #     com = Commitment.objects.filter(notion_id=item['id']).first()
     #     assert com is not None
-    assert Commitment.objects.count() == 187
+    assert Commitment.objects.count() == 259
 
 
 def test_sync_regimes():
@@ -53,8 +53,8 @@ def test_sync_regimes():
     # for item in COMMITMENTS['results']:
     #     com = Commitment.objects.filter(notion_id=item['id']).first()
     #     assert com is not None
-    assert DisclosureRegime.objects.count() == 95
-    assert CoverageScope.objects.count() == 6
+    assert DisclosureRegime.objects.count() == 101
+    assert CoverageScope.objects.count() == 7
     assert DisclosureRegime.objects.filter(coverage_scope__isnull=False).first() is not None
 
 
@@ -66,8 +66,8 @@ def test_sync_regimes_sub():
     _countries.do(data=COUNTRIES)
     _regimes = SyncRegimes()
     _regimes.do(data=REGIMES)
-    assert DisclosureRegime.objects.count() == 95
-    assert CoverageScope.objects.count() == 6
+    assert DisclosureRegime.objects.count() == 101
+    assert CoverageScope.objects.count() == 7
     assert DisclosureRegime.objects.filter(coverage_scope__isnull=False).first() is not None
     s = SyncRegimesSub()
     s.do(data=REGIMES_SUB)

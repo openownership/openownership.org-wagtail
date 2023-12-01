@@ -189,6 +189,44 @@ class NotionCronBase(CronJobBase):
             return ''
         return ''
 
+    def _get_register_name(self, data: dict) -> str:
+        """
+        A Notion `Register name` presents like this, we just want the plain_text...
+
+        'properties': {
+            'Register name': {
+                'id': 'title',
+                'type': 'title',
+                'title': [
+                    {
+                        'type': 'text',
+                        'text': {
+                            'content': 'Register of Beneficial Owners of Legal Persons',
+                            'link': None,
+                        },
+                        'annotations': {
+                            'bold': False,
+                            'italic': False,
+                            'strikethrough': False,
+                            'underline': False,
+                            'code': False,
+                            'color': 'default',
+                        },
+                        'plain_text': 'Register of Beneficial Owners of Legal Persons',
+                        'href': None,
+                    },
+                ],
+            },
+        }
+        """
+        try:
+            return data['properties']['Register name']['title'][0]['plain_text']
+        except Exception as e:
+            console.warn("Failed to get Register name")
+            console.warn(e)
+            return ''
+        return ''
+
     def _get_select_name(self, data: dict, property_name: str) -> str:
         """A select in Notion presents like this, we just want the name key
 
@@ -491,3 +529,4 @@ class NotionCronBase(CronJobBase):
             return CountryTag.objects.get(notion_id=notion_id)
         except Exception as e:
             console.warn(e)
+            console.warn(notion_id)

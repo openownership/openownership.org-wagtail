@@ -111,8 +111,6 @@ class SyncCommitments(NotionCronBase):
         obj.summary_text = self._get_value(commitment, 'Summary Text')
         obj.all_sectors = self._get_value(commitment, 'All sectors')
 
-        console.log(f"Saving {obj}")
-
         try:
             obj.save()
         except Exception as e:

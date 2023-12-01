@@ -42,7 +42,6 @@ class SyncRegimesSub(NotionCronBase):
                 # Notify of failure, probably Slack and logging
                 console.warn("Regimes - Results was zero len")
 
-            self._clean_up(data)
 
     def _handle_regime(self, regime: dict, force: bool = False) -> bool:
         """Gets data from notion (`regime`) and saves it as a DisclosureRegime.
@@ -72,12 +71,12 @@ class SyncRegimesSub(NotionCronBase):
         obj.on_oo_register = self._get_value(regime, 'Data on OO Register')  # str
         obj.data_in_bods = self._get_value(regime, 'Data published in BODS')  # str
         obj.structured_data = self._get_value(regime, 'Structured data')  # str
-        console.info('-' * 80)
-        console.info('api_available', obj.api_available)
-        console.info('bulk_data_available', obj.bulk_data_available)
-        console.info('on_oo_register', obj.on_oo_register)
-        console.info('data_in_bods', obj.data_in_bods)
-        console.info('structured_data', obj.structured_data)
+        # console.info('-' * 80)
+        # console.info('api_available', obj.api_available)
+        # console.info('bulk_data_available', obj.bulk_data_available)
+        # console.info('on_oo_register', obj.on_oo_register)
+        # console.info('data_in_bods', obj.data_in_bods)
+        # console.info('structured_data', obj.structured_data)
         obj.save()
         return True
 
@@ -153,7 +152,7 @@ class SyncRegimes(NotionCronBase):
 
         # This is either a new row, or it has been updated, so save stuff
         self._set_universals(obj, regime)
-        obj.title = self._get_title(regime)
+        obj.title = self._get_register_name(regime)
         scope_tags = self._get_scope_tags(regime)
         if scope_tags:
             for item in scope_tags:
