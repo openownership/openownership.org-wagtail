@@ -4,10 +4,88 @@ from django.conf import settings
 from django_cron import Schedule
 
 # Module
-from .helpers import check_headers
-from modules.notion.data import DISCLOSURE_REGIMES
+from modules.notion.helpers import check_headers
+from modules.notion.data import DISCLOSURE_REGIMES, DISCLOSURE_REGIMES_SUB
 from modules.notion.models import CoverageScope, DisclosureRegime
-from modules.notion.cron.base import NotionCronBase, NotionError
+from modules.notion.cron.core import NotionCronBase, NotionError
+
+
+class SyncRegimesSub(NotionCronBase):
+    RUN_EVERY_MINS = 120  # every 2 hours
+
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+    code = 'notion.sync_regimes_sub'
+
+    def __init__(self, *args, **kwargs):
+        self._model = DisclosureRegime
+        super().__init__(*args, **kwargs)
+
+    # def do(self, data: dict = None, force: bool = False):
+    #     """Sync regimes from Notion
+
+    #     Args:
+    #         data (dict, optional): We're only going to pass the data in here in tests
+    #     """
+
+    #     # The ID we have for DISCLOSURE_REGIMES is already the DB id
+    #     if not data:
+    #         data = self.fetch_all_data(DISCLOSURE_REGIMES_SUB)
+
+    #     if check_headers("Disclosure Regime", data):
+    #         results = data.get('results', [])
+    #         if len(results):
+    #             # Do stuff here to save the data from Notion
+    #             for item in results:
+    #                 self._handle_regime(item, force)
+    #         else:
+    #             # Notify of failure, probably Slack and logging
+    #             console.warn("Regimes - Results was zero len")
+
+    #         self._clean_up(data)
+
+    def _handle_regime(self, regime: dict, force: bool = False) -> bool:
+        """Gets data from notion (`regime`) and saves it as a DisclosureRegime.
+
+        Args:
+            regime (dict): The OG Notion data, as a dict for a single regime row
+
+        Returns:
+            bool: Success / Failure
+        """
+        try:
+            notion_id = regime['id']
+        except KeyError:
+            console.warn(regime)
+            console.error("No notion ID found")
+
+        country_id = self._get_rel_id(regime, 'Country')
+        if country_id is None:
+            return False
+
+        country = None
+        if country_id:
+            country = self._get_country(country_id)
+
+        if country:
+            obj, created = DisclosureRegime.objects.get_or_create(
+                notion_id=notion_id,
+                country=country,
+            )
+        else:
+            console.warn("No related country found, skipping")
+            return False
+
+        if not self._is_updated(obj, regime) and not force:
+            return False
+
+        # This is either a new row, or it has been updated, so save stuff
+        self._set_universals(obj, regime)
+        obj.api_available = self._get_value(regime, 'API available')
+        obj.bulk_data_available = self._get_value(regime, 'Bulk data available')
+        obj.on_oo_register = self._get_value(regime, 'Data on OO Register')
+        obj.data_in_bods = self._get_value(regime, 'Data published in BODS')
+        obj.structured_data = self._get_value(regime, 'Structured data')
+        return True
 
 
 class SyncRegimes(NotionCronBase):
@@ -82,43 +160,39 @@ class SyncRegimes(NotionCronBase):
         # This is either a new row, or it has been updated, so save stuff
         self._set_universals(obj, regime)
         obj.title = self._get_title(regime)
-        obj.definition_legislation_url = self._get_value(
-            regime, '1.1 Definition: Legislation URL',
-        )
-        obj.coverage_legislation_url = self._get_value(
-            regime, '2.3 Coverage: Legislation URL',
-        )
         scope_tags = self._get_scope_tags(regime)
         if scope_tags:
             for item in scope_tags:
                 obj.coverage_scope.add(item)
                 obj.coverage_scope.commit()
 
-        obj.stage = self._get_stages(regime)  # 0 Stage - multi_select
-        obj.central_register = self._get_value(regime, '4.1 Central register')
-        obj.public_access = self._get_value(regime, '5.1 Public access')
-        obj.public_access_register_url = self._get_value(
-            regime, '5.1.1 Public access: Register URL')
-        obj.year_launched = self._get_value(regime, '4.2 Year launched')
-        obj.structured_data = self._get_value(regime, '6.1 Structured data')
-        obj.api_available = self._get_value(regime, '6.3 API available')
-        obj.data_in_bods = self._get_value(regime, '6.4 Data published in BODS')
-        obj.on_oo_register = self._get_value(regime, '6.5 Data on OO Register')
-        obj.legislation_url = self._get_value(regime, '8.4 Legislation URL')
-        obj.threshold = str(self._get_value(regime, '1.2 Threshold'))
-        # New legislation fields
-        obj.sufficient_detail_legislation_url = self._get_value(
-            regime, "3.1 Sufficient detail: Legislation URL",
-        )
-        obj.public_access_protection_regime_url = self._get_value(
-            regime, "5.4.1 Protection regime URL",
-        )
-        obj.public_access_legal_basis_url = self._get_value(
-            regime, "5.5 Legal basis for publication URL",
-        )
-        obj.sanctions_enforcement_legislation_url = self._get_value(
-            regime, "9 Sanctions and enforcement: Legislation URL",
-        )
+        obj.stage = self._get_stages(regime) or ''  # Implementation stage - multi-select
+        obj.public_access_register_url = self._get_value(regime, 'Register URL') or ''
+        obj.year_launched = self._get_value(regime, 'Year launched')
+        obj.threshold = str(self._get_value(regime, 'Threshold (%)'))
+
+        # REMOVED
+        # obj.definition_legislation_url = self._get_value(
+        #     regime, '1.1 Definition: Legislation URL',
+        # )
+        # obj.coverage_legislation_url = self._get_value(
+        #     regime, '2.3 Coverage: Legislation URL',
+        # )
+        # obj.central_register = self._get_value(regime, '4.1 Central register')
+        # obj.public_access = self._get_value(regime, '5.1 Public access')
+        # obj.legislation_url = self._get_value(regime, '8.4 Legislation URL')
+        # obj.sufficient_detail_legislation_url = self._get_value(
+        #     regime, "3.1 Sufficient detail: Legislation URL",
+        # )
+        # obj.public_access_protection_regime_url = self._get_value(
+        #     regime, "5.4.1 Protection regime URL",
+        # )
+        # obj.public_access_legal_basis_url = self._get_value(
+        #     regime, "5.5 Legal basis for publication URL",
+        # )
+        # obj.sanctions_enforcement_legislation_url = self._get_value(
+        #     regime, "9 Sanctions and enforcement: Legislation URL",
+        # )
 
         try:
             obj.save()
@@ -157,7 +231,7 @@ class SyncRegimes(NotionCronBase):
         """
         try:
             tags = []
-            scopes = data['properties']['2.1 Coverage: Scope']['multi_select']
+            scopes = data['properties']['Scope']['multi_select']
             if not len(scopes):
                 return None
 
@@ -196,7 +270,7 @@ class SyncRegimes(NotionCronBase):
             list: List of tags
         """
         try:
-            stages = data['properties']['0 Stage']['multi_select']
+            stages = data['properties']['Implementation stage']['multi_select']
             if not len(stages):
                 return None
 

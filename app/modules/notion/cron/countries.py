@@ -5,10 +5,10 @@ from django_cron import Schedule
 from django.template.defaultfilters import slugify
 
 # Module
-from .helpers import check_headers
+from modules.notion.helpers import check_headers
 from modules.notion.data import COUNTRY_TRACKER
 from modules.notion.models import CountryTag
-from modules.notion.cron.base import NotionCronBase
+from modules.notion.cron.core import NotionCronBase
 
 
 class SyncCountries(NotionCronBase):
@@ -88,8 +88,7 @@ class SyncCountries(NotionCronBase):
                 console.error("Failed to save")
                 console.error(e)
                 if settings.DEBUG:
-                    import ipdb
-                    ipdb.set_trace()
+                    import ipdb; ipdb.set_trace()  # noqa: E702
         return False
 
     def _get_country_name(self, data: dict) -> str:

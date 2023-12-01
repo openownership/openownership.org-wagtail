@@ -4,10 +4,11 @@ from django.conf import settings
 from django_cron import Schedule
 
 # Module
-from .helpers import check_headers
+from modules.notion.helpers import check_headers
 from modules.notion.data import COMMITMENT_TRACKER
 from modules.notion.models import Commitment
-from modules.notion.cron.base import NotionCronBase, NotionError
+from modules.notion.cron.core import NotionCronBase, NotionError
+
 
 class SyncCommitments(NotionCronBase):
     RUN_EVERY_MINS = 120  # every 2 hours
@@ -109,6 +110,8 @@ class SyncCommitments(NotionCronBase):
         obj.public_register = self._get_value(commitment, 'Public register')
         obj.summary_text = self._get_value(commitment, 'Summary Text')
         obj.all_sectors = self._get_value(commitment, 'All sectors')
+
+        console.log(f"Saving {obj}")
 
         try:
             obj.save()

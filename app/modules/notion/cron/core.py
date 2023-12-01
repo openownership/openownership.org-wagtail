@@ -187,8 +187,9 @@ class NotionCronBase(CronJobBase):
             console.warn("Failed to get Title")
             console.warn(e)
             return ''
+        return ''
 
-    def _get_select_name(self, data: dict, property_name: str) -> Optional[str]:
+    def _get_select_name(self, data: dict, property_name: str) -> str:
         """A select in Notion presents like this, we just want the name key
 
         'properties': {
@@ -218,19 +219,20 @@ class NotionCronBase(CronJobBase):
             import ipdb
             ipdb.set_trace()
         if property_name not in data['properties']:
-            return None
+            return ''
         try:
             if data['properties'][property_name]['select'] is not None:
                 if 'name' in data['properties'][property_name]['select']:
                     return data['properties'][property_name]['select']['name']
-                return None
+                return ''
         except Exception as e:
             console.warn(f"Failed to get select for {property_name}")
             console.warn(e)
             if settings.DEBUG:
                 import ipdb
                 ipdb.set_trace()
-            return None
+            return ''
+        return ''
 
     def _get_rel_id(self, data: dict, property_name: str) -> str:
         """A rel in Notion presents like this, we just want the relation id key
@@ -255,7 +257,8 @@ class NotionCronBase(CronJobBase):
                 return data['properties'][property_name]['relation'][0]['id']
         except Exception as e:
             console.warn(e)
-            return None
+            return ''
+        return ''
 
     def _get_plain_text(self, data: dict, property_name: str) -> str:
         """Get the plain text representation of a rich_text property in the Notion data
@@ -295,6 +298,7 @@ class NotionCronBase(CronJobBase):
         except Exception as e:
             console.warn(e)
             return ''
+        return ''
 
     def _get_rich_text(self, data: dict, property_name: str) -> str:
         """Get the rich text representation of a rich_text property in the Notion data.
@@ -368,8 +372,9 @@ class NotionCronBase(CronJobBase):
                 import ipdb
                 ipdb.set_trace()
             return ''
+        return ''
 
-    def _get_url(self, data: dict, property_name: str) -> Optional[str]:
+    def _get_url(self, data: dict, property_name: str) -> str:
         """A url field in Notion presents like this, we just want the url key
 
         'properties': {
@@ -384,13 +389,14 @@ class NotionCronBase(CronJobBase):
             data (dict): The dict we're grabbing the name from
         """
         try:
-            return data['properties'][property_name]['url']
+            return data['properties'][property_name]['url'] or ''
         except Exception as e:
             console.warn(e)
             # import ipdb; ipdb.set_trace()
-            return None
+            return ''
+        return ''
 
-    def _get_number(self, data: dict, property_name: str) -> Optional[str]:
+    def _get_number(self, data: dict, property_name: str) -> str:
         """A number field in Notion presents like this, we just want the number key
 
         'properties': {
@@ -408,7 +414,8 @@ class NotionCronBase(CronJobBase):
             return data['properties'][property_name]['number']
         except Exception as e:
             console.warn(e)
-            return None
+            return ''
+        return ''
 
     def _get_bool(self, data: dict, property_name: str) -> bool:
         """A checkbox / bool field in Notion presents like this, we just want the value
@@ -429,8 +436,9 @@ class NotionCronBase(CronJobBase):
         except Exception as e:
             console.warn(e)
             return False
+        return False
 
-    def _get_date(self, data: dict, property_name: str) -> Optional[str]:
+    def _get_date(self, data: dict, property_name: str) -> Optional[datetime]:
         """A date in Notion presents like this, we just want the start key
 
         'properties': {
@@ -450,10 +458,13 @@ class NotionCronBase(CronJobBase):
         """
         try:
             if data['properties'][property_name]['date'] is not None:
-                return data['properties'][property_name]['date']['start']
+                ds = data['properties'][property_name]['date']['start']
+                dt = arrow.get(ds).datetime
+                return dt
         except Exception as e:
             console.warn(e)
             return None
+        return None
 
     def _is_updated(self, obj: Model, data: dict) -> bool:
         try:
