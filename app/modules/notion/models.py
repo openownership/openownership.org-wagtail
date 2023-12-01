@@ -248,8 +248,15 @@ class DisclosureRegime(NotionModel):
         max_length=255,
     )
 
-    api_available = models.CharField(  # 6.3 API available
+    api_available = models.CharField(  # API available
         _("API available"),
+        blank=True,
+        default='',
+        max_length=255,
+    )
+
+    bulk_data_available = models.CharField(  # Bulk data available
+        _("Bulk data available"),
         blank=True,
         default='',
         max_length=255,
@@ -262,11 +269,11 @@ class DisclosureRegime(NotionModel):
         max_length=255,
     )
 
-    on_oo_register = models.BooleanField(  # 6.5 Data on OO Register
+    on_oo_register = models.CharField(  # Used to be bool, now str
         _("On OO Register"),
-        blank=False,
-        null=False,
-        default=False,
+        blank=True,
+        default='',
+        max_length=255,
     )
 
     legislation_url = models.TextField(  # 8.4 Legislation URL

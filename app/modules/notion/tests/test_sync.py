@@ -1,10 +1,11 @@
 from modules.notion.samples.commitments import COMMITMENTS, COMMITMENTS_WRONG
 from modules.notion.samples.countries import COUNTRIES, COUNTRIES_WRONG
 from modules.notion.samples.regimes import REGIMES, REGIMES_WRONG
+from modules.notion.samples.regimes_sub import REGIMES_SUB, REGIMES_SUB_WRONG
 
 from modules.notion.models import CountryTag, Commitment, DisclosureRegime, CoverageScope
 from modules.notion.cron import (
-    SyncRegimes, SyncCountries, SyncCommitments, NotionCronBase,
+    SyncRegimes, SyncCountries, SyncCommitments, NotionCronBase, SyncRegimesSub,
 )
 from modules.notion.helpers import check_headers
 
@@ -55,6 +56,29 @@ def test_sync_regimes():
     assert DisclosureRegime.objects.count() == 95
     assert CoverageScope.objects.count() == 6
     assert DisclosureRegime.objects.filter(coverage_scope__isnull=False).first() is not None
+
+
+def test_sync_regimes_sub():
+    """Sub regimes require regimes to sync first.
+    There's 35 items in the regimes_sub test data.
+    """
+    _countries = SyncCountries()
+    _countries.do(data=COUNTRIES)
+    _regimes = SyncRegimes()
+    _regimes.do(data=REGIMES)
+    assert DisclosureRegime.objects.count() == 95
+    assert CoverageScope.objects.count() == 6
+    assert DisclosureRegime.objects.filter(coverage_scope__isnull=False).first() is not None
+    s = SyncRegimesSub()
+    s.do(data=REGIMES_SUB)
+    # Test that we've saved the data from the sub to the disclosure regime model
+    dr = DisclosureRegime.objects.get(notion_id='de1064c1-7281-4b76-9575-bcc5b34e526d')
+    assert dr.api_available == 'Yes'
+    assert dr.bulk_data_available == 'Yes'
+    assert dr.on_oo_register == ''
+    assert dr.data_in_bods == 'No'
+    assert dr.structured_data == 'Yes'
+
 
 
 def test_legislation_rich_text():
@@ -125,4 +149,10 @@ def test_check_headers_commitment_wrong():
 def test_check_headers_regime_wrong():
     data = REGIMES_WRONG
     res = check_headers("Disclosure Regime", data)
+    assert res is False
+
+
+def test_check_headers_regime_sub_wrong():
+    data = REGIMES_SUB_WRONG
+    res = check_headers("Disclosure Regime Sub", data)
     assert res is False
