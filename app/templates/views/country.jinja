@@ -161,7 +161,7 @@
                         </dd>
                         {% endif %}
 
-                        {% if regime.implementation_central is not none %}
+                        {# {% if regime.implementation_central is not none %}
                         <dt>{% trans %}Central register implemented{% endtrans %}</dt>
                         <dd>{{ regime.implementation_central|yesno }}</dd>
                         {% endif %}
@@ -169,7 +169,7 @@
                         {% if regime.implementation_public is not none %}
                         <dt>{% trans %}Public access{% endtrans %}</dt>
                         <dd>{{ regime.implementation_public|yesno }}</dd>
-                        {% endif %}
+                        {% endif %} #}
 
                         {% if regime.display_scope %}
                         <dt>{% trans %}Scope{% endtrans %}</dt>
