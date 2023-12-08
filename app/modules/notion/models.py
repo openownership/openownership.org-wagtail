@@ -289,6 +289,12 @@ class DisclosureRegime(NotionModel):
         blank=True,
     )
 
+    who_can_access = ParentalManyToManyField(
+        'notion.AccessTag',
+        related_name="disclosure_regimes",
+        blank=True,
+    )
+
     # New fields needed as of 21/03/22
 
     threshold = models.CharField(  # 1.2 Threshold
@@ -306,29 +312,29 @@ class DisclosureRegime(NotionModel):
         Returns:
             bool: Whether to include it or not
         """
-        if self.implementation_stage and 'Publish' in self.implementation_stage:
+        if self.implementation_stage and 'Publish' in self.implementation_stage:  # noqa: SIM102
             if self.display_scope and 'Subnational' not in self.display_scope:
                 return True
         return False
 
     @cached_property
     def implementation_central(self) -> bool:
-        """For the Implementation of BOT tab, you'll need to aggregate implementations
-        for a country and then tick 'Implementation of BOT/Central register' where any
-        implementations listed in the Disclosure regimes tracker have the '4 Central'
-        field = Yes plus the 0 Stage field = Publish.
+        """Best way to judge central now is to check if the 'Scope' field has the
+        Full-economy tag present.
         """
-        if self.central_register == "Yes" and self.stage and 'Publish' in self.stage:
+        scopes = self.coverage_scope.values_list('slug', flat=True)
+        if 'full-economy' in scopes:
             return True
         return False
 
+
     @cached_property
     def implementation_public(self) -> bool:
-        """'Implementation of BOT/Public register' tick box, this should be ticked for a
-        country page where any implementations listed where the
-        '5.1 Public access' field = Yes plus the 0 Stage field = Publish.
+        """Best way to judge public now is to check if the 'Who can access'
+        has the General public tag present
         """
-        if self.public_access == "Yes" and self.stage and 'Publish' in self.stage:
+        access = self.who_can_access.values_list('slug', flat=True)
+        if 'general-public' in access:
             return True
         return False
 
@@ -433,12 +439,12 @@ class DisclosureRegime(NotionModel):
             if self.threshold:
                 if "%" not in self.threshold:
                     return f"{self.threshold}%"
-                else:
-                    self.threshold
+                return self.threshold
         except Exception as e:
             console.warn(e)
             console.warn(f"No threshold for {self.name}")
             return ""
+        return ""
 
 
 class CountryTag(NotionModel, BaseTag):
@@ -889,6 +895,19 @@ class CoverageScope(ClusterableModel):
     class Meta:
         verbose_name = _("Coverage Scope")
         verbose_name_plural = _("Coverage Scopes")
+
+    name = models.CharField(blank=False, null=False, max_length=255)
+    slug = AutoSlugField(populate_from='name')
+
+    def __str__(self):
+        return self.name
+
+
+class AccessTag(ClusterableModel):
+
+    class Meta:
+        verbose_name = _("Access Tag")
+        verbose_name_plural = _("Access Tags")
 
     name = models.CharField(blank=False, null=False, max_length=255)
     slug = AutoSlugField(populate_from='name')

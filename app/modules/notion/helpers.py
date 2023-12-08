@@ -54,6 +54,7 @@ HEADERS_DISCLOSURE_REGIMES: list = [
     'Scope',  # 2.1 Coverage: Scope
     'Threshold (%)',  # 1.2 Definition: Threshold
     'Year launched',  # 5.1.1 Year launched
+    'Who can access',
 
     # 'Access features',
     # 'Access regime details',
@@ -80,7 +81,7 @@ HEADERS_DISCLOSURE_REGIMES: list = [
     # 'User guidance',
     # 'Vendor/supplier',
     # 'Verification details',
-    # 'Who can access',
+
 ]
 
 HEADERS_DISCLOSURE_REGIMES_SUB: list = [

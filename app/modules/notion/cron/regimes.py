@@ -6,7 +6,7 @@ from django_cron import Schedule
 # Module
 from modules.notion.helpers import check_headers
 from modules.notion.data import DISCLOSURE_REGIMES, DISCLOSURE_REGIMES_SUB
-from modules.notion.models import CoverageScope, DisclosureRegime
+from modules.notion.models import CoverageScope, DisclosureRegime, AccessTag
 from modules.notion.cron.core import NotionCronBase, NotionError
 
 
@@ -159,6 +159,12 @@ class SyncRegimes(NotionCronBase):
                 obj.coverage_scope.add(item)
                 obj.coverage_scope.commit()
 
+        access_tags = self._get_access_tags(regime)
+        if access_tags:
+            for item in access_tags:
+                obj.who_can_access.add(item)
+                obj.who_can_access.commit()
+
         obj.stage = self._get_stages(regime) or ''  # Implementation stage - multi-select
         obj.public_access_register_url = self._get_value(regime, 'Register URL') or ''
         obj.year_launched = self._get_value(regime, 'Year launched')
@@ -236,6 +242,56 @@ class SyncRegimes(NotionCronBase):
             console.warn("Failed to add scope tags")
             console.warn(err)
             f"Failed to add scope tags - {err}"
+            raise NotionError() from err
+        else:
+            # console.info(f"Scope tags: {tags}")
+            return tags
+
+    def _get_access_tags(self, data: dict) -> list:
+        """Takes this dict, creates an AccessTag object for each `name` and returns a list of them
+
+        'Who can access': {
+            'id': 'jxf!',
+            'type': 'multi_select',
+            'multi_select': [
+                {
+                    'id': '66e14feb-1df0-416b-905d-a1683e327517',
+                    'name': 'Registrar',
+                    'color': 'gray',
+                },
+                {
+                    'id': '7592840b-4688-4558-a039-6401a7f43651',
+                    'name': 'Competent authorities',
+                    'color': 'purple',
+                },
+                {
+                    'id': 'edf86444-511b-4d1f-bdab-6f58a1548c4c',
+                    'name': 'Obliged entities',
+                    'color': 'blue',
+                },
+            ],
+        },
+
+        Args:
+            data (dict): The disclosure regime row
+
+        Returns:
+            list: List of tags
+        """
+        try:
+            tags = []
+            items = data['properties']['Who can access']['multi_select']
+            if not len(items):
+                return []
+
+            for item in items:
+                tag, created = AccessTag.objects.get_or_create(name=item['name'])
+                tags.append(tag)
+
+        except Exception as err:
+            console.warn("Failed to add access tags")
+            console.warn(err)
+            f"Failed to add access tags - {err}"
             raise NotionError() from err
         else:
             # console.info(f"Scope tags: {tags}")
