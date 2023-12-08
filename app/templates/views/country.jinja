@@ -116,7 +116,7 @@
                 {% if country.first_central_regime %}
                     <li class="country-page__country-data-box-list-item">
                         {% if country.first_central_regime.url %}<a href="{{ country.first_central_regime.url }}">{% endif %}
-                            {# {% trans %}Central register(s):{% endtrans %} {{ country.first_central_regime.title }} #}
+                            {# {% trans %}Central register(s):{% endtrans %}#} {{ country.first_central_regime.title }}
                         {% if country.first_central_regime.url %}
                         </a>
                         {% include "svg/external-link.jinja" %}
@@ -126,7 +126,7 @@
                 {% if country.first_public_regime_with_url %}
                     <li  class="country-page__country-data-box-list-item">
                         <a href="{{ country.first_public_regime_with_url.url }}">
-                            {# {% trans %}Public register(s):{% endtrans %} {{ country.first_public_regime_with_url.title }} #}
+                            {# {% trans %}Public register(s):{% endtrans %}#} {{ country.first_public_regime_with_url.title }}
                         </a>
                         {% include "svg/external-link.jinja" %}
                     </li>
