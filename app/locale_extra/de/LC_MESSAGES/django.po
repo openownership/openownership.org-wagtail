@@ -2,5 +2,161 @@
 # For example use this to reinforce things that we want to stay
 # in English and not be translated to the local language.
 
+msgid "Language"
+msgstr "Language"
+
+msgid "English"
+msgstr "English"
+
+msgid "French"
+msgstr "Français"
+
+msgid "Spanish"
+msgstr "Español"
+
+msgid "Bahasa Indonesia"
+msgstr "Bahasa Indonesia"
+
+msgid "German"
+msgstr "Deutsch"
+
+msgid "Russian"
+msgstr "Русский"
+
+msgid "Armenian"
+msgstr "հայերեն"
+
+msgid "Mongolian"
+msgstr "Монгол"
+
+msgid "Ukrainian"
+msgstr "українська"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Research"
+msgstr "Research"
+
+msgid "Implementation"
+msgstr "Implementation"
+
+msgid "Technology"
+msgstr "Technology"
+
+msgid "Impact"
+msgstr "Impact"
+
+msgid "Register"
+msgstr "Register"
+
 msgid "Search"
 msgstr "Search"
+
+msgid "About"
+msgstr "About"
+
+msgid "Publications"
+msgstr "Publications"
+
+msgid "Reports"
+msgstr "Reports"
+
+msgid "Briefings"
+msgstr "Briefings"
+
+msgid "Guidance"
+msgstr "Guidance"
+
+msgid "Consultations"
+msgstr "Consultations"
+
+msgid "Other publication categories"
+msgstr "Other publication categories"
+
+msgid "News"
+msgstr "News"
+
+msgid "Blog"
+msgstr "Blog"
+
+msgid "Videos"
+msgstr "Videos"
+
+msgid "Full list"
+msgstr "Full list"
+
+msgid "Topics"
+msgstr "Topics"
+
+msgid "Financial Action Task Force"
+msgstr "Financial Action Task Force"
+
+msgid "Robust definition"
+msgstr "Definition"
+
+msgid "Comprehensive coverage"
+msgstr "Coverage"
+
+msgid "Sufficient detail"
+msgstr "Detail"
+
+msgid "A central register"
+msgstr "Central register"
+
+msgid "Public access"
+msgstr "Access"
+
+msgid "Structured data"
+msgstr "Structured data"
+
+msgid "Verification"
+msgstr "Verification"
+
+msgid "Up to date and auditable"
+msgstr "Up-to-date and historical records"
+
+msgid "Sanctions and enforcement"
+msgstr "Sanctions and enforcement"
+
+msgid "Implementation guide"
+msgstr "Implementation guide"
+
+msgid "Glossary"
+msgstr "Glossary"
+
+msgid "Map"
+msgstr "Map"
+
+msgid "Case studies"
+msgstr "Case studies"
+
+msgid "What we do"
+msgstr "What we do"
+
+msgid "Working with us"
+msgstr "Working with us"
+
+msgid "Helpdesk"
+msgstr "Helpdesk"
+
+msgid "Team"
+msgstr "Team"
+
+msgid "Governance"
+msgstr "Governance"
+
+msgid "Jobs"
+msgstr "Jobs"
+
+msgid "Funding"
+msgstr "Funding"
+
+msgid "Legal"
+msgstr "Legal"
+
+msgid "Terms"
+msgstr "Terms"
+
+msgid "Privacy"
+msgstr "Privacy"

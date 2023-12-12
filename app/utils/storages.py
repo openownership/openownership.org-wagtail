@@ -13,16 +13,16 @@ from storages.backends.s3boto3 import S3Boto3Storage
 # as host, which only allow for S3 hosted in US. To allow
 # SEA hosts we need to change the DefaultHost with our own custom
 # Connection Class.
-class EuropeConnection(S3Connection):
-    DefaultHost = "s3-eu-west-1.amazonaws.com"
+# class EuropeConnection(S3Connection):
+#     DefaultHost = "s3-eu-west-1.amazonaws.com"
 
 
-class NYCConnection(S3Connection):
-    DefaultHost = "s3-us-east-1.amazonaws.com"
+# class NYCConnection(S3Connection):
+#     DefaultHost = "s3-us-east-1.amazonaws.com"
 
 
-class DOAmsConnection(S3Connection):
-    DefaultHost = "ams3.digitaloceanspaces.com"
+# class DOAmsConnection(S3Connection):
+#     DefaultHost = "ams3.digitaloceanspaces.com"
 
 
 def safe_join(base, *paths):
@@ -47,59 +47,83 @@ def safe_join(base, *paths):
     base_path_len = len(base_path) - 1
     if not final_path.startswith(base_path) \
        or final_path[base_path_len:base_path_len + 1] not in ('', '/'):
-        raise ValueError('the joined path is located outside of the base path'
-                         ' component')
+            msg = 'the joined path is located outside of the base path component'
+            raise ValueError(msg)
     return final_path
 
 
-class StaticRootS3BotoStorage(S3Boto3Storage):
+class CDNNGOStorage(S3Boto3Storage):
     def __init__(self, *args, **kwargs):
-        super(StaticRootS3BotoStorage, self).__init__(*args, **kwargs)
-        self.connection_class = DOAmsConnection
+        super().__init__(*args, **kwargs)
+        self.connection_class = S3Connection
         self.location = kwargs.get('location', '')
-        self.location = settings.STATIC_ROOT + self.location.lstrip('/')
-        self.file_overwrite = True
-
-    def _normalize_name(self, name):
-        try:
-            return safe_join(self.location, name).lstrip('/')
-        except ValueError:
-            raise SuspiciousOperation("Attempted access to '%s' denied." % name)
-
-
-class MediaRootS3BotoStorage(S3Boto3Storage):
-    def __init__(self, *args, **kwargs):
-        super(MediaRootS3BotoStorage, self).__init__(*args, **kwargs)
-        self.connection_class = DOAmsConnection
-        self.location = kwargs.get('location', '')
-        self.location = settings.MEDIA_ROOT + self.location.lstrip('/')
+        self.location = str(settings.MEDIA_ROOT) + self.location.lstrip('/')
         self.file_overwrite = False
 
     def _save(self, name, content):
-        """
-        SEE: https://github.com/jschneier/django-storages/issues/382#issuecomment-592876060
-
-        We create a clone of the content file as when this is passed to
-        boto3 it wrongly closes the file upon upload where as the storage
-        backend expects it to still be open
-        """
-        # Seek our content back to the start
         content.seek(0, os.SEEK_SET)
-
-        # Create a temporary file that will write to disk after a specified
-        # size. This file will be automatically deleted when closed by
-        # boto3 or after exiting the `with` statement if the boto3 is fixed
         with SpooledTemporaryFile() as content_autoclose:
-
-            # Write our original content into our copy that will be closed by boto3
             content_autoclose.write(content.read())
-
-            # Upload the object which will auto close the
-            # content_autoclose instance
-            return super(MediaRootS3BotoStorage, self)._save(name, content_autoclose)
+            return super()._save(name, content_autoclose)
 
     def _normalize_name(self, name):
         try:
             return safe_join(self.location, name).lstrip('/')
-        except ValueError:
-            raise SuspiciousOperation("Attempted access to '%s' denied." % name)
+        except ValueError as exc:
+            msg = f"Attempted access to '{name}' denied."
+            raise SuspiciousOperation(msg) from exc
+
+
+
+
+# class StaticRootS3BotoStorage(S3Boto3Storage):
+#     def __init__(self, *args, **kwargs):
+#         super(StaticRootS3BotoStorage, self).__init__(*args, **kwargs)
+#         self.connection_class = DOAmsConnection
+#         self.location = kwargs.get('location', '')
+#         self.location = settings.STATIC_ROOT + self.location.lstrip('/')
+#         self.file_overwrite = True
+
+#     def _normalize_name(self, name):
+#         try:
+#             return safe_join(self.location, name).lstrip('/')
+#         except ValueError:
+#             raise SuspiciousOperation("Attempted access to '%s' denied." % name)
+
+
+# class MediaRootS3BotoStorage(S3Boto3Storage):
+#     def __init__(self, *args, **kwargs):
+#         super(MediaRootS3BotoStorage, self).__init__(*args, **kwargs)
+#         self.connection_class = DOAmsConnection
+#         self.location = kwargs.get('location', '')
+#         self.location = settings.MEDIA_ROOT + self.location.lstrip('/')
+#         self.file_overwrite = False
+
+#     def _save(self, name, content):
+#         """
+#         SEE: https://github.com/jschneier/django-storages/issues/382#issuecomment-592876060
+
+#         We create a clone of the content file as when this is passed to
+#         boto3 it wrongly closes the file upon upload where as the storage
+#         backend expects it to still be open
+#         """
+#         # Seek our content back to the start
+#         content.seek(0, os.SEEK_SET)
+
+#         # Create a temporary file that will write to disk after a specified
+#         # size. This file will be automatically deleted when closed by
+#         # boto3 or after exiting the `with` statement if the boto3 is fixed
+#         with SpooledTemporaryFile() as content_autoclose:
+
+#             # Write our original content into our copy that will be closed by boto3
+#             content_autoclose.write(content.read())
+
+#             # Upload the object which will auto close the
+#             # content_autoclose instance
+#             return super(MediaRootS3BotoStorage, self)._save(name, content_autoclose)
+
+#     def _normalize_name(self, name):
+#         try:
+#             return safe_join(self.location, name).lstrip('/')
+#         except ValueError:
+#             raise SuspiciousOperation("Attempted access to '%s' denied." % name)

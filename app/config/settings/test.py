@@ -1,8 +1,7 @@
-from __future__ import absolute_import, unicode_literals
-
 import os
 
 from .base import *  # NOQA
+from .base import CACHES
 
 DEBUG = True
 
@@ -14,7 +13,7 @@ COLLECTFAST_ENABLED = False
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-SECRET_KEY = 'DOESNTMATTERINTESTS'
+SECRET_KEY = 'DOESNTMATTERINTESTS'  # noqa: S105
 
 ALLOWED_HOSTS = ['*']
 
@@ -28,8 +27,8 @@ TESTING = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:'
-    }
+        'NAME': ':memory:',
+    },
 }
 
 # Change the numbers of the databases to avoid conflicting cache data
@@ -39,9 +38,15 @@ CACHES['default']['LOCATION'] = f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:6379/2'
 CACHES['wagtailcache']['LOCATION'] = f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:6379/3'
 
 
-STATICFILES_STORAGE = (
-    'django.contrib.staticfiles.storage.StaticFilesStorage'
-)
+STORAGES = {
+    "default": {
+        "BACKEND": 'django.core.files.storage.InMemoryStorage',
+    },
+    "staticfiles": {
+        "BACKEND": 'django.contrib.staticfiles.storage.StaticFilesStorage',
+    },
+}
+
 
 WAGTAILSEARCH_BACKENDS = {
     'default': {

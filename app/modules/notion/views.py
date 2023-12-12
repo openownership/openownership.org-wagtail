@@ -7,7 +7,6 @@ from consoler import console  # NOQA
 from django.http import Http404, HttpResponse
 from django.views import View
 from django.utils.functional import cached_property
-from cacheops import cached
 
 # Project
 from modules.notion.models import Commitment, CountryTag, DisclosureRegime
@@ -28,7 +27,7 @@ BASE_HEADERS = [
     'Structured data publicly available',
     'Published as BODS',
     'Available via API',
-    'Available on the OO register'
+    'Available on the OO register',
 ]
 
 COUNTRY_HEADERS = ['Type'] + BASE_HEADERS

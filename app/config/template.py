@@ -159,7 +159,7 @@ def yesno(value: str) -> str:
 
     # Handle fields sending other strings
     truthy = ["Yes", "yes", "YES", "True", "true", "TRUE", True]
-    falsey = ["No", "NO", "no", "False", "false", "FALSE", False]
+    falsey = ["No", "NO", "no", "False", "false", "FALSE", '', False]
     transformable = truthy + falsey
     if value not in transformable:
         console.info(f"Found non-y/n value {value}")
@@ -167,8 +167,7 @@ def yesno(value: str) -> str:
 
     if value and value in truthy:
         return _('Yes')
-    else:
-        return _('No')
+    return _('No')
 
 
 def rich_text(value: str, class_name=None) -> SafeString:

@@ -131,7 +131,7 @@ WAGTAIL_APPS = [
     'wagtail.contrib.routable_page',
     'wagtail.contrib.search_promotions',
     # Enable styleguide to see icons available for use in blocks etc:
-    # 'wagtail.contrib.styleguide',
+    'wagtail.contrib.styleguide',
     'wagtailfontawesomesvg',
     'wagtailmodelchooser',
 ]
@@ -162,7 +162,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-    'bugsnag.django.middleware.BugsnagMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -216,7 +215,7 @@ DBBACKUP_STORAGE_OPTIONS = {
     'region_name': 'eu-west-1',
     'location': f'postgres/openownership/{now.year}/{month}/',
     'default_acl': 'private',
-    'endpoint_url': 'https://s3-eu-west-1.amazonaws.com'
+    'endpoint_url': 'https://s3-eu-west-1.amazonaws.com',
 }
 
 # Check the path to python and add this to cron...
@@ -238,26 +237,10 @@ DATABASES = {
         'PASSWORD': os.environ['POSTGRES_PASSWORD'],
         'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
         'PORT': os.environ.get('POSTGRES_PORT', 5432),
-    }
+    },
 }
 
 REDIS_CONNECTION = 'redis://{}:6379/0'.format(os.environ.get('REDIS_HOST'))
-
-
-####################################################################################################
-# Disable bugsnag by default, enable it in staging and production configs
-####################################################################################################
-
-
-BUGSNAG = {
-    "api_key": os.environ['BUGSNAG_API_KEY'],
-    "project_root": DJANGO_ROOT,
-    "ignore_classes": [
-        'django.http.Http404', 'django.http.response.Http404',
-        'django.core.exceptions.PermissionDenied'
-    ],
-    "notify_release_stages": ["production", "staging"]
-}
 
 
 ####################################################################################################
@@ -289,7 +272,7 @@ CACHEOPS_REDIS = {
     'port': 6379,
     'db': 2,
     'socket_timeout': 3,
-    'password': os.environ.get('REDIS_PASSWORD', None)
+    'password': os.environ.get('REDIS_PASSWORD', None),
 }
 
 
@@ -315,7 +298,7 @@ WAGTAILSEARCH_BACKENDS = {
     'default': {
         'BACKEND': 'wagtail.search.backends.database',
         'SEARCH_CONFIG': 'english',
-        'AUTO_UPDATE': True
+        'AUTO_UPDATE': True,
     },
 }
 
@@ -333,7 +316,7 @@ JINJA2_EXTENSIONS = [
     'config.template.TemplateGlobalsExtension',
     "jinja2.ext.do",
     "jinja2.ext.loopcontrols",
-    'cacheops.jinja2.cache'
+    'cacheops.jinja2.cache',
 ]
 
 DEFAULT_JINJA2_TEMPLATE_EXTENSION = '.jinja'
@@ -343,17 +326,17 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
         'DIRS': [
-            os.path.join(DJANGO_ROOT, 'templates')
+            os.path.join(DJANGO_ROOT, 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS':{
             'extensions': JINJA2_EXTENSIONS,
-        }
+        },
     },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(DJANGO_ROOT, 'templates', 'django')
+            os.path.join(DJANGO_ROOT, 'templates', 'django'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -362,7 +345,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "django.template.context_processors.static"
+                "django.template.context_processors.static",
             ],
         },
     },
@@ -379,7 +362,6 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(DJANGO_ROOT, 'media')
 MEDIA_URL = '/media/'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = [
     os.path.join(DJANGO_ROOT, 'assets', 'dist'),
@@ -389,6 +371,18 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+
+
+STORAGES = {
+    "default": {
+        "BACKEND": 'utils.storages.CDNNGOStorage',
+    },
+    "staticfiles": {
+        "BACKEND": 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    },
+}
+
+
 
 ####################################################################################################
 # AWS
@@ -404,10 +398,16 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=2628000',
 }
 
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_KEY']
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET')
-AWS_S3_ENDPOINT_URL = os.environ.get('AWS_S3_ENDPOINT_URL')
+# AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY']
+# AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_KEY']
+# AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET')
+# AWS_S3_ENDPOINT_URL = os.environ.get('AWS_S3_ENDPOINT_URL')
+
+
+AWS_ACCESS_KEY_ID = os.environ.get('CDNNGO_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = os.environ.get('CDNNGO_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('CDNNGO_BUCKET')
+AWS_S3_ENDPOINT_URL = os.environ.get('CDNNGO_ENDPOINT')
 
 
 AWS_S3_FILE_OVERWRITE = False
@@ -457,8 +457,8 @@ WAGTAIL_SITE_NAME = SITE_NAME
 slideshare = {
     "endpoint": "https://www.slideshare.net/api/oembed/2",
     'urls': [
-        "^http[s]?://www\\.slideshare\\.net/.+$"
-    ]
+        "^http[s]?://www\\.slideshare\\.net/.+$",
+    ],
 }
 
 soundcloud = {
@@ -471,7 +471,7 @@ soundcloud = {
 WAGTAILEMBEDS_FINDERS = [
     {
         'class': 'wagtail.embeds.finders.oembed',
-        'providers': [slideshare, soundcloud]
+        'providers': [slideshare, soundcloud],
     },
     {
         'class': 'wagtail.embeds.finders.oembed',
@@ -493,13 +493,13 @@ THEME_CHOICES = []
 ICON_CHOICES = []
 
 SOCIAL_MEDIA_CHOICES = [
-    'Facebook', 'Twitter', 'LinkedIn', 'GitHub'
+    'Facebook', 'Twitter', 'LinkedIn', 'GitHub',
 ]
 
 
 # Which features do we allow in which kinds of richtext fields?
 RICHTEXT_INLINE_FEATURES = [
-    'bold', 'italic', 'small', 'link', 'document-link'
+    'bold', 'italic', 'small', 'link', 'document-link',
 ]
 
 RICHTEXT_BODY_FEATURES = [
@@ -534,7 +534,10 @@ FONTAWESOME_ICONS = [
     'solid/hashtag.svg',
     'solid/anchor.svg',
     'solid/clock.svg',
-    'solid/sticky-note.svg'
+    'solid/sticky-note.svg',
+    # 'brands/notion.svg',
+    'solid/database.svg',
+    'solid/note-sticky.svg',
 ]
 
 

@@ -57,7 +57,7 @@ class RegionModelAdmin(ModelAdmin):
 class CommitmentModelAdmin(ModelAdmin):
     model = Commitment
     menu_order = 200
-    menu_icon = 'fa-link'
+    menu_icon = 'link'
     add_to_settings_menu = True
     list_display = (
         'country', 'commitment_type_name', 'central_register', 'public_register', 'deleted'
@@ -71,7 +71,7 @@ class CommitmentModelAdmin(ModelAdmin):
 class DisclosureRegimeModelAdmin(ModelAdmin):
     model = DisclosureRegime
     menu_order = 300
-    menu_icon = 'fa-link'
+    menu_icon = 'link'
     add_to_settings_menu = True
     list_display = ('title', 'country', 'stage', 'deleted')
     search_fields = ('title', 'country__name')
@@ -83,7 +83,7 @@ class DisclosureRegimeModelAdmin(ModelAdmin):
 class CoverageScopeModelAdmin(ModelAdmin):
     model = CoverageScope
     menu_order = 300
-    menu_icon = 'fa-link'
+    menu_icon = 'link'
     add_to_settings_menu = True
     list_display = ('name', )
     search_fields = ('name', )
@@ -99,7 +99,7 @@ class CoverageScopeModelAdmin(ModelAdmin):
 
 class NotionAdminGroup(ModelAdminGroup):
     menu_label = 'Notion'
-    menu_icon = 'fa-sticky-note'
+    menu_icon = 'globe'
     menu_order = 1000
     items = (
         CountryTagModelAdmin,

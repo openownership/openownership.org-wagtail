@@ -1,4 +1,459 @@
-{
+REGIMES_WRONG = {
+    'object': 'list',
+    'results': [
+        {
+            'object': 'page',
+            'id': '78612aa2-0e23-447e-b790-8086c8488b8d',
+            'created_time': '2022-05-26T17:33:00.000Z',
+            'last_edited_time': '2022-05-26T17:41:00.000Z',
+            'created_by': {
+                'object': 'user',
+                'id': '1703e054-58b6-40d2-aab4-aff006900163'
+            },
+            'last_edited_by': {
+                'object': 'user',
+                'id': '1703e054-58b6-40d2-aab4-aff006900163'
+            },
+            'cover': None,
+            'icon': None,
+            'parent': {
+                'type': 'database_id',
+                'database_id': 'ff93549f-6c6a-430f-a588-7b16f274f82c'
+            },
+            'archived': False,
+            'properties': {
+                'Last edited': {
+                    'id': '%23--Y',
+                    'type': 'last_edited_time',
+                    'last_edited_time': '2022-05-26T17:41:00.000Z'
+                },
+                '1.2 Threshold': {
+                    'id': '%24I.J',
+                    'type': 'number',
+                    'number': None
+                },
+                '6.3.1 API URL': {
+                    'id': '%24UM7',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2.3 Search by owner': {
+                    'id': "'AyV",
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '6.4 Data published in BODS': {
+                    'id': '%2BTR2',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '6.3 API available': {
+                    'id': '2BK.',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '5.2.4.1 Registration details': {
+                    'id': '7%5E%23l',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '0 Stage': {
+                    'id': '86%605',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': 'e1c09886-c254-45fc-822c-4a533356fde6',
+                            'name': 'Publish',
+                            'color': 'blue'
+                        }
+                    ]
+                },
+                '2.3 Coverage: Legislation URL': {
+                    'id': '%3D%5D%40x',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.2.1 Fields available to public: Information URL': {
+                    'id': '%40%7Cmi',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '2.2 Coverage: Details': {
+                    'id': "ApR'",
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.4.1 Protection regime URL': {
+                    'id': 'DRH%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '6.2.1 Bulk data URL': {
+                    'id': 'EZ%5D1',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.3 Open license for data': {
+                    'id': 'E%5B!F',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                'OO Principle focus': {
+                    'id': 'HjEQ',
+                    'type': 'relation',
+                    'relation': [
+                    ]
+                },
+                '7.2 Verification information URL': {
+                    'id': 'JRj%7C',
+                    'type': 'url',
+                    'url': None
+                },
+                '5.2 Access and restrictions details': {
+                    'id': 'J~fN',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '8.3 Data retention (years)': {
+                    'id': 'PMcn',
+                    'type': 'number',
+                    'number': None
+                },
+                'Country': {
+                    'id': 'PTKs',
+                    'type': 'relation',
+                    'relation': [
+                        {
+                            'id': '15fa8446-065e-441a-8b8a-bd43cf384ea7'
+                        }
+                    ]
+                },
+                '5.4 Protection regime implemented': {
+                    'id': 'Pj%3DK',
+                    'type': 'select',
+                    'select': None
+                },
+                '1.1 Definition: Legislation URL': {
+                    'id': 'PpKg',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1.1 Public access: Register URL': {
+                    'id': 'X%26sR',
+                    'type': 'url',
+                    'url': 'https://pbo.eiti.tj/'
+                },
+                '2.1 Coverage: Scope': {
+                    'id': 'Z%3Dqf',
+                    'type': 'multi_select',
+                    'multi_select': [
+                        {
+                            'id': '859da0c6-cb5b-40f8-b238-8c7e913fb3e5',
+                            'name': 'Sectoral: Extractives',
+                            'color': 'purple'
+                        }
+                    ]
+                },
+                '9 Sanctions and enforcement: Legislation URL': {
+                    'id': 'Zm~c',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.4 Sufficient details: Forms (URL or PDF)': {
+                    'id': '%5E%3C%5CH',
+                    'type': 'files',
+                    'files': [
+                    ]
+                },
+                '8.1 Up to date and auditable: Period for updating changes (days)': {
+                    'id': '%5EqJG',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.3 Exact ownership values': {
+                    'id': '%60x%7D%40',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.2.1 Free of charge': {
+                    'id': "c*b'",
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '3.2 Sufficient information for full ownership chains': {
+                    'id': 'cm%5Eg',
+                    'type': 'select',
+                    'select': None
+                },
+                '5.5 Legal basis for publication URL': {
+                    'id': 'c~iw',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.3.1 License information URL': {
+                    'id': 'iFf%3D',
+                    'type': 'url',
+                    'url': None
+                },
+                '3.1.1 Unique identifiers used': {
+                    'id': 'iHpC',
+                    'type': 'select',
+                    'select': None
+                },
+                '7.1 Verification details': {
+                    'id': 'iTV%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '5.1 Public access': {
+                    'id': 'jxf!',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.2.4 Basic access to BO data does not require registration': {
+                    'id': 'l%2F%3Dw',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '5.4.2 Layered access': {
+                    'id': 'lreI',
+                    'type': 'select',
+                    'select': None
+                },
+                'Last updated by': {
+                    'id': 'm%3D%7BD',
+                    'type': 'last_edited_by',
+                    'last_edited_by': {
+                        'object': 'user',
+                        'id': '1703e054-58b6-40d2-aab4-aff006900163',
+                        'name': 'Stephen Abbott Pugh',
+                        'avatar_url': 'https://lh3.googleusercontent.com/a/AATXAJzfBI9Wu-CySloLkdw3yAxZil4tjBTjoIeOGwIn=s100',
+                        'type': 'person',
+                        'person': {
+                            'email': 'stephen@openownership.org'
+                        }
+                    }
+                },
+                '1.2.1 Threshold details': {
+                    'id': 'se%7CS',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '3.1 Sufficient detail: Legislation URL': {
+                    'id': 'udCF',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                'Notes': {
+                    'id': 'wbf%5B',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'In December 2021, Tajikistan EITI launched a ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'In December 2021, Tajikistan EITI launched a ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'BO portal',
+                                'link': {
+                                    'url': 'https://pbo.eiti.tj/'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'BO portal',
+                            'href': 'https://pbo.eiti.tj/'
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': ', through which is available information from the Tax Committee. The portal is available in three languages and covers data from 41 extractives companies engaged in exploration, oil, gas, and mining which had valid licences in 2021. The information provided in the portal includes the legal – and, where available beneficial owners, the level of ownership, postal address, links to the stock exchange, and identification of PEPs. In practice, however, none of the companies disclose the PEP status. The portal does not mention the definition of BO used for the disclosure, nor does it comment on verification procedures. Several companies disclose foreign states as their beneficial owners. According to the Tax Committee, there is no regulation in place to enable regular updating of the BO information.\n\nTaken from Ramandeep’s Asia and BOT report ',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': ', through which is available information from the Tax Committee. The portal is available in three languages and covers data from 41 extractives companies engaged in exploration, oil, gas, and mining which had valid licences in 2021. The information provided in the portal includes the legal – and, where available beneficial owners, the level of ownership, postal address, links to the stock exchange, and identification of PEPs. In practice, however, none of the companies disclose the PEP status. The portal does not mention the definition of BO used for the disclosure, nor does it comment on verification procedures. Several companies disclose foreign states as their beneficial owners. According to the Tax Committee, there is no regulation in place to enable regular updating of the BO information.\n\nTaken from Ramandeep’s Asia and BOT report ',
+                            'href': None
+                        },
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'https://docs.google.com/document/d/1U4jjF4kTtSvzEE_6KUYmgVk4R7S8rrBC/edit',
+                                'link': {
+                                    'url': 'https://docs.google.com/document/d/1U4jjF4kTtSvzEE_6KUYmgVk4R7S8rrBC/edit'
+                                }
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'https://docs.google.com/document/d/1U4jjF4kTtSvzEE_6KUYmgVk4R7S8rrBC/edit',
+                            'href': 'https://docs.google.com/document/d/1U4jjF4kTtSvzEE_6KUYmgVk4R7S8rrBC/edit'
+                        }
+                    ]
+                },
+                '4.2 Year launched': {
+                    'id': 'x%5EQC',
+                    'type': 'select',
+                    'select': None
+                },
+                '6.1 Structured data': {
+                    'id': 'x%7BQ%5D',
+                    'type': 'select',
+                    'select': {
+                        'id': '7c1e2c7e-1d2c-44f1-ae2f-ff02d7302527',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                '8.4 Legislation URL': {
+                    'id': 'yNot',
+                    'type': 'rich_text',
+                    'rich_text': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Article 11(1), Law on State Registration of Legal Entities and Individual Entrepreneurs, 2009',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': False,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Article 11(1), Law on State Registration of Legal Entities and Individual Entrepreneurs, 2009',
+                            'href': None
+                        }
+                    ]
+                },
+                '5.2.2 Search by company': {
+                    'id': '%7Ce%7Dn',
+                    'type': 'select',
+                    'select': {
+                        'id': '6f58d6e9-8890-4ef9-94b7-95ad942ed001',
+                        'name': 'Yes',
+                        'color': 'green'
+                    }
+                },
+                '8.2 Period for confirmation': {
+                    'id': '%7DbTt',
+                    'type': 'rich_text',
+                    'rich_text': [
+                    ]
+                },
+                '6.2 Bulk data available': {
+                    'id': '~obq',
+                    'type': 'select',
+                    'select': {
+                        'id': '85530135-8f52-462d-8dbc-e86014e31922',
+                        'name': 'No',
+                        'color': 'red'
+                    }
+                },
+                'Title': {
+                    'id': 'title',
+                    'type': 'title',
+                    'title': [
+                        {
+                            'type': 'text',
+                            'text': {
+                                'content': 'Tajikistan Extractive Industry Beneficial Owners Web Portal',
+                                'link': None
+                            },
+                            'annotations': {
+                                'bold': True,
+                                'italic': False,
+                                'strikethrough': False,
+                                'underline': False,
+                                'code': False,
+                                'color': 'default'
+                            },
+                            'plain_text': 'Tajikistan Extractive Industry Beneficial Owners Web Portal',
+                            'href': None
+                        }
+                    ]
+                }
+            },
+            'url': 'https://www.notion.so/Tajikistan-Extractive-Industry-Beneficial-Owners-Web-Portal-78612aa20e23447eb7908086c8488b8d'
+        },
+    ]
+}
+
+
+REGIMES = {
     'object': 'list',
     'results': [
         {
@@ -376,7 +831,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -956,7 +1411,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -1317,7 +1772,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -1822,7 +2277,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -2293,7 +2748,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -2684,7 +3139,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -3091,7 +3546,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -3518,7 +3973,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -3891,7 +4346,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -4330,7 +4785,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -4810,7 +5265,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -5476,7 +5931,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -5873,7 +6328,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -6239,7 +6694,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -6751,7 +7206,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -7153,7 +7608,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -7688,7 +8143,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -8239,7 +8694,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -8617,7 +9072,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -8978,7 +9433,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -9321,7 +9776,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -9704,7 +10159,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -10061,7 +10516,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -10410,7 +10865,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -10775,7 +11230,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -11116,7 +11571,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -11487,7 +11942,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -11878,7 +12333,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -12267,7 +12722,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -12645,7 +13100,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -13016,7 +13471,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -13402,7 +13857,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -13782,7 +14237,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -14399,7 +14854,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -15134,7 +15589,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -15625,7 +16080,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -15983,7 +16438,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -16341,7 +16796,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -16739,7 +17194,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -17093,7 +17548,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -17625,7 +18080,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -18019,7 +18474,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -18434,7 +18889,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -18893,7 +19348,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -19355,7 +19810,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -19748,7 +20203,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -20131,7 +20586,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -20526,7 +20981,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -20941,7 +21396,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -21343,7 +21798,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -21768,7 +22223,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -22391,7 +22846,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -22884,7 +23339,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -23307,7 +23762,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -23765,7 +24220,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -24146,7 +24601,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -24583,7 +25038,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -24988,7 +25443,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -25366,7 +25821,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -25798,7 +26253,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -26246,7 +26701,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -26669,7 +27124,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -27015,7 +27470,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -27415,7 +27870,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -27871,7 +28326,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -28330,7 +28785,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -28774,7 +29229,7 @@
                         }
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
@@ -29433,7 +29888,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': {
@@ -29820,7 +30275,7 @@
                     'rich_text': [
                     ]
                 },
-                '5.1.2 Year launched': {
+                '4.2 Year launched': {
                     'id': 'x%5EQC',
                     'type': 'select',
                     'select': None
