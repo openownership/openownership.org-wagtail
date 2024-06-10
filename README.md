@@ -60,3 +60,9 @@ Pushes to the `staging` branch are automatically deployed, including static asse
 ```
 docker buildx bake -f docker-compose.test.yml web --set web.platform=linux/amd64,linux/arm64 --push
 ```
+
+### Infrastructure model
+![Infrastructure main model](.infragenie/infrastructure_main_model.svg)
+- [web component model](.infragenie/web_component_model.svg)
+
+---
