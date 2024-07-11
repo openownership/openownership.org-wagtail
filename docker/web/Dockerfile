@@ -1,4 +1,4 @@
-FROM ghcr.io/hactar-is/ubuntu-20:envkey2 AS builder
+FROM ghcr.io/hactar-is/ubuntu-20:latest AS builder
 
 # Create our working directory
 RUN mkdir -p /usr/srv/app/

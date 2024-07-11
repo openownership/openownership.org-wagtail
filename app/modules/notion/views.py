@@ -14,20 +14,20 @@ from modules.notion.models import Commitment, CountryTag, DisclosureRegime
 
 BASE_HEADERS = [
     'Name',
-    'Central',
-    'Public access',
-    'All sectors',
-    'Date',
+    # 'Central',
+    # 'Public access',
+    # 'All sectors',
+    # 'Date',
     'Link',
     'Central register implemented',
     'Public access',
     'Scope',
     'Register launched',
-    'Threshold used to determine beneficial ownership',
-    'Structured data publicly available',
+    # 'Threshold used to determine beneficial ownership',
+    # 'Structured data publicly available',
     'Published as BODS',
-    'Available via API',
-    'Available on the OO register',
+    # 'Available via API',
+    # 'Available on the OO register',
 ]
 
 COUNTRY_HEADERS = ['Type'] + BASE_HEADERS
@@ -65,10 +65,10 @@ class DataExportBase(View):
         row = []
         row.append("Commitment")
         row.append(commitment.commitment_type_name)
-        row.append(self._yes_no(commitment.central_register))
-        row.append(self._yes_no(commitment.public_register))
-        row.append(self._yes_no(commitment.all_sectors))
-        row.append(self._format_date(commitment.date))
+        # row.append(self._yes_no(commitment.central_register))
+        # row.append(self._yes_no(commitment.public_register))
+        # row.append(self._yes_no(commitment.all_sectors))
+        # row.append(self._format_date(commitment.date))
         row.append(commitment.link)
         # Implementation fields
         row.append("")
@@ -103,14 +103,14 @@ class DataExportBase(View):
         row.append("")
         # Implementation fields
         row.append(self._yes_no(regime.implementation_central))
-        row.append(self._yes_no(regime.implementation_public))
+        # row.append(self._yes_no(regime.implementation_public))
         row.append(regime.display_scope)
         row.append(regime.display_register_launched)
-        row.append(regime.display_threshold)
-        row.append(self._yes_no(regime.display_structured_data))
+        # row.append(regime.display_threshold)
+        # row.append(self._yes_no(regime.display_structured_data))
         row.append(self._yes_no(regime.display_data_in_bods))
-        row.append(self._yes_no(regime.display_api))
-        row.append(self._yes_no(regime.display_oo_register))
+        # row.append(self._yes_no(regime.display_api))
+        # row.append(self._yes_no(regime.display_oo_register))
         return row
 
 

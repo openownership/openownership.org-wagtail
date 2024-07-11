@@ -2,7 +2,7 @@
 name = "openownership.org"
 version = "0.1.0"
 description = "openownership.org"
-authors = ["systems@hactar.is"]
+authors = ["Hactar <systems@hactar.is>"]
 
 
 [tool.poetry.dependencies]

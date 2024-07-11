@@ -3,6 +3,7 @@
 user: deploy
 ansible_python_interpreter: /usr/bin/python3
 
+app_path: /srv/www/openownership.org/app
 
 ####################################################################################################
 # Envkey
@@ -81,26 +82,6 @@ hactar_caddy_sites:
 
 hactar_caddy_fail2ban: true
 hactar_caddy_force_build: true
-
-####################################################################################################
-# oh my zsh
-####################################################################################################
-
-
-hactar_ohmyzsh:
-  app_path: /srv/www/openownership.org/app/
-  venv_name: .venv
-  gunicorn_env: SERVER_ENV="staging"
-  flask_script: false
-  django_script: true
-
-hactar_ohmyzsh_aliases:
-  -
-    name: manpy
-    cmd: /srv/www/openownership.org/app/.venv/bin/python manage.py
-  -
-    name: sp
-    cmd: /srv/www/openownership.org/app/.venv/bin/python manage.py shell_plus
 
 
 ####################################################################################################
