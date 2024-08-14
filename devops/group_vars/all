@@ -1,6 +1,8 @@
 
 ---
 
+working_tree: /srv/www/
+
 redis_password: "{{ lookup('envkey','REDIS_PASSWORD') }}"
 redis_bind: 127.0.0.1
 
