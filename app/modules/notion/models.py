@@ -304,6 +304,22 @@ class DisclosureRegime(NotionModel):
         max_length=255,
     )
 
+    # New fields needed as of 23/07/24
+
+    responsible_agency = models.CharField(
+        _("Responsible agency"),
+        blank=True,
+        default='',
+        max_length=255,
+    )
+
+    agency_type = models.CharField(
+        _("Agency type"),
+        blank=True,
+        default='',
+        max_length=255,
+    )
+
     @cached_property
     def display(self) -> bool:
         """Should this regime be displayed on the country page or included in the downloadable

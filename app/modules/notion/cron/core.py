@@ -4,6 +4,7 @@ from datetime import datetime
 
 # 3rd party
 import arrow
+from loguru import logger
 from consoler import console
 from django.conf import settings
 from django_cron import CronJobBase
@@ -47,7 +48,7 @@ class NotionCronBase(CronJobBase):
         data_string = str(data)
         for item in objects:
             if item.notion_id not in data_string:
-                console.warn(f"Deleting {item}")
+                logger.warning(f"Deleting {item}")
                 item.deleted = True
                 item.save()
 
@@ -68,7 +69,7 @@ class NotionCronBase(CronJobBase):
             else:
                 raise
         except Exception as err:
-            console.error(err)
+            logger.error(err)
             if settings.DEBUG:
                 import ipdb
                 ipdb.set_trace()
@@ -78,7 +79,7 @@ class NotionCronBase(CronJobBase):
         return initial_data
 
     def _fetch(self, db_id: str, next_cursor: str = None):
-        console.info(f"FETCH: {db_id} / {next_cursor}")
+        logger.info(f"FETCH: {db_id} / {next_cursor}")
         data = self.client.databases.query(database_id=db_id, start_cursor=next_cursor)
         return data
 
@@ -91,12 +92,13 @@ class NotionCronBase(CronJobBase):
         Returns:
             bool: Whether it succeeded or not
         """
+        # logger.info(f"_set_universals: {obj} / {data}")
         try:
             obj.notion_created = self._get_created(data)
             obj.notion_updated = self._get_updated(data)
             obj.archived = data.get('archived', False)
         except Exception as e:
-            console.warn(e)
+            logger.warning(e)
             return False
         else:
             return True
@@ -108,11 +110,12 @@ class NotionCronBase(CronJobBase):
         Args:
             date_str (str): Description
         """
+        # logger.info(f"_get_created: {data}")
         date_str = data.get('created_time', '1970-01-01')
         try:
             return arrow.get(date_str).datetime
         except Exception as e:
-            console.warn(e)
+            logger.warning(e)
             return DEFAULT_DATE
 
     def _get_updated(self, data: dict) -> bool:
@@ -126,7 +129,7 @@ class NotionCronBase(CronJobBase):
         try:
             return arrow.get(date_str).datetime
         except Exception as e:
-            console.warn(e)
+            logger.warning(e)
             return DEFAULT_DATE
 
     def _get_value(self, data: dict, property_name: str) -> Optional[Union[int, str]]:
@@ -184,8 +187,8 @@ class NotionCronBase(CronJobBase):
         try:
             return data['properties']['Title']['title'][0]['plain_text']
         except Exception as e:
-            console.warn("Failed to get Title")
-            console.warn(e)
+            logger.warning("Failed to get Title")
+            logger.warning(e)
             return ''
         return ''
 
@@ -222,8 +225,8 @@ class NotionCronBase(CronJobBase):
         try:
             return data['properties']['Register name']['title'][0]['plain_text']
         except Exception as e:
-            console.warn("Failed to get Register name")
-            console.warn(e)
+            logger.warning("Failed to get Register name")
+            logger.warning(e)
             return ''
         return ''
 
@@ -264,8 +267,8 @@ class NotionCronBase(CronJobBase):
                     return data['properties'][property_name]['select']['name']
                 return ''
         except Exception as e:
-            console.warn(f"Failed to get select for {property_name}")
-            console.warn(e)
+            logger.warning(f"Failed to get select for {property_name}")
+            logger.warning(e)
             if settings.DEBUG:
                 import ipdb
                 ipdb.set_trace()
@@ -294,7 +297,7 @@ class NotionCronBase(CronJobBase):
             if len(data['properties'][property_name]['relation']):
                 return data['properties'][property_name]['relation'][0]['id']
         except Exception as e:
-            console.warn(e)
+            logger.warning(e)
             return ''
         return ''
 
@@ -334,7 +337,7 @@ class NotionCronBase(CronJobBase):
             if len(data['properties'][property_name]['rich_text']):
                 return data['properties'][property_name]['rich_text'][0]['plain_text']
         except Exception as e:
-            console.warn(e)
+            logger.warning(e)
             return ''
         return ''
 
@@ -405,7 +408,7 @@ class NotionCronBase(CronJobBase):
                     result += href
             return result
         except Exception as e:
-            console.warn(e)
+            logger.warning(e)
             if settings.DEBUG:
                 import ipdb
                 ipdb.set_trace()
@@ -429,7 +432,7 @@ class NotionCronBase(CronJobBase):
         try:
             return data['properties'][property_name]['url'] or ''
         except Exception as e:
-            console.warn(e)
+            logger.warning(e)
             # import ipdb; ipdb.set_trace()
             return ''
         return ''
@@ -451,7 +454,7 @@ class NotionCronBase(CronJobBase):
         try:
             return data['properties'][property_name]['number']
         except Exception as e:
-            console.warn(e)
+            logger.warning(e)
             return ''
         return ''
 
@@ -472,7 +475,7 @@ class NotionCronBase(CronJobBase):
         try:
             return data['properties'][property_name]['checkbox']
         except Exception as e:
-            console.warn(e)
+            logger.warning(e)
             return False
         return False
 
@@ -500,7 +503,7 @@ class NotionCronBase(CronJobBase):
                 dt = arrow.get(ds).datetime
                 return dt
         except Exception as e:
-            console.warn(e)
+            logger.warning(e)
             return None
         return None
 
@@ -510,7 +513,7 @@ class NotionCronBase(CronJobBase):
             last_updated = arrow.get(_notion_updated).datetime
             our_updated = obj.notion_updated
         except Exception:
-            console.error(f"Failed to get updated datetime from {_notion_updated}")
+            logger.error(f"Failed to get updated datetime from {_notion_updated}")
             last_updated = DEFAULT_DATE
             our_updated = obj.notion_updated
         if our_updated is not None and last_updated <= our_updated:
@@ -528,5 +531,5 @@ class NotionCronBase(CronJobBase):
         try:
             return CountryTag.objects.get(notion_id=notion_id)
         except Exception as e:
-            console.warn(e)
-            console.warn(notion_id)
+            logger.warning(e)
+            logger.warning(notion_id)

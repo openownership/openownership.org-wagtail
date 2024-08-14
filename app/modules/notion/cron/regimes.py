@@ -1,5 +1,5 @@
 # 3rd party
-from consoler import console
+from loguru import logger
 from django.conf import settings
 from django_cron import Schedule
 
@@ -27,7 +27,7 @@ class SyncRegimesSub(NotionCronBase):
         Args:
             data (dict, optional): We're only going to pass the data in here in tests
         """
-
+        logger.info(f"SyncRegimesSub.do: data={data}, force={force}")
         # The ID we have for DISCLOSURE_REGIMES_SUB is already the DB id
         if not data:
             data = self.fetch_all_data(DISCLOSURE_REGIMES_SUB)
@@ -40,7 +40,7 @@ class SyncRegimesSub(NotionCronBase):
                     self._handle_regime(item, force)
             else:
                 # Notify of failure, probably Slack and logging
-                console.warn("Regimes - Results was zero len")
+                logger.warning("Regimes - Results was zero len")
 
 
     def _handle_regime(self, regime: dict, force: bool = False) -> bool:
@@ -55,28 +55,40 @@ class SyncRegimesSub(NotionCronBase):
         # if not self._triggered:
         #     self._triggered = True
         #     import ipdb; ipdb.set_trace()  # noqa: E702
+        logger.info(f"SyncRegimesSub._handle_regime: regime={regime}, force={force}")
         try:
             regime_notion_id = regime['properties']['Disclosure regime']['relation'][0]['id']
             obj = DisclosureRegime.objects.get(notion_id=regime_notion_id)
         except KeyError:
-            console.warn(regime)
-            console.error("No notion regime_notion_id found")
+            logger.warning(regime)
+            logger.error("No notion regime_notion_id found")
         except DisclosureRegime.DoesNotExist:
-            console.warn(regime)
-            console.error(f"No DisclosureRegime object found for {regime_notion_id}")
+            logger.warning(regime)
+            logger.error(f"No DisclosureRegime object found for {regime_notion_id}")
             return False
+        except IndexError:
+            logger.error("No notion regime_notion_id found")
+            logger.error(regime)
+            return False
+        except Exception as err:
+            logger.warning(err)
 
+        logger.info("_handle_regime.api_available...")
         obj.api_available = self._get_value(regime, 'API available')  # str
+        logger.info("_handle_regime.bulk_data_available...")
         obj.bulk_data_available = self._get_value(regime, 'Bulk data available')  # str
+        logger.info("_handle_regime.on_oo_register...")
         obj.on_oo_register = self._get_value(regime, 'Data on OO Register')  # str
+        logger.info("_handle_regime.data_in_bods...")
         obj.data_in_bods = self._get_value(regime, 'Data published in BODS')  # str
+        logger.info("_handle_regime.structured_data...")
         obj.structured_data = self._get_value(regime, 'Structured data')  # str
-        # console.info('-' * 80)
-        # console.info('api_available', obj.api_available)
-        # console.info('bulk_data_available', obj.bulk_data_available)
-        # console.info('on_oo_register', obj.on_oo_register)
-        # console.info('data_in_bods', obj.data_in_bods)
-        # console.info('structured_data', obj.structured_data)
+        # logger.info('-' * 80)
+        # logger.info('api_available', obj.api_available)
+        # logger.info('bulk_data_available', obj.bulk_data_available)
+        # logger.info('on_oo_register', obj.on_oo_register)
+        # logger.info('data_in_bods', obj.data_in_bods)
+        # logger.info('structured_data', obj.structured_data)
         obj.save()
         return True
 
@@ -110,7 +122,7 @@ class SyncRegimes(NotionCronBase):
                     self._handle_regime(item, force)
             else:
                 # Notify of failure, probably Slack and logging
-                console.warn("Regimes - Results was zero len")
+                logger.warning("Regimes - Results was zero len")
 
             self._clean_up(data)
 
@@ -127,8 +139,8 @@ class SyncRegimes(NotionCronBase):
         try:
             notion_id = regime['id']
         except KeyError:
-            console.warn(regime)
-            console.error("No notion ID found")
+            logger.warning(regime)
+            logger.error("No notion ID found")
 
         country_id = self._get_rel_id(regime, 'Country')
         if country_id is None:
@@ -144,7 +156,7 @@ class SyncRegimes(NotionCronBase):
                 country=country,
             )
         else:
-            console.warn("No related country found, skipping")
+            logger.warning("No related country found, skipping")
             return False
 
         if not self._is_updated(obj, regime) and not force:
@@ -169,6 +181,8 @@ class SyncRegimes(NotionCronBase):
         obj.public_access_register_url = self._get_value(regime, 'Register URL') or ''
         obj.year_launched = self._get_value(regime, 'Year launched')
         obj.threshold = str(self._get_value(regime, 'Threshold (%)'))
+        obj.responsible_agency = str(self._get_value(regime, 'Responsible agency'))
+        obj.agency_type = str(self._get_value(regime, 'Agency type'))
 
         # REMOVED
         # obj.definition_legislation_url = self._get_value(
@@ -196,8 +210,8 @@ class SyncRegimes(NotionCronBase):
         try:
             obj.save()
         except Exception as e:
-            console.error("Failed to save")
-            console.error(e)
+            logger.error("Failed to save")
+            logger.error(e)
             if settings.DEBUG:
                 import ipdb
                 ipdb.set_trace()
@@ -239,12 +253,12 @@ class SyncRegimes(NotionCronBase):
                 tags.append(tag)
 
         except Exception as err:
-            console.warn("Failed to add scope tags")
-            console.warn(err)
+            logger.warning("Failed to add scope tags")
+            logger.warning(err)
             f"Failed to add scope tags - {err}"
             raise NotionError() from err
         else:
-            # console.info(f"Scope tags: {tags}")
+            # logger.info(f"Scope tags: {tags}")
             return tags
 
     def _get_access_tags(self, data: dict) -> list:
@@ -289,12 +303,12 @@ class SyncRegimes(NotionCronBase):
                 tags.append(tag)
 
         except Exception as err:
-            console.warn("Failed to add access tags")
-            console.warn(err)
+            logger.warning("Failed to add access tags")
+            logger.warning(err)
             f"Failed to add access tags - {err}"
             raise NotionError() from err
         else:
-            # console.info(f"Scope tags: {tags}")
+            # logger.info(f"Scope tags: {tags}")
             return tags
 
     def _get_stages(self, data: dict) -> list:
@@ -326,7 +340,7 @@ class SyncRegimes(NotionCronBase):
             return ', '.join([item['name'] for item in stages])
 
         except Exception as err:
-            console.warn("Failed to get Stages")
-            console.warn(err)
+            logger.warning("Failed to get Stages")
+            logger.warning(err)
             f"Failed to get Stages - {err}"
             raise NotionError() from err

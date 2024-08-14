@@ -26,5 +26,5 @@ if __name__ == "__main__":
         execute_from_command_line(sys.argv)
     except Exception as e:
         console.error(e)
-        if settings.DEBUG:
-            import ipdb; ipdb.set_trace()  # NOQA
+        # if settings.DEBUG:
+        #     import ipdb; ipdb.set_trace()  # NOQA

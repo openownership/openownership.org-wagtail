@@ -58,7 +58,7 @@ HEADERS_DISCLOSURE_REGIMES: list = [
 
     # 'Access features',
     # 'Access regime details',
-    # 'Agency type',
+    'Agency type',
     # 'Country',
     # 'Coverage',
     # 'Definition',
@@ -72,7 +72,7 @@ HEADERS_DISCLOSURE_REGIMES: list = [
     # 'Protection regime',
     # 'Register cost and business model',
     # 'Register name',
-    # 'Responsible agency',
+    'Responsible agency',
     # 'Sanctions and enforcement details',
     # 'Stated policy aims',
     # 'Structured data details',

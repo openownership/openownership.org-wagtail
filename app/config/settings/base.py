@@ -27,7 +27,26 @@ MODULES_DIR = os.path.join(DJANGO_ROOT, PROJECT_DIR_NAME)
 MONTH_IN_SECONDS = 2628000
 
 TIME_IN_A_YEAR = datetime.now() + timedelta(days=365 * 1)
-guru.add("/var/log/openownership.org/output.log", rotation="100 MB", backtrace=True)
+
+
+guru.add(
+    "/var/log/openownership.org/output.log",
+    rotation="100 MB",
+    backtrace=True,
+    retention="30 days",
+    compression="zip",
+    level="WARNING",
+)
+
+guru.add(
+    "/var/log/openownership.org/notion.log",
+    filter="modules.notion",
+    rotation="100 MB",
+    backtrace=True,
+    retention="30 days",
+    compression="zip",
+    level="WARNING",
+)
 
 
 WHITENOISE_MANIFEST_STRICT = False

@@ -1,5 +1,5 @@
 # 3rd party
-from consoler import console
+from loguru import logger
 from django.conf import settings
 from django_cron import Schedule
 from django.template.defaultfilters import slugify
@@ -28,7 +28,6 @@ class SyncCountries(NotionCronBase):
             data (dict, optional): We're only going to pass the data in here in tests
             force (bool, optional): Force this to run
         """
-
         # The ID we have for COUNTRY_TRACKER is already the DB id
         if not data:
             data = self.fetch_all_data(COUNTRY_TRACKER)
@@ -46,7 +45,7 @@ class SyncCountries(NotionCronBase):
                 self._handle_country(item, force)
         else:
             # Notify of failure, probably Slack and logging
-            console.warn("Countries - Results was zero len")
+            logger.warning("Countries - Results was zero len")
 
     def _handle_country(self, country: dict, force: bool = False) -> bool:
         """Gets data from notion (`country`) and saves it as a Country tag.
@@ -57,19 +56,38 @@ class SyncCountries(NotionCronBase):
         Returns:
             bool: Success / Failure
         """
+        # Before we start trying to create the countries, we need to delete any countries
+        # that may exist with a blank name field from empty rows in the Notion
+        CountryTag.objects.filter(name='').all().delete()
+
+        # OK, now we're ready
         try:
             notion_id = country['id']
         except KeyError:
-            console.warn(country)
-            console.error("No notion ID found")
+            logger.warning(country)
+            logger.error("No notion ID found")
 
-        obj, created = CountryTag.objects.get_or_create(notion_id=notion_id)
+        country_name = self._get_country_name(country)
+
+        logger.info(f"Country name: {country_name}")
+
+        if not country_name:
+            return False
+
+        try:
+            obj, created = CountryTag.objects.get_or_create(notion_id=notion_id)
+        except Exception as err:
+            logger.warning(err)
+            logger.log(country)
+            breakpoint()
+
+        logger.info(f"Country: {obj.notion_id} - Created: {created}")
 
         if not self._is_updated(obj, country) and not force:
             return False
 
         # This is either a new row, or it has been updated, so save stuff
-        country_name = self._get_country_name(country)
+
         if country_name:
             obj.name = country_name
             obj.slug = slugify(country_name)
@@ -85,11 +103,13 @@ class SyncCountries(NotionCronBase):
             try:
                 obj.save()
             except Exception as e:
-                console.error("Failed to save")
-                console.error(e)
-                if settings.DEBUG:
-                    import ipdb; ipdb.set_trace()  # noqa: E702
-        return False
+                logger.error("Failed to save")
+                logger.error(e)
+                # if settings.DEBUG:
+                    # import ipdb; ipdb.set_trace()  # noqa: E702
+        else:
+            logger.warning("No country name found")
+            return False
 
     def _get_country_name(self, data: dict) -> str:
         """
@@ -124,6 +144,7 @@ class SyncCountries(NotionCronBase):
         try:
             return data['properties']['Country']['title'][0]['plain_text']
         except Exception as e:
-            console.warn("Failed to get country name")
-            console.warn(e)
+            logger.warning("Failed to get country name")
+            logger.warning(e)
+            logger.warning(data)
             return ''
