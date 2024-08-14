@@ -25,9 +25,9 @@ BASE_HEADERS = [
     "Who can access",
 ]
 
-COUNTRY_HEADERS = ["", "Stage"] + BASE_HEADERS
+COUNTRY_HEADERS = ["", "Stage"] + BASE_HEADERS + ["ISO2", "Region"]
 
-ALL_HEADERS = ["Country", "Stage"] + BASE_HEADERS
+ALL_HEADERS = ["Country", "Stage"] + BASE_HEADERS + ["ISO2", "Region"]
 
 
 class DataExportBase(View):
@@ -126,9 +126,15 @@ class CountryExport(DataExportBase):
     def _generate_csv(self, response: HttpResponse):
         writer = csv.writer(response)
         writer.writerow(COUNTRY_HEADERS)
-        row = ["", "", "", "", "", "", "", "", "", ""]
+        row = ["", "", "", "", "", "", "", "", "", "", "", ""]
         row[0] = self.country.name
         row[1] = self.country.category_display
+        row[10] = self.country.iso2
+        try:
+            region = self.country.regions.first().name
+        except Exception as err:
+            logger.error(err)
+        row[11] = region
         writer.writerow(row)
         # NO MORE COMMITMENT ROWS!
         # for commitment in self.country.commitments.all():
@@ -136,7 +142,6 @@ class CountryExport(DataExportBase):
         for regime in self.country.regimes.all():
             if regime.display:
                 row = self._get_regime_row(regime)
-                logger.info(row)
                 writer.writerow(row)
         return writer
 
@@ -164,8 +169,14 @@ class CountriesExport(DataExportBase):
             #     writer.writerow(row)
             for regime in country.regimes.all():
                 if regime.display:
-                    row = [country.name] + self._get_regime_row(regime, is_single=False)
+                    row = [country.name] + self._get_regime_row(regime, is_single=False) + ["", ""]
                     row[1] = country.category_display
+                    row[10] = country.iso2
+                    try:
+                        region = country.regions.first().name
+                    except Exception as err:
+                        logger.error(err)
+                    row[11] = region
                     writer.writerow(row)
         return writer
 
