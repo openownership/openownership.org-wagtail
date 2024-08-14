@@ -1,4 +1,5 @@
-.find-country, .browse-by-region {
+.find-country,
+.browse-by-region {
     @apply my-8;
 }
 
@@ -16,7 +17,7 @@
 
 .country-search__form-wrapper {
     @apply relative w-4/6 flex;
-    
+
     .btn {
         @apply p-1;
     }
@@ -37,7 +38,7 @@
     }
 
     &.--no-filters {
-        background-color: transparent; 
+        background-color: transparent;
         @include max-width(lg) {
             @apply flex-col;
 
@@ -46,7 +47,6 @@
             }
         }
     }
-
 }
 
 .map__country-data-box {
@@ -63,9 +63,9 @@
 
     .ghost-link {
         @apply my-0;
+        margin-bottom: 10px;
     }
 }
-
 
 .map__country-data-header {
     @apply flex items-center w-full;
@@ -76,13 +76,12 @@
     svg {
         @apply mr-4;
         * {
-            stroke: #3C31D5;
+            stroke: #3c31d5;
         }
 
         @include max-width(lg) {
             display: none;
         }
-        
     }
 
     > * {
@@ -93,8 +92,7 @@
 .map__country-data-box.--active {
     @apply bg-white;
 
-
-    .map__country-data-header{
+    .map__country-data-header {
         @apply bg-blue-light;
         @apply border-2 border-blue-light;
         @apply text-black;
@@ -106,10 +104,9 @@
             }
         }
     }
-    .country__header-card_row {    
+    .country__header-card_row {
         @apply text-black;
     }
-       
 }
 
 .country__header-card_row {
@@ -173,8 +170,8 @@
     @apply p-2;
 }
 
-
-.map-page__intro, .region-page__intro {
+.map-page__intro,
+.region-page__intro {
     @apply border-b border-black/50;
     @apply pb-10;
     @apply my-10;

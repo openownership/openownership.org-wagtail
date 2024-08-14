@@ -27,7 +27,7 @@
 
         <div class="country-page__details">
             <p><strong>Records last updated: {{ country.last_updated|nicedate }}</strong></p>
-            
+
             {% if country.consultant %}
                 <p>
                     <strong>
@@ -55,7 +55,7 @@
                 {% trans %}Committed to one or more{% endtrans %}
             </h2>
 
-            
+
             <ul class="country-page__country-data-box-list">
                 <li class="country-page__country-data-box-list-item --categories">
                     {% if country.category %}
@@ -96,7 +96,7 @@
                             </div>
                         {% endif %}
 
-                        
+
 
                     {% else %}
 
@@ -137,6 +137,7 @@
 
     <div>
         <a href="{{ country.data_export_url }}" class="ghost-link">{% trans %}Download country data{% endtrans %}</a>
+        <a href="{{ url('serve_metadata') }}" class="ghost-link">{% trans %}Download metadata{% endtrans %}</a>
     </div>
 
     <div>
@@ -231,9 +232,9 @@
                         {% if commitment.link %}<a href="{{ commitment.link }}">link to commitment</a>{% endif %}
                     </li>
                     {% endfor %}
-                </ul>  
+                </ul>
             </details>
-        
+
         </section>
 
 

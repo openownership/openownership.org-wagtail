@@ -61,10 +61,11 @@
                 {% include "svg/filled-circle-icon.jinja" %}
                 Countries where Open Ownership has engaged ({{ country_counts.engaged }})
             </div>
-            
+
         </div>
         <div class="map__country-data-box">
             <a href="{{ url('countries-export') }}" class="ghost-link">{% trans %}Download all country data{% endtrans %}</a>
+            <a href="{{ url('serve_metadata') }}" class="ghost-link">{% trans %}Download metadata{% endtrans %}</a>
         </div>
     </div>
 
@@ -94,9 +95,9 @@
 
                 <div id="accordion-section-{{region.slug}}" class="accordion__section open">
                     {% for country in region.countries.all().order_by('name') %}
-                    
+
                         <a href="{{ country.url }}">{{ country.name }}</a>
-                    
+
                     {% endfor %}
                 </div>
 
