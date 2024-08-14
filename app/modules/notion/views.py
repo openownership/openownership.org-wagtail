@@ -178,7 +178,8 @@ class CountriesExport(DataExportBase):
 def serve_csv_file(request):  # noqa: ARG001
     file_path = Path(settings.STATIC_ROOT) / "files" / "metadata.csv"
     if file_path.exists():
-        return FileResponse(open(file_path, "rb"), content_type="text/csv")  # noqa: PTH123, SIM115
-
+        response = FileResponse(open(file_path, "rb"), content_type="text/csv")  # noqa: PTH123, SIM115
+        response["Content-Disposition"] = "attachment; filename=metadata.csv"
+        return response
     msg = "CSV file does not exist"
     raise Http404(msg)
