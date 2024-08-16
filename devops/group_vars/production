@@ -1,51 +1,32 @@
 ---
 
-user: deploy
-ansible_python_interpreter: /usr/bin/python3
+####################################################################################################
+# Global
+####################################################################################################
 
-app_path: /srv/www/openownership.org/app
+server_env: production
 
 ####################################################################################################
 # Envkey
 ####################################################################################################
 
-env_path: /srv/www/openownership.org/app/
-envkey: "{{ lookup('envkey', 'ENVKEY_PRODUCTION') }}"
-
-####################################################################################################
-# Python
-####################################################################################################
-
-hactar_python3_version: python3
-hactar_python3_app_dir: /srv/www/openownership.org/app/
-hactar_python3_reqs_path: ../../../app/
-hactar_python3_use_poetry: true
-hactar_python3_venv_name: .venv
-hactar_python3_poetry_dir: /srv/www/openownership.org/app/
+envkey: "{{ lookup('envkey', '_ENVKEY_PRODUCTION') }}"
 
 
 ####################################################################################################
 # Git deploys
 ####################################################################################################
 
-server_env: production
-gitdeploys_server_env: production
-gitdeploys_work_tree: /srv/www/openownership.org/
-gitdeploys_repo_name: openownership.org
-gitdeploys_migrate_cmd: /srv/www/openownership.org/app/.venv/bin/python manage.py migrate
-gitdeploys_reqs_cmd: cd /srv/www/openownership.org/app && /usr/local/bin/poetry install --no-dev
-gitdeploys_wsgi_restart: supervisorctl restart openownership.org
-
 authorized_keys:
   -
     user: deploy
-    key: "{{ lookup('envkey','CODEBASE_PUBLIC_KEY') }}"
+    key: "{{ lookup('envkey','GITHUB_PUBLIC_KEY') }}"
 
 private_keys:
   -
     user: deploy
     name: codebase_key
-    key: "{{ lookup('envkey','CODEBASE_PRIVATE_KEY') }}"
+    key: "{{ lookup('envkey','GITHUB_PRIVATE_KEY') }}"
 
 
 ####################################################################################################
@@ -71,33 +52,29 @@ hactar_firewall_allow:
 # Caddy
 ####################################################################################################
 
-hactar_caddy_sites:
+# hactar_caddy2_sites:
+#   -
+#     domain: https://www.openownership.org
+#     proxy: 127.0.0.1:8000
+#     tls: "systems@hactar.is"
+
+# hactar_caddy2_redirects:
+#   -
+#     from: https://openownership.org
+#     to: https://www.openownership.org
+
+
+# TEMP
+
+hactar_caddy2_sites:
   -
-    domains: https://www.openownership.org
+    domain: https://openownership-prod.hactar.work
     proxy: 127.0.0.1:8000
-    tls: "systems+1@hactar.is"
-    features:
-      - gzip
-      - expires
-  -
-    domains: https://openownership.org
-    redirect: https://www.openownership.org
-  # -
-  #   domains: https://prod.openownership.org
-  #   proxy: 127.0.0.1:8000
-  #   tls: "systems@hactar.is"
-  #   features:
-  #     - gzip
-  #     - expires
-
-hactar_caddy_fail2ban: true
-hactar_caddy_force_build: true
-
+    tls: "systems@hactar.is"
 
 ####################################################################################################
 # Supervisor
 ####################################################################################################
-
 
 hactar_supervisor:
   env: SERVER_ENV="production"
@@ -106,21 +83,13 @@ hactar_supervisor:
   gunicorn_env: SERVER_ENV="production"
   apps:
     -
-      name: openownership.org
-      command: "/srv/www/openownership.org/app/.venv/bin/gunicorn -c /etc/gunicorn.py --env SERVER_ENV=production config.wsgi:application"
-      directory: "/srv/www/openownership.org/app"
+      name: TEMPLATEPROJECT_SHORT_NAME
+      command: "/srv/www/app/.venv/bin/gunicorn -c /etc/gunicorn.py --env SERVER_ENV=production config.wsgi:application"
+      directory: "/srv/www/app"
       env: SERVER_ENV="production"
 
 ####################################################################################################
-# Gunicorn
+# Redis
 ####################################################################################################
 
-gunicorn:
-  bind: 127.0.0.1:8000
-  workers: 5
-  worker_class: sync
-  worker_connections: 1000
-  timeout: 30
-  keepalive: 2
-  spew: "False"
-  daemon: "False"
+redis_maxmemory: 4gb
