@@ -70,7 +70,7 @@ hactar_supervisor:
   gunicorn_env: SERVER_ENV="staging"
   apps:
     -
-      name: TEMPLATEPROJECT_SHORT_NAME
+      name: openownership
       command: "/srv/www/app/.venv/bin/gunicorn -c /etc/gunicorn.py --env SERVER_ENV=staging config.wsgi:application"
       directory: "/srv/www/app"
       env: SERVER_ENV="staging"

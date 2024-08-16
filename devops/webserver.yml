@@ -11,7 +11,8 @@
     # - {role: 'hactar.gitdeploys', tags: 'gitdeploys'}
     # - {role: 'hactar.shell', tags: 'shell'}
     # - {role: 'hactar.postgresql', tags: 'postgresql'}
-    - {role: 'hactar.python', tags: 'python'}
-    - {role: 'hactar.node', tags: 'node'}
-    - {role: 'hactar.supervisor', tags: 'supervisor'}
-    # - {role: 'hactar.caddy2', tags: 'caddy2'}
+    # - {role: 'hactar.python', tags: 'python'}
+    # - {role: 'hactar.node', tags: 'node'}
+    # - {role: 'hactar.wsgi', tags: 'wsgi'}
+    # - {role: 'hactar.supervisor', tags: 'supervisor'}
+    - {role: 'hactar.caddy2', tags: 'caddy2'}

@@ -6,7 +6,7 @@
 ####################################################################################################
 
 ansible_python_interpreter: /usr/bin/python3
-app_path: /srv/www/app/
+app_path: /srv/www/app
 working_tree: /srv/www/
 server_env: staging
 user: deploy

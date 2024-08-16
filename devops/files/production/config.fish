@@ -64,4 +64,4 @@ if [ -e ".venv/bin/activate.fish" ]
 end
 
 
-cd /srv/www/openownership.org/app/ && source .venv/bin/activate.fish
+cd /srv/www/app/ && source .venv/bin/activate.fish
