@@ -69,21 +69,20 @@ class DocumentDownloadsView(ListView):
         if sort_field not in self.sort_fields:
             messages.warning(
                 self.request,
-                f'"{sort_field}" is not a valid sort field, using "{self.default_sort_field}"'
+                f'"{sort_field}" is not a valid sort field, using "{self.default_sort_field}"',
             )
             sort_field = self.default_sort_field
 
         if sort_order not in ['asc', 'desc']:
             messages.warning(
                 self.request,
-                f'"{sort_order}" is not a valid sort order, using "{self.default_sort_order}"'
+                f'"{sort_order}" is not a valid sort order, using "{self.default_sort_order}"',
             )
             sort_order = self.default_sort_order
 
         if sort_order == 'desc':
-            return [models.F(sort_field).desc(nulls_last=True), ]
-        else:
-            return [models.F(sort_field).asc(nulls_last=True), ]
+            return [models.F(sort_field).desc(nulls_last=True)]
+        return [models.F(sort_field).asc(nulls_last=True)]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -125,7 +124,7 @@ class DocumentDownloadsView(ListView):
 
         objs = objs.annotate(
             download_count=models.Count('user_downloads'),
-            last_downloaded_at=models.Max('user_downloads__downloaded_at')
+            last_downloaded_at=models.Max('user_downloads__downloaded_at'),
         )
 
         return objs.order_by(*ordering)
@@ -145,12 +144,12 @@ class DocumentDownloadsView(ListView):
         )
 
         writer = csv.writer(response)
-        writer.writerow(['Document', 'Downloads', 'Last downloaded', ])
+        writer.writerow(['Document', 'Downloads', 'Last downloaded' ])
         for row in queryset:
             writer.writerow([
                 row.title,
                 row.download_count,
-                row.last_downloaded_at or 'Never'
+                row.last_downloaded_at or 'Never',
             ])
 
         return response
@@ -162,8 +161,9 @@ def admin_menus(request, menu_items):
         MenuItem(
             'Downloads',
             reverse('document_downloads'),
-            classnames='icon icon-download', order=850
-        )
+            icon_name="download",
+            order=850,
+        ),
     ]
     for menu in menus:
         menu_items.append(menu)

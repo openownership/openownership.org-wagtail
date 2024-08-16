@@ -5,8 +5,8 @@
 """
 
 # 3rd party
-from wagtail.contrib.modeladmin.helpers import PermissionHelper
-from wagtail.contrib.modeladmin.options import ModelAdmin, ModelAdminGroup, modeladmin_register
+from wagtail_modeladmin.helpers import PermissionHelper
+from wagtail_modeladmin.options import ModelAdmin, ModelAdminGroup, modeladmin_register
 
 # Module
 from .models import Region, Commitment, CountryTag, CoverageScope, DisclosureRegime

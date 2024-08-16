@@ -10,8 +10,8 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.contrib.admin.filters import RelatedOnlyFieldListFilter
 from django.contrib.auth.decorators import login_required
-from wagtail.contrib.modeladmin.views import IndexView
-from wagtail.contrib.modeladmin.helpers import ButtonHelper, AdminURLHelper, PermissionHelper
+from wagtail_modeladmin.views import IndexView
+from wagtail_modeladmin.helpers import ButtonHelper, AdminURLHelper, PermissionHelper
 from django_admin_listfilter_dropdown.filters import RelatedDropdownFilter
 
 

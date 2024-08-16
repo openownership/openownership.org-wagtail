@@ -1,7 +1,7 @@
 # 3rd party
 from consoler import console
 from wagtail import hooks
-from wagtail.contrib.modeladmin.options import ModelAdmin
+from wagtail_modeladmin.options import ModelAdmin
 
 # Module
 from .models import Author

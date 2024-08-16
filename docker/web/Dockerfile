@@ -1,4 +1,4 @@
-FROM ghcr.io/hactar-is/ubuntu-20:latest AS builder
+FROM ghcr.io/hactar-is/ubuntu-24:latest AS builder
 
 # Create our working directory
 RUN mkdir -p /usr/srv/app/
@@ -47,11 +47,11 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /usr/srv/app/
 COPY ./pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./poetry.lock /usr/srv/app/poetry.lock
-RUN mkdir -p /root/.cache/pypoetry/virtualenvs/ && \
-    cd /root/.cache/pypoetry/virtualenvs/ && \
-    python -m venv .venv && \
-    . /root/.cache/pypoetry/virtualenvs/.venv/bin/activate && \
-    cd /usr/srv/app/ && poetry install
+# RUN mkdir -p /root/.cache/pypoetry/virtualenvs/ && \
+#     cd /root/.cache/pypoetry/virtualenvs/ && \
+#     python -m venv .venv && \
+#     . /root/.cache/pypoetry/virtualenvs/.venv/bin/activate && \
+#     cd /usr/srv/app/ && poetry install
 
 
 RUN whoami

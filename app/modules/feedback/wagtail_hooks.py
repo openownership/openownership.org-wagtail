@@ -2,7 +2,7 @@ from django.urls import path
 from django.shortcuts import reverse
 
 # from django.utils.translation import gettext_lazy as _
-from wagtail.admin.menu import MenuItem, AdminOnlyMenuItem
+from wagtail.admin.menu import AdminOnlyMenuItem
 from wagtail import hooks
 # from wagtail.admin.menu import Menu, MenuItem, SubmenuMenuItem
 
@@ -22,8 +22,8 @@ def register_feedback_report_menu_item():
     return AdminOnlyMenuItem(
         FeedbackReportView.menu_title,
         reverse('feedback_report'),
-        classnames='icon icon-' + FeedbackReportView.header_icon,
-        order=700
+        icon_name=FeedbackReportView.header_icon,
+        order=700,
     )
 
 @hooks.register('register_admin_urls')
@@ -32,7 +32,7 @@ def register_feedback_report_url():
         path(
             'reports/feedback/',
             FeedbackReportView.as_view(),
-            name='feedback_report'
+            name='feedback_report',
         ),
     ]
 

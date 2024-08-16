@@ -4,7 +4,6 @@ from tempfile import SpooledTemporaryFile
 
 # 3rd party
 from django.conf import settings
-from boto.s3.connection import S3Connection
 from django.core.exceptions import SuspiciousOperation
 from storages.backends.s3boto3 import S3Boto3Storage
 
@@ -54,26 +53,25 @@ def safe_join(base, *paths):
 
 class CDNNGOStorage(S3Boto3Storage):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.connection_class = S3Connection
-        self.location = kwargs.get('location', '')
-        self.location = str(settings.MEDIA_ROOT) + self.location.lstrip('/')
+        self.location = kwargs.get("location", "")
+        self.location = str(settings.MEDIA_ROOT) + self.location.lstrip("/")
         self.file_overwrite = False
+        super().__init__(*args, **kwargs)
 
     def _save(self, name, content):
         content.seek(0, os.SEEK_SET)
         with SpooledTemporaryFile() as content_autoclose:
             content_autoclose.write(content.read())
-            return super()._save(name, content_autoclose)
+            res = super()._save(name, content_autoclose)
+            return res
 
     def _normalize_name(self, name):
         try:
-            return safe_join(self.location, name).lstrip('/')
+            name = safe_join(self.location, name).lstrip("/")
+            return name
         except ValueError as exc:
             msg = f"Attempted access to '{name}' denied."
             raise SuspiciousOperation(msg) from exc
-
-
 
 
 # class StaticRootS3BotoStorage(S3Boto3Storage):

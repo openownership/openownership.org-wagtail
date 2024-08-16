@@ -5,7 +5,7 @@
 """
 
 # 3rd party
-from wagtail.contrib.modeladmin.options import ModelAdmin, ModelAdminGroup, modeladmin_register
+from wagtail_modeladmin.options import ModelAdmin, ModelAdminGroup, modeladmin_register
 
 # Project
 from modules.taxonomy.models import (
