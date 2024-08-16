@@ -1,23 +1,18 @@
 [meta]
 PROJECT_NAME = "openownership.org"
-SHORT_NAME = "oownership"
-REPO = "openownership.org"  # The name of the repo on the remote servers
+SHORT_NAME = "openownership"
+REPO = "openownership"  # The name of the repo on the remote servers
 
-[aws]
-REGION = "eu-west-1"
-ENDPOINT = "s3-eu-west-1.amazonaws.com"
 
 [envs.remote]
 ROOT = "/srv/www/app"
 
 [envs.stage]
-HOSTS = ['195.201.99.74', ]
+HOSTS = ['157.90.26.158', ]
 TAG = "staging"
-BUCKET = "cdn-openownership.org-staging"
 GIT_DEPLOY = "CI"
 
 [envs.prod]
 HOSTS = ['167.99.201.240', ]
 TAG = "production"
-BUCKET = "cdn-openownership.org-production"
 GIT_DEPLOY = "CI"
