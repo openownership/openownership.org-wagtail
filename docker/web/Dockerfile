@@ -47,11 +47,11 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /usr/srv/app/
 COPY ./pyproject.toml /usr/srv/app/pyproject.toml
 COPY ./poetry.lock /usr/srv/app/poetry.lock
-# RUN mkdir -p /root/.cache/pypoetry/virtualenvs/ && \
-#     cd /root/.cache/pypoetry/virtualenvs/ && \
-#     python -m venv .venv && \
-#     . /root/.cache/pypoetry/virtualenvs/.venv/bin/activate && \
-#     cd /usr/srv/app/ && poetry install
+RUN mkdir -p /root/.cache/pypoetry/virtualenvs/ && \
+    cd /root/.cache/pypoetry/virtualenvs/ && \
+    python -m venv .venv && \
+    . /root/.cache/pypoetry/virtualenvs/.venv/bin/activate && \
+    cd /usr/srv/app/ && poetry install
 
 
 RUN whoami

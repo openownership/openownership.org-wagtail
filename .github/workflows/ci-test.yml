@@ -83,7 +83,7 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           ssh-keyscan $IP_STAGING >> ~/.ssh/known_hosts
           ssh-add - <<< "${{ secrets.DEPLOY_KEY_PRIVATE }}"
-          git remote add staging ssh://deploy@$IP_STAGING/srv/repos/openownership.org.git
+          git remote add staging ssh://deploy@$IP_STAGING/srv/repos/openownership.git
           git push staging staging -f
 
   sentry_release_staging:
@@ -134,7 +134,7 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           ssh-keyscan $IP_PRODUCTION >> ~/.ssh/known_hosts
           ssh-add - <<< "${{ secrets.DEPLOY_KEY_PRIVATE }}"
-          git remote add production ssh://deploy@$IP_PRODUCTION/srv/repos/openownership.org.git
+          git remote add production ssh://deploy@$IP_PRODUCTION/srv/repos/openownership.git
           git push production main -f
 
   sentry_release_prod:

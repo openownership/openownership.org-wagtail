@@ -52,25 +52,25 @@ hactar_firewall_allow:
 # Caddy
 ####################################################################################################
 
-# hactar_caddy2_sites:
-#   -
-#     domain: https://www.openownership.org
-#     proxy: 127.0.0.1:8000
-#     tls: "systems@hactar.is"
+hactar_caddy2_sites:
+  -
+    domain: https://www.openownership.org
+    proxy: 127.0.0.1:8000
+    tls: "systems@hactar.is"
 
-# hactar_caddy2_redirects:
-#   -
-#     from: https://openownership.org
-#     to: https://www.openownership.org
+hactar_caddy2_redirects:
+  -
+    from: https://openownership.org
+    to: https://www.openownership.org
 
 
 # TEMP
 
-hactar_caddy2_sites:
-  -
-    domain: https://openownership-prod.hactar.work
-    proxy: 127.0.0.1:8000
-    tls: "systems@hactar.is"
+# hactar_caddy2_sites:
+#   -
+#     domain: https://openownership-prod.hactar.work
+#     proxy: 127.0.0.1:8000
+#     tls: "systems@hactar.is"
 
 ####################################################################################################
 # Supervisor

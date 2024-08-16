@@ -11,7 +11,7 @@ echo "Post Receive Hook is running..." >> /var/log/git.log
 # Check out the working tree to the right place
 header "Checking out git repo"
 mkdir -p /srv/www/
-git --work-tree=/srv/www/ --git-dir=/srv/repos/openownership.org.git checkout main -f
+git --work-tree=/srv/www/ --git-dir=/srv/repos/openownership.git checkout main -f
 
 header "Ensuring various files exist"
 # Make sure we have a log file
