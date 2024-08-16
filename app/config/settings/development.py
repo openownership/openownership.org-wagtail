@@ -43,5 +43,5 @@ AWS_STORAGE_BUCKET_NAME = "openownership"
 
 MEDIA_ROOT = 'staging/media/'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_ROOT}'
-WAGTAIL_CACHE = False
-
+#WAGTAIL_CACHE = False
+#CACHEOPS_ENABLED = False
