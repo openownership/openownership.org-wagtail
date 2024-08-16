@@ -15,6 +15,7 @@ def test_display_title(publication_inner_page):
     "display_title should return the parent's page.title"
     p = publication_inner_page
     p.get_parent().title = "My special title"
+    p.get_parent().cached_title = "My special title"
     assert p.display_title == "My special title"
 
 
