@@ -13,6 +13,6 @@ TAG = "staging"
 GIT_DEPLOY = "CI"
 
 [envs.prod]
-HOSTS = ['167.99.201.240', ]
+HOSTS = ['138.68.136.240', ]
 TAG = "production"
 GIT_DEPLOY = "CI"

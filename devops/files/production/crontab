@@ -1,0 +1,8 @@
+MAILTO=""
+SHELL=/bin/bash
+SERVER_ENV=production
+
+*/10 * * * * /srv/www/app/.venv/bin/python /srv/www/app/manage.py publish_scheduled_pages > /var/log/cronjob.log
+*/5 * * * * /srv/www/app/.venv/bin/python /srv/www/app/manage.py runcrons > /var/log/cronjob.log
+
+*/15 * * * * (cd /srv/www/app && chown -R deploy:deploy /srv/www) &>> /var/log/cronjob.log
