@@ -1,12 +1,8 @@
 import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
-import contextlib
 from .base import *  # NOQA
 from .remote import *  # NOQA
-
-with contextlib.suppress(ImportError):
-    import envkey  # NOQA
 
 
 DEBUG = False

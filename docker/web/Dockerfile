@@ -1,4 +1,4 @@
-FROM ghcr.io/hactar-is/ubuntu-24:latest AS builder
+FROM ghcr.io/hactar-is/ubuntu-24:2025.1 AS builder
 
 # Create our working directory
 RUN mkdir -p /usr/srv/app/
@@ -6,8 +6,12 @@ WORKDIR /usr/srv/app/
 
 
 # Ensure docker-compose build web is able to pass these env vars in
-ARG ENVKEY
 ARG SERVER_ENV
+ARG GITHUB_PUBLIC_KEY
+ARG GITHUB_PRIVATE_KEY
+ARG PHASE_PROJECT
+ARG PHASE_HOST
+ARG PHASE_TOKEN
 
 ####################################################################################################
 # ENVKEY STUFF
@@ -15,13 +19,10 @@ ARG SERVER_ENV
 
 ENV DOCKERFILE_VERSION=1.1
 
-RUN eval $(envkey-source)
-
 # Add a public / private key pair from EnvKey for connections to GitHub.
 RUN mkdir -p /root/.ssh && \
     touch /root/.ssh/id_rsa && \
     touch /root/.ssh/id_rsa.pub && \
-    eval $(envkey-source) && \
     echo -e "$PRIVATE_KEY" > /root/.ssh/id_rsa && \
     echo -r "$PUBLIC_KEY" > /root/.ssh/id_rsa.pub
 
@@ -43,15 +44,12 @@ RUN ssh -i /root/.ssh/id_rsa -o StrictHostKeyChecking=no -vvvT git@github.com 2>
 # Not really sure what this is for. Best leave it alone.
 ENV PYTHONUNBUFFERED 1
 
-# POETRY (working and installed in django-base)
+# UV (working and installed in the base images)
 WORKDIR /usr/srv/app/
 COPY ./pyproject.toml /usr/srv/app/pyproject.toml
-COPY ./poetry.lock /usr/srv/app/poetry.lock
-RUN mkdir -p /root/.cache/pypoetry/virtualenvs/ && \
-    cd /root/.cache/pypoetry/virtualenvs/ && \
-    python -m venv .venv && \
-    . /root/.cache/pypoetry/virtualenvs/.venv/bin/activate && \
-    cd /usr/srv/app/ && poetry install
+COPY ./uv.lock /usr/srv/app/uv.lock
+RUN . /root/uv/.venv/bin/activate && \
+    cd /usr/srv/app/ && /root/.local/bin/uv sync
 
 
 RUN whoami

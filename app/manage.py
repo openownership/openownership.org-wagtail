@@ -8,11 +8,7 @@ import sys
 # 3rd party
 from consoler import console
 
-
-try:
-    import envkey  # NOQA
-except Exception:
-    pass
+from config import secrets  # noqa: F401
 
 
 if __name__ == "__main__":

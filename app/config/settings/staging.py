@@ -1,12 +1,10 @@
 import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
-import contextlib
 from .base import *  # NOQA
 from .remote import *  # NOQA
 
-with contextlib.suppress(ImportError):
-    import envkey  # NOQA
+from config import secrets  # noqa: F401
 
 
 # SECURITY WARNING: don't run with debug turned on in production!

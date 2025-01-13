@@ -13,7 +13,7 @@ import arrow
 from datetime import datetime, timedelta
 
 # 3rd party
-import envkey  # NOQA
+from config import secrets  # noqa: F401
 from loguru import logger as guru
 from django.utils.translation import gettext_lazy as _
 
@@ -180,7 +180,6 @@ MIDDLEWARE = [
     'wagtailcache.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

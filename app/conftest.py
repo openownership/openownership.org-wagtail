@@ -11,11 +11,7 @@ from consoler import console  # NOQA
 from cacheops import invalidate_all
 from modules.stats.redis import RedisViewCounts
 
-try:
-    import envkey  # NOQA
-except Exception:
-    pass
-
+from config import secrets  # noqa: F401
 
 from tests.init import setup
 from tests.fixtures import *  # NOQA
