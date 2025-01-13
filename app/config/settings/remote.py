@@ -1,9 +1,3 @@
-import contextlib
-
-with contextlib.suppress(ImportError):
-    import envkey  # NOQA
-
-
 DEBUG = False
 
 ALLOWED_HOSTS = [

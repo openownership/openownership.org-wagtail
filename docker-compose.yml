@@ -31,12 +31,19 @@ services:
       dockerfile: ../docker/web/Dockerfile
       args:
         - SERVER_ENV=development
-        - ENVKEY=${ENVKEY}
+        - GITHUB_PUBLIC_KEY=${GITHUB_PUBLIC_KEY}
+        - GITHUB_PRIVATE_KEY=${GITHUB_PRIVATE_KEY}
+        - PHASE_PROJECT=${PHASE_PROJECT}
+        - PHASE_HOST=${PHASE_HOST}
+        - PHASE_TOKEN=${PHASE_TOKEN}
     image: ghcr.io/hactar-is/openownership:latest
     environment:
       - SERVER_ENV=development
-      - ENVKEY=${ENVKEY}
-      - INDOCKER=1
+      - GITHUB_PUBLIC_KEY=${GITHUB_PUBLIC_KEY}
+      - GITHUB_PRIVATE_KEY=${GITHUB_PRIVATE_KEY}
+      - PHASE_PROJECT=${PHASE_PROJECT}
+      - PHASE_HOST=${PHASE_HOST}
+      - PHASE_TOKEN=${PHASE_TOKEN}
     restart: always
     volumes:
       - ./app/:/usr/srv/app:cached

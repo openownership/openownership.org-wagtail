@@ -1,10 +1,10 @@
 # stdlib
+import os
 from collections import defaultdict
 
 # 3rd party
 import arrow
 import redis
-import envkey
 from consoler import console
 
 
@@ -12,9 +12,9 @@ class RedisViewCounts():
 
     def __init__(self, *args, **kwargs):
         self.conn = redis.StrictRedis(
-            host=envkey.get("REDIS_HOST"),
-            port=envkey.get("REDIS_PORT", 6379),
-            password=envkey.get("REDIS_PASSWORD"),
+            host=os.environ.get("REDIS_HOST"),
+            port=os.environ.get("REDIS_PORT", 6379),
+            password=os.environ.get("REDIS_PASSWORD"),
             db=10,
             decode_responses=True
         )
