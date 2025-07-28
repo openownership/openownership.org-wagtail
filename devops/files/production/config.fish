@@ -54,7 +54,6 @@ alias fishconf="nano ~/.config/fish/config.fish"
 
 alias octal="stat -c '%a'"
 
-eval (envkey-source)
 # source $HOME/.poetry/env
 
 

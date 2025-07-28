@@ -2,10 +2,12 @@
 name = "app"
 version = "0.1.0"
 description = "openownership.org"
+authors = [{ name = "Hactar", email = "systems@hactar.is" }]
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "beautifulsoup4~=4.12.3",
+    "benzo>=1.1.1",
     "boto3~=1.26.54",
     "click~=8.1.8",
     "consoler~=0.1.4",
@@ -19,7 +21,6 @@ dependencies = [
     "django-select2~=8.2.3",
     "django-storages~=1.14.4",
     "django-taggit~=5.0",
-    "envkey~=2.1",
     "gunicorn~=23.0.0",
     "ipdb~=0.13.13",
     "ipython~=8.8.0",
@@ -28,6 +29,7 @@ dependencies = [
     "loguru~=0.7.3",
     "notion-client~=2.2.1",
     "phase-dev>=2.1.0",
+    "phaser>=1.0.1",
     "pillow~=10.4.0",
     "psycopg2-binary~=2.9.10",
     "python-dotenv>=1.0.1",
@@ -43,9 +45,9 @@ dependencies = [
     "wagtail-localize~=1.7",
     "wagtail-modeladmin~=2.0.0",
     "wagtail-modelchooser~=4.0.1",
+    "wagtools>=1.2.0",
     "whitenoise~=6.5.0",
 ]
-authors = [{ name = "Hactar", email = "systems@hactar.is" }]
 
 [dependency-groups]
 dev = [
@@ -61,17 +63,38 @@ dev = [
     "wat-inspector>=0.4.0",
 ]
 
+####################################################################################################
+# Sources
+####################################################################################################
+
+[tool.uv.sources]
+benzo = { index = "hacnet" }
+phaser = { index = "hacnet" }
+wagtools = { index = "hacnet" }
+
+[[tool.uv.index]]
+name = "hacnet"
+url = "https://pypi.hacnet.dev/"
+
+####################################################################################################
+# Ruff etc.
+####################################################################################################
+
 [tool.ruff]
+target-version = "py312"  # Change this to match the project
+line-length = 100
+extend-exclude = ["tests", "*/migrations/*", '*/samples/*.py']
+
+[tool.ruff.lint]
 select = [
     "E", "F", "B", "DJ", "C90", "S", "COM", "DTZ", "EM",
     "PT", "RET", "SIM", "TCH", "ARG", "PTH", "PERF"
 ]
-target-version = "py312"  # Change this to match the project
-line-length = 100
-extend-exclude = ["tests", "*/migrations/*"]
 extend-ignore = ["E402", "RET504", "S101", "DJ012"]
-ignore-init-module-imports = true
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 combine-as-imports = true
 force-wrap-aliases = true
+
+[tool.basedpyright]
+basedpyright.disableLanguageServices = true

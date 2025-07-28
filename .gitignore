@@ -8,10 +8,14 @@ devops/keys/deploy_key.pub
 
 
 _db/
+_db/**/*
 docker/db/**/*
 docker/redis/**/*
+docker/web/atuin/**/*
+docker/web/ipython/**/*
 *.sql
 *.sql.zip
+
 
 # Compiled static assets
 app/static/**/*

@@ -1,4 +1,4 @@
-FROM ghcr.io/hactar-is/ubuntu-24:2025.1 AS builder
+FROM ghcr.io/hactar-is/ubuntu-24:2025.7 AS builder
 
 # Create our working directory
 RUN mkdir -p /usr/srv/app/

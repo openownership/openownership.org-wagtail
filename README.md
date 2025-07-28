@@ -13,9 +13,6 @@ You'll probably want to do `sudo nano /etc/hosts` and add:
 
 `0.0.0.0    openownership.test`
 
-### If you have access to the Hactar tooling
-
-Make sure you have developer access to the EnvKey project and generate yourself an EnvKey. Save this to a `.env` file at the root of the project.
 
 1. `git submodule update --init --recursive`
 2. `goenv`
@@ -52,7 +49,7 @@ By default, the admin JS and CSS will be output to `assets/dist/`
 
 ## Continuous Integration
 
-Pushes to the `staging` branch are automatically deployed, including static assets, to the staging server. 
+Pushes to the `staging` branch are automatically deployed, including static assets, to the staging server.
 
 
 ## Build docker cache image

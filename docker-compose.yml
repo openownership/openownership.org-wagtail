@@ -1,7 +1,7 @@
 services:
   # Postgres
   db:
-    image: postgres:12
+    image: postgres:16
     restart: always
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
@@ -47,7 +47,8 @@ services:
     restart: always
     volumes:
       - ./app/:/usr/srv/app:cached
-      - ./app/media:/usr/srv/app/media:delegated
+      - ./docker/web/atuin/:/root/.local/share/atuin/:delegated
+      - ./docker/web/ipython/:/root/.ipython/profile_default/:delegated
 
     ports:
       - "8000:8000"

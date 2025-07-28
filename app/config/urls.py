@@ -1,4 +1,5 @@
 # 3rd party
+from benzo.urls import urlpatterns as benzo_urls
 from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls.i18n import i18n_patterns
@@ -30,6 +31,7 @@ urlpatterns = [
     re_path(r"^admin/", include(wagtailadmin_urls)),
     path("django-admin/", admin.site.urls),
     re_path(r"^documents/", include(wagtaildocs_urls)),
+    path("benzo/", include(benzo_urls)),
     re_path(r"^404/$", error_404_test),
     re_path(r"^500/$", error_500_view),
     # Server / Robots / Verification etc
@@ -37,7 +39,7 @@ urlpatterns = [
     re_path(r"^sitemap\.xml$", sitemap),
     re_path(
         r"^googleverfication\.html$",
-        lambda r: HttpResponse(
+        lambda r: HttpResponse(  # noqa: ARG005
             "google-site-verification: foo.html",
             content_type="text/plain",
         ),

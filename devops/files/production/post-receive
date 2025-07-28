@@ -44,12 +44,6 @@ rm -rf /srv/www/ansible.cfg \
     /srv/www/setup.cfg \
     /srv/www/app/_db
 
-# Ensure envkey is set
-header "Setting envkey"
-echo 'ENVKEY='$ENVKEY > /srv/www/app/.env
-chown deploy:deploy /srv/www/app/.env
-export SERVER_ENV=production
-
 header "Running poetry install"
 cd /srv/www/app && poetry install --no-dev  --no-root
 

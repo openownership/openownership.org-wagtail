@@ -1,19 +1,17 @@
 import os
+
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+
 from .base import *  # NOQA
 from .remote import *  # NOQA
-
-from config import secrets  # noqa: F401
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-BASE_URL = 'https://openownership.hactar.work'
-WAGTAILADMIN_BASE_URL= BASE_URL
-DOMAIN_NAME = 'openownership.hactar.work'
-
+BASE_URL = "https://openownership.hactar.work"
+WAGTAILADMIN_BASE_URL = BASE_URL
+DOMAIN_NAME = "openownership.hactar.work"
 
 
 ####################################################################################################
@@ -24,11 +22,11 @@ DOMAIN_NAME = 'openownership.hactar.work'
 DEFAULT_FILE_STORAGE is now defined in base.py / STORAGES
 """
 
-AWS_S3_CUSTOM_DOMAIN = 'oo.cdn.ngo'
+AWS_S3_CUSTOM_DOMAIN = "oo.cdn.ngo"
 AWS_STORAGE_BUCKET_NAME = "openownership"
 
-MEDIA_ROOT = 'staging/media/'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_ROOT}'
+MEDIA_ROOT = "staging/media/"
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_ROOT}"
 
 
 ####################################################################################################
@@ -36,7 +34,7 @@ MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_ROOT}'
 ####################################################################################################
 
 sentry_sdk.init(
-    dsn=os.environ.get('SENTRY_DSN', ''),
+    dsn=os.environ.get("SENTRY_DSN", ""),
     integrations=[DjangoIntegration()],
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.

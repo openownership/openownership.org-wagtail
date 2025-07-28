@@ -1,20 +1,21 @@
 # 3rd party
-from loguru import logger
 from django.conf import settings
 from django_cron import Schedule
+from loguru import logger
+
+from modules.notion.cron.core import NotionCronBase, NotionError
+from modules.notion.data import DISCLOSURE_REGIMES, DISCLOSURE_REGIMES_SUB
 
 # Module
 from modules.notion.helpers import check_headers
-from modules.notion.data import DISCLOSURE_REGIMES, DISCLOSURE_REGIMES_SUB
-from modules.notion.models import CoverageScope, DisclosureRegime, AccessTag
-from modules.notion.cron.core import NotionCronBase, NotionError
+from modules.notion.models import AccessTag, CoverageScope, DisclosureRegime
 
 
 class SyncRegimesSub(NotionCronBase):
     RUN_EVERY_MINS = 120  # every 2 hours
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
-    code = 'notion.sync_regimes_sub'
+    code = "notion.sync_regimes_sub"
 
     def __init__(self, *args, **kwargs):
         self._model = DisclosureRegime
@@ -33,7 +34,7 @@ class SyncRegimesSub(NotionCronBase):
             data = self.fetch_all_data(DISCLOSURE_REGIMES_SUB)
 
         if check_headers("Disclosure Regime Sub", data):
-            results = data.get('results', [])
+            results = data.get("results", [])
             if len(results):
                 # Do stuff here to save the data from Notion
                 for item in results:
@@ -41,7 +42,6 @@ class SyncRegimesSub(NotionCronBase):
             else:
                 # Notify of failure, probably Slack and logging
                 logger.warning("Regimes - Results was zero len")
-
 
     def _handle_regime(self, regime: dict, force: bool = False) -> bool:
         """Gets data from notion (`regime`) and saves it as a DisclosureRegime.
@@ -57,7 +57,7 @@ class SyncRegimesSub(NotionCronBase):
         #     import ipdb; ipdb.set_trace()  # noqa: E702
         logger.info(f"SyncRegimesSub._handle_regime: regime={regime}, force={force}")
         try:
-            regime_notion_id = regime['properties']['Disclosure regime']['relation'][0]['id']
+            regime_notion_id = regime["properties"]["Disclosure regime"]["relation"][0]["id"]
             obj = DisclosureRegime.objects.get(notion_id=regime_notion_id)
         except KeyError:
             logger.warning(regime)
@@ -74,15 +74,15 @@ class SyncRegimesSub(NotionCronBase):
             logger.warning(err)
 
         logger.info("_handle_regime.api_available...")
-        obj.api_available = self._get_value(regime, 'API available')  # str
+        obj.api_available = self._get_value(regime, "API available")  # str
         logger.info("_handle_regime.bulk_data_available...")
-        obj.bulk_data_available = self._get_value(regime, 'Bulk data available')  # str
+        obj.bulk_data_available = self._get_value(regime, "Bulk data available")  # str
         logger.info("_handle_regime.on_oo_register...")
-        obj.on_oo_register = self._get_value(regime, 'Data on OO Register')  # str
+        obj.on_oo_register = self._get_value(regime, "Data on OO Register")  # str
         logger.info("_handle_regime.data_in_bods...")
-        obj.data_in_bods = self._get_value(regime, 'Data published in BODS')  # str
+        obj.data_in_bods = self._get_value(regime, "Data published in BODS")  # str
         logger.info("_handle_regime.structured_data...")
-        obj.structured_data = self._get_value(regime, 'Structured data')  # str
+        obj.structured_data = self._get_value(regime, "Structured data")  # str
         # logger.info('-' * 80)
         # logger.info('api_available', obj.api_available)
         # logger.info('bulk_data_available', obj.bulk_data_available)
@@ -97,7 +97,7 @@ class SyncRegimes(NotionCronBase):
     RUN_EVERY_MINS = 120  # every 2 hours
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
-    code = 'notion.sync_regimes'
+    code = "notion.sync_regimes"
 
     def __init__(self, *args, **kwargs):
         self._model = DisclosureRegime
@@ -115,7 +115,7 @@ class SyncRegimes(NotionCronBase):
             data = self.fetch_all_data(DISCLOSURE_REGIMES)
 
         if check_headers("Disclosure Regime", data):
-            results = data.get('results', [])
+            results = data.get("results", [])
             if len(results):
                 # Do stuff here to save the data from Notion
                 for item in results:
@@ -137,12 +137,12 @@ class SyncRegimes(NotionCronBase):
         """
         # import ipdb; ipdb.set_trace()
         try:
-            notion_id = regime['id']
+            notion_id = regime["id"]
         except KeyError:
             logger.warning(regime)
             logger.error("No notion ID found")
 
-        country_id = self._get_rel_id(regime, 'Country')
+        country_id = self._get_rel_id(regime, "Country")
         if country_id is None:
             return False
 
@@ -177,12 +177,12 @@ class SyncRegimes(NotionCronBase):
                 obj.who_can_access.add(item)
                 obj.who_can_access.commit()
 
-        obj.stage = self._get_stages(regime) or ''  # Implementation stage - multi-select
-        obj.public_access_register_url = self._get_value(regime, 'Register URL') or ''
-        obj.year_launched = self._get_value(regime, 'Year launched')
-        obj.threshold = str(self._get_value(regime, 'Threshold (%)'))
-        obj.responsible_agency = str(self._get_value(regime, 'Responsible agency'))
-        obj.agency_type = str(self._get_value(regime, 'Agency type'))
+        obj.stage = self._get_stages(regime) or ""  # Implementation stage - multi-select
+        obj.public_access_register_url = self._get_value(regime, "Register URL") or ""
+        obj.year_launched = self._get_value(regime, "Launch date")
+        obj.threshold = str(self._get_value(regime, "Threshold (%)"))
+        obj.responsible_agency = str(self._get_value(regime, "Responsible agency"))
+        obj.agency_type = str(self._get_value(regime, "Agency type"))
 
         # REMOVED
         # obj.definition_legislation_url = self._get_value(
@@ -214,6 +214,7 @@ class SyncRegimes(NotionCronBase):
             logger.error(e)
             if settings.DEBUG:
                 import ipdb
+
                 ipdb.set_trace()
 
     def _get_scope_tags(self, data: dict) -> list:
@@ -244,12 +245,12 @@ class SyncRegimes(NotionCronBase):
         """
         try:
             tags = []
-            scopes = data['properties']['Scope']['multi_select']
+            scopes = data["properties"]["Scope"]["multi_select"]
             if not len(scopes):
                 return None
 
             for item in scopes:
-                tag, created = CoverageScope.objects.get_or_create(name=item['name'])
+                tag, created = CoverageScope.objects.get_or_create(name=item["name"])
                 tags.append(tag)
 
         except Exception as err:
@@ -294,12 +295,12 @@ class SyncRegimes(NotionCronBase):
         """
         try:
             tags = []
-            items = data['properties']['Who can access']['multi_select']
+            items = data["properties"]["Who can access"]["multi_select"]
             if not len(items):
                 return []
 
             for item in items:
-                tag, created = AccessTag.objects.get_or_create(name=item['name'])
+                tag, created = AccessTag.objects.get_or_create(name=item["name"])
                 tags.append(tag)
 
         except Exception as err:
@@ -333,11 +334,11 @@ class SyncRegimes(NotionCronBase):
             list: List of tags
         """
         try:
-            stages = data['properties']['Implementation stage']['multi_select']
+            stages = data["properties"]["Implementation stage"]["multi_select"]
             if not len(stages):
                 return None
 
-            return ', '.join([item['name'] for item in stages])
+            return ", ".join([item["name"] for item in stages])
 
         except Exception as err:
             logger.warning("Failed to get Stages")
