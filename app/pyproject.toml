@@ -68,7 +68,7 @@ dev = [
 
 [tool.uv.sources]
 benzo = { index = "hacnet" }
-phaser = { index = "phaser" }
+phaser = { index = "hacnet" }
 
 [[tool.uv.index]]
 name = "hacnet"
