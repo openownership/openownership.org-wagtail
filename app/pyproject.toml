@@ -45,6 +45,7 @@ dependencies = [
     "wagtail-localize~=1.7",
     "wagtail-modeladmin~=2.0.0",
     "wagtail-modelchooser~=4.0.1",
+    "wagtools>=1.2.0",
     "whitenoise~=6.5.0",
 ]
 
@@ -69,6 +70,7 @@ dev = [
 [tool.uv.sources]
 benzo = { index = "hacnet" }
 phaser = { index = "hacnet" }
+wagtools = { index = "hacnet" }
 
 [[tool.uv.index]]
 name = "hacnet"

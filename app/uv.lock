@@ -69,6 +69,7 @@ dependencies = [
     { name = "wagtail-localize" },
     { name = "wagtail-modeladmin" },
     { name = "wagtail-modelchooser" },
+    { name = "wagtools" },
     { name = "whitenoise" },
 ]
 
@@ -89,7 +90,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "beautifulsoup4", specifier = "~=4.12.3" },
-    { name = "benzo", specifier = ">=1.1.1" },
+    { name = "benzo", specifier = ">=1.1.1", index = "https://pypi.hacnet.dev/" },
     { name = "boto3", specifier = "~=1.26.54" },
     { name = "click", specifier = "~=8.1.8" },
     { name = "consoler", specifier = "~=0.1.4" },
@@ -111,7 +112,7 @@ requires-dist = [
     { name = "loguru", specifier = "~=0.7.3" },
     { name = "notion-client", specifier = "~=2.2.1" },
     { name = "phase-dev", specifier = ">=2.1.0" },
-    { name = "phaser", specifier = ">=1.0.1" },
+    { name = "phaser", specifier = ">=1.0.1", index = "https://pypi.hacnet.dev/" },
     { name = "pillow", specifier = "~=10.4.0" },
     { name = "psycopg2-binary", specifier = "~=2.9.10" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
@@ -127,6 +128,7 @@ requires-dist = [
     { name = "wagtail-localize", specifier = "~=1.7" },
     { name = "wagtail-modeladmin", specifier = "~=2.0.0" },
     { name = "wagtail-modelchooser", specifier = "~=4.0.1" },
+    { name = "wagtools", specifier = ">=1.2.0" },
     { name = "whitenoise", specifier = "~=6.5.0" },
 ]
 
@@ -1421,6 +1423,19 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/cb/16/1609db0fb3d7aaac1693424f6aafa6af90dbcd6f49295aae93739faeeabc/wagtail-modelchooser-4.0.1.tar.gz", hash = "sha256:ec1c9c7598cdc019683c7e93ed95b0acf1d32b9b24e8a564b8f373bf48a9ed36", size = 9920, upload-time = "2023-03-30T04:08:32.89Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/6f/62/bf5d063ae5bd3e9ddfca750da1e22c3f57779a34ace1e864c672b580ad33/wagtail_modelchooser-4.0.1-py2.py3-none-any.whl", hash = "sha256:b7ea0fb81cdd7367ed90dff043289e264502d97a9297b7fb69c148a0a81cee6a", size = 12145, upload-time = "2023-03-30T04:08:30.028Z" },
+]
+
+[[package]]
+name = "wagtools"
+version = "1.2.0"
+source = { registry = "https://pypi.hacnet.dev/" }
+dependencies = [
+    { name = "httpx" },
+    { name = "loguru" },
+]
+sdist = { url = "https://pypi.hacnet.dev/packages/wagtools-1.2.0.tar.gz", hash = "sha256:b1401b5453f478e6c68380c802a2af16ac98f4be1ae03c640daeae459f4bdf63" }
+wheels = [
+    { url = "https://pypi.hacnet.dev/packages/wagtools-1.2.0-py3-none-any.whl", hash = "sha256:e9e1c0b2ee246621dc9a5cc1d7bb4f266fb5f3b5aa6a5318def49acb7ff6422d" },
 ]
 
 [[package]]
