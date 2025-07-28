@@ -61,17 +61,25 @@ dev = [
     "wat-inspector>=0.4.0",
 ]
 
+####################################################################################################
+# Ruff etc.
+####################################################################################################
+
 [tool.ruff]
+target-version = "py312"  # Change this to match the project
+line-length = 100
+extend-exclude = ["tests", "*/migrations/*", '*/samples/*.py']
+
+[tool.ruff.lint]
 select = [
     "E", "F", "B", "DJ", "C90", "S", "COM", "DTZ", "EM",
     "PT", "RET", "SIM", "TCH", "ARG", "PTH", "PERF"
 ]
-target-version = "py312"  # Change this to match the project
-line-length = 100
-extend-exclude = ["tests", "*/migrations/*"]
 extend-ignore = ["E402", "RET504", "S101", "DJ012"]
-ignore-init-module-imports = true
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 combine-as-imports = true
 force-wrap-aliases = true
+
+[tool.basedpyright]
+basedpyright.disableLanguageServices = true

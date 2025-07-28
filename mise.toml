@@ -1,5 +1,5 @@
 [env]
-PHASE_PROJECT = 'openownership'
+PHASE_PROJECT = 'open-ownership'
 # IP addresses
 IP_STAGING = "157.90.26.158"
 IP_PRODUCTION = "138.68.136.240"
@@ -18,12 +18,12 @@ pkl = "latest"
 description = "Set the project up for dev"
 quiet = true
 run = "echo '✅ Setup complete'"
-depends = ["submodules", "githooks", "devurl"]
+depends = ["githooks", "devurl"]
 
 [tasks.devurl]
 description = "Set up localias for dev urls"
 quiet = true
-run = "localias set {{ env.PHASE_PROJECT }}.test 5000 && localias restart > /dev/null 2>&1 && echo '✅ https://{{ env.PHASE_PROJECT }}.test'"
+run = "localias set openownership.test 5000 && localias restart > /dev/null 2>&1 && echo '✅ https://openownership.test'"
 
 [tasks.githooks]
 description = "Install githooks"

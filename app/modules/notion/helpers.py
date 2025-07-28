@@ -8,7 +8,6 @@ from consoler import console
 from modules.bots.notionbot import notionbot
 from modules.notion.models import CountryTag
 
-
 HEADERS_COUNTRY_TRACKER = ["OO Support", "ISO2"]
 
 
@@ -48,17 +47,16 @@ HEADERS_COMMITMENT_TRACKER = [
 
 
 HEADERS_DISCLOSURE_REGIMES: list = [
-    'Last edited',
-    'Implementation stage',  # 0 Stage
-    'Register URL',  # 5.1 Public access: Register URL
-    'Scope',  # 2.1 Coverage: Scope
-    'Threshold (%)',  # 1.2 Definition: Threshold
-    'Year launched',  # 5.1.1 Year launched
-    'Who can access',
-
+    "Last edited",
+    "Implementation stage",  # 0 Stage
+    "Register URL",  # 5.1 Public access: Register URL
+    "Scope",  # 2.1 Coverage: Scope
+    "Threshold (%)",  # 1.2 Definition: Threshold
+    "Launch date",  # 5.1.1 Year launched
+    "Who can access",
     # 'Access features',
     # 'Access regime details',
-    'Agency type',
+    "Agency type",
     # 'Country',
     # 'Coverage',
     # 'Definition',
@@ -72,7 +70,7 @@ HEADERS_DISCLOSURE_REGIMES: list = [
     # 'Protection regime',
     # 'Register cost and business model',
     # 'Register name',
-    'Responsible agency',
+    "Responsible agency",
     # 'Sanctions and enforcement details',
     # 'Stated policy aims',
     # 'Structured data details',
@@ -81,16 +79,14 @@ HEADERS_DISCLOSURE_REGIMES: list = [
     # 'User guidance',
     # 'Vendor/supplier',
     # 'Verification details',
-
 ]
 
 HEADERS_DISCLOSURE_REGIMES_SUB: list = [
-    'API available',  # 6.2 API available
-    'Bulk data available',  # 6.1 Bulk data available
-    'Data on OO Register',  # 6.4 Data on OO Register
-    'Data published in BODS',  # 6.3 Data published in BODS
-    'Structured data',  # 6 Structured data
-
+    "API available",  # 6.2 API available
+    "Bulk data available",  # 6.1 Bulk data available
+    "Data on OO Register",  # 6.4 Data on OO Register
+    "Data published in BODS",  # 6.3 Data published in BODS
+    "Structured data",  # 6 Structured data
     # 'API documentation',
     # 'API URL',
     # 'Bulk data URL',
