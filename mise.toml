@@ -1,0 +1,43 @@
+[env]
+PHASE_PROJECT = 'openownership'
+# IP addresses
+IP_STAGING = "157.90.26.158"
+IP_PRODUCTION = "138.68.136.240"
+# Ansible config
+ANSIBLE_HOST_KEY_CHECKING = false
+ANSIBLE_LOOKUP_PLUGINS = "./devops/roles/hactar.envkey/lookup_plugins/"
+# Docker
+COMPOSE_BAKE=true
+
+[tools]
+watchexec = "latest"
+hk = "latest"
+pkl = "latest"
+
+[tasks.setup]
+description = "Set the project up for dev"
+quiet = true
+run = "echo '✅ Setup complete'"
+depends = ["submodules", "githooks", "devurl"]
+
+[tasks.devurl]
+description = "Set up localias for dev urls"
+quiet = true
+run = "localias set {{ env.PHASE_PROJECT }}.test 5000 && localias restart > /dev/null 2>&1 && echo '✅ https://{{ env.PHASE_PROJECT }}.test'"
+
+[tasks.githooks]
+description = "Install githooks"
+quiet = true
+run = "hk install && echo '✅ Githooks installed'"
+
+[tasks.dcup]
+description = "Bring up the docker containers"
+run = "phase run docker compose pull && docker compose up -d && fab docker.fish"
+
+[tasks.dcdown]
+description = "Tear down the docker containers"
+run = "phase run docker compose down"
+
+[tasks.bake]
+description = 'Bake a new docker cache image'
+run = "docker buildx bake -f docker-compose.test.yml web --set web.platform=linux/amd64,linux/arm64 --push"
