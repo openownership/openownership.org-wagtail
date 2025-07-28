@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "beautifulsoup4~=4.12.3",
+    "benzo>=1.1.1",
     "boto3~=1.26.54",
     "click~=8.1.8",
     "consoler~=0.1.4",
@@ -19,7 +20,6 @@ dependencies = [
     "django-select2~=8.2.3",
     "django-storages~=1.14.4",
     "django-taggit~=5.0",
-    "envkey~=2.1",
     "gunicorn~=23.0.0",
     "ipdb~=0.13.13",
     "ipython~=8.8.0",
@@ -28,6 +28,7 @@ dependencies = [
     "loguru~=0.7.3",
     "notion-client~=2.2.1",
     "phase-dev>=2.1.0",
+    "phaser>=1.0.1",
     "pillow~=10.4.0",
     "psycopg2-binary~=2.9.10",
     "python-dotenv>=1.0.1",
@@ -83,3 +84,6 @@ force-wrap-aliases = true
 
 [tool.basedpyright]
 basedpyright.disableLanguageServices = true
+
+[[tool.uv.index]]
+url = "https://pypi.hacnet.dev/"
