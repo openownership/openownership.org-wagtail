@@ -2,6 +2,7 @@
 name = "app"
 version = "0.1.0"
 description = "openownership.org"
+authors = [{ name = "Hactar", email = "systems@hactar.is" }]
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
@@ -46,7 +47,6 @@ dependencies = [
     "wagtail-modelchooser~=4.0.1",
     "whitenoise~=6.5.0",
 ]
-authors = [{ name = "Hactar", email = "systems@hactar.is" }]
 
 [dependency-groups]
 dev = [
@@ -61,6 +61,18 @@ dev = [
     "pytest-sugar>=1.0.0",
     "wat-inspector>=0.4.0",
 ]
+
+####################################################################################################
+# Sources
+####################################################################################################
+
+[tool.uv.sources]
+benzo = { index = "hacnet" }
+phaser = { index = "phaser" }
+
+[[tool.uv.index]]
+name = "hacnet"
+url = "https://pypi.hacnet.dev/"
 
 ####################################################################################################
 # Ruff etc.
@@ -84,6 +96,3 @@ force-wrap-aliases = true
 
 [tool.basedpyright]
 basedpyright.disableLanguageServices = true
-
-[[tool.uv.index]]
-url = "https://pypi.hacnet.dev/"
