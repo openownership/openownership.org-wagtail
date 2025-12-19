@@ -1,32 +1,32 @@
 # stdlib
-from typing import Optional
 from html import unescape
+from typing import Optional
+
+from consoler import console
+from django.core.paginator import EmptyPage, Paginator
+from django.http import Http404
+from django.shortcuts import get_object_or_404
+from django.urls import reverse
+from django.utils.datastructures import MultiValueDictKeyError
+from django.utils.functional import cached_property
 
 # 3rd party
 from django.utils.html import strip_tags
-from consoler import console
-from django.http import Http404
-from wagtail.models import Page, Site, Locale
 from django.views.generic import TemplateView
-from django.core.paginator import Paginator
 from wagtail.contrib.search_promotions.models import Query
-from django.shortcuts import get_object_or_404
-from django.urls import reverse
-from django.utils.functional import cached_property
-from django.utils.datastructures import MultiValueDictKeyError
+from wagtail.models import Locale, Page, Site
 
 # Project
 from helpers.context import global_context
-from modules.stats.models import ViewCount
 from modules.content.forms import SearchForm
-from modules.notion.models import Region, CountryTag
 from modules.content.models import HomePage, SectionPage, content_page_models
+from modules.notion.models import CountryTag, Region
 from modules.settings.models import SiteSettings
-from modules.taxonomy.models import SectorTag, SectionTag, PrincipleTag, PublicationType
+from modules.stats.models import ViewCount
+from modules.taxonomy.models import PrincipleTag, PublicationType, SectionTag, SectorTag
 
 
 class DummyCountryPage(object):
-
     def __init__(self, country: CountryTag):
         self.country = country
 
@@ -79,8 +79,7 @@ class DummyRegionPage(object):
 
 
 class CountryView(TemplateView):
-
-    template_name = 'views/country.jinja'
+    template_name = "views/country.jinja"
 
     def __init__(self, *args, **kwargs):
         self.page_num = 1
@@ -88,7 +87,7 @@ class CountryView(TemplateView):
 
     def setup(self, request, *args, **kwargs):
         try:
-            self.page_num = int(request.GET['page'])
+            self.page_num = int(request.GET["page"])
         except MultiValueDictKeyError:
             self.page_num = 1
         except Exception as e:
@@ -97,19 +96,19 @@ class CountryView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        slug = kwargs.pop('slug')
+        slug = kwargs.pop("slug")
         self.tag = self._get_tag(slug)
-        ctx['country'] = self.tag
-        ctx['page'] = self
-        ctx['meta_title'] = f"{self.tag.name}"
-        ctx['meta_description'] = self._meta_description
+        ctx["country"] = self.tag
+        ctx["page"] = self
+        ctx["meta_title"] = f"{self.tag.name}"
+        ctx["meta_description"] = self._meta_description
         global_context(ctx)  # Adds in nav settings etc.
         # Add in pagination for related articles
         try:
             related_pages = self.tag.display_date_related_pages
             paginator = self._get_paginator(related_pages)
-            ctx['results'] = paginator
-            ctx['page_obj'] = paginator
+            ctx["results"] = paginator
+            ctx["page_obj"] = paginator
         except Exception as e:
             console.warn(e)
         return ctx
@@ -122,7 +121,7 @@ class CountryView(TemplateView):
     def _meta_description(self):
         try:
             meta_description = unescape(strip_tags(self.tag.blurb))
-            meta_description = meta_description.replace('&#39;', "'")
+            meta_description = meta_description.replace("&#39;", "'")
         except Exception:
             meta_description = f"{self.tag.name} on Open Ownership"
         return meta_description
@@ -134,11 +133,12 @@ class CountryView(TemplateView):
         they can override this method.
         """
         from modules.content.models import MapPage
+
         try:
             return MapPage.objects.filter(locale=Locale.get_active()).first()
         except Exception as e:
             console.warn(e)
-            return
+            return None
 
     @cached_property
     def section_page(self):
@@ -147,9 +147,9 @@ class CountryView(TemplateView):
         if it fails to find one, it returns the HomePage just so that there's something.
         """
         try:
-            page = SectionPage.objects.filter(locale=Locale.get_active(), slug='impact').get()
+            page = SectionPage.objects.filter(locale=Locale.get_active(), slug="impact").get()
         except SectionPage.DoesNotExist:
-            page = SectionPage.objects.filter(slug='impact').first()
+            page = SectionPage.objects.filter(slug="impact").first()
             if not page:
                 page = HomePage.objects.filter(locale=Locale.get_active()).first()
 
@@ -170,22 +170,21 @@ class CountryView(TemplateView):
 
 
 class RegionView(TemplateView):
-
-    template_name = 'views/region.jinja'
+    template_name = "views/region.jinja"
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        slug = kwargs.pop('slug')
+        slug = kwargs.pop("slug")
         self.region = get_object_or_404(Region, slug=slug)
-        ctx['region'] = self.region
-        ctx['page'] = self
-        ctx['meta_title'] = f"{self.region.name}"
-        ctx['meta_description'] = self._meta_description
-        ctx['country_list'] = self._get_countries()
+        ctx["region"] = self.region
+        ctx["page"] = self
+        ctx["meta_title"] = f"{self.region.name}"
+        ctx["meta_description"] = self._meta_description
+        ctx["country_list"] = self._get_countries()
 
         # For side menu
-        ctx['page_menu_title'] = 'Regions'
-        ctx['menu_pages'] = self._get_menu_pages()
+        ctx["page_menu_title"] = "Regions"
+        ctx["menu_pages"] = self._get_menu_pages()
 
         global_context(ctx)  # Adds in nav settings etc.
         return ctx
@@ -198,7 +197,7 @@ class RegionView(TemplateView):
     def _meta_description(self):
         try:
             meta_description = unescape(strip_tags(self.region.blurb))
-            meta_description = meta_description.replace('&#39;', "'")
+            meta_description = meta_description.replace("&#39;", "'")
         except Exception:
             meta_description = f"{self.region.name} on Open Ownership"
         return meta_description
@@ -210,11 +209,12 @@ class RegionView(TemplateView):
         they can override this method.
         """
         from modules.content.models import MapPage
+
         try:
             return MapPage.objects.filter(locale=Locale.get_active()).first()
         except Exception as e:
             console.warn(e)
-            return
+            return None
 
     @cached_property
     def url(self):
@@ -228,16 +228,16 @@ class RegionView(TemplateView):
         if it fails to find one, it returns the HomePage just so that there's something.
         """
         try:
-            page = SectionPage.objects.filter(locale=Locale.get_active(), slug='impact').get()
+            page = SectionPage.objects.filter(locale=Locale.get_active(), slug="impact").get()
         except SectionPage.DoesNotExist:
-            page = SectionPage.objects.filter(slug='impact').first()
+            page = SectionPage.objects.filter(slug="impact").first()
             if not page:
                 page = HomePage.objects.filter(locale=Locale.get_active()).first()
 
         return page
 
     def _get_countries(self):
-        countries = self.region.countries.exclude(oo_support__isnull=True).order_by('name')
+        countries = self.region.countries.exclude(oo_support__isnull=True).order_by("name")
         return countries
 
     def _get_menu_pages(self):
@@ -247,18 +247,16 @@ class RegionView(TemplateView):
         return menu_pages
 
 
-
 class SearchView(TemplateView):
-
-    template_name = 'search/results.jinja'
+    template_name = "search/results.jinja"
 
     def __init__(self, *args, **kwargs):
         self.page_num = 1
-        self.mode = 'and'
-        self.filter_mode = 'or'
+        self.mode = "and"
+        self.filter_mode = "or"
 
         # Will be the search terms:
-        self.terms = ''
+        self.terms = ""
 
         # We'll save all the taxonomy objects in here:
         self.filters = {}
@@ -270,18 +268,18 @@ class SearchView(TemplateView):
 
     def setup(self, request, *args, **kwargs):
         try:
-            self.page_num = int(request.GET['page'])
+            self.page_num = int(request.GET["page"])
         except MultiValueDictKeyError:
             self.page_num = 1
         except Exception as e:
             console.error(e)
 
         try:
-            self.terms = str(request.GET['q'])
+            self.terms = str(request.GET["q"])
         except MultiValueDictKeyError:
-            self.terms = ''
+            self.terms = ""
         except Exception:
-            self.terms = ''
+            self.terms = ""
 
         self._set_filters(request)
 
@@ -294,43 +292,52 @@ class SearchView(TemplateView):
 
         if not len(pages):
             popular_ids = ViewCount.objects.popular(7, 100)
-            context['popular'] = Page.objects.filter(
-                id__in=popular_ids,
-                locale=Locale.get_active(),
-            ).live().public().specific()[:6]
+            context["popular"] = (
+                Page.objects.filter(
+                    id__in=popular_ids,
+                    locale=Locale.get_active(),
+                )
+                .live()
+                .public()
+                .specific()[:6]
+            )
 
         self.paginator = self._get_paginator(pages)
         self.page_obj = self.paginator
-        context['form'] = SearchForm(initial={
-            'q': self.terms,
-            'pt': self.request.GET.getlist('pt', []),
-            'pr': self.request.GET.getlist('pr', []),
-            'sn': self.request.GET.getlist('sn', []),
-            'sr': self.request.GET.getlist('sr', []),
-            'co': self.request.GET.getlist('co', []),
-        })
-        context['terms'] = self.terms
-        context['page'] = self
-        context['results'] = self.paginator
-        context['filters_list'] = self.filters_list
+        context["form"] = SearchForm(
+            initial={
+                "q": self.terms,
+                "pt": self.request.GET.getlist("pt", []),
+                "pr": self.request.GET.getlist("pr", []),
+                "sn": self.request.GET.getlist("sn", []),
+                "sr": self.request.GET.getlist("sr", []),
+                "co": self.request.GET.getlist("co", []),
+            },
+        )
+        context["terms"] = self.terms
+        context["page"] = self
+        context["results"] = self.paginator
+        context["filters_list"] = self.filters_list
 
         # Add regions and their countries to help us split up the country
         # checkboxes by region.
-        context['regions'] = []
+        context["regions"] = []
         for region in Region.objects.all():
-            context['regions'].append({
-                'name': region.name,
-                'slug': region.slug,
-                'countries': list(region.countries.values_list('id', flat=True))
-            })
+            context["regions"].append(
+                {
+                    "name": region.name,
+                    "slug": region.slug,
+                    "countries": list(region.countries.values_list("id", flat=True)),
+                },
+            )
 
         if self.terms:
-            context['meta_title'] = f"Search: {self.terms}"
+            context["meta_title"] = f"Search: {self.terms}"
         else:
             site = Site.objects.get(is_default_site=True)
             search_body = SiteSettings.get_search_body(site)
-            context['meta_title'] = "Search"
-            context['search_body'] = search_body
+            context["meta_title"] = "Search"
+            context["search_body"] = search_body
 
         global_context(context)  # Adds in nav settings etc.
         return context
@@ -342,25 +349,25 @@ class SearchView(TemplateView):
         """
         f = {}  # for brevity
 
-        ids = [int(n) for n in request.GET.getlist('pt', [])]
-        f['publication_types'] = PublicationType.objects.filter(id__in=ids)
-        self.filters_list += list(f['publication_types'])
+        ids = [int(n) for n in request.GET.getlist("pt", [])]
+        f["publication_types"] = PublicationType.objects.filter(id__in=ids)
+        self.filters_list += list(f["publication_types"])
 
-        ids = [int(n) for n in request.GET.getlist('pr', [])]
-        f['principle_tags'] = PrincipleTag.objects.filter(id__in=ids)
-        self.filters_list += list(f['principle_tags'])
+        ids = [int(n) for n in request.GET.getlist("pr", [])]
+        f["principle_tags"] = PrincipleTag.objects.filter(id__in=ids)
+        self.filters_list += list(f["principle_tags"])
 
-        ids = [int(n) for n in request.GET.getlist('sn', [])]
-        f['section_tags'] = SectionTag.objects.filter(id__in=ids)
-        self.filters_list += list(f['section_tags'])
+        ids = [int(n) for n in request.GET.getlist("sn", [])]
+        f["section_tags"] = SectionTag.objects.filter(id__in=ids)
+        self.filters_list += list(f["section_tags"])
 
-        ids = [int(n) for n in request.GET.getlist('sr', [])]
-        f['sector_tags'] = SectorTag.objects.filter(id__in=ids)
-        self.filters_list += list(f['sector_tags'])
+        ids = [int(n) for n in request.GET.getlist("sr", [])]
+        f["sector_tags"] = SectorTag.objects.filter(id__in=ids)
+        self.filters_list += list(f["sector_tags"])
 
-        ids = [int(n) for n in request.GET.getlist('co', [])]
-        f['country_tags'] = CountryTag.objects.filter(id__in=ids)
-        self.filters_list += list(f['country_tags'])
+        ids = [int(n) for n in request.GET.getlist("co", [])]
+        f["country_tags"] = CountryTag.objects.filter(id__in=ids)
+        self.filters_list += list(f["country_tags"])
 
         self.filters = f
 
@@ -368,12 +375,16 @@ class SearchView(TemplateView):
             self.is_filtered = True
 
     def _get_paginator(self, results):
-        p = Paginator(results, 10)
-        result_set = p.page(self.page_num)
+        try:
+            p = Paginator(results, 10)
+            result_set = p.page(self.page_num)
+        except EmptyPage as err:
+            msg = "Page does not exist"
+            raise Http404(msg) from err
         return result_set
 
     def _get_pages(self, terms):
-        if not terms or terms == '':
+        if not terms or terms == "":
             qs = Page.objects.none()
             return qs
 
@@ -390,7 +401,7 @@ class SearchView(TemplateView):
 
             def add_ids(a, b):
                 "Combines and returns two lists of IDs, a and b."
-                if self.filter_mode == 'and' and len(a) > 0:
+                if self.filter_mode == "and" and len(a) > 0:
                     # a will contain only IDs that are in BOTH lists
                     a = list(set(a).intersection(b))
                 else:
@@ -402,44 +413,50 @@ class SearchView(TemplateView):
 
             # The publication_types Category:
 
-            if len(f['publication_types']):
-                for pt in f['publication_types']:
-                    ids = list(pt.pages.values_list('id', flat=True))
+            if len(f["publication_types"]):
+                for pt in f["publication_types"]:
+                    ids = list(pt.pages.values_list("id", flat=True))
                     page_ids = add_ids(page_ids, ids)
 
                 # Ensure publication pages show when Publication is set as the content type
                 # on a PublicationPage
-                pub_type = PublicationType.objects.filter(slug='publication').first()
-                if pub_type and pub_type in f['publication_types']:
+                pub_type = PublicationType.objects.filter(slug="publication").first()
+                if pub_type and pub_type in f["publication_types"]:
                     from modules.content.models.pages import PublicationFrontPage
-                    ids = PublicationFrontPage.objects.live().public().values_list('id', flat=True)
+
+                    ids = PublicationFrontPage.objects.live().public().values_list("id", flat=True)
                     page_ids = add_ids(page_ids, ids)
 
             # The three Tags:
 
-            if len(f['principle_tags']):
-                for tag in f['principle_tags']:
+            if len(f["principle_tags"]):
+                for tag in f["principle_tags"]:
                     ids = list(
                         tag.principle_tag_related_pages.values_list(
-                            'content_object__id', flat=True))
+                            "content_object__id", flat=True
+                        ),
+                    )
                     page_ids = add_ids(page_ids, ids)
 
-            if len(f['section_tags']):
-                for tag in f['section_tags']:
+            if len(f["section_tags"]):
+                for tag in f["section_tags"]:
                     ids = list(
-                        tag.section_tag_related_pages.values_list('content_object__id', flat=True))
+                        tag.section_tag_related_pages.values_list("content_object__id", flat=True),
+                    )
                     page_ids = add_ids(page_ids, ids)
 
-            if len(f['sector_tags']):
-                for tag in f['sector_tags']:
+            if len(f["sector_tags"]):
+                for tag in f["sector_tags"]:
                     ids = list(
-                        tag.sector_related_pages.values_list('content_object__id', flat=True))
+                        tag.sector_related_pages.values_list("content_object__id", flat=True),
+                    )
                     page_ids = add_ids(page_ids, ids)
 
-            if len(f['country_tags']):
-                for tag in f['country_tags']:
+            if len(f["country_tags"]):
+                for tag in f["country_tags"]:
                     ids = list(
-                        tag.country_related_pages.values_list('content_object__id', flat=True))
+                        tag.country_related_pages.values_list("content_object__id", flat=True),
+                    )
                     page_ids = add_ids(page_ids, ids)
 
             # Restrict to the only page types that have taxonomies
@@ -447,9 +464,7 @@ class SearchView(TemplateView):
             qs = qs.type(*content_page_models).filter(id__in=set(page_ids))
 
         searched = (
-            qs.exclude(id__in=exclude_ids)
-            .filter(locale=Locale.get_active())
-            .live().specific()
+            qs.exclude(id__in=exclude_ids).filter(locale=Locale.get_active()).live().specific()
         )
 
         if terms:
@@ -464,8 +479,7 @@ class SearchView(TemplateView):
         if searched:
             objects = objects + [r for r in searched]
             return objects
-        else:
-            return objects
+        return objects
 
     def _find_countries(self, terms: str) -> Optional[DummyCountryPage]:
         rv = []
