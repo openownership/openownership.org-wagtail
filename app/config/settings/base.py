@@ -147,6 +147,7 @@ WAGTAIL_APPS = [
     "wagtailfontawesomesvg",
     "wagtailmodelchooser",
     "wagtools",
+    "wagtail_meilisearch",
 ]
 
 SITE_APPS = [
@@ -306,12 +307,13 @@ CACHEOPS_DEGRADE_ON_FAILURE = True
 # Search
 ####################################################################################################
 
-
 WAGTAILSEARCH_BACKENDS = {
     "default": {
-        "BACKEND": "wagtail.search.backends.database",
-        "SEARCH_CONFIG": "english",
-        "AUTO_UPDATE": True,
+        "BACKEND": "wagtail_meilisearch.backend",
+        "HOST": os.environ.get("MEILISEARCH_HOST"),
+        "PORT": os.environ.get("MEILISEARCH_PORT"),
+        "MASTER_KEY": os.environ.get("MEILI_MASTER_KEY", ""),
+        "QUERY_LIMIT": 1000,
     },
 }
 

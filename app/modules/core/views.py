@@ -5,7 +5,6 @@ import os
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render
-from wagtail.models import Page, Locale
 from django.utils.translation import gettext_lazy as _
 
 # Project
@@ -59,12 +58,7 @@ def error_404_view(request, exception, status=404):
         'sr': request.GET.getlist('sr', []),
     })
 
-    popular_ids = ViewCount.objects.popular(7, 100)  # 3 popular articles from the last 7 days
-
-    context['popular'] = Page.objects.filter(
-        id__in=popular_ids,
-        locale=Locale.get_active(),
-    ).live().public()[:6]
+    context['popular'] = ViewCount.objects.popular_pages(count=6, specific=False)
 
     return render(request, 'errors/404.jinja', context=context, status=status)
 

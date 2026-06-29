@@ -291,16 +291,7 @@ class SearchView(TemplateView):
         pages = self._get_pages(self.terms)
 
         if not len(pages):
-            popular_ids = ViewCount.objects.popular(7, 100)
-            context["popular"] = (
-                Page.objects.filter(
-                    id__in=popular_ids,
-                    locale=Locale.get_active(),
-                )
-                .live()
-                .public()
-                .specific()[:6]
-            )
+            context["popular"] = ViewCount.objects.popular_pages(count=6)
 
         self.paginator = self._get_paginator(pages)
         self.page_obj = self.paginator

@@ -9,7 +9,6 @@ from django.conf import settings
 from django.http import FileResponse, Http404, HttpResponse
 from django.utils.functional import cached_property
 from django.views import View
-from loguru import logger  # NOQA
 
 # Project
 from modules.notion.models import Commitment, CountryTag, DisclosureRegime
@@ -82,7 +81,6 @@ class DataExportBase(View):
         Returns:
             list: Description
         """
-        logger.info(regime.title)
         row = []
         row.append("")
         if is_single:
@@ -101,6 +99,19 @@ class DataExportBase(View):
         if isinstance(field, str):
             return field
         return " | ".join([tag.name for tag in field.all()])
+
+    def _is_subnational(self, regime: DisclosureRegime) -> bool:
+        return "Subnational" in [scope.name for scope in regime.coverage_scope.all()]
+
+    def _exportable_regimes(self, country: CountryTag) -> list:
+        """Regimes to list in exports: every implementation stage, excluding
+        Subnational-scoped registers (which are not shown elsewhere on the site).
+        """
+        return [r for r in country.regimes.all() if not self._is_subnational(r)]
+
+    def _region_name(self, country: CountryTag) -> str:
+        region = country.regions.first()
+        return region.name if region else ""
 
 
 class CountryExport(DataExportBase):
@@ -126,23 +137,14 @@ class CountryExport(DataExportBase):
     def _generate_csv(self, response: HttpResponse):
         writer = csv.writer(response)
         writer.writerow(COUNTRY_HEADERS)
-        row = ["", "", "", "", "", "", "", "", "", "", "", ""]
+        row = ["" for _ in COUNTRY_HEADERS]
         row[0] = self.country.name
         row[1] = self.country.category_display
         row[10] = self.country.iso2
-        try:
-            region = self.country.regions.first().name
-        except Exception as err:
-            logger.error(err)
-        row[11] = region
+        row[11] = self._region_name(self.country)
         writer.writerow(row)
-        # NO MORE COMMITMENT ROWS!
-        # for commitment in self.country.commitments.all():
-        #     writer.writerow(self._get_commitment_row(commitment))
-        for regime in self.country.regimes.all():
-            if regime.display:
-                row = self._get_regime_row(regime)
-                writer.writerow(row)
+        for regime in self._exportable_regimes(self.country):
+            writer.writerow(self._get_regime_row(regime))
         return writer
 
 
@@ -161,29 +163,31 @@ class CountriesExport(DataExportBase):
         writer = csv.writer(response)
         writer.writerow(ALL_HEADERS)
         for country in self._all_countries:
-            # NO MORE COMMITMENT ROWS!
-            # for commitment in country.commitments.all():
-            #     row = [country.name] + self._get_commitment_row(commitment, skip_one=True)
-            #     # Replace "Commitment" Type with stage/category:
-            #     row[1] = country.category_display
-            #     writer.writerow(row)
-            for regime in country.regimes.all():
-                if regime.display:
-                    row = [country.name] + self._get_regime_row(regime, is_single=False) + ["", ""]
-                    row[1] = country.category_display
-                    row[10] = country.iso2
-                    try:
-                        region = country.regions.first().name
-                    except Exception as err:
-                        logger.error(err)
-                    row[11] = region
-                    writer.writerow(row)
+            regimes = self._exportable_regimes(country)
+            if not regimes:
+                # Planning or implementation-stage countries with no register
+                # still appear, so the export covers every status.
+                writer.writerow(self._country_only_row(country))
+                continue
+            for regime in regimes:
+                row = [country.name] + self._get_regime_row(regime, is_single=False) + ["", ""]
+                row[1] = country.category_display
+                row[10] = country.iso2
+                row[11] = self._region_name(country)
+                writer.writerow(row)
         return writer
+
+    def _country_only_row(self, country: CountryTag) -> list:
+        row = ["" for _ in ALL_HEADERS]
+        row[0] = country.name
+        row[1] = country.category_display
+        row[10] = country.iso2
+        row[11] = self._region_name(country)
+        return row
 
     @cached_property
     def _all_countries(self):
-        countries = CountryTag.objects.exclude(deleted=True, archived=True).order_by("name").all()
-        return countries
+        return CountryTag.objects.exclude(deleted=True).exclude(archived=True).order_by("name")
 
 
 def serve_csv_file(request):  # noqa: ARG001

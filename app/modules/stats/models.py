@@ -75,6 +75,33 @@ class ViewCountManager(models.Manager):
         q = self.filter(date__gt=date).order_by('-count').values_list('page_id', flat=True)[:limit]
         return q
 
+    def popular_pages(
+            self, days: Optional[int] = 7, limit: Optional[int] = 100,
+            count: int = 6, specific: bool = True) -> models.QuerySet:
+        """Returns up to ``count`` popular, viewable pages for the active locale.
+
+        Excludes the Wagtail root page, which is live but has no URL of its own
+        and would otherwise render as a broken link in popular-page lists.
+
+        Args:
+            days (int): The number of days to look back
+            limit (int, optional): The number of popular ids to consider
+            count (int, optional): The maximum number of pages to return
+            specific (bool, optional): Whether to return specific page instances
+        """
+        from wagtail.models import Locale, Page
+
+        page_ids = self.popular(days, limit)
+        pages = (
+            Page.objects.filter(id__in=page_ids, locale=Locale.get_active())
+            .live()
+            .public()
+            .exclude(depth=1)
+        )
+        if specific:
+            pages = pages.specific()
+        return pages[:count]
+
     def find(self, page_id: int, date: Optional[datetime.date] = None) -> models.Model:
         """Finds or creates a record for ``page_id`` / ``date``
 

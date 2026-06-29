@@ -125,3 +125,24 @@ def test_popular_returns_most_visited_redis(stats_redis):
     assert result[2][1] == 2
     assert result[3][1] == 2
     assert result[4][1] == 1
+
+
+####################################################################################################
+# popular_pages
+####################################################################################################
+
+
+def test_popular_pages_excludes_root(monkeypatch):
+    """The Wagtail root page is live but has no URL, so it must never appear."""
+    from wagtail.models import Locale, Page
+
+    root = Page.objects.get(depth=1)
+    child = root.add_child(
+        instance=Page(title="Popular Page", slug="popular-page", locale=Locale.get_active()),
+    )
+
+    monkeypatch.setattr(ViewCount.objects, "popular", lambda *a, **k: [root.id, child.id])
+
+    result_ids = [page.id for page in ViewCount.objects.popular_pages()]
+    assert root.id not in result_ids
+    assert child.id in result_ids
