@@ -41,6 +41,10 @@ name = "openownership"
 command = "/srv/www/app/.venv/bin/gunicorn -c /etc/gunicorn.py --env SERVER_ENV=production config.wsgi:application"
 directory = "/srv/www/app"
 
+####################################################################################################
+# STAGING
+####################################################################################################
+
 [environments.stg]
 
 [environments.stg.roles.redis]
@@ -56,6 +60,13 @@ tls = "systems@hactar.is"
 [environments.stg.roles.firewall]
 allow = []
 
+[environments.prd.roles.gitdeploys]
+health_url = "https://openownership.hactar.work"
+
+####################################################################################################
+# PRODUCTION
+####################################################################################################
+
 [environments.prd]
 
 [environments.prd.roles.redis]
@@ -70,3 +81,6 @@ tls = "systems@hactar.is"
 
 [environments.prd.roles.firewall]
 allow = []
+
+[environments.prd.roles.gitdeploys]
+health_url = "https://openownership.org"
