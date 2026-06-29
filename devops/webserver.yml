@@ -1,18 +1,17 @@
 ---
-
 - hosts: all
   become: true
   roles:
-    # - {role: 'hactar.security', tags: 'security'}
-    # - {role: 'hactar.bootstrap', tags: 'bootstrap'}
-    # - {role: 'hactar.firewall', tags: 'firewall'}
-    # - {role: 'hactar.envkey', tags: 'envkey'}
-    # - {role: 'galaxy/DavidWittman.redis', tags: 'redis'}
-    # - {role: 'hactar.gitdeploys', tags: 'gitdeploys'}
-    # - {role: 'hactar.shell', tags: 'shell'}
-    # - {role: 'hactar.postgresql', tags: 'postgresql'}
-    # - {role: 'hactar.python', tags: 'python'}
-    # - {role: 'hactar.node', tags: 'node'}
-    # - {role: 'hactar.wsgi', tags: 'wsgi'}
-    # - {role: 'hactar.supervisor', tags: 'supervisor'}
-    - {role: 'hactar.caddy2', tags: 'caddy2'}
+    - { role: "hactar.security", tags: "security" }
+    - { role: "hactar.bootstrap", tags: "bootstrap" }
+    - { role: "hactar.firewall", tags: "firewall" }
+    - { role: "hactar.envkey", tags: "envkey" }
+    - { role: "galaxy/DavidWittman.redis", tags: "redis" }
+    - { role: "hactar.gitdeploys", tags: "gitdeploys" }
+    - { role: "hactar.shell", tags: "shell" }
+    - { role: "hactar.postgresql", tags: "postgresql" }
+    - { role: "hactar.python", tags: "python" }
+    - { role: "hactar.node", tags: "node" }
+    - { role: "hactar.wsgi", tags: "wsgi" }
+    - { role: "hactar.supervisor", tags: "supervisor" }
+    - { role: "hactar.caddy2", tags: "caddy2" }

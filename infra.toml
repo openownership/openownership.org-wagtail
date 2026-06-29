@@ -1,0 +1,72 @@
+[project]
+name = "openownership"
+
+[roles]
+active = [
+    "bootstrap",
+    "security",
+    "secrets",
+    "firewall",
+    "redis",
+    "gitdeploys",
+    "shell",
+    "cron",
+    "node",
+    "postgresql",
+    "python",
+    "wsgi",
+    "meilisearch",
+    "supervisor",
+    "caddy",
+]
+
+[roles.redis]
+bind = "127.0.0.1"
+maxmemory_policy = "allkeys-lru"
+
+[roles.postgresql]
+
+[[roles.postgresql.databases]]
+name = "openownership"
+user = "openownership"
+extensions = []
+
+[roles.python]
+apt_extra = ["zlib1g-dev", "libmagickwand-dev"]
+
+[roles.supervisor]
+
+[[roles.supervisor.programs]]
+name = "openownership"
+command = "/srv/www/app/.venv/bin/gunicorn -c /etc/gunicorn.py --env SERVER_ENV=production config.wsgi:application"
+directory = "/srv/www/app"
+
+[environments.stg]
+
+[environments.stg.roles.redis]
+maxmemory = "4gb"
+
+[environments.stg.roles.caddy]
+
+[[environments.stg.roles.caddy.sites]]
+domain = "https://openownership.hactar.work"
+proxy = "127.0.0.1:8000"
+tls = "systems@hactar.is"
+
+[environments.stg.roles.firewall]
+allow = []
+
+[environments.prd]
+
+[environments.prd.roles.redis]
+maxmemory = "4gb"
+
+[environments.prd.roles.caddy]
+
+[[environments.prd.roles.caddy.sites]]
+domain = "https://www.openownership.org"
+proxy = "127.0.0.1:8000"
+tls = "systems@hactar.is"
+
+[environments.prd.roles.firewall]
+allow = []
