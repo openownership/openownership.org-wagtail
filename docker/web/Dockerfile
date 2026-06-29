@@ -1,4 +1,5 @@
-FROM ghcr.io/hactar-is/ubuntu-24:2025.7 AS builder
+# check=skip=SecretsUsedInArgOrEnv
+FROM ghcr.io/hactar-is/ubuntu-24:preview AS builder
 
 # Create our working directory
 RUN mkdir -p /usr/srv/app/
@@ -7,8 +8,6 @@ WORKDIR /usr/srv/app/
 
 # Ensure docker-compose build web is able to pass these env vars in
 ARG SERVER_ENV
-ARG GITHUB_PUBLIC_KEY
-ARG GITHUB_PRIVATE_KEY
 ARG PHASE_PROJECT
 ARG PHASE_HOST
 ARG PHASE_TOKEN

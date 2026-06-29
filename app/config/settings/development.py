@@ -3,6 +3,9 @@ from .base import *  # NOQA
 from .base import STORAGES
 
 
+os.environ["DJANGO_RUNSERVER_HIDE_WARNING"] = "true"
+WAGTAIL_EDITING_SESSION_PING_INTERVAL = 0
+
 DEBUG = True
 
 BASE_URL: str = "https://openownership.test"

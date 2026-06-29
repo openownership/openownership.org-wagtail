@@ -115,7 +115,7 @@ DJANGO_APPS = [
     "taggit",
     "storages",
     "django.contrib.staticfiles",
-    "django_cron",
+    # "django_cron",
     "dbbackup",
     "cacheops",
 ]
@@ -147,6 +147,7 @@ WAGTAIL_APPS = [
     "wagtail.contrib.styleguide",
     "wagtailfontawesomesvg",
     "wagtailmodelchooser",
+    "wagtools",
 ]
 
 SITE_APPS = [
