@@ -28,7 +28,7 @@ def test_page_content(client, blog_article_page):
     res = client.get(page.url)
     assert '''<meta name="description" content="Donec ullamcorper nulla non metus auctor fringilla.
         Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius
-        blandit sit amet non magna. Sed posuere..." />''' in res.rendered_content
+        blandit sit amet non magna. Sed posuere...">''' in res.rendered_content
 
 
 def test_site_wide_meta(client, blog_article_page, site_settings):
@@ -49,7 +49,7 @@ def test_page_content_overrides_site_wide_meta(client, blog_article_page, site_s
     assert "This is the sitewide meta description" not in res.rendered_content
     assert '''<meta name="description" content="Donec ullamcorper nulla non metus auctor fringilla.
         Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius
-        blandit sit amet non magna. Sed posuere..." />''' in res.rendered_content
+        blandit sit amet non magna. Sed posuere...">''' in res.rendered_content
 
 
 def test_blurb_overrides_both(client, blog_article_page, site_settings):
@@ -63,7 +63,7 @@ def test_blurb_overrides_both(client, blog_article_page, site_settings):
     assert "This is the sitewide meta description" not in res.rendered_content
     assert '''<meta name="description" content="Donec ullamcorper nulla non metus auctor fringilla.
         Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius
-        blandit sit amet non magna. Sed posuere..." />''' not in res.rendered_content
+        blandit sit amet non magna. Sed posuere...">''' not in res.rendered_content
     assert "This is the blurb" in res.rendered_content
 
 
@@ -79,6 +79,6 @@ def test_search_description_overrides_all(client, blog_article_page, site_settin
     assert "This is the sitewide meta description" not in res.rendered_content
     assert '''<meta name="description" content="Donec ullamcorper nulla non metus auctor fringilla.
         Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius
-        blandit sit amet non magna. Sed posuere..." />''' not in res.rendered_content
+        blandit sit amet non magna. Sed posuere...">''' not in res.rendered_content
     assert "This is the blurb" not in res.rendered_content
     assert "This is the search description" in res.rendered_content

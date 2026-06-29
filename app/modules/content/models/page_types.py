@@ -1,43 +1,45 @@
 """
-    content.models.pages_types
-    ~~~~~~~~~~~~~~~~~~~~~~~
-    Core page types. Extend these to create the actual page models.
+content.models.pages_types
+~~~~~~~~~~~~~~~~~~~~~~~
+Core page types. Extend these to create the actual page models.
 
-    ie: class ArticlePage(ContentPageType):
-        [...]
+ie: class ArticlePage(ContentPageType):
+    [...]
 """
 
 # 3rd party
 from consoler import console
-from django.db import models
 from django.apps import apps
 from django.conf import settings
-from wagtail import fields
-from jinja2.filters import do_truncate
-from wagtail.search import index
-from django.utils.html import strip_tags
-from wagtailcache.cache import WagtailCacheMixin
-from wagtail.models import Page, Locale
-from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db import models
 from django.utils.functional import cached_property
+from django.utils.html import strip_tags
 from django.utils.translation import gettext_lazy as _
+from jinja2.filters import do_truncate
+from statham.models import SeoPageMixin
+from wagtail import fields
+from wagtail.admin.panels import FieldPanel, ObjectList, TabbedInterface
+from wagtail.models import Locale, Page
+from wagtail.search import index
 from wagtail.utils.decorators import cached_classmethod
-from wagtail.admin.panels import ObjectList, TabbedInterface, FieldPanel
+from wagtailcache.cache import WagtailCacheMixin
 
 # Project
 from helpers.context import global_context
-from modules.core.utils import get_site_context
 from modules.content.blocks import (
-    LANDING_PAGE_BLOCKS, ARTICLE_PAGE_BODY_BLOCKS, ADDITIONAL_CONTENT_BLOCKS
+    ADDITIONAL_CONTENT_BLOCKS,
+    ARTICLE_PAGE_BODY_BLOCKS,
+    LANDING_PAGE_BLOCKS,
 )
-
+from modules.core.utils import get_site_context
 
 ####################################################################################################
 # Core / general page types
 ####################################################################################################
 
-class BasePage(WagtailCacheMixin, Page):
 
+class BasePage(WagtailCacheMixin, Page, SeoPageMixin):
     class Meta:
         abstract = True
 
@@ -46,34 +48,34 @@ class BasePage(WagtailCacheMixin, Page):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name="+",
     )
 
-    blurb = models.TextField(
+    blurb = models.TextField(  # noqa: DJ001
         blank=True,
-        null=True
+        null=True,
     )
 
     display_date = models.DateField(
         blank=True,
         null=True,
-        help_text=_("If blank, this will be set to the date the page was first published")
+        help_text=_("If blank, this will be set to the date the page was first published"),
     )
 
     content_panels = Page.content_panels
 
     promote_panels = [
-        FieldPanel('thumbnail'),
-        FieldPanel('blurb'),
+        FieldPanel("thumbnail"),
+        FieldPanel("blurb"),
     ] + Page.promote_panels
 
     settings_panels = [
-        FieldPanel('display_date'),
+        FieldPanel("display_date"),
     ] + Page.settings_panels
 
     search_fields = Page.search_fields + [
-        index.SearchField('blurb'),
-        index.SearchField('search_description'),
+        index.SearchField("blurb"),
+        index.SearchField("search_description"),
     ]
 
     @cached_property
@@ -83,10 +85,12 @@ class BasePage(WagtailCacheMixin, Page):
             translations = self.get_translations().public().live()
             for page in translations:
                 if not page.alias_of:  # If the page is just a mirror, alias_of returns the source
-                    result.append({
-                        'language': page.locale.get_display_name(),
-                        'url': page.url
-                    })
+                    result.append(  # noqa: PERF401
+                        {
+                            "language": page.locale.get_display_name(),
+                            "url": page.url,
+                        },
+                    )
         except Exception as e:
             console.warn(e)
         else:
@@ -94,14 +98,13 @@ class BasePage(WagtailCacheMixin, Page):
 
     @cached_property
     def breadcrumbs(self):
-        ancestors = self.\
-            get_ancestors()\
-            .exclude(slug__in=['root', 'home'])\
-            .values('title', 'url_path')
+        ancestors = (
+            self.get_ancestors().exclude(slug__in=["root", "home"]).values("title", "url_path")
+        )
         breadcrumbs = []
         for page in ancestors:
-            url = page.get('url_path', '').replace('/home', '', 1)
-            breadcrumbs.append({'url': url, 'title': page.get('title')})
+            url = page.get("url_path", "").replace("/home", "", 1)
+            breadcrumbs.append({"url": url, "title": page.get("title")})
         return breadcrumbs
 
     def get_context(self, request, *args, **kwargs):
@@ -113,58 +116,59 @@ class BasePage(WagtailCacheMixin, Page):
             **get_site_context(site),
         )
         ctx.update(
-            **self.get_metadata_settings(site)
+            **self.get_metadata_settings(site),
         )
 
-        ctx['meta_description'] = self.page_meta_description
-        ctx['fflags'] = settings.FFLAGS
+        ctx["meta_description"] = self.page_meta_description
+        ctx["fflags"] = settings.FFLAGS
 
         return ctx
 
     @cached_classmethod
     def get_admin_tabs(cls):
         tabs = [
-            (cls.content_panels, _('Content')),
-            (cls.promote_panels, _('Promote')),
-            (cls.settings_panels, _('Settings')),
+            (cls.content_panels, _("Content")),
+            (cls.promote_panels, _("Promote")),
+            (SeoPageMixin.seo_panels, _("SEO")),
+            (cls.settings_panels, _("Settings")),
         ]
         return tabs
 
     @cached_classmethod
     def get_edit_handler(cls):  # NOQA
         tabs = cls.get_admin_tabs()
-        edit_handler = TabbedInterface([
-            ObjectList(tab[0], heading=tab[1]) for tab in tabs
-        ])
+        edit_handler = TabbedInterface([ObjectList(tab[0], heading=tab[1]) for tab in tabs])
         res = edit_handler.bind_to_model(model=cls)
         return res
 
     def get_meta_title(self):
         if self.seo_title:
             return self.seo_title
-        else:
-            return self.title
+        return self.title
+
+    def get_meta_description(self):
+        return self.page_meta_description
 
     @cached_property
     def page_meta_description(self):
         if self.search_description:
             return self.search_description
 
-        if getattr(self, 'blurb', False):
+        if getattr(self, "blurb", False):
             return self.blurb
 
-        if hasattr(self, 'body'):
+        if hasattr(self, "body"):
             try:
                 for block in self.body.get_prep_value():
-                    if block['type'] == 'rich_text':
-                        txt = strip_tags(block['value'])
+                    if block["type"] == "rich_text":
+                        txt = strip_tags(block["value"])
                         return do_truncate({}, txt, 200, leeway=5)
             except Exception:
                 site_settings = self.get_metadata_settings()
-                return site_settings['meta_description']
+                return site_settings["meta_description"]
 
         site_settings = self.get_metadata_settings()
-        return site_settings['meta_description']
+        return site_settings["meta_description"]
 
     def get_metadata_settings(self, site=None):
         from modules.settings.models import SiteSettings
@@ -173,20 +177,21 @@ class BasePage(WagtailCacheMixin, Page):
             site = self.get_site()
 
         default_meta = SiteSettings.get_metatag_context(site)
-        title = self.get_meta_title() or default_meta.get('meta_title')
-        description = default_meta.get('meta_description')
-        image = self.thumbnail or default_meta.get('meta_image')
+        title = self.get_meta_title() or default_meta.get("meta_title")
+        description = default_meta.get("meta_description")
+        image = self.thumbnail or default_meta.get("meta_image")
 
         return {
-            'meta_title': title,
-            'meta_description': description,
-            'meta_image': image
+            "meta_title": title,
+            "meta_description": description,
+            "meta_image": image,
         }
 
     @cached_property
     def human_display_date(self):
         if self.display_date:
-            return self.display_date.strftime('%d %B %Y')
+            return self.display_date.strftime("%d %B %Y")
+        return ""
 
     @cached_property
     def page_type(self):
@@ -214,10 +219,9 @@ class BasePage(WagtailCacheMixin, Page):
         if len(ancestors) == 2:
             # Top-level section page itself.
             return cls
-        elif len(ancestors) > 2:
+        if len(ancestors) > 2:
             return ancestors[2]
-        else:
-            return None
+        return None
 
     @cached_property
     def breadcrumb_page(cls):
@@ -262,24 +266,25 @@ class LandingPageType(BasePage):
     body = fields.StreamField(LANDING_PAGE_BLOCKS, blank=True, use_json_field=True)
 
     model_content_panels = [
-        FieldPanel('body')
+        FieldPanel("body"),
     ]
 
     content_panels = BasePage.content_panels + model_content_panels
 
     search_fields = BasePage.search_fields + [
-        index.SearchField('body')
+        index.SearchField("body"),
     ]
 
     def get_context(self, request, *args, **kwargs) -> dict:
         context = super().get_context(request, *args, **kwargs)
-        context['body_classes'] = 'landing-page'
+        context["body_classes"] = "landing-page"
         return context
 
 
 ####################################################################################################
 # Content Page Type
 ####################################################################################################
+
 
 class ContentPageType(BasePage):
     """
@@ -289,22 +294,24 @@ class ContentPageType(BasePage):
     class Meta:
         abstract = True
 
-    template = 'content/article_page.jinja'
+    template = "content/article_page.jinja"
 
     body = fields.StreamField(ARTICLE_PAGE_BODY_BLOCKS, blank=True, use_json_field=True)
     additional_content = fields.StreamField(
-        ADDITIONAL_CONTENT_BLOCKS, blank=True, use_json_field=True
+        ADDITIONAL_CONTENT_BLOCKS,
+        blank=True,
+        use_json_field=True,
     )
 
     model_content_panels = [
-        FieldPanel('body'),
-        FieldPanel('additional_content'),
+        FieldPanel("body"),
+        FieldPanel("additional_content"),
     ]
 
     content_panels = BasePage.content_panels + model_content_panels
 
     search_fields = BasePage.search_fields + [
-        index.SearchField('body'),
+        index.SearchField("body"),
     ]
 
     @property
@@ -326,8 +333,8 @@ class ContentPageType(BasePage):
 # Index Page Type
 ####################################################################################################
 
-class IndexPageType(BasePage):
 
+class IndexPageType(BasePage):
     class Meta:
         abstract = True
 
@@ -336,11 +343,13 @@ class IndexPageType(BasePage):
     objects_per_page = 10
 
     intro = fields.RichTextField(
-        blank=True, null=True, features=settings.RICHTEXT_INLINE_FEATURES,
+        blank=True,
+        null=True,
+        features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
     content_panels = BasePage.content_panels + [
-        FieldPanel('intro')
+        FieldPanel("intro"),
         # FieldPanel('child_page_stream')
     ]
 
@@ -351,18 +360,18 @@ class IndexPageType(BasePage):
         return self.objects_model
 
     def get_order_by(self):
-        return ['-display_date', '-last_published_at']
+        return ["-display_date", "-last_published_at"]
 
     def base_queryset(self):
         return (
             self.get_objects_model()
-            .objects
-            .live().public().filter(locale=Locale.get_active())
-            .select_related('thumbnail')
+            .objects.live()
+            .public()
+            .filter(locale=Locale.get_active())
+            .select_related("thumbnail")
         )
 
-    def get_queryset(self, request):
-
+    def get_queryset(self, request):  # noqa: ARG002
         """
         This returns the queryset needed to paginate the objects on the page. It pulls all the
         valid filters from get_filter_options and carries out the respective logic on the queryset.
@@ -373,7 +382,7 @@ class IndexPageType(BasePage):
             pages = sorted(query, key=lambda x: x.display_date, reverse=True)
         except Exception as e:
             console.warn(e)
-            return query.order_by('-first_published_at')
+            return query.order_by("-first_published_at")
         else:
             return pages
 
@@ -381,7 +390,7 @@ class IndexPageType(BasePage):
         queryset = self.get_queryset(request)
 
         paginator = Paginator(queryset, self.objects_per_page)
-        current_page = request.GET.get('page', 1)
+        current_page = request.GET.get("page", 1)
         try:
             return paginator.page(current_page)
         except PageNotAnInteger:
@@ -393,12 +402,14 @@ class IndexPageType(BasePage):
         ctx = super().get_context(request, *args, **kwargs)
 
         query_string = request.GET.copy()
-        pagination_params = query_string.pop('page', None) and query_string.urlencode()
+        pagination_params = query_string.pop("page", None) and query_string.urlencode()
 
-        ctx.update({
-            'page_obj': self.paginate_objects(request),
-            'pagination_params': pagination_params
-        })
+        ctx.update(
+            {
+                "page_obj": self.paginate_objects(request),
+                "pagination_params": pagination_params,
+            },
+        )
 
         return ctx
 

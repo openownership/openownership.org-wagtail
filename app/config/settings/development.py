@@ -21,8 +21,8 @@ STATIC_ROOT = "static"
 
 
 PRIVATE_FOLDER = "/usr/srv/private/"
-WAGTAIL_CACHE = True
-TESTING = True
+WAGTAIL_CACHE = False
+TESTING = False
 
 
 # CSRF cookies etc.

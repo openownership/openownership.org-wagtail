@@ -333,6 +333,11 @@ class SearchView(TemplateView):
         global_context(context)  # Adds in nav settings etc.
         return context
 
+    def get_meta_title(self):
+        if self.terms:
+            return f"Search: {self.terms}"
+        return "Search"
+
     def _set_filters(self, request):
         """
         Gets all the taxonomy objects based on the chosen filters.
