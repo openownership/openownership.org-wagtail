@@ -38,6 +38,7 @@ dependencies = [
     "sentry-sdk~=2.13.0",
     "setuptools~=72.2.0",
     "sqlparse~=0.5.1",
+    "statham>=1.0.8,<2.0.0",
     "toml~=0.10.2",
     "wagtail>=7.4.2,<8",
     "wagtail-autocomplete~=0.11.0",
@@ -69,7 +70,12 @@ dev = [
 [tool.uv]
 add-bounds = "major"
 exclude-newer = "7 days"  # grace period to help avoid supply chain attacks
-exclude-newer-package = { wagtools = false, phaser = false, benzo = false, wagtail-reports = false }
+exclude-newer-package = { wagtools = false, phaser = false, benzo = false, wagtail-reports = false, statham = false }
+
+[[tool.uv.index]]
+name = "hacnet"
+url = "https://pypi.hacnet.dev/"
+explicit = true
 
 
 ####################################################################################################
@@ -81,11 +87,7 @@ benzo = { index = "hacnet" }
 phaser = { index = "hacnet" }
 wagtools = { index = "hacnet" }
 wagtail-reports = { index = "hacnet" }
-
-[[tool.uv.index]]
-name = "hacnet"
-url = "https://pypi.hacnet.dev/"
-explicit = true
+statham = { index = "hacnet" }
 
 ####################################################################################################
 # Ruff etc.

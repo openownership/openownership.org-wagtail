@@ -56,6 +56,32 @@ TESTING = False
 CSRF_USE_SESSIONS = True
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 1500
 
+####################################################################################################
+# Statham SEO
+####################################################################################################
+
+STATHAM_SEO = {
+    # Feature switches
+    "ENABLE_META_TAGS": True,
+    "ENABLE_TITLE": True,  # emit the <title> tag (off = the project owns it)
+    "ENABLE_OPENGRAPH": True,
+    "ENABLE_TWITTER_CARDS": True,
+    "ENABLE_JSON_LD": True,
+    "USE_GRAPH": True,  # one @graph vs. separate <script> blocks
+    "STRICT_VALIDATION": None,  # None = raise in DEBUG, drop-and-log in production
+    # Defaults & formatting
+    "DEFAULT_TITLE_FORMAT": "{page} | {site_name}",
+    "TITLE_OVERRIDE": "title_override",  # context var that overrides the title verbatim
+    "DEFAULT_OG_TYPE": "website",
+    "DEFAULT_TWITTER_CARD": "summary_large_image",
+    "IMAGE_RENDITION_SPEC": "fill-1200x630",
+    # Code-level Organization defaults - used before anything is set in the admin
+    "ORGANIZATION_DEFAULTS": {"name": "Open Ownership"},
+    # Site-data sourcing (see below)
+    "SITE_SOURCE": "config.seo.ProjectSeoSource",
+    # "MANAGED_ELSEWHERE": ["social_profiles", "default_image", "default_description"],
+}
+
 
 ####################################################################################################
 # Feature Flags
@@ -148,6 +174,7 @@ WAGTAIL_APPS = [
     "wagtailmodelchooser",
     "wagtools",
     "wagtail_meilisearch",
+    "statham",
 ]
 
 SITE_APPS = [
@@ -332,6 +359,7 @@ JINJA2_EXTENSIONS = [
     "jinja2.ext.do",
     "jinja2.ext.loopcontrols",
     "cacheops.jinja2.cache",
+    "statham.jinja2.SEOExtension",
 ]
 
 DEFAULT_JINJA2_TEMPLATE_EXTENSION = ".jinja"

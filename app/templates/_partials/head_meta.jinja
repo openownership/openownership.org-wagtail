@@ -3,10 +3,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
 
+{{ seo_head(page, request) }}
+
+{# NOW ALL HANDLED BY THE seo_head TAG ABOVE #}
+
+{#
 <title>{% block title_tag %}{{meta_title}}{% if meta_title != site_name %} | {{site_name}}{% endif %}{% endblock %}</title>
 {% if not error_page %}
 <meta name="description" content="{{meta_description}}" />
-{# Open graph #}
+
 <meta property="og:title" content="{{meta_title}}" />
 <meta property="og:description" content="{{meta_description}}">
 <meta property="og:site_name" content="{{site_name}}">
@@ -21,7 +26,7 @@
 <meta property="og:image:secure_url" content="{{og_image.url}}" />
 {% endif %}
 
-{# Twitter #}
+
 <meta name="twitter:title" content="{{meta_title}}" />
 <meta name="twitter:description" content="{{meta_description}}" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -35,6 +40,8 @@
 <meta name="twitter:image:height" content="630" />
 {% endif %}
 {% endif %}
+#}
+
 {# Favicons and shortcut icons #}
 <link rel="shortcut icon" href="{{ static('images/favicons/favicon.ico')}}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ static('images/favicons/apple-touch-icon.png')}}">

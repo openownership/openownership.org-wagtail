@@ -10,6 +10,7 @@ exclude-newer-span = "P7D"
 phaser = false
 benzo = false
 wagtail-reports = false
+statham = false
 wagtools = false
 
 [[package]]
@@ -80,6 +81,7 @@ dependencies = [
     { name = "sentry-sdk" },
     { name = "setuptools" },
     { name = "sqlparse" },
+    { name = "statham" },
     { name = "toml" },
     { name = "wagtail" },
     { name = "wagtail-autocomplete" },
@@ -142,6 +144,7 @@ requires-dist = [
     { name = "sentry-sdk", specifier = "~=2.13.0" },
     { name = "setuptools", specifier = "~=72.2.0" },
     { name = "sqlparse", specifier = "~=0.5.1" },
+    { name = "statham", specifier = ">=1.0.8,<2.0.0", index = "https://pypi.hacnet.dev/" },
     { name = "toml", specifier = "~=0.10.2" },
     { name = "wagtail", specifier = ">=7.4.2,<8" },
     { name = "wagtail-autocomplete", specifier = "~=0.11.0" },
@@ -1433,6 +1436,20 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/28/e3/55dcc2cfbc3ca9c29519eb6884dd1415ecb53b0e934862d3559ddcb7e20b/stack_data-0.6.3.tar.gz", hash = "sha256:836a778de4fec4dcd1dcd89ed8abff8a221f58308462e1c4aa2a3cf30148f0b9", size = 44707, upload-time = "2023-09-30T13:58:05.479Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/f1/7b/ce1eafaf1a76852e2ec9b22edecf1daa58175c090266e9f6c64afcd81d91/stack_data-0.6.3-py3-none-any.whl", hash = "sha256:d5558e0c25a4cb0853cddad3d77da9891a08cb85dd9f9f91b9f8cd66e511e695", size = 24521, upload-time = "2023-09-30T13:58:03.53Z" },
+]
+
+[[package]]
+name = "statham"
+version = "1.0.8"
+source = { registry = "https://pypi.hacnet.dev/" }
+dependencies = [
+    { name = "django" },
+    { name = "pydantic" },
+    { name = "wagtail" },
+]
+sdist = { url = "https://pypi.hacnet.dev/packages/statham-1.0.8.tar.gz", hash = "sha256:ca8cb5613641892564496092572b8c80198210d517ebcaf77aeeafb4f93f7dce" }
+wheels = [
+    { url = "https://pypi.hacnet.dev/packages/statham-1.0.8-py3-none-any.whl", hash = "sha256:39735f84edf45ee928666d47e55823bf9841a7c8b23f69daff52528d6fbcf1d6" },
 ]
 
 [[package]]
