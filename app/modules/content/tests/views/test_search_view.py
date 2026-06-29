@@ -1,14 +1,20 @@
-from django.core.management import call_command
+from wagtail.models import Page
 
+from modules.content.models import PublicationInnerPage
 from modules.content.views import SearchView
 
 
-# def test_author_search(client, author_with_content_pages):
-#     """This doesn't do much currently as the search index on an SQLite DB doesn't
-#     seem to build properly.
-#     """
-#     # call_command('update_index')
-#     author = author_with_content_pages
-#     assert author.name == 'Bob Ferris'
-#     res = client.get('/en/search/?q=bob+ferris')
-#     assert res.status_code == 200
+def test_restrict_excludes_inner_pages(publication_front_page):
+    """The search result queryset must drop PublicationInnerPage rows so child
+    pages never surface; the parent front page is kept.
+    """
+    parent = publication_front_page
+    inner = PublicationInnerPage(live=True, title="Inner Chapter")
+    parent.add_child(instance=inner)
+    inner.save_revision().publish()
+
+    view = SearchView()
+    result_ids = [page.id for page in view._restrict(Page.objects, [])]
+
+    assert inner.id not in result_ids
+    assert parent.id in result_ids

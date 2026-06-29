@@ -165,3 +165,44 @@ def test_show_display_date_on_page(publication_front_page):
 
     p.show_display_date = False
     assert p.show_display_date_on_page is False
+
+
+def test_inner_content_rolls_up_to_front_page(publication_front_page):
+    "Inner page title and body text should appear in the front page's search content"
+    from wagtail.rich_text import RichText
+
+    parent = publication_front_page
+    inner = PublicationInnerPage(
+        live=True,
+        title="Mongolia Chapter",
+        body=[("rich_text", RichText("<p>distinctive beneficial ownership reform xyzzy</p>"))],
+    )
+    parent.add_child(instance=inner)
+    inner.save_revision().publish()
+
+    content = parent.get_inner_search_content()
+    assert "Mongolia Chapter" in content
+    assert "distinctive beneficial ownership reform xyzzy" in content
+    assert "<p>" not in content  # HTML is stripped
+
+
+def test_inner_content_excludes_draft_pages(publication_front_page):
+    "Unpublished inner pages should not contribute to the front page's search content"
+    from wagtail.rich_text import RichText
+
+    parent = publication_front_page
+    draft = PublicationInnerPage(
+        live=False,
+        title="Draft Chapter",
+        body=[("rich_text", RichText("<p>secret draftonly term</p>"))],
+    )
+    parent.add_child(instance=draft)
+    draft.save_revision()
+
+    content = parent.get_inner_search_content()
+    assert "draftonly" not in content
+
+
+def test_front_page_with_no_inner_pages(publication_front_page):
+    "A publication with no inner pages should produce empty search content"
+    assert publication_front_page.get_inner_search_content() == ""

@@ -413,8 +413,6 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, FeedbackMixin, Bas
     parent_page_types: list = ["content.PublicationsIndexPage"]
     subpage_types: list = ["content.PublicationInnerPage"]
 
-    search_fields = ContentPageType.search_fields + TaggedAuthorsPageMixin.search_fields
-
     cached_title = ""
 
     page_title = models.CharField(
@@ -540,7 +538,23 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, FeedbackMixin, Bas
         index.SearchField("summary"),
         index.SearchField("outcomes"),
         index.SearchField("impact"),
+        index.SearchField("get_inner_search_content"),
     ]
+
+    def get_inner_search_content(self) -> str:
+        """Searchable text gathered from this publication's inner pages.
+
+        Indexed on the front page so a search matching content that lives on a
+        child `PublicationInnerPage` surfaces this front page rather than the
+        child itself.
+        """
+        parts = []
+        inner_pages = PublicationInnerPage.objects.live().child_of(self).specific()
+        for inner in inner_pages:
+            parts.append(inner.title)
+            for bound_block in inner.body:
+                parts.extend(bound_block.block.get_searchable_content(bound_block.value))
+        return " ".join(part for part in parts if part)
 
     @property
     def date(self):

@@ -19,7 +19,12 @@ from wagtail.models import Locale, Page, Site
 # Project
 from helpers.context import global_context
 from modules.content.forms import SearchForm
-from modules.content.models import HomePage, SectionPage, content_page_models
+from modules.content.models import (
+    HomePage,
+    PublicationInnerPage,
+    SectionPage,
+    content_page_models,
+)
 from modules.notion.models import CountryTag, Region
 from modules.settings.models import SiteSettings
 from modules.stats.models import ViewCount
@@ -379,6 +384,21 @@ class SearchView(TemplateView):
             raise Http404(msg) from err
         return result_set
 
+    def _restrict(self, qs, exclude_ids):
+        """Apply the shared result restrictions to a page queryset.
+
+        Inner publication pages are excluded: their content is rolled up into
+        the parent PublicationFrontPage index, so the parent surfaces instead
+        of a child page mid-document.
+        """
+        return (
+            qs.exclude(id__in=exclude_ids)
+            .not_type(PublicationInnerPage)
+            .filter(locale=Locale.get_active())
+            .live()
+            .specific()
+        )
+
     def _get_pages(self, terms):
         if not terms or terms == "":
             qs = Page.objects.none()
@@ -459,9 +479,7 @@ class SearchView(TemplateView):
             # and filter by the page_ids we've found.
             qs = qs.type(*content_page_models).filter(id__in=set(page_ids))
 
-        searched = (
-            qs.exclude(id__in=exclude_ids).filter(locale=Locale.get_active()).live().specific()
-        )
+        searched = self._restrict(qs, exclude_ids)
 
         if terms:
             searched = searched.search(terms, operator=self.mode)
