@@ -13,7 +13,6 @@ dependencies = [
     "consoler~=0.1.4",
     "django>=5.2,<6",
     "django-cacheops~=7.1",
-    "django-cron~=0.6.0",
     "django-dbbackup~=4.1.0",
     "django-extensions~=3.2.3",
     "django-filter~=24.3",

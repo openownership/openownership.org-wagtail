@@ -31,18 +31,6 @@ REST_FRAMEWORK = {
 WHITENOISE_MAX_AGE = 31557600
 
 
-####################################################################################################
-# Django-Cron
-####################################################################################################
-
-
-CRON_CLASSES = [
-    "modules.notion.cron.SyncCountries",
-    "modules.notion.cron.SyncCommitments",
-    "modules.notion.cron.SyncRegimes",
-]
-
-
 # CSRF cookies etc.
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_SECURE = False

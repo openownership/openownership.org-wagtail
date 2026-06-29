@@ -115,7 +115,6 @@ DJANGO_APPS = [
     "taggit",
     "storages",
     "django.contrib.staticfiles",
-    # "django_cron",
     "dbbackup",
     "cacheops",
 ]
@@ -668,3 +667,20 @@ TRANS_STRINGS = [
 
 SLACK_HOOK_WAGBOT = os.environ.get("SLACK_HOOK_WAGBOT")
 SLACK_HOOK_NOTIONBOT = os.environ.get("SLACK_HOOK_NOTIONBOT")
+
+
+####################################################################################################
+# Notion sync
+####################################################################################################
+
+
+NOTION_WAGTAIL_TOKEN = os.environ.get("NOTION_WAGTAIL_TOKEN", "")
+
+# Source database ids. These are not secret, so they default to the live values
+# and can be overridden per environment.
+NOTION_DATABASES = {
+    "countries": os.environ.get("NOTION_DB_COUNTRIES", "a7d0fc79-decf-4851-a8f7-8916e23862ba"),
+    "commitments": os.environ.get("NOTION_DB_COMMITMENTS", "995e7787-e85f-45df-8fa5-68684f30d16b"),
+    "regimes": os.environ.get("NOTION_DB_REGIMES", "85e52f2f-03c5-4d2a-b93f-1acbee5918f1"),
+    "regimes_sub": os.environ.get("NOTION_DB_REGIMES_SUB", "4e596712-c912-4821-8ecd-1e272f781d0b"),
+}

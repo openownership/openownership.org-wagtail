@@ -1,46 +1,21 @@
 # 3rd party
 from consoler import console
+from django.conf import settings
 from django.core.management.base import BaseCommand
 
-# Project
+# Module
 from modules.notion.auth import get_notion_client
-from modules.notion.data import (
-    COUNTRY_TRACKER,
-    COMMITMENT_TRACKER,
-    DISCLOSURE_REGIMES,
-    DISCLOSURE_REGIMES_SUB,
-)
 from modules.notion.utils import check_page_access
 
 
 class Command(BaseCommand):
-    """ """
-
-    help = "Checks access to Notion DBs"
+    help = "Checks access to the configured Notion databases"
 
     def handle(self, *args, **options):  # noqa: ARG002
         client = get_notion_client()
-
-        console.info("Checking Country Tracker access")
-        if check_page_access(client, page_id=COUNTRY_TRACKER):
-            console.success("Country tracker access confirmed ✅")
-        else:
-            console.warn("Country tracker access failed")
-
-        console.info("Checking Commitment Tracker access")
-        if check_page_access(client, page_id=COMMITMENT_TRACKER):
-            console.success("Commitment tracker access confirmed ✅")
-        else:
-            console.warn("Commitment tracker access failed")
-
-        console.info("Checking Disclosure Regimes access")
-        if check_page_access(client, page_id=DISCLOSURE_REGIMES):
-            console.success("Disclosure Regimes access confirmed ✅")
-        else:
-            console.warn("Disclosure Regimes access failed")
-
-        console.info("Checking Disclosure Regimes Sub access")
-        if check_page_access(client, page_id=DISCLOSURE_REGIMES_SUB):
-            console.success("Disclosure Regimes access confirmed ✅")
-        else:
-            console.warn("Disclosure Regimes Sub access failed")
+        for name, db_id in settings.NOTION_DATABASES.items():
+            console.info(f"Checking {name} access")
+            if check_page_access(client, page_id=db_id):
+                console.success(f"{name} access confirmed")
+            else:
+                console.warn(f"{name} access failed")

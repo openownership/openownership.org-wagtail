@@ -243,39 +243,34 @@ class DisclosureRegime(NotionModel):
         max_length=255,
     )
 
-    structured_data = models.CharField(  # 6.1 Structured data
+    structured_data = models.BooleanField(  # 6.1 Structured data
         _("Structured data"),
         blank=True,
-        default="",
-        max_length=255,
+        null=True,
     )
 
-    api_available = models.CharField(  # API available
+    api_available = models.BooleanField(  # API available
         _("API available"),
         blank=True,
-        default="",
-        max_length=255,
+        null=True,
     )
 
-    bulk_data_available = models.CharField(  # Bulk data available
+    bulk_data_available = models.BooleanField(  # Bulk data available
         _("Bulk data available"),
         blank=True,
-        default="",
-        max_length=255,
+        null=True,
     )
 
-    data_in_bods = models.CharField(  # 6.4 Data published in BODS
+    data_in_bods = models.BooleanField(  # 6.4 Data published in BODS
         _("Data published in BODS"),
         blank=True,
-        default="",
-        max_length=255,
+        null=True,
     )
 
-    on_oo_register = models.CharField(  # Used to be bool, now str
+    on_oo_register = models.BooleanField(  # 6.5 Data on OO Register
         _("On OO Register"),
         blank=True,
-        default="",
-        max_length=255,
+        null=True,
     )
 
     legislation_url = models.TextField(  # 8.4 Legislation URL
@@ -299,11 +294,12 @@ class DisclosureRegime(NotionModel):
 
     # New fields needed as of 21/03/22
 
-    threshold = models.CharField(  # 1.2 Threshold
+    threshold = models.DecimalField(  # 1.2 Threshold (a percentage)
         _("Threshold"),
         blank=True,
-        default="",
-        max_length=255,
+        null=True,
+        max_digits=5,
+        decimal_places=2,
     )
 
     # New fields needed as of 23/07/24
@@ -386,39 +382,19 @@ class DisclosureRegime(NotionModel):
 
     @cached_property
     def display_structured_data(self):
-        try:
-            return self.structured_data
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No structured_data for {self.name}")
-            return None
+        return self.structured_data
 
     @cached_property
     def display_data_in_bods(self):
-        try:
-            return self.data_in_bods
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No data_in_bods for {self.name}")
-            return None
+        return self.data_in_bods
 
     @cached_property
     def display_api(self):
-        try:
-            return self.api_available
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No api_available for {self.name}")
-            return None
+        return self.api_available
 
     @cached_property
     def display_oo_register(self):
-        try:
-            return self.on_oo_register
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No on_oo_register for {self.name}")
-            return None
+        return self.on_oo_register
 
     @cached_property
     def display_central_register(self):
@@ -449,18 +425,12 @@ class DisclosureRegime(NotionModel):
 
     @cached_property
     def display_threshold(self):
-        if not self.threshold or self.threshold == "None":
+        if self.threshold is None:
             return ""
-        try:
-            if self.threshold:
-                if "%" not in self.threshold:
-                    return f"{self.threshold}%"
-                return self.threshold
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No threshold for {self.name}")
-            return ""
-        return ""
+        value = self.threshold.normalize()
+        if value == value.to_integral_value():
+            return f"{value:.0f}%"
+        return f"{value}%"
 
 
 class CountryTag(NotionModel, BaseTag):

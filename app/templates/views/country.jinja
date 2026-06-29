@@ -202,7 +202,7 @@
                         <dd>{{ regime.display_api|yesno }}</dd>
                         {% endif %}
 
-                        {% if regime.display_oo_register  %}
+                        {% if regime.display_oo_register is not none %}
                         <dt>{% trans %}Available on the OO register{% endtrans %}</dt>
                         <dd>{{ regime.display_oo_register|yesno }}</dd>
                         {% endif %}

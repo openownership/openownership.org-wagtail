@@ -2,48 +2,22 @@
 from consoler import console
 from django.core.management.base import BaseCommand
 
-# Project
-from modules.notion.data import (
-    COUNTRY_TRACKER,
-    COMMITMENT_TRACKER,
-    DISCLOSURE_REGIMES,
-    DISCLOSURE_REGIMES_SUB,
-)
-from modules.notion.cron import SyncRegimes, SyncCountries, SyncCommitments, SyncRegimesSub
+# Module
+from modules.notion.client import NotionClient
+
+DATABASES = ("countries", "commitments", "regimes", "regimes_sub")
 
 
 class Command(BaseCommand):
-    """ """
-
-    help = "Grabs data from Notion and saves to ./samples/ex{name}.py"
+    help = "Grabs raw data from Notion and saves to ./samples/ex_{name}.py"
 
     def handle(self, *args, **options):  # noqa: ARG002
-        s = SyncCountries()
-        data = s.fetch_all_data(COUNTRY_TRACKER)
-        with open("modules/notion/samples/ex_countries.py", "w") as f:  # noqa: PTH123
-            f.write(str(data))
-
-        console.info("Saved samples/ex_countries.py")
-
-        s = SyncCommitments()
-        data = s.fetch_all_data(COMMITMENT_TRACKER)
-        with open("modules/notion/samples/ex_commitments.py", "w") as f:  # noqa: PTH123
-            f.write(str(data))
-
-        console.info("Saved samples/ex_commitments.py")
-
-        s = SyncRegimes()
-        data = s.fetch_all_data(DISCLOSURE_REGIMES)
-        with open("modules/notion/samples/ex_regimes.py", "w") as f:  # noqa: PTH123
-            f.write(str(data))
-
-        console.info("Saved samples/ex_regimes.py")
-
-        s = SyncRegimesSub()
-        data = s.fetch_all_data(DISCLOSURE_REGIMES_SUB)
-        with open("modules/notion/samples/ex_regimes_sub.py", "w") as f:  # noqa: PTH123
-            f.write(str(data))
-
-        console.info("Saved samples/ex_regimes_sub.py")
+        client = NotionClient()
+        for name in DATABASES:
+            rows = client.fetch_database(client.database_id(name))
+            data = {"results": rows}
+            with open(f"modules/notion/samples/ex_{name}.py", "w") as f:  # noqa: PTH123
+                f.write(str(data))
+            console.info(f"Saved samples/ex_{name}.py")
 
         console.success("Saved stuff from Notion")

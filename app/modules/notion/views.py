@@ -36,7 +36,7 @@ class DataExportBase(View):
     """
 
     def _yes_no(self, val):
-        if val.lower() == "yes":
+        if val is True:
             return "Yes"
         return ""
 

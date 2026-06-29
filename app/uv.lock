@@ -55,7 +55,6 @@ dependencies = [
     { name = "consoler" },
     { name = "django" },
     { name = "django-cacheops" },
-    { name = "django-cron" },
     { name = "django-dbbackup" },
     { name = "django-extensions" },
     { name = "django-filter" },
@@ -117,7 +116,6 @@ requires-dist = [
     { name = "consoler", specifier = "~=0.1.4" },
     { name = "django", specifier = ">=5.2,<6" },
     { name = "django-cacheops", specifier = "~=7.1" },
-    { name = "django-cron", specifier = "~=0.6.0" },
     { name = "django-dbbackup", specifier = "~=4.1.0" },
     { name = "django-extensions", specifier = "~=3.2.3" },
     { name = "django-filter", specifier = "~=24.3" },
@@ -451,18 +449,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/1b/92/9df8a60ee959c214705ec3d3ccf80820097672a0260b149cf2751e818086/django_cacheops-7.2.tar.gz", hash = "sha256:cbc11cc0321295a3644e27bcb26940f08cb9c2e71d3ee506cbcff0bdda1a9f33", size = 72751, upload-time = "2025-04-20T04:36:19.068Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/89/e0/cad1eca0d388ac9f0a75f785599a10acf62ecb6bbb7947da72c04461539c/django_cacheops-7.2-py2.py3-none-any.whl", hash = "sha256:c3b4399474919e62aa91bbd97e7b68cfc50e8cb4384d743bde686c37fe8c010b", size = 45116, upload-time = "2025-04-20T04:36:16.697Z" },
-]
-
-[[package]]
-name = "django-cron"
-version = "0.6.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "django" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/eb/0e/7341616ff90aac0b2c36fe172663bbaa0fc396e1effc215813a3eea8b7e1/django-cron-0.6.0.tar.gz", hash = "sha256:dc3c0d3433a2e4e7012f77f6d8415ad90367ba068649db2674325bc36f935841", size = 14768, upload-time = "2022-05-11T09:20:15.062Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/f3/fc/9a0fa82f88165d44aa38623a77f7a95bc09c4013557b30620cf5d57e4d0c/django_cron-0.6.0-py3-none-any.whl", hash = "sha256:016203554748512b7f19d7363b4fde8741c6ff63fe8a15051f3031f4a0506a41", size = 19314, upload-time = "2022-05-11T09:06:48.57Z" },
 ]
 
 [[package]]
