@@ -60,7 +60,7 @@ tls = "systems@hactar.is"
 [environments.stg.roles.firewall]
 allow = []
 
-[environments.prd.roles.gitdeploys]
+[environments.stg.roles.gitdeploys]
 health_url = "https://openownership.hactar.work"
 
 ####################################################################################################
