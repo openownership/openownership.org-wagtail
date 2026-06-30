@@ -70,12 +70,12 @@ dev = [
 [tool.uv]
 add-bounds = "major"
 exclude-newer = "7 days"  # grace period to help avoid supply chain attacks
-exclude-newer-package = { wagtools = false, phaser = false, benzo = false, wagtail-reports = false, statham = false }
 
 [[tool.uv.index]]
 name = "hacnet"
 url = "https://pypi.hacnet.dev/"
 explicit = true
+exclude-newer = false
 
 
 ####################################################################################################
