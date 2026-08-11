@@ -48,6 +48,7 @@ from modules.content.blocks import (
 )
 from modules.content.blocks.stream import FootnoteBlock, GlossaryItemBlock
 from modules.feedback.models import FeedbackMixin
+from modules.notion import evidence
 from modules.notion.helpers import countries_json, map_json
 from modules.notion.models import CountryTag, ImpactEntry, Region
 from modules.stats.mixins import Countable
@@ -1043,32 +1044,36 @@ class BotCentrePage(IndexPageType):
 
     objects_per_page = 12
 
-    def base_queryset(self):
-        """Only the entries that may appear publicly."""
-        return ImpactEntry.objects.publishable().prefetch_related(
-            "countries",
-            "policy_areas",
-            "data_users",
-            "resource_types",
-        )
-
     def get_queryset(self, request):  # noqa: ARG002
-        """Newest first, then by topic, then alphabetically.
+        """Every publishable entry, in the reader's chosen order.
 
-        The same order the evidence search index uses, so this listing and a
-        filtered one will not disagree about where a record belongs. Topic is
-        the first policy area alphabetically, and anything without a topic or a
-        year sorts to the end rather than the front.
+        Only used when Meilisearch is unreachable. `evidence` owns the ordering
+        so the indexed and database listings cannot drift apart.
         """
-        return (
-            self.base_queryset()
-            .annotate(topic=models.Min("policy_areas__name"))
-            .order_by(
-                models.F("year").desc(nulls_last=True),
-                models.F("topic").asc(nulls_last=True),
-                "description",
-            )
-        )
+        return evidence.fallback_queryset(evidence.DEFAULT_SORT)
+
+    def get_context(self, request, *args, **kwargs) -> dict:
+        # Skip IndexPageType's paginator: the results come from the search
+        # index, not from a queryset it could paginate.
+        ctx = super(IndexPageType, self).get_context(request, *args, **kwargs)
+
+        found = evidence.results(request.GET, per_page=self.objects_per_page)
+        ctx["page_obj"] = found.page_obj
+        ctx["evidence"] = found
+
+        if found.query.is_narrowed:
+            # A filtered view is one of thousands of combinations and is not
+            # what should turn up in a search engine. Set in memory only.
+            self.no_index = True
+            # wagtail-cache keys on the full url, so caching every combination
+            # would let anyone fill Redis with `?anything=1`. The query itself
+            # costs less than the cache lookup at this size.
+            self.cache_control = "no-cache"
+
+        if found.degraded:
+            self.cache_control = "no-cache"
+
+        return ctx
 
 
 ####################################################################################################

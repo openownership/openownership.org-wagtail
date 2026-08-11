@@ -62,6 +62,18 @@ DEFAULT_SORT = ["year:desc", "topic_sort:asc", "sort_title:asc"]
 # Documents fetched per request when working out what has left the index.
 PAGE_SIZE = 500
 
+# Seconds to wait on Meilisearch. One search runs per page request, so without a
+# timeout an unresponsive Meilisearch would hold a worker until the socket gives up.
+TIMEOUT = 3
+
+# Jurisdictions alone has 48 values and Meilisearch's default cap is 100. Set it
+# where it can be seen rather than finding out when a facet quietly truncates.
+MAX_FACET_VALUES = 200
+
+# The most hits a single search will return. Matches Meilisearch's own default
+# for `pagination.maxTotalHits`, declared here so the two cannot drift.
+MAX_TOTAL_HITS = 1000
+
 
 ####################################################################################################
 # Client
@@ -78,6 +90,7 @@ def get_client() -> meilisearch.Client:
     return meilisearch.Client(
         f"{params['HOST']}:{params['PORT']}",
         params.get("MASTER_KEY", ""),
+        timeout=TIMEOUT,
     )
 
 
@@ -201,6 +214,8 @@ def configure_index(client: Optional[meilisearch.Client] = None) -> None:
             "searchableAttributes": SEARCHABLE_ATTRIBUTES,
             "filterableAttributes": FILTERABLE_ATTRIBUTES,
             "sortableAttributes": SORTABLE_ATTRIBUTES,
+            "faceting": {"maxValuesPerFacet": MAX_FACET_VALUES},
+            "pagination": {"maxTotalHits": MAX_TOTAL_HITS},
         },
     )
 
@@ -264,6 +279,8 @@ def search(
     limit: int = 20,
     offset: int = 0,
     client: Optional[meilisearch.Client] = None,
+    attributes: Optional[list] = None,
+    facets: Optional[list] = None,
 ) -> dict:
     """Search the evidence index.
 
@@ -275,6 +292,10 @@ def search(
         limit: How many results to return.
         offset: Where to start, for paging.
         client: Meilisearch client, built from settings when not given.
+        attributes: Document fields to return. Narrow this to `["id"]` when the
+            caller only needs to know which records matched.
+        facets: Attributes to count. Defaults to every filterable attribute;
+            pass a single one when recounting a facet in isolation.
 
     Returns:
         The raw Meilisearch response, including `hits` and `facetDistribution`.
@@ -284,8 +305,10 @@ def search(
         "limit": limit,
         "offset": offset,
         "sort": list(sort) if sort else list(DEFAULT_SORT),
-        "facets": list(FILTERABLE_ATTRIBUTES),
+        "facets": list(facets) if facets is not None else list(FILTERABLE_ATTRIBUTES),
     }
+    if attributes is not None:
+        params["attributesToRetrieve"] = list(attributes)
 
     expression = build_filter(filters)
     if expression:

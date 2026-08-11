@@ -142,6 +142,49 @@ Open Ownership aim for that length but Notion cannot enforce it, and a character
 count reads differently at every font width, so the limit is applied on words at
 display time rather than relied on at their end.
 
+### Filtering, search and sort
+
+`modules/notion/evidence.py` is the public query layer: it owns the URL parameter
+names, the sort options, and turning GET parameters into a page of results.
+`search.py` stays a plain Meilisearch adapter and knows nothing about URLs.
+
+Six facets are exposed, and `FACETS` is both the naming map and the allowlist, so
+an attribute missing from it cannot be reached from a URL at all:
+
+| URL parameter | Index attribute | Shown as |
+|---|---|---|
+| `year` | `year` | Year |
+| `jurisdiction` | `jurisdictions` | Jurisdiction |
+| `region` | `regions` | Region |
+| `topic` | `policy_areas` | Topic |
+| `type` | `data_users` | Type |
+| `resource` | `resource_types` | Type of resource |
+
+`usability_themes` stays filterable in the index but is not exposed: it is
+populated on only 29 of 237 rows and is not one of the six Open Ownership asked
+for. Sort is `?sort=` with `newest` (the default, and left out of URLs),
+`oldest`, `az` or `za`.
+
+Everything is a plain GET form, so filtering, searching, sorting and pagination
+all work with JavaScript off. There is deliberately no hidden `page` field:
+unchecked boxes submit nothing, so changing a filter starts again at page one
+without a line of code.
+
+**Facet counts are recounted per facet.** Meilisearch counts against the filtered
+results, so ticking one topic would make every other topic vanish and a second
+one could never be chosen. Each ticked facet is queried again with its own filter
+dropped. That is what keeps "filter by multiple topics" usable, and it is the
+first thing to check if the facet lists ever start collapsing.
+
+Filtered views are served `noindex` and `no-cache`. Six facets over 48
+jurisdictions is an unbounded crawl space, and wagtail-cache keys on the full URL,
+so caching the combinations would let anyone fill Redis with `?anything=1`.
+
+If Meilisearch is unreachable the page still lists every record, in the reader's
+chosen order, with the filters hidden and a notice saying so.
+`evidence.fallback_queryset` owns that ordering and derives it from the same sort
+terms, so the two paths cannot drift.
+
 Only entries that pass `ImpactEntry.objects.publishable()` are indexed, and only
 the columns Open Ownership mark public in the tracker. Lessons, "OO outputs used in"
 and "Presentations/slide decks used in" are deliberately left out: anything in

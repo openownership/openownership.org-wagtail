@@ -2,7 +2,15 @@ import pytest
 from django.test import Client
 
 from modules.content.models.pages import BotCentrePage
-from modules.notion.models import CountryTag, ImpactEntry, PolicyAreaTag, ResourceTypeTag
+from modules.notion import search
+from modules.notion.models import (
+    CountryTag,
+    DataUserTag,
+    ImpactEntry,
+    PolicyAreaTag,
+    ResourceTypeTag,
+)
+from modules.notion.tests.fakes import FakeClient
 
 pytestmark = pytest.mark.django_db
 
@@ -41,8 +49,14 @@ def make_entry(notion_id, description, year=2024, publish=True, policy_areas=(),
 ####################################################################################################
 
 
-def test_bot_centre_page_200s(bot_centre):
-    assert client.get(bot_centre.url).status_code == 200
+def test_the_page_works_with_no_search_backend_configured(bot_centre):
+    """The test settings carry no Meilisearch host, so every test in this file
+    that does not use the `indexed` fixture exercises the degraded path.
+    """
+    response = client.get(bot_centre.url)
+
+    assert response.status_code == 200
+    assert response.context_data["evidence"].degraded is True
 
 
 def test_entries_are_listed(bot_centre):
@@ -245,3 +259,173 @@ def test_the_page_still_renders_with_no_entries(bot_centre):
 
     assert response.status_code == 200
     assert response.context_data["page_obj"].paginator.count == 0
+
+
+####################################################################################################
+# Filtering, searching and sorting
+####################################################################################################
+
+
+@pytest.fixture
+def indexed(monkeypatch):
+    """Point the page's search at a fake index built from the current entries."""
+    monkeypatch.setattr(search, "get_client", lambda: FakeClient(documents=search.documents()))
+
+
+@pytest.fixture
+def stocked(bot_centre, indexed):  # noqa: ARG001
+    journalism = ResourceTypeTag.objects.create(name="Journalism")
+    reporter = DataUserTag.objects.create(name="Journalist/media")
+
+    tax = make_entry("tax", "A tax investigation", year=2024, policy_areas=["Tax"])
+    corr = make_entry("corr", "A corruption case", year=2023, policy_areas=["Corruption"])
+    proc = make_entry(
+        "proc",
+        "A procurement review",
+        year=2022,
+        policy_areas=["Public procurement"],
+    )
+
+    for entry in (tax, corr, proc):
+        entry.data_users.add(reporter)
+        entry.resource_types.add(journalism)
+
+    return bot_centre
+
+
+def listed(response):
+    return [entry.notion_id for entry in response.context_data["page_obj"].object_list]
+
+
+def test_the_search_index_is_used_when_it_is_available(stocked):
+    response = client.get(stocked.url)
+
+    assert response.context_data["evidence"].degraded is False
+    assert len(listed(response)) == 3
+
+
+def test_filtering_by_topic(stocked):
+    assert listed(client.get(f"{stocked.url}?topic=Tax")) == ["tax"]
+
+
+def test_filtering_by_two_topics_returns_both(stocked):
+    found = listed(client.get(f"{stocked.url}?topic=Tax&topic=Corruption"))
+
+    assert sorted(found) == ["corr", "tax"]
+
+
+def test_searching_by_keyword(stocked):
+    assert listed(client.get(f"{stocked.url}?q=procurement")) == ["proc"]
+
+
+def test_sorting_oldest_first(stocked):
+    assert listed(client.get(f"{stocked.url}?sort=oldest")) == ["proc", "corr", "tax"]
+
+
+def test_a_nonsense_filter_shows_the_page_rather_than_an_error(stocked):
+    response = client.get(f"{stocked.url}?topic=Nonsense&year=banana&sort=sideways&page=x")
+
+    assert response.status_code == 200
+    assert listed(response) == []
+
+
+####################################################################################################
+# The filter controls
+####################################################################################################
+
+
+def test_the_facets_are_rendered_with_counts(stocked):
+    rendered = client.get(stocked.url).rendered_content
+
+    assert 'name="topic"' in rendered
+    assert 'value="Tax"' in rendered
+    assert 'name="year"' in rendered
+    assert 'name="type"' in rendered
+    assert 'name="resource"' in rendered
+
+
+def test_a_selected_filter_is_checked(stocked):
+    rendered = client.get(f"{stocked.url}?topic=Tax").rendered_content
+
+    assert 'value="Tax" checked' in rendered or 'checked value="Tax"' in rendered
+
+
+def test_a_second_topic_is_still_offered_once_one_is_chosen(stocked):
+    """The disjunctive facet counts, seen from the template."""
+    rendered = client.get(f"{stocked.url}?topic=Tax").rendered_content
+
+    assert 'value="Corruption"' in rendered
+
+
+def test_the_sort_control_marks_the_current_option(stocked):
+    rendered = client.get(f"{stocked.url}?sort=az").rendered_content
+
+    assert 'value="az" selected' in rendered or 'selected value="az"' in rendered
+
+
+def test_a_clear_link_appears_only_when_something_is_filtered(stocked):
+    assert "evidence-filters__clear" not in client.get(stocked.url).rendered_content
+    assert "evidence-filters__clear" in client.get(f"{stocked.url}?topic=Tax").rendered_content
+
+
+def test_the_result_count_is_shown(stocked):
+    assert "3 records" in client.get(stocked.url).rendered_content
+
+
+def test_a_filter_matching_nothing_says_so(stocked):
+    rendered = client.get(f"{stocked.url}?topic=Nonsense").rendered_content
+
+    assert "no records" in rendered.lower()
+    assert 'name="topic"' in rendered
+
+
+def test_the_form_carries_no_page_field(stocked):
+    """Changing a filter has to send the reader back to page one."""
+    rendered = client.get(f"{stocked.url}?page=1").rendered_content
+
+    assert 'name="page"' not in rendered
+
+
+####################################################################################################
+# Crawling and caching
+####################################################################################################
+
+
+def test_a_filtered_view_is_not_indexed_by_search_engines(stocked):
+    assert "noindex" in client.get(f"{stocked.url}?topic=Tax").rendered_content
+
+
+def test_the_bare_listing_is_indexed(stocked):
+    assert "noindex" not in client.get(stocked.url).rendered_content
+
+
+####################################################################################################
+# Degraded mode
+####################################################################################################
+
+
+def test_a_search_outage_still_lists_the_records(stocked, monkeypatch):
+    def boom(*args, **kwargs):
+        msg = "connection refused"
+        raise ConnectionError(msg)
+
+    monkeypatch.setattr(search, "search", boom)
+
+    response = client.get(stocked.url)
+
+    assert response.status_code == 200
+    assert len(listed(response)) == 3
+    assert response.context_data["evidence"].degraded is True
+
+
+def test_a_search_outage_says_so_and_hides_the_controls(stocked, monkeypatch):
+    def boom(*args, **kwargs):
+        msg = "connection refused"
+        raise ConnectionError(msg)
+
+    monkeypatch.setattr(search, "search", boom)
+
+    rendered = client.get(stocked.url).rendered_content
+
+    assert "temporarily unavailable" in rendered.lower()
+    assert 'name="topic"' not in rendered

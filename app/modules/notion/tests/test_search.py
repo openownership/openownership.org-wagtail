@@ -4,6 +4,8 @@ from django.core.management import call_command
 
 # Module
 from modules.notion import search
+from modules.notion.tests import fakes
+from modules.notion.tests.fakes import FakeClient
 from modules.notion.models import (
     CountryTag,
     DataUserTag,
@@ -13,59 +15,6 @@ from modules.notion.models import (
     ResourceTypeTag,
     UsabilityThemeTag,
 )
-
-
-####################################################################################################
-# Fakes
-####################################################################################################
-
-
-class FakeIndex:
-    """Records what the real Meilisearch client would have been asked to do."""
-
-    def __init__(self, documents=None):
-        self.settings = {}
-        self.added = []
-        self.deleted = []
-        self.searches = []
-        self._documents = documents or []
-
-    def update_settings(self, body):
-        self.settings.update(body)
-
-    def add_documents(self, documents, primary_key=None):
-        self.added.append((documents, primary_key))
-        return {"taskUid": 1}
-
-    def delete_documents(self, ids):
-        self.deleted.append(ids)
-        return {"taskUid": 2}
-
-    def get_documents(self, parameters=None):
-        parameters = parameters or {}
-        offset = parameters.get("offset", 0)
-        limit = parameters.get("limit", 20)
-        page = self._documents[offset : offset + limit]
-        return type("Results", (), {"results": page, "total": len(self._documents)})()
-
-    def search(self, query, opt_params=None):
-        self.searches.append((query, opt_params))
-        return {"hits": [], "estimatedTotalHits": 0}
-
-
-class FakeClient:
-    def __init__(self, documents=None):
-        self.indexes = {}
-        self.created = []
-        self._documents = documents or []
-
-    def create_index(self, uid, options=None):
-        self.created.append((uid, options))
-
-    def index(self, uid):
-        if uid not in self.indexes:
-            self.indexes[uid] = FakeIndex(self._documents)
-        return self.indexes[uid]
 
 
 ####################################################################################################
@@ -443,3 +392,74 @@ def test_a_record_that_loses_its_link_leaves_the_index(entry):
 
     assert client.index(search.INDEX_NAME).deleted == [[entry.pk]]
     assert result["indexed"] == 0
+
+
+####################################################################################################
+# The test fake understands exactly what build_filter emits
+####################################################################################################
+
+
+@pytest.mark.parametrize(
+    "filters",
+    [
+        {"year": [2024]},
+        {"year": [2024, 2019]},
+        {"policy_areas": ["AML/CFT", "Tax"]},
+        {"regions": ["Africa"], "year": [2024]},
+        {"jurisdictions": ['Cote d"Ivoire']},
+        {"jurisdictions": ["Trinidad and Tobago", "Bosnia and Herzegovina"]},
+    ],
+)
+def test_the_fake_reads_back_what_build_filter_writes(filters):
+    """The fake is only safe while it parses exactly this grammar and no more."""
+    assert fakes.parse_filter(search.build_filter(filters)) == filters
+
+
+def test_the_fake_reads_an_empty_filter_as_nothing():
+    assert fakes.parse_filter("") == {}
+    assert fakes.parse_filter(search.build_filter({})) == {}
+
+
+def test_the_fake_matches_on_any_value_within_an_attribute():
+    document = {"policy_areas": ["Tax", "Corruption"]}
+
+    assert fakes.matches(document, {"policy_areas": ["Tax"]}) is True
+    assert fakes.matches(document, {"policy_areas": ["Corruption", "Fraud"]}) is True
+    assert fakes.matches(document, {"policy_areas": ["Fraud"]}) is False
+
+
+def test_the_fake_requires_every_attribute_to_match():
+    document = {"policy_areas": ["Tax"], "regions": ["Africa"]}
+
+    assert fakes.matches(document, {"policy_areas": ["Tax"], "regions": ["Africa"]}) is True
+    assert fakes.matches(document, {"policy_areas": ["Tax"], "regions": ["Europe"]}) is False
+
+
+def test_the_fake_puts_documents_with_no_value_last_whichever_way_it_sorts():
+    """Meilisearch does this, and the oldest-first sort is where it shows."""
+    documents = [{"year": None}, {"year": 2024}, {"year": 2019}]
+
+    ascending = fakes.apply_sort(documents, ["year:asc"])
+    descending = fakes.apply_sort(documents, ["year:desc"])
+
+    assert [d["year"] for d in ascending] == [2019, 2024, None]
+    assert [d["year"] for d in descending] == [2024, 2019, None]
+
+
+def test_the_fake_sorts_strings_in_both_directions():
+    documents = [{"t": "beta"}, {"t": "alpha"}, {"t": "gamma"}]
+
+    assert [d["t"] for d in fakes.apply_sort(documents, ["t:asc"])] == ["alpha", "beta", "gamma"]
+    assert [d["t"] for d in fakes.apply_sort(documents, ["t:desc"])] == ["gamma", "beta", "alpha"]
+
+
+def test_the_fake_falls_through_to_later_sort_terms():
+    documents = [
+        {"year": 2024, "t": "b"},
+        {"year": 2024, "t": "a"},
+        {"year": 2019, "t": "c"},
+    ]
+
+    ordered = fakes.apply_sort(documents, ["year:desc", "t:asc"])
+
+    assert [d["t"] for d in ordered] == ["a", "b", "c"]

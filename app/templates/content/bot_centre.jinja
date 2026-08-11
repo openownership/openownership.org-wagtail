@@ -1,7 +1,13 @@
-{% extends 'base_with_menu.jinja' %}
+{# Extends the bare base rather than base_without_sidebar, which reserves a
+   300px right-hand column for an aside this page does not have. The filter
+   column is on the left, so that space was simply lost from the cards. #}
+{% extends 'base.jinja' %}
 
 
-{% block content %}
+{% block main_inner %}
+<div class="evidence-page">
+
+    <h1 class="heading-xl evidence-page__title">{{ page.title }}</h1>
 
     {% if page.intro %}
         <div class="intro">
@@ -9,26 +15,60 @@
         </div>
     {% endif %}
 
-    <div class="related-pages">
-        <h2 class="sr-only">{% trans %}Evidence records{% endtrans %}</h2>
+    {% if evidence.degraded %}
+        <p class="evidence-notice" role="status">
+            {% trans %}Filtering and search are temporarily unavailable. Showing all records.{% endtrans %}
+        </p>
+    {% endif %}
 
-        {% if page_obj and page_obj.paginator.count %}
-            <p class="evidence-list__count">
-                {% trans count=page_obj.paginator.count %}{{ count }} records{% endtrans %}
-            </p>
+    <div class="evidence-layout">
 
-            <ul class="card-group evidence-list grid-cols grid--1-col landscape">
-                {% for entry in page_obj %}
-                    {% include "_partials/evidence_card.jinja" %}
-                {% endfor %}
-            </ul>
-
-            {% include "_partials/pagination.jinja" %}
-        {% else %}
-            <p class="evidence-list__empty">
-                {% trans %}There are no evidence records to show yet.{% endtrans %}
-            </p>
+        {% if not evidence.degraded %}
+            <div class="evidence-layout__filters">
+                <h2 class="evidence-layout__filters-title">{% trans %}Refine{% endtrans %}</h2>
+                {% include "_partials/evidence_filters.jinja" %}
+            </div>
         {% endif %}
+
+        <div class="evidence-layout__results">
+            <h2 class="sr-only">{% trans %}Evidence records{% endtrans %}</h2>
+
+            <p class="evidence-list__count" role="status">
+                {% trans count=evidence.total %}{{ count }} records{% endtrans %}
+            </p>
+
+            {% if evidence.query.is_filtered and not evidence.degraded %}
+                <ul class="evidence-chips">
+                    {% for group in evidence.facets %}
+                        {% for item in group.values if item.selected %}
+                            <li>
+                                <a class="evidence-chips__chip"
+                                   href="?{{ evidence.query.without(group.param, item.value) }}">
+                                    <span class="sr-only">{% trans %}Remove filter{% endtrans %}</span>
+                                    {{ group.label }}: {{ item.label }}
+                                    <span aria-hidden="true">&times;</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if evidence.total %}
+                <ul class="card-group evidence-list grid-cols grid--1-col landscape">
+                    {% for entry in page_obj %}
+                        {% include "_partials/evidence_card.jinja" %}
+                    {% endfor %}
+                </ul>
+
+                {% include "_partials/pagination.jinja" %}
+            {% else %}
+                <p class="evidence-list__empty">
+                    {% trans %}There are no records matching what you asked for. Try removing a filter.{% endtrans %}
+                </p>
+            {% endif %}
+        </div>
     </div>
 
-{% endblock content %}
+</div>
+{% endblock main_inner %}

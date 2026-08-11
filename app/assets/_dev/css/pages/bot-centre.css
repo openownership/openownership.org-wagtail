@@ -1,0 +1,122 @@
+/*
+ * BOT Evidence Centre
+ *
+ * Deliberately plain. Open Ownership have not settled the brand direction for
+ * this tool yet, so this is structure and spacing only, ready to be dressed.
+ */
+
+/* Matches the heading treatment the other index pages get from
+   .aside-layout__no-header, without borrowing a class that implies a sidebar. */
+.evidence-page__title {
+    @apply border-b border-black/50;
+    @apply pb-10 mt-0 mb-10;
+}
+
+.evidence-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+
+    @include min-width(md) {
+        grid-template-columns: 300px minmax(10px, 1fr);
+    }
+}
+
+/* The filter column stays visible on small screens, above the results, rather
+   than being hidden the way the page menu is. */
+.evidence-layout__filters-title {
+    @apply text-19 font-bold mb-4;
+}
+
+.evidence-notice {
+    @apply bg-grey-light p-4 mb-6 text-16;
+}
+
+
+/**************************************************************************************************/
+/* Filters                                                                                        */
+/**************************************************************************************************/
+
+.evidence-filters__keyword,
+.evidence-filters__sort,
+.evidence-filters__group {
+    @apply mb-6;
+}
+
+.evidence-filters__label,
+.evidence-filters__legend {
+    @apply block font-bold text-16 mb-2;
+}
+
+.evidence-filters__input,
+.evidence-filters__select {
+    @apply w-full;
+}
+
+.evidence-filters__group {
+    border: 0;
+    padding: 0;
+}
+
+.evidence-filters__chosen {
+    @apply font-normal text-text-secondary;
+}
+
+.evidence-filters__values {
+    @apply list-none p-0 m-0;
+}
+
+.evidence-filters__value {
+    @apply flex items-baseline gap-2 text-16 py-1;
+    cursor: pointer;
+}
+
+.evidence-filters__count {
+    @apply text-text-secondary text-14 ml-auto;
+}
+
+.evidence-filters__more {
+    @apply mt-2;
+
+    summary {
+        @apply text-14 cursor-pointer;
+    }
+}
+
+.evidence-filters__actions {
+    @apply flex items-center gap-4;
+}
+
+.evidence-filters__clear {
+    @apply text-14 underline;
+}
+
+
+/**************************************************************************************************/
+/* Results                                                                                        */
+/**************************************************************************************************/
+
+.evidence-list__count {
+    @apply text-16 text-text-secondary mb-4;
+}
+
+.evidence-list__empty {
+    @apply text-19 py-8;
+}
+
+.evidence-chips {
+    @apply list-none p-0 mb-6 flex flex-wrap gap-2;
+}
+
+.evidence-chips__chip {
+    @apply inline-flex items-center gap-2 text-14 px-3 py-1;
+    @apply bg-grey-light no-underline;
+}
+
+.evidence-card__facts {
+    @apply flex flex-wrap gap-4;
+}
+
+.evidence-card__source {
+    @apply text-14;
+}

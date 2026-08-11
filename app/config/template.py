@@ -199,6 +199,20 @@ def url_from_path(value):
     return value.replace('/home', '', 1)
 
 
+def pagination_query(request) -> str:
+    """The current query string with the page number taken out.
+
+    Pagination links append their own `page`, so everything else - filters,
+    keyword, sort order - has to be carried across by hand or it is lost on the
+    click through to page two.
+    """
+    if request is None:
+        return ''
+    params = request.GET.copy()
+    params.pop('page', None)
+    return params.urlencode()
+
+
 def commitment_summary(commitment_type: str, country) -> SafeString:
     """Ported from the old map generator.
 
@@ -350,5 +364,6 @@ class TemplateGlobalsExtension(Extension):
             'picture': picture,
             'routablepageurl': jinja2.pass_context(routablepageurl),
             'get_top_level_navpage': get_top_level_navpage,
+            'pagination_query': pagination_query,
         })
         environment.install_gettext_translations(translation)

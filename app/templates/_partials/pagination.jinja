@@ -1,48 +1,50 @@
+{# Page links for anything with a Django page object in `page_obj`.
 
-{% if page_obj %}
-{% if page_obj.paginator %}
-{% if page_obj.paginator.num_pages %}
-{% if page_obj.paginator.num_pages > 1 %}
+Every query parameter except `page` is carried across, so filters, a keyword
+search and a sort order all survive a click through to page two.
+#}
+{% if page_obj and page_obj.paginator and page_obj.paginator.num_pages > 1 %}
+    {% set params = pagination_query(request) %}
+    {# A plain & here: autoescaping turns it into &amp; on output. #}
+    {% set base = "?" + params + "&page=" if params else "?page=" %}
+
     <nav aria-label="Pagination">
         <ul class="nav nav--pagination">
             {% if page_obj.has_previous() %}
                 <li class="nav--previous">
-                    <a class="reverse-underline" href="?{% if terms %}q={{ terms|urlencode }}&amp;{% endif %}page={{ page_obj.previous_page_number() }}">
-                        <span aria-hidden="true"> < </span>
+                    <a class="reverse-underline" href="{{ base }}{{ page_obj.previous_page_number() }}">
+                        <span aria-hidden="true"> &lt; </span>
                         {% trans %}Back{% endtrans %}
                     </a>
                 </li>
             {% endif %}
 
-            {% for p in page_obj.paginator.get_elided_page_range() %}
+            {% for p in page_obj.paginator.get_elided_page_range(page_obj.number) %}
                 {% if p == '…' %}
                     <li>
                         <span class="nav--no-page">...</span>
                     </li>
                 {% elif p == page_obj.number %}
                     <li>
-                        <a class="reverse-underline" href="./" aria-current="page">
+                        <a class="reverse-underline" href="{{ base }}{{ p }}" aria-current="page">
                             {{ p }}
                         </a>
                     </li>
                 {% else %}
                     <li>
-                        <a href="?{% if terms %}q={{ terms|urlencode }}&amp;{% endif %}page={{ p }}">{{ p }}</a>
+                        <a href="{{ base }}{{ p }}">{{ p }}</a>
                     </li>
                 {% endif %}
             {% endfor %}
 
             {% if page_obj.has_next() %}
                 <li class="nav--next">
-                    <a class="reverse-underline" href="?{% if terms %}q={{ terms|urlencode }}&amp;{% endif %}page={{ page_obj.next_page_number() }}">
+                    <a class="reverse-underline" href="{{ base }}{{ page_obj.next_page_number() }}">
                         {% trans %}Next{% endtrans %}
-                        <span aria-hidden="true"> > </span>
+                        <span aria-hidden="true"> &gt; </span>
                     </a>
                 </li>
             {% endif %}
         </ul>
     </nav>
-{% endif %}
-{% endif %}
-{% endif %}
 {% endif %}

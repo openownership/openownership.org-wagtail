@@ -52,6 +52,7 @@
   "dependencies": {
     "@openownership/bods-dagre": "^0.2.2",
     "focus-visible": "^5.2.0",
+    "htmx.org": "^2.0.10",
     "jquery": "^3.6.0",
     "micromodal": "^0.4.10",
     "mini-css-extract-plugin": "^2.7.5",

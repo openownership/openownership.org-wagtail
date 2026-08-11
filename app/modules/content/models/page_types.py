@@ -400,17 +400,7 @@ class IndexPageType(BasePage):
 
     def get_context(self, request, *args, **kwargs) -> dict:
         ctx = super().get_context(request, *args, **kwargs)
-
-        query_string = request.GET.copy()
-        pagination_params = query_string.pop("page", None) and query_string.urlencode()
-
-        ctx.update(
-            {
-                "page_obj": self.paginate_objects(request),
-                "pagination_params": pagination_params,
-            },
-        )
-
+        ctx["page_obj"] = self.paginate_objects(request)
         return ctx
 
     @classmethod
