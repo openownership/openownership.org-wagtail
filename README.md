@@ -60,6 +60,12 @@ Useful flags: `--dry-run` fetches and validates without writing, `--force`
 updates rows Notion has not touched, and `--only` limits the run to named
 syncers (`countries`, `commitments`, `regimes`, `regimes_sub`, `impact`).
 
+Each row schema declares the Notion columns it reads in `PROPERTIES`. The sync
+checks those columns are still there before writing anything, and skips that
+database with a loud message if any have gone. Without that check a renamed
+column would decode to an empty value rather than an error, so the sync would
+blank every field behind it and report success.
+
 The code is in three layers: `client.py` fetches, `schemas/` validates with
 Pydantic, and `sync/` persists. A row that fails validation is skipped rather
 than being allowed to write empty values over good data, and is listed at the
@@ -81,6 +87,10 @@ Two things about the impact tracker are worth knowing:
 * Only entries with `publish` set have been cleared by Open Ownership for
   display. Everything else is synced so the record stays complete, and must
   stay hidden.
+* A record with no link is not shown at all, at Open Ownership's request: the
+  point of a record is to send a reader to its source. `ImpactEntry.objects`
+  has `publishable()` for the rule and `withheld_for_no_link()` for the ones it
+  drops, and the indexer reports how many were held back.
 
 The countries database also holds a row called "Global", which the impact
 tracker uses to mean worldwide. It is listed in `NOTION_NON_COUNTRY_ROWS` and
@@ -115,10 +125,10 @@ single value `"AML/CFT, Corruption"` and could not be faceted on, and it has no
 way to declare sortable attributes.
 
 * **Searchable**: description, summary, jurisdictions, regions, policy areas,
-  usability themes, impact types, resource types, source URL. Order matters,
+  usability themes, data users, resource types, source URL. Order matters,
   since Meilisearch ranks a match in an earlier attribute higher.
 * **Filterable**: year, jurisdictions, regions, policy areas, usability themes,
-  impact types, resource types. Values within one facet are ORed and the facets
+  data users, resource types. Values within one facet are ORed and the facets
   are ANDed.
 * **Sortable**: year, `topic_sort` and `sort_title`. The last two exist only to
   sort on, because a record holds several policy areas and the raw description
@@ -126,8 +136,14 @@ way to declare sortable attributes.
 * **Default order**: year descending, then topic, then title. Records with no
   policy area come last within their year.
 
-Only entries with `publish` set and not soft-deleted are indexed, and only the
-columns Open Ownership mark public in the tracker. Lessons, "OO outputs used in"
+The index holds the whole summary so a term late in the text is still findable.
+Cards show `display_summary`, which trims to `ImpactEntry.SUMMARY_WORDS` (50).
+Open Ownership aim for that length but Notion cannot enforce it, and a character
+count reads differently at every font width, so the limit is applied on words at
+display time rather than relied on at their end.
+
+Only entries that pass `ImpactEntry.objects.publishable()` are indexed, and only
+the columns Open Ownership mark public in the tracker. Lessons, "OO outputs used in"
 and "Presentations/slide decks used in" are deliberately left out: anything in
 the index can end up in front of a reader.
 

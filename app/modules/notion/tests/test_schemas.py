@@ -409,3 +409,52 @@ def test_attachments_keep_their_order():
 
 def test_impact_row_with_no_attachments():
     assert ImpactRow.from_page(impact_page()).attachments == []
+
+
+####################################################################################################
+# The declared columns match what Notion actually sends
+####################################################################################################
+
+
+@pytest.mark.parametrize(
+    ("schema", "dataset"),
+    [
+        (CountryRow, COUNTRIES),
+        (CommitmentRow, COMMITMENTS),
+        (RegimeRow, REGIMES),
+        (RegimeSubRow, REGIMES_SUB),
+        (ImpactRow, IMPACT),
+    ],
+)
+def test_declared_properties_exist_in_the_real_data(schema, dataset):
+    """A typo here would disarm the rename guard without anyone noticing."""
+    present = set(dataset["results"][0]["properties"])
+    missing = [name for name in schema.PROPERTIES if name not in present]
+
+    assert missing == []
+
+
+@pytest.mark.parametrize(
+    ("schema", "dataset"),
+    [
+        (CountryRow, COUNTRIES),
+        (CommitmentRow, COMMITMENTS),
+        (RegimeRow, REGIMES),
+        (RegimeSubRow, REGIMES_SUB),
+        (ImpactRow, IMPACT),
+    ],
+)
+def test_every_property_the_schema_reads_is_declared(schema, dataset):
+    """Whatever `extract` reads has to be declared, or the guard misses it."""
+    page = dataset["results"][0]
+    declared = set(schema.PROPERTIES)
+    read = {name for name in page["properties"] if _is_read_by(schema, name)}
+
+    assert read - declared == set()
+
+
+def _is_read_by(schema, property_name: str) -> bool:
+    """Whether `extract` mentions this column by name."""
+    import inspect
+
+    return f'"{property_name}"' in inspect.getsource(schema.extract)

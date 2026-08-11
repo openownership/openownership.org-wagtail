@@ -22,13 +22,14 @@ def bot_centre(home_page):
     return page
 
 
-def make_entry(notion_id, description, year=2024, publish=True, policy_areas=()):
+def make_entry(notion_id, description, year=2024, publish=True, policy_areas=(), link=None):
     entry = ImpactEntry.objects.create(
         notion_id=notion_id,
         description=description,
         summary=f"Summary of {description}",
         year=year,
         publish=publish,
+        source_url="https://example.com/source" if link is None else link,
     )
     for name in policy_areas:
         entry.policy_areas.add(PolicyAreaTag.objects.get_or_create(name=name)[0])
@@ -70,6 +71,28 @@ def test_entries_not_cleared_for_publication_are_hidden(bot_centre):
     assert "Still internal" not in rendered
 
 
+def test_entries_with_no_link_are_hidden(bot_centre):
+    """OO asked for records with nothing to link to be left out entirely."""
+    make_entry("e1", "Has a source")
+    make_entry("e2", "Nothing to link to", link="")
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "Has a source" in rendered
+    assert "Nothing to link to" not in rendered
+
+
+def test_a_long_summary_is_cut_short_on_the_card(bot_centre):
+    entry = make_entry("e1", "An entry")
+    entry.summary = " ".join(f"word{n}" for n in range(120))
+    entry.save()
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "word10" in rendered
+    assert "word119" not in rendered
+
+
 def test_soft_deleted_entries_are_hidden(bot_centre):
     entry = make_entry("e1", "Gone from Notion")
     entry.deleted = True
@@ -78,18 +101,24 @@ def test_soft_deleted_entries_are_hidden(bot_centre):
     assert "Gone from Notion" not in client.get(bot_centre.url).rendered_content
 
 
-def test_the_year_and_tags_are_on_the_card(bot_centre):
-    entry = make_entry("e1", "An entry", year=2019, policy_areas=["Tax"])
-    entry.resource_types.add(ResourceTypeTag.objects.create(name="Public sector"))
-    country = CountryTag.objects.create(notion_id="c1", name="Kenya", slug="kenya")
-    entry.countries.add(country)
+def test_the_card_shows_description_jurisdiction_topic_and_year(bot_centre):
+    """The four fields OO asked for on a collapsed record."""
+    entry = make_entry("e1", "An entry about something", year=2019, policy_areas=["Tax"])
+    entry.countries.add(CountryTag.objects.create(notion_id="c1", name="Kenya", slug="kenya"))
 
     rendered = client.get(bot_centre.url).rendered_content
 
-    assert "2019" in rendered
-    assert "Tax" in rendered
-    assert "Public sector" in rendered
+    assert "An entry about something" in rendered
     assert "Kenya" in rendered
+    assert "Tax" in rendered
+    assert "2019" in rendered
+
+
+def test_the_card_holds_back_the_rest_until_expansion(bot_centre):
+    entry = make_entry("e1", "An entry", year=2019)
+    entry.resource_types.add(ResourceTypeTag.objects.create(name="Public sector"))
+
+    assert "Public sector" not in client.get(bot_centre.url).rendered_content
 
 
 ####################################################################################################

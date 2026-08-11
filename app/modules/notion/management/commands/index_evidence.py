@@ -23,5 +23,6 @@ class Command(BaseCommand):
 
         result = search.reindex()
         self.stdout.write(
-            f"{search.INDEX_NAME}: {result['indexed']} indexed, {result['removed']} removed",
+            f"{search.INDEX_NAME}: {result['indexed']} indexed, {result['removed']} removed, "
+            f"{result['withheld']} withheld for having no link",
         )

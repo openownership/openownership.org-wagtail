@@ -6,8 +6,8 @@ from django.core.management import call_command
 from modules.notion import search
 from modules.notion.models import (
     CountryTag,
+    DataUserTag,
     ImpactEntry,
-    ImpactTypeTag,
     PolicyAreaTag,
     Region,
     ResourceTypeTag,
@@ -96,7 +96,7 @@ def entry(kenya):
         PolicyAreaTag.objects.create(name="Corruption"),
         PolicyAreaTag.objects.create(name="AML/CFT"),
     )
-    item.impact_types.add(ImpactTypeTag.objects.create(name="Data use"))
+    item.data_users.add(DataUserTag.objects.create(name="Government: FIU"))
     item.resource_types.add(ResourceTypeTag.objects.create(name="Public sector"))
     item.usability_themes.add(UsabilityThemeTag.objects.create(name="Identifiers"))
     return item
@@ -127,7 +127,7 @@ def test_vocabularies_stay_as_lists(entry):
     document = search.build_document(entry)
 
     assert document["policy_areas"] == ["AML/CFT", "Corruption"]
-    assert document["impact_types"] == ["Data use"]
+    assert document["data_users"] == ["Government: FIU"]
     assert document["resource_types"] == ["Public sector"]
     assert document["usability_themes"] == ["Identifiers"]
 
@@ -390,11 +390,11 @@ def test_search_paginates():
 
 
 def test_index_evidence_reports_what_it_did(monkeypatch, capsys):
-    monkeypatch.setattr(search, "reindex", lambda: {"indexed": 121, "removed": 3})
+    monkeypatch.setattr(search, "reindex", lambda: {"indexed": 121, "removed": 3, "withheld": 2})
 
     call_command("index_evidence")
 
-    assert "evidence: 121 indexed, 3 removed" in capsys.readouterr().out
+    assert "evidence: 121 indexed, 3 removed, 2 withheld" in capsys.readouterr().out
 
 
 def test_index_evidence_can_apply_settings_only(monkeypatch, capsys):
@@ -406,3 +406,40 @@ def test_index_evidence_can_apply_settings_only(monkeypatch, capsys):
 
     assert applied == [True]
     assert "settings applied" in capsys.readouterr().out
+
+
+####################################################################################################
+# Records with no link
+####################################################################################################
+
+
+def test_a_record_with_no_link_is_not_indexed(entry):
+    """OO asked for these to be left out entirely: every record points at its source."""
+    ImpactEntry.objects.create(notion_id="e9", description="No source", publish=True)
+
+    assert [d["id"] for d in search.documents()] == [entry.pk]
+
+
+def test_reindex_reports_what_was_withheld(entry):  # noqa: ARG001
+    ImpactEntry.objects.create(notion_id="e9", description="No source", publish=True)
+    client = FakeClient()
+
+    result = search.reindex(client=client)
+
+    assert result["indexed"] == 1
+    assert result["withheld"] == 1
+
+
+def test_nothing_withheld_when_every_record_has_a_link(entry):  # noqa: ARG001
+    assert search.reindex(client=FakeClient())["withheld"] == 0
+
+
+def test_a_record_that_loses_its_link_leaves_the_index(entry):
+    client = FakeClient(documents=[{"id": entry.pk}])
+    entry.source_url = ""
+    entry.save()
+
+    result = search.reindex(client=client)
+
+    assert client.index(search.INDEX_NAME).deleted == [[entry.pk]]
+    assert result["indexed"] == 0

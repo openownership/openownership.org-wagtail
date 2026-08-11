@@ -12,7 +12,7 @@ empty values over good data.
 import datetime as dt
 from decimal import Decimal
 from pathlib import PurePosixPath
-from typing import Annotated, Optional
+from typing import Annotated, ClassVar, Optional
 from urllib.parse import unquote, urlsplit, urlunsplit
 
 # 3rd party
@@ -74,6 +74,12 @@ class NotionRow(BaseModel):
 
     model_config = ConfigDict(str_strip_whitespace=True)
 
+    # Every Notion column `extract` reads. The sync checks these are still
+    # there before it writes anything, because a renamed column decodes to an
+    # empty value rather than an error and would otherwise be written over good
+    # data and reported as a success.
+    PROPERTIES: ClassVar[tuple[str, ...]] = ()
+
     notion_id: str = Field(min_length=1)
     notion_created: dt.datetime
     notion_updated: dt.datetime
@@ -103,6 +109,8 @@ class NotionRow(BaseModel):
 
 
 class CountryRow(NotionRow):
+    PROPERTIES = ("Country", "OO Support", "ISO2")
+
     name: str = Field(min_length=1)
     oo_support: str = ""
     iso2: str = ""
@@ -126,6 +134,17 @@ class CountryRow(NotionRow):
 
 
 class CommitmentRow(NotionRow):
+    PROPERTIES = (
+        "Country",
+        "Date",
+        "Link",
+        "Commitment type",
+        "Central register",
+        "Public register",
+        "All sectors",
+        "Summary Text",
+    )
+
     country_id: str = Field(min_length=1)
     date: Optional[dt.date] = None
     link: str = ""
@@ -156,6 +175,19 @@ class CommitmentRow(NotionRow):
 
 
 class RegimeRow(NotionRow):
+    PROPERTIES = (
+        "Country",
+        "Register name",
+        "Implementation stage",
+        "Register URL",
+        "Launch date",
+        "Threshold (%)",
+        "Responsible agency",
+        "Agency type",
+        "Scope",
+        "Who can access",
+    )
+
     country_id: str = Field(min_length=1)
     title: str = ""
     stage: str = ""
@@ -190,6 +222,15 @@ class RegimeRow(NotionRow):
 
 
 class RegimeSubRow(NotionRow):
+    PROPERTIES = (
+        "Disclosure regime",
+        "API available",
+        "Bulk data available",
+        "Data on OO Register",
+        "Data published in BODS",
+        "Structured data",
+    )
+
     regime_id: str = Field(min_length=1)
     api_available: YesNo = None
     bulk_data_available: YesNo = None
@@ -260,6 +301,31 @@ class NotionFile(BaseModel):
 
 
 class ImpactRow(NotionRow):
+    PROPERTIES = (
+        "One sentence description (P)",
+        "Short summary (P)",
+        "Lessons",
+        "OO outputs used in",
+        "Presentations/slide decks used in",
+        "Source URL (P)",
+        "Year (P)",
+        "Publish?",
+        "OO's influence",
+        "Tangible impact",
+        "International",
+        "Archive",
+        "[TEMP] Old?",
+        "[Archive]",
+        "Jurisdiction(s) (P)",
+        "Disclosure regime(s)",
+        "Data user",
+        "Usability theme(s)",
+        "Type",
+        "Type of resource (P)",
+        "Policy area (P)",
+        "Attach source/supporting documentation if possible",
+    )
+
     description: str = Field(min_length=1)
     summary: str = ""
     lessons: str = ""

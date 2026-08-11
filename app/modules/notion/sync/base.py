@@ -45,6 +45,16 @@ class BaseSyncer:
             pages = self.client.fetch_database(self.client.database_id(self.db_key))
         result.fetched = len(pages)
 
+        result.missing_properties = self.missing_properties(pages)
+        if result.missing_properties:
+            # Stop before writing anything. Carrying on would blank every field
+            # behind the renamed column and soft-delete nothing, which looks
+            # exactly like a successful run.
+            logger.error(
+                f"{self.name}: Notion is missing {result.missing_properties}; skipping the sync",
+            )
+            return result
+
         seen = set()
         for page in pages:
             try:
@@ -88,6 +98,18 @@ class BaseSyncer:
 
     def persist(self, row: NotionRow, force: bool = False) -> Outcome:
         raise NotImplementedError
+
+    def missing_properties(self, pages: list[dict]) -> list[str]:
+        """Columns the schema reads that Notion is no longer sending.
+
+        Every page in a database carries the full set of columns, so the first
+        one is enough to tell whether a column has been renamed, moved or
+        deleted. An empty database says nothing either way.
+        """
+        if not pages or not self.schema.PROPERTIES:
+            return []
+        present = set(pages[0].get("properties", {}))
+        return [name for name in self.schema.PROPERTIES if name not in present]
 
     def excluded(self, row: NotionRow) -> bool:  # noqa: ARG002
         """Whether this row should be left out of the sync entirely.

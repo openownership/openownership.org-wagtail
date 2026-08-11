@@ -24,7 +24,7 @@ def indexed(monkeypatch):
 
     def fake_reindex():
         calls.append(True)
-        return {"indexed": 121, "removed": 2}
+        return {"indexed": 121, "removed": 2, "withheld": 4}
 
     monkeypatch.setattr(command_module.search, "reindex", fake_reindex)
     return calls
@@ -39,7 +39,7 @@ def test_sync_reindexes_when_it_finishes(clean_report, indexed, capsys):  # noqa
     call_command("sync_notion")
 
     assert indexed == [True]
-    assert "evidence: 121 indexed, 2 removed" in capsys.readouterr().out
+    assert "evidence: 121 indexed, 2 removed, 4 withheld" in capsys.readouterr().out
 
 
 def test_a_dry_run_does_not_touch_the_index(clean_report, indexed):  # noqa: ARG001

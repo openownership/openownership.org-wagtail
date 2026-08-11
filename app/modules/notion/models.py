@@ -5,6 +5,7 @@ from django.db import models
 from django.forms import CheckboxSelectMultiple
 from django.shortcuts import reverse
 from django.utils.functional import cached_property
+from django.utils.text import Truncator
 from django.utils.translation import gettext_lazy as _
 from django_extensions.db.fields import AutoSlugField
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
@@ -984,6 +985,22 @@ class PolicyAreaTag(ImpactTagBase):
 ####################################################################################################
 
 
+class ImpactEntryQuerySet(models.QuerySet):
+    def publishable(self):
+        """Entries that may appear publicly.
+
+        Three conditions: Open Ownership cleared it, it still exists in Notion,
+        and it has a link. Open Ownership asked for records with no link to be
+        left out entirely, since the point of a record is to send a reader to
+        its source.
+        """
+        return self.filter(publish=True, deleted=False).exclude(source_url="")
+
+    def withheld_for_no_link(self):
+        """Cleared for publication, but with nothing to point a reader at."""
+        return self.filter(publish=True, deleted=False, source_url="")
+
+
 class ImpactEntry(NotionModel):
     """A single recorded use or impact of beneficial ownership data.
 
@@ -991,6 +1008,12 @@ class ImpactEntry(NotionModel):
     `publish` set are cleared by Open Ownership for display on the site; the
     rest are synced so the record stays complete but should stay hidden.
     """
+
+    objects = ImpactEntryQuerySet.as_manager()
+
+    # Open Ownership aim for summaries of about this length. Notion cannot
+    # enforce it, so it is applied here at display time rather than relied on.
+    SUMMARY_WORDS = 50
 
     class Meta:
         verbose_name = _("Impact Entry")
@@ -1135,6 +1158,16 @@ class ImpactEntry(NotionModel):
 
     def __str__(self):
         return self.description[:100]
+
+    @cached_property
+    def display_summary(self) -> str:
+        """The summary cut to a card-sized length.
+
+        Trimmed on words rather than characters: a character count behaves
+        differently at every font width, so it is not something an editor can
+        write to.
+        """
+        return Truncator(self.summary).words(self.SUMMARY_WORDS, truncate="…")
 
     @cached_property
     def display_attachments(self):

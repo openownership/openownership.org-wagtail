@@ -1044,11 +1044,11 @@ class BotCentrePage(IndexPageType):
     objects_per_page = 12
 
     def base_queryset(self):
-        """Only the entries Open Ownership have cleared for publication."""
-        return ImpactEntry.objects.filter(publish=True, deleted=False).prefetch_related(
+        """Only the entries that may appear publicly."""
+        return ImpactEntry.objects.publishable().prefetch_related(
             "countries",
             "policy_areas",
-            "impact_types",
+            "data_users",
             "resource_types",
         )
 

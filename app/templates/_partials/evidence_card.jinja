@@ -11,11 +11,10 @@ whole card is not clickable yet; that comes with the detail pages.
 
     <div class="card-group__card-decoration">
 
+        {# Collapsed cards show description, jurisdiction, topic and year only.
+           Everything else appears when the record is expanded. #}
         <div class="card-group__meta">
             {% for tag in entry.policy_areas.all() %}
-                <span>{{ tag.name }}</span>
-            {% endfor %}
-            {% for tag in entry.resource_types.all() %}
                 <span>{{ tag.name }}</span>
             {% endfor %}
         </div>
@@ -24,7 +23,7 @@ whole card is not clickable yet; that comes with the detail pages.
             <h2 class="card-group__title">{{ entry.description }}</h2>
 
             {% if entry.summary %}
-                <p class="card-group__blurb">{{ entry.summary }}</p>
+                <p class="card-group__blurb">{{ entry.display_summary }}</p>
             {% endif %}
 
             <p class="card-group__date evidence-card__facts">

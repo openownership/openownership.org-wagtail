@@ -37,7 +37,7 @@ SEARCHABLE_ATTRIBUTES = [
     "regions",
     "policy_areas",
     "usability_themes",
-    "impact_types",
+    "data_users",
     "resource_types",
     "source_url",
 ]
@@ -48,7 +48,7 @@ FILTERABLE_ATTRIBUTES = [
     "regions",
     "policy_areas",
     "usability_themes",
-    "impact_types",
+    "data_users",
     "resource_types",
 ]
 
@@ -107,7 +107,7 @@ def build_document(entry: ImpactEntry) -> dict:
         "regions": regions,
         "policy_areas": policy_areas,
         "usability_themes": sorted(entry.usability_themes.values_list("name", flat=True)),
-        "impact_types": sorted(entry.impact_types.values_list("name", flat=True)),
+        "data_users": sorted(entry.data_users.values_list("name", flat=True)),
         "resource_types": sorted(entry.resource_types.values_list("name", flat=True)),
         "topic_sort": policy_areas[0].lower() if policy_areas else "",
         "sort_title": entry.description.lower(),
@@ -121,14 +121,14 @@ def _region_names(entry: ImpactEntry):
 
 
 def documents() -> list[dict]:
-    """Every entry cleared for publication, as index documents."""
+    """Every entry that may appear publicly, as index documents."""
     queryset = (
-        ImpactEntry.objects.filter(publish=True, deleted=False)
+        ImpactEntry.objects.publishable()
         .prefetch_related(
             "countries__regions",
             "policy_areas",
             "usability_themes",
-            "impact_types",
+            "data_users",
             "resource_types",
         )
         .order_by("pk")
@@ -213,7 +213,8 @@ def reindex(client: Optional[meilisearch.Client] = None) -> dict:
     sees an empty index.
 
     Returns:
-        How many documents were written and how many were removed.
+        How many documents were written, how many were removed, and how many
+        entries were held back for having no link.
     """
     client = client or get_client()
     configure_index(client)
@@ -228,7 +229,11 @@ def reindex(client: Optional[meilisearch.Client] = None) -> dict:
     if stale:
         index.delete_documents(stale)
 
-    return {"indexed": len(records), "removed": len(stale)}
+    return {
+        "indexed": len(records),
+        "removed": len(stale),
+        "withheld": ImpactEntry.objects.withheld_for_no_link().count(),
+    }
 
 
 def _indexed_ids(index) -> set:

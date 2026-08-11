@@ -12,6 +12,7 @@ from modules.notion.models import (
     ImpactEntry,
     PolicyAreaTag,
 )
+from modules.notion.report import SyncReport
 from modules.notion.sync.runner import run_sync
 from modules.notion.sync.syncers import (
     CommitmentSyncer,
@@ -73,10 +74,13 @@ def commitment_page(notion_id, country_id, central=False):
     return make_page(
         {
             "Country": relation(country_id),
+            "Date": {"type": "date", "date": None},
+            "Link": {"type": "url", "url": None},
             "Central register": checkbox(central),
             "Public register": checkbox(False),
             "All sectors": checkbox(False),
             "Commitment type": rich_text("Other"),
+            "Summary Text": rich_text(""),
         },
         notion_id,
     )
@@ -88,7 +92,11 @@ def regime_page(notion_id, country_id, scope=(), access=()):
             "Country": relation(country_id),
             "Register name": title("Register"),
             "Implementation stage": multi_select("Publish"),
+            "Register URL": {"type": "url", "url": None},
+            "Launch date": select(None),
             "Threshold (%)": {"type": "number", "number": 25},
+            "Responsible agency": rich_text(""),
+            "Agency type": select(None),
             "Scope": multi_select(*scope),
             "Who can access": multi_select(*access),
         },
@@ -101,7 +109,10 @@ def regime_sub_page(notion_id, regime_id, api="Yes", bods="No"):
         {
             "Disclosure regime": relation(regime_id),
             "API available": select(api),
+            "Bulk data available": select(None),
+            "Data on OO Register": select(None),
             "Data published in BODS": select(bods),
+            "Structured data": select(None),
         },
         notion_id,
     )
@@ -143,7 +154,10 @@ def test_country_sync_soft_deletes_missing():
 
 def test_invalid_row_reported_and_not_clobbered():
     CountrySyncer(None).run(pages=[country_page("c1", "Afghanistan"), country_page("c2", "Brazil")])
-    bad = make_page({"Country": title(""), "OO Support": select("Medium")}, "c2")
+    bad = make_page(
+        {"Country": title(""), "OO Support": select("Medium"), "ISO2": rich_text("")},
+        "c2",
+    )
     res = CountrySyncer(None).run(pages=[country_page("c1", "Afghanistan"), bad])
     assert res.invalid_count == 1
     c2 = CountryTag.objects.get(notion_id="c2")
@@ -274,16 +288,24 @@ def impact_page(notion_id, countries=(), regimes=(), attachments=(), **overrides
         "One sentence description (P)": title("Kenyan FIU used BO data"),
         "Short summary (P)": rich_text("A longer summary."),
         "Lessons": rich_text("What we learned."),
+        "OO outputs used in": rich_text(""),
+        "Presentations/slide decks used in": rich_text(""),
         "Source URL (P)": url("https://example.com/story"),
         "Year (P)": number(2024),
         "Publish?": checkbox(True),
+        "OO's influence": checkbox(False),
         "Tangible impact": checkbox(True),
         "International": checkbox(False),
+        "Archive": checkbox(False),
+        "[TEMP] Old?": checkbox(False),
+        "[Archive]": multi_select(),
         "Jurisdiction(s) (P)": relation(*countries),
         "Disclosure regime(s)": relation(*regimes),
         "Data user": multi_select("Government: FIU"),
+        "Usability theme(s)": multi_select(),
         "Policy area (P)": multi_select("AML/CFT", "Corruption"),
         "Type": multi_select("Data use"),
+        "Type of resource (P)": multi_select("Public sector"),
         "Attach source/supporting documentation if possible": files(*attachments),
     }
     props.update(overrides)
@@ -442,3 +464,76 @@ def test_run_sync_includes_impact_after_regimes(no_downloads):  # noqa: ARG001
     assert not report.has_failures
     entry = ImpactEntry.objects.get(notion_id="i1")
     assert list(entry.regimes.values_list("notion_id", flat=True)) == ["r1"]
+
+
+####################################################################################################
+# Guarding against renamed Notion columns
+####################################################################################################
+
+
+def test_a_renamed_column_stops_the_sync():
+    """A rename decodes to empty values, which would otherwise be written over
+    good data and reported as a success.
+    """
+    page = country_page("c1", "Afghanistan")
+    page["properties"]["Nation"] = page["properties"].pop("Country")
+
+    res = CountrySyncer(None).run(pages=[page])
+
+    assert res.missing_properties == ["Country"]
+    assert res.created == 0
+    assert CountryTag.objects.filter(notion_id="c1").count() == 0
+
+
+def test_a_renamed_column_does_not_soft_delete_what_we_hold():
+    CountrySyncer(None).run(pages=[country_page("c1", "Afghanistan")])
+    page = country_page("c1", "Afghanistan")
+    page["properties"]["Nation"] = page["properties"].pop("Country")
+
+    CountrySyncer(None).run(pages=[page])
+
+    assert CountryTag.objects.get(notion_id="c1").deleted is False
+
+
+def test_a_renamed_column_is_reported_as_a_failure():
+    page = country_page("c1", "Afghanistan")
+    page["properties"]["ISO"] = page["properties"].pop("ISO2")
+
+    report = SyncReport()
+    report.add(CountrySyncer(None).run(pages=[page]))
+
+    assert report.has_failures is True
+    assert "ISO2" in report.details()
+
+
+def test_every_missing_column_is_named_at_once():
+    page = country_page("c1", "Afghanistan")
+    page["properties"].pop("ISO2")
+    page["properties"].pop("OO Support")
+
+    res = CountrySyncer(None).run(pages=[page])
+
+    assert res.missing_properties == ["OO Support", "ISO2"]
+
+
+def test_columns_present_means_business_as_usual():
+    res = CountrySyncer(None).run(pages=[country_page("c1", "Afghanistan")])
+
+    assert res.missing_properties == []
+    assert res.created == 1
+
+
+def test_an_empty_database_is_not_treated_as_renamed():
+    """No rows means nothing to check, not every column missing."""
+    res = CountrySyncer(None).run(pages=[])
+
+    assert res.missing_properties == []
+
+
+def test_the_guard_runs_on_a_dry_run_too():
+    page = country_page("c1", "Afghanistan")
+    page["properties"]["Nation"] = page["properties"].pop("Country")
+
+    res = CountrySyncer(None).run(pages=[page], dry_run=True)
+
+    assert res.missing_properties == ["Country"]

@@ -57,6 +57,7 @@ class SyncResult:
     deleted: int = 0
     validated: int = 0
     excluded: int = 0
+    missing_properties: list[str] = field(default_factory=list)
     invalid: list[tuple[str, str]] = field(default_factory=list)
 
     def record(self, outcome: Outcome) -> None:
@@ -77,11 +78,19 @@ class SyncResult:
         return len(self.invalid)
 
     def details(self) -> str:
-        """One line per bad row: which syncer, which row, and what was wrong."""
-        return "\n".join(
+        """One line per problem: which syncer, which row, and what was wrong."""
+        lines = []
+        if self.missing_properties:
+            columns = ", ".join(repr(name) for name in self.missing_properties)
+            lines.append(
+                f"  {self.name}  SKIPPED, Notion is no longer sending: {columns}. "
+                f"Renamed or deleted in Notion?",
+            )
+        lines.extend(
             f"  {self.name}  {notion_url(notion_id)}  {message}"
             for notion_id, message in self.invalid
         )
+        return "\n".join(lines)
 
     def summary(self) -> str:
         """One line describing this result."""
@@ -104,11 +113,13 @@ class SyncReport:
 
     @property
     def has_failures(self) -> bool:
-        return any(r.invalid_count for r in self.results)
+        return any(r.invalid_count or r.missing_properties for r in self.results)
 
     def summary(self) -> str:
         return "\n".join(r.summary() for r in self.results)
 
     def details(self) -> str:
-        """Every bad row across the whole run, or an empty string if there were none."""
-        return "\n".join(r.details() for r in self.results if r.invalid)
+        """Every problem across the whole run, or an empty string if there were none."""
+        return "\n".join(
+            r.details() for r in self.results if r.invalid or r.missing_properties
+        )
