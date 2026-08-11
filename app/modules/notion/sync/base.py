@@ -34,7 +34,12 @@ class BaseSyncer:
     # Lifecycle
     ################################################################################################
 
-    def run(self, pages: list[dict] = None, force: bool = False, dry_run: bool = False) -> SyncResult:
+    def run(
+        self,
+        pages: list[dict] = None,  # ty:ignore[invalid-parameter-default]
+        force: bool = False,
+        dry_run: bool = False,
+    ) -> SyncResult:
         result = SyncResult(self.name)
         if pages is None:
             pages = self.client.fetch_database(self.client.database_id(self.db_key))
@@ -48,7 +53,13 @@ class BaseSyncer:
                 # The row exists in Notion but is malformed. Record it as seen so
                 # a validation failure never causes a soft-delete.
                 seen.add(page.get("id"))
-                result.add_invalid(page.get("id"), err)
+                result.add_invalid(page.get("id"), err)  # ty:ignore[invalid-argument-type]
+                continue
+
+            if self.excluded(row):
+                # Deliberately left out of `seen`, so a row that used to sync
+                # and is now excluded gets soft-deleted like any other absence.
+                result.excluded += 1
                 continue
 
             seen.add(row.notion_id)
@@ -67,7 +78,7 @@ class BaseSyncer:
             result.record(outcome)
 
         if not dry_run and self.cleans_up:
-            result.deleted = self.soft_delete(seen)
+            result.deleted = self.soft_delete(seen)  # ty:ignore[invalid-assignment]
 
         return result
 
@@ -77,6 +88,14 @@ class BaseSyncer:
 
     def persist(self, row: NotionRow, force: bool = False) -> Outcome:
         raise NotImplementedError
+
+    def excluded(self, row: NotionRow) -> bool:  # noqa: ARG002
+        """Whether this row should be left out of the sync entirely.
+
+        For rows that validate but are not the kind of thing this syncer holds.
+        Excluded rows are counted in the result so nothing is dropped silently.
+        """
+        return False
 
     ################################################################################################
     # Shared helpers
@@ -98,6 +117,9 @@ class BaseSyncer:
         it already exists, is not soft-deleted, and its `last_edited_time` is no
         newer than what we stored.
         """
+        if not self.model:
+            logger.warning("self.model is None")
+            return None
         existing = self.model.objects.filter(notion_id=row.notion_id).first()
         if (
             existing is not None
@@ -109,13 +131,17 @@ class BaseSyncer:
             return Outcome.SKIPPED, existing
 
         created = existing is None
+
         obj, _ = self.model.objects.update_or_create(
             notion_id=row.notion_id,
             defaults=defaults,
         )
         return (Outcome.CREATED if created else Outcome.UPDATED), obj
 
-    def soft_delete(self, seen: set) -> int:
+    def soft_delete(self, seen: set) -> int | None:
         """Soft-delete rows whose `notion_id` was not seen in this run."""
+        if not self.model:
+            logger.warning("self.model is None")
+            return None
         stale = self.model.objects.exclude(notion_id__in=seen).filter(deleted=False)
         return stale.update(deleted=True)

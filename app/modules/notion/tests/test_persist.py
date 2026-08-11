@@ -1,14 +1,22 @@
+# 3rd party
+import pytest
+from django.conf import settings
+
 # Module
+from modules.notion import attachments as notion_attachments
 from modules.notion.models import (
     Commitment,
     CountryTag,
     CoverageScope,
     DisclosureRegime,
+    ImpactEntry,
+    PolicyAreaTag,
 )
 from modules.notion.sync.runner import run_sync
 from modules.notion.sync.syncers import (
     CommitmentSyncer,
     CountrySyncer,
+    ImpactSyncer,
     RegimeSubSyncer,
     RegimeSyncer,
 )
@@ -237,3 +245,200 @@ def test_run_sync_orders_dependencies():
     assert not report.has_failures
     assert Commitment.objects.get(notion_id="m1").country.notion_id == "c1"
     assert DisclosureRegime.objects.get(notion_id="r1").api_available is True
+
+
+####################################################################################################
+# Impact tracker
+####################################################################################################
+
+
+def url(value):
+    return {"type": "url", "url": value}
+
+
+def number(value):
+    return {"type": "number", "number": value}
+
+
+def files(*entries):
+    """Build a `files` property from `(label, url, hosted)` triples."""
+    items = []
+    for label, href, hosted in entries:
+        kind = "file" if hosted else "external"
+        items.append({"name": label, "type": kind, kind: {"url": href}})
+    return {"type": "files", "files": items}
+
+
+def impact_page(notion_id, countries=(), regimes=(), attachments=(), **overrides):
+    props = {
+        "One sentence description (P)": title("Kenyan FIU used BO data"),
+        "Short summary (P)": rich_text("A longer summary."),
+        "Lessons": rich_text("What we learned."),
+        "Source URL (P)": url("https://example.com/story"),
+        "Year (P)": number(2024),
+        "Publish?": checkbox(True),
+        "Tangible impact": checkbox(True),
+        "International": checkbox(False),
+        "Jurisdiction(s) (P)": relation(*countries),
+        "Disclosure regime(s)": relation(*regimes),
+        "Data user": multi_select("Government: FIU"),
+        "Policy area (P)": multi_select("AML/CFT", "Corruption"),
+        "Type": multi_select("Data use"),
+        "Attach source/supporting documentation if possible": files(*attachments),
+    }
+    props.update(overrides)
+    return make_page(props, notion_id)
+
+
+@pytest.fixture
+def no_downloads(monkeypatch):
+    monkeypatch.setattr(notion_attachments, "_download", lambda url: b"%PDF-1.4 pretend")  # noqa: ARG005
+
+
+def test_impact_sync_creates_entry(no_downloads):  # noqa: ARG001
+    res = ImpactSyncer(None).run(pages=[impact_page("i1")])
+
+    assert res.created == 1
+    entry = ImpactEntry.objects.get(notion_id="i1")
+    assert entry.description == "Kenyan FIU used BO data"
+    assert entry.summary == "A longer summary."
+    assert entry.year == 2024
+    assert entry.publish is True
+    assert entry.tangible_impact is True
+
+
+def test_impact_sync_creates_vocabulary_tags(no_downloads):  # noqa: ARG001
+    ImpactSyncer(None).run(pages=[impact_page("i1")])
+
+    entry = ImpactEntry.objects.get(notion_id="i1")
+    assert set(entry.policy_areas.values_list("name", flat=True)) == {"AML/CFT", "Corruption"}
+    assert set(entry.data_users.values_list("name", flat=True)) == {"Government: FIU"}
+    assert PolicyAreaTag.objects.filter(name="AML/CFT").exists()
+
+
+def test_impact_sync_reuses_existing_tags(no_downloads):  # noqa: ARG001
+    ImpactSyncer(None).run(pages=[impact_page("i1")])
+    ImpactSyncer(None).run(pages=[impact_page("i2")])
+
+    assert PolicyAreaTag.objects.filter(name="AML/CFT").count() == 1
+
+
+def test_impact_sync_links_countries_and_regimes(no_downloads):  # noqa: ARG001
+    CountrySyncer(None).run(pages=[country_page("c1", "Kenya")])
+    RegimeSyncer(None).run(pages=[regime_page("r1", "c1")])
+
+    ImpactSyncer(None).run(pages=[impact_page("i1", countries=["c1"], regimes=["r1"])])
+
+    entry = ImpactEntry.objects.get(notion_id="i1")
+    assert list(entry.countries.values_list("notion_id", flat=True)) == ["c1"]
+    assert list(entry.regimes.values_list("notion_id", flat=True)) == ["r1"]
+
+
+def test_impact_entry_with_no_jurisdiction_is_still_created(no_downloads):  # noqa: ARG001
+    res = ImpactSyncer(None).run(pages=[impact_page("i1")])
+
+    assert res.created == 1
+    assert ImpactEntry.objects.get(notion_id="i1").countries.count() == 0
+
+
+def test_impact_entry_ignores_countries_we_do_not_hold(no_downloads):  # noqa: ARG001
+    res = ImpactSyncer(None).run(pages=[impact_page("i1", countries=["nope"])])
+
+    assert res.created == 1
+    assert ImpactEntry.objects.get(notion_id="i1").countries.count() == 0
+
+
+def test_impact_sync_soft_deletes_missing(no_downloads):  # noqa: ARG001
+    ImpactSyncer(None).run(pages=[impact_page("i1"), impact_page("i2")])
+    ImpactSyncer(None).run(pages=[impact_page("i1")])
+
+    assert ImpactEntry.objects.get(notion_id="i2").deleted is True
+    assert ImpactEntry.objects.get(notion_id="i1").deleted is False
+
+
+def test_impact_sync_stores_attachments(no_downloads):  # noqa: ARG001
+    page = impact_page(
+        "i1",
+        attachments=[
+            ("gao.pdf", "https://prod-files-secure.s3.amazonaws.com/ws/gao.pdf?sig=1", True),
+            ("Article 2", "https://media.am/story", False),
+        ],
+    )
+    ImpactSyncer(None).run(pages=[page])
+
+    entry = ImpactEntry.objects.get(notion_id="i1")
+    assert entry.attachments.count() == 2
+    assert entry.attachments.filter(kind="document").get().document is not None
+    assert entry.attachments.filter(kind="link").get().url == "https://media.am/story"
+
+
+def test_impact_row_without_a_description_is_reported(no_downloads):  # noqa: ARG001
+    bad = impact_page("i1", **{"One sentence description (P)": title("")})
+    res = ImpactSyncer(None).run(pages=[bad])
+
+    assert res.invalid_count == 1
+    assert ImpactEntry.objects.filter(notion_id="i1").count() == 0
+
+
+####################################################################################################
+# The "Global" pseudo-country
+####################################################################################################
+
+
+GLOBAL_ID = settings.NOTION_NON_COUNTRY_ROWS[0]
+
+
+def test_global_is_not_created_as_a_country():
+    res = CountrySyncer(None).run(
+        pages=[country_page("c1", "Kenya"), country_page(GLOBAL_ID, "Global")],
+    )
+
+    assert res.created == 1
+    assert res.excluded == 1
+    assert CountryTag.objects.filter(notion_id=GLOBAL_ID).count() == 0
+
+
+def test_global_already_held_is_soft_deleted():
+    CountryTag.objects.create(notion_id=GLOBAL_ID, name="Global", slug="global")
+
+    CountrySyncer(None).run(pages=[country_page(GLOBAL_ID, "Global")])
+
+    assert CountryTag.objects.get(notion_id=GLOBAL_ID).deleted is True
+
+
+def test_impact_entry_ignores_a_global_jurisdiction(no_downloads):  # noqa: ARG001
+    CountrySyncer(None).run(pages=[country_page("c1", "Kenya")])
+
+    ImpactSyncer(None).run(pages=[impact_page("i1", countries=[GLOBAL_ID, "c1"])])
+
+    entry = ImpactEntry.objects.get(notion_id="i1")
+    assert list(entry.countries.values_list("notion_id", flat=True)) == ["c1"]
+
+
+def test_global_only_entry_keeps_its_international_flag(no_downloads):  # noqa: ARG001
+    page = impact_page("i1", countries=[GLOBAL_ID], **{"International": checkbox(True)})
+    ImpactSyncer(None).run(pages=[page])
+
+    entry = ImpactEntry.objects.get(notion_id="i1")
+    assert entry.countries.count() == 0
+    assert entry.international is True
+
+
+####################################################################################################
+# Runner covers the impact tracker
+####################################################################################################
+
+
+def test_run_sync_includes_impact_after_regimes(no_downloads):  # noqa: ARG001
+    client = FakeClient(
+        {
+            "countries": [country_page("c1", "Kenya")],
+            "regimes": [regime_page("r1", "c1")],
+            "bot": [impact_page("i1", countries=["c1"], regimes=["r1"])],
+        },
+    )
+    report = run_sync(client=client, notify=False)
+
+    assert not report.has_failures
+    entry = ImpactEntry.objects.get(notion_id="i1")
+    assert list(entry.regimes.values_list("notion_id", flat=True)) == ["r1"]

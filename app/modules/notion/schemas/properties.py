@@ -123,6 +123,25 @@ def get_url(prop: Optional[dict]) -> Optional[str]:
     return prop.get("url") or None
 
 
+def get_files(prop: Optional[dict]) -> list[dict]:
+    """Return each item in a `files` property as a label, url and hosted flag.
+
+    Notion either stores the file itself, in which case the url is signed and
+    expires within the hour, or holds a plain external link. Items without a
+    url are dropped, since there is nothing to fetch or point at.
+    """
+    if not prop:
+        return []
+    items = []
+    for item in prop.get("files", []):
+        kind = item.get("type")
+        url = (item.get(kind) or {}).get("url", "")
+        if not url:
+            continue
+        items.append({"label": item.get("name", ""), "url": url, "hosted": kind == "file"})
+    return items
+
+
 def get_date(prop: Optional[dict]) -> Optional[str]:
     """Return the ISO `start` of a `date` property, or `None` when unset."""
     if not prop:

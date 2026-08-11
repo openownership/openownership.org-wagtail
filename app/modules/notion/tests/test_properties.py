@@ -184,3 +184,68 @@ def test_get_date_none_value():
 
 def test_get_date_none():
     assert p.get_date(None) is None
+
+
+####################################################################################################
+# Files
+####################################################################################################
+
+
+def test_get_files_hosted():
+    prop = {
+        "type": "files",
+        "files": [
+            {
+                "name": "report.pdf",
+                "type": "file",
+                "file": {"url": "https://s3.example.com/abc/report.pdf?sig=1"},
+            },
+        ],
+    }
+    assert p.get_files(prop) == [
+        {
+            "label": "report.pdf",
+            "url": "https://s3.example.com/abc/report.pdf?sig=1",
+            "hosted": True,
+        },
+    ]
+
+
+def test_get_files_external():
+    prop = {
+        "type": "files",
+        "files": [
+            {
+                "name": "Article 2",
+                "type": "external",
+                "external": {"url": "https://media.am/story"},
+            },
+        ],
+    }
+    assert p.get_files(prop) == [
+        {"label": "Article 2", "url": "https://media.am/story", "hosted": False},
+    ]
+
+
+def test_get_files_keeps_order():
+    prop = {
+        "type": "files",
+        "files": [
+            {"name": "a", "type": "external", "external": {"url": "https://example.com/a"}},
+            {"name": "b", "type": "external", "external": {"url": "https://example.com/b"}},
+        ],
+    }
+    assert [item["label"] for item in p.get_files(prop)] == ["a", "b"]
+
+
+def test_get_files_skips_entries_without_a_url():
+    prop = {"type": "files", "files": [{"name": "broken", "type": "file", "file": {}}]}
+    assert p.get_files(prop) == []
+
+
+def test_get_files_empty():
+    assert p.get_files({"type": "files", "files": []}) == []
+
+
+def test_get_files_none():
+    assert p.get_files(None) == []

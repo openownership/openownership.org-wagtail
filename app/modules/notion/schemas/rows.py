@@ -11,7 +11,9 @@ empty values over good data.
 # stdlib
 import datetime as dt
 from decimal import Decimal
+from pathlib import PurePosixPath
 from typing import Annotated, Optional
+from urllib.parse import unquote, urlsplit, urlunsplit
 
 # 3rd party
 from pydantic import BaseModel, BeforeValidator, ConfigDict, Field
@@ -20,9 +22,11 @@ from pydantic import BaseModel, BeforeValidator, ConfigDict, Field
 from modules.notion.schemas.properties import (
     get_checkbox,
     get_date,
+    get_files,
     get_first_relation_id,
     get_multi_select,
     get_number,
+    get_relation_ids,
     get_rich_text,
     get_rich_text_html,
     get_select,
@@ -48,6 +52,16 @@ def _yes_no_to_bool(value: object) -> Optional[bool]:
 
 
 YesNo = Annotated[Optional[bool], BeforeValidator(_yes_no_to_bool)]
+
+# Extensions Wagtail can make renditions from. Anything else Notion hosts is
+# treated as a document.
+IMAGE_EXTENSIONS = frozenset(
+    {".avif", ".bmp", ".gif", ".jpeg", ".jpg", ".png", ".tif", ".tiff", ".webp"},
+)
+
+KIND_DOCUMENT = "document"
+KIND_IMAGE = "image"
+KIND_LINK = "link"
 
 
 ####################################################################################################
@@ -193,4 +207,108 @@ class RegimeSubRow(NotionRow):
             "on_oo_register": get_select(props.get("Data on OO Register")),
             "data_in_bods": get_select(props.get("Data published in BODS")),
             "structured_data": get_select(props.get("Structured data")),
+        }
+
+
+####################################################################################################
+# BOT impact tracker
+####################################################################################################
+
+
+class NotionFile(BaseModel):
+    """One item from a Notion `files` property.
+
+    Notion re-signs the urls of files it hosts on every fetch, so the url alone
+    cannot say whether we already hold a file. `fingerprint` strips the signature
+    and gives a value stable across runs.
+    """
+
+    model_config = ConfigDict(str_strip_whitespace=True)
+
+    label: str = ""
+    url: str = Field(min_length=1)
+    hosted: bool = False
+
+    @property
+    def _path(self) -> str:
+        return urlsplit(self.url).path
+
+    @property
+    def extension(self) -> str:
+        return PurePosixPath(self._path).suffix.lower()
+
+    @property
+    def filename(self) -> str:
+        return unquote(PurePosixPath(self._path).name)
+
+    @property
+    def kind(self) -> str:
+        """Where this item should end up: Wagtail images, documents, or a link."""
+        if not self.hosted:
+            return KIND_LINK
+        if self.extension in IMAGE_EXTENSIONS:
+            return KIND_IMAGE
+        return KIND_DOCUMENT
+
+    @property
+    def fingerprint(self) -> str:
+        """A value identifying this item across syncs."""
+        if not self.hosted:
+            return self.url
+        parts = urlsplit(self.url)
+        return urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
+
+
+class ImpactRow(NotionRow):
+    description: str = Field(min_length=1)
+    summary: str = ""
+    lessons: str = ""
+    oo_outputs_used_in: str = ""
+    presentations_used_in: str = ""
+    source_url: str = ""
+    year: Optional[int] = None
+    publish: bool = False
+    oo_influence: bool = False
+    tangible_impact: bool = False
+    international: bool = False
+    source_archived: bool = False
+    source_marked_old: bool = False
+    archived_types: str = ""
+    country_ids: list[str] = Field(default_factory=list)
+    regime_ids: list[str] = Field(default_factory=list)
+    data_users: list[str] = Field(default_factory=list)
+    usability_themes: list[str] = Field(default_factory=list)
+    impact_types: list[str] = Field(default_factory=list)
+    resource_types: list[str] = Field(default_factory=list)
+    policy_areas: list[str] = Field(default_factory=list)
+    attachments: list[NotionFile] = Field(default_factory=list)
+
+    @classmethod
+    def extract(cls, page: dict) -> dict:
+        props = page.get("properties", {})
+        return {
+            "description": get_title(props.get("One sentence description (P)")),
+            "summary": get_rich_text(props.get("Short summary (P)")),
+            "lessons": get_rich_text(props.get("Lessons")),
+            "oo_outputs_used_in": get_rich_text(props.get("OO outputs used in")),
+            "presentations_used_in": get_rich_text(props.get("Presentations/slide decks used in")),
+            "source_url": get_url(props.get("Source URL (P)")) or "",
+            "year": get_number(props.get("Year (P)")),
+            "publish": get_checkbox(props.get("Publish?")),
+            "oo_influence": get_checkbox(props.get("OO's influence")),
+            "tangible_impact": get_checkbox(props.get("Tangible impact")),
+            "international": get_checkbox(props.get("International")),
+            "source_archived": get_checkbox(props.get("Archive")),
+            "source_marked_old": get_checkbox(props.get("[TEMP] Old?")),
+            "archived_types": ", ".join(get_multi_select(props.get("[Archive]"))),
+            "country_ids": get_relation_ids(props.get("Jurisdiction(s) (P)")),
+            "regime_ids": get_relation_ids(props.get("Disclosure regime(s)")),
+            "data_users": get_multi_select(props.get("Data user")),
+            "usability_themes": get_multi_select(props.get("Usability theme(s)")),
+            "impact_types": get_multi_select(props.get("Type")),
+            "resource_types": get_multi_select(props.get("Type of resource (P)")),
+            "policy_areas": get_multi_select(props.get("Policy area (P)")),
+            "attachments": get_files(
+                props.get("Attach source/supporting documentation if possible"),
+            ),
         }

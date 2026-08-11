@@ -5,7 +5,7 @@ from django.core.management.base import BaseCommand
 # Module
 from modules.notion.client import NotionClient
 
-DATABASES = ("countries", "commitments", "regimes", "regimes_sub")
+DATABASES = ("countries", "commitments", "regimes", "regimes_sub", "bot")
 
 
 class Command(BaseCommand):

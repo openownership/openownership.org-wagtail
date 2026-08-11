@@ -713,4 +713,12 @@ NOTION_DATABASES = {
     "commitments": os.environ.get("NOTION_DB_COMMITMENTS", "995e7787-e85f-45df-8fa5-68684f30d16b"),
     "regimes": os.environ.get("NOTION_DB_REGIMES", "85e52f2f-03c5-4d2a-b93f-1acbee5918f1"),
     "regimes_sub": os.environ.get("NOTION_DB_REGIMES_SUB", "4e596712-c912-4821-8ecd-1e272f781d0b"),
+    "bot": os.environ.get("NOTION_DB_BOT", "7111bc1e-d10d-4882-8e04-d7f639297c75"),
 }
+
+# Rows in the countries database that are not countries. "Global" is used on the
+# impact tracker to mean worldwide, so it must never become a country on the
+# site; impact entries carry their own `International` flag for that instead.
+NOTION_NON_COUNTRY_ROWS = [
+    os.environ.get("NOTION_ROW_GLOBAL", "3b2880fb-edf9-80d8-a9b6-c21b95ff791f"),
+]

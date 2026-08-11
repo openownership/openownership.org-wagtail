@@ -137,6 +137,9 @@ class Commitment(NotionModel):
             return self.summary_text
         return commitment_summary(self.commitment_type_name, self.country)
 
+    def __str__(self):
+        return f"Commitment {self.id}"
+
 
 class DisclosureRegime(NotionModel):
     class Meta:
@@ -337,9 +340,7 @@ class DisclosureRegime(NotionModel):
         Full-economy tag present.
         """
         scopes = self.coverage_scope.values_list("slug", flat=True)
-        if "full-economy" in scopes:
-            return True
-        return False
+        return "full-economy" in scopes
 
     @cached_property
     def implementation_public(self) -> bool:
@@ -347,9 +348,7 @@ class DisclosureRegime(NotionModel):
         has the General public tag present
         """
         access = self.who_can_access.values_list("slug", flat=True)
-        if "general-public" in access:
-            return True
-        return False
+        return "general-public" in access
 
     @cached_property
     def display_scope(self):
@@ -431,6 +430,9 @@ class DisclosureRegime(NotionModel):
         if value == value.to_integral_value():
             return f"{value:.0f}%"
         return f"{value}%"
+
+    def __str__(self):
+        return self.title
 
 
 class CountryTag(NotionModel, BaseTag):
@@ -543,17 +545,15 @@ class CountryTag(NotionModel, BaseTag):
         dates = [self.notion_updated]
         for item in self.regimes:
             if item is not None and item.notion_updated is not None:
-                dates.append(item.notion_updated)
+                dates.append(item.notion_updated)  # noqa: PERF401
         for item in self.all_commitments:
             if item is not None and item.notion_updated is not None:
-                dates.append(item.notion_updated)
+                dates.append(item.notion_updated)  # noqa: PERF401
         return max(dates)
 
     @cached_property
     def committed(self):
-        if len(self.all_commitments):
-            return True
-        return False
+        return bool(len(self.all_commitments))
 
     @cached_property
     def involved(self):
@@ -636,7 +636,7 @@ class CountryTag(NotionModel, BaseTag):
 
         # Any "publish" implementations at all?
         for item in disclosure_regimes:
-            if item.stage and "Publish" in item.stage:
+            if item.stage and "Publish" in item.stage:  # noqa: SIM102
                 if subnational not in item.coverage_scope.all():
                     category = "liveregister"
                     break
@@ -670,10 +670,7 @@ class CountryTag(NotionModel, BaseTag):
         field is ticked for a country if the Central register field in any commitments
         for that country listed on the Commitment tracker = ticked.
         """
-        for item in self.commitments.all():
-            if item.central_register is True:
-                return True
-        return False
+        return any(item.central_register is True for item in self.commitments.all())
 
     @cached_property
     def committed_public(self):
@@ -681,10 +678,7 @@ class CountryTag(NotionModel, BaseTag):
         field is ticked for a country if the Central register field in any commitments
         for that country listed on the Commitment tracker = ticked.
         """
-        for item in self.commitments.all():
-            if item.public_register is True:
-                return True
-        return False
+        return any(item.public_register is True for item in self.commitments.all())
 
     @cached_property
     def implementation_central(self):
@@ -695,7 +689,7 @@ class CountryTag(NotionModel, BaseTag):
         """
         subnational = CoverageScope.objects.get(name="Subnational")
         for item in self.disclosure_regimes.all():
-            if item.central_register == "Yes" and item.stage and "Publish" in item.stage:
+            if item.central_register == "Yes" and item.stage and "Publish" in item.stage:  # noqa: SIM102
                 if subnational not in item.coverage_scope.all():
                     return True
         return False
@@ -708,7 +702,7 @@ class CountryTag(NotionModel, BaseTag):
         """
         subnational = CoverageScope.objects.get(name="Subnational")
         for item in self.disclosure_regimes.all():
-            if item.public_access == "Yes" and item.stage and "Publish" in item.stage:
+            if item.public_access == "Yes" and item.stage and "Publish" in item.stage:  # noqa: SIM102
                 if subnational not in item.coverage_scope.all():
                     return True
         return False
@@ -771,11 +765,12 @@ class CountryTag(NotionModel, BaseTag):
         rv = {}
         for item in self.regimes.filter(stage__icontains="Publish"):
             scope_names = [scope.name for scope in item.coverage_scope.all()]
-            if "Subnational" not in scope_names:
+            if "Subnational" not in scope_names:  # noqa: SIM102
                 if item.title and item.public_access_register_url:
                     rv["title"] = item.title
                     rv["url"] = item.public_access_register_url
                     return rv
+        return ""
 
     @cached_property
     def first_central_regime(self):
@@ -843,7 +838,7 @@ class CountryTag(NotionModel, BaseTag):
         else:
             return pages
 
-    def latest_related(self, count):
+    def latest_related(self, count):  # noqa: ARG002
         if self.display_date_related_pages:
             try:
                 return self.display_date_related_pages[:3]
@@ -871,6 +866,9 @@ class CountryTag(NotionModel, BaseTag):
     @cached_property
     def is_engaged(self):
         return self.oo_support in self.OO_ENGAGED_VALUES
+
+    def __str__(self):
+        return self.name
 
 
 class CountryTaggedPage(ItemBase):
@@ -926,3 +924,338 @@ class Region(ClusterableModel):
 
     def __str__(self):
         return self.name
+
+
+####################################################################################################
+# BOT impact tracker vocabularies
+####################################################################################################
+
+
+class ImpactTagBase(ClusterableModel):
+    """Shared shape for the tracker's multi-select vocabularies.
+
+    Options are created from whatever Notion sends, so the option lists on this
+    side are only ever as tidy as the ones in the source database.
+    """
+
+    class Meta:
+        abstract = True
+        ordering = ("name",)
+
+    name = models.CharField(blank=False, null=False, max_length=255, unique=True)
+    slug = AutoSlugField(populate_from="name")
+
+    def __str__(self):
+        return self.name
+
+
+class DataUserTag(ImpactTagBase):
+    class Meta(ImpactTagBase.Meta):
+        verbose_name = _("Data User")
+        verbose_name_plural = _("Data Users")
+
+
+class UsabilityThemeTag(ImpactTagBase):
+    class Meta(ImpactTagBase.Meta):
+        verbose_name = _("Usability Theme")
+        verbose_name_plural = _("Usability Themes")
+
+
+class ImpactTypeTag(ImpactTagBase):
+    class Meta(ImpactTagBase.Meta):
+        verbose_name = _("Impact Type")
+        verbose_name_plural = _("Impact Types")
+
+
+class ResourceTypeTag(ImpactTagBase):
+    class Meta(ImpactTagBase.Meta):
+        verbose_name = _("Resource Type")
+        verbose_name_plural = _("Resource Types")
+
+
+class PolicyAreaTag(ImpactTagBase):
+    class Meta(ImpactTagBase.Meta):
+        verbose_name = _("Policy Area")
+        verbose_name_plural = _("Policy Areas")
+
+
+####################################################################################################
+# BOT impact tracker
+####################################################################################################
+
+
+class ImpactEntry(NotionModel):
+    """A single recorded use or impact of beneficial ownership data.
+
+    Sourced from the `BOT impact tracker` Notion database. Only entries with
+    `publish` set are cleared by Open Ownership for display on the site; the
+    rest are synced so the record stays complete but should stay hidden.
+    """
+
+    class Meta:
+        verbose_name = _("Impact Entry")
+        verbose_name_plural = _("Impact Entries")
+        ordering = ("-year", "description")
+
+    description = models.TextField(  # One sentence description (P)
+        _("Description"),
+        blank=False,
+        default="",
+    )
+
+    summary = models.TextField(  # Short summary (P)
+        _("Short summary"),
+        blank=True,
+        default="",
+    )
+
+    lessons = models.TextField(  # Lessons
+        _("Lessons"),
+        blank=True,
+        default="",
+    )
+
+    oo_outputs_used_in = models.TextField(  # OO outputs used in
+        _("OO outputs used in"),
+        blank=True,
+        default="",
+    )
+
+    presentations_used_in = models.TextField(  # Presentations/slide decks used in
+        _("Presentations used in"),
+        blank=True,
+        default="",
+    )
+
+    source_url = models.URLField(  # Source URL (P)
+        _("Source URL"),
+        blank=True,
+        default="",
+        max_length=1000,
+    )
+
+    year = models.PositiveIntegerField(  # Year (P)
+        _("Year"),
+        blank=True,
+        null=True,
+    )
+
+    publish = models.BooleanField(  # Publish?
+        _("Cleared for publication"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    oo_influence = models.BooleanField(  # OO's influence
+        _("OO influence"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    tangible_impact = models.BooleanField(  # Tangible impact
+        _("Tangible impact"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    international = models.BooleanField(  # International
+        _("International"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    # Housekeeping flags Open Ownership use while they tidy the tracker. Synced
+    # so the record matches Notion, but nothing on this side acts on them.
+    source_archived = models.BooleanField(  # Archive
+        _("Archived in Notion"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    source_marked_old = models.BooleanField(  # [TEMP] Old?
+        _("Marked old in Notion"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    archived_types = models.CharField(  # [Archive]
+        _("Archived types"),
+        blank=True,
+        default="",
+        max_length=1000,
+    )
+
+    countries = models.ManyToManyField(  # Jurisdiction(s) (P)
+        "notion.CountryTag",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    regimes = models.ManyToManyField(  # Disclosure regime(s)
+        "notion.DisclosureRegime",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    data_users = models.ManyToManyField(  # Data user
+        "notion.DataUserTag",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    usability_themes = models.ManyToManyField(  # Usability theme(s)
+        "notion.UsabilityThemeTag",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    impact_types = models.ManyToManyField(  # Type
+        "notion.ImpactTypeTag",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    resource_types = models.ManyToManyField(  # Type of resource (P)
+        "notion.ResourceTypeTag",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    policy_areas = models.ManyToManyField(  # Policy area (P)
+        "notion.PolicyAreaTag",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    def __str__(self):
+        return self.description[:100]
+
+    @cached_property
+    def display_attachments(self):
+        """Attachments worth showing: anything we hold or can link to."""
+        return [item for item in self.attachments.all() if item.is_resolved]
+
+
+class ImpactAttachment(models.Model):
+    """One item from an impact entry's Notion files column.
+
+    A single entry can carry several attachments of mixed types, so each one is
+    its own row rather than a field on the entry. `fingerprint` is what makes a
+    re-sync idempotent: Notion re-signs its file URLs on every fetch, so the
+    query string changes each time while the path stays put.
+    """
+
+    class Meta:
+        verbose_name = _("Impact Attachment")
+        verbose_name_plural = _("Impact Attachments")
+        ordering = ("sort_order", "pk")
+        constraints = [
+            models.UniqueConstraint(
+                fields=["entry", "fingerprint"],
+                name="unique_attachment_per_entry",
+            ),
+        ]
+
+    KIND_DOCUMENT = "document"
+    KIND_IMAGE = "image"
+    KIND_LINK = "link"
+    KIND_CHOICES = [
+        (KIND_DOCUMENT, _("Document")),
+        (KIND_IMAGE, _("Image")),
+        (KIND_LINK, _("Link")),
+    ]
+
+    entry = models.ForeignKey(
+        "notion.ImpactEntry",
+        related_name="attachments",
+        on_delete=models.CASCADE,
+    )
+
+    sort_order = models.PositiveIntegerField(
+        _("Sort order"),
+        blank=False,
+        null=False,
+        default=0,
+    )
+
+    kind = models.CharField(
+        _("Kind"),
+        blank=False,
+        null=False,
+        max_length=20,
+        choices=KIND_CHOICES,
+    )
+
+    # Notion's own label for the item. Usually a filename or a URL, but authors
+    # sometimes type a human label instead, so it is never assumed to be either.
+    label = models.CharField(
+        _("Label"),
+        blank=True,
+        default="",
+        max_length=500,
+    )
+
+    fingerprint = models.CharField(
+        _("Fingerprint"),
+        blank=False,
+        null=False,
+        max_length=1000,
+    )
+
+    url = models.URLField(
+        _("URL"),
+        blank=True,
+        default="",
+        max_length=2000,
+    )
+
+    document = models.ForeignKey(
+        settings.WAGTAILDOCS_DOCUMENT_MODEL,
+        related_name="impact_attachments",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+
+    image = models.ForeignKey(
+        settings.WAGTAILIMAGES_IMAGE_MODEL,
+        related_name="impact_attachments",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+
+    fetch_error = models.TextField(
+        _("Fetch error"),
+        blank=True,
+        default="",
+    )
+
+    def __str__(self):
+        return self.label or self.url or self.fingerprint
+
+    @property
+    def is_resolved(self) -> bool:
+        """Whether this attachment has something we can actually show."""
+        if self.kind == self.KIND_DOCUMENT:
+            return self.document_id is not None
+        if self.kind == self.KIND_IMAGE:
+            return self.image_id is not None
+        return bool(self.url)
+
+    @property
+    def display_label(self) -> str:
+        """A label safe to put in front of a reader."""
+        if self.label and not self.label.startswith(("http://", "https://")):
+            return self.label
+        if self.kind == self.KIND_DOCUMENT and self.document_id:
+            return self.document.title
+        if self.kind == self.KIND_IMAGE and self.image_id:
+            return self.image.title
+        return self.label or self.url
