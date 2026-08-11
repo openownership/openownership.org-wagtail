@@ -1,0 +1,127 @@
+{# Everything public about one evidence record.
+
+Expects:
+
+* entry - An ImpactEntry
+
+Shared by the expanded card and the record's own page, so the two can never
+show different things. Only the fields Open Ownership cleared for publication
+appear here; the tracker's internal columns are synced but stay out.
+#}
+<div class="evidence-detail">
+
+    {% if entry.summary %}
+        <p class="evidence-detail__summary">{{ entry.summary }}</p>
+    {% endif %}
+
+    <dl class="evidence-detail__facts">
+
+        {% if entry.year %}
+            <div class="evidence-detail__fact">
+                <dt>{% trans %}Year{% endtrans %}</dt>
+                <dd>{{ entry.year }}</dd>
+            </div>
+        {% endif %}
+
+        {% with countries = entry.countries.all() %}
+            {% if countries|length %}
+                <div class="evidence-detail__fact">
+                    <dt>{% trans %}Jurisdiction{% endtrans %}</dt>
+                    <dd>
+                        {% for country in countries %}
+                            {{ country.name }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </dd>
+                </div>
+            {% elif entry.international %}
+                <div class="evidence-detail__fact">
+                    <dt>{% trans %}Jurisdiction{% endtrans %}</dt>
+                    <dd>{% trans %}International{% endtrans %}</dd>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% if entry.display_regions|length %}
+            <div class="evidence-detail__fact">
+                <dt>{% trans %}Region{% endtrans %}</dt>
+                <dd>
+                    {% for region in entry.display_regions %}
+                        {{ region }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </dd>
+            </div>
+        {% endif %}
+
+        {% with topics = entry.policy_areas.all() %}
+            {% if topics|length %}
+                <div class="evidence-detail__fact">
+                    <dt>{% trans %}Topic{% endtrans %}</dt>
+                    <dd>
+                        {% for topic in topics %}
+                            {{ topic.name }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </dd>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% with types = entry.data_users.all() %}
+            {% if types|length %}
+                <div class="evidence-detail__fact">
+                    <dt>{% trans %}Type{% endtrans %}</dt>
+                    <dd>
+                        {% for item in types %}
+                            {{ item.name }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </dd>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% with resources = entry.resource_types.all() %}
+            {% if resources|length %}
+                <div class="evidence-detail__fact">
+                    <dt>{% trans %}Type of resource{% endtrans %}</dt>
+                    <dd>
+                        {% for item in resources %}
+                            {{ item.name }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </dd>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+    </dl>
+
+    {% if entry.display_attachments|length %}
+        <ul class="evidence-detail__attachments">
+            {% for attachment in entry.display_attachments %}
+                <li>
+                    {% if attachment.kind == 'document' %}
+                        <a href="{{ attachment.document.url }}">
+                            {% include "svg/download-document.jinja" %}
+                            {{ attachment.display_label }}
+                        </a>
+                    {% elif attachment.kind == 'image' %}
+                        {{ picture(attachment.image, 640, 360) }}
+                    {% else %}
+                        <a href="{{ attachment.url }}" rel="noopener" target="_blank">
+                            {{ attachment.display_label }}
+                            {% include "svg/external-link.jinja" %}
+                        </a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if entry.source_url %}
+        <p class="evidence-detail__source">
+            <a href="{{ entry.source_url }}" rel="noopener" target="_blank">
+                {% trans %}View source{% endtrans %}
+                {% include "svg/external-link.jinja" %}
+            </a>
+        </p>
+    {% endif %}
+
+</div>

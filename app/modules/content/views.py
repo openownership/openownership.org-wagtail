@@ -20,12 +20,14 @@ from wagtail.models import Locale, Page, Site
 from helpers.context import global_context
 from modules.content.forms import SearchForm
 from modules.content.models import (
+    BotCentrePage,
     HomePage,
     PublicationInnerPage,
     SectionPage,
     content_page_models,
 )
-from modules.notion.models import CountryTag, Region
+from modules.notion import evidence
+from modules.notion.models import CountryTag, ImpactEntry, Region
 from modules.settings.models import SiteSettings
 from modules.stats.models import ViewCount
 from modules.taxonomy.models import PrincipleTag, PublicationType, SectionTag, SectorTag
@@ -512,3 +514,83 @@ class SearchView(TemplateView):
             console.warn(e)
 
         return rv
+
+
+####################################################################################################
+# Evidence Centre
+####################################################################################################
+
+
+class EvidenceDetailView(TemplateView):
+    """One impact tracker record.
+
+    The same view answers three ways. A normal request gets a whole page, which
+    is what a reader arriving from a shared link or a search engine needs. A
+    request carrying the `HX-Request` header gets the card on its own, so the
+    listing can swap a record open where it sits. Adding `collapsed` to that
+    asks for the card shut again, which is what the close control fetches.
+
+    Entries are not Wagtail pages, so this is a plain Django view rather than a
+    route on `BotCentrePage`.
+    """
+
+    template_name = "views/evidence_detail.jinja"
+
+    PARAM_COLLAPSED = "collapsed"
+
+    def get(self, request, *args, **kwargs):
+        self.entry = self._get_entry(kwargs["notion_id"])
+        return super().get(request, *args, **kwargs)
+
+    def get_template_names(self) -> list:
+        if not self.request.headers.get("HX-Request"):
+            return [self.template_name]
+
+        if self.PARAM_COLLAPSED in self.request.GET:
+            return ["_partials/evidence_card.jinja"]
+
+        return ["_partials/evidence_card_expanded.jinja"]
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx["entry"] = self.entry
+        ctx["page"] = self
+        ctx["listing_page"] = self.listing_page
+        ctx["meta_title"] = self.title
+        ctx["meta_description"] = self.entry.display_summary
+        global_context(ctx)  # Adds in nav settings etc.
+        return ctx
+
+    @cached_property
+    def title(self) -> str:
+        """Records have no title field, so the one sentence description stands
+        in for one. Open Ownership may add a real title later.
+        """
+        return self.entry.description
+
+    @cached_property
+    def listing_page(self):
+        """The Evidence Centre, for the breadcrumb and the close link.
+
+        There is only ever one, but it is an editable page, so its URL cannot be
+        hard coded here.
+        """
+        page = BotCentrePage.objects.live().filter(locale=Locale.get_active()).first()
+        if not page:
+            page = BotCentrePage.objects.live().first()
+        return page
+
+    @cached_property
+    def breadcrumb_page(self):
+        return self.listing_page
+
+    def _get_entry(self, notion_id: str):
+        """Only records cleared for publication have a page.
+
+        `publishable` is the same gate the listing uses, so a record can never
+        be missing from the listing but reachable by URL.
+        """
+        return get_object_or_404(
+            ImpactEntry.objects.publishable().prefetch_related(*evidence.PREFETCH),
+            notion_id=notion_id,
+        )

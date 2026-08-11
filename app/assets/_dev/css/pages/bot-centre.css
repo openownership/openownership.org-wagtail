@@ -117,6 +117,80 @@
     @apply flex flex-wrap gap-4;
 }
 
+/* The shared card styles the topic pills as `.card-group__meta a span`, because
+   on every other card type a tag links to its own page. Topics have no page to
+   link to, so the same look is restated here for a plain span. Without it the
+   topics fall through as unspaced body text. */
+.evidence-card .card-group__meta {
+    @apply gap-1;
+
+    span {
+        @apply bg-text-secondary text-white text-14 font-bold;
+        padding: 5px;
+    }
+}
+
+/* The external link icon is a 24px SVG, so it needs holding on the text's line
+   rather than being left to wrap onto its own. */
+.evidence-card__source a,
+.evidence-detail__source a,
+.evidence-detail__attachments a {
+    @apply inline-flex items-center gap-1;
+
+    svg {
+        @apply w-4 h-4 shrink-0;
+    }
+}
+
 .evidence-card__source {
     @apply text-14;
+}
+
+.evidence-card__toggle {
+    @apply text-16 font-bold mt-2;
+}
+
+/* An open card is the width of the results column rather than a grid cell, so
+   a reader's eye does not have to hunt for where the record continues. */
+.evidence-card--expanded {
+    @apply col-span-full;
+}
+
+
+/**************************************************************************************************/
+/* One record                                                                                     */
+/**************************************************************************************************/
+
+.evidence-detail__summary {
+    @apply text-19 mb-6;
+}
+
+.evidence-detail__facts {
+    @apply grid gap-4 mb-6;
+
+    @include min-width(sm) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.evidence-detail__fact {
+    dt {
+        @apply font-bold text-14 uppercase text-text-secondary;
+    }
+
+    dd {
+        @apply m-0 text-16;
+    }
+}
+
+.evidence-detail__attachments {
+    @apply list-none p-0 mb-6 flex flex-col gap-2 text-16;
+}
+
+.evidence-detail__source {
+    @apply text-16;
+}
+
+.evidence-detail-page__title {
+    @apply mt-4 mb-8;
 }

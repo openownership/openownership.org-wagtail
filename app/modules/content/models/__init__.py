@@ -9,9 +9,9 @@
 # Module
 from .pages import (  # NOQA
     JobPage, MapPage, TagPage, HomePage, TeamPage, SearchPage, ArticlePage, SectionPage,
-    UtilityPage, GlossaryPage, TaxonomyPage, BlogIndexPage, JobsIndexPage, NewsIndexPage,
-    BlogArticlePage, NewsArticlePage, TeamProfilePage, SectionListingPage, PublicationFrontPage,
-    PublicationInnerPage, SearchPageSuggestedSearch
+    UtilityPage, GlossaryPage, TaxonomyPage, BlogIndexPage, BotCentrePage, JobsIndexPage,
+    NewsIndexPage, BlogArticlePage, NewsArticlePage, TeamProfilePage, SectionListingPage,
+    PublicationFrontPage, PublicationInnerPage, SearchPageSuggestedSearch
 )
 from .inlines import (  # NOQA
     PressLinkAuthorRelationship, BlogArticleAuthorRelationship, NewsArticleAuthorRelationship,

@@ -29,3 +29,4 @@ import './components/country-autocomplete.js';
 
 import './components/report-contents-button.js';
 import './components/feedback-form.js';
+import './components/evidence-cards.js';

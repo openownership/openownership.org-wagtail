@@ -3,12 +3,17 @@
 Expects:
 
 * evidence - an `evidence.Results`
+* page - the BotCentrePage
 
 One plain GET form, so filtering, searching and sorting all work with no
 JavaScript. There is deliberately no hidden `page` field: unchecked boxes submit
 nothing, so changing a filter naturally starts again at page one.
+
+`action` is set rather than left to default to the current URL. Opening a record
+puts that record's URL in the address bar, and without this the form would then
+submit to the record instead of the listing.
 #}
-<form method="get" class="evidence-filters" role="search">
+<form method="get" action="{{ page.url }}" class="evidence-filters" role="search">
 
     <div class="evidence-filters__keyword">
         <label class="evidence-filters__label" for="evidence-q">
@@ -81,7 +86,7 @@ nothing, so changing a filter naturally starts again at page one.
     <div class="evidence-filters__actions">
         <button class="btn" type="submit">{% trans %}Apply{% endtrans %}</button>
         {% if evidence.query.is_filtered %}
-            <a class="evidence-filters__clear" href="?{{ evidence.query.cleared() }}">
+            <a class="evidence-filters__clear" href="{{ page.url }}?{{ evidence.query.cleared() }}">
                 {% trans %}Clear filters{% endtrans %}
             </a>
         {% endif %}

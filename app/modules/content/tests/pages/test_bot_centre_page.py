@@ -387,6 +387,42 @@ def test_the_form_carries_no_page_field(stocked):
 
 
 ####################################################################################################
+# Every control points at the listing
+####################################################################################################
+
+# Opening a record puts that record's URL in the address bar, so a relative
+# `?...` link or a form with no action would aim at the record rather than the
+# listing. Each of these has to name the listing itself.
+
+
+def test_the_filter_form_posts_to_the_listing(stocked):
+    rendered = client.get(stocked.url).rendered_content
+
+    assert f'action="{stocked.url}"' in rendered
+
+
+def test_the_clear_filters_link_points_at_the_listing(stocked):
+    rendered = client.get(f"{stocked.url}?topic=Tax").rendered_content
+
+    assert f'href="{stocked.url}?' in rendered
+
+
+def test_a_facet_chip_points_at_the_listing(stocked):
+    rendered = client.get(f"{stocked.url}?topic=Tax").rendered_content
+
+    assert 'href="?' not in rendered
+
+
+def test_pagination_links_point_at_the_listing(bot_centre):
+    for index in range(BotCentrePage.objects_per_page + 1):
+        make_entry(f"e{index}", f"Entry {index:03d}", year=2024)
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert f'href="{bot_centre.url}?page=2"' in rendered
+
+
+####################################################################################################
 # Crawling and caching
 ####################################################################################################
 

@@ -258,6 +258,18 @@ def test_without_handles_a_year():
     assert remaining.selected["year"] == (2019,)
 
 
+def test_without_handles_a_year_given_as_text():
+    """What a template passes. `FacetValue.value` is always a string, while a
+    selected year is an int, so the two have to be brought together here or the
+    chip silently removes nothing.
+    """
+    query = evidence.parse(params("year=2024&year=2019"))
+
+    remaining = evidence.parse(params(query.without("year", "2024")))
+
+    assert remaining.selected["year"] == (2019,)
+
+
 ####################################################################################################
 # The facets themselves
 ####################################################################################################

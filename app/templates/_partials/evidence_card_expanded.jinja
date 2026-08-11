@@ -1,0 +1,41 @@
+{# One evidence record as an open card.
+
+Expects:
+
+* entry - An ImpactEntry
+* listing_page - The BotCentrePage, for the close link's no-JavaScript fallback
+
+This is what htmx swaps in when a reader opens a record in the listing. The
+close link is a real link to the listing first, so a reader without JavaScript
+still has somewhere to go.
+#}
+<li class="card-group__card card-group__card--without-thumbnail evidence-card evidence-card--expanded"
+    id="evidence-{{ entry.notion_id }}">
+
+    <div class="card-group__card-decoration">
+
+        <div class="card-group__meta">
+            {% for tag in entry.policy_areas.all() %}
+                <span>{{ tag.name }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="card-group__text">
+            <h2 class="card-group__title">{{ entry.description }}</h2>
+
+            {% include "_partials/evidence_detail_body.jinja" %}
+
+            {% if listing_page %}
+                <p class="evidence-card__toggle">
+                    <a href="{{ listing_page.url }}"
+                       hx-get="{{ entry.get_absolute_url() }}?collapsed=1"
+                       hx-target="closest .evidence-card"
+                       hx-swap="outerHTML"
+                       hx-push-url="{{ listing_page.url }}">
+                        {% trans %}Close{% endtrans %}
+                    </a>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</li>

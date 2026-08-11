@@ -1159,6 +1159,14 @@ class ImpactEntry(NotionModel):
     def __str__(self):
         return self.description[:100]
 
+    def get_absolute_url(self) -> str:
+        """The record's own page.
+
+        Keyed on the Notion id because a record has no title to build a slug
+        from. It is a UUID, so one record's URL gives no clue to the next.
+        """
+        return reverse("evidence-detail", kwargs={"notion_id": self.notion_id})
+
     @cached_property
     def display_summary(self) -> str:
         """The summary cut to a card-sized length.
@@ -1168,6 +1176,18 @@ class ImpactEntry(NotionModel):
         write to.
         """
         return Truncator(self.summary).words(self.SUMMARY_WORDS, truncate="…")
+
+    @cached_property
+    def display_regions(self) -> list:
+        """Region names, reached through the entry's jurisdictions.
+
+        An entry has no region of its own. Several jurisdictions can share one,
+        so the names are deduplicated before display.
+        """
+        names = set()
+        for country in self.countries.all():
+            names.update(country.regions.values_list("name", flat=True))
+        return sorted(name for name in names if name)
 
     @cached_property
     def display_attachments(self):

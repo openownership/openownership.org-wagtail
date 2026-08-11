@@ -43,7 +43,7 @@
                         {% for item in group.values if item.selected %}
                             <li>
                                 <a class="evidence-chips__chip"
-                                   href="?{{ evidence.query.without(group.param, item.value) }}">
+                                   href="{{ page.url }}?{{ evidence.query.without(group.param, item.value) }}">
                                     <span class="sr-only">{% trans %}Remove filter{% endtrans %}</span>
                                     {{ group.label }}: {{ item.label }}
                                     <span aria-hidden="true">&times;</span>
@@ -61,6 +61,7 @@
                     {% endfor %}
                 </ul>
 
+                {% set pagination_base = page.url %}
                 {% include "_partials/pagination.jinja" %}
             {% else %}
                 <p class="evidence-list__empty">

@@ -5,9 +5,11 @@ Expects:
 * entry - An ImpactEntry
 
 Reuses the card-group classes so it picks up the existing card styling. The
-whole card is not clickable yet; that comes with the detail pages.
+expand control is an ordinary link to the record's own page, upgraded by htmx
+into an in-place swap, so the listing still works with JavaScript off.
 #}
-<li class="card-group__card card-group__card--without-thumbnail evidence-card">
+<li class="card-group__card card-group__card--without-thumbnail evidence-card"
+    id="evidence-{{ entry.notion_id }}">
 
     <div class="card-group__card-decoration">
 
@@ -52,6 +54,17 @@ whole card is not clickable yet; that comes with the detail pages.
                     </a>
                 </p>
             {% endif %}
+
+            <p class="evidence-card__toggle">
+                <a href="{{ entry.get_absolute_url() }}"
+                   hx-get="{{ entry.get_absolute_url() }}"
+                   hx-target="closest .evidence-card"
+                   hx-swap="outerHTML"
+                   hx-push-url="true">
+                    {% trans %}Read more{% endtrans %}
+                    <span class="sr-only">{% trans %}about{% endtrans %} {{ entry.description }}</span>
+                </a>
+            </p>
         </div>
     </div>
 </li>

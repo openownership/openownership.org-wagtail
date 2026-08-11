@@ -13,7 +13,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.documents import urls as wagtaildocs_urls
 
-from modules.content.views import CountryView, RegionView, SearchView
+from modules.content.views import CountryView, EvidenceDetailView, RegionView, SearchView
 
 # Module
 from modules.core.views import (
@@ -64,5 +64,12 @@ urlpatterns = urlpatterns + i18n_patterns(
     path("map/region/<str:slug>/", RegionView.as_view(), name="region"),
     path("map/oo_all_country_data.csv", CountriesExport.as_view(), name="countries-export"),
     path("search/", SearchView.as_view(), name="search"),
+    # The Evidence Centre listing is a Wagtail page with an editable slug, so
+    # its records cannot live under it without hard coding that slug here.
+    path(
+        "evidence/<slug:notion_id>/",
+        EvidenceDetailView.as_view(),
+        name="evidence-detail",
+    ),
     re_path(r"", include(wagtail_urls)),
 )

@@ -208,9 +208,15 @@ class Query:
         return urlencode(pairs)
 
     def without(self, param: str, value) -> str:
-        """A query string with one selected value removed, back at page one."""
+        """A query string with one selected value removed, back at page one.
+
+        `value` is coerced first because a template hands over a facet value,
+        which is always text, while a selected year is an int. Comparing the two
+        raw would drop nothing and leave the reader unable to untick a year.
+        """
+        dropped = FACETS_BY_PARAM[param].coerce(value)
         remaining = {
-            key: tuple(item for item in values if item != value) if key == param else values
+            key: tuple(item for item in values if item != dropped) if key == param else values
             for key, values in self.selected.items()
         }
         return replace(self, selected=remaining, page=1).querystring()

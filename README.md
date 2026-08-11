@@ -190,6 +190,60 @@ the columns Open Ownership mark public in the tracker. Lessons, "OO outputs used
 and "Presentations/slide decks used in" are deliberately left out: anything in
 the index can end up in front of a reader.
 
+### One record
+
+Every published record has its own URL, `/<lang>/evidence/<notion-id>/`, served by
+`EvidenceDetailView` in `modules/content/views.py`. It is a plain Django view
+rather than a route on `BotCentrePage`, because entries are not Wagtail pages,
+and it is keyed on the Notion id because a record has no title to build a slug
+from. `ImpactEntry.get_absolute_url` is the only place that URL is built.
+
+The same view answers three ways:
+
+| Request | Response |
+|---|---|
+| Ordinary | `views/evidence_detail.jinja`, a whole page |
+| `HX-Request` header | `_partials/evidence_card_expanded.jinja`, the open card |
+| `HX-Request` and `?collapsed=1` | `_partials/evidence_card.jinja`, the shut card |
+
+`HX-Request` is a header htmx sends on every request it makes, so reading it
+needs no extra Python dependency. Both card partials render standalone, which is
+what lets one URL serve the page and both halves of the toggle.
+
+The expand control on a card is an ordinary link to that URL, upgraded with
+`hx-get` into an in-place swap of the card, and `hx-push-url` puts the record's
+URL in the address bar so it stays shareable. Close does the reverse. With
+JavaScript off both are just links, one to the record's page and one back to the
+listing. That is the whole of what Open Ownership asked for in A-S9: the record
+opens where it sits, and it still has a URL a reader can send to someone.
+
+`_partials/evidence_detail_body.jinja` holds the record's fields and is included
+by both the page and the open card, so the two cannot show different things. A
+shut card shows description, jurisdiction, topic and year only.
+
+**Only one record is open at a time**, which `assets/_dev/js/components/evidence-cards.js`
+enforces. Opening a record throws away its shut markup, so that markup is kept
+in a `Map` and put back when another record opens. Shutting the others that way
+costs no extra request, and nothing can race the opening card for the address
+bar: with two open, shutting either one would put the listing URL back while a
+record was still open.
+
+Two things about that file are easy to get wrong. `htmx:afterSwap` reports the
+element it *replaced*, not the new one, so which way a swap went has to be read
+from the response rather than from the card's classes. And a card put back from
+the `Map` needs `htmx.process` called on it, or its links are dead.
+
+**Every control on the listing names the listing itself**, rather than being a
+relative `?...` link or a form with no `action`. Once a record is open the
+address bar holds that record's URL, so a relative control would aim at the
+record and the reader would land on one entry instead of a filtered list. That
+covers the filter form, "Clear filters", the facet chips and pagination. The
+shared pagination partial takes an optional `pagination_base` for this and stays
+relative everywhere else.
+
+The view raises a 404 for anything `publishable()` excludes, so a record can
+never be missing from the listing but reachable by URL.
+
 
 ## Continuous Integration
 

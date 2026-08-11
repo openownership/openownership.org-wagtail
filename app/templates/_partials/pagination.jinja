@@ -2,11 +2,15 @@
 
 Every query parameter except `page` is carried across, so filters, a keyword
 search and a sort order all survive a click through to page two.
+
+Set `pagination_base` before including this to name the page the links belong
+to. Without it they are relative, which is fine anywhere the address bar always
+holds the listing's own URL.
 #}
 {% if page_obj and page_obj.paginator and page_obj.paginator.num_pages > 1 %}
     {% set params = pagination_query(request) %}
     {# A plain & here: autoescaping turns it into &amp; on output. #}
-    {% set base = "?" + params + "&page=" if params else "?page=" %}
+    {% set base = pagination_base|default("") + ("?" + params + "&page=" if params else "?page=") %}
 
     <nav aria-label="Pagination">
         <ul class="nav nav--pagination">
