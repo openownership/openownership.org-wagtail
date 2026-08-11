@@ -1,0 +1,34 @@
+{% extends 'base_with_menu.jinja' %}
+
+
+{% block content %}
+
+    {% if page.intro %}
+        <div class="intro">
+            {{ page.intro|richtext }}
+        </div>
+    {% endif %}
+
+    <div class="related-pages">
+        <h2 class="sr-only">{% trans %}Evidence records{% endtrans %}</h2>
+
+        {% if page_obj and page_obj.paginator.count %}
+            <p class="evidence-list__count">
+                {% trans count=page_obj.paginator.count %}{{ count }} records{% endtrans %}
+            </p>
+
+            <ul class="card-group evidence-list grid-cols grid--1-col landscape">
+                {% for entry in page_obj %}
+                    {% include "_partials/evidence_card.jinja" %}
+                {% endfor %}
+            </ul>
+
+            {% include "_partials/pagination.jinja" %}
+        {% else %}
+            <p class="evidence-list__empty">
+                {% trans %}There are no evidence records to show yet.{% endtrans %}
+            </p>
+        {% endif %}
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,58 @@
+{# One evidence record as a card.
+
+Expects:
+
+* entry - An ImpactEntry
+
+Reuses the card-group classes so it picks up the existing card styling. The
+whole card is not clickable yet; that comes with the detail pages.
+#}
+<li class="card-group__card card-group__card--without-thumbnail evidence-card">
+
+    <div class="card-group__card-decoration">
+
+        <div class="card-group__meta">
+            {% for tag in entry.policy_areas.all() %}
+                <span>{{ tag.name }}</span>
+            {% endfor %}
+            {% for tag in entry.resource_types.all() %}
+                <span>{{ tag.name }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="card-group__text">
+            <h2 class="card-group__title">{{ entry.description }}</h2>
+
+            {% if entry.summary %}
+                <p class="card-group__blurb">{{ entry.summary }}</p>
+            {% endif %}
+
+            <p class="card-group__date evidence-card__facts">
+                {% if entry.year %}
+                    <span class="evidence-card__year">{{ entry.year }}</span>
+                {% endif %}
+
+                {% with countries = entry.countries.all() %}
+                    {% if countries|length %}
+                        <span class="evidence-card__jurisdictions">
+                            {% for country in countries %}
+                                {{ country.name }}{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </span>
+                    {% elif entry.international %}
+                        <span class="evidence-card__jurisdictions">{% trans %}International{% endtrans %}</span>
+                    {% endif %}
+                {% endwith %}
+            </p>
+
+            {% if entry.source_url %}
+                <p class="evidence-card__source">
+                    <a href="{{ entry.source_url }}" rel="noopener" target="_blank">
+                        {% trans %}View source{% endtrans %}
+                        {% include "svg/external-link.jinja" %}
+                    </a>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</li>

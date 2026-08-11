@@ -49,7 +49,7 @@ from modules.content.blocks import (
 from modules.content.blocks.stream import FootnoteBlock, GlossaryItemBlock
 from modules.feedback.models import FeedbackMixin
 from modules.notion.helpers import countries_json, map_json
-from modules.notion.models import CountryTag, Region
+from modules.notion.models import CountryTag, ImpactEntry, Region
 from modules.stats.mixins import Countable
 from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
 from modules.taxonomy.models import PublicationType
@@ -365,6 +365,7 @@ class JobPage(TaggedPageMixin, ContentPageType):
     def human_application_deadline(self):
         if self.application_deadline:
             return self.application_deadline.strftime("%d %B %Y")
+        return ""
 
     def get_publication_type_choices(self):
         """We now allow any publication type category on these pages."""
@@ -429,7 +430,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, FeedbackMixin, Bas
         related_name="+",
     )
 
-    external_link = models.URLField(
+    external_link = models.URLField(  # noqa: DJ001
         blank=True,
         null=True,
         help_text="Use document download OR external link",
@@ -620,7 +621,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, FeedbackMixin, Bas
         menu_pages = [first_page]
         children = self.get_children().live().public().filter(locale=Locale.get_active())
         for child in children:
-            menu_pages.append(child)
+            menu_pages.append(child)  # noqa: PERF402
         return menu_pages
 
 
@@ -787,7 +788,7 @@ class PublicationInnerPage(ContentPageType):
         menu_pages = [first_page]
         siblings = first_page.get_children().live().public().filter(locale=Locale.get_active())
         for sibling in siblings:
-            menu_pages.append(sibling)
+            menu_pages.append(sibling)  # noqa: PERF402
         return menu_pages
 
 
@@ -938,6 +939,7 @@ class TeamProfilePage(BasePage):
         for item in all_locales:
             if item.authorship is not None:
                 return item.authorship
+        return None
 
 
 ####################################################################################################
@@ -1010,7 +1012,7 @@ class TeamPage(IndexPageType):
     subpage_types: list = ["content.TeamProfilePage"]
     max_count = 1
 
-    def get_queryset(self, request):
+    def get_queryset(self, request):  # noqa: ARG002
         """
         This returns the queryset needed to paginate the objects on the page. It pulls all the
         valid filters from get_filter_options and carries out the respective logic on the queryset.
@@ -1022,6 +1024,51 @@ class TeamPage(IndexPageType):
     def get_order_by(self):
         "Order by the order that's been set in Wagtail Admin"
         return ["path"]
+
+
+class BotCentrePage(IndexPageType):
+    """BOT Evidence Centre.
+
+    Lists the recorded uses of beneficial ownership data that come from the
+    Notion impact tracker. The entries are not child pages, so the queryset is
+    built here rather than walked from the page tree.
+    """
+
+    objects_model = ImpactEntry
+
+    template = "content/bot_centre.jinja"
+    parent_page_types: list = ["content.HomePage"]
+    subpage_types: list = []
+    max_count = 1
+
+    objects_per_page = 12
+
+    def base_queryset(self):
+        """Only the entries Open Ownership have cleared for publication."""
+        return ImpactEntry.objects.filter(publish=True, deleted=False).prefetch_related(
+            "countries",
+            "policy_areas",
+            "impact_types",
+            "resource_types",
+        )
+
+    def get_queryset(self, request):  # noqa: ARG002
+        """Newest first, then by topic, then alphabetically.
+
+        The same order the evidence search index uses, so this listing and a
+        filtered one will not disagree about where a record belongs. Topic is
+        the first policy area alphabetically, and anything without a topic or a
+        year sorts to the end rather than the front.
+        """
+        return (
+            self.base_queryset()
+            .annotate(topic=models.Min("policy_areas__name"))
+            .order_by(
+                models.F("year").desc(nulls_last=True),
+                models.F("topic").asc(nulls_last=True),
+                "description",
+            )
+        )
 
 
 ####################################################################################################
@@ -1072,14 +1119,14 @@ class SearchPageSuggestedSearch(Orderable):
         related_name="suggested_for_search",
     )
 
-    link_url = models.CharField(
+    link_url = models.CharField(  # noqa: DJ001
         help_text=_("Link to an external URL"),
         null=True,
         blank=True,
         max_length=255,
     )
 
-    text = models.CharField(
+    text = models.CharField(  # noqa: DJ001
         null=True,
         blank=False,
         max_length=255,
@@ -1106,7 +1153,6 @@ class SearchPage(BasePage):
     objects_per_page = 10
 
     suggested_searches_title = models.CharField(
-        null=True,
         blank=False,
         max_length=255,
         default=_("People commonly search for"),
@@ -1300,7 +1346,7 @@ class TagPage(IndexPageType):
         features=settings.RICHTEXT_BODY_FEATURES,
     )
 
-    video = models.URLField(blank=True, null=True)
+    video = models.URLField(blank=True, null=True)  # noqa: DJ001
 
     body = fields.StreamField(TAG_PAGE_BODY_BLOCKS, blank=True, use_json_field=True)
 
