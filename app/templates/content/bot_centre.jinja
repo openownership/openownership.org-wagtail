@@ -33,9 +33,29 @@
         <div class="evidence-layout__results">
             <h2 class="sr-only">{% trans %}Evidence records{% endtrans %}</h2>
 
-            <p class="evidence-list__count" role="status">
-                {% trans count=evidence.total %}{{ count }} records{% endtrans %}
-            </p>
+            <div class="evidence-list__header">
+                <p class="evidence-list__count" role="status">
+                    {% trans count=evidence.total %}{{ count }} records{% endtrans %}
+                </p>
+
+                {# The listing's own query goes with it, so the download matches
+                   what is on screen. Hidden while degraded, because with search
+                   down there are no filters to carry and the file would quietly
+                   be the whole dataset. #}
+                {% if not evidence.degraded %}
+                    {% with query = evidence.query.querystring() %}
+                        <a class="evidence-list__export"
+                           href="{{ url('evidence-export') }}{% if query %}?{{ query }}{% endif %}"
+                           download>
+                            {% if evidence.query.is_narrowed %}
+                                {% trans %}Download these records (CSV){% endtrans %}
+                            {% else %}
+                                {% trans %}Download all records (CSV){% endtrans %}
+                            {% endif %}
+                        </a>
+                    {% endwith %}
+                {% endif %}
+            </div>
 
             {% if evidence.query.is_filtered and not evidence.degraded %}
                 <ul class="evidence-chips">

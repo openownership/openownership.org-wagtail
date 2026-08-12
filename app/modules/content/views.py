@@ -1,10 +1,12 @@
 # stdlib
+import csv
 from html import unescape
 from typing import Optional
 
 from consoler import console
+from django.conf import settings
 from django.core.paginator import EmptyPage, Paginator
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
@@ -13,6 +15,7 @@ from django.utils.functional import cached_property
 # 3rd party
 from django.utils.html import strip_tags
 from django.views.generic import TemplateView
+from django.views.generic.base import View
 from wagtail.contrib.search_promotions.models import Query
 from wagtail.models import Locale, Page, Site
 
@@ -345,6 +348,15 @@ class SearchView(TemplateView):
             return f"Search: {self.terms}"
         return "Search"
 
+    # The filter parameters, each an id list, paired with what they select.
+    FILTER_PARAMS = (
+        ("pt", "publication_types", PublicationType),
+        ("pr", "principle_tags", PrincipleTag),
+        ("sn", "section_tags", SectionTag),
+        ("sr", "sector_tags", SectorTag),
+        ("co", "country_tags", CountryTag),
+    )
+
     def _set_filters(self, request):
         """
         Gets all the taxonomy objects based on the chosen filters.
@@ -352,30 +364,32 @@ class SearchView(TemplateView):
         """
         f = {}  # for brevity
 
-        ids = [int(n) for n in request.GET.getlist("pt", [])]
-        f["publication_types"] = PublicationType.objects.filter(id__in=ids)
-        self.filters_list += list(f["publication_types"])
-
-        ids = [int(n) for n in request.GET.getlist("pr", [])]
-        f["principle_tags"] = PrincipleTag.objects.filter(id__in=ids)
-        self.filters_list += list(f["principle_tags"])
-
-        ids = [int(n) for n in request.GET.getlist("sn", [])]
-        f["section_tags"] = SectionTag.objects.filter(id__in=ids)
-        self.filters_list += list(f["section_tags"])
-
-        ids = [int(n) for n in request.GET.getlist("sr", [])]
-        f["sector_tags"] = SectorTag.objects.filter(id__in=ids)
-        self.filters_list += list(f["sector_tags"])
-
-        ids = [int(n) for n in request.GET.getlist("co", [])]
-        f["country_tags"] = CountryTag.objects.filter(id__in=ids)
-        self.filters_list += list(f["country_tags"])
+        for param, key, model in self.FILTER_PARAMS:
+            ids = self._ids(request.GET.getlist(param, []))
+            f[key] = model.objects.filter(id__in=ids)
+            self.filters_list += list(f[key])
 
         self.filters = f
 
         if len(self.filters_list) > 0:
             self.is_filtered = True
+
+    @staticmethod
+    def _ids(values) -> list:
+        """The whole numbers among some query parameter values.
+
+        This is a public URL, so a stale bookmark, a mangled share link or a
+        crawler guessing at parameters has to show results rather than raise.
+        Anything that is not a number is dropped, and the values beside it are
+        still honoured.
+        """
+        ids = []
+        for value in values:
+            try:
+                ids.append(int(value))
+            except (TypeError, ValueError):
+                continue
+        return ids
 
     def _get_paginator(self, results):
         try:
@@ -594,3 +608,98 @@ class EvidenceDetailView(TemplateView):
             ImpactEntry.objects.publishable().prefetch_related(*evidence.PREFETCH),
             notion_id=notion_id,
         )
+
+
+class EvidenceExportView(View):
+    """The evidence records as CSV.
+
+    The same query parameters as the listing, so the download matches whatever
+    the reader was looking at. No parameters means the whole dataset. The result
+    set is never paginated: an export is the lot, not the page they were on.
+
+    Only the columns Open Ownership cleared for publication are written. The
+    tracker's internal columns are synced but must not leave the site.
+    """
+
+    COLUMNS = (
+        "Description",
+        "Summary",
+        "Year",
+        "Jurisdiction",
+        "Region",
+        "Topic",
+        "Type",
+        "Type of resource",
+        "Link",
+        "Record URL",
+    )
+
+    # Several values in one cell. A semicolon rather than a comma, because tag
+    # names carry commas of their own and a reader splitting the cell should not
+    # have to guess.
+    SEPARATOR = "; "
+
+    def get(self, request, *args, **kwargs):  # noqa: ARG002
+        response = HttpResponse(
+            content_type="text/csv",
+            headers={"Content-Disposition": f'attachment; filename="{self._filename(request)}"'},
+        )
+        root_url = self._root_url(request)
+        writer = csv.writer(response)
+        writer.writerow(self.COLUMNS)
+        for entry in evidence.all_records(request.GET):
+            writer.writerow(self._row(root_url, entry))
+        return response
+
+    def _row(self, root_url: str, entry) -> list:
+        """One record, in the order `COLUMNS` names."""
+        return [
+            entry.description,
+            entry.summary,
+            entry.year or "",
+            self._jurisdictions(entry),
+            self._joined(entry.display_regions),
+            self._names(entry.policy_areas),
+            self._names(entry.data_users),
+            self._names(entry.resource_types),
+            entry.source_url,
+            f"{root_url}{entry.get_absolute_url()}",
+        ]
+
+    def _root_url(self, request) -> str:
+        """What to put in front of a record's path.
+
+        A CSV is read away from the site, so the record URL has to be absolute.
+        Wagtail's site record is used rather than `build_absolute_uri` because it
+        carries the right scheme: `SECURE_PROXY_SSL_HEADER` is not configured, so
+        Django sees plain http behind the TLS proxy and would write `http://`
+        links into a file Open Ownership may hand out.
+        """
+        site = Site.find_for_request(request) or Site.objects.filter(is_default_site=True).first()
+        if site:
+            return site.root_url.rstrip("/")
+        return settings.BASE_URL.rstrip("/")
+
+    def _filename(self, request) -> str:
+        """Named for what it holds, so two downloads do not collide on disk."""
+        if evidence.parse(request.GET).is_narrowed:
+            return "bot-evidence-filtered.csv"
+        return "bot-evidence.csv"
+
+    def _jurisdictions(self, entry) -> str:
+        """Worldwide records carry no country, so they say so instead.
+
+        Left untranslated, like the column headers. The export is a data file
+        whose columns are named after the Notion tracker, so a half-translated
+        one would be harder to work with, not easier.
+        """
+        names = self._names(entry.countries)
+        if not names and entry.international:
+            return "International"
+        return names
+
+    def _names(self, manager) -> str:
+        return self._joined(tag.name for tag in manager.all())
+
+    def _joined(self, values) -> str:
+        return self.SEPARATOR.join(sorted(values))

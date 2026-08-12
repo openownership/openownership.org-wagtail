@@ -14,6 +14,7 @@ from pydantic import ValidationError
 
 # Module
 from modules.notion.report import Outcome, SyncResult
+from modules.notion.schemas.columns import Columns
 from modules.notion.schemas.rows import NotionRow
 
 
@@ -102,14 +103,19 @@ class BaseSyncer:
     def missing_properties(self, pages: list[dict]) -> list[str]:
         """Columns the schema reads that Notion is no longer sending.
 
+        Matched on the column id, so a rename passes straight through. What is
+        caught is a column deleted, or deleted and recreated, which gets a new
+        id and reads as empty.
+
         Every page in a database carries the full set of columns, so the first
-        one is enough to tell whether a column has been renamed, moved or
-        deleted. An empty database says nothing either way.
+        one is enough to tell. An empty database says nothing either way. The
+        human names are what comes back, because that is what someone reading
+        the failure has to go and look for in the tracker.
         """
-        if not pages or not self.schema.PROPERTIES:
+        if not pages or not self.schema.COLUMNS:
             return []
-        present = set(pages[0].get("properties", {}))
-        return [name for name in self.schema.PROPERTIES if name not in present]
+        present = Columns(pages[0])
+        return [column.name for column in self.schema.COLUMNS if column not in present]
 
     def excluded(self, row: NotionRow) -> bool:  # noqa: ARG002
         """Whether this row should be left out of the sync entirely.

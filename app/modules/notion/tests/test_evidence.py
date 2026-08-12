@@ -615,3 +615,64 @@ def test_with_no_meilisearch_configured_at_all_the_page_still_works():
     found = evidence.results(params(""))
 
     assert found.degraded is True
+
+
+####################################################################################################
+# The whole result set, for export
+####################################################################################################
+
+
+def test_every_record_comes_back_unpaginated(corpus):
+    """An export covers the whole result set, not the page the reader is on."""
+    records = evidence.all_records(params("page=2"), client=corpus)
+
+    assert len(records) == 4
+
+
+def test_the_whole_result_set_respects_the_filters(corpus):
+    records = evidence.all_records(params("topic=Tax"), client=corpus)
+
+    assert [entry.notion_id for entry in records] == ["tax-ke", "both-uk"]
+
+
+def test_the_whole_result_set_respects_a_keyword(corpus):
+    records = evidence.all_records(params("q=corruption"), client=corpus)
+
+    assert [entry.notion_id for entry in records] == ["corr-uk"]
+
+
+def test_the_whole_result_set_respects_the_sort_order(corpus):
+    records = evidence.all_records(params("sort=oldest"), client=corpus)
+
+    assert [entry.notion_id for entry in records] == [
+        "aml-ke",
+        "both-uk",
+        "corr-uk",
+        "tax-ke",
+    ]
+
+
+def test_the_whole_result_set_matches_what_the_listing_shows(corpus):
+    """The export and the listing have to agree, or a reader downloads
+    something other than what they were looking at.
+    """
+    listed = ids_of(run("topic=Tax", corpus))
+    exported = [
+        entry.notion_id for entry in evidence.all_records(params("topic=Tax"), client=corpus)
+    ]
+
+    assert exported == listed
+
+
+def test_the_whole_result_set_falls_back_to_the_database(monkeypatch, corpus):  # noqa: ARG001
+    """With search down there are no filters to apply, so this is everything."""
+
+    def boom(*args, **kwargs):
+        msg = "connection refused"
+        raise ConnectionError(msg)
+
+    monkeypatch.setattr(evidence.search, "search", boom)
+
+    records = evidence.all_records(params("topic=Tax"))
+
+    assert len(records) == 4

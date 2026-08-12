@@ -19,6 +19,7 @@ from urllib.parse import unquote, urlsplit, urlunsplit
 from pydantic import BaseModel, BeforeValidator, ConfigDict, Field
 
 # Module
+from modules.notion.schemas.columns import Column, Columns
 from modules.notion.schemas.properties import (
     get_checkbox,
     get_date,
@@ -75,10 +76,13 @@ class NotionRow(BaseModel):
     model_config = ConfigDict(str_strip_whitespace=True)
 
     # Every Notion column `extract` reads. The sync checks these are still
-    # there before it writes anything, because a renamed column decodes to an
-    # empty value rather than an error and would otherwise be written over good
-    # data and reported as a success.
-    PROPERTIES: ClassVar[tuple[str, ...]] = ()
+    # there before it writes anything, because a column that has gone decodes to
+    # an empty value rather than an error and would otherwise be written over
+    # good data and reported as a success.
+    #
+    # These are matched by id, not by name, so Open Ownership can rename a
+    # tracker column without the sync noticing. See `schemas.columns`.
+    COLUMNS: ClassVar[tuple[Column, ...]] = ()
 
     notion_id: str = Field(min_length=1)
     notion_created: dt.datetime
@@ -108,8 +112,18 @@ class NotionRow(BaseModel):
 ####################################################################################################
 
 
+class CountryCols:
+    """Columns of the country tracker."""
+
+    NAME = Column("title", "Country")
+    OO_SUPPORT = Column("%25%24OQ", "OO Support")
+    ISO2 = Column("H%24!6", "ISO2")
+
+    ALL = (NAME, OO_SUPPORT, ISO2)
+
+
 class CountryRow(NotionRow):
-    PROPERTIES = ("Country", "OO Support", "ISO2")
+    COLUMNS = CountryCols.ALL
 
     name: str = Field(min_length=1)
     oo_support: str = ""
@@ -118,12 +132,12 @@ class CountryRow(NotionRow):
 
     @classmethod
     def extract(cls, page: dict) -> dict:
-        props = page.get("properties", {})
+        cols = Columns(page)
         icon = page.get("icon") or {}
         return {
-            "name": get_title(props.get("Country")),
-            "oo_support": get_select(props.get("OO Support")) or "",
-            "iso2": get_rich_text(props.get("ISO2")),
+            "name": get_title(cols[CountryCols.NAME]),
+            "oo_support": get_select(cols[CountryCols.OO_SUPPORT]) or "",
+            "iso2": get_rich_text(cols[CountryCols.ISO2]),
             "icon": icon.get("emoji", ""),
         }
 
@@ -133,17 +147,32 @@ class CountryRow(NotionRow):
 ####################################################################################################
 
 
-class CommitmentRow(NotionRow):
-    PROPERTIES = (
-        "Country",
-        "Date",
-        "Link",
-        "Commitment type",
-        "Central register",
-        "Public register",
-        "All sectors",
-        "Summary Text",
+class CommitmentCols:
+    """Columns of the commitment tracker."""
+
+    COUNTRY = Column("X'sx", "Country")
+    DATE = Column("%3Ao%7C%23", "Date")
+    LINK = Column("-ifl", "Link")
+    COMMITMENT_TYPE = Column(")UWR", "Commitment type")
+    CENTRAL_REGISTER = Column("o)_-", "Central register")
+    PUBLIC_REGISTER = Column("%3C%7C%3Cz", "Public register")
+    ALL_SECTORS = Column("j%22%5DW", "All sectors")
+    SUMMARY_TEXT = Column("ZC(N", "Summary Text")
+
+    ALL = (
+        COUNTRY,
+        DATE,
+        LINK,
+        COMMITMENT_TYPE,
+        CENTRAL_REGISTER,
+        PUBLIC_REGISTER,
+        ALL_SECTORS,
+        SUMMARY_TEXT,
     )
+
+
+class CommitmentRow(NotionRow):
+    COLUMNS = CommitmentCols.ALL
 
     country_id: str = Field(min_length=1)
     date: Optional[dt.date] = None
@@ -156,16 +185,16 @@ class CommitmentRow(NotionRow):
 
     @classmethod
     def extract(cls, page: dict) -> dict:
-        props = page.get("properties", {})
+        cols = Columns(page)
         return {
-            "country_id": get_first_relation_id(props.get("Country")),
-            "date": get_date(props.get("Date")),
-            "link": get_url(props.get("Link")) or "",
-            "commitment_type_name": get_rich_text(props.get("Commitment type")),
-            "central_register": get_checkbox(props.get("Central register")),
-            "public_register": get_checkbox(props.get("Public register")),
-            "all_sectors": get_checkbox(props.get("All sectors")),
-            "summary_text": get_rich_text_html(props.get("Summary Text")),
+            "country_id": get_first_relation_id(cols[CommitmentCols.COUNTRY]),
+            "date": get_date(cols[CommitmentCols.DATE]),
+            "link": get_url(cols[CommitmentCols.LINK]) or "",
+            "commitment_type_name": get_rich_text(cols[CommitmentCols.COMMITMENT_TYPE]),
+            "central_register": get_checkbox(cols[CommitmentCols.CENTRAL_REGISTER]),
+            "public_register": get_checkbox(cols[CommitmentCols.PUBLIC_REGISTER]),
+            "all_sectors": get_checkbox(cols[CommitmentCols.ALL_SECTORS]),
+            "summary_text": get_rich_text_html(cols[CommitmentCols.SUMMARY_TEXT]),
         }
 
 
@@ -174,19 +203,36 @@ class CommitmentRow(NotionRow):
 ####################################################################################################
 
 
-class RegimeRow(NotionRow):
-    PROPERTIES = (
-        "Country",
-        "Register name",
-        "Implementation stage",
-        "Register URL",
-        "Launch date",
-        "Threshold (%)",
-        "Responsible agency",
-        "Agency type",
-        "Scope",
-        "Who can access",
+class RegimeCols:
+    """Columns of the disclosure regime tracker."""
+
+    COUNTRY = Column("PTKs", "Country")
+    REGISTER_NAME = Column("title", "Register name")
+    IMPLEMENTATION_STAGE = Column("86%605", "Implementation stage")
+    REGISTER_URL = Column("X%26sR", "Register URL")
+    LAUNCH_DATE = Column("x%5EQC", "Launch date")
+    THRESHOLD = Column("%24I.J", "Threshold (%)")
+    RESPONSIBLE_AGENCY = Column("Nkzy", "Responsible agency")
+    AGENCY_TYPE = Column("GzVi", "Agency type")
+    SCOPE = Column("Z%3Dqf", "Scope")
+    WHO_CAN_ACCESS = Column("jxf!", "Who can access")
+
+    ALL = (
+        COUNTRY,
+        REGISTER_NAME,
+        IMPLEMENTATION_STAGE,
+        REGISTER_URL,
+        LAUNCH_DATE,
+        THRESHOLD,
+        RESPONSIBLE_AGENCY,
+        AGENCY_TYPE,
+        SCOPE,
+        WHO_CAN_ACCESS,
     )
+
+
+class RegimeRow(NotionRow):
+    COLUMNS = RegimeCols.ALL
 
     country_id: str = Field(min_length=1)
     title: str = ""
@@ -201,18 +247,18 @@ class RegimeRow(NotionRow):
 
     @classmethod
     def extract(cls, page: dict) -> dict:
-        props = page.get("properties", {})
+        cols = Columns(page)
         return {
-            "country_id": get_first_relation_id(props.get("Country")),
-            "title": get_title(props.get("Register name")),
-            "stage": ", ".join(get_multi_select(props.get("Implementation stage"))),
-            "public_access_register_url": get_url(props.get("Register URL")) or "",
-            "year_launched": get_select(props.get("Launch date")) or "",
-            "threshold": get_number(props.get("Threshold (%)")),
-            "responsible_agency": get_rich_text(props.get("Responsible agency")),
-            "agency_type": get_select(props.get("Agency type")) or "",
-            "coverage_scope": get_multi_select(props.get("Scope")),
-            "who_can_access": get_multi_select(props.get("Who can access")),
+            "country_id": get_first_relation_id(cols[RegimeCols.COUNTRY]),
+            "title": get_title(cols[RegimeCols.REGISTER_NAME]),
+            "stage": ", ".join(get_multi_select(cols[RegimeCols.IMPLEMENTATION_STAGE])),
+            "public_access_register_url": get_url(cols[RegimeCols.REGISTER_URL]) or "",
+            "year_launched": get_select(cols[RegimeCols.LAUNCH_DATE]) or "",
+            "threshold": get_number(cols[RegimeCols.THRESHOLD]),
+            "responsible_agency": get_rich_text(cols[RegimeCols.RESPONSIBLE_AGENCY]),
+            "agency_type": get_select(cols[RegimeCols.AGENCY_TYPE]) or "",
+            "coverage_scope": get_multi_select(cols[RegimeCols.SCOPE]),
+            "who_can_access": get_multi_select(cols[RegimeCols.WHO_CAN_ACCESS]),
         }
 
 
@@ -221,15 +267,28 @@ class RegimeRow(NotionRow):
 ####################################################################################################
 
 
-class RegimeSubRow(NotionRow):
-    PROPERTIES = (
-        "Disclosure regime",
-        "API available",
-        "Bulk data available",
-        "Data on OO Register",
-        "Data published in BODS",
-        "Structured data",
+class RegimeSubCols:
+    """Columns of the disclosure regime data features tracker."""
+
+    DISCLOSURE_REGIME = Column("_qpq", "Disclosure regime")
+    API_AVAILABLE = Column("Rs%3D%7C", "API available")
+    BULK_DATA_AVAILABLE = Column("mkyf", "Bulk data available")
+    ON_OO_REGISTER = Column("y%3D%7Bs", "Data on OO Register")
+    DATA_IN_BODS = Column("G%5D%3B%7D", "Data published in BODS")
+    STRUCTURED_DATA = Column("ybCM", "Structured data")
+
+    ALL = (
+        DISCLOSURE_REGIME,
+        API_AVAILABLE,
+        BULK_DATA_AVAILABLE,
+        ON_OO_REGISTER,
+        DATA_IN_BODS,
+        STRUCTURED_DATA,
     )
+
+
+class RegimeSubRow(NotionRow):
+    COLUMNS = RegimeSubCols.ALL
 
     regime_id: str = Field(min_length=1)
     api_available: YesNo = None
@@ -240,14 +299,14 @@ class RegimeSubRow(NotionRow):
 
     @classmethod
     def extract(cls, page: dict) -> dict:
-        props = page.get("properties", {})
+        cols = Columns(page)
         return {
-            "regime_id": get_first_relation_id(props.get("Disclosure regime")),
-            "api_available": get_select(props.get("API available")),
-            "bulk_data_available": get_select(props.get("Bulk data available")),
-            "on_oo_register": get_select(props.get("Data on OO Register")),
-            "data_in_bods": get_select(props.get("Data published in BODS")),
-            "structured_data": get_select(props.get("Structured data")),
+            "regime_id": get_first_relation_id(cols[RegimeSubCols.DISCLOSURE_REGIME]),
+            "api_available": get_select(cols[RegimeSubCols.API_AVAILABLE]),
+            "bulk_data_available": get_select(cols[RegimeSubCols.BULK_DATA_AVAILABLE]),
+            "on_oo_register": get_select(cols[RegimeSubCols.ON_OO_REGISTER]),
+            "data_in_bods": get_select(cols[RegimeSubCols.DATA_IN_BODS]),
+            "structured_data": get_select(cols[RegimeSubCols.STRUCTURED_DATA]),
         }
 
 
@@ -300,31 +359,66 @@ class NotionFile(BaseModel):
         return urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
 
 
-class ImpactRow(NotionRow):
-    PROPERTIES = (
-        "One sentence description (P)",
-        "Short summary (P)",
-        "Lessons",
-        "OO outputs used in",
-        "Presentations/slide decks used in",
-        "Source URL (P)",
-        "Year (P)",
-        "Publish?",
-        "OO's influence",
-        "Tangible impact",
-        "International",
-        "Archive",
-        "[TEMP] Old?",
-        "[Archive]",
-        "Jurisdiction(s) (P)",
-        "Disclosure regime(s)",
-        "Data user",
-        "Usability theme(s)",
-        "Type",
-        "Type of resource (P)",
-        "Policy area (P)",
-        "Attach source/supporting documentation if possible",
+class BotCols:
+    """Columns of the BOT impact tracker.
+
+    Three of these names are due to change: `Data user` becomes Type, `Policy
+    area (P)` becomes Topic and `Source URL (P)` becomes Link. Because the sync
+    matches on the ids, that rename is a non-event. Updating the names here
+    afterwards is tidying, not repair.
+    """
+
+    DESCRIPTION = Column("title", "One sentence description (P)")
+    SUMMARY = Column("%5EE%3B%3C", "Short summary (P)")
+    LESSONS = Column("dJ%3EA", "Lessons")
+    OO_OUTPUTS_USED_IN = Column("LORe", "OO outputs used in")
+    PRESENTATIONS_USED_IN = Column("R%5D%3FH", "Presentations/slide decks used in")
+    SOURCE_URL = Column("ka%3CB", "Source URL (P)")
+    YEAR = Column("x%7B%5B%3C", "Year (P)")
+    PUBLISH = Column("J%60Y%3F", "Publish?")
+    OO_INFLUENCE = Column("L%5EZN", "OO's influence")
+    TANGIBLE_IMPACT = Column("QTHZ", "Tangible impact")
+    INTERNATIONAL = Column("wgwg", "International")
+    ARCHIVE = Column("s_dh", "Archive")
+    MARKED_OLD = Column("j%7Cit", "[TEMP] Old?")
+    ARCHIVED_TYPES = Column("J%3DgA", "[Archive]")
+    JURISDICTIONS = Column("uMFg", "Jurisdiction(s) (P)")
+    DISCLOSURE_REGIMES = Column("OZh_", "Disclosure regime(s)")
+    DATA_USER = Column("CAQ%3A", "Data user")
+    USABILITY_THEMES = Column("OfYG", "Usability theme(s)")
+    IMPACT_TYPE = Column("R%5Dk~", "Type")
+    RESOURCE_TYPE = Column("RsOD", "Type of resource (P)")
+    POLICY_AREA = Column("%5Di%60%5E", "Policy area (P)")
+    ATTACHMENTS = Column("otX%3B", "Attach source/supporting documentation if possible")
+
+    ALL = (
+        DESCRIPTION,
+        SUMMARY,
+        LESSONS,
+        OO_OUTPUTS_USED_IN,
+        PRESENTATIONS_USED_IN,
+        SOURCE_URL,
+        YEAR,
+        PUBLISH,
+        OO_INFLUENCE,
+        TANGIBLE_IMPACT,
+        INTERNATIONAL,
+        ARCHIVE,
+        MARKED_OLD,
+        ARCHIVED_TYPES,
+        JURISDICTIONS,
+        DISCLOSURE_REGIMES,
+        DATA_USER,
+        USABILITY_THEMES,
+        IMPACT_TYPE,
+        RESOURCE_TYPE,
+        POLICY_AREA,
+        ATTACHMENTS,
     )
+
+
+class ImpactRow(NotionRow):
+    COLUMNS = BotCols.ALL
 
     description: str = Field(min_length=1)
     summary: str = ""
@@ -351,30 +445,28 @@ class ImpactRow(NotionRow):
 
     @classmethod
     def extract(cls, page: dict) -> dict:
-        props = page.get("properties", {})
+        cols = Columns(page)
         return {
-            "description": get_title(props.get("One sentence description (P)")),
-            "summary": get_rich_text(props.get("Short summary (P)")),
-            "lessons": get_rich_text(props.get("Lessons")),
-            "oo_outputs_used_in": get_rich_text(props.get("OO outputs used in")),
-            "presentations_used_in": get_rich_text(props.get("Presentations/slide decks used in")),
-            "source_url": get_url(props.get("Source URL (P)")) or "",
-            "year": get_number(props.get("Year (P)")),
-            "publish": get_checkbox(props.get("Publish?")),
-            "oo_influence": get_checkbox(props.get("OO's influence")),
-            "tangible_impact": get_checkbox(props.get("Tangible impact")),
-            "international": get_checkbox(props.get("International")),
-            "source_archived": get_checkbox(props.get("Archive")),
-            "source_marked_old": get_checkbox(props.get("[TEMP] Old?")),
-            "archived_types": ", ".join(get_multi_select(props.get("[Archive]"))),
-            "country_ids": get_relation_ids(props.get("Jurisdiction(s) (P)")),
-            "regime_ids": get_relation_ids(props.get("Disclosure regime(s)")),
-            "data_users": get_multi_select(props.get("Data user")),
-            "usability_themes": get_multi_select(props.get("Usability theme(s)")),
-            "impact_types": get_multi_select(props.get("Type")),
-            "resource_types": get_multi_select(props.get("Type of resource (P)")),
-            "policy_areas": get_multi_select(props.get("Policy area (P)")),
-            "attachments": get_files(
-                props.get("Attach source/supporting documentation if possible"),
-            ),
+            "description": get_title(cols[BotCols.DESCRIPTION]),
+            "summary": get_rich_text(cols[BotCols.SUMMARY]),
+            "lessons": get_rich_text(cols[BotCols.LESSONS]),
+            "oo_outputs_used_in": get_rich_text(cols[BotCols.OO_OUTPUTS_USED_IN]),
+            "presentations_used_in": get_rich_text(cols[BotCols.PRESENTATIONS_USED_IN]),
+            "source_url": get_url(cols[BotCols.SOURCE_URL]) or "",
+            "year": get_number(cols[BotCols.YEAR]),
+            "publish": get_checkbox(cols[BotCols.PUBLISH]),
+            "oo_influence": get_checkbox(cols[BotCols.OO_INFLUENCE]),
+            "tangible_impact": get_checkbox(cols[BotCols.TANGIBLE_IMPACT]),
+            "international": get_checkbox(cols[BotCols.INTERNATIONAL]),
+            "source_archived": get_checkbox(cols[BotCols.ARCHIVE]),
+            "source_marked_old": get_checkbox(cols[BotCols.MARKED_OLD]),
+            "archived_types": ", ".join(get_multi_select(cols[BotCols.ARCHIVED_TYPES])),
+            "country_ids": get_relation_ids(cols[BotCols.JURISDICTIONS]),
+            "regime_ids": get_relation_ids(cols[BotCols.DISCLOSURE_REGIMES]),
+            "data_users": get_multi_select(cols[BotCols.DATA_USER]),
+            "usability_themes": get_multi_select(cols[BotCols.USABILITY_THEMES]),
+            "impact_types": get_multi_select(cols[BotCols.IMPACT_TYPE]),
+            "resource_types": get_multi_select(cols[BotCols.RESOURCE_TYPE]),
+            "policy_areas": get_multi_select(cols[BotCols.POLICY_AREA]),
+            "attachments": get_files(cols[BotCols.ATTACHMENTS]),
         }

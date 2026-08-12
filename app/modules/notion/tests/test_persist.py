@@ -13,6 +13,13 @@ from modules.notion.models import (
     PolicyAreaTag,
 )
 from modules.notion.report import SyncReport
+from modules.notion.schemas.rows import (
+    BotCols,
+    CommitmentCols,
+    CountryCols,
+    RegimeCols,
+    RegimeSubCols,
+)
 from modules.notion.sync.runner import run_sync
 from modules.notion.sync.syncers import (
     CommitmentSyncer,
@@ -29,12 +36,21 @@ from modules.notion.sync.syncers import (
 
 
 def make_page(properties, notion_id, updated="2023-11-21T12:29:00.000Z"):
+    """A Notion page whose properties are keyed by `Column`.
+
+    Real responses key `properties` by name and carry the column id inside each
+    value, which is what the sync matches on. Naming the column here rather than
+    the string keeps a test from aiming at the same column name in a different
+    tracker.
+    """
     return {
         "id": notion_id,
         "created_time": "2023-11-17T08:56:00.000Z",
         "last_edited_time": updated,
         "archived": False,
-        "properties": properties,
+        "properties": {
+            column.name: {**value, "id": column.id} for column, value in properties.items()
+        },
     }
 
 
@@ -64,7 +80,11 @@ def checkbox(value):
 
 def country_page(notion_id, name, updated="2023-11-21T12:29:00.000Z"):
     return make_page(
-        {"Country": title(name), "OO Support": select("Medium"), "ISO2": rich_text("XX")},
+        {
+            CountryCols.NAME: title(name),
+            CountryCols.OO_SUPPORT: select("Medium"),
+            CountryCols.ISO2: rich_text("XX"),
+        },
         notion_id,
         updated,
     )
@@ -73,14 +93,14 @@ def country_page(notion_id, name, updated="2023-11-21T12:29:00.000Z"):
 def commitment_page(notion_id, country_id, central=False):
     return make_page(
         {
-            "Country": relation(country_id),
-            "Date": {"type": "date", "date": None},
-            "Link": {"type": "url", "url": None},
-            "Central register": checkbox(central),
-            "Public register": checkbox(False),
-            "All sectors": checkbox(False),
-            "Commitment type": rich_text("Other"),
-            "Summary Text": rich_text(""),
+            CommitmentCols.COUNTRY: relation(country_id),
+            CommitmentCols.DATE: {"type": "date", "date": None},
+            CommitmentCols.LINK: {"type": "url", "url": None},
+            CommitmentCols.CENTRAL_REGISTER: checkbox(central),
+            CommitmentCols.PUBLIC_REGISTER: checkbox(False),
+            CommitmentCols.ALL_SECTORS: checkbox(False),
+            CommitmentCols.COMMITMENT_TYPE: rich_text("Other"),
+            CommitmentCols.SUMMARY_TEXT: rich_text(""),
         },
         notion_id,
     )
@@ -89,16 +109,16 @@ def commitment_page(notion_id, country_id, central=False):
 def regime_page(notion_id, country_id, scope=(), access=()):
     return make_page(
         {
-            "Country": relation(country_id),
-            "Register name": title("Register"),
-            "Implementation stage": multi_select("Publish"),
-            "Register URL": {"type": "url", "url": None},
-            "Launch date": select(None),
-            "Threshold (%)": {"type": "number", "number": 25},
-            "Responsible agency": rich_text(""),
-            "Agency type": select(None),
-            "Scope": multi_select(*scope),
-            "Who can access": multi_select(*access),
+            RegimeCols.COUNTRY: relation(country_id),
+            RegimeCols.REGISTER_NAME: title("Register"),
+            RegimeCols.IMPLEMENTATION_STAGE: multi_select("Publish"),
+            RegimeCols.REGISTER_URL: {"type": "url", "url": None},
+            RegimeCols.LAUNCH_DATE: select(None),
+            RegimeCols.THRESHOLD: {"type": "number", "number": 25},
+            RegimeCols.RESPONSIBLE_AGENCY: rich_text(""),
+            RegimeCols.AGENCY_TYPE: select(None),
+            RegimeCols.SCOPE: multi_select(*scope),
+            RegimeCols.WHO_CAN_ACCESS: multi_select(*access),
         },
         notion_id,
     )
@@ -107,12 +127,12 @@ def regime_page(notion_id, country_id, scope=(), access=()):
 def regime_sub_page(notion_id, regime_id, api="Yes", bods="No"):
     return make_page(
         {
-            "Disclosure regime": relation(regime_id),
-            "API available": select(api),
-            "Bulk data available": select(None),
-            "Data on OO Register": select(None),
-            "Data published in BODS": select(bods),
-            "Structured data": select(None),
+            RegimeSubCols.DISCLOSURE_REGIME: relation(regime_id),
+            RegimeSubCols.API_AVAILABLE: select(api),
+            RegimeSubCols.BULK_DATA_AVAILABLE: select(None),
+            RegimeSubCols.ON_OO_REGISTER: select(None),
+            RegimeSubCols.DATA_IN_BODS: select(bods),
+            RegimeSubCols.STRUCTURED_DATA: select(None),
         },
         notion_id,
     )
@@ -155,7 +175,11 @@ def test_country_sync_soft_deletes_missing():
 def test_invalid_row_reported_and_not_clobbered():
     CountrySyncer(None).run(pages=[country_page("c1", "Afghanistan"), country_page("c2", "Brazil")])
     bad = make_page(
-        {"Country": title(""), "OO Support": select("Medium"), "ISO2": rich_text("")},
+        {
+            CountryCols.NAME: title(""),
+            CountryCols.OO_SUPPORT: select("Medium"),
+            CountryCols.ISO2: rich_text(""),
+        },
         "c2",
     )
     res = CountrySyncer(None).run(pages=[country_page("c1", "Afghanistan"), bad])
@@ -283,32 +307,32 @@ def files(*entries):
     return {"type": "files", "files": items}
 
 
-def impact_page(notion_id, countries=(), regimes=(), attachments=(), **overrides):
+def impact_page(notion_id, countries=(), regimes=(), attachments=(), overrides=None):
     props = {
-        "One sentence description (P)": title("Kenyan FIU used BO data"),
-        "Short summary (P)": rich_text("A longer summary."),
-        "Lessons": rich_text("What we learned."),
-        "OO outputs used in": rich_text(""),
-        "Presentations/slide decks used in": rich_text(""),
-        "Source URL (P)": url("https://example.com/story"),
-        "Year (P)": number(2024),
-        "Publish?": checkbox(True),
-        "OO's influence": checkbox(False),
-        "Tangible impact": checkbox(True),
-        "International": checkbox(False),
-        "Archive": checkbox(False),
-        "[TEMP] Old?": checkbox(False),
-        "[Archive]": multi_select(),
-        "Jurisdiction(s) (P)": relation(*countries),
-        "Disclosure regime(s)": relation(*regimes),
-        "Data user": multi_select("Government: FIU"),
-        "Usability theme(s)": multi_select(),
-        "Policy area (P)": multi_select("AML/CFT", "Corruption"),
-        "Type": multi_select("Data use"),
-        "Type of resource (P)": multi_select("Public sector"),
-        "Attach source/supporting documentation if possible": files(*attachments),
+        BotCols.DESCRIPTION: title("Kenyan FIU used BO data"),
+        BotCols.SUMMARY: rich_text("A longer summary."),
+        BotCols.LESSONS: rich_text("What we learned."),
+        BotCols.OO_OUTPUTS_USED_IN: rich_text(""),
+        BotCols.PRESENTATIONS_USED_IN: rich_text(""),
+        BotCols.SOURCE_URL: url("https://example.com/story"),
+        BotCols.YEAR: number(2024),
+        BotCols.PUBLISH: checkbox(True),
+        BotCols.OO_INFLUENCE: checkbox(False),
+        BotCols.TANGIBLE_IMPACT: checkbox(True),
+        BotCols.INTERNATIONAL: checkbox(False),
+        BotCols.ARCHIVE: checkbox(False),
+        BotCols.MARKED_OLD: checkbox(False),
+        BotCols.ARCHIVED_TYPES: multi_select(),
+        BotCols.JURISDICTIONS: relation(*countries),
+        BotCols.DISCLOSURE_REGIMES: relation(*regimes),
+        BotCols.DATA_USER: multi_select("Government: FIU"),
+        BotCols.USABILITY_THEMES: multi_select(),
+        BotCols.POLICY_AREA: multi_select("AML/CFT", "Corruption"),
+        BotCols.IMPACT_TYPE: multi_select("Data use"),
+        BotCols.RESOURCE_TYPE: multi_select("Public sector"),
+        BotCols.ATTACHMENTS: files(*attachments),
     }
-    props.update(overrides)
+    props.update(overrides or {})
     return make_page(props, notion_id)
 
 
@@ -395,7 +419,7 @@ def test_impact_sync_stores_attachments(no_downloads):  # noqa: ARG001
 
 
 def test_impact_row_without_a_description_is_reported(no_downloads):  # noqa: ARG001
-    bad = impact_page("i1", **{"One sentence description (P)": title("")})
+    bad = impact_page("i1", overrides={BotCols.DESCRIPTION: title("")})
     res = ImpactSyncer(None).run(pages=[bad])
 
     assert res.invalid_count == 1
@@ -438,7 +462,11 @@ def test_impact_entry_ignores_a_global_jurisdiction(no_downloads):  # noqa: ARG0
 
 
 def test_global_only_entry_keeps_its_international_flag(no_downloads):  # noqa: ARG001
-    page = impact_page("i1", countries=[GLOBAL_ID], **{"International": checkbox(True)})
+    page = impact_page(
+        "i1",
+        countries=[GLOBAL_ID],
+        overrides={BotCols.INTERNATIONAL: checkbox(True)},
+    )
     ImpactSyncer(None).run(pages=[page])
 
     entry = ImpactEntry.objects.get(notion_id="i1")
@@ -467,16 +495,60 @@ def test_run_sync_includes_impact_after_regimes(no_downloads):  # noqa: ARG001
 
 
 ####################################################################################################
-# Guarding against renamed Notion columns
+# Renamed and missing Notion columns
 ####################################################################################################
 
 
-def test_a_renamed_column_stops_the_sync():
-    """A rename decodes to empty values, which would otherwise be written over
-    good data and reported as a success.
+def rename(page, column, new_name):
+    """Rename a column in a page the way Notion does: the name changes, the id
+    stays.
     """
+    page["properties"][new_name] = page["properties"].pop(column.name)
+    return page
+
+
+def remove(page, column):
+    """Drop a column from a page, as a deletion in Notion would."""
+    page["properties"].pop(column.name)
+    return page
+
+
+def recreate(page, column, new_id):
+    """A column deleted and then made again in Notion: same name, new id."""
+    page["properties"][column.name]["id"] = new_id
+    return page
+
+
+def test_a_renamed_column_is_a_non_event():
+    """Open Ownership rename tracker columns as their thinking moves on. The
+    sync matches on the id, which Notion keeps, so the rename costs nothing.
+    """
+    page = rename(country_page("c1", "Afghanistan"), CountryCols.NAME, "Nation")
+
+    res = CountrySyncer(None).run(pages=[page])
+
+    assert res.missing_properties == []
+    assert res.created == 1
+    assert CountryTag.objects.get(notion_id="c1").name == "Afghanistan"
+
+
+def test_every_column_can_be_renamed_at_once():
     page = country_page("c1", "Afghanistan")
-    page["properties"]["Nation"] = page["properties"].pop("Country")
+    rename(page, CountryCols.NAME, "Nation")
+    rename(page, CountryCols.OO_SUPPORT, "Support level")
+    rename(page, CountryCols.ISO2, "Code")
+
+    res = CountrySyncer(None).run(pages=[page])
+
+    assert res.missing_properties == []
+    assert CountryTag.objects.get(notion_id="c1").iso2 == "XX"
+
+
+def test_a_deleted_column_stops_the_sync():
+    """A column that has gone decodes to empty values, which would otherwise be
+    written over good data and reported as a success.
+    """
+    page = remove(country_page("c1", "Afghanistan"), CountryCols.NAME)
 
     res = CountrySyncer(None).run(pages=[page])
 
@@ -485,19 +557,30 @@ def test_a_renamed_column_stops_the_sync():
     assert CountryTag.objects.filter(notion_id="c1").count() == 0
 
 
-def test_a_renamed_column_does_not_soft_delete_what_we_hold():
+def test_a_column_deleted_and_recreated_stops_the_sync():
+    """Recreating a column in Notion keeps its name but gives it a new id, so
+    the sync cannot ride this one out. `manpy notion_columns` is what tells you
+    the id has moved.
+    """
+    page = recreate(country_page("c1", "Afghanistan"), CountryCols.NAME, "brand%3Dnew")
+
+    res = CountrySyncer(None).run(pages=[page])
+
+    assert res.missing_properties == ["Country"]
+    assert res.created == 0
+
+
+def test_a_deleted_column_does_not_soft_delete_what_we_hold():
     CountrySyncer(None).run(pages=[country_page("c1", "Afghanistan")])
-    page = country_page("c1", "Afghanistan")
-    page["properties"]["Nation"] = page["properties"].pop("Country")
+    page = remove(country_page("c1", "Afghanistan"), CountryCols.NAME)
 
     CountrySyncer(None).run(pages=[page])
 
     assert CountryTag.objects.get(notion_id="c1").deleted is False
 
 
-def test_a_renamed_column_is_reported_as_a_failure():
-    page = country_page("c1", "Afghanistan")
-    page["properties"]["ISO"] = page["properties"].pop("ISO2")
+def test_a_deleted_column_is_reported_as_a_failure():
+    page = remove(country_page("c1", "Afghanistan"), CountryCols.ISO2)
 
     report = SyncReport()
     report.add(CountrySyncer(None).run(pages=[page]))
@@ -508,8 +591,8 @@ def test_a_renamed_column_is_reported_as_a_failure():
 
 def test_every_missing_column_is_named_at_once():
     page = country_page("c1", "Afghanistan")
-    page["properties"].pop("ISO2")
-    page["properties"].pop("OO Support")
+    remove(page, CountryCols.ISO2)
+    remove(page, CountryCols.OO_SUPPORT)
 
     res = CountrySyncer(None).run(pages=[page])
 
@@ -523,7 +606,7 @@ def test_columns_present_means_business_as_usual():
     assert res.created == 1
 
 
-def test_an_empty_database_is_not_treated_as_renamed():
+def test_an_empty_database_is_not_treated_as_broken():
     """No rows means nothing to check, not every column missing."""
     res = CountrySyncer(None).run(pages=[])
 
@@ -531,8 +614,7 @@ def test_an_empty_database_is_not_treated_as_renamed():
 
 
 def test_the_guard_runs_on_a_dry_run_too():
-    page = country_page("c1", "Afghanistan")
-    page["properties"]["Nation"] = page["properties"].pop("Country")
+    page = remove(country_page("c1", "Afghanistan"), CountryCols.NAME)
 
     res = CountrySyncer(None).run(pages=[page], dry_run=True)
 

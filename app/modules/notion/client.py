@@ -73,6 +73,20 @@ class NotionClient:
                 self._sleep(self._retry_delay(err, attempt))
                 attempt += 1
 
+    def fetch_columns(self, db_id: str) -> list[tuple[str, str, str]]:
+        """Every column of a database as `(name, id, type)`, sorted by name.
+
+        The sync matches columns by id, so this is how an id is captured in the
+        first place and how a change is diagnosed later. Sorted so the output of
+        two runs can be compared directly.
+        """
+        schema = self._client.databases.retrieve(database_id=db_id)
+        properties = schema.get("properties") or {}
+        return sorted(
+            (name, value.get("id", ""), value.get("type", ""))
+            for name, value in properties.items()
+        )
+
     def _retry_delay(self, err: Exception, attempt: int) -> float:
         """Seconds to wait before the next attempt, honouring `Retry-After`."""
         if isinstance(err, APIResponseError):

@@ -370,8 +370,31 @@ def results(params, per_page: int = 12, client=None) -> Results:
         return _from_database(query, per_page)
 
 
-def _from_index(query: Query, per_page: int, client) -> Results:
-    client = client or search.get_client()
+def all_records(params, client=None) -> list:
+    """Every record matching a reader's query, unpaginated and in order.
+
+    What an export needs: the whole result set rather than the page the reader
+    happens to be on. The same parsing and the same ordering as `results`, so a
+    download matches the listing it was started from.
+
+    If search is unreachable there are no filters to apply, so this returns
+    every publishable record, exactly as the listing does while degraded.
+    """
+    query = parse(params)
+    try:
+        _, ids = _matching(query, client or search.get_client())
+        return _entries(ids)
+    except Exception as err:  # noqa: BLE001
+        console.error(f"Evidence search unavailable, exporting the whole set instead: {err}")
+        return list(fallback_queryset(query.sort))
+
+
+def _matching(query: Query, client) -> tuple:
+    """The index response for a query, and the ids it returned in order.
+
+    One definition of the search call, so the listing and an export of it cannot
+    ask the index for different things.
+    """
     response = search.search(
         query.terms,
         filters=query.filters(),
@@ -387,6 +410,13 @@ def _from_index(query: Query, per_page: int, client) -> Results:
             f"Evidence search hit the {search.MAX_TOTAL_HITS} result ceiling; "
             f"results are being truncated",
         )
+
+    return response, ids
+
+
+def _from_index(query: Query, per_page: int, client) -> Results:
+    client = client or search.get_client()
+    response, ids = _matching(query, client)
 
     distributions = _distributions(query, response, client)
 

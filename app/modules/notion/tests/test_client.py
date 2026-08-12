@@ -8,9 +8,10 @@ from modules.notion.client import NotionClient, NotionConfigError
 
 
 class FakeDatabases:
-    def __init__(self, pages, fail_times=0):
+    def __init__(self, pages, fail_times=0, schema=None):
         self._pages = pages
         self._fail_times = fail_times
+        self._schema = schema or {}
         self.calls = 0
 
     def query(self, **kwargs):  # noqa: ARG002
@@ -19,10 +20,13 @@ class FakeDatabases:
             raise RequestTimeoutError()
         return {"results": self._pages, "has_more": False, "next_cursor": None}
 
+    def retrieve(self, database_id):  # noqa: ARG002
+        return {"properties": self._schema}
+
 
 class FakeClient:
-    def __init__(self, pages, fail_times=0):
-        self.databases = FakeDatabases(pages, fail_times)
+    def __init__(self, pages, fail_times=0, schema=None):
+        self.databases = FakeDatabases(pages, fail_times, schema)
 
 
 @override_settings(NOTION_DATABASES={"countries": "db-countries"})
@@ -65,3 +69,38 @@ def test_fetch_database_gives_up_after_max_attempts():
 def test_missing_token_raises():
     with pytest.raises(NotionConfigError):
         NotionClient()
+
+
+####################################################################################################
+# Column ids
+####################################################################################################
+
+
+def test_fetch_columns_pairs_each_name_with_its_id():
+    schema = {
+        "Country": {"id": "title", "type": "title"},
+        "ISO2": {"id": "abc%3D", "type": "rich_text"},
+    }
+    nc = NotionClient(client=FakeClient([], schema=schema))
+
+    assert nc.fetch_columns("db") == [
+        ("Country", "title", "title"),
+        ("ISO2", "abc%3D", "rich_text"),
+    ]
+
+
+def test_fetch_columns_sorts_by_name():
+    """So two runs can be compared without the API's ordering getting in the way."""
+    schema = {
+        "Zebra": {"id": "z", "type": "rich_text"},
+        "Apple": {"id": "a", "type": "rich_text"},
+    }
+    nc = NotionClient(client=FakeClient([], schema=schema))
+
+    assert [name for name, _, _ in nc.fetch_columns("db")] == ["Apple", "Zebra"]
+
+
+def test_fetch_columns_on_a_database_with_no_columns():
+    nc = NotionClient(client=FakeClient([], schema={}))
+
+    assert nc.fetch_columns("db") == []

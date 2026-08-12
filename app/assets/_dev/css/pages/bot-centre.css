@@ -96,8 +96,16 @@
 /* Results                                                                                        */
 /**************************************************************************************************/
 
+.evidence-list__header {
+    @apply flex flex-wrap items-baseline justify-between gap-4 mb-4;
+}
+
 .evidence-list__count {
-    @apply text-16 text-text-secondary mb-4;
+    @apply text-16 text-text-secondary;
+}
+
+.evidence-list__export {
+    @apply text-14;
 }
 
 .evidence-list__empty {

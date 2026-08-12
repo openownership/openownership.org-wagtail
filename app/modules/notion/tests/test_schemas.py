@@ -1,5 +1,6 @@
 # stdlib
 import datetime as dt
+import re
 from decimal import Decimal
 
 # 3rd party
@@ -7,16 +8,24 @@ import pytest
 from pydantic import ValidationError
 
 # Module
+from modules.notion.samples.columns import SCHEMAS
 from modules.notion.samples.commitments import COMMITMENTS
 from modules.notion.samples.countries import COUNTRIES
 from modules.notion.samples.impact import IMPACT
 from modules.notion.samples.regimes import REGIMES
 from modules.notion.samples.regimes_sub import REGIMES_SUB
+from modules.notion.schemas import rows
+from modules.notion.schemas.columns import Column
 from modules.notion.schemas.rows import (
+    BotCols,
+    CommitmentCols,
     CommitmentRow,
+    CountryCols,
     CountryRow,
     ImpactRow,
+    RegimeCols,
     RegimeRow,
+    RegimeSubCols,
     RegimeSubRow,
 )
 
@@ -27,12 +36,21 @@ from modules.notion.schemas.rows import (
 
 
 def make_page(properties: dict, **overrides) -> dict:
+    """A Notion page whose properties are keyed by `Column`.
+
+    Real responses key `properties` by name and carry the column id inside each
+    value, which is what the sync matches on. Naming the column here rather than
+    the string means a test cannot accidentally aim at the same column name in a
+    different tracker.
+    """
     page = {
         "id": "11111111-1111-1111-1111-111111111111",
         "created_time": "2023-11-17T08:56:00.000Z",
         "last_edited_time": "2023-11-21T12:29:00.000Z",
         "archived": False,
-        "properties": properties,
+        "properties": {
+            column.name: {**value, "id": column.id} for column, value in properties.items()
+        },
     }
     page.update(overrides)
     return page
@@ -87,9 +105,9 @@ def files(*entries) -> dict:
 def test_country_row_valid():
     page = make_page(
         {
-            "Country": title("Afghanistan"),
-            "OO Support": select("Medium"),
-            "ISO2": {"type": "rich_text", "rich_text": [{"plain_text": "AF"}]},
+            CountryCols.NAME: title("Afghanistan"),
+            CountryCols.OO_SUPPORT: select("Medium"),
+            CountryCols.ISO2: {"type": "rich_text", "rich_text": [{"plain_text": "AF"}]},
         },
         icon={"type": "emoji", "emoji": "🇦🇫"},
     )
@@ -102,13 +120,13 @@ def test_country_row_valid():
 
 
 def test_country_row_missing_name_is_invalid():
-    page = make_page({"Country": title(""), "OO Support": select("Medium")})
+    page = make_page({CountryCols.NAME: title(""), CountryCols.OO_SUPPORT: select("Medium")})
     with pytest.raises(ValidationError):
         CountryRow.from_page(page)
 
 
 def test_country_row_blank_select_defaults_empty():
-    page = make_page({"Country": title("Brazil"), "OO Support": select(None)})
+    page = make_page({CountryCols.NAME: title("Brazil"), CountryCols.OO_SUPPORT: select(None)})
     row = CountryRow.from_page(page)
     assert row.oo_support == ""
 
@@ -121,15 +139,15 @@ def test_country_row_blank_select_defaults_empty():
 def test_commitment_row_valid():
     page = make_page(
         {
-            "Country": relation("country-abc"),
-            "Date": {"type": "date", "date": {"start": "2022-02-04"}},
-            "Link": {"type": "url", "url": "https://example.com"},
-            "Commitment type": {"type": "rich_text", "rich_text": [{"plain_text": "Other"}]},
-            "Central register": checkbox(True),
-            "Public register": checkbox(False),
-            "All sectors": checkbox(True),
-            "Summary Text": {"type": "rich_text", "rich_text": [{"plain_text": "Hi"}]},
-        }
+            CommitmentCols.COUNTRY: relation("country-abc"),
+            CommitmentCols.DATE: {"type": "date", "date": {"start": "2022-02-04"}},
+            CommitmentCols.LINK: {"type": "url", "url": "https://example.com"},
+            CommitmentCols.COMMITMENT_TYPE: rich_text("Other"),
+            CommitmentCols.CENTRAL_REGISTER: checkbox(True),
+            CommitmentCols.PUBLIC_REGISTER: checkbox(False),
+            CommitmentCols.ALL_SECTORS: checkbox(True),
+            CommitmentCols.SUMMARY_TEXT: {"type": "rich_text", "rich_text": [{"plain_text": "Hi"}]},
+        },
     )
     row = CommitmentRow.from_page(page)
     assert row.country_id == "country-abc"
@@ -140,7 +158,9 @@ def test_commitment_row_valid():
 
 
 def test_commitment_row_without_country_is_invalid():
-    page = make_page({"Country": relation(), "Central register": checkbox(True)})
+    page = make_page(
+        {CommitmentCols.COUNTRY: relation(), CommitmentCols.CENTRAL_REGISTER: checkbox(True)},
+    )
     with pytest.raises(ValidationError):
         CommitmentRow.from_page(page)
 
@@ -153,17 +173,17 @@ def test_commitment_row_without_country_is_invalid():
 def test_regime_row_valid():
     page = make_page(
         {
-            "Country": relation("country-abc"),
-            "Register name": title("Register of Beneficial Owners"),
-            "Implementation stage": multi_select("Systems", "Publish"),
-            "Register URL": {"type": "url", "url": "https://reg.example"},
-            "Launch date": select("2020"),
-            "Threshold (%)": {"type": "number", "number": 25},
-            "Responsible agency": {"type": "rich_text", "rich_text": [{"plain_text": "Registrar"}]},
-            "Agency type": select("Government"),
-            "Scope": multi_select("Full-economy"),
-            "Who can access": multi_select("General public", "Registrar"),
-        }
+            RegimeCols.COUNTRY: relation("country-abc"),
+            RegimeCols.REGISTER_NAME: title("Register of Beneficial Owners"),
+            RegimeCols.IMPLEMENTATION_STAGE: multi_select("Systems", "Publish"),
+            RegimeCols.REGISTER_URL: {"type": "url", "url": "https://reg.example"},
+            RegimeCols.LAUNCH_DATE: select("2020"),
+            RegimeCols.THRESHOLD: {"type": "number", "number": 25},
+            RegimeCols.RESPONSIBLE_AGENCY: rich_text("Registrar"),
+            RegimeCols.AGENCY_TYPE: select("Government"),
+            RegimeCols.SCOPE: multi_select("Full-economy"),
+            RegimeCols.WHO_CAN_ACCESS: multi_select("General public", "Registrar"),
+        },
     )
     row = RegimeRow.from_page(page)
     assert row.country_id == "country-abc"
@@ -176,7 +196,7 @@ def test_regime_row_valid():
 
 
 def test_regime_row_without_country_is_invalid():
-    page = make_page({"Country": relation(), "Register name": title("X")})
+    page = make_page({RegimeCols.COUNTRY: relation(), RegimeCols.REGISTER_NAME: title("X")})
     with pytest.raises(ValidationError):
         RegimeRow.from_page(page)
 
@@ -184,9 +204,9 @@ def test_regime_row_without_country_is_invalid():
 def test_regime_row_blank_threshold_is_none():
     page = make_page(
         {
-            "Country": relation("country-abc"),
-            "Threshold (%)": {"type": "number", "number": None},
-        }
+            RegimeCols.COUNTRY: relation("country-abc"),
+            RegimeCols.THRESHOLD: {"type": "number", "number": None},
+        },
     )
     row = RegimeRow.from_page(page)
     assert row.threshold is None
@@ -200,13 +220,13 @@ def test_regime_row_blank_threshold_is_none():
 def test_regime_sub_row_tri_state():
     page = make_page(
         {
-            "Disclosure regime": relation("regime-abc"),
-            "API available": select("Yes"),
-            "Bulk data available": select("No"),
-            "Data on OO Register": select(None),
-            "Data published in BODS": select("No"),
-            "Structured data": select("Yes"),
-        }
+            RegimeSubCols.DISCLOSURE_REGIME: relation("regime-abc"),
+            RegimeSubCols.API_AVAILABLE: select("Yes"),
+            RegimeSubCols.BULK_DATA_AVAILABLE: select("No"),
+            RegimeSubCols.ON_OO_REGISTER: select(None),
+            RegimeSubCols.DATA_IN_BODS: select("No"),
+            RegimeSubCols.STRUCTURED_DATA: select("Yes"),
+        },
     )
     row = RegimeSubRow.from_page(page)
     assert row.api_available is True
@@ -217,7 +237,9 @@ def test_regime_sub_row_tri_state():
 
 
 def test_regime_sub_row_without_regime_is_invalid():
-    page = make_page({"Disclosure regime": relation(), "API available": select("Yes")})
+    page = make_page(
+        {RegimeSubCols.DISCLOSURE_REGIME: relation(), RegimeSubCols.API_AVAILABLE: select("Yes")},
+    )
     with pytest.raises(ValidationError):
         RegimeSubRow.from_page(page)
 
@@ -257,32 +279,32 @@ def test_samples_parse(schema, dataset, minimum):
 ####################################################################################################
 
 
-def impact_page(**overrides):
+def impact_page(overrides=None):
     props = {
-        "One sentence description (P)": title("Kenyan FIU used BO data in an investigation"),
-        "Short summary (P)": rich_text("A longer summary."),
-        "Lessons": rich_text("What we learned."),
-        "OO outputs used in": rich_text("Briefing note"),
-        "Presentations/slide decks used in": rich_text("Lagos workshop"),
-        "Source URL (P)": url("https://example.com/story"),
-        "Year (P)": number(2024),
-        "Publish?": checkbox(True),
-        "OO's influence": checkbox(False),
-        "Tangible impact": checkbox(True),
-        "International": checkbox(False),
-        "Archive": checkbox(False),
-        "[TEMP] Old?": checkbox(False),
-        "[Archive]": multi_select("Data use"),
-        "Jurisdiction(s) (P)": relation("country-1", "country-2"),
-        "Disclosure regime(s)": relation("regime-1"),
-        "Data user": multi_select("Government: FIU"),
-        "Usability theme(s)": multi_select("Identifiers", "Search by person"),
-        "Type": multi_select("Data use"),
-        "Type of resource (P)": multi_select("Public sector"),
-        "Policy area (P)": multi_select("AML/CFT", "Corruption"),
-        "Attach source/supporting documentation if possible": files(),
+        BotCols.DESCRIPTION: title("Kenyan FIU used BO data in an investigation"),
+        BotCols.SUMMARY: rich_text("A longer summary."),
+        BotCols.LESSONS: rich_text("What we learned."),
+        BotCols.OO_OUTPUTS_USED_IN: rich_text("Briefing note"),
+        BotCols.PRESENTATIONS_USED_IN: rich_text("Lagos workshop"),
+        BotCols.SOURCE_URL: url("https://example.com/story"),
+        BotCols.YEAR: number(2024),
+        BotCols.PUBLISH: checkbox(True),
+        BotCols.OO_INFLUENCE: checkbox(False),
+        BotCols.TANGIBLE_IMPACT: checkbox(True),
+        BotCols.INTERNATIONAL: checkbox(False),
+        BotCols.ARCHIVE: checkbox(False),
+        BotCols.MARKED_OLD: checkbox(False),
+        BotCols.ARCHIVED_TYPES: multi_select("Data use"),
+        BotCols.JURISDICTIONS: relation("country-1", "country-2"),
+        BotCols.DISCLOSURE_REGIMES: relation("regime-1"),
+        BotCols.DATA_USER: multi_select("Government: FIU"),
+        BotCols.USABILITY_THEMES: multi_select("Identifiers", "Search by person"),
+        BotCols.IMPACT_TYPE: multi_select("Data use"),
+        BotCols.RESOURCE_TYPE: multi_select("Public sector"),
+        BotCols.POLICY_AREA: multi_select("AML/CFT", "Corruption"),
+        BotCols.ATTACHMENTS: files(),
     }
-    props.update(overrides)
+    props.update(overrides or {})
     return make_page(props)
 
 
@@ -325,12 +347,12 @@ def test_impact_row_extracts_vocabularies():
 
 def test_impact_row_without_a_description_is_invalid():
     with pytest.raises(ValidationError):
-        ImpactRow.from_page(impact_page(**{"One sentence description (P)": title("")}))
+        ImpactRow.from_page(impact_page({BotCols.DESCRIPTION: title("")}))
 
 
 def test_impact_row_without_relations_is_valid():
     page = impact_page(
-        **{"Jurisdiction(s) (P)": relation(), "Disclosure regime(s)": relation()},
+        {BotCols.JURISDICTIONS: relation(), BotCols.DISCLOSURE_REGIMES: relation()},
     )
     row = ImpactRow.from_page(page)
     assert row.country_ids == []
@@ -338,7 +360,7 @@ def test_impact_row_without_relations_is_valid():
 
 
 def test_impact_row_year_may_be_missing():
-    row = ImpactRow.from_page(impact_page(**{"Year (P)": number(None)}))
+    row = ImpactRow.from_page(impact_page({BotCols.YEAR: number(None)}))
     assert row.year is None
 
 
@@ -352,9 +374,7 @@ HOSTED_JPG = "https://prod-files-secure.s3.us-west-2.amazonaws.com/ws/id/IMG%205
 
 
 def attachment_page(*entries):
-    return impact_page(
-        **{"Attach source/supporting documentation if possible": files(*entries)},
-    )
+    return impact_page({BotCols.ATTACHMENTS: files(*entries)})
 
 
 def test_hosted_pdf_is_a_document():
@@ -417,44 +437,78 @@ def test_impact_row_with_no_attachments():
 
 
 @pytest.mark.parametrize(
-    ("schema", "dataset"),
+    ("schema", "database"),
     [
-        (CountryRow, COUNTRIES),
-        (CommitmentRow, COMMITMENTS),
-        (RegimeRow, REGIMES),
-        (RegimeSubRow, REGIMES_SUB),
-        (ImpactRow, IMPACT),
+        (CountryRow, "countries"),
+        (CommitmentRow, "commitments"),
+        (RegimeRow, "regimes"),
+        (RegimeSubRow, "regimes_sub"),
+        (ImpactRow, "bot"),
     ],
 )
-def test_declared_properties_exist_in_the_real_data(schema, dataset):
-    """A typo here would disarm the rename guard without anyone noticing."""
-    present = set(dataset["results"][0]["properties"])
-    missing = [name for name in schema.PROPERTIES if name not in present]
+def test_every_declared_column_id_exists_in_the_database(schema, database):
+    """A typo in an id would disarm the guard and silently decode to nothing."""
+    present = SCHEMAS[database]
+    missing = [column.name for column in schema.COLUMNS if column.id not in present]
 
     assert missing == []
 
 
 @pytest.mark.parametrize(
-    ("schema", "dataset"),
+    ("schema", "database"),
     [
-        (CountryRow, COUNTRIES),
-        (CommitmentRow, COMMITMENTS),
-        (RegimeRow, REGIMES),
-        (RegimeSubRow, REGIMES_SUB),
-        (ImpactRow, IMPACT),
+        (CountryRow, "countries"),
+        (CommitmentRow, "commitments"),
+        (RegimeRow, "regimes"),
+        (RegimeSubRow, "regimes_sub"),
+        (ImpactRow, "bot"),
     ],
 )
-def test_every_property_the_schema_reads_is_declared(schema, dataset):
+def test_every_declared_column_name_matches_the_database(schema, database):
+    """A stale name breaks nothing, but it misleads the next person reading the
+    schema and turns the sync's failure messages into a wild goose chase.
+    """
+    present = SCHEMAS[database]
+    wrong = [
+        (column.name, present[column.id])
+        for column in schema.COLUMNS
+        if column.id in present and column.name != present[column.id]
+    ]
+
+    assert wrong == []
+
+
+@pytest.mark.parametrize(
+    "schema",
+    [CountryRow, CommitmentRow, RegimeRow, RegimeSubRow, ImpactRow],
+)
+def test_every_column_the_schema_reads_is_declared(schema):
     """Whatever `extract` reads has to be declared, or the guard misses it."""
-    page = dataset["results"][0]
-    declared = set(schema.PROPERTIES)
-    read = {name for name in page["properties"] if _is_read_by(schema, name)}
+    import inspect
+
+    source = inspect.getsource(schema.extract)
+    read = set(re.findall(r"Cols\.([A-Z_]+)\]", source))
+    declared = {name for name, _ in _declared_columns(schema)}
 
     assert read - declared == set()
 
 
-def _is_read_by(schema, property_name: str) -> bool:
-    """Whether `extract` mentions this column by name."""
-    import inspect
+def _declared_columns(schema):
+    """The `(attribute, Column)` pairs the schema declares, from its own tuple."""
+    holder = _cols_class(schema)
+    return [
+        (name, value)
+        for name, value in vars(holder).items()
+        if isinstance(value, Column) and value in schema.COLUMNS
+    ]
 
-    return f'"{property_name}"' in inspect.getsource(schema.extract)
+
+def _cols_class(schema):
+    """The `*Cols` class a row schema draws its columns from."""
+    return {
+        CountryRow: rows.CountryCols,
+        CommitmentRow: rows.CommitmentCols,
+        RegimeRow: rows.RegimeCols,
+        RegimeSubRow: rows.RegimeSubCols,
+        ImpactRow: rows.BotCols,
+    }[schema]

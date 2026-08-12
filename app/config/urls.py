@@ -13,7 +13,13 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.documents import urls as wagtaildocs_urls
 
-from modules.content.views import CountryView, EvidenceDetailView, RegionView, SearchView
+from modules.content.views import (
+    CountryView,
+    EvidenceDetailView,
+    EvidenceExportView,
+    RegionView,
+    SearchView,
+)
 
 # Module
 from modules.core.views import (
@@ -71,5 +77,8 @@ urlpatterns = urlpatterns + i18n_patterns(
         EvidenceDetailView.as_view(),
         name="evidence-detail",
     ),
+    # Takes the listing's own query parameters, so a download matches whatever
+    # the reader was looking at. No parameters means the whole dataset.
+    path("evidence.csv", EvidenceExportView.as_view(), name="evidence-export"),
     re_path(r"", include(wagtail_urls)),
 )
