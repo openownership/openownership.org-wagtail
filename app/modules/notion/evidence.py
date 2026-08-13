@@ -171,8 +171,24 @@ class Query:
 
     @property
     def is_narrowed(self) -> bool:
-        """Whether the reader has done anything at all to the default listing."""
+        """Whether the reader has done anything at all to the default listing.
+
+        Used for crawling and caching, where a sorted view counts: it is another
+        URL that should not be indexed or cached separately.
+        """
         return bool(self.terms) or self.is_filtered or self.sort is not DEFAULT_SORT
+
+    @property
+    def is_restricted(self) -> bool:
+        """Whether the reader has asked for less than everything.
+
+        Narrower than `is_narrowed`, which also counts a sort. Sorting hides
+        nothing, so an empty listing under a sort is still an empty listing
+        rather than a search that came back with nothing. That is the difference
+        between telling a reader there is nothing here yet and telling them to
+        remove a filter they never set.
+        """
+        return bool(self.terms) or self.is_filtered
 
     def filters(self) -> dict:
         """The selections, keyed by index attribute."""

@@ -45,8 +45,9 @@
                 {# The listing's own query goes with it, so the download matches
                    what is on screen. Hidden while degraded, because with search
                    down there are no filters to carry and the file would quietly
-                   be the whole dataset. #}
-                {% if not evidence.degraded %}
+                   be the whole dataset, and hidden with no results because a
+                   file of nothing but column headings helps no one. #}
+                {% if evidence.total and not evidence.degraded %}
                     {% with query = evidence.query.querystring() %}
                         <a class="evidence-list__export"
                            href="{{ url('evidence-export') }}{% if query %}?{{ query }}{% endif %}"
@@ -87,9 +88,17 @@
 
                 {% set pagination_base = page.url %}
                 {% include "_partials/pagination.jinja" %}
-            {% else %}
+            {% elif evidence.query.is_restricted %}
+                {# The reader asked for something and it matched nothing. #}
                 <p class="evidence-list__empty">
-                    {% trans %}There are no records matching what you asked for. Try removing a filter.{% endtrans %}
+                    {% trans %}There are no records matching what you asked for. Try removing a filter, or searching for something broader.{% endtrans %}
+                </p>
+            {% else %}
+                {# Nothing published at all, so there is no filter to remove. A
+                   reader sees this before the first sync, or if Open Ownership
+                   untick every record. #}
+                <p class="evidence-list__empty">
+                    {% trans %}There are no records here yet. Please check back later.{% endtrans %}
                 </p>
             {% endif %}
         </div>

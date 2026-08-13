@@ -676,3 +676,35 @@ def test_the_whole_result_set_falls_back_to_the_database(monkeypatch, corpus):  
     records = evidence.all_records(params("topic=Tax"))
 
     assert len(records) == 4
+
+
+####################################################################################################
+# Telling an empty listing from an empty result set
+####################################################################################################
+
+
+def test_a_bare_listing_restricts_nothing():
+    assert evidence.parse(params("")).is_restricted is False
+
+
+def test_a_keyword_restricts_the_results():
+    assert evidence.parse(params("q=tax")).is_restricted is True
+
+
+def test_a_facet_restricts_the_results():
+    assert evidence.parse(params("topic=Tax")).is_restricted is True
+
+
+def test_sorting_alone_does_not_restrict_the_results():
+    """`is_narrowed` counts a sort, because a sorted view should not be cached
+    or indexed. Nothing is hidden by it, so an empty listing under a sort is
+    still an empty listing rather than a search that found nothing.
+    """
+    query = evidence.parse(params("sort=az"))
+
+    assert query.is_narrowed is True
+    assert query.is_restricted is False
+
+
+def test_paging_alone_does_not_restrict_the_results():
+    assert evidence.parse(params("page=3")).is_restricted is False

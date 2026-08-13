@@ -32,7 +32,11 @@ still has somewhere to go.
         </div>
 
         <div class="card-group__text">
-            <h2 class="card-group__title">{{ entry.description }}</h2>
+            {# `h3`, because this sits inside the results section headed by
+               "Evidence records". `tabindex` so focus can be moved here when
+               the record is opened, which is what tells a screen reader
+               reader something happened. #}
+            <h3 class="card-group__title" tabindex="-1">{{ entry.description }}</h3>
 
             {% include "_partials/evidence_detail_body.jinja" %}
 

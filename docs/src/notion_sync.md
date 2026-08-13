@@ -298,6 +298,40 @@ artwork itself is untouched. `modules/notion/tests/test_icons.py` checks every
 file in the directory for all of that, so the next batch cannot slip through
 dirty.
 
+### When there is nothing to show
+
+Three different situations, three different messages, because telling a reader
+to remove a filter they never set is worse than saying nothing:
+
+| Situation | What the reader sees |
+|---|---|
+| Nothing published at all | "There are no records here yet." No advice, because there is nothing to undo |
+| A search or filter matched nothing | "Try removing a filter, or searching for something broader" |
+| Meilisearch unreachable | Every record, filters hidden, and a notice saying filtering is unavailable |
+
+`Query.is_restricted` is what tells the first two apart. It is deliberately
+narrower than `is_narrowed`: a sort counts as narrowing for caching and crawling
+purposes but hides nothing, so an empty listing under a sort is still an empty
+listing. The download link is hidden in all three cases.
+
+### Keyboard and screen readers
+
+* **Card titles are `h3`**, sitting under the results section's own heading. As
+  `h2` they were siblings of that heading, which left anyone navigating by
+  heading with a flat list and no structure.
+* **Focus is moved deliberately after every htmx swap**, in
+  `assets/_dev/js/components/evidence-cards.js`. Swapping a card destroys the
+  element that was clicked, which drops focus to the top of the document; a
+  keyboard user would have to tab back through the whole page after opening a
+  record. Opening moves focus to the record's heading, so the reader hears which
+  record opened before its controls. Closing hands focus back to that card's own
+  "Read more".
+* **`aria-expanded` is set by JavaScript, not in the template.** The control is
+  an ordinary link until JavaScript arrives, and only then does it behave as a
+  disclosure. In the markup it would be a lie.
+* **The result count carries `role="status"`.** Filtering is a full page load,
+  so the count is what reports the change.
+
 ### Region colours
 
 Open Ownership's secondary brand palette holds six colours and the tracker has

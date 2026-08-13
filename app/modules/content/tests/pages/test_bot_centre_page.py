@@ -1,4 +1,5 @@
 import pytest
+from django.template.loader import render_to_string
 from django.test import Client
 
 from modules.content.models.pages import BotCentrePage
@@ -581,3 +582,111 @@ def test_the_colour_is_not_set_through_a_css_variable(bot_centre):
     rendered = client.get(bot_centre.url).rendered_content
 
     assert "--region-bar" not in rendered
+
+
+####################################################################################################
+# Keyboard and screen reader
+####################################################################################################
+
+
+def test_a_card_title_sits_below_the_section_heading(bot_centre):
+    """The results section is headed "Evidence records", so a card inside it is
+    an `h3`. As `h2` the cards were siblings of the section, which left a screen
+    reader with a flat list and no structure to navigate.
+    """
+    make_entry("e1", "A record")
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert '<h3 class="card-group__title"' in rendered
+    assert '<h2 class="card-group__title"' not in rendered
+
+
+def test_a_card_title_can_take_focus(bot_centre):
+    """Opening a record destroys the control that was clicked, so focus is moved
+    to the heading. That needs the heading to be focusable.
+    """
+    make_entry("e1", "A record")
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert 'class="card-group__title" tabindex="-1"' in rendered
+
+
+def test_the_record_page_keeps_its_own_heading_level(bot_centre):  # noqa: ARG001
+    """A record on its own page is the page, so it stays an `h1`.
+
+    `bot_centre` is needed even though it is not named: the detail view looks the
+    listing up for its breadcrumb.
+    """
+    entry = make_entry("e1", "A record")
+
+    rendered = client.get(entry.get_absolute_url()).content.decode()
+
+    assert "<h1" in rendered
+
+
+def test_the_expand_control_is_a_plain_link_in_the_markup():
+    """`aria-expanded` is added by JavaScript, not here. Without JavaScript the
+    control navigates to the record's page, so claiming it expands would be a
+    lie. Rendered on its own because the site navigation uses `aria-expanded`
+    legitimately, all over every page.
+    """
+    entry = make_entry("e1", "A record")
+
+    card = render_to_string("_partials/evidence_card.jinja", {"entry": entry})
+
+    assert "aria-expanded" not in card
+    assert 'hx-push-url="true"' in card
+
+
+def test_the_result_count_is_announced(bot_centre):
+    """Filtering is a full page load, so the count is what tells a screen reader
+    the results changed.
+    """
+    make_entry("e1", "A record")
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert 'class="evidence-list__count" role="status"' in rendered
+
+
+####################################################################################################
+# Nothing to show
+####################################################################################################
+
+
+def test_a_listing_with_nothing_published_says_so(bot_centre):
+    """Before the first sync, or if OO untick every record. Telling a reader to
+    remove a filter they never set is worse than useless.
+    """
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "no records here yet" in rendered
+    assert "removing a filter" not in rendered
+
+
+def test_a_search_that_matches_nothing_says_that_instead(stocked):
+    rendered = client.get(f"{stocked.url}?q=zzzznothing").rendered_content
+
+    assert "no records matching what you asked for" in rendered
+    assert "no records here yet" not in rendered
+
+
+def test_a_filter_that_matches_nothing_says_that_instead(stocked):
+    rendered = client.get(f"{stocked.url}?topic=Nonexistent").rendered_content
+
+    assert "no records matching what you asked for" in rendered
+
+
+def test_sorting_an_empty_listing_still_reads_as_empty(bot_centre):
+    """A sort hides nothing, so it is not something to suggest removing."""
+    rendered = client.get(f"{bot_centre.url}?sort=az").rendered_content
+
+    assert "no records here yet" in rendered
+
+
+def test_nothing_to_download_means_no_download_link(bot_centre):
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "evidence-list__export" not in rendered
