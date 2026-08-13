@@ -144,6 +144,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
     "dbbackup",
     "cacheops",
+    "axes",
 ]
 
 WAGTAIL_APPS = [
@@ -174,6 +175,7 @@ WAGTAIL_APPS = [
     "wagtailfontawesomesvg",
     "wagtailmodelchooser",
     "wagtools",
+    "wagtail_reports",
     "wagtail_meilisearch",
     "statham",
 ]
@@ -214,8 +216,20 @@ MIDDLEWARE = [
     "middleware.locale.LocaleMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "wagtailcache.cache.FetchFromCacheMiddleware",
+    "axes.middleware.AxesMiddleware",  # must be last
 ]
 
+####################################################################################################
+# Django Axes
+####################################################################################################
+
+AUTHENTICATION_BACKENDS = [
+    "axes.backends.AxesStandaloneBackend",  # must be first
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+AXES_ENABLE_ACCESS_FAILURE_LOG = True
+AXES_USERNAME_FORM_FIELD = "username"
 
 ####################################################################################################
 # Core Django config
