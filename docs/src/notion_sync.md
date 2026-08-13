@@ -98,6 +98,29 @@ Access is the `notion.view_syncrun` permission, granted to `Editors` and
 afterwards. It is a permission rather than a superuser check because making this
 visible to Open Ownership was the reason for building it.
 
+### Sync now
+
+The page carries a **Sync now** button, gated on the same permission: anyone who
+can see the status can ask for a fresh one. It runs the same pair of steps as the
+management command, a full sync followed by an evidence reindex, through
+`runner.sync_and_index`.
+
+Three things about it:
+
+* **It is a POST, not a link.** A sync costs several hundred calls to Notion's
+  API, so it must never be reachable by a crawler, a link prefetch or a
+  bookmark. A GET returns 405.
+* **The work happens on a thread**, so the request returns immediately and the
+  run appears in the listing as `running`. This project has no task queue, and
+  holding a request open for a fourteen second sync would risk gunicorn's
+  timeout and tie up a worker for no reason. It degrades safely: the run row is
+  written before the work starts, so a thread lost to a worker restart is reaped
+  as "Did not finish" on the next run rather than disappearing. What it does not
+  give you is a retry, which is the trade for not adding Celery.
+* **A second sync is refused while one is running**, and the button reads "Sync
+  running" and is disabled. Two syncs writing the same tables at once is worth
+  preventing, and clicking twice is the obvious way to cause it.
+
 `report.py` holds the serialisation. `as_dict` is a persisted format, so it is
 written out field by field rather than with `dataclasses.asdict`, and `from_dict`
 is deliberately forgiving in both directions: a run stored before a counter

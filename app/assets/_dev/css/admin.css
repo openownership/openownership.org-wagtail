@@ -160,3 +160,9 @@
         text-align: right;
     }
 }
+
+/* Sat above the banner, so the state of the sync is read before the offer to
+   run one. */
+.sync-run-trigger {
+    margin-bottom: 1em;
+}

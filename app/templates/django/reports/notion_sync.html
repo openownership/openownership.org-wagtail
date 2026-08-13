@@ -14,6 +14,21 @@
 
 {% block listing %}
     <div class="nice-padding">
+
+        {% comment %}A form rather than a link: this costs a few hundred calls to
+           Notion's API, so it must never be reachable by a crawler, a prefetch
+           or a bookmark.{% endcomment %}
+        <form method="post" action="{% url 'notion_sync_trigger' %}" class="sync-run-trigger">
+            {% csrf_token %}
+            {% if sync_in_progress %}
+                <button type="submit" class="button button-secondary" disabled>
+                    {% trans "Sync running" %}
+                </button>
+            {% else %}
+                <button type="submit" class="button">{% trans "Sync now" %}</button>
+            {% endif %}
+        </form>
+
         {% if not last_full_run and not object_list %}
             <div class="help-block help-info">
                 {% icon name="help" %}

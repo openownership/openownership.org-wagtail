@@ -15,7 +15,7 @@ from wagtail_modeladmin.helpers import PermissionHelper
 from wagtail_modeladmin.options import ModelAdmin, ModelAdminGroup, modeladmin_register
 
 # Module
-from .reports import SyncRunReportView
+from .reports import SyncRunReportView, SyncTriggerView
 from .models import (
     Commitment,
     CountryTag,
@@ -253,6 +253,11 @@ def register_sync_report_urls():
             "reports/notion-sync/results/",
             SyncRunReportView.as_view(results_only=True),
             name="notion_sync_report_results",
+        ),
+        path(
+            "reports/notion-sync/run/",
+            SyncTriggerView.as_view(),
+            name="notion_sync_trigger",
         ),
     ]
 

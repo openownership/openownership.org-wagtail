@@ -15,14 +15,19 @@ noted where it happens.
 # 3rd party
 import django_filters
 from django.conf import settings
+from django.contrib import messages
+from django.shortcuts import redirect
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.views.generic.base import View
+from wagtail.admin.auth import permission_denied
 from wagtail.admin.filters import DateRangePickerWidget, WagtailFilterSet
 from wagtail.admin.views.reports import ReportView
 from wagtail.permission_policies import ModelPermissionPolicy
 
 # Module
 from modules.notion.models import SyncRun
+from modules.notion.sync.runner import start_sync
 
 
 class SyncRunFilterSet(WagtailFilterSet):
@@ -103,7 +108,11 @@ class SyncRunReportView(ReportView):
         context["stale_after_hours"] = int(
             settings.NOTION_SYNC_STALE_AFTER.total_seconds() // 3600,
         )
+        context["sync_in_progress"] = self._sync_in_progress()
         return context
+
+    def _sync_in_progress(self) -> bool:
+        return SyncRun.objects.filter(status=SyncRun.Status.RUNNING).exists()
 
     def _is_stale(self, last_full) -> bool:
         """Whether to warn that the sync has stopped.
@@ -119,3 +128,37 @@ class SyncRunReportView(ReportView):
         if not last_full:
             return True
         return timezone.now() - last_full.started_at > settings.NOTION_SYNC_STALE_AFTER
+
+
+####################################################################################################
+# Starting a sync from the page
+####################################################################################################
+
+
+class SyncTriggerView(View):
+    """Start a sync from the report page.
+
+    POST only. A GET that changed something would be triggered by a crawler, a
+    link prefetch or a bookmark, and this one costs a few hundred calls to
+    Notion's API.
+
+    The work runs on a thread, so this returns immediately and the reader
+    watches the run appear in the listing. Gated on the same permission as the
+    report itself, so anyone who can see the status can also ask for a fresh one.
+    """
+
+    permission_policy = ModelPermissionPolicy(SyncRun)
+
+    def post(self, request, *args, **kwargs):  # noqa: ARG002
+        if not self.permission_policy.user_has_permission(request.user, "view"):
+            return permission_denied(request)
+
+        if SyncRun.objects.filter(status=SyncRun.Status.RUNNING).exists():
+            # Two syncs writing the same tables at once is worth preventing, and
+            # clicking twice is the obvious way to cause it.
+            messages.warning(request, _("A sync is already running. Wait for it to finish."))
+        else:
+            start_sync()
+            messages.success(request, _("Sync started. It will appear below as it progresses."))
+
+        return redirect("notion_sync_report")

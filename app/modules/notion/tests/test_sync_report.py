@@ -330,3 +330,80 @@ def test_the_per_database_counts_are_a_table(superuser):
     assert "sync-run-detail__stats" in body
     assert "Unchanged" in body
     assert "Soft deleted" in body
+
+
+####################################################################################################
+# Starting a sync from the page
+####################################################################################################
+
+# The work happens on a thread, so the tests drive `start_sync` directly rather
+# than racing one. What the view is responsible for is the guarding: the method,
+# the permission, and refusing to start a second sync on top of a running one.
+
+TRIGGER_URL = reverse("notion_sync_trigger")
+
+
+def test_a_sync_cannot_be_started_by_following_a_link(superuser):
+    """A GET must never change anything. A crawler, a prefetch or a bookmark
+    would otherwise hammer Notion.
+    """
+    response = signed_in(superuser).get(TRIGGER_URL)
+
+    assert response.status_code == 405
+    assert SyncRun.objects.count() == 0
+
+
+def test_a_sync_cannot_be_started_without_the_permission(editor, monkeypatch):
+    started = []
+    monkeypatch.setattr("modules.notion.reports.start_sync", lambda: started.append(True))
+
+    response = signed_in(editor).post(TRIGGER_URL)
+
+    assert response.status_code in (302, 403)
+    assert started == []
+
+
+def test_a_sync_can_be_started_with_the_permission(editor, monkeypatch):
+    started = []
+    monkeypatch.setattr("modules.notion.reports.start_sync", lambda: started.append(True))
+
+    response = signed_in(allow(editor)).post(TRIGGER_URL)
+
+    assert response.status_code == 302
+    assert started == [True]
+
+
+def test_starting_a_sync_returns_to_the_report(superuser, monkeypatch):
+    monkeypatch.setattr("modules.notion.reports.start_sync", lambda: None)
+
+    response = signed_in(superuser).post(TRIGGER_URL)
+
+    assert response["Location"] == URL
+
+
+def test_a_second_sync_is_refused_while_one_is_running(superuser, monkeypatch):
+    """Two syncs writing the same tables at once is worth preventing, and it is
+    the obvious thing to cause by clicking twice.
+    """
+    SyncRun.start()
+    started = []
+    monkeypatch.setattr("modules.notion.reports.start_sync", lambda: started.append(True))
+
+    signed_in(superuser).post(TRIGGER_URL)
+
+    assert started == []
+
+
+def test_the_button_is_offered_to_anyone_who_can_see_the_report(editor):
+    body = signed_in(allow(editor)).get(URL).content.decode()
+
+    assert TRIGGER_URL in body
+    assert "Sync now" in body
+
+
+def test_the_button_says_so_while_a_sync_is_running(superuser):
+    SyncRun.start()
+
+    body = signed_in(superuser).get(URL).content.decode()
+
+    assert "Sync running" in body
