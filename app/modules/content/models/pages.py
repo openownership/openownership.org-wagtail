@@ -41,6 +41,7 @@ from modules.content.blocks import (
     ADDITIONAL_CONTENT_BLOCKS,
     ARTICLE_PAGE_BODY_BLOCKS,
     HOME_PAGE_BLOCKS,
+    HYBRID_PAGE_BLOCKS,
     SECTION_PAGE_BLOCKS,
     TAG_PAGE_BODY_BLOCKS,
     TEAM_PROFILE_PAGE_BODY_BLOCKS,
@@ -1043,6 +1044,14 @@ class BotCentrePage(IndexPageType):
     max_count = 1
 
     objects_per_page = 12
+
+    before_listing = fields.StreamField(HYBRID_PAGE_BLOCKS, blank=True, use_json_field=True)
+    after_listing = fields.StreamField(ADDITIONAL_CONTENT_BLOCKS, blank=True, use_json_field=True)
+
+    content_panels = BasePage.content_panels + [
+        FieldPanel("before_listing"),
+        # FieldPanel("after_listing"),  # Not sure we actually need this
+    ]
 
     def get_queryset(self, request):  # noqa: ARG002
         """Every publishable entry, in the reader's chosen order.

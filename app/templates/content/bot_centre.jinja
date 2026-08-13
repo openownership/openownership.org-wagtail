@@ -15,6 +15,12 @@
         </div>
     {% endif %}
 
+    {% if page and page.before_listing %}
+        <div class="intro">
+            {{render_stream(page.before_listing)}}
+        </div>
+    {% endif %}
+
     {% if evidence.degraded %}
         <p class="evidence-notice" role="status">
             {% trans %}Filtering and search are temporarily unavailable. Showing all records.{% endtrans %}
@@ -102,6 +108,11 @@
                 </p>
             {% endif %}
         </div>
+        {% if page and page.after_listing %}
+            <div class="additional-content">
+                {{render_stream(page.after_listing)}}
+            </div>
+        {% endif %}
     </div>
 
 </div>
