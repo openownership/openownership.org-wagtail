@@ -1,0 +1,141 @@
+{% load i18n wagtailadmin_tags %}
+
+{% comment %}
+    One row per sync run.
+
+   Standalone rather than extending `_list_base.html`, which despite its name
+   hardcodes feedback columns in its body.
+
+   The columns run left to right in the order the question gets answered: when
+   did it run, did it work, what did it cover, and only then the numbers.
+   Failures sit in a details block on the row itself, built from the run's own
+   stored JSON, so opening one costs no query and nobody has to navigate away to
+   find out what broke.
+{% endcomment %}
+
+<table class="listing">
+    <col width="16%" />
+    <col width="14%" />
+    <col width="20%" />
+    <col width="10%" />
+    <col width="10%" />
+    <col width="10%" />
+    <col width="20%" />
+
+    <thead>
+        <tr>
+            <th>{% trans "When" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th>{% trans "Covered" %}</th>
+            <th>{% trans "Took" %}</th>
+            <th>{% trans "Fetched" %}</th>
+            <th>{% trans "Changed" %}</th>
+            <th>{% trans "Problems" %}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for run in object_list %}
+            <tr>
+                <td title="{{ run.started_at }}">
+                    {% blocktrans with when=run.started_at|timesince %}{{ when }} ago{% endblocktrans %}
+                </td>
+                <td>
+                    {% if run.status == "success" %}
+                        {% status run.get_status_display classname="w-status--primary" %}
+                    {% elif run.status == "running" %}
+                        {% status run.get_status_display %}
+                    {% else %}
+                        {% status run.get_status_display classname="w-status--label" %}
+                    {% endif %}
+                </td>
+                <td>
+                    {{ run.scope }}
+                    {% if not run.is_full or run.forced %}
+                        <br /><span class="w-text-14">{{ run.mode }}</span>
+                    {% endif %}
+                </td>
+                <td>{{ run.duration_display|default:"&mdash;" }}</td>
+                {% comment %}Zero fetched with a green status means Notion returned
+                   nothing, which no other column on this row would reveal.{% endcomment %}
+                <td>{{ run.fetched }}</td>
+                <td>{{ run.created|add:run.updated }}</td>
+                <td>
+                    {% if run.has_failures %}
+                        {% if run.invalid_count %}
+                            {% blocktrans count counter=run.invalid_count %}{{ counter }} row{% plural %}{{ counter }} rows{% endblocktrans %}
+                        {% endif %}
+                        {% if run.missing_column_count %}
+                            {% blocktrans count counter=run.missing_column_count %}{{ counter }} missing column{% plural %}{{ counter }} missing columns{% endblocktrans %}
+                        {% endif %}
+                        {% if run.error and not run.invalid_count and not run.missing_column_count %}
+                            {% trans "Did not finish" %}
+                        {% endif %}
+                    {% else %}
+                        &mdash;
+                    {% endif %}
+                </td>
+            </tr>
+
+            {% if run.has_failures %}
+                <tr>
+                    <td colspan="7">
+                        <details class="sync-run-detail">
+                            <summary>{% trans "What went wrong" %}</summary>
+
+                            {% if run.error %}
+                                <p><strong>{{ run.error }}</strong></p>
+                            {% endif %}
+
+                            <ul>
+                                {% for database, url, message in run.failures %}
+                                    <li>
+                                        <strong>{{ database }}</strong>
+                                        {% if url %}
+                                            <a href="{{ url }}" rel="noopener" target="_blank">{% trans "Open in Notion" %}</a>
+                                        {% endif %}
+                                        {{ message }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+
+                            {% comment %}A table rather than a run of sentences: the
+                               numbers are only worth showing if they can be compared
+                               down a column at a glance.{% endcomment %}
+                            <table class="listing sync-run-detail__stats">
+                                <thead>
+                                    <tr>
+                                        <th>{% trans "Database" %}</th>
+                                        <th>{% trans "Fetched" %}</th>
+                                        <th>{% trans "Created" %}</th>
+                                        <th>{% trans "Updated" %}</th>
+                                        <th>{% trans "Unchanged" %}</th>
+                                        <th>{% trans "No parent" %}</th>
+                                        <th>{% trans "Soft deleted" %}</th>
+                                        <th>{% trans "Excluded" %}</th>
+                                        <th>{% trans "Invalid" %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for result in run.report.results %}
+                                        <tr>
+                                            <td>{{ result.name }}</td>
+                                            <td>{{ result.fetched }}</td>
+                                            <td>{{ result.created }}</td>
+                                            <td>{{ result.updated }}</td>
+                                            <td>{{ result.skipped }}</td>
+                                            <td>{{ result.missing_parent }}</td>
+                                            <td>{{ result.deleted }}</td>
+                                            <td>{{ result.excluded }}</td>
+                                            <td>{{ result.invalid_count }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </details>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>

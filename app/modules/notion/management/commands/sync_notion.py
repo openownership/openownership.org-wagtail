@@ -36,7 +36,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):  # noqa: ARG002
         only = [name.strip() for name in options["only"].split(",") if name.strip()] or None
-        report = run_sync(only=only, force=options["force"], dry_run=options["dry_run"])
+        report = run_sync(
+            only=only,
+            force=options["force"],
+            dry_run=options["dry_run"],
+            trigger="command",
+        )
 
         for line in report.summary().splitlines():
             self.stdout.write(line)

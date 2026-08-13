@@ -8,6 +8,7 @@ from django.db import models
 from django.forms import CheckboxSelectMultiple
 from django.shortcuts import reverse
 from django.utils.functional import cached_property
+from django.utils import timezone
 from django.utils.text import Truncator
 from django.utils.translation import gettext_lazy as _
 from django_extensions.db.fields import AutoSlugField
@@ -29,6 +30,7 @@ from config.template import commitment_summary
 from modules.content.blocks import TAG_PAGE_BODY_BLOCKS
 from modules.notion import colours, icons
 from modules.notion.data import CAPITALS
+from modules.notion.report import SyncReport, describe, notion_url
 from modules.taxonomy.models.core import BaseTag
 
 
@@ -1389,3 +1391,236 @@ class ImpactAttachment(models.Model):
         if self.kind == self.KIND_IMAGE and self.image_id:
             return self.image.title
         return self.label or self.url
+
+
+####################################################################################################
+# Sync history
+####################################################################################################
+
+
+class SyncRunQuerySet(models.QuerySet):
+    def full(self):
+        """Runs that covered everything for real: not a dry run, not `--only`."""
+        return self.filter(dry_run=False, only=[])
+
+    def last_completed_full(self) -> Optional["SyncRun"]:
+        """The run the staleness warning is measured from.
+
+        Completed, not perfect. A run that rejected a few rows still worked: it
+        reached Notion, fetched everything and wrote what it could, and a row
+        Notion holds badly is data for Open Ownership to fix rather than a
+        broken sync. Counting those as failures would leave the warning on
+        permanently while one bad row sat in the tracker, and nobody reads a
+        banner that is always red. Only a run that did not finish is excluded.
+        """
+        return self.full().filter(
+            status__in=(SyncRun.Status.SUCCESS, SyncRun.Status.FAILURES),
+        ).first()
+
+    def reap_stale(self, older_than=None) -> int:
+        """Close off runs that started and never finished.
+
+        A process killed by a deploy or the OOM killer leaves a `running` row
+        behind forever. Left alone, "the sync has been hanging for three days"
+        reads exactly like "the sync never fired". Called at the start of the
+        next run, so this needs no schedule of its own.
+        """
+        older_than = older_than or settings.NOTION_SYNC_STALE_AFTER
+        return self.filter(
+            status=SyncRun.Status.RUNNING,
+            started_at__lt=timezone.now() - older_than,
+        ).update(
+            status=SyncRun.Status.ERROR,
+            finished_at=timezone.now(),
+            error="The run started but never finished.",
+        )
+
+    def prune(self, keep: Optional[int] = None) -> int:
+        """Drop all but the most recent runs.
+
+        Counted rather than aged, because keeping a fixed number of runs
+        survives the sync being switched off for a fortnight, which is precisely
+        the situation this history exists to reveal. The last good full sync is
+        always kept whatever its age: it is what the staleness warning is
+        measured against, so losing it would make a working sync look stopped.
+        """
+        keep = keep or settings.NOTION_SYNC_RUN_HISTORY
+        recent = list(self.values_list("pk", flat=True)[:keep])
+
+        last_good = self.last_completed_full()
+        if last_good:
+            recent.append(last_good.pk)
+
+        return self.exclude(pk__in=recent).delete()[0]
+
+
+class SyncRun(models.Model):
+    """One run of the Notion sync, kept so the admin can show whether it works.
+
+    Before this the only record was a Slack message, which Open Ownership cannot
+    see and which scrolls away. The counters are stored alongside the full report
+    so the listing, the ordering and the spreadsheet export all stay in SQL,
+    while the per-row failure detail stays as JSON it is only ever read whole.
+    """
+
+    class Meta:
+        verbose_name = _("Notion sync run")
+        verbose_name_plural = _("Notion sync runs")
+        ordering = ("-started_at",)
+        indexes = [
+            models.Index(fields=["-started_at"]),
+            models.Index(fields=["status", "-started_at"]),
+        ]
+
+    class Status(models.TextChoices):
+        RUNNING = "running", _("Running")
+        SUCCESS = "success", _("Succeeded")
+        FAILURES = "failures", _("Completed with failures")
+        ERROR = "error", _("Did not finish")
+
+    objects = SyncRunQuerySet.as_manager()
+
+    started_at = models.DateTimeField(_("Started"), default=timezone.now, db_index=True)
+    finished_at = models.DateTimeField(_("Finished"), blank=True, null=True)
+    status = models.CharField(
+        _("Status"),
+        max_length=20,
+        choices=Status.choices,
+        default=Status.RUNNING,
+    )
+
+    dry_run = models.BooleanField(_("Dry run"), default=False)
+    forced = models.BooleanField(_("Forced"), default=False)
+    only = models.JSONField(_("Databases"), default=list, blank=True)
+    trigger = models.CharField(_("Triggered by"), max_length=20, blank=True, default="")
+
+    fetched = models.PositiveIntegerField(default=0)
+    created = models.PositiveIntegerField(default=0)
+    updated = models.PositiveIntegerField(default=0)
+    skipped = models.PositiveIntegerField(default=0)
+    missing_parent = models.PositiveIntegerField(default=0)
+    deleted = models.PositiveIntegerField(default=0)
+    validated = models.PositiveIntegerField(default=0)
+    excluded = models.PositiveIntegerField(default=0)
+    invalid_count = models.PositiveIntegerField(default=0)
+    missing_column_count = models.PositiveIntegerField(default=0)
+
+    results = models.JSONField(default=list, blank=True)
+    error = models.TextField(blank=True, default="")
+
+    def __str__(self):
+        return f"Notion sync {self.started_at:%Y-%m-%d %H:%M}"
+
+    ################################################################################################
+    # Recording a run
+    ################################################################################################
+
+    @classmethod
+    def start(cls, only=None, forced: bool = False, dry_run: bool = False, trigger: str = ""):
+        """Open a run before the work begins.
+
+        Written up front, and not only at the end, because a run that dies
+        halfway leaves nothing otherwise.
+        """
+        return cls.objects.create(
+            only=list(only or []),
+            forced=forced,
+            dry_run=dry_run,
+            trigger=trigger,
+        )
+
+    def finish(self, report, error: Optional[Exception] = None) -> "SyncRun":
+        """Close a run off with whatever the report gathered.
+
+        Args:
+            report: The run's `SyncReport`, however far it got.
+            error: The exception that stopped the run, if one did.
+        """
+        totals = report.totals()
+        for name, value in totals.items():
+            setattr(self, name, value)
+
+        self.results = report.as_dict()["results"]
+        self.finished_at = timezone.now()
+
+        if error is not None:
+            self.status = self.Status.ERROR
+            self.error = describe(error)
+        elif totals["invalid_count"] or totals["missing_column_count"]:
+            self.status = self.Status.FAILURES
+        else:
+            self.status = self.Status.SUCCESS
+
+        self.save()
+        return self
+
+    ################################################################################################
+    # What a reader sees
+    ################################################################################################
+
+    @cached_property
+    def report(self):
+        """The stored results as real `SyncResult` objects, so a template can
+        reuse `summary()` rather than reimplement it.
+        """
+        return SyncReport.from_dict({"results": self.results})
+
+    @property
+    def duration(self):
+        if not self.finished_at:
+            return None
+        return self.finished_at - self.started_at
+
+    @property
+    def duration_display(self) -> str:
+        """How long the run took. A run that suddenly takes ten times longer is
+        a signal nothing else on this page gives.
+        """
+        if self.duration is None:
+            return ""
+        seconds = int(self.duration.total_seconds())
+        if seconds < 60:
+            return f"{seconds}s"
+        return f"{seconds // 60}m {seconds % 60}s"
+
+    @property
+    def mode(self) -> str:
+        if self.dry_run:
+            return _("Dry run")
+        if self.forced:
+            return _("Forced")
+        return _("Sync")
+
+    @property
+    def scope(self) -> str:
+        """Which databases the run covered, so a partial run is never misread as
+        a full one.
+        """
+        if not self.only:
+            return _("All databases")
+        return ", ".join(self.only)
+
+    @property
+    def is_full(self) -> bool:
+        return not self.dry_run and not self.only
+
+    @property
+    def has_failures(self) -> bool:
+        return bool(self.invalid_count or self.missing_column_count or self.error)
+
+    def failures(self):
+        """Every problem in this run as `(database, notion_url, message)`.
+
+        Built here rather than in the template so `notion_url` keeps one
+        definition and the markup stays dumb.
+        """
+        for result in self.report.results:
+            if result.missing_properties:
+                columns = ", ".join(repr(name) for name in result.missing_properties)
+                yield (
+                    result.name,
+                    "",
+                    f"Notion is no longer sending: {columns}. Renamed or deleted?",
+                )
+            for notion_id, message in result.invalid:
+                yield (result.name, notion_url(notion_id), message)

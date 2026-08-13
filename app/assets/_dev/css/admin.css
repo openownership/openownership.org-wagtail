@@ -104,3 +104,59 @@
         padding: 1em;
     }
 }
+
+
+/**************************************************************************************************/
+/* Notion sync report                                                                             */
+/**************************************************************************************************/
+
+/* The failure detail on a run. The default marker is easy to miss against the
+   admin's own styling, so the summary gets an explicit chevron that turns when
+   it opens, and a pointer cursor to say it does something. */
+.sync-run-detail {
+    margin-bottom: 1em;
+
+    summary {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        cursor: pointer;
+        font-weight: 600;
+        padding: 0.4em 0;
+        list-style: none;
+    }
+
+    /* Safari still draws its own triangle without this. */
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    summary::before {
+        content: "";
+        display: inline-block;
+        width: 0.5em;
+        height: 0.5em;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(-45deg);
+        transition: transform 0.15s ease;
+    }
+
+    &[open] summary::before {
+        transform: rotate(45deg);
+    }
+}
+
+/* The per-database counts, kept narrow and right-aligned so a column of numbers
+   can be compared by eye rather than read sentence by sentence. */
+.sync-run-detail__stats {
+    margin-top: 0.5em;
+
+    th, td {
+        padding: 0.3em 0.8em;
+    }
+
+    td:not(:first-child), th:not(:first-child) {
+        text-align: right;
+    }
+}

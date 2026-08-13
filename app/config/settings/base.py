@@ -5,6 +5,7 @@ Django settings for the openownership.org project.
 """
 
 import os
+from datetime import timedelta
 from pathlib import Path
 
 import arrow
@@ -716,6 +717,16 @@ NOTION_WAGTAIL_TOKEN = os.environ.get("NOTION_WAGTAIL_TOKEN", "")
 
 # Source database ids. These are not secret, so they default to the live values
 # and can be overridden per environment.
+# How long without a successful full sync before the admin report warns that it
+# has stopped. The schedule is an external cron that this repo does not hold, so
+# set this to comfortably more than one cycle. 36 hours suits a daily sync.
+NOTION_SYNC_STALE_AFTER = timedelta(hours=36)
+
+# How many sync runs to keep. Counted rather than aged, so the history
+# survives the sync being switched off for a fortnight, which is exactly the
+# situation the report exists to reveal.
+NOTION_SYNC_RUN_HISTORY = 200
+
 NOTION_DATABASES = {
     "countries": os.environ.get("NOTION_DB_COUNTRIES", "a7d0fc79-decf-4851-a8f7-8916e23862ba"),
     "commitments": os.environ.get("NOTION_DB_COMMITMENTS", "995e7787-e85f-45df-8fa5-68684f30d16b"),

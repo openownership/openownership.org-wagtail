@@ -1,0 +1,49 @@
+{% extends 'wagtailadmin/reports/base_report.html' %}
+{% load i18n wagtailadmin_tags %}
+
+{% comment %}The Notion sync history.
+
+   The banner is the point of the page: it answers "is the sync still working"
+   without anyone reading a row. The table below is for working out what went
+   wrong once the banner says something did.
+
+   It is rendered above `block.super` rather than inside it. Wagtail replaces
+   `#listing-results` wholesale on an AJAX refresh, and the banner describes the
+   whole history rather than the filtered set, so it must not sit in there and
+   vanish the moment someone ticks a filter.{% endcomment %}
+
+{% block listing %}
+    <div class="nice-padding">
+        {% if not last_full_run and not object_list %}
+            <div class="help-block help-info">
+                {% icon name="help" %}
+                <p>{% trans "No sync has been recorded yet. One will appear here the next time the sync runs." %}</p>
+            </div>
+        {% elif sync_is_stale %}
+            <div class="help-block help-critical">
+                {% icon name="warning" %}
+                <p>
+                    {% blocktrans with hours=stale_after_hours %}There has been no successful full sync in the last {{ hours }} hours.{% endblocktrans %}
+                    {% if last_full_run %}
+                        {% blocktrans with when=last_full_run.started_at|timesince %}The last one was {{ when }} ago.{% endblocktrans %}
+                    {% else %}
+                        {% trans "There is no successful full sync on record at all." %}
+                    {% endif %}
+                    {% trans "The site is showing whatever Notion data it already held." %}
+                </p>
+            </div>
+        {% elif last_full_run %}
+            <div class="help-block help-info">
+                {% icon name="tick" %}
+                <p>
+                    {% blocktrans with when=last_full_run.started_at|timesince %}Last full sync completed {{ when }} ago.{% endblocktrans %}
+                    {% if last_full_run.invalid_count %}
+                        {% blocktrans count counter=last_full_run.invalid_count %}{{ counter }} row could not be read and needs fixing in Notion.{% plural %}{{ counter }} rows could not be read and need fixing in Notion.{% endblocktrans %}
+                    {% endif %}
+                </p>
+            </div>
+        {% endif %}
+    </div>
+
+    {{ block.super }}
+{% endblock %}

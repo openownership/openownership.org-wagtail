@@ -11,6 +11,7 @@ from modules.bots.notionbot import notionbot
 
 # Module
 from modules.notion.client import NotionClient
+from modules.notion.models import SyncRun
 from modules.notion.report import SyncReport
 from modules.notion.sync.syncers import (
     CommitmentSyncer,
@@ -38,6 +39,8 @@ def run_sync(
     force: bool = False,
     dry_run: bool = False,
     notify: bool = True,
+    record: bool = True,
+    trigger: str = "",
 ) -> SyncReport:
     """Run the configured syncers and return a combined report.
 
@@ -47,15 +50,37 @@ def run_sync(
         force: Update rows even when Notion has not touched them.
         dry_run: Fetch and validate without writing to the database.
         notify: Post a summary to Slack when the run finishes.
+        record: Store the run so the admin can show whether the sync works.
+        trigger: What started this run, for the stored record.
     """
     client = client or NotionClient()
     report = SyncReport()
+    run = None
 
-    for syncer_class in SYNCERS:
-        if only and syncer_class.name not in only:
-            continue
-        result = syncer_class(client).run(force=force, dry_run=dry_run)
-        report.add(result)
+    if record:
+        # Any run left open by a killed process is closed off first, so a sync
+        # that has been hanging never reads as one that never fired.
+        SyncRun.objects.reap_stale()
+        # Opened before the work rather than written after it, for the same
+        # reason: a run that dies halfway has to leave something behind.
+        run = SyncRun.start(only=only, forced=force, dry_run=dry_run, trigger=trigger)
+
+    try:
+        for syncer_class in SYNCERS:
+            if only and syncer_class.name not in only:
+                continue
+            result = syncer_class(client).run(force=force, dry_run=dry_run)
+            report.add(result)
+    except Exception as err:
+        # Keep whatever was gathered before the failure, then let the exception
+        # carry on so the cron still reports it.
+        if run:
+            run.finish(report, error=err)
+        raise
+
+    if run:
+        run.finish(report)
+        SyncRun.objects.prune()
 
     if notify and not dry_run:
         _notify(report)

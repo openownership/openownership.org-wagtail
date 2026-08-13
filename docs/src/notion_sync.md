@@ -50,6 +50,64 @@ a delete and recreate rather than a rename. `modules/notion/samples/columns.py`
 is a snapshot of the same output, and the schema tests check every declared id
 and name against it, so a typo cannot quietly disarm the guard.
 
+### Sync history
+
+Every run is recorded as a `SyncRun`, and the Wagtail admin shows them at
+**Reports > Notion sync**. Before this the only record of a run was a Slack
+message, which Open Ownership cannot see and which scrolls away, so a sync that
+stopped firing three weeks ago looked exactly like one that succeeded an hour
+ago.
+
+The banner above the table is the point of the page. It says one of three
+things: nothing has been recorded yet; the last full sync completed N hours ago,
+noting any rows that could not be read; or there has been no completed full sync
+in the last `NOTION_SYNC_STALE_AFTER` (36 hours by default, set to comfortably
+more than one cycle of the cron). Below it, one row per run, with the failures
+for that run in a `details` block built from the run's own stored JSON, so
+opening one costs no query and nobody has to navigate away to find out what
+broke.
+
+**Completed, not perfect.** `last_completed_full()` counts a run that rejected
+some rows, because such a run still worked: it reached Notion, fetched
+everything and wrote what it could. A row Notion holds badly is data for Open
+Ownership to fix. Counting those as failures would have left the warning on
+permanently while a single bad row sat in the tracker, and nobody reads a banner
+that is always red. Only a run that did not finish is excluded.
+
+Four things worth knowing:
+
+* **The row is written before the work starts**, with status `running`, and any
+  run left open is closed off at the start of the next one. Without that, a run
+  killed by a deploy or the OOM killer would sit as `running` forever, and "the
+  sync has been hanging for three days" would read exactly like "the sync never
+  fired".
+* **A crash is recorded and then re-raised.** Whatever the run gathered before
+  the exception is kept, with status `error` and the reason, and the exception
+  carries on so the cron still reports it.
+* **Dry runs are recorded and flagged.** A dry run that turns up twelve invalid
+  rows is worth keeping, and it is how the tracker gets checked after a change.
+  A dry run and an `--only` run never count as the last successful full sync.
+* **Only the last 200 runs are kept** (`NOTION_SYNC_RUN_HISTORY`), counted rather
+  than aged so the history survives the sync being switched off for a fortnight,
+  which is exactly the situation the report exists to reveal. The last successful
+  full run is always kept whatever its age, because the banner is measured
+  against it.
+
+Access is the `notion.view_syncrun` permission, granted to `Editors` and
+`Moderators` by a data migration and adjustable per group in the admin
+afterwards. It is a permission rather than a superuser check because making this
+visible to Open Ownership was the reason for building it.
+
+`report.py` holds the serialisation. `as_dict` is a persisted format, so it is
+written out field by field rather than with `dataclasses.asdict`, and `from_dict`
+is deliberately forgiving in both directions: a run stored before a counter
+existed still has to render, and one stored after a counter was dropped must not
+raise. Stored failure detail is capped at `MAX_STORED_INVALID` per database, with
+the true count kept alongside, because a deleted Notion column fails every row
+and would otherwise put megabytes of near-identical JSON in the database.
+
+### The layers
+
 The code is in three layers: `client.py` fetches, `schemas/` validates with
 Pydantic, and `sync/` persists. A row that fails validation is skipped rather
 than being allowed to write empty values over good data, and is listed at the

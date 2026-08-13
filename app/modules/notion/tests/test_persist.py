@@ -1,6 +1,10 @@
+# stdlib
+import datetime as dt
+
 # 3rd party
 import pytest
 from django.conf import settings
+from django.utils import timezone
 
 # Module
 from modules.notion import attachments as notion_attachments
@@ -11,6 +15,7 @@ from modules.notion.models import (
     DisclosureRegime,
     ImpactEntry,
     PolicyAreaTag,
+    SyncRun,
 )
 from modules.notion.report import SyncReport
 from modules.notion.schemas.rows import (
@@ -144,7 +149,9 @@ def regime_sub_page(notion_id, regime_id, api="Yes", bods="No"):
 
 
 def test_country_sync_creates():
-    res = CountrySyncer(None).run(pages=[country_page("c1", "Afghanistan"), country_page("c2", "Brazil")])
+    res = CountrySyncer(None).run(
+        pages=[country_page("c1", "Afghanistan"), country_page("c2", "Brazil")],
+    )
     assert res.created == 2
     assert res.fetched == 2
     assert CountryTag.objects.get(notion_id="c1").name == "Afghanistan"
@@ -224,12 +231,20 @@ def test_commitment_created_with_country():
 def test_regime_sets_tags():
     CountrySyncer(None).run(pages=[country_page("c1", "Afghanistan")])
     res = RegimeSyncer(None).run(
-        pages=[regime_page("r1", "c1", scope=["Full-economy"], access=["General public", "Registrar"])]
+        pages=[
+            regime_page(
+                "r1",
+                "c1",
+                scope=["Full-economy"],
+                access=["General public", "Registrar"],
+            ),
+        ],
     )
     assert res.created == 1
     regime = DisclosureRegime.objects.get(notion_id="r1")
     assert set(regime.coverage_scope.values_list("name", flat=True)) == {"Full-economy"}
-    assert set(regime.who_can_access.values_list("name", flat=True)) == {"General public", "Registrar"}
+    access = set(regime.who_can_access.values_list("name", flat=True))
+    assert access == {"General public", "Registrar"}
     assert regime.threshold == 25
     assert CoverageScope.objects.filter(name="Full-economy").exists()
 
@@ -277,7 +292,7 @@ def test_run_sync_orders_dependencies():
             "commitments": [commitment_page("m1", "c1")],
             "regimes": [regime_page("r1", "c1", scope=["Full-economy"])],
             "regimes_sub": [regime_sub_page("s1", "r1", api="Yes")],
-        }
+        },
     )
     report = run_sync(client=client, notify=False)
     assert not report.has_failures
@@ -619,3 +634,131 @@ def test_the_guard_runs_on_a_dry_run_too():
     res = CountrySyncer(None).run(pages=[page], dry_run=True)
 
     assert res.missing_properties == ["Country"]
+
+
+####################################################################################################
+# Recording the run
+####################################################################################################
+
+
+@pytest.fixture
+def client(no_downloads):  # noqa: ARG001
+    """A Notion stand-in holding one valid row per database."""
+    return FakeClient(
+        {
+            "countries": [country_page("c1", "Kenya")],
+            "commitments": [commitment_page("m1", "c1")],
+            "regimes": [regime_page("r1", "c1")],
+            "bot": [impact_page("i1", countries=["c1"], regimes=["r1"])],
+        },
+    )
+
+# Nothing about a sync was stored before this, so a sync that stopped firing
+# looked exactly like one that had just succeeded.
+
+
+def test_a_run_is_recorded(client):
+    run_sync(client=client, notify=False)
+
+    assert SyncRun.objects.count() == 1
+
+
+def test_the_recorded_counters_match_the_report(client):
+    report = run_sync(client=client, notify=False)
+
+    run = SyncRun.objects.get()
+    totals = report.totals()
+
+    assert run.fetched == totals["fetched"]
+    assert run.created == totals["created"]
+    assert run.status == SyncRun.Status.SUCCESS
+
+
+def test_a_dry_run_is_recorded_and_flagged(client):
+    """Open Ownership asked for these to be kept: a dry run that turns up twelve
+    invalid rows is worth a record, and it is how the tracker gets checked after
+    a change.
+    """
+    run_sync(client=client, notify=False, dry_run=True)
+
+    run = SyncRun.objects.get()
+
+    assert run.dry_run is True
+    assert run.is_full is False
+    assert CountryTag.objects.count() == 0
+
+
+def test_a_partial_run_records_which_databases_it_covered(client):
+    run_sync(client=client, only=["countries"], notify=False)
+
+    run = SyncRun.objects.get()
+
+    assert run.only == ["countries"]
+    assert run.is_full is False
+
+
+def test_a_forced_run_is_recorded_as_forced(client):
+    run_sync(client=client, force=True, notify=False)
+
+    assert SyncRun.objects.get().forced is True
+
+
+def test_a_crash_is_recorded_and_still_raised(client, monkeypatch):
+    """The exception has to keep travelling so the cron still reports it, but
+    the run must not vanish just because it failed.
+    """
+
+    def boom(*args, **kwargs):  # noqa: ARG001
+        msg = "Notion timed out"
+        raise ConnectionError(msg)
+
+    monkeypatch.setattr(CommitmentSyncer, "run", boom)
+
+    with pytest.raises(ConnectionError):
+        run_sync(client=client, notify=False)
+
+    run = SyncRun.objects.get()
+
+    assert run.status == SyncRun.Status.ERROR
+    assert "Notion timed out" in run.error
+
+
+def test_a_crash_keeps_the_results_gathered_before_it(client, monkeypatch):
+    def boom(*args, **kwargs):  # noqa: ARG001
+        msg = "Notion timed out"
+        raise ConnectionError(msg)
+
+    monkeypatch.setattr(CommitmentSyncer, "run", boom)
+
+    with pytest.raises(ConnectionError):
+        run_sync(client=client, notify=False)
+
+    assert SyncRun.objects.get().fetched > 0
+
+
+def test_recording_can_be_turned_off(client):
+    run_sync(client=client, notify=False, record=False)
+
+    assert SyncRun.objects.count() == 0
+
+
+def test_a_run_reaps_one_that_never_finished(client):
+    stuck = SyncRun.start()
+    SyncRun.objects.filter(pk=stuck.pk).update(
+        started_at=timezone.now() - dt.timedelta(days=3),
+    )
+
+    run_sync(client=client, notify=False)
+    stuck.refresh_from_db()
+
+    assert stuck.status == SyncRun.Status.ERROR
+
+
+def test_old_runs_are_pruned(client, settings):
+    settings.NOTION_SYNC_RUN_HISTORY = 2
+    for _ in range(4):
+        SyncRun.start().finish(SyncReport())
+
+    run_sync(client=client, notify=False)
+
+    assert SyncRun.objects.count() <= 3
