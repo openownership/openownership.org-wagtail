@@ -84,6 +84,7 @@ class HomePage(PageHeroMixin, LandingPageType):
         "content.TaxonomyPage",
         "content.PublicationsIndexPage",
         "content.PressLinksPage",
+        "content.BotCentrePage",
     ]
     max_count = 1
 
