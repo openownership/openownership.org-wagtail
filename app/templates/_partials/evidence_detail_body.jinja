@@ -41,12 +41,17 @@ appear here; the tracker's internal columns are synced but stay out.
             {% endif %}
         {% endwith %}
 
-        {% if entry.display_regions|length %}
+        {% if entry.display_region_colours|length %}
             <div class="evidence-detail__fact">
                 <dt>{% trans %}Region{% endtrans %}</dt>
-                <dd>
-                    {% for region in entry.display_regions %}
-                        {{ region }}{% if not loop.last %}, {% endif %}
+                <dd class="evidence-detail__regions">
+                    {% for name, colour in entry.display_region_colours %}
+                        <span class="region-tag">
+                            {% if colour %}
+                                <span class="region-tag__dot" style="background: {{ colour }}"></span>
+                            {% endif %}
+                            {{ name }}
+                        </span>
                     {% endfor %}
                 </dd>
             </div>
@@ -56,9 +61,12 @@ appear here; the tracker's internal columns are synced but stay out.
             {% if topics|length %}
                 <div class="evidence-detail__fact">
                     <dt>{% trans %}Topic{% endtrans %}</dt>
-                    <dd>
+                    <dd class="evidence-detail__topics">
                         {% for topic in topics %}
-                            {{ topic.name }}{% if not loop.last %}, {% endif %}
+                            <span class="topic-tag">
+                                <span class="topic-tag__icon">{% include topic.icon %}</span>
+                                {{ topic.name }}
+                            </span>
                         {% endfor %}
                     </dd>
                 </div>
@@ -117,7 +125,14 @@ appear here; the tracker's internal columns are synced but stay out.
 
     {% if entry.source_url %}
         <p class="evidence-detail__source">
-            <a href="{{ entry.source_url }}" rel="noopener" target="_blank">
+            {# The data attributes are what an outbound click reports to
+               Plausible, so OO can break the clicks down. #}
+            <a href="{{ entry.source_url }}"
+               rel="noopener"
+               target="_blank"
+               data-topic="{{ entry.display_topics }}"
+               data-jurisdiction="{{ entry.display_jurisdictions }}"
+               data-region="{{ entry.display_region_names }}">
                 {% trans %}View source{% endtrans %}
                 {% include "svg/external-link.jinja" %}
             </a>

@@ -634,11 +634,6 @@ class EvidenceExportView(View):
         "Record URL",
     )
 
-    # Several values in one cell. A semicolon rather than a comma, because tag
-    # names carry commas of their own and a reader splitting the cell should not
-    # have to guess.
-    SEPARATOR = "; "
-
     def get(self, request, *args, **kwargs):  # noqa: ARG002
         response = HttpResponse(
             content_type="text/csv",
@@ -657,11 +652,11 @@ class EvidenceExportView(View):
             entry.description,
             entry.summary,
             entry.year or "",
-            self._jurisdictions(entry),
-            self._joined(entry.display_regions),
-            self._names(entry.policy_areas),
-            self._names(entry.data_users),
-            self._names(entry.resource_types),
+            entry.display_jurisdictions,
+            entry.display_region_names,
+            entry.display_topics,
+            entry.display_data_users,
+            entry.display_resource_types,
             entry.source_url,
             f"{root_url}{entry.get_absolute_url()}",
         ]
@@ -671,9 +666,9 @@ class EvidenceExportView(View):
 
         A CSV is read away from the site, so the record URL has to be absolute.
         Wagtail's site record is used rather than `build_absolute_uri` because it
-        carries the right scheme: `SECURE_PROXY_SSL_HEADER` is not configured, so
-        Django sees plain http behind the TLS proxy and would write `http://`
-        links into a file Open Ownership may hand out.
+        gives the site's canonical address rather than whichever hostname the
+        reader happened to arrive on, and this file is one Open Ownership may
+        hand out.
         """
         site = Site.find_for_request(request) or Site.objects.filter(is_default_site=True).first()
         if site:
@@ -686,20 +681,3 @@ class EvidenceExportView(View):
             return "bot-evidence-filtered.csv"
         return "bot-evidence.csv"
 
-    def _jurisdictions(self, entry) -> str:
-        """Worldwide records carry no country, so they say so instead.
-
-        Left untranslated, like the column headers. The export is a data file
-        whose columns are named after the Notion tracker, so a half-translated
-        one would be harder to work with, not easier.
-        """
-        names = self._names(entry.countries)
-        if not names and entry.international:
-            return "International"
-        return names
-
-    def _names(self, manager) -> str:
-        return self._joined(tag.name for tag in manager.all())
-
-    def _joined(self, values) -> str:
-        return self.SEPARATOR.join(sorted(values))

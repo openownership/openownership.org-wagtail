@@ -14,9 +14,20 @@ still has somewhere to go.
 
     <div class="card-group__card-decoration">
 
+        {# The region's colour down the side of the card. A record spanning
+           two regions gets a split bar rather than one region's colour. #}
+        {% if entry.region_bar %}
+            <span class="evidence-card__region-bar" style="background: {{ entry.region_bar }}"></span>
+        {% endif %}
+
+        {# The icon sits beside the topic name, never instead of it, so a topic
+           we have not drawn yet costs a reader nothing. #}
         <div class="card-group__meta">
             {% for tag in entry.policy_areas.all() %}
-                <span>{{ tag.name }}</span>
+                <span class="topic-tag">
+                    <span class="topic-tag__icon">{% include tag.icon %}</span>
+                    {{ tag.name }}
+                </span>
             {% endfor %}
         </div>
 

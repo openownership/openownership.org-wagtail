@@ -1060,6 +1060,7 @@ class BotCentrePage(IndexPageType):
         found = evidence.results(request.GET, per_page=self.objects_per_page)
         ctx["page_obj"] = found.page_obj
         ctx["evidence"] = found
+        ctx["record_search_terms"] = settings.EVIDENCE_RECORD_SEARCH_TERMS
 
         if found.query.is_narrowed:
             # A filtered view is one of thousands of combinations and is not

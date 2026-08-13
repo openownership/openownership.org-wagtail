@@ -1,3 +1,6 @@
+# stdlib
+from typing import Optional
+
 # 3rd party
 from consoler import console
 from django.conf import settings
@@ -24,6 +27,7 @@ from config.template import commitment_summary
 
 # Project
 from modules.content.blocks import TAG_PAGE_BODY_BLOCKS
+from modules.notion import colours, icons
 from modules.notion.data import CAPITALS
 from modules.taxonomy.models.core import BaseTag
 
@@ -923,6 +927,15 @@ class Region(ClusterableModel):
         features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
+    @property
+    def colour(self) -> Optional[str]:
+        """This region's colour from Open Ownership's secondary palette.
+
+        Decoration beside the region's name, never a background behind text.
+        See `modules.notion.colours`.
+        """
+        return colours.region_colour(self.name)
+
     def __str__(self):
         return self.name
 
@@ -978,6 +991,15 @@ class PolicyAreaTag(ImpactTagBase):
     class Meta(ImpactTagBase.Meta):
         verbose_name = _("Policy Area")
         verbose_name_plural = _("Policy Areas")
+
+    @property
+    def icon(self) -> str:
+        """This topic's icon, for `include` in a template.
+
+        Mapped in code rather than held in Notion, so a topic added there gets a
+        generic icon rather than a broken one. See `modules.notion.icons`.
+        """
+        return icons.topic_icon(self.name)
 
 
 ####################################################################################################
@@ -1177,6 +1199,44 @@ class ImpactEntry(NotionModel):
         """
         return Truncator(self.summary).words(self.SUMMARY_WORDS, truncate="…")
 
+    # Several values in one string. A semicolon rather than a comma, because tag
+    # names carry commas of their own and whatever reads this back, a person or
+    # a spreadsheet, should not have to guess where one value ends.
+    LIST_SEPARATOR = "; "
+
+    @cached_property
+    def display_topics(self) -> str:
+        return self._joined(tag.name for tag in self.policy_areas.all())
+
+    @cached_property
+    def display_jurisdictions(self) -> str:
+        """The jurisdictions, or "International" for a worldwide record.
+
+        Worldwide records carry no country at all, so without this they would
+        report an empty jurisdiction rather than the thing they actually are.
+        """
+        names = self._joined(tag.name for tag in self.countries.all())
+        if not names and self.international:
+            return "International"
+        return names
+
+    @cached_property
+    def display_region_names(self) -> str:
+        """`display_regions` as one string, for a CSV cell or a data attribute."""
+        return self._joined(self.display_regions)
+
+    @cached_property
+    def display_data_users(self) -> str:
+        return self._joined(tag.name for tag in self.data_users.all())
+
+    @cached_property
+    def display_resource_types(self) -> str:
+        return self._joined(tag.name for tag in self.resource_types.all())
+
+    @classmethod
+    def _joined(cls, values) -> str:
+        return cls.LIST_SEPARATOR.join(sorted(values))
+
     @cached_property
     def display_regions(self) -> list:
         """Region names, reached through the entry's jurisdictions.
@@ -1188,6 +1248,23 @@ class ImpactEntry(NotionModel):
         for country in self.countries.all():
             names.update(country.regions.values_list("name", flat=True))
         return sorted(name for name in names if name)
+
+    @cached_property
+    def display_region_colours(self) -> list:
+        """The regions as `(name, colour)`, for a name with a dot beside it.
+
+        The colour can be `None` for a region we hold no colour for, which is
+        the template's cue to show the name on its own rather than invent one.
+        """
+        return [(name, colours.region_colour(name)) for name in self.display_regions]
+
+    @cached_property
+    def region_bar(self) -> str:
+        """A CSS background for the bar down the side of this record's card.
+
+        Empty for a record with no region, which leaves the bar off.
+        """
+        return colours.region_bar(self.display_regions)
 
     @cached_property
     def display_attachments(self):

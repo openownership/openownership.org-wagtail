@@ -262,10 +262,120 @@ the Notion tracker and a half-translated data file is harder to work with.
 Two things worth knowing:
 
 * **The record URL is built from Wagtail's site record**, not from
-  `request.build_absolute_uri`. `SECURE_PROXY_SSL_HEADER` is not configured, so
-  Django sees plain http behind the TLS proxy and would otherwise write `http://`
-  links into a file Open Ownership may hand out.
+  `request.build_absolute_uri`. Both give an https URL now that
+  `SECURE_PROXY_SSL_HEADER` is set, but the site record gives the canonical
+  address rather than whichever hostname the reader happened to arrive on, and
+  this is a file Open Ownership may hand out.
 * **The download link is hidden while search is degraded.** With Meilisearch
   down there are no filters to carry, so the file would quietly be the whole
   dataset whatever the reader had asked for. Hitting the URL directly in that
   state still returns everything.
+
+### Topic icons
+
+Each topic shows an icon beside its name, mapped in `modules/notion/icons.py`.
+The map is code-side rather than driven from Notion, as agreed with OO (A-S8):
+the icon set stays consistent and an editor cannot break the visuals. The cost is
+that a topic added or renamed in the tracker needs a line here to get its own
+icon. Until then it gets `FALLBACK`, drawn to look deliberate rather than broken.
+
+**The icon never appears without the topic name**, so a topic we have not drawn
+yet costs a reader nothing, and the icons are `aria-hidden` because the name
+beside them already says everything.
+
+Three of the ten topics in the tracker are placeholders while OO supply the
+artwork: `aml-cft.svg`, `natural-resources.svg` and `organised-crime.svg`. They
+are deliberately identical to the fallback, so the site looks finished rather
+than half-built. Replacing those three files is the whole job; the map does not
+change.
+
+Icons arrive from Illustrator carrying an XML declaration, `id="Layer_1"` and
+generic `.cls-1` class names. Two on one page would restyle each other, and the
+site logo uses `.cls-1` too, so it was never only a collision between icons. Each
+file is therefore cleaned on the way in: the classes are namespaced to the
+filename, the id and declaration are dropped, and `aria-hidden` is added. The
+artwork itself is untouched. `modules/notion/tests/test_icons.py` checks every
+file in the directory for all of that, so the next batch cannot slip through
+dirty.
+
+### Region colours
+
+Open Ownership's secondary brand palette holds six colours and the tracker has
+six regions, so each region takes one. The palette's own meaning is the six
+stages of implementing beneficial ownership transparency, nothing to do with
+regions, so the pairing in `modules/notion/colours.py` is arbitrary: regions
+alphabetically against the palette in printed order. Reproducible and easy to
+explain, which is the most that can be said for any assignment.
+
+A record's colour shows twice: a bar down the side of its card, and a dot beside
+each region's name.
+
+**The colours are never put behind text.** Measured against white and against the
+body colour, five of the six only reach AA one way round, and `#DB00C9` reaches
+it neither way (4.33 and 3.59, against the 4.5 AA needs). That is why regions are
+dots rather than filled chips like the topics, and it is also what was promised
+on accessibility grounds when this was agreed: the region name is always beside
+the colour, so colour is never the only signal. A test pins that contrast finding,
+so if OO change the palette it fails and a chip becomes worth revisiting.
+
+Two edge cases the data actually contains:
+
+* **Fourteen records span two regions**, mostly Asia and Europe. The bar splits
+  evenly between them with hard stops rather than picking one and misreporting
+  the record. `colours.region_bar` builds the gradient.
+* **Six records carry no jurisdiction at all**, so they have no region. No bar
+  element is rendered, rather than a grey one implying a region they do not have.
+
+**The colour is set inline on a real element, not through a CSS custom property.**
+`postcss-css-variables` in this project's build resolves custom properties at
+compile time, so one set from a template arrives in `main.min.css` as
+`background: undefined`. It fails quietly, because every other declaration in the
+same rule still applies. A test checks `--region-bar` never appears in the
+rendered page.
+
+Open Ownership's guidelines print `RGB 245, 245, 245` beside `Hex #1BB0A7` on the
+last swatch. Those are two different colours. The hex matches the printed swatch
+and is what is used; worth raising with them.
+
+### Analytics
+
+Open Ownership asked for twelve metrics (A-S6 in the sprint brief). Most are
+native Plausible and need nothing. Three are custom events, sent by
+`assets/_dev/js/components/evidence-analytics.js`:
+
+| Event | Properties | When |
+|---|---|---|
+| `Evidence: Search` | `results`, and `term` only if switched on | The listing loads with a keyword |
+| `Evidence: Filter` | `facet`, `value` | The listing loads with a facet ticked, one event per ticked value |
+| `Evidence: Source click` | `topic`, `jurisdiction`, `region` | A reader clicks through to a record's source |
+
+Total outbound clicks are counted by Plausible's `outbound-links` extension on
+its own; the `Source click` event exists to add the breakdown OO asked for.
+`file-downloads` was already enabled and is kept.
+
+Four things worth knowing:
+
+* **`window.plausible` is defined in `_partials/analytics.jinja` before the
+  script loads**, and in every environment. Without it an early event would
+  throw and be lost. In development the script itself never loads, so events
+  queue on `window.plausible.q` where they can be read without being sent.
+* **Filters and searches are counted on page load, not on click.** Both are
+  plain GET forms, so an event fired at submit time would race the navigation.
+  The active facets are read off the ticked checkboxes, so the list of facets
+  lives only in `evidence.py` and never has to be repeated in JavaScript.
+* **Paging does not count a filter twice.** The query string with `page`
+  removed is remembered in `sessionStorage`, so clicking through to page two of
+  the same filtered results reports nothing further.
+* **Search terms are recorded**, under `EVIDENCE_RECORD_SEARCH_TERMS`. This was
+  put to OO as a privacy call rather than a technical one (A-S6) and they asked
+  for the terms, not just the counts. The term is lowercased before it is sent so
+  the same search groups together whatever case it was typed in, and it arrives
+  already trimmed and capped at `evidence.MAX_TERMS` because the input holds the
+  parsed query rather than the raw one. Search counts keep working if this is
+  turned back off.
+
+`topic`, `jurisdiction` and `region` on the click event carry every value a
+record holds, joined with `; `, so a record with three topics is one property
+value rather than three. That keeps the number of distinct property values down,
+which matters because custom properties count towards a Plausible plan's limits.
+OO have confirmed their plan covers the volume.

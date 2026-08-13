@@ -30,7 +30,11 @@
             </div>
         {% endif %}
 
-        <div class="evidence-layout__results">
+        {# `data-evidence-total` is read by the analytics component, so a search
+           event can report how many results the term returned. #}
+        <div class="evidence-layout__results"
+             data-evidence-total="{{ evidence.total }}"
+             data-evidence-record-terms="{{ 'true' if record_search_terms else 'false' }}">
             <h2 class="sr-only">{% trans %}Evidence records{% endtrans %}</h2>
 
             <div class="evidence-list__header">

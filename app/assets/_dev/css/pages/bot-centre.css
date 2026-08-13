@@ -131,11 +131,69 @@
    topics fall through as unspaced body text. */
 .evidence-card .card-group__meta {
     @apply gap-1;
+}
 
-    span {
-        @apply bg-text-secondary text-white text-14 font-bold;
-        padding: 5px;
+.topic-tag {
+    @apply inline-flex items-center gap-2;
+    @apply bg-text-secondary text-white text-14 font-bold;
+    padding: 5px 8px;
+}
+
+/* The icons are 720 square with no width or height of their own, so they take
+   whatever this box gives them. `currentColor` is not used: the artwork carries
+   the brand purple, which needs a light background to stay legible. */
+.topic-tag__icon {
+    @apply inline-flex items-center justify-center shrink-0;
+    @apply bg-white rounded-full;
+    width: 22px;
+    height: 22px;
+
+    svg {
+        width: 16px;
+        height: 16px;
     }
+}
+
+.evidence-detail__topics {
+    @apply flex flex-wrap gap-1;
+}
+
+
+/**************************************************************************************************/
+/* Regions                                                                                        */
+/**************************************************************************************************/
+
+/* The bar down the side of a card, in the region's brand colour.
+
+   The colour is set inline on a real element rather than through a CSS custom
+   property, because `postcss-css-variables` in this project's build resolves
+   custom properties at compile time: one set from a template reaches the
+   stylesheet as `undefined`. A record with no region renders no bar element at
+   all, so there is nothing to hide here. */
+.evidence-card .card-group__card-decoration {
+    @apply relative;
+}
+
+.evidence-card__region-bar {
+    @apply absolute left-0 top-0 bottom-0;
+    width: 6px;
+}
+
+/* The colour is never the only signal: the region's name is always beside it.
+   None of this palette reaches AA contrast behind text, which is why these are
+   dots rather than filled chips like the topics. */
+.region-tag {
+    @apply inline-flex items-center gap-2;
+}
+
+.region-tag__dot {
+    @apply inline-block shrink-0 rounded-full;
+    width: 10px;
+    height: 10px;
+}
+
+.evidence-detail__regions {
+    @apply flex flex-wrap gap-x-4 gap-y-1;
 }
 
 /* The external link icon is a 24px SVG, so it needs holding on the text's line

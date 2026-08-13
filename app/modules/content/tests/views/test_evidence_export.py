@@ -261,10 +261,10 @@ def test_the_listing_carries_the_current_query_into_the_export(bot_centre, index
     assert f"{URL}?topic=Tax" in rendered
 
 
-def test_the_record_url_is_absolute_and_keeps_the_site_scheme():
-    """SECURE_PROXY_SSL_HEADER is not configured, so Django sees plain http
-    behind the TLS proxy. Wagtail's site record carries the real scheme, and a
-    CSV Open Ownership may hand out must not be full of http:// links.
+def test_the_record_url_is_absolute_and_uses_the_canonical_site_address():
+    """A CSV is read away from the site, so a path on its own leads nowhere,
+    and the address should be the site's own rather than whichever hostname the
+    reader happened to arrive on.
     """
     make_entry("e1", "A record")
 

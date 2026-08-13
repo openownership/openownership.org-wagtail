@@ -8,6 +8,7 @@ from modules.notion.models import (
     DataUserTag,
     ImpactEntry,
     PolicyAreaTag,
+    Region,
     ResourceTypeTag,
 )
 from modules.notion.tests.fakes import FakeClient
@@ -465,3 +466,118 @@ def test_a_search_outage_says_so_and_hides_the_controls(stocked, monkeypatch):
 
     assert "temporarily unavailable" in rendered.lower()
     assert 'name="topic"' not in rendered
+
+
+####################################################################################################
+# Topic icons
+####################################################################################################
+
+
+def test_a_card_shows_its_topic_icon(bot_centre):
+    entry = make_entry("e1", "A tax case", policy_areas=["Tax"])
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "tax-1" in rendered  # the namespaced class from tax.svg
+    assert entry.policy_areas.first().name in rendered
+
+
+def test_the_topic_name_is_always_shown_beside_the_icon(bot_centre):
+    """The icon is decorative. A topic we have not drawn yet must still read."""
+    make_entry("e1", "A record", policy_areas=["Something brand new"])
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "Something brand new" in rendered
+
+
+def test_an_unmapped_topic_falls_back_rather_than_breaking(bot_centre):
+    make_entry("e1", "A record", policy_areas=["Something brand new"])
+
+    response = client.get(bot_centre.url)
+
+    assert response.status_code == 200
+
+
+def test_two_icons_on_one_page_keep_their_own_class_names(bot_centre):
+    """Every supplied file shipped with the same generic `.cls-1` names, so
+    inlining two would have made them restyle each other. The site logo uses
+    `.cls-1` too, so the collision was never only between icons.
+    """
+    make_entry("e1", "A record", policy_areas=["Tax", "Corruption"])
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "tax-1" in rendered
+    assert "corruption-1" in rendered
+
+
+####################################################################################################
+# Region colours
+####################################################################################################
+
+
+def with_region(notion_id, description, country_name, region_names):
+    entry = make_entry(notion_id, description)
+    for region_name in region_names:
+        region = Region.objects.get_or_create(name=region_name)[0]
+        country = CountryTag.objects.get_or_create(
+            notion_id=f"c-{region_name}",
+            defaults={"name": f"{country_name} {region_name}", "slug": f"c-{region_name}".lower()},
+        )[0]
+        country.regions.add(region)
+        entry.countries.add(country)
+    return entry
+
+
+def test_a_card_carries_its_region_colour(bot_centre):
+    with_region("e1", "A European case", "Somewhere", ["Europe"])
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "#009BFE" in rendered
+
+
+def test_a_two_region_card_splits_the_bar(bot_centre):
+    """Fourteen published records span two regions. Showing one region's colour
+    would misreport the record.
+    """
+    with_region("e1", "A cross-border case", "Somewhere", ["Asia", "Europe"])
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "linear-gradient" in rendered
+    assert "#7F12E0" in rendered
+    assert "#009BFE" in rendered
+
+
+def test_a_card_with_no_region_has_no_bar(bot_centre):
+    """Six published records carry no jurisdiction at all."""
+    make_entry("e1", "A worldwide case")
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "evidence-card__region-bar" not in rendered
+
+
+def test_the_region_name_is_shown_beside_its_colour(bot_centre):
+    """Colour is never the only signal, which is what was promised on
+    accessibility grounds when this was agreed (A-S8).
+    """
+    with_region("e1", "A European case", "Somewhere", ["Europe"])
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "region-tag__dot" in rendered
+    assert "Europe" in rendered
+
+
+def test_the_colour_is_not_set_through_a_css_variable(bot_centre):
+    """`postcss-css-variables` resolves custom properties at build time, so one
+    set from a template arrives in the stylesheet as `undefined`.
+    """
+    with_region("e1", "A European case", "Somewhere", ["Europe"])
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "--region-bar" not in rendered

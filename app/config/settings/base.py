@@ -224,6 +224,14 @@ ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 BASE_URL = "https://openownership.org"
 WAGTAILADMIN_BASE_URL = "https://openownership.org"
+
+# Whether a reader's search term is sent to Plausible alongside the search count.
+# Open Ownership were asked, because it is a privacy call rather than a technical
+# one (A-S6 in the sprint brief), and chose to record them: what people search
+# for and do not find is the most useful thing this tool can report. The term is
+# already capped and trimmed by `evidence.parse` before it reaches the page.
+# Search counts are unaffected if this is turned back off.
+EVIDENCE_RECORD_SEARCH_TERMS = True
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 INTERNAL_IPS = ["127.0.0.1"]
 APPEND_SLASH = True

@@ -13,11 +13,23 @@ into an in-place swap, so the listing still works with JavaScript off.
 
     <div class="card-group__card-decoration">
 
+        {# The region's colour down the side of the card. A record spanning
+           two regions gets a split bar rather than one region's colour. #}
+        {% if entry.region_bar %}
+            <span class="evidence-card__region-bar" style="background: {{ entry.region_bar }}"></span>
+        {% endif %}
+
         {# Collapsed cards show description, jurisdiction, topic and year only.
-           Everything else appears when the record is expanded. #}
+           Everything else appears when the record is expanded.
+
+           The icon sits beside the topic name, never instead of it, so a topic
+           we have not drawn yet costs a reader nothing. #}
         <div class="card-group__meta">
             {% for tag in entry.policy_areas.all() %}
-                <span>{{ tag.name }}</span>
+                <span class="topic-tag">
+                    <span class="topic-tag__icon">{% include tag.icon %}</span>
+                    {{ tag.name }}
+                </span>
             {% endfor %}
         </div>
 
@@ -44,11 +56,29 @@ into an in-place swap, so the listing still works with JavaScript off.
                         <span class="evidence-card__jurisdictions">{% trans %}International{% endtrans %}</span>
                     {% endif %}
                 {% endwith %}
+
+                {# The dot repeats the bar's colour next to the region's name, so
+                   the colour is never the only thing carrying the meaning. #}
+                {% for name, colour in entry.display_region_colours %}
+                    <span class="region-tag">
+                        {% if colour %}
+                            <span class="region-tag__dot" style="background: {{ colour }}"></span>
+                        {% endif %}
+                        {{ name }}
+                    </span>
+                {% endfor %}
             </p>
 
             {% if entry.source_url %}
                 <p class="evidence-card__source">
-                    <a href="{{ entry.source_url }}" rel="noopener" target="_blank">
+                    {# The data attributes are what an outbound click reports to
+                       Plausible, so OO can break the clicks down. #}
+                    <a href="{{ entry.source_url }}"
+                       rel="noopener"
+                       target="_blank"
+                       data-topic="{{ entry.display_topics }}"
+                       data-jurisdiction="{{ entry.display_jurisdictions }}"
+                       data-region="{{ entry.display_region_names }}">
                         {% trans %}View source{% endtrans %}
                         {% include "svg/external-link.jinja" %}
                     </a>
