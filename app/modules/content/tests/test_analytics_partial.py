@@ -129,10 +129,16 @@ def stocked(bot_centre):
     return bot_centre, entry
 
 
-def test_a_card_source_link_carries_the_breakdown(stocked):
-    bot_centre, _ = stocked
+def test_an_opened_cards_source_link_carries_the_breakdown(stocked):
+    """The link is only on an open record now, so that is where the properties
+    an outbound click reports have to be.
+    """
+    _, entry = stocked
 
-    rendered = client.get(bot_centre.url).rendered_content
+    rendered = client.get(
+        entry.get_absolute_url(),
+        headers={"HX-Request": "true"},
+    ).content.decode()
 
     assert 'data-topic="Tax"' in rendered
     assert 'data-jurisdiction="Kenya"' in rendered

@@ -222,7 +222,6 @@ a.resource-tag {
 
 /* The external link icon is a 24px SVG, so it needs holding on the text's line
    rather than being left to wrap onto its own. */
-.evidence-card__source a,
 .evidence-detail__source a,
 .evidence-detail__attachments a {
     @apply inline-flex items-center gap-1;
@@ -230,10 +229,6 @@ a.resource-tag {
     svg {
         @apply w-4 h-4 shrink-0;
     }
-}
-
-.evidence-card__source {
-    @apply text-14;
 }
 
 .evidence-card__toggle {

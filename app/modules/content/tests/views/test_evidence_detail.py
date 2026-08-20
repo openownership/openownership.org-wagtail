@@ -149,6 +149,16 @@ def test_the_expanded_card_shows_detail_the_collapsed_card_hides():
     assert "Journalist" in body
 
 
+def test_an_opened_record_offers_the_source():
+    """Which is where the link went when it came off the shut card."""
+    entry = make_entry()
+
+    body = client.get(detail_url(entry), headers={"HX-Request": "true"}).content.decode()
+
+    assert "View source" in body
+    assert entry.source_url in body
+
+
 def test_a_worldwide_record_names_its_jurisdiction_as_global():
     entry = make_entry()
     entry.worldwide = True

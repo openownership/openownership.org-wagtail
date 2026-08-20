@@ -162,6 +162,18 @@ def test_a_worldwide_card_does_not_say_global_twice(bot_centre):
     assert facts.count("Global") == 1
 
 
+def test_a_shut_card_does_not_offer_the_source(bot_centre):
+    """Open Ownership asked for the link to the source to wait until a reader
+    has opened the record, so a card carries one control rather than two.
+    """
+    make_entry("e1", "A record", link="https://example.com/story")
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "View source" not in rendered
+    assert "https://example.com/story" not in rendered
+
+
 def test_the_card_holds_back_the_rest_until_expansion(bot_centre):
     entry = make_entry("e1", "An entry", year=2019)
     entry.resource_types.add(ResourceTypeTag.objects.create(name="Public sector"))

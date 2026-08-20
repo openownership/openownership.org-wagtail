@@ -351,6 +351,14 @@ opens where it sits, and it still has a URL a reader can send to someone.
 by both the page and the open card, so the two cannot show different things. A
 shut card shows description, jurisdiction, topic and year only.
 
+**The link to the source is not on a shut card.** Open Ownership asked for it to
+wait until a reader opens the record, so a card carries one control rather than
+two and the reader sees the summary before they leave the site. It costs a click
+to reach a source from the listing, which was put to them as the trade and
+accepted. One consequence worth watching: outbound clicks can only start from an
+open record now, so the `Evidence: Source click` numbers are not comparable with
+those from before this changed.
+
 **Only one record is open at a time**, which `assets/_dev/js/components/evidence-cards.js`
 enforces. Opening a record throws away its shut markup, so that markup is kept
 in a `Map` and put back when another record opens. Shutting the others that way
