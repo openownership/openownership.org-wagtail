@@ -1,3 +1,7 @@
+# stdlib
+import re
+
+# 3rd party
 import pytest
 from django.template.loader import render_to_string
 from django.test import Client
@@ -127,6 +131,33 @@ def test_the_card_shows_description_jurisdiction_topic_and_year(bot_centre):
     assert "Kenya" in rendered
     assert "Tax" in rendered
     assert "2019" in rendered
+
+
+def test_a_worldwide_card_names_its_jurisdiction_as_global(bot_centre):
+    """The tracker gives these records the "Global" row rather than a country,
+    so a shut card would otherwise show no jurisdiction at all.
+    """
+    entry = make_entry("e1", "A worldwide case")
+    entry.worldwide = True
+    entry.save()
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert '<span class="evidence-card__jurisdictions">Global</span>' in rendered
+
+
+def test_a_worldwide_card_does_not_say_global_twice(bot_centre):
+    """The shut card labels neither the jurisdiction nor the region, so the same
+    word in both places reads as a mistake.
+    """
+    entry = make_entry("e1", "A worldwide case")
+    entry.worldwide = True
+    entry.save()
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    facts = re.search(r"evidence-card__facts.*?</p>", rendered, re.S).group(0)
+    assert facts.count("Global") == 1
 
 
 def test_the_card_holds_back_the_rest_until_expansion(bot_centre):
@@ -560,7 +591,7 @@ def test_a_two_region_card_splits_the_bar(bot_centre):
 
 
 def test_a_card_with_no_region_has_no_bar(bot_centre):
-    """Six published records carry no jurisdiction at all."""
+    """A record can reach no region at all, and no colour is invented for it."""
     make_entry("e1", "A worldwide case")
 
     rendered = client.get(bot_centre.url).rendered_content

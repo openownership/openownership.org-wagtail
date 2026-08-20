@@ -486,6 +486,32 @@ def test_impact_entry_ignores_a_global_jurisdiction(no_downloads):  # noqa: ARG0
     assert list(entry.countries.values_list("notion_id", flat=True)) == ["c1"]
 
 
+def test_a_global_jurisdiction_marks_the_entry_worldwide(no_downloads):  # noqa: ARG001
+    """"Global" is not a country here, so the entry has to remember that its
+    jurisdiction was worldwide or the record loses it entirely.
+    """
+    ImpactSyncer(None).run(pages=[impact_page("i1", countries=[GLOBAL_ID])])
+
+    assert ImpactEntry.objects.get(notion_id="i1").worldwide is True
+
+
+def test_an_entry_with_real_jurisdictions_is_not_worldwide(no_downloads):  # noqa: ARG001
+    CountrySyncer(None).run(pages=[country_page("c1", "Kenya")])
+
+    ImpactSyncer(None).run(pages=[impact_page("i1", countries=["c1"])])
+
+    assert ImpactEntry.objects.get(notion_id="i1").worldwide is False
+
+
+def test_an_entry_that_stops_being_worldwide_is_updated(no_downloads):  # noqa: ARG001
+    CountrySyncer(None).run(pages=[country_page("c1", "Kenya")])
+    ImpactSyncer(None).run(pages=[impact_page("i1", countries=[GLOBAL_ID])])
+
+    ImpactSyncer(None).run(pages=[impact_page("i1", countries=["c1"])], force=True)
+
+    assert ImpactEntry.objects.get(notion_id="i1").worldwide is False
+
+
 def test_global_only_entry_keeps_its_international_flag(no_downloads):  # noqa: ARG001
     page = impact_page(
         "i1",

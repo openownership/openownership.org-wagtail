@@ -226,6 +226,7 @@ class ImpactSyncer(BaseSyncer):
         defaults = {
             **self.universals(row),
             **{name: getattr(row, name) for name in self.FIELDS},
+            "worldwide": self._is_worldwide(row),
         }
         outcome, obj = self.upsert(row, defaults, force)
         if outcome is not Outcome.SKIPPED:
@@ -233,6 +234,15 @@ class ImpactSyncer(BaseSyncer):
             self._set_vocabularies(obj, row)
             sync_attachments(obj, row.attachments)
         return outcome
+
+    @staticmethod
+    def _is_worldwide(row) -> bool:
+        """Whether the tracker gave this entry the "Global" row as a jurisdiction.
+
+        That row is excluded from the country sync, so without this the record
+        would arrive with no jurisdiction and no region at all.
+        """
+        return any(item in settings.NOTION_NON_COUNTRY_ROWS for item in row.country_ids)
 
     def _set_relations(self, obj, row):
         """Point the entry at the countries and regimes we hold.

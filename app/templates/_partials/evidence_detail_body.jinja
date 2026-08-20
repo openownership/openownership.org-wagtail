@@ -33,6 +33,12 @@ appear here; the tracker's internal columns are synced but stay out.
                         {% endfor %}
                     </dd>
                 </div>
+            {% elif entry.worldwide %}
+                <div class="evidence-detail__fact">
+                    <dt>{% trans %}Jurisdiction{% endtrans %}</dt>
+                    {# What the tracker itself shows for a worldwide record. #}
+                    <dd>{% trans %}Global{% endtrans %}</dd>
+                </div>
             {% elif entry.international %}
                 <div class="evidence-detail__fact">
                     <dt>{% trans %}Jurisdiction{% endtrans %}</dt>

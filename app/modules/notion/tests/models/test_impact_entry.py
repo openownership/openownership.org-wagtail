@@ -134,3 +134,44 @@ def test_a_country_with_no_region_adds_nothing():
     entry.countries.add(country("Ukraine", ""))
 
     assert entry.display_regions == []
+
+
+####################################################################################################
+# Worldwide records
+####################################################################################################
+
+
+def test_a_worldwide_record_is_in_the_global_region():
+    """The tracker groups these under "Global", so the listing does too."""
+    entry = make_entry(worldwide=True)
+
+    assert entry.display_regions == ["Global"]
+
+
+def test_a_worldwide_record_reads_as_global_rather_than_empty():
+    entry = make_entry(worldwide=True)
+
+    assert entry.display_jurisdictions == "Global"
+
+
+def test_global_is_preferred_to_the_international_flag():
+    """Both mean worldwide. "Global" is what the tracker shows in the
+    jurisdiction column, so it is what a reader comparing the two sees.
+    """
+    entry = make_entry(worldwide=True, international=True)
+
+    assert entry.display_jurisdictions == "Global"
+
+
+def test_a_record_with_a_jurisdiction_is_unaffected():
+    entry = make_entry(worldwide=True)
+    entry.countries.add(country("Ukraine", "Europe and Central Asia"))
+
+    assert entry.display_jurisdictions == "Ukraine"
+
+
+def test_an_international_record_that_is_not_global_still_reads_as_international():
+    entry = make_entry(international=True)
+
+    assert entry.display_jurisdictions == "International"
+    assert entry.display_regions == []

@@ -1126,6 +1126,16 @@ class ImpactEntry(NotionModel):
         default=False,
     )
 
+    # The tracker gives a worldwide record the "Global" row of the countries
+    # database as its jurisdiction. That row is not a country and is kept out of
+    # the country lists, so the fact is recorded here instead of being lost.
+    worldwide = models.BooleanField(
+        _("Global"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
     # Housekeeping flags Open Ownership use while they tidy the tracker. Synced
     # so the record matches Notion, but nothing on this side acts on them.
     source_archived = models.BooleanField(  # Archive
@@ -1221,15 +1231,25 @@ class ImpactEntry(NotionModel):
     def display_topics(self) -> str:
         return self._joined(tag.name for tag in self.policy_areas.all())
 
+    # What the tracker calls a worldwide record, in its jurisdiction column and
+    # in the region it rolls up to.
+    WORLDWIDE_LABEL = "Global"
+
     @cached_property
     def display_jurisdictions(self) -> str:
-        """The jurisdictions, or "International" for a worldwide record.
+        """The jurisdictions, or a worldwide record's own name for itself.
 
         Worldwide records carry no country at all, so without this they would
         report an empty jurisdiction rather than the thing they actually are.
+        "Global" is what the tracker shows for them; the older `International`
+        checkbox is the fallback for a record marked that way and nothing else.
         """
         names = self._joined(tag.name for tag in self.countries.all())
-        if not names and self.international:
+        if names:
+            return names
+        if self.worldwide:
+            return self.WORLDWIDE_LABEL
+        if self.international:
             return "International"
         return names
 
@@ -1260,8 +1280,13 @@ class ImpactEntry(NotionModel):
         The tracker's own region is used, not the site's `Region` records: the
         two group the world differently, and a reader comparing the listing with
         the tracker should see the tracker's names.
+
+        A worldwide record has no country to reach a region through, and the
+        tracker rolls it up to "Global", so that is what it reports.
         """
         names = {country.notion_region for country in self.countries.all()}
+        if self.worldwide:
+            names.add(self.WORLDWIDE_LABEL)
         return sorted(name for name in names if name)
 
     @cached_property

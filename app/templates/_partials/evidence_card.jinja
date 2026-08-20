@@ -56,6 +56,9 @@ into an in-place swap, so the listing still works with JavaScript off.
                                 {{ country.name }}{% if not loop.last %}, {% endif %}
                             {% endfor %}
                         </span>
+                    {% elif entry.worldwide %}
+                        {# What the tracker itself shows for a worldwide record. #}
+                        <span class="evidence-card__jurisdictions">{% trans %}Global{% endtrans %}</span>
                     {% elif entry.international %}
                         <span class="evidence-card__jurisdictions">{% trans %}International{% endtrans %}</span>
                     {% endif %}

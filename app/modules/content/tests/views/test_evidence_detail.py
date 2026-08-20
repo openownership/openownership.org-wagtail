@@ -149,6 +149,16 @@ def test_the_expanded_card_shows_detail_the_collapsed_card_hides():
     assert "Journalist" in body
 
 
+def test_a_worldwide_record_names_its_jurisdiction_as_global():
+    entry = make_entry()
+    entry.worldwide = True
+    entry.save()
+
+    body = client.get(detail_url(entry)).content.decode()
+
+    assert "<dd>Global</dd>" in body
+
+
 ####################################################################################################
 # The listing links to it
 ####################################################################################################
