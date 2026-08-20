@@ -213,7 +213,7 @@ display time rather than relied on at their end.
 names, the sort options, and turning GET parameters into a page of results.
 `search.py` stays a plain Meilisearch adapter and knows nothing about URLs.
 
-Six facets are exposed, and `FACETS` is both the naming map and the allowlist, so
+Five facets are exposed, and `FACETS` is both the naming map and the allowlist, so
 an attribute missing from it cannot be reached from a URL at all:
 
 | URL parameter | Index attribute | Shown as |
@@ -222,13 +222,13 @@ an attribute missing from it cannot be reached from a URL at all:
 | `jurisdiction` | `jurisdictions` | Jurisdiction |
 | `region` | `regions` | Region |
 | `topic` | `policy_areas` | Topic |
-| `type` | `data_users` | Type |
 | `resource` | `resource_types` | Type of resource |
 
-`usability_themes` stays filterable in the index but is not exposed: it is
-populated on only 29 of 237 rows and is not one of the six Open Ownership asked
-for. Sort is `?sort=` with `newest` (the default, and left out of URLs),
-`oldest`, `az` or `za`.
+`usability_themes` and `data_users` stay filterable in the index but are not
+exposed. `usability_themes` is populated on only 29 of 237 rows, and Open
+Ownership asked for the resource type rather than the data user, so a
+hand-written `?type=` is simply ignored. Sort is `?sort=` with `newest` (the
+default, and left out of URLs), `oldest`, `az` or `za`.
 
 Everything is a plain GET form, so filtering, searching, sorting and pagination
 all work with JavaScript off. There is deliberately no hidden `page` field:
@@ -241,7 +241,7 @@ one could never be chosen. Each ticked facet is queried again with its own filte
 dropped. That is what keeps "filter by multiple topics" usable, and it is the
 first thing to check if the facet lists ever start collapsing.
 
-Filtered views are served `noindex` and `no-cache`. Six facets over 48
+Filtered views are served `noindex` and `no-cache`. Five facets over 48
 jurisdictions is an unbounded crawl space, and wagtail-cache keys on the full URL,
 so caching the combinations would let anyone fill Redis with `?anything=1`.
 

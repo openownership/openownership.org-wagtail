@@ -7,9 +7,10 @@ becomes a page of results.
 
 `search.py` stays a plain Meilisearch adapter and knows nothing about URLs or
 labels. That matters here because the public vocabulary and the index vocabulary
-genuinely differ: Open Ownership call `policy_areas` "Topic" and `data_users`
-"Type". `FACETS` is where the two are reconciled, and it doubles as the
-allowlist, so an attribute missing from it simply cannot be reached from a URL.
+genuinely differ: Open Ownership call `policy_areas` "Topic" and `resource_types`
+"Type of resource". `FACETS` is where the two are reconciled, and it doubles as
+the allowlist, so an attribute missing from it simply cannot be reached from a
+URL.
 """
 
 # stdlib
@@ -101,7 +102,6 @@ FACETS = (
     Facet("jurisdiction", "jurisdictions", _("Jurisdiction"), collapse_after=8),
     Facet("region", "regions", _("Region")),
     Facet("topic", "policy_areas", _("Topic")),
-    Facet("type", "data_users", _("Type")),
     Facet("resource", "resource_types", _("Type of resource")),
 )
 

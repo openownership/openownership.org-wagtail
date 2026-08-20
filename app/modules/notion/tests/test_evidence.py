@@ -166,13 +166,20 @@ def test_a_negative_page_falls_back_to_one():
 
 
 def test_filters_map_public_names_to_index_attributes():
-    query = evidence.parse(params("topic=Tax&type=CSO%2FNGO&resource=Journalism"))
+    query = evidence.parse(params("topic=Tax&jurisdiction=Kenya&resource=Journalism"))
 
     assert query.filters() == {
         "policy_areas": ["Tax"],
-        "data_users": ["CSO/NGO"],
+        "jurisdictions": ["Kenya"],
         "resource_types": ["Journalism"],
     }
+
+
+def test_a_parameter_outside_the_facets_is_ignored():
+    """`data_users` is filterable in the index, so the allowlist is what keeps a
+    hand-written `?type=` out of the query.
+    """
+    assert evidence.parse(params("type=CSO%2FNGO")).filters() == {}
 
 
 def test_an_unused_facet_is_left_out_of_the_filters():
@@ -275,13 +282,15 @@ def test_without_handles_a_year_given_as_text():
 ####################################################################################################
 
 
-def test_the_six_facets_oo_asked_for():
+def test_the_five_facets_oo_asked_for():
+    """`data_users` ("Type") stays filterable in the index but is not offered:
+    Open Ownership only wanted the resource type.
+    """
     assert [facet.param for facet in evidence.FACETS] == [
         "year",
         "jurisdiction",
         "region",
         "topic",
-        "type",
         "resource",
     ]
 

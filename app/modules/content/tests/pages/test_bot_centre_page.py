@@ -342,8 +342,14 @@ def test_the_facets_are_rendered_with_counts(stocked):
     assert 'name="topic"' in rendered
     assert 'value="Tax"' in rendered
     assert 'name="year"' in rendered
-    assert 'name="type"' in rendered
     assert 'name="resource"' in rendered
+
+
+def test_the_data_user_facet_is_not_offered(stocked):
+    """Open Ownership asked for the resource type only."""
+    rendered = client.get(stocked.url).rendered_content
+
+    assert 'name="type"' not in rendered
 
 
 def test_a_selected_filter_is_checked(stocked):
