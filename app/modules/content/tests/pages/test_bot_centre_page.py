@@ -1,4 +1,5 @@
 # stdlib
+import datetime as dt
 import html
 import re
 
@@ -360,6 +361,42 @@ def test_a_nonsense_filter_shows_the_page_rather_than_an_error(stocked):
 
     assert response.status_code == 200
     assert listed(response) == []
+
+
+####################################################################################################
+# When the tracker last changed
+####################################################################################################
+
+
+def test_the_page_says_when_the_tracker_last_changed(bot_centre):
+    entry = make_entry("e1", "A record")
+    ImpactEntry.objects.filter(pk=entry.pk).update(
+        notion_updated=dt.datetime(2026, 3, 9, tzinfo=dt.timezone.utc),
+    )
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "The BOT Evidence Centre is updated on an ongoing basis" in rendered
+    assert "09 March 2026" in rendered
+
+
+def test_the_date_is_machine_readable(bot_centre):
+    """A date a reader can read is not a date anything else can."""
+    entry = make_entry("e1", "A record")
+    ImpactEntry.objects.filter(pk=entry.pk).update(
+        notion_updated=dt.datetime(2026, 3, 9, tzinfo=dt.timezone.utc),
+    )
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert '<time datetime="2026-03-09"' in rendered
+
+
+def test_nothing_is_claimed_before_the_first_sync(bot_centre):
+    """No records, so no date, so no sentence about how current it is."""
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "updated on an ongoing basis" not in rendered
 
 
 ####################################################################################################

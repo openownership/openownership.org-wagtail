@@ -12,6 +12,12 @@
     @apply pb-10 mt-0 mb-10;
 }
 
+/* Sits between the title and the page's own copy, so it reads as a fact about
+   the listing rather than as part of the introduction. */
+.evidence-page__updated {
+    @apply text-16 text-text-secondary mb-6;
+}
+
 .evidence-layout {
     display: grid;
     grid-template-columns: 1fr;

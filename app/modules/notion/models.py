@@ -1026,6 +1026,16 @@ class ImpactEntryQuerySet(models.QuerySet):
         """Cleared for publication, but with nothing to point a reader at."""
         return self.filter(publish=True, deleted=False, source_url="")
 
+    def last_updated(self):
+        """When the tracker last changed, or `None` before the first sync.
+
+        Every row counts, not only the ones a reader can see: the listing tells
+        a reader how current the tracker is, and Open Ownership edit rows that
+        are not published yet. It is the tracker's own timestamp rather than the
+        time of the last sync, which runs whether anything changed or not.
+        """
+        return self.aggregate(models.Max("notion_updated"))["notion_updated__max"]
+
 
 class ImpactEntry(NotionModel):
     """A single recorded use or impact of beneficial ownership data.

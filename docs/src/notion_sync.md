@@ -215,6 +215,29 @@ Open Ownership aim for that length but Notion cannot enforce it, and a character
 count reads differently at every font width, so the limit is applied on words at
 display time rather than relied on at their end.
 
+### How current the listing is
+
+Under the title, the page says: "The BOT Evidence Centre is updated on an ongoing
+basis. Last updated: 19 August 2026". Open Ownership asked for this to stand on
+its own rather than sit inside the body copy, where it was easy to miss.
+
+The date is `ImpactEntry.objects.last_updated()`, the newest `notion_updated`
+across the tracker. Two things follow from that choice:
+
+* It is Notion's own timestamp, not the time of the last sync. The sync runs
+  whether anything changed or not, so a sync time would tell a reader when the
+  site last looked rather than when the tracker last moved.
+* Every row counts, including the ones a reader never sees. Open Ownership edit
+  rows before publishing them, and the sentence is about the tracker rather than
+  about the visible subset.
+
+Before the first sync there are no rows and no date, so the whole line is left
+out rather than claiming anything. The date is rendered inside `time` with an
+ISO `datetime`, so it is readable by something other than a person.
+
+The sentence itself is fixed text in the template. Moving it into a page field
+would let Open Ownership reword it; nobody has asked for that yet.
+
 ### Filtering, search and sort
 
 `modules/notion/evidence.py` is the public query layer: it owns the URL parameter

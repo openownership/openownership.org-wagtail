@@ -1076,6 +1076,10 @@ class BotCentrePage(IndexPageType):
         # call this page when they are rendered from there.
         ctx["evidence_query"] = found.query
         ctx["listing_page"] = self
+        # When the tracker itself last changed, which is not the same as when
+        # the sync last ran. `None` before the first sync, which is the
+        # template's cue to claim nothing.
+        ctx["last_updated"] = ImpactEntry.objects.last_updated()
         ctx["record_search_terms"] = settings.EVIDENCE_RECORD_SEARCH_TERMS
 
         if found.query.is_narrowed:

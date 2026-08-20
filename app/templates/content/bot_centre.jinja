@@ -9,6 +9,17 @@
 
     <h1 class="heading-xl evidence-page__title">{{ page.title }}</h1>
 
+    {# How current the tracker is, in its own line rather than buried in the
+       body copy. The date is the newest row in Notion, so it moves when Open
+       Ownership change something rather than every time the sync runs. #}
+    {% if last_updated %}
+        <p class="evidence-page__updated">
+            {% trans %}The BOT Evidence Centre is updated on an ongoing basis.{% endtrans %}
+            {% trans %}Last updated{% endtrans %}:
+            <time datetime="{{ last_updated.strftime('%Y-%m-%d') }}">{{ last_updated|nicedate }}</time>
+        </p>
+    {% endif %}
+
     {% if page.intro %}
         <div class="intro">
             {{ page.intro|richtext }}

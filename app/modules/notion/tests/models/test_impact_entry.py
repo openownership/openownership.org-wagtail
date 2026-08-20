@@ -1,3 +1,6 @@
+# stdlib
+import datetime as dt
+
 # 3rd party
 import pytest
 
@@ -188,3 +191,39 @@ def test_a_worldwide_records_card_leaves_the_region_to_the_jurisdiction():
     entry = make_entry(worldwide=True)
 
     assert entry.display_card_regions == []
+
+
+####################################################################################################
+# last_updated
+####################################################################################################
+
+
+def test_last_updated_is_the_newest_row_in_the_tracker():
+    make_entry(notion_id="old", notion_updated=dt.datetime(2026, 1, 5, tzinfo=dt.timezone.utc))
+    make_entry(notion_id="new", notion_updated=dt.datetime(2026, 3, 9, tzinfo=dt.timezone.utc))
+
+    assert ImpactEntry.objects.last_updated() == dt.datetime(2026, 3, 9, tzinfo=dt.timezone.utc)
+
+
+def test_last_updated_counts_rows_a_reader_never_sees():
+    """The reader is being told when the tracker last changed, not when the part
+    of it they can see last changed.
+    """
+    make_entry(notion_id="shown", notion_updated=dt.datetime(2026, 1, 5, tzinfo=dt.timezone.utc))
+    make_entry(
+        notion_id="hidden",
+        publish=False,
+        notion_updated=dt.datetime(2026, 3, 9, tzinfo=dt.timezone.utc),
+    )
+
+    assert ImpactEntry.objects.last_updated() == dt.datetime(2026, 3, 9, tzinfo=dt.timezone.utc)
+
+
+def test_last_updated_is_none_before_the_first_sync():
+    assert ImpactEntry.objects.last_updated() is None
+
+
+def test_last_updated_ignores_a_row_notion_never_dated():
+    make_entry(notion_id="undated", notion_updated=None)
+
+    assert ImpactEntry.objects.last_updated() is None
