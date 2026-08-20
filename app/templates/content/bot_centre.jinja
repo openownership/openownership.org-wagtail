@@ -109,12 +109,12 @@
                     {% trans %}There are no records here yet. Please check back later.{% endtrans %}
                 </p>
             {% endif %}
-        </div>
         {% if page and page.after_listing %}
             <div class="additional-content">
                 {{render_stream(page.after_listing)}}
             </div>
         {% endif %}
+        </div>
     </div>
 
 </div>

@@ -1,30 +1,53 @@
 """
-    blocks.stream
-    ~~~~~~~~~~~~~
-    Primary stream blocks.
+blocks.stream
+~~~~~~~~~~~~~
+Primary stream blocks.
 """
 
 # stdlib
 from collections import Counter
 
+from consoler import console
+
 # 3rd party
 from django import forms
-from consoler import console
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 from wagtail import blocks
+from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.embeds import embeds
-from wagtail.models import Page, Locale
 from wagtail.embeds.blocks import EmbedBlock as WagtailEmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.models import Locale, Page
 from wagtail.snippets.blocks import SnippetChooserBlock
-from django.utils.translation import gettext_lazy as _
 from wagtailmodelchooser.blocks import ModelChooserBlock
-from wagtail.contrib.table_block.blocks import TableBlock
 
 # Module
-from .mixins import TitleMixin, TitleBodyMixin, EyebrowTitleMixin, EyebrowTitleBodyMixin  # NOQA
-from .values import LatestBlogValue, LatestNewsValue, LatestContentValue, LatestPublicationsValue
-from .generic import CTABlock, ArticleImageBlock
+from .generic import ArticleImageBlock, CTABlock
+from .mixins import EyebrowTitleBodyMixin, EyebrowTitleMixin, TitleBodyMixin, TitleMixin  # NOQA
+from .values import LatestBlogValue, LatestContentValue, LatestNewsValue, LatestPublicationsValue
+
+####################################################################################################
+# Base settings
+####################################################################################################
+
+
+class BaseSettingsBlock(blocks.StructBlock):
+    class Meta:
+        collapsed = True
+        form_classname = "radio-choices-inline"
+        icon = "cog"
+        label = "Settings"
+
+
+class ExpandingRichTextSettingsBlock(BaseSettingsBlock):
+    class Meta:
+        label_format = "Anchor: {anchor}"
+
+    anchor = blocks.CharBlock(
+        required=False,
+        help_text="""A named anchor in here allows you to link to this block directly""",
+    )
 
 
 ####################################################################################################
@@ -33,7 +56,6 @@ from .generic import CTABlock, ArticleImageBlock
 
 
 class FootnoteBlock(blocks.StructBlock):
-
     """The template for these is blank because we don't actually want them
     to render inline in the stream.
     """
@@ -47,13 +69,13 @@ class FootnoteBlock(blocks.StructBlock):
         max_length=50,
         help_text="""This is the anchor that you link to in your RichText.
             Try to make it URL-safe, using `-` characters instead of spaces and punctuation
-            characters."""
+            characters.""",
     )
     body = blocks.RichTextBlock(
         required=False,
-        features=['bold', 'italic', 'underline', 'small', 'link'],
+        features=["bold", "italic", "underline", "small", "link"],
         help_text="""Body for the footnote. Wherever you place this block in the stream, it
-            will render at the foot of the page."""
+            will render at the foot of the page.""",
     )
 
 
@@ -61,17 +83,17 @@ class FootnoteBlock(blocks.StructBlock):
 # Glossary
 ####################################################################################################
 
-class GlossaryItemBlock(blocks.StructBlock):
 
+class GlossaryItemBlock(blocks.StructBlock):
     class Meta:
-        label = 'Glossary item'
-        icon = 'help'
-        template = 'blocks/glossary_item.jinja'
+        label = "Glossary item"
+        icon = "help"
+        template = "blocks/glossary_item.jinja"
 
     title = blocks.CharBlock(required=True)
     body = blocks.RichTextBlock(
         required=True,
-        features=settings.RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
 
@@ -79,80 +101,77 @@ class GlossaryItemBlock(blocks.StructBlock):
 # New taxonomy related blocks
 ####################################################################################################
 
-class LatestBlogBlock(blocks.StructBlock):
 
+class LatestBlogBlock(blocks.StructBlock):
     class Meta:
-        label = 'Latest blog posts'
-        icon = 'doc-full'
+        label = "Latest blog posts"
+        icon = "doc-full"
         template = "_partials/card_group.jinja"
         value_class = LatestBlogValue
 
     title = blocks.CharBlock(
         required=True,
-        default="Latest blog posts"
+        default="Latest blog posts",
     )
     section = ModelChooserBlock(
-        'taxonomy.SectionTag',
+        "taxonomy.SectionTag",
         required=False,
-        help_text=""
+        help_text="",
     )
 
 
 class LatestNewsBlock(blocks.StructBlock):
-
     class Meta:
-        label = 'Latest news'
-        icon = 'doc-full'
+        label = "Latest news"
+        icon = "doc-full"
         template = "_partials/card_group.jinja"
         value_class = LatestNewsValue
 
     title = blocks.CharBlock(
         required=True,
-        default="Latest news"
+        default="Latest news",
     )
     section = ModelChooserBlock(
-        'taxonomy.SectionTag',
+        "taxonomy.SectionTag",
         required=False,
-        help_text=""
+        help_text="",
     )
 
 
 class LatestPublicationsBlock(blocks.StructBlock):
-
     class Meta:
-        label = 'Latest publications'
-        icon = 'doc-full'
+        label = "Latest publications"
+        icon = "doc-full"
         template = "_partials/card_group.jinja"
         value_class = LatestPublicationsValue
 
     title = blocks.CharBlock(
         required=True,
-        default="Latest publications"
+        default="Latest publications",
     )
     section = ModelChooserBlock(
-        'taxonomy.SectionTag',
+        "taxonomy.SectionTag",
         required=False,
-        help_text=""
+        help_text="",
     )
 
 
 class LatestContentBlock(blocks.StructBlock):
-
     class Meta:
-        label = 'Latest content'
-        icon = 'doc-full'
+        label = "Latest content"
+        icon = "doc-full"
         template = "_partials/card_group.jinja"
         value_class = LatestContentValue
         help_text = "Shows latest blog posts, news and job pages"
 
     title = blocks.CharBlock(
         required=True,
-        default="Latest"
+        default="Latest",
     )
     section = ModelChooserBlock(
-        'taxonomy.SectionTag',
+        "taxonomy.SectionTag",
         required=False,
-        help_text=""
+        help_text="",
     )
 
 
@@ -169,22 +188,22 @@ class SimilarContentBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Similar Content')
-        group = _('Card group')
-        icon = 'doc-full'
+        label = _("Similar Content")
+        group = _("Card group")
+        icon = "doc-full"
         template = "_partials/card_group.jinja"
 
     options = [
         # ('focus_area', _('Area of Focus')),
-        ('sector', _('Topic')),
-        ('publication_type', _('Content Type')),
-        ('author', _('Author')),
-        ('country', _('Country')),
-        ('section', _('Section')),
-        ('principles', _('Open Ownership Principles')),
+        ("sector", _("Topic")),
+        ("publication_type", _("Content Type")),
+        ("author", _("Author")),
+        ("country", _("Country")),
+        ("section", _("Section")),
+        ("principles", _("Open Ownership Principles")),
     ]
 
-    suggest_by = blocks.ChoiceBlock(choices=options, required=True, default='focus_area')
+    suggest_by = blocks.ChoiceBlock(choices=options, required=True, default="focus_area")
 
     def _ranked_pages(self, all_ids, count=3, relevance=True):
         ranked_ids = Counter(all_ids).most_common()
@@ -193,98 +212,94 @@ class SimilarContentBlock(blocks.StructBlock):
         else:
             ids = [element[0] for element in ranked_ids]
         objects = (
-            Page.objects
-            .live().public().filter(locale=Locale.get_active())
-            .filter(id__in=ids).specific()
-            .order_by('-first_published_at').all()
+            Page.objects.live()
+            .public()
+            .filter(locale=Locale.get_active())
+            .filter(id__in=ids)
+            .specific()
+            .order_by("-first_published_at")
+            .all()
         )
         return objects[:count]
 
     @property
     def by_focus_area(self):
-        """Get the latest 3 articles by FocusAreaTag.
-        """
+        """Get the latest 3 articles by FocusAreaTag."""
         all_ids = []
         for tag in self.page.areas_of_focus.all():
             for item in tag.focusarea_related_pages.all():
                 if item.content_object.id != self.page.id:
-                    all_ids.append(item.content_object.id)
+                    all_ids.append(item.content_object.id)  # noqa: PERF401
 
         objects = self._ranked_pages(all_ids, 3)
         return objects
 
     @property
     def by_country(self):
-        """Get the latest 3 articles by CountryTag.
-        """
+        """Get the latest 3 articles by CountryTag."""
         all_ids = []
         for tag in self.page.countries.all():
             for item in tag.country_related_pages.all():
                 if item.content_object.id != self.page.id:
-                    all_ids.append(item.content_object.id)
+                    all_ids.append(item.content_object.id)  # noqa: PERF401
 
         objects = self._ranked_pages(all_ids, 3, relevance=False)
         return objects
 
     @property
     def by_section(self):
-        """Get the latest 3 articles by SectionTag.
-        """
+        """Get the latest 3 articles by SectionTag."""
         all_ids = []
         for tag in self.page.sections.all():
             for item in tag.section_tag_related_pages.all():
                 if item.content_object.id != self.page.id:
-                    all_ids.append(item.content_object.id)
+                    all_ids.append(item.content_object.id)  # noqa: PERF401
 
         objects = self._ranked_pages(all_ids, 3)
         return objects
 
     @property
     def by_principle(self):
-        """Get the latest 3 articles by PrincipleTag.
-        """
+        """Get the latest 3 articles by PrincipleTag."""
         all_ids = []
         for tag in self.page.principles.all():
             for item in tag.principle_related_pages.all():
                 if item.content_object.id != self.page.id:
-                    all_ids.append(item.content_object.id)
+                    all_ids.append(item.content_object.id)  # noqa: PERF401
 
         objects = self._ranked_pages(all_ids, 3)
         return objects
 
     @property
     def by_sector(self):
-        """Get the latest 3 articles by SectorTag.
-        """
+        """Get the latest 3 articles by SectorTag."""
         all_ids = []
-        if not hasattr(self.page, 'sectors'):
+        if not hasattr(self.page, "sectors"):
             return []
         for tag in self.page.sectors.all():
             for item in tag.sector_related_pages.all():
                 if item.content_object.id != self.page.id:
-                    all_ids.append(item.content_object.id)
+                    all_ids.append(item.content_object.id)  # noqa: PERF401
 
         objects = self._ranked_pages(all_ids, 3)
         return objects
 
     @property
     def by_publication_type(self):
-        """Get the latest 3 articles by PublicationType.
-        """
+        """Get the latest 3 articles by PublicationType."""
         all_ids = []
         if self.page.publication_type:
             for page in self.page.publication_type.pages.all():
                 if page.id != self.page.id:
-                    all_ids.append(page.id)
+                    all_ids.append(page.id)  # noqa: PERF401
 
         objects = self._ranked_pages(all_ids, 3)
         return objects
 
     @property
     def by_authors(self):
-        """Get the latest 3 articles by Author
-        """
-        if not hasattr(self.page, 'authors'):
+        """Get the latest 3 articles by Author"""
+        if not hasattr(self.page, "authors"):
             return []
 
         all_ids = []
@@ -296,36 +311,37 @@ class SimilarContentBlock(blocks.StructBlock):
         return objects
 
     def objects(self, mode):
-        if mode == 'focus_area':
+        if mode == "focus_area":
             return self.by_focus_area
-        if mode == 'sector':
+        if mode == "sector":
             return self.by_sector
-        if mode == 'publication_type':
+        if mode == "publication_type":
             return self.by_publication_type
-        elif mode == 'author':
+        if mode == "author":
             return self.by_authors
-        elif mode == 'country':
+        if mode == "country":
             return self.by_country
-        elif mode == 'section':
+        if mode == "section":
             return self.by_section
-        elif mode == 'principle':
+        if mode == "principle":
             return self.by_principle
-        else:
-            return []
+        return []
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
-        mode = value.get('suggest_by', None)
+        mode = value.get("suggest_by", None)
         try:
-            self.page = parent_context['page']
+            self.page = parent_context["page"]
         except Exception as e:
             console.warn("Couldn't find a page for SimilarContentBlock")
             console.warn(e)
 
-        context['title'] = _('Related articles and publications')
-        context['pages'] = self.objects(mode)
-        context['card_format'] = 'landscape'
-        context['columns'] = 1
+        context["title"] = _("Related articles and publications")
+        context["pages"] = self.objects(mode)
+        context["card_format"] = "landscape"
+        context["columns"] = 1
         return context
 
 
@@ -335,27 +351,28 @@ class SimilarContentBlock(blocks.StructBlock):
 
 
 class EmbedBlockMixin(WagtailEmbedBlock):
-
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
-        request = parent_context.get('request')
-        third_party_cookies = request.COOKIES.get('third_party_cookies', 'acccept')
+        request = parent_context.get("request")
+        third_party_cookies = request.COOKIES.get("third_party_cookies", "acccept")
 
-        embed_url = getattr(value, 'url', None)
+        embed_url = getattr(value, "url", None)
         if embed_url:
             embed = embeds.get_embed(embed_url)
-            context['embed_html'] = embed.html
-            context['embed_url'] = embed_url
-            context['ratio'] = embed.ratio
+            context["embed_html"] = embed.html
+            context["embed_url"] = embed_url
+            context["ratio"] = embed.ratio
 
-        context['third_party_cookies'] = third_party_cookies
+        context["third_party_cookies"] = third_party_cookies
         return context
 
 
 class EmbedBlock(EmbedBlockMixin):
     class Meta:
-        label = 'Embed'
-        icon = 'media'
+        label = "Embed"
+        icon = "media"
         template = "blocks/embed.jinja"
 
 
@@ -363,16 +380,16 @@ class EmbedBlock(EmbedBlockMixin):
 # Notifications / update banners
 ####################################################################################################
 
-class NotificationBlock(blocks.StructBlock):
 
+class NotificationBlock(blocks.StructBlock):
     class Meta:
-        icon = 'bell'
-        template = 'blocks/notification.jinja'
+        icon = "bell"
+        template = "blocks/notification.jinja"
 
     body = blocks.RichTextBlock(
         required=True,
         help_text="Body text",
-        features=settings.RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
     cta = CTABlock(required=True)
@@ -382,22 +399,21 @@ class NotificationBlock(blocks.StructBlock):
 # Steps
 ####################################################################################################
 
-class _StepsBlockItem(blocks.StructBlock):
 
+class _StepsBlockItem(blocks.StructBlock):
     body = blocks.RichTextBlock(
         required=True,
-        features=settings.RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
 
 class StepsBlock(TitleMixin):
-
     class Meta:
-        icon = 'order'
-        template = 'blocks/steps.jinja'
+        icon = "order"
+        template = "blocks/steps.jinja"
 
     objects = blocks.ListBlock(
-        _StepsBlockItem(required=True)
+        _StepsBlockItem(required=True),
     )
     cta = CTABlock(required=False)
 
@@ -408,10 +424,9 @@ class StepsBlock(TitleMixin):
 
 
 class SocialMediaBlock(TitleBodyMixin):
-
     class Meta:
-        label = 'Share banner'
-        icon = 'share-nodes'
+        label = "Share banner"
+        icon = "share-nodes"
         template = "blocks/social_media.jinja"
 
 
@@ -421,25 +436,23 @@ class SocialMediaBlock(TitleBodyMixin):
 
 
 class _IconListBlockItem(blocks.StructBlock):
-
     icon = blocks.ChoiceBlock(
         choices=settings.ICON_CHOICES,
-        required=False
+        required=False,
     )
 
     title = blocks.CharBlock(required=True)
     body = blocks.RichTextBlock(
         required=False,
-        features=settings.RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
 
 class IconListBlock(blocks.StructBlock):
-
     class Meta:
-        template = 'blocks/features_list.jinja'
-        label = 'Features list'
-        icon = 'font-awesome'
+        template = "blocks/features_list.jinja"
+        label = "Features list"
+        icon = "font-awesome"
 
     objects = blocks.ListBlock(_IconListBlockItem(), label="Blocks", required=True)
 
@@ -448,8 +461,8 @@ class IconListBlock(blocks.StructBlock):
 # Stats
 ####################################################################################################
 
-class _StatBlock(blocks.StructBlock):
 
+class _StatBlock(blocks.StructBlock):
     """Add a stat, with Image, Text and CTA
 
     Attributes:
@@ -458,27 +471,27 @@ class _StatBlock(blocks.StructBlock):
 
     stat_text = blocks.CharBlock(
         required=True,
-        help_text="Text version of this stat"
+        help_text="Text version of this stat",
     )
 
     description = blocks.CharBlock(
         max_length=255,
-        required=False
+        required=False,
     )
 
 
 class StatsBlock(TitleBodyMixin):
     class Meta:
-        label = 'Stats'
-        icon = 'link-external'
+        label = "Stats"
+        icon = "link-external"
         template = "blocks/stats.jinja"
 
     objects = blocks.ListBlock(
         _StatBlock(
             required=True,
-            label="Stat"
+            label="Stat",
         ),
-        required=True
+        required=True,
     )
 
 
@@ -486,33 +499,38 @@ class StatsBlock(TitleBodyMixin):
 # Newsletter
 ####################################################################################################
 
+
 class NewsletterBlock(blocks.StructBlock):
     class Meta:
-        label = 'Newsletter signup'
-        icon = 'mail'
+        label = "Newsletter signup"
+        icon = "mail"
         template = "blocks/newsletter.jinja"
 
     eyebrow = blocks.CharBlock(
         required=False,
-        default="Newsletter"
+        default="Newsletter",
     )
 
     title = blocks.CharBlock(
-        required=False
+        required=False,
     )
 
     intro = blocks.RichTextBlock(
         required=False,
-        features=settings.RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
 
-        context.update({
-            'title': value.get('title'),
-            'intro': value.get('intro'),
-        })
+        context.update(
+            {
+                "title": value.get("title"),
+                "intro": value.get("intro"),
+            },
+        )
 
         return context
 
@@ -521,10 +539,10 @@ class NewsletterBlock(blocks.StructBlock):
 # Video panel
 ####################################################################################################
 
-class EmbedBannerBlock(EyebrowTitleBodyMixin):
 
+class EmbedBannerBlock(EyebrowTitleBodyMixin):
     class Meta:
-        icon = 'media'
+        icon = "media"
         template = "blocks/embed_banner.jinja"
 
     embed = EmbedBlock(required=True)
@@ -532,26 +550,28 @@ class EmbedBannerBlock(EyebrowTitleBodyMixin):
 
     layout = blocks.ChoiceBlock(
         choices=[
-            ('left', 'Left'),
-            ('right', 'Right'),
+            ("left", "Left"),
+            ("right", "Right"),
         ],
-        required=True
+        required=True,
     )
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
-        request = parent_context.get('request')
-        third_party_cookies = request.COOKIES.get('third_party_cookies', 'acccept')
+        request = parent_context.get("request")
+        third_party_cookies = request.COOKIES.get("third_party_cookies", "acccept")
 
-        embed_url = getattr(value['embed'], 'url', None)
+        embed_url = getattr(value["embed"], "url", None)
         if embed_url:
             embed = embeds.get_embed(embed_url)
-            context['embed_html'] = embed.html
-            context['embed_url'] = embed_url
-            context['ratio'] = embed.ratio
-            context['embed_id'] = embed.pk
+            context["embed_html"] = embed.html
+            context["embed_url"] = embed_url
+            context["ratio"] = embed.ratio
+            context["embed_id"] = embed.pk
 
-        context['third_party_cookies'] = third_party_cookies
+        context["third_party_cookies"] = third_party_cookies
         return context
 
 
@@ -559,8 +579,8 @@ class EmbedBannerBlock(EyebrowTitleBodyMixin):
 # Video gallery
 ####################################################################################################
 
-class _VideoGalleryItem(blocks.StructBlock):
 
+class _VideoGalleryItem(blocks.StructBlock):
     title = blocks.CharBlock(required=True)
     embed = EmbedBlock(required=True)
     image = ImageChooserBlock(required=True)
@@ -568,13 +588,13 @@ class _VideoGalleryItem(blocks.StructBlock):
 
 class VideoGalleryBlock(blocks.StructBlock):
     class Meta:
-        icon = 'openquote'
-        template = 'blocks/video_gallery.jinja'
+        icon = "openquote"
+        template = "blocks/video_gallery.jinja"
 
     objects = blocks.ListBlock(
         _VideoGalleryItem,
         required=True,
-        label="Videos"
+        label="Videos",
     )
 
 
@@ -582,10 +602,11 @@ class VideoGalleryBlock(blocks.StructBlock):
 # Quotes
 ####################################################################################################
 
+
 class PullQuoteBlock(blocks.StructBlock):
     class Meta:
-        icon = 'openquote'
-        template = 'blocks/pull_quote.jinja'
+        icon = "openquote"
+        template = "blocks/pull_quote.jinja"
 
     quote = blocks.TextBlock(required=True)
 
@@ -605,12 +626,13 @@ class PullQuoteBlock(blocks.StructBlock):
 
 class SummaryBoxBlock(blocks.StructBlock):
     class Meta:
-        icon = 'doc-full-inverse'
-        template = 'blocks/summary_box.jinja'
+        icon = "doc-full-inverse"
+        template = "blocks/summary_box.jinja"
         label = "Summary / highlight box"
 
     text = blocks.RichTextBlock(
-        required=True, features=settings.RICHTEXT_SUMMARY_FEATURES
+        required=True,
+        features=settings.RICHTEXT_SUMMARY_FEATURES,
     )
 
 
@@ -618,11 +640,11 @@ class SummaryBoxBlock(blocks.StructBlock):
 # Logo list
 ####################################################################################################
 
-class _LogoListItem(blocks.StructBlock):
 
+class _LogoListItem(blocks.StructBlock):
     class Meta:
-        label = 'Logo item'
-        icon = 'fa-pied-piper'
+        label = "Logo item"
+        icon = "fa-pied-piper"
 
     image = ImageChooserBlock(required=True)
     url = blocks.URLBlock(required=False)
@@ -630,14 +652,14 @@ class _LogoListItem(blocks.StructBlock):
 
 class LogoListBlock(EyebrowTitleBodyMixin):
     class Meta:
-        label = 'Logo list'
-        icon = 'fa-pied-piper'
+        label = "Logo list"
+        icon = "fa-pied-piper"
         template = "blocks/logo_list.jinja"
 
     objects = blocks.ListBlock(
         _LogoListItem(required=True, label="Logo"),
         required=True,
-        label="Logos"
+        label="Logos",
     )
 
 
@@ -645,10 +667,11 @@ class LogoListBlock(EyebrowTitleBodyMixin):
 # Banner
 ####################################################################################################
 
+
 class BannerBlock(EyebrowTitleMixin):
     class Meta:
-        icon = 'minus'
-        template = 'blocks/banner.jinja'
+        icon = "minus"
+        template = "blocks/banner.jinja"
 
     cta = CTABlock(required=False)
 
@@ -660,7 +683,8 @@ class BannerBlock(EyebrowTitleMixin):
 
 def get_news_category_choices():
     from modules.content.models import NewsCategory
-    return NewsCategory.objects.values_list('id', 'name')
+
+    return NewsCategory.objects.values_list("id", "name")
 
 
 ####################################################################################################
@@ -675,63 +699,79 @@ class HighlightPagesBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Highlight pages')
-        group = _('Card group')
-        icon = 'doc-full'
+        label = _("Highlight pages")
+        group = _("Card group")
+        icon = "doc-full"
         template = "_partials/card_group.jinja"
 
-    FORMAT_LANDSCAPE = 'landscape'
-    FORMAT_PORTRAIT = 'portrait'
+    FORMAT_LANDSCAPE = "landscape"
+    FORMAT_PORTRAIT = "portrait"
 
     FORMAT_CHOICES = (
-        (FORMAT_LANDSCAPE, _('Landscape')),
-        (FORMAT_PORTRAIT, _('Portrait')),
+        (FORMAT_LANDSCAPE, _("Landscape")),
+        (FORMAT_PORTRAIT, _("Portrait")),
     )
 
     title = blocks.CharBlock(
         required=False,
-        help_text=_('e.g. “Examples of our work”, or leave empty')
+        help_text=_("e.g. “Examples of our work”, or leave empty"),
     )
 
     pages = blocks.ListBlock(
-        blocks.StructBlock([
-            ('page', blocks.PageChooserBlock(required=True)),
-            ('card_format', blocks.ChoiceBlock(
-                required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE)),
-            ('embed', EmbedBlock(
-                required=False,
-                help_text=_(
-                    "Optional, replaces the page's image. Only appears if Card format is Landscape."
-                )
-            )),
-        ]),
-        min_num=1
+        blocks.StructBlock(
+            [
+                ("page", blocks.PageChooserBlock(required=True)),
+                (
+                    "card_format",
+                    blocks.ChoiceBlock(
+                        required=True,
+                        choices=FORMAT_CHOICES,
+                        default=FORMAT_LANDSCAPE,
+                    ),
+                ),
+                (
+                    "embed",
+                    EmbedBlock(
+                        required=False,
+                        help_text=_(
+                            "Optional, replaces the page's image. "
+                            "Only appears if Card format is Landscape.",
+                        ),
+                    ),
+                ),
+            ],
+        ),
+        min_num=1,
     )
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
 
         # Put the pages into a list that's easy to pass to the card_group template.
         pages = []
-        for struct_value in value.get('pages'):
-            page = struct_value.get('page')
-            page.specific.card_format = struct_value.get('card_format')
-            embed_url = getattr(struct_value.get('embed'), 'url', None)
+        for struct_value in value.get("pages"):
+            page = struct_value.get("page")
+            page.specific.card_format = struct_value.get("card_format")
+            embed_url = getattr(struct_value.get("embed"), "url", None)
             if embed_url:
                 embed = embeds.get_embed(embed_url)
                 embed_dict = {
-                    'embed_html': embed.html,
-                    'embed_url': embed_url,
-                    'ratio': embed.ratio,
-                    'emebd_id': embed.pk,
+                    "embed_html": embed.html,
+                    "embed_url": embed_url,
+                    "ratio": embed.ratio,
+                    "emebd_id": embed.pk,
                 }
                 page.specific.card_embed = embed_dict
             pages.append(page.specific)
 
-        context.update({
-            'title': value.get('title', ''),
-            'pages': pages,
-        })
+        context.update(
+            {
+                "title": value.get("title", ""),
+                "pages": pages,
+            },
+        )
         return context
 
 
@@ -747,9 +787,9 @@ class LatestSectionContentBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Latest section content')
-        group = _('Card group')
-        icon = 'time'
+        label = _("Latest section content")
+        group = _("Card group")
+        icon = "time"
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
@@ -758,31 +798,37 @@ class LatestSectionContentBlock(blocks.StructBlock):
         required=True,
         label=_("Front page of section"),
         page_type=(
-            'content.SectionPage',  # Research, Impact, Implement
-        )
+            "content.SectionPage",  # Research, Impact, Implement
+        ),
     )
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
         from modules.content.models import content_page_models
 
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
 
-        section_page = value.get('section_page')
+        section_page = value.get("section_page")
 
         if section_page:
             pages = (
                 section_page.get_descendants()
-                .live().public().filter(locale=Locale.get_active())
+                .live()
+                .public()
+                .filter(locale=Locale.get_active())
                 .exact_type(*content_page_models)
                 .specific()
-                .order_by('-first_published_at')[:self.DEFAULT_LIMIT]
+                .order_by("-first_published_at")[: self.DEFAULT_LIMIT]
             )
 
-            context.update({
-                'pages': pages,
-                'title': _('Latest {}').format(section_page.title),
-                'card_format': 'portrait',
-            })
+            context.update(
+                {
+                    "pages": pages,
+                    "title": _("Latest {}").format(section_page.title),
+                    "card_format": "portrait",
+                },
+            )
 
         return context
 
@@ -798,43 +844,54 @@ class LatestFocusAreaBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Latest by Focus Area')
-        group = _('Card group')
-        icon = 'tag'
+        label = _("Latest by Focus Area")
+        group = _("Card group")
+        icon = "tag"
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
 
     title = blocks.CharBlock(
         required=False,
-        help_text=_('If blank, will use "Latest"')
+        help_text=_('If blank, will use "Latest"'),
     )
 
     focus_area = ModelChooserBlock(
-        'taxonomy.FocusAreaTag',
+        "taxonomy.FocusAreaTag",
         required=True,
     )
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
         from wagtail.models import Page
+
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
 
-        focus_area = value.get('focus_area', None)
-        title = value.get('title', None)
+        focus_area = value.get("focus_area", None)
+        title = value.get("title", None)
 
         if focus_area:
             page_ids = focus_area.focusarea_related_pages.values_list(
-                'content_object_id', flat=True)
+                "content_object_id",
+                flat=True,
+            )
 
-            pages = Page.objects.filter(
-                id__in=page_ids).live().public().specific().order_by(
-                '-first_published_at')[:self.DEFAULT_LIMIT]
+            pages = (
+                Page.objects.filter(id__in=page_ids)
+                .live()
+                .public()
+                .specific()
+                .order_by("-first_published_at")[: self.DEFAULT_LIMIT]
+            )
 
-            context.update({
-                'pages': pages,
-                'title': title or "Latest",
-                'card_format': 'portrait',
-            })
+            context.update(
+                {
+                    "pages": pages,
+                    "title": title or "Latest",
+                    "card_format": "portrait",
+                },
+            )
 
         return context
 
@@ -850,43 +907,51 @@ class LatestSectorBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Latest by Topic')
-        group = _('Card group')
-        icon = 'tag'
+        label = _("Latest by Topic")
+        group = _("Card group")
+        icon = "tag"
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
 
     title = blocks.CharBlock(
         required=False,
-        help_text=_('If blank, will use "Latest"')
+        help_text=_('If blank, will use "Latest"'),
     )
 
     sector = ModelChooserBlock(
-        'taxonomy.SectorTag',
+        "taxonomy.SectorTag",
         required=True,
     )
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
         from wagtail.models import Page
+
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
 
-        sector = value.get('sector', None)
-        title = value.get('title', None)
+        sector = value.get("sector", None)
+        title = value.get("title", None)
 
         if sector:
-            page_ids = sector.sector_related_pages.values_list(
-                'content_object_id', flat=True)
+            page_ids = sector.sector_related_pages.values_list("content_object_id", flat=True)
 
-            pages = Page.objects.filter(
-                id__in=page_ids).live().public().specific().order_by(
-                '-first_published_at')[:self.DEFAULT_LIMIT]
+            pages = (
+                Page.objects.filter(id__in=page_ids)
+                .live()
+                .public()
+                .specific()
+                .order_by("-first_published_at")[: self.DEFAULT_LIMIT]
+            )
 
-            context.update({
-                'pages': pages,
-                'title': title or "Latest",
-                'card_format': 'portrait',
-            })
+            context.update(
+                {
+                    "pages": pages,
+                    "title": title or "Latest",
+                    "card_format": "portrait",
+                },
+            )
 
         return context
 
@@ -902,38 +967,46 @@ class LatestPublicationTypeBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Latest by Publication Type')
-        group = _('Card group')
-        icon = 'tag'
+        label = _("Latest by Publication Type")
+        group = _("Card group")
+        icon = "tag"
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
 
     title = blocks.CharBlock(
         required=False,
-        help_text=_('If blank, will use "Latest"')
+        help_text=_('If blank, will use "Latest"'),
     )
 
     publication_type = ModelChooserBlock(
-        'taxonomy.PublicationType',
+        "taxonomy.PublicationType",
         required=True,
     )
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
 
-        publication_type = value.get('publication_type', None)
-        title = value.get('title', None)
+        publication_type = value.get("publication_type", None)
+        title = value.get("title", None)
 
         if publication_type:
-            pages = publication_type.pages.live().public().specific().order_by(
-                '-first_published_at')[:self.DEFAULT_LIMIT]
+            pages = (
+                publication_type.pages.live()
+                .public()
+                .specific()
+                .order_by("-first_published_at")[: self.DEFAULT_LIMIT]
+            )
 
-            context.update({
-                'pages': pages,
-                'title': title or "Latest",
-                'card_format': 'portrait',
-            })
+            context.update(
+                {
+                    "pages": pages,
+                    "title": title or "Latest",
+                    "card_format": "portrait",
+                },
+            )
 
         return context
 
@@ -949,43 +1022,51 @@ class LatestSectionTagBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Latest by Section Tag')
-        group = _('Card group')
-        icon = 'tag'
+        label = _("Latest by Section Tag")
+        group = _("Card group")
+        icon = "tag"
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
 
     title = blocks.CharBlock(
         required=False,
-        help_text=_('If blank, will use "Latest"')
+        help_text=_('If blank, will use "Latest"'),
     )
 
     section = ModelChooserBlock(
-        'taxonomy.SectionTag',
+        "taxonomy.SectionTag",
         required=True,
     )
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
         from wagtail.models import Page
+
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
 
-        section = value.get('section', None)
-        title = value.get('title', None)
+        section = value.get("section", None)
+        title = value.get("title", None)
 
         if section:
-            page_ids = section.section_tag_related_pages.values_list(
-                'content_object_id', flat=True)
+            page_ids = section.section_tag_related_pages.values_list("content_object_id", flat=True)
 
-            pages = Page.objects.filter(
-                id__in=page_ids).live().public().specific().order_by(
-                '-first_published_at')[:self.DEFAULT_LIMIT]
+            pages = (
+                Page.objects.filter(id__in=page_ids)
+                .live()
+                .public()
+                .specific()
+                .order_by("-first_published_at")[: self.DEFAULT_LIMIT]
+            )
 
-            context.update({
-                'pages': pages,
-                'title': title or "Latest",
-                'card_format': 'portrait',
-            })
+            context.update(
+                {
+                    "pages": pages,
+                    "title": title or "Latest",
+                    "card_format": "portrait",
+                },
+            )
 
         return context
 
@@ -1001,43 +1082,54 @@ class LatestPrincipleTagBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Latest by Open Ownership Principle')
-        group = _('Card group')
-        icon = 'tag'
+        label = _("Latest by Open Ownership Principle")
+        group = _("Card group")
+        icon = "tag"
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
 
     title = blocks.CharBlock(
         required=False,
-        help_text=_('If blank, will use "Latest"')
+        help_text=_('If blank, will use "Latest"'),
     )
 
     principle = ModelChooserBlock(
-        'taxonomy.PrincipleTag',
+        "taxonomy.PrincipleTag",
         required=True,
     )
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
         from wagtail.models import Page
+
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
 
-        principle = value.get('principle', None)
-        title = value.get('title', None)
+        principle = value.get("principle", None)
+        title = value.get("title", None)
 
         if principle:
             page_ids = principle.principle_tag_related_pages.values_list(
-                'content_object_id', flat=True)
+                "content_object_id",
+                flat=True,
+            )
 
-            pages = Page.objects.filter(
-                id__in=page_ids).live().public().specific().order_by(
-                '-first_published_at')[:self.DEFAULT_LIMIT]
+            pages = (
+                Page.objects.filter(id__in=page_ids)
+                .live()
+                .public()
+                .specific()
+                .order_by("-first_published_at")[: self.DEFAULT_LIMIT]
+            )
 
-            context.update({
-                'pages': pages,
-                'title': title or "Latest",
-                'card_format': 'portrait',
-            })
+            context.update(
+                {
+                    "pages": pages,
+                    "title": title or "Latest",
+                    "card_format": "portrait",
+                },
+            )
 
         return context
 
@@ -1057,34 +1149,36 @@ class AreasOfFocusBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Areas of focus')
-        group = _('Card group')
+        label = _("Areas of focus")
+        group = _("Card group")
         icon = "tag"
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
-    DEFAULT_TITLE = 'Areas of Focus'
+    DEFAULT_TITLE = "Areas of Focus"
 
-    FORMAT_LANDSCAPE = 'landscape'
-    FORMAT_PORTRAIT = 'portrait'
+    FORMAT_LANDSCAPE = "landscape"
+    FORMAT_PORTRAIT = "portrait"
 
     FORMAT_CHOICES = (
-        (FORMAT_LANDSCAPE, _('Landscape')),
-        (FORMAT_PORTRAIT, _('Portrait')),
+        (FORMAT_LANDSCAPE, _("Landscape")),
+        (FORMAT_PORTRAIT, _("Portrait")),
     )
 
     title = blocks.CharBlock(
         required=False,
-        help_text=_('Leave empty to use default: "{}"'.format(DEFAULT_TITLE))
+        help_text=_('Leave empty to use default: "{}"'.format(DEFAULT_TITLE)),
     )
 
     card_format = blocks.ChoiceBlock(
-        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
+        required=True,
+        choices=FORMAT_CHOICES,
+        default=FORMAT_LANDSCAPE,
     )
 
     tags = blocks.ListBlock(
         ModelChooserBlock(
-            'taxonomy.FocusAreaTag',
+            "taxonomy.FocusAreaTag",
             required=True,
         ),
         min_num=1,
@@ -1092,22 +1186,26 @@ class AreasOfFocusBlock(blocks.StructBlock):
         label=DEFAULT_TITLE,
     )
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
 
         # This will presumably be the Research SectionPage or similar:
         # (we need it to generate a URL to the tag page below this page)
-        parent_page = parent_context['page']
+        parent_page = parent_context["page"]
 
         pages = []
-        for tag in value.get('tags'):
-            pages.append(tag.to_dummy_page(parent_page))
+        for tag in value.get("tags"):
+            pages.append(tag.to_dummy_page(parent_page))  # noqa: PERF401
 
-        context.update({
-            'title': value.get('title') or self.DEFAULT_TITLE,
-            'pages': pages,
-            'card_format': value.get('card_format'),
-        })
+        context.update(
+            {
+                "title": value.get("title") or self.DEFAULT_TITLE,
+                "pages": pages,
+                "card_format": value.get("card_format"),
+            },
+        )
 
         return context
 
@@ -1122,22 +1220,22 @@ class SectorsBlock(AreasOfFocusBlock):
     """
 
     class Meta:
-        label = _('Topics')
-        group = _('Card group')
+        label = _("Topics")
+        group = _("Card group")
         icon = "tag"
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
-    DEFAULT_TITLE = 'Topics'
+    DEFAULT_TITLE = "Topics"
 
     title = blocks.CharBlock(
         required=False,
-        help_text=_('Leave empty to use default: "{}"'.format(DEFAULT_TITLE))
+        help_text=_('Leave empty to use default: "{}"'.format(DEFAULT_TITLE)),
     )
 
     tags = blocks.ListBlock(
         ModelChooserBlock(
-            'taxonomy.SectorTag',
+            "taxonomy.SectorTag",
             required=True,
         ),
         min_num=1,
@@ -1148,7 +1246,8 @@ class SectorsBlock(AreasOfFocusBlock):
 
 def get_publication_type_choices():
     from modules.taxonomy.models import PublicationType
-    return PublicationType.objects.values_list('id', 'name')
+
+    return PublicationType.objects.values_list("id", "name")
 
 
 class PublicationTypesBlock(blocks.StructBlock):
@@ -1161,56 +1260,58 @@ class PublicationTypesBlock(blocks.StructBlock):
     """
 
     class Meta:
-        label = _('Publication types')
-        group = _('Card group')
+        label = _("Publication types")
+        group = _("Card group")
         icon = "doc-full"
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
-    DEFAULT_TITLE = 'View by publication type'
+    DEFAULT_TITLE = "View by publication type"
 
-    FORMAT_LANDSCAPE = 'landscape'
-    FORMAT_PORTRAIT = 'portrait'
+    FORMAT_LANDSCAPE = "landscape"
+    FORMAT_PORTRAIT = "portrait"
 
     FORMAT_CHOICES = (
-        (FORMAT_LANDSCAPE, _('Landscape')),
-        (FORMAT_PORTRAIT, _('Portrait')),
+        (FORMAT_LANDSCAPE, _("Landscape")),
+        (FORMAT_PORTRAIT, _("Portrait")),
     )
 
     title = blocks.CharBlock(
         required=False,
-        help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"')
+        help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"'),
     )
 
     card_format = blocks.ChoiceBlock(
-        required=True, choices=FORMAT_CHOICES, default=FORMAT_LANDSCAPE
+        required=True,
+        choices=FORMAT_CHOICES,
+        default=FORMAT_LANDSCAPE,
     )
 
     types = blocks.MultipleChoiceBlock(
         choices=get_publication_type_choices,
         required=True,
-        widget=forms.CheckboxSelectMultiple
+        widget=forms.CheckboxSelectMultiple,
     )
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
         from modules.taxonomy.models import PublicationType
 
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
 
-        # This will presumably be the Research SectionPage or similar:
-        # (we need it to generate a URL to the tag page below this page)
-        parent_page = parent_context['page']
-
         pages = []
-        for cat_type in value.get('types'):
+        for cat_type in value.get("types"):
             category = PublicationType.objects.get(pk=cat_type)
             pages.append(category.to_dummy_page())
 
-        context.update({
-            'title': value.get('title') or self.DEFAULT_TITLE,
-            'pages': pages,
-            'card_format': value.get('card_format'),
-        })
+        context.update(
+            {
+                "title": value.get("title") or self.DEFAULT_TITLE,
+                "pages": pages,
+                "card_format": value.get("card_format"),
+            },
+        )
 
         return context
 
@@ -1221,32 +1322,33 @@ class PublicationTypesBlock(blocks.StructBlock):
 
 
 class PressLinksBlock(blocks.StructBlock):
-
     class Meta:
-        label = _('Press links')
-        group = _('Card group')
+        label = _("Press links")
+        group = _("Card group")
         icon = "doc-full"
         template = "_partials/card_group.jinja"
 
     DEFAULT_LIMIT = 3
-    DEFAULT_TITLE = 'Press links'
+    DEFAULT_TITLE = "Press links"
 
     title = blocks.CharBlock(
         required=False,
-        help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"')
+        help_text=_(f'Leave empty to use default: "{DEFAULT_TITLE}"'),
     )
 
     section = ModelChooserBlock(
-        'taxonomy.SectionTag',
+        "taxonomy.SectionTag",
         required=False,
-        help_text="Optional, restrict to press links tagged by section"
+        help_text="Optional, restrict to press links tagged by section",
     )
 
     limit_number = blocks.IntegerBlock(required=True, default=DEFAULT_LIMIT)
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
         from modules.content.models import PressLink
 
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
 
         # This will presumably be the Research SectionPage or similar:
@@ -1255,20 +1357,22 @@ class PressLinksBlock(blocks.StructBlock):
 
         qs = PressLink.objects
 
-        section = value.get('section', None)
+        section = value.get("section", None)
 
         if section:
             related_snippets = section.section_tag_press_links.all()
             ids = [item.content_object_id for item in related_snippets]
             qs = qs.filter(id__in=ids)
 
-        objects = qs.order_by("-first_published_at")[:value.get('limit', self.DEFAULT_LIMIT)]
+        objects = qs.order_by("-first_published_at")[: value.get("limit", self.DEFAULT_LIMIT)]
 
-        context.update({
-            'title': value.get('title') or self.DEFAULT_TITLE,
-            'pages': objects,
-            'card_format': 'portrait',
-        })
+        context.update(
+            {
+                "title": value.get("title") or self.DEFAULT_TITLE,
+                "pages": objects,
+                "card_format": "portrait",
+            },
+        )
 
         return context
 
@@ -1277,40 +1381,43 @@ class PressLinksBlock(blocks.StructBlock):
 # Text columns
 ####################################################################################################
 
-class _TextColumnBlockItem(TitleBodyMixin):
 
-    """An item with title, body, and CTA for use inside other blocks.
-    """
+class _TextColumnBlockItem(TitleBodyMixin):
+    """An item with title, body, and CTA for use inside other blocks."""
 
     cta = CTABlock(required=False)
 
 
 class TextColumnsBlock(blocks.StructBlock):
+    """
+    Multi-column bits.
+    """
 
-    """
-        Multi-column bits.
-    """
     class Meta:
-        label = 'Text columns'
-        icon = 'fa-columns'
+        label = "Text columns"
+        icon = "fa-columns"
         template = "blocks/text_columns.jinja"
 
     objects = blocks.ListBlock(
         _TextColumnBlockItem(required=True, label="Column"),
         required=True,
-        label="Columns"
+        label="Columns",
     )
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
 
         num_objects = 0
-        if value.get('objects'):
-            num_objects = len(value.get('objects'))
+        if value.get("objects"):
+            num_objects = len(value.get("objects"))
 
-        context.update({
-            'num_objects': num_objects
-        })
+        context.update(
+            {
+                "num_objects": num_objects,
+            },
+        )
 
         return context
 
@@ -1319,26 +1426,26 @@ class TextColumnsBlock(blocks.StructBlock):
 # Form Assembly
 ####################################################################################################
 
-class FormAssemblyBlock(blocks.StructBlock):
 
+class FormAssemblyBlock(blocks.StructBlock):
     class Meta:
-        icon = 'clipboard-list'
+        icon = "clipboard-list"
         template = "blocks/formassembly.jinja"
 
     heading = blocks.CharBlock(
-        required=False
+        required=False,
     )
 
     intro = blocks.RichTextBlock(
         required=False,
-        features=settings.RICHTEXT_INLINE_FEATURES
+        features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
-    formassembly_form = SnippetChooserBlock('crm.FormAssemblyForm', required=True)
+    formassembly_form = SnippetChooserBlock("crm.FormAssemblyForm", required=True)
 
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context=parent_context)
-        context['form_html'] = value.get('formassembly_form').cleaned_html
+        context["form_html"] = value.get("formassembly_form").cleaned_html
         return context
 
 
@@ -1346,22 +1453,26 @@ class FormAssemblyBlock(blocks.StructBlock):
 # Details
 ####################################################################################################
 
+
 class DisclosureBlock(blocks.StructBlock):
     "A title that, when clicked, reveals something else"
 
     class Meta:
-        label = _('Details')
-        icon = 'arrow-down'
-        template = 'blocks/disclosure.jinja'
+        label = _("Details")
+        icon = "arrow-down"
+        template = "blocks/disclosure.jinja"
 
     title = blocks.CharBlock(required=True)
 
-    body = blocks.StreamBlock([
-        ('rich_text', blocks.RichTextBlock(features=settings.RICHTEXT_SUMMARY_FEATURES)),
-        ('embed', EmbedBlock()),
-        ('table', TableBlock()),
-        ('image', ArticleImageBlock()),
-    ], max_num=1)
+    body = blocks.StreamBlock(
+        [
+            ("rich_text", blocks.RichTextBlock(features=settings.RICHTEXT_SUMMARY_FEATURES)),
+            ("embed", EmbedBlock()),
+            ("table", TableBlock()),
+            ("image", ArticleImageBlock()),
+        ],
+        max_num=1,
+    )
 
 
 ####################################################################################################
@@ -1377,7 +1488,7 @@ class EditorsPicksBlock(blocks.StructBlock):
 
     class Meta:
         label = _("Editor's picks")
-        icon = 'doc-full'
+        icon = "doc-full"
         template = "_partials/search_stream.jinja"
 
     title = blocks.CharBlock(
@@ -1386,32 +1497,55 @@ class EditorsPicksBlock(blocks.StructBlock):
     )
 
     pages = blocks.ListBlock(
-        blocks.StructBlock([
-            ('page', blocks.PageChooserBlock(required=True)),
-        ]),
-        min_num=1, max_num=3
+        blocks.StructBlock(
+            [
+                ("page", blocks.PageChooserBlock(required=True)),
+            ],
+        ),
+        min_num=1,
+        max_num=3,
     )
 
-    def get_context(self, value, parent_context={}):
+    def get_context(self, value, parent_context=None):
+        if parent_context is None:
+            parent_context = {}
         context = super().get_context(value, parent_context=parent_context)
         pages = []
-        for struct_value in value.get('pages'):
-            page = struct_value.get('page')
+        for struct_value in value.get("pages"):
+            page = struct_value.get("page")
             pages.append(page.specific)
 
-        context.update({
-            'title': value.get('title', ''),
-            'pages': pages,
-        })
+        context.update(
+            {
+                "title": value.get("title", ""),
+                "pages": pages,
+            },
+        )
         value.pages = pages
         return context
 
 
 class SearchLatestContentBlock(LatestContentBlock):
-
     class Meta:
-        label = 'Latest content'
-        icon = 'doc-full'
+        label = "Latest content"
+        icon = "doc-full"
         template = "_partials/search_stream.jinja"
         value_class = LatestContentValue
         help_text = "Shows latest blog posts, news and job pages"
+
+
+class ExpandingRichTextBlock(blocks.StructBlock):
+    class Meta:
+        label = "Expanding rich text"
+        icon = "pilcrow"
+        template = "blocks/expanding_richtext.jinja"
+
+    config = ExpandingRichTextSettingsBlock()
+    intro = blocks.RichTextBlock(
+        required=True,
+        features=settings.RICHTEXT_INLINE_FEATURES,
+    )
+    extra = blocks.RichTextBlock(
+        required=True,
+        features=settings.RICHTEXT_INLINE_FEATURES,
+    )

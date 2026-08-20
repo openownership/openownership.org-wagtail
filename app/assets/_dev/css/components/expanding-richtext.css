@@ -1,0 +1,37 @@
+/* Two pieces of rich text, the second behind a `details` control.
+
+   The block's summary carries both words, "Read more" and "Show less", because
+   `details` has no way to change its own label when it opens. Which one shows is
+   decided here. */
+
+.expanding-richtext {
+    @apply my-4;
+
+    .expanding-richtext__more {
+        @apply my-0;
+    }
+
+    .expanding-richtext__toggle {
+        @apply font-bold;
+        cursor: pointer;
+    }
+
+    .expanding-richtext__label--open {
+        display: none;
+    }
+
+    .expanding-richtext__extra {
+        @apply mt-2;
+    }
+}
+
+.expanding-richtext__more[open] {
+
+    .expanding-richtext__label--shut {
+        display: none;
+    }
+
+    .expanding-richtext__label--open {
+        display: inline;
+    }
+}

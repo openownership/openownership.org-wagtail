@@ -10,6 +10,7 @@ from .stream import (
     DisclosureBlock,
     EditorsPicksBlock,
     EmbedBlock,
+    ExpandingRichTextBlock,
     HighlightPagesBlock,
     LatestBlogBlock,
     LatestContentBlock,
@@ -37,6 +38,7 @@ HYBRID_PAGE_BLOCKS: list = [
         "rich_text",
         blocks.RichTextBlock(features=settings.RICHTEXT_BODY_FEATURES),
     ),
+    ("expanding_rich_text", ExpandingRichTextBlock()),
 ]
 
 

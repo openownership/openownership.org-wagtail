@@ -1,0 +1,33 @@
+{# Two pieces of rich text, the second shown only when the reader asks for it.
+
+Expects:
+
+* value.intro - Rich text, always shown
+* value.extra - Rich text, behind the control
+
+`details` rather than a button and a script: the browser already knows how to
+open and close it, announce it to a screen reader and reach it from a keyboard,
+so the block works before any JavaScript loads and still works if none does.
+
+`details` gives no way to change the summary text when it opens, so both words
+are in the markup and the stylesheet shows whichever fits the state.
+#}
+{% if value.config.anchor %}
+<a name="{{value.config.anchor}}"></a>
+{% endif %}
+<div class="expanding-richtext">
+    <div class="expanding-richtext__intro">
+        {{ value.intro|rich_text }}
+    </div>
+
+    <details class="expanding-richtext__more">
+        <summary class="expanding-richtext__toggle">
+            <span class="expanding-richtext__label expanding-richtext__label--shut">{% trans %}Read more{% endtrans %}</span>
+            <span class="expanding-richtext__label expanding-richtext__label--open">{% trans %}Show less{% endtrans %}</span>
+        </summary>
+
+        <div class="expanding-richtext__extra">
+            {{ value.extra|rich_text }}
+        </div>
+    </details>
+</div>
