@@ -106,7 +106,6 @@ def build_document(entry: ImpactEntry) -> dict:
     stays a number so it can be filtered and sorted numerically.
     """
     jurisdictions = sorted(entry.countries.values_list("name", flat=True))
-    regions = sorted({name for name in _region_names(entry) if name})
     policy_areas = sorted(entry.policy_areas.values_list("name", flat=True))
 
     return {
@@ -117,7 +116,7 @@ def build_document(entry: ImpactEntry) -> dict:
         "source_url": entry.source_url,
         "year": entry.year,
         "jurisdictions": jurisdictions,
-        "regions": regions,
+        "regions": entry.display_regions,
         "policy_areas": policy_areas,
         "usability_themes": sorted(entry.usability_themes.values_list("name", flat=True)),
         "data_users": sorted(entry.data_users.values_list("name", flat=True)),
@@ -127,18 +126,12 @@ def build_document(entry: ImpactEntry) -> dict:
     }
 
 
-def _region_names(entry: ImpactEntry):
-    """Every region name reachable through the entry's countries."""
-    for country in entry.countries.all():
-        yield from country.regions.values_list("name", flat=True)
-
-
 def documents() -> list[dict]:
     """Every entry that may appear publicly, as index documents."""
     queryset = (
         ImpactEntry.objects.publishable()
         .prefetch_related(
-            "countries__regions",
+            "countries",
             "policy_areas",
             "usability_themes",
             "data_users",

@@ -24,10 +24,13 @@ from modules.notion.models import (
 
 @pytest.fixture
 def kenya():
-    region = Region.objects.create(name="Africa")
-    country = CountryTag.objects.create(notion_id="c-ke", name="Kenya", slug="kenya", iso2="KE")
-    country.regions.add(region)
-    return country
+    return CountryTag.objects.create(
+        notion_id="c-ke",
+        name="Kenya",
+        slug="kenya",
+        iso2="KE",
+        notion_region="Africa",
+    )
 
 
 @pytest.fixture
@@ -88,10 +91,26 @@ def test_jurisdiction_and_region_come_from_the_country(entry):
     assert document["regions"] == ["Africa"]
 
 
+def test_the_indexed_region_is_the_trackers_not_the_sites(entry, kenya):
+    """The site's own `Region` records group countries into continents. The
+    listing follows the tracker, so only the tracker's region is indexed.
+    """
+    kenya.regions.add(Region.objects.create(name="Sub-Saharan Africa"))
+    kenya.notion_region = "Africa"
+    kenya.save()
+
+    document = search.build_document(entry)
+
+    assert document["regions"] == ["Africa"]
+
+
 def test_a_region_is_not_repeated_when_two_countries_share_it(entry):
-    region = Region.objects.get(name="Africa")
-    nigeria = CountryTag.objects.create(notion_id="c-ng", name="Nigeria", slug="nigeria")
-    nigeria.regions.add(region)
+    nigeria = CountryTag.objects.create(
+        notion_id="c-ng",
+        name="Nigeria",
+        slug="nigeria",
+        notion_region="Africa",
+    )
     entry.countries.add(nigeria)
 
     document = search.build_document(entry)

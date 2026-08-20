@@ -170,7 +170,8 @@ Published impact entries have their own Meilisearch index, `evidence`, built by
 
 `sync_notion` rebuilds it automatically once a sync finishes, so the index never
 drifts from the data. It always rebuilds, not only when impact entries changed,
-because a change to a country's region alters evidence documents too. A dry run
+because a change to a country's region alters evidence documents too. That is
+`CountryTag.notion_region`, described under [Two lists of regions](#two-lists-of-regions). A dry run
 skips it, and so does `--no-index`. If Meilisearch is unreachable the sync still
 counts as done, since the Notion data is already saved, and it tells you to
 rerun the indexer by hand:
@@ -326,7 +327,7 @@ The columns are the public field list and nothing else:
 | Summary | `summary`, whole, not the card's trimmed version |
 | Year | `year` |
 | Jurisdiction | `countries`, or "International" for a worldwide record |
-| Region | `display_regions`, reached through the jurisdictions |
+| Region | `display_regions`, the tracker's region for each jurisdiction |
 | Topic | `policy_areas` |
 | Type | `data_users` |
 | Type of resource | `resource_types` |
@@ -413,9 +414,47 @@ listing. The download link is hidden in all three cases.
 * **The result count carries `role="status"`.** Filtering is a full page load,
   so the count is what reports the change.
 
+### Two lists of regions
+
+The site holds two different groupings of the world, and the evidence listing
+uses the tracker's:
+
+* `notion.Region`, the site's own editorial records. Six continents, each with a
+  blurb and a page at `/region/<slug>/`, and set on a country by hand in Wagtail.
+  The impact section and the country listings use these.
+* `CountryTag.notion_region`, a copy of the `Region` select on the country
+  tracker in Notion. Eight values in the World Bank style, including "Europe and
+  Central Asia" and "Latin America and the Caribbean".
+
+`ImpactEntry.display_regions` reads the second. A reader who has the tracker open
+beside the listing sees the same region names in both, which is what Open
+Ownership asked for. The two lists genuinely disagree: Notion puts Ukraine in
+"Europe and Central Asia" where the site's own records say "Europe".
+
+The value is stored as the tracker's own text rather than matched to a record on
+this side, so a region added or renamed in Notion arrives with the next sync and
+needs no work here.
+
+**A country the sync has already seen is skipped unless it has changed**, so the
+column starts empty on an existing database. Fill it once with a forced country
+sync, which reindexes as it finishes:
+
+```
+manpy sync_notion --only countries --force
+```
+
+Until that runs the listing shows no regions at all.
+
 ### Region colours
 
-Open Ownership's secondary brand palette holds six colours and the tracker has
+**The palette no longer covers the regions in use.** It was drawn up against the
+site's own six continents, and the listing now follows the tracker's regions
+instead. Only "Africa" and "North America" appear in both lists, so 93 of the 121
+published records show no colour bar. Open Ownership have a separate piece of
+work to take the colours out, which is why no seventh colour has been invented in
+the meantime. The rest of this section describes the palette as it stands.
+
+Open Ownership's secondary brand palette holds six colours and the site has
 six regions, so each region takes one. The palette's own meaning is the six
 stages of implementing beneficial ownership transparency, nothing to do with
 regions, so the pairing in `modules/notion/colours.py` is arbitrary: regions
@@ -435,9 +474,9 @@ so if OO change the palette it fails and a chip becomes worth revisiting.
 
 Two edge cases the data actually contains:
 
-* **Fourteen records span two regions**, mostly Asia and Europe. The bar splits
-  evenly between them with hard stops rather than picking one and misreporting
-  the record. `colours.region_bar` builds the gradient.
+* **Ten records span two regions.** The bar splits evenly between them with hard
+  stops rather than picking one and misreporting the record. `colours.region_bar`
+  builds the gradient.
 * **Six records carry no jurisdiction at all**, so they have no region. No bar
   element is rendered, rather than a grey one implying a region they do not have.
 

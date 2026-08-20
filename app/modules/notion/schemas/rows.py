@@ -118,8 +118,9 @@ class CountryCols:
     NAME = Column("title", "Country")
     OO_SUPPORT = Column("%25%24OQ", "OO Support")
     ISO2 = Column("H%24!6", "ISO2")
+    REGION = Column("NtuA", "Region")
 
-    ALL = (NAME, OO_SUPPORT, ISO2)
+    ALL = (NAME, OO_SUPPORT, ISO2, REGION)
 
 
 class CountryRow(NotionRow):
@@ -129,6 +130,7 @@ class CountryRow(NotionRow):
     oo_support: str = ""
     iso2: str = ""
     icon: str = ""
+    region: str = ""
 
     @classmethod
     def extract(cls, page: dict) -> dict:
@@ -139,6 +141,7 @@ class CountryRow(NotionRow):
             "oo_support": get_select(cols[CountryCols.OO_SUPPORT]) or "",
             "iso2": get_rich_text(cols[CountryCols.ISO2]),
             "icon": icon.get("emoji", ""),
+            "region": get_select(cols[CountryCols.REGION]) or "",
         }
 
 

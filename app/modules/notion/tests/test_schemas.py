@@ -108,6 +108,7 @@ def test_country_row_valid():
             CountryCols.NAME: title("Afghanistan"),
             CountryCols.OO_SUPPORT: select("Medium"),
             CountryCols.ISO2: {"type": "rich_text", "rich_text": [{"plain_text": "AF"}]},
+            CountryCols.REGION: select("South Asia"),
         },
         icon={"type": "emoji", "emoji": "🇦🇫"},
     )
@@ -115,6 +116,7 @@ def test_country_row_valid():
     assert row.name == "Afghanistan"
     assert row.oo_support == "Medium"
     assert row.iso2 == "AF"
+    assert row.region == "South Asia"
     assert row.icon == "🇦🇫"
     assert row.notion_created == dt.datetime(2023, 11, 17, 8, 56, tzinfo=dt.timezone.utc)
 
@@ -129,6 +131,13 @@ def test_country_row_blank_select_defaults_empty():
     page = make_page({CountryCols.NAME: title("Brazil"), CountryCols.OO_SUPPORT: select(None)})
     row = CountryRow.from_page(page)
     assert row.oo_support == ""
+
+
+def test_country_row_without_a_region_defaults_empty():
+    """Not every row in the country tracker carries a region."""
+    page = make_page({CountryCols.NAME: title("Brazil"), CountryCols.REGION: select(None)})
+    row = CountryRow.from_page(page)
+    assert row.region == ""
 
 
 ####################################################################################################

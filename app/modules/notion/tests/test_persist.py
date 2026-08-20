@@ -89,6 +89,7 @@ def country_page(notion_id, name, updated="2023-11-21T12:29:00.000Z"):
             CountryCols.NAME: title(name),
             CountryCols.OO_SUPPORT: select("Medium"),
             CountryCols.ISO2: rich_text("XX"),
+            CountryCols.REGION: select("Europe and Central Asia"),
         },
         notion_id,
         updated,
@@ -155,6 +156,15 @@ def test_country_sync_creates():
     assert res.created == 2
     assert res.fetched == 2
     assert CountryTag.objects.get(notion_id="c1").name == "Afghanistan"
+
+
+def test_a_country_keeps_the_trackers_region():
+    """The tracker's own region vocabulary, which the evidence records are
+    grouped by. It is not the site's editorial `Region` list.
+    """
+    CountrySyncer(None).run(pages=[country_page("c1", "Afghanistan")])
+
+    assert CountryTag.objects.get(notion_id="c1").notion_region == "Europe and Central Asia"
 
 
 def test_country_sync_skips_unchanged():

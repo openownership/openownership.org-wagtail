@@ -5,7 +5,12 @@ Region colours, taken from Open Ownership's secondary brand palette.
 
 Open Ownership asked whether regions could be colour-coded to tell records apart
 (A-S8 in the sprint brief). Their secondary palette holds exactly six colours and
-there are exactly six regions, so each region takes one. The palette's own
+the site had exactly six regions, so each region took one.
+
+The listing now groups records by the impact tracker's own regions, which are a
+different list, so most records reach `region_colour` under a name this map does
+not hold and show no colour at all. Removing the colours is a separate piece of
+work, so no seventh colour has been invented in the meantime. The palette's own
 meaning is the six stages of implementing beneficial ownership transparency,
 which has nothing to do with regions, so the pairing is arbitrary: regions in
 alphabetical order against the palette in the order it is printed. Reproducible

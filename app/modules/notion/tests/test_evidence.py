@@ -375,17 +375,19 @@ def corpus():
         DataUserTag,
         ImpactEntry,
         PolicyAreaTag,
-        Region,
         ResourceTypeTag,
     )
     from modules.notion.tests.fakes import FakeClient
 
-    africa = Region.objects.create(name="Africa")
-    europe = Region.objects.create(name="Europe")
-    kenya = CountryTag.objects.create(notion_id="c-ke", name="Kenya", slug="kenya")
-    kenya.regions.add(africa)
-    uk = CountryTag.objects.create(notion_id="c-uk", name="United Kingdom", slug="uk")
-    uk.regions.add(europe)
+    kenya = CountryTag.objects.create(
+        notion_id="c-ke", name="Kenya", slug="kenya", notion_region="Africa",
+    )
+    uk = CountryTag.objects.create(
+        notion_id="c-uk",
+        name="United Kingdom",
+        slug="uk",
+        notion_region="Europe and Central Asia",
+    )
 
     def add(notion_id, description, year, country, topics, users=("CSO/NGO",)):
         entry = ImpactEntry.objects.create(
@@ -514,7 +516,7 @@ def test_a_ticked_facet_is_still_narrowed_by_the_other_facets(corpus):
 def test_other_facets_are_still_narrowed_by_the_ticked_one(corpus):
     found = run("topic=Tax", corpus)
 
-    assert counts_for(found, "region") == {"Africa": 1, "Europe": 1}
+    assert counts_for(found, "region") == {"Africa": 1, "Europe and Central Asia": 1}
 
 
 def test_a_ticked_value_is_marked_selected(corpus):

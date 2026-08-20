@@ -9,7 +9,6 @@ from modules.notion.models import (
     DataUserTag,
     ImpactEntry,
     PolicyAreaTag,
-    Region,
     ResourceTypeTag,
 )
 from modules.notion.tests.fakes import FakeClient
@@ -527,12 +526,14 @@ def test_two_icons_on_one_page_keep_their_own_class_names(bot_centre):
 def with_region(notion_id, description, country_name, region_names):
     entry = make_entry(notion_id, description)
     for region_name in region_names:
-        region = Region.objects.get_or_create(name=region_name)[0]
         country = CountryTag.objects.get_or_create(
             notion_id=f"c-{region_name}",
-            defaults={"name": f"{country_name} {region_name}", "slug": f"c-{region_name}".lower()},
+            defaults={
+                "name": f"{country_name} {region_name}",
+                "slug": f"c-{region_name}".lower(),
+                "notion_region": region_name,
+            },
         )[0]
-        country.regions.add(region)
         entry.countries.add(country)
     return entry
 

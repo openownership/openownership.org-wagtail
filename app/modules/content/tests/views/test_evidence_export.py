@@ -15,7 +15,6 @@ from modules.notion.models import (
     DataUserTag,
     ImpactEntry,
     PolicyAreaTag,
-    Region,
     ResourceTypeTag,
 )
 from modules.notion.tests.fakes import FakeClient
@@ -181,9 +180,9 @@ def test_the_columns_are_the_public_field_list():
 
 
 def test_a_record_fills_every_column():
-    region = Region.objects.create(name="Africa")
-    kenya = CountryTag.objects.create(notion_id="c-ke", name="Kenya", slug="kenya")
-    kenya.regions.add(region)
+    kenya = CountryTag.objects.create(
+        notion_id="c-ke", name="Kenya", slug="kenya", notion_region="Africa",
+    )
 
     entry = make_entry("e1", "A Kenyan case", topics=["Tax"])
     entry.countries.add(kenya)

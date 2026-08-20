@@ -2,7 +2,7 @@
 import pytest
 
 # Module
-from modules.notion.models import ImpactEntry
+from modules.notion.models import CountryTag, ImpactEntry, Region
 
 
 def make_entry(**kwargs):
@@ -86,3 +86,51 @@ def test_the_limit_is_never_exceeded(length):
     entry = make_entry(summary=" ".join(f"word{n}" for n in range(length)))
 
     assert len(entry.display_summary.split()) <= ImpactEntry.SUMMARY_WORDS + 1
+
+
+####################################################################################################
+# display_regions
+####################################################################################################
+
+
+def country(name, notion_region, slug=None):
+    return CountryTag.objects.create(
+        notion_id=f"c-{slug or name.lower()}",
+        name=name,
+        slug=slug or name.lower(),
+        notion_region=notion_region,
+    )
+
+
+def test_a_region_comes_from_the_trackers_own_region():
+    entry = make_entry()
+    entry.countries.add(country("Ukraine", "Europe and Central Asia"))
+
+    assert entry.display_regions == ["Europe and Central Asia"]
+
+
+def test_the_sites_editorial_regions_are_not_used():
+    """The site groups countries into continents for its own region pages. The
+    evidence records follow the tracker instead, so the two can differ.
+    """
+    ukraine = country("Ukraine", "Europe and Central Asia")
+    ukraine.regions.add(Region.objects.create(name="Europe"))
+    entry = make_entry()
+    entry.countries.add(ukraine)
+
+    assert entry.display_regions == ["Europe and Central Asia"]
+
+
+def test_two_countries_in_one_region_are_named_once():
+    entry = make_entry()
+    entry.countries.add(country("Ukraine", "Europe and Central Asia"))
+    entry.countries.add(country("Georgia", "Europe and Central Asia"))
+
+    assert entry.display_regions == ["Europe and Central Asia"]
+
+
+def test_a_country_with_no_region_adds_nothing():
+    entry = make_entry()
+    entry.countries.add(country("Ukraine", ""))
+
+    assert entry.display_regions == []

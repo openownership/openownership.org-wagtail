@@ -64,6 +64,7 @@ class CountrySyncer(BaseSyncer):
             "oo_support": row.oo_support,
             "iso2": row.iso2,
             "icon": row.icon,
+            "notion_region": row.region,
         }
         outcome, _ = self.upsert(row, defaults, force)
         return outcome

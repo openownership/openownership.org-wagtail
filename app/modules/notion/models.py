@@ -523,6 +523,16 @@ class CountryTag(NotionModel, BaseTag):
         max_length=10,
     )
 
+    # The impact tracker groups its records by this, which is a different list
+    # from the site's own `Region` records. Kept as the tracker's own text so a
+    # region added in Notion needs no work here.
+    notion_region = models.CharField(
+        _("Region (impact tracker)"),
+        blank=True,
+        default="",
+        max_length=255,
+    )
+
     main_panels = [
         FieldPanel("name"),
         FieldPanel("blurb"),
@@ -537,6 +547,7 @@ class CountryTag(NotionModel, BaseTag):
 
     notion_panels = [
         FieldPanel("oo_support"),
+        FieldPanel("notion_region", read_only=True),
         # InlinePanel('disclosure_regimes'),
     ]
 
@@ -1245,10 +1256,12 @@ class ImpactEntry(NotionModel):
 
         An entry has no region of its own. Several jurisdictions can share one,
         so the names are deduplicated before display.
+
+        The tracker's own region is used, not the site's `Region` records: the
+        two group the world differently, and a reader comparing the listing with
+        the tracker should see the tracker's names.
         """
-        names = set()
-        for country in self.countries.all():
-            names.update(country.regions.values_list("name", flat=True))
+        names = {country.notion_region for country in self.countries.all()}
         return sorted(name for name in names if name)
 
     @cached_property

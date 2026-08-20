@@ -11,7 +11,7 @@ from django.template.loader import render_to_string
 from django.test import Client, override_settings
 
 from modules.content.models.pages import BotCentrePage
-from modules.notion.models import CountryTag, ImpactEntry, PolicyAreaTag, Region
+from modules.notion.models import CountryTag, ImpactEntry, PolicyAreaTag
 
 pytestmark = pytest.mark.django_db
 
@@ -114,9 +114,9 @@ def test_the_listing_publishes_its_result_count(bot_centre):
 @pytest.fixture
 def stocked(bot_centre):
     """One record with a topic, a jurisdiction and a region."""
-    region = Region.objects.create(name="Africa")
-    kenya = CountryTag.objects.create(notion_id="c-ke", name="Kenya", slug="kenya")
-    kenya.regions.add(region)
+    kenya = CountryTag.objects.create(
+        notion_id="c-ke", name="Kenya", slug="kenya", notion_region="Africa",
+    )
 
     entry = ImpactEntry.objects.create(
         notion_id="e1",
