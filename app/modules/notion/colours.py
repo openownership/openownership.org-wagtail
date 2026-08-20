@@ -3,15 +3,17 @@ notion.colours
 
 Region colours, taken from Open Ownership's secondary brand palette.
 
+**Nothing uses this module.** Open Ownership asked for the region colour coding
+to come out: a colour per region did not help a reader and read as though it
+meant something it did not. Every card now carries the same blue edge. The
+module and its tests are kept on purpose, in case Open Ownership want the
+colours back, so do not remove them as dead code without asking.
+
 Open Ownership asked whether regions could be colour-coded to tell records apart
 (A-S8 in the sprint brief). Their secondary palette holds exactly six colours and
-the site had exactly six regions, so each region took one.
-
-The listing now groups records by the impact tracker's own regions, which are a
-different list, so most records reach `region_colour` under a name this map does
-not hold and show no colour at all. Removing the colours is a separate piece of
-work, so no seventh colour has been invented in the meantime. The palette's own
-meaning is the six stages of implementing beneficial ownership transparency,
+the site had exactly six regions, so each region took one. The listing later
+moved to the impact tracker's own regions, which are a different list of eight,
+so this map would not have covered them anyway. The palette's own meaning is the six stages of implementing beneficial ownership transparency,
 which has nothing to do with regions, so the pairing is arbitrary: regions in
 alphabetical order against the palette in the order it is printed. Reproducible
 and easy to explain, which is the most that can be said for any assignment.

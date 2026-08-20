@@ -117,11 +117,23 @@ def test_the_default_sort_is_newest():
 
 
 def test_a_named_sort_is_used():
-    assert evidence.parse(params("sort=az")).sort.key == "az"
+    assert evidence.parse(params("sort=oldest")).sort.key == "oldest"
 
 
 def test_an_unknown_sort_falls_back_to_the_default():
     assert evidence.parse(params("sort=sideways")).sort is evidence.DEFAULT_SORT
+
+
+def test_the_two_sorts_oo_asked_for():
+    """Both are by date. Open Ownership asked for the title orders to come out."""
+    assert [option.key for option in evidence.SORT_OPTIONS] == ["newest", "oldest"]
+
+
+def test_an_old_title_sort_link_still_works():
+    """`?sort=az` was a real URL for a while, so it lands on the default rather
+    than on an error.
+    """
+    assert evidence.parse(params("sort=az")).sort is evidence.DEFAULT_SORT
 
 
 def test_every_sort_option_only_uses_sortable_attributes():
@@ -208,7 +220,7 @@ def test_is_filtered_ignores_the_keyword():
 
 
 def test_the_querystring_round_trips():
-    query = evidence.parse(params("q=tax&topic=Tax&region=Africa&sort=az"))
+    query = evidence.parse(params("q=tax&topic=Tax&region=Africa&sort=oldest"))
 
     assert evidence.parse(params(query.querystring())) == query
 
@@ -226,7 +238,7 @@ def test_the_default_sort_is_not_written_into_the_url():
 
 
 def test_a_chosen_sort_is_written_into_the_url():
-    assert "sort=az" in evidence.parse(params("sort=az")).querystring()
+    assert "sort=oldest" in evidence.parse(params("sort=oldest")).querystring()
 
 
 def test_the_querystring_is_empty_for_a_bare_page():
@@ -466,12 +478,6 @@ def test_a_keyword_and_a_filter_combine(corpus):
 
 def test_sorting_oldest_first_reverses_the_years(corpus):
     assert ids_of(run("sort=oldest", corpus)) == ["aml-ke", "both-uk", "corr-uk", "tax-ke"]
-
-
-def test_sorting_alphabetically(corpus):
-    """Alphabetical ignores the year entirely, unlike the two date orders."""
-    assert ids_of(run("sort=az", corpus)) == ["aml-ke", "tax-ke", "corr-uk", "both-uk"]
-    assert ids_of(run("sort=za", corpus)) == ["both-uk", "corr-uk", "tax-ke", "aml-ke"]
 
 
 def test_a_filter_matching_nothing_gives_an_empty_page_not_an_error(corpus):
@@ -716,7 +722,7 @@ def test_sorting_alone_does_not_restrict_the_results():
     or indexed. Nothing is hidden by it, so an empty listing under a sort is
     still an empty listing rather than a search that found nothing.
     """
-    query = evidence.parse(params("sort=az"))
+    query = evidence.parse(params("sort=oldest"))
 
     assert query.is_narrowed is True
     assert query.is_restricted is False

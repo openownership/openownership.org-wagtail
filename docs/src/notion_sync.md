@@ -204,8 +204,8 @@ way to declare sortable attributes.
   data users, resource types. Values within one facet are ORed and the facets
   are ANDed.
 * **Sortable**: year, `topic_sort` and `sort_title`. The last two exist only to
-  sort on, because a record holds several policy areas and the raw description
-  sorts case-sensitively.
+  break a tie within a year, because a record holds several policy areas and the
+  raw description sorts case-sensitively.
 * **Default order**: year descending, then topic, then title. Records with no
   policy area come last within their year.
 
@@ -236,7 +236,9 @@ an attribute missing from it cannot be reached from a URL at all:
 exposed. `usability_themes` is populated on only 29 of 237 rows, and Open
 Ownership asked for the resource type rather than the data user, so a
 hand-written `?type=` is simply ignored. Sort is `?sort=` with `newest` (the
-default, and left out of URLs), `oldest`, `az` or `za`.
+default, and left out of URLs) or `oldest`. Both are by date: Open Ownership
+asked for the title orders to come out, and an old `?sort=az` link now lands on
+the default rather than on an error.
 
 Everything is a plain GET form, so filtering, searching, sorting and pagination
 all work with JavaScript off. There is deliberately no hidden `page` field:
@@ -470,7 +472,10 @@ region's name. Open Ownership asked for it to come out: it did not help a reader
 and read as though the colours meant something they did not. Region names are now
 plain text beside the other facts.
 
-That also removed the parts built to make the colours safe: the split gradient
+`modules/notion/colours.py` and its tests are kept although nothing calls them,
+in case Open Ownership want the colours back.
+
+Taking the colours out also removed the parts built to make them safe: the split gradient
 for a record spanning two regions, the contrast test behind using dots rather
 than filled chips, and the rule about setting the colour inline because
 `postcss-css-variables` resolves custom properties at build time.

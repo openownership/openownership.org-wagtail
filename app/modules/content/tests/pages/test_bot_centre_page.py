@@ -396,9 +396,21 @@ def test_a_second_topic_is_still_offered_once_one_is_chosen(stocked):
 
 
 def test_the_sort_control_marks_the_current_option(stocked):
-    rendered = client.get(f"{stocked.url}?sort=az").rendered_content
+    rendered = client.get(f"{stocked.url}?sort=oldest").rendered_content
 
-    assert 'value="az" selected' in rendered or 'selected value="az"' in rendered
+    assert 'value="oldest" selected' in rendered or 'selected value="oldest"' in rendered
+
+
+def test_the_sort_control_offers_the_two_date_orders_only(stocked):
+    """Open Ownership asked for the title orders to come out. The default sorts
+    with an empty value, so it is the label that shows it is still offered.
+    """
+    rendered = client.get(stocked.url).rendered_content
+
+    assert "Newest first" in rendered
+    assert 'value="oldest"' in rendered
+    assert 'value="az"' not in rendered
+    assert 'value="za"' not in rendered
 
 
 def test_a_clear_link_appears_only_when_something_is_filtered(stocked):

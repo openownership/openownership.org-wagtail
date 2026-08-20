@@ -137,8 +137,6 @@ class SortOption:
 SORT_OPTIONS = (
     SortOption("newest", _("Newest first"), ("year:desc", "topic_sort:asc", "sort_title:asc")),
     SortOption("oldest", _("Oldest first"), ("year:asc", "topic_sort:asc", "sort_title:asc")),
-    SortOption("az", _("Title A to Z"), ("sort_title:asc",)),
-    SortOption("za", _("Title Z to A"), ("sort_title:desc",)),
 )
 
 SORT_BY_KEY = {option.key: option for option in SORT_OPTIONS}

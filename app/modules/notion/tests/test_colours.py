@@ -1,5 +1,9 @@
 """Tests for the region colours.
 
+Nothing uses `colours` any more: the region colour coding was taken out at Open
+Ownership's request. Both files are kept in case they want it back, so these
+tests still run and still describe how the palette was meant to work.
+
 Open Ownership's secondary palette holds six colours and there are six regions,
 so each takes one (A-S8 in the sprint brief). The colours are decoration beside
 a region's name, never a background behind text, because most of them do not
