@@ -1,0 +1,23 @@
+{#- One filterable value on a record, as a link that filters the listing by it.
+
+Expects:
+
+* param - The facet's URL parameter, eg "jurisdiction"
+* value - The value, which is also what a reader reads
+* css_class - The class to put on it
+* prefix - Hidden text saying what the link does, eg "Show records from"
+* listing_page - The BotCentrePage
+* evidence_query - The listing's current query, if the reader has one
+
+Clicking adds the value to whatever the reader has already chosen, and clicking
+it again takes it off, the same as the box in the filter panel. With no Evidence
+Centre page to link to there is nowhere to go, so the value stays plain text.
+
+Whitespace is trimmed at both ends because these sit in comma separated lists.
+-#}
+{%- set listing = listing_page|default(none) -%}
+{%- if listing -%}
+<a class="{{ css_class }}" rel="nofollow" href="{{ listing.url }}?{{ facet_query(evidence_query|default(none), param, value) }}"><span class="sr-only">{{ prefix }} </span>{{ value }}</a>
+{%- else -%}
+<span class="{{ css_class }}">{{ value }}</span>
+{%- endif -%}

@@ -245,6 +245,38 @@ all work with JavaScript off. There is deliberately no hidden `page` field:
 unchecked boxes submit nothing, so changing a filter starts again at page one
 without a line of code.
 
+**The values shown on a record are filters.** The year, a topic tag, a
+jurisdiction, a region and a type of resource each set the same thing as their
+box in the filter panel, so a click adds
+that value to whatever the reader has already chosen, and clicking a value they
+have already chosen takes it off again. `Query.toggled` builds the link and
+`evidence.facet_query` is the template global that calls it, through
+`_partials/facet_link.jinja`. The keyword, the other facets and the sort are all
+kept; the page goes back to one. What is active stays visible in the chips above
+the results, so the change can be seen and undone in a click.
+
+They carry `nofollow`, because every combination of filters is a URL of its own
+and `noindex` is only read once a crawler is already down there. A record's own
+page has no listing state behind it, so its values filter the listing by
+themselves alone.
+
+Each link carries hidden text saying what it does, because "Kenya" on its own
+reads as a label rather than as something that will change the page. Two things
+on a record are deliberately not links: "Global" and "International", which are
+what the tracker calls a worldwide record rather than values anyone can filter a
+jurisdiction by, and "Type", the data user, which is no longer a facet.
+
+The card takes underlines off its links, which suits a card title but not these:
+they sit inline among plain text, where colour on its own does not tell a reader
+that something can be clicked. `bot-centre.css` puts the underline back for them,
+and drops it on hover as the rest of the site does. Topic tags are chips rather
+than text, so they keep the chip look and darken instead.
+
+Opening a record renders the open card in `EvidenceDetailView`, which knows
+nothing about the listing, so the expand control's `hx-get` carries the reader's
+query and the view parses it back out. `href` and `hx-push-url` stay clean: those
+are what a reader shares.
+
 **Facet counts are recounted per facet.** Meilisearch counts against the filtered
 results, so ticking one topic would make every other topic vanish and a second
 one could never be chosen. Each ticked facet is queried again with its own filter

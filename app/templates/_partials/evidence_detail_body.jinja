@@ -19,7 +19,12 @@ appear here; the tracker's internal columns are synced but stay out.
         {% if entry.year %}
             <div class="evidence-detail__fact">
                 <dt>{% trans %}Year{% endtrans %}</dt>
-                <dd>{{ entry.year }}</dd>
+                <dd>
+                    {%- with param = "year", value = entry.year, css_class = "year-tag",
+                             prefix = _("Show records from") -%}
+                        {%- include "_partials/facet_link.jinja" -%}
+                    {%- endwith -%}
+                </dd>
             </div>
         {% endif %}
 
@@ -29,7 +34,12 @@ appear here; the tracker's internal columns are synced but stay out.
                     <dt>{% trans %}Jurisdiction{% endtrans %}</dt>
                     <dd>
                         {% for country in countries %}
-                            {{ country.name }}{% if not loop.last %}, {% endif %}
+                            {%- with param = "jurisdiction", value = country.name,
+                                     css_class = "jurisdiction-tag",
+                                     prefix = _("Show records from") -%}
+                                {%- include "_partials/facet_link.jinja" -%}
+                            {%- endwith -%}
+                            {%- if not loop.last %}, {% endif -%}
                         {% endfor %}
                     </dd>
                 </div>
@@ -52,7 +62,10 @@ appear here; the tracker's internal columns are synced but stay out.
                 <dt>{% trans %}Region{% endtrans %}</dt>
                 <dd class="evidence-detail__regions">
                     {% for name in entry.display_regions %}
-                        <span class="region-tag">{{ name }}</span>
+                        {% with param = "region", value = name, css_class = "region-tag",
+                                prefix = _("Show records in") %}
+                            {% include "_partials/facet_link.jinja" %}
+                        {% endwith %}
                     {% endfor %}
                 </dd>
             </div>
@@ -63,12 +76,9 @@ appear here; the tracker's internal columns are synced but stay out.
                 <div class="evidence-detail__fact">
                     <dt>{% trans %}Topic{% endtrans %}</dt>
                     <dd class="evidence-detail__topics">
-                        {% for topic in topics %}
-                            <span class="topic-tag">
-                                <span class="topic-tag__icon">{% include topic.icon %}</span>
-                                {{ topic.name }}
-                            </span>
-                        {% endfor %}
+                        {% with tags = topics %}
+                            {% include "_partials/topic_tags.jinja" %}
+                        {% endwith %}
                     </dd>
                 </div>
             {% endif %}
@@ -93,7 +103,12 @@ appear here; the tracker's internal columns are synced but stay out.
                     <dt>{% trans %}Type of resource{% endtrans %}</dt>
                     <dd>
                         {% for item in resources %}
-                            {{ item.name }}{% if not loop.last %}, {% endif %}
+                            {%- with param = "resource", value = item.name,
+                                     css_class = "resource-tag",
+                                     prefix = _("Show records of type") -%}
+                                {%- include "_partials/facet_link.jinja" -%}
+                            {%- endwith -%}
+                            {%- if not loop.last %}, {% endif -%}
                         {% endfor %}
                     </dd>
                 </div>

@@ -213,6 +213,17 @@ def pagination_query(request) -> str:
     return params.urlencode()
 
 
+def facet_query(query, param: str, value) -> str:
+    """The query string a filterable value on an evidence card links to.
+
+    Imported here rather than at module level because `modules.notion` pulls in
+    models, and this module is loaded while the template engine is built.
+    """
+    from modules.notion import evidence
+
+    return evidence.facet_query(query, param, value)
+
+
 def commitment_summary(commitment_type: str, country) -> SafeString:
     """Ported from the old map generator.
 
@@ -365,5 +376,6 @@ class TemplateGlobalsExtension(Extension):
             'routablepageurl': jinja2.pass_context(routablepageurl),
             'get_top_level_navpage': get_top_level_navpage,
             'pagination_query': pagination_query,
+            'facet_query': facet_query,
         })
         environment.install_gettext_translations(translation)

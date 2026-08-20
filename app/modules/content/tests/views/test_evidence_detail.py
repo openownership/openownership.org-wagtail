@@ -159,6 +159,31 @@ def test_a_worldwide_record_names_its_jurisdiction_as_global():
     assert "<dd>Global</dd>" in body
 
 
+def test_the_records_values_link_back_to_a_filtered_listing(bot_centre):  # noqa: ARG001
+    """Every value on the page that is a filter can be clicked to see the other
+    records sharing it.
+    """
+    entry = make_entry()
+    entry.resource_types.add(ResourceTypeTag.objects.get_or_create(name="Media article")[0])
+
+    body = client.get(detail_url(entry)).content.decode()
+
+    assert "?year=2024" in body
+    assert "?resource=Media+article" in body
+
+
+def test_the_data_user_is_not_a_link(bot_centre):  # noqa: ARG001
+    """"Type" was taken out of the filters, so there is nothing to click through
+    to.
+    """
+    entry = make_entry()
+    entry.data_users.add(DataUserTag.objects.get_or_create(name="Journalist")[0])
+
+    body = client.get(detail_url(entry)).content.decode()
+
+    assert "?type=" not in body
+
+
 ####################################################################################################
 # The listing links to it
 ####################################################################################################

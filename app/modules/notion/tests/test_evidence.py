@@ -269,6 +269,67 @@ def test_without_sends_the_reader_back_to_page_one():
     assert "page" not in query.without("topic", "Tax")
 
 
+def test_toggled_adds_a_value_that_was_not_chosen():
+    query = evidence.parse(params("topic=Tax"))
+
+    remaining = evidence.parse(params(query.toggled("topic", "Corruption")))
+
+    assert remaining.selected["topic"] == ("Tax", "Corruption")
+
+
+def test_toggled_removes_a_value_that_was_already_chosen():
+    """So a tag on a card can be clicked twice to undo itself."""
+    query = evidence.parse(params("topic=Tax&topic=Corruption"))
+
+    remaining = evidence.parse(params(query.toggled("topic", "Tax")))
+
+    assert remaining.selected["topic"] == ("Corruption",)
+
+
+def test_toggled_keeps_the_keyword_the_sort_and_the_other_facets():
+    query = evidence.parse(params("q=tax&region=Africa&sort=oldest&topic=Tax"))
+
+    remaining = evidence.parse(params(query.toggled("topic", "Corruption")))
+
+    assert remaining.terms == "tax"
+    assert remaining.sort.key == "oldest"
+    assert remaining.selected["region"] == ("Africa",)
+
+
+def test_toggled_sends_the_reader_back_to_page_one():
+    query = evidence.parse(params("topic=Tax&page=3"))
+
+    assert "page" not in query.toggled("topic", "Corruption")
+
+
+def test_toggled_handles_a_year_given_as_text():
+    """A template hands over text, while a selected year is an int."""
+    query = evidence.parse(params("year=2024"))
+
+    remaining = evidence.parse(params(query.toggled("year", "2024")))
+
+    assert remaining.selected["year"] == ()
+
+
+def test_facet_query_starts_from_nothing_when_there_is_no_query():
+    """A record's own page has no listing state behind it, so the values on it
+    link to a listing filtered by that value and nothing else.
+    """
+    assert evidence.facet_query(None, "topic", "Tax") == "topic=Tax"
+
+
+def test_facet_query_toggles_against_a_query():
+    query = evidence.parse(params("topic=Tax&region=Africa"))
+
+    assert evidence.facet_query(query, "topic", "Tax") == "region=Africa"
+
+
+def test_facet_query_works_for_every_facet():
+    query = evidence.parse(params("jurisdiction=Kenya"))
+
+    assert evidence.facet_query(query, "region", "Africa") == "jurisdiction=Kenya&region=Africa"
+
+
 def test_without_handles_a_year():
     query = evidence.parse(params("year=2024&year=2019"))
 

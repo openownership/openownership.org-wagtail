@@ -1,4 +1,5 @@
 # stdlib
+import html
 import re
 
 # 3rd party
@@ -559,6 +560,155 @@ def test_two_icons_on_one_page_keep_their_own_class_names(bot_centre):
 
     assert "tax-1" in rendered
     assert "corruption-1" in rendered
+
+
+####################################################################################################
+# Topic tags as filters
+####################################################################################################
+
+
+def topic_hrefs(rendered):
+    """Where a record's topic tags point, unescaped as a browser would read them."""
+    return [
+        html.unescape(href)
+        for href in re.findall(r'<a class="topic-tag"[^>]*href="([^"]+)"', rendered)
+    ]
+
+
+def test_a_topic_tag_links_to_the_listing_filtered_by_it(stocked):
+    rendered = client.get(stocked.url).rendered_content
+
+    assert f"{stocked.url}?topic=Tax" in topic_hrefs(rendered)
+
+
+def test_a_topic_tag_keeps_the_filters_the_reader_already_set(stocked):
+    """Clicking a tag narrows what the reader is looking at. It does not throw
+    away the filters they got there with.
+    """
+    rendered = client.get(f"{stocked.url}?resource=Journalism").rendered_content
+
+    assert f"{stocked.url}?topic=Tax&resource=Journalism" in topic_hrefs(rendered)
+
+
+def test_a_chosen_topics_tag_links_to_removing_it(stocked):
+    """The same click twice undoes itself, as unticking the box would."""
+    rendered = client.get(f"{stocked.url}?topic=Tax").rendered_content
+
+    assert topic_hrefs(rendered) == [f"{stocked.url}?"]
+
+
+def test_a_topic_tag_says_what_it_does(stocked):
+    """The link text is otherwise just the topic's name, which reads as a label
+    rather than as something that will change the page.
+    """
+    rendered = client.get(stocked.url).rendered_content
+
+    assert "Show records tagged" in rendered
+
+
+def test_topic_tags_are_not_followed_by_crawlers(stocked):
+    """Filtered views are `noindex` already. This keeps a crawler out of the
+    combinations rather than relying on it reading that afterwards.
+    """
+    rendered = client.get(stocked.url).rendered_content
+
+    assert 'rel="nofollow"' in rendered
+
+
+def facet_hrefs(rendered, css_class):
+    return [
+        html.unescape(href)
+        for href in re.findall(rf'<a class="{css_class}"[^>]*href="([^"]+)"', rendered)
+    ]
+
+
+def test_a_jurisdiction_links_to_the_listing_filtered_by_it(bot_centre):
+    entry = make_entry("e1", "A Kenyan case")
+    entry.countries.add(
+        CountryTag.objects.create(
+            notion_id="c-ke", name="Kenya", slug="kenya", notion_region="Africa",
+        ),
+    )
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert f"{bot_centre.url}?jurisdiction=Kenya" in facet_hrefs(rendered, "jurisdiction-tag")
+
+
+def test_two_jurisdictions_are_separated_by_a_comma_and_nothing_else(bot_centre):
+    """Each name is its own link now, so the markup between them decides whether
+    a reader sees "Kenya, Nigeria" or "Kenya , Nigeria".
+    """
+    entry = make_entry("e1", "A case in two countries")
+    for notion_id, name in (("c-ke", "Kenya"), ("c-ng", "Nigeria")):
+        entry.countries.add(
+            CountryTag.objects.create(
+                notion_id=notion_id, name=name, slug=name.lower(), notion_region="Africa",
+            ),
+        )
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "Kenya</a>, <a" in re.sub(r"\s+", " ", rendered)
+
+
+def test_a_region_links_to_the_listing_filtered_by_it(bot_centre):
+    with_region("e1", "A European case", "Somewhere", ["Europe and Central Asia"])
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert (
+        f"{bot_centre.url}?region=Europe+and+Central+Asia"
+        in facet_hrefs(rendered, "region-tag")
+    )
+
+
+def test_a_year_links_to_the_listing_filtered_by_it(bot_centre):
+    make_entry("e1", "A record", year=2019)
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert f"{bot_centre.url}?year=2019" in facet_hrefs(rendered, "year-tag")
+
+
+def test_a_chosen_years_link_takes_it_off_again(bot_centre):
+    make_entry("e1", "A record", year=2019)
+
+    rendered = client.get(f"{bot_centre.url}?year=2019").rendered_content
+
+    assert facet_hrefs(rendered, "year-tag") == [f"{bot_centre.url}?"]
+
+
+def test_a_worldwide_records_jurisdiction_is_not_a_link(bot_centre):
+    """"Global" is what the tracker calls these records, not a jurisdiction
+    anyone can filter by, so there is nowhere for it to go.
+    """
+    entry = make_entry("e1", "A worldwide case")
+    entry.worldwide = True
+    entry.save()
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert '<span class="evidence-card__jurisdictions">Global</span>' in rendered
+
+
+def test_opening_a_record_carries_the_readers_filters(stocked):
+    """The open card is rendered by another view, so without this its own topic
+    tags would come back knowing nothing about what the reader had chosen.
+    """
+    rendered = client.get(f"{stocked.url}?resource=Journalism").rendered_content
+
+    assert 'hx-get="/en/evidence/tax/?resource=Journalism"' in rendered
+
+
+def test_the_record_link_itself_stays_clean(stocked):
+    """`href` and `hx-push-url` are what a reader shares or bookmarks, so the
+    filters that happened to be set are left out of both.
+    """
+    rendered = client.get(f"{stocked.url}?resource=Journalism").rendered_content
+
+    assert 'href="/en/evidence/tax/"' in rendered
+    assert 'hx-push-url="true"' in rendered
 
 
 ####################################################################################################

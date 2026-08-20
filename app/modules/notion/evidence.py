@@ -228,10 +228,43 @@ class Query:
         }
         return replace(self, selected=remaining, page=1).querystring()
 
+    def toggled(self, param: str, value) -> str:
+        """A query string with one value added, or removed if it was already
+        chosen, back at page one.
+
+        What a topic tag on a card links to. Everything else the reader has set
+        is kept, so clicking a tag narrows what they are looking at rather than
+        throwing away the keyword and filters they got there with. Clicking the
+        same tag again takes it off, exactly as unticking the box would.
+        """
+        wanted = FACETS_BY_PARAM[param].coerce(value)
+        chosen = self.selected.get(param, ())
+        values = (
+            tuple(item for item in chosen if item != wanted)
+            if wanted in chosen
+            else (*chosen, wanted)
+        )
+        return replace(
+            self,
+            selected={**self.selected, param: values},
+            page=1,
+        ).querystring()
+
     def cleared(self) -> str:
         """A query string with every filter dropped, keeping the keyword and sort."""
         empty = dict.fromkeys(self.selected, ())
         return replace(self, selected=empty, page=1).querystring()
+
+
+def facet_query(query: Optional[Query], param: str, value) -> str:
+    """The query string a value shown on a card links to.
+
+    Called from the templates, which render a card in two places: inside the
+    listing, where the reader's own query is what the value adds to or takes
+    away from, and on a record's own page, where there is nothing behind it and
+    the value simply filters the listing by itself.
+    """
+    return (query or Query()).toggled(param, value)
 
 
 def parse(params) -> Query:

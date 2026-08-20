@@ -24,12 +24,9 @@ into an in-place swap, so the listing still works with JavaScript off.
            The icon sits beside the topic name, never instead of it, so a topic
            we have not drawn yet costs a reader nothing. #}
         <div class="card-group__meta">
-            {% for tag in entry.policy_areas.all() %}
-                <span class="topic-tag">
-                    <span class="topic-tag__icon">{% include tag.icon %}</span>
-                    {{ tag.name }}
-                </span>
-            {% endfor %}
+            {% with tags = entry.policy_areas.all() %}
+                {% include "_partials/topic_tags.jinja" %}
+            {% endwith %}
         </div>
 
         <div class="card-group__text">
@@ -45,14 +42,24 @@ into an in-place swap, so the listing still works with JavaScript off.
 
             <p class="card-group__date evidence-card__facts">
                 {% if entry.year %}
-                    <span class="evidence-card__year">{{ entry.year }}</span>
+                    <span class="evidence-card__year">
+                        {%- with param = "year", value = entry.year, css_class = "year-tag",
+                                 prefix = _("Show records from") -%}
+                            {%- include "_partials/facet_link.jinja" -%}
+                        {%- endwith -%}
+                    </span>
                 {% endif %}
 
                 {% with countries = entry.countries.all() %}
                     {% if countries|length %}
                         <span class="evidence-card__jurisdictions">
                             {% for country in countries %}
-                                {{ country.name }}{% if not loop.last %}, {% endif %}
+                                {%- with param = "jurisdiction", value = country.name,
+                                         css_class = "jurisdiction-tag",
+                                         prefix = _("Show records from") -%}
+                                    {%- include "_partials/facet_link.jinja" -%}
+                                {%- endwith -%}
+                                {%- if not loop.last %}, {% endif -%}
                             {% endfor %}
                         </span>
                     {% elif entry.worldwide %}
@@ -64,7 +71,10 @@ into an in-place swap, so the listing still works with JavaScript off.
                 {% endwith %}
 
                 {% for name in entry.display_card_regions %}
-                    <span class="region-tag">{{ name }}</span>
+                    {% with param = "region", value = name, css_class = "region-tag",
+                            prefix = _("Show records in") %}
+                        {% include "_partials/facet_link.jinja" %}
+                    {% endwith %}
                 {% endfor %}
             </p>
 
@@ -85,8 +95,11 @@ into an in-place swap, so the listing still works with JavaScript off.
             {% endif %}
 
             <p class="evidence-card__toggle">
+                {# `hx-get` carries the reader's filters so the open card's own
+                   topic tags still know what they had chosen. `href` and
+                   `hx-push-url` stay clean, because those are what gets shared. #}
                 <a href="{{ entry.get_absolute_url() }}"
-                   hx-get="{{ entry.get_absolute_url() }}"
+                   hx-get="{{ entry.get_absolute_url() }}{% with query = evidence_query.querystring() if evidence_query else '' %}{% if query %}?{{ query }}{% endif %}{% endwith %}"
                    hx-target="closest .evidence-card"
                    hx-swap="outerHTML"
                    hx-push-url="true">

@@ -1070,6 +1070,12 @@ class BotCentrePage(IndexPageType):
         found = evidence.results(request.GET, per_page=self.objects_per_page)
         ctx["page_obj"] = found.page_obj
         ctx["evidence"] = found
+        # What a topic tag on a card links to. Named separately from `evidence`
+        # because the cards are also rendered by `EvidenceDetailView`, which has
+        # no results, and `listing_page` because that is what the card partials
+        # call this page when they are rendered from there.
+        ctx["evidence_query"] = found.query
+        ctx["listing_page"] = self
         ctx["record_search_terms"] = settings.EVIDENCE_RECORD_SEARCH_TERMS
 
         if found.query.is_narrowed:

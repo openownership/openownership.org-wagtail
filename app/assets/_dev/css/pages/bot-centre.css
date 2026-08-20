@@ -139,6 +139,23 @@
     padding: 5px 8px;
 }
 
+/* A tag is a link: clicking one filters the listing by that topic. The chip's
+   own colours have to be held against the site's link styles, which would
+   otherwise underline it and recolour it on hover and once it has been visited.
+   The background darkens instead, so the tag still answers to a pointer and to
+   the keyboard. */
+a.topic-tag {
+    @apply no-underline;
+
+    &, &:hover, &:focus, &:active, &:visited {
+        @apply text-white;
+    }
+
+    &:hover, &:focus {
+        @apply bg-text-main;
+    }
+}
+
 /* The icons are 720 square with no width or height of their own, so they take
    whatever this box gives them. `currentColor` is not used: the artwork carries
    the brand purple, which needs a light background to stay legible. */
@@ -177,6 +194,20 @@
 
 .region-tag {
     @apply inline-flex items-center;
+}
+
+/* The card takes underlines off its links, which suits a card title but not
+   these: they sit inline among plain text, where colour on its own is not
+   enough to tell a reader that something is clickable. */
+a.jurisdiction-tag,
+a.region-tag,
+a.year-tag,
+a.resource-tag {
+    @apply underline decoration-2;
+
+    &:hover, &:focus {
+        @apply no-underline;
+    }
 }
 
 .evidence-detail__regions {

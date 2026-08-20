@@ -570,6 +570,10 @@ class EvidenceDetailView(TemplateView):
         ctx["entry"] = self.entry
         ctx["page"] = self
         ctx["listing_page"] = self.listing_page
+        # The listing's filters, carried on the request that opens a record so a
+        # topic tag inside it still knows what the reader had chosen. Empty for
+        # a reader who arrived at the record on its own.
+        ctx["evidence_query"] = evidence.parse(self.request.GET)
         ctx["meta_title"] = self.title
         ctx["meta_description"] = self.entry.display_summary
         global_context(ctx)  # Adds in nav settings etc.
