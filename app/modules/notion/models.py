@@ -1299,6 +1299,18 @@ class ImpactEntry(NotionModel):
         return [(name, colours.region_colour(name)) for name in self.display_regions]
 
     @cached_property
+    def display_card_regions(self) -> list:
+        """`display_region_colours` for the shut card, which labels nothing.
+
+        A worldwide record reports "Global" as both its jurisdiction and its
+        region. The record's own page labels the two, but on a shut card they sit
+        side by side unlabelled, where the same word twice reads as a mistake.
+        """
+        if self.display_jurisdictions == self.WORLDWIDE_LABEL:
+            return [item for item in self.display_region_colours if item[0] != self.WORLDWIDE_LABEL]
+        return self.display_region_colours
+
+    @cached_property
     def region_bar(self) -> str:
         """A CSS background for the bar down the side of this record's card.
 

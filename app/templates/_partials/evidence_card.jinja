@@ -66,7 +66,7 @@ into an in-place swap, so the listing still works with JavaScript off.
 
                 {# The dot repeats the bar's colour next to the region's name, so
                    the colour is never the only thing carrying the meaning. #}
-                {% for name, colour in entry.display_region_colours %}
+                {% for name, colour in entry.display_card_regions %}
                     <span class="region-tag">
                         {% if colour %}
                             <span class="region-tag__dot" style="background: {{ colour }}"></span>

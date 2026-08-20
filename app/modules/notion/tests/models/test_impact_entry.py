@@ -175,3 +175,16 @@ def test_an_international_record_that_is_not_global_still_reads_as_international
 
     assert entry.display_jurisdictions == "International"
     assert entry.display_regions == []
+
+
+def test_an_ordinary_records_card_keeps_every_region():
+    entry = make_entry()
+    entry.countries.add(country("Ukraine", "Europe and Central Asia"))
+
+    assert [name for name, _ in entry.display_card_regions] == ["Europe and Central Asia"]
+
+
+def test_a_worldwide_records_card_leaves_the_region_to_the_jurisdiction():
+    entry = make_entry(worldwide=True)
+
+    assert entry.display_card_regions == []

@@ -159,8 +159,15 @@ Two things about the impact tracker are worth knowing:
 
 The countries database also holds a row called "Global", which the impact
 tracker uses to mean worldwide. It is listed in `NOTION_NON_COUNTRY_ROWS` and
-excluded from the sync, so it never becomes a country on the site. Impact
-entries carry their own `international` flag instead.
+excluded from the sync, so it never becomes a country on the site. An entry
+pointing at it is marked `worldwide` instead, which is what lets the record still
+report a jurisdiction and a region of "Global" rather than nothing at all. Six
+published records are like this.
+
+`worldwide` is not the same as the tracker's older `International` checkbox,
+which is synced to `international` and used only for a record marked that way and
+nothing else. Where both are set, "Global" wins, because that is what the tracker
+itself shows in the jurisdiction column.
 
 
 ## Evidence search
@@ -326,7 +333,7 @@ The columns are the public field list and nothing else:
 | Description | `description` |
 | Summary | `summary`, whole, not the card's trimmed version |
 | Year | `year` |
-| Jurisdiction | `countries`, or "International" for a worldwide record |
+| Jurisdiction | `countries`, or "Global" for a worldwide record |
 | Region | `display_regions`, the tracker's region for each jurisdiction |
 | Topic | `policy_areas` |
 | Type | `data_users` |
@@ -338,7 +345,7 @@ Several values in one cell are separated by `; ` rather than a comma, because ta
 names carry commas of their own and a reader splitting a cell should not have to
 guess. The file is named `bot-evidence.csv`, or `bot-evidence-filtered.csv` when
 the reader has narrowed it, so two downloads do not collide on disk. The whole
-file is English, including "International", because its columns are named after
+file is English, including "Global", because its columns are named after
 the Notion tracker and a half-translated data file is harder to work with.
 
 Two things worth knowing:
@@ -435,12 +442,17 @@ The value is stored as the tracker's own text rather than matched to a record on
 this side, so a region added or renamed in Notion arrives with the next sync and
 needs no work here.
 
-**A country the sync has already seen is skipped unless it has changed**, so the
-column starts empty on an existing database. Fill it once with a forced country
-sync, which reindexes as it finishes:
+Worldwide records have no country to reach a region through, so they report
+"Global", the region the tracker rolls them up to. On a record's own page that
+sits under a "Region" label beside its "Global" jurisdiction. A shut card labels
+neither, so `display_card_regions` drops the repeat and the word appears once.
+
+**A row the sync has already seen is skipped unless Notion has changed it**, so
+both `notion_region` and `worldwide` start empty on an existing database. Fill
+them once with a forced sync, which reindexes as it finishes:
 
 ```
-manpy sync_notion --only countries --force
+manpy sync_notion --force
 ```
 
 Until that runs the listing shows no regions at all.
@@ -477,8 +489,9 @@ Two edge cases the data actually contains:
 * **Ten records span two regions.** The bar splits evenly between them with hard
   stops rather than picking one and misreporting the record. `colours.region_bar`
   builds the gradient.
-* **Six records carry no jurisdiction at all**, so they have no region. No bar
-  element is rendered, rather than a grey one implying a region they do not have.
+* **Six records are worldwide**, so their region is "Global", which has no
+  colour. No bar element is rendered, rather than a grey one implying a region
+  they do not have.
 
 **The colour is set inline on a real element, not through a CSS custom property.**
 `postcss-css-variables` in this project's build resolves custom properties at
