@@ -457,52 +457,23 @@ manpy sync_notion --force
 
 Until that runs the listing shows no regions at all.
 
-### Region colours
+### The edge of a card
 
-**The palette no longer covers the regions in use.** It was drawn up against the
-site's own six continents, and the listing now follows the tracker's regions
-instead. Only "Africa" and "North America" appear in both lists, so 93 of the 121
-published records show no colour bar. Open Ownership have a separate piece of
-work to take the colours out, which is why no seventh colour has been invented in
-the meantime. The rest of this section describes the palette as it stands.
+Every card carries a 6px edge down its left side in the site's blue,
+`blue-medium`. It marks a record out from the page and stands for nothing, so it
+is the same on every record and the colour lives in `bot-centre.css` rather than
+being passed in from a template.
 
-Open Ownership's secondary brand palette holds six colours and the site has
-six regions, so each region takes one. The palette's own meaning is the six
-stages of implementing beneficial ownership transparency, nothing to do with
-regions, so the pairing in `modules/notion/colours.py` is arbitrary: regions
-alphabetically against the palette in printed order. Reproducible and easy to
-explain, which is the most that can be said for any assignment.
+**Regions were colour coded and are not any more.** Each region had a colour from
+Open Ownership's secondary palette, shown as that edge and as a dot beside the
+region's name. Open Ownership asked for it to come out: it did not help a reader
+and read as though the colours meant something they did not. Region names are now
+plain text beside the other facts.
 
-A record's colour shows twice: a bar down the side of its card, and a dot beside
-each region's name.
-
-**The colours are never put behind text.** Measured against white and against the
-body colour, five of the six only reach AA one way round, and `#DB00C9` reaches
-it neither way (4.33 and 3.59, against the 4.5 AA needs). That is why regions are
-dots rather than filled chips like the topics, and it is also what was promised
-on accessibility grounds when this was agreed: the region name is always beside
-the colour, so colour is never the only signal. A test pins that contrast finding,
-so if OO change the palette it fails and a chip becomes worth revisiting.
-
-Two edge cases the data actually contains:
-
-* **Ten records span two regions.** The bar splits evenly between them with hard
-  stops rather than picking one and misreporting the record. `colours.region_bar`
-  builds the gradient.
-* **Six records are worldwide**, so their region is "Global", which has no
-  colour. No bar element is rendered, rather than a grey one implying a region
-  they do not have.
-
-**The colour is set inline on a real element, not through a CSS custom property.**
-`postcss-css-variables` in this project's build resolves custom properties at
-compile time, so one set from a template arrives in `main.min.css` as
-`background: undefined`. It fails quietly, because every other declaration in the
-same rule still applies. A test checks `--region-bar` never appears in the
-rendered page.
-
-Open Ownership's guidelines print `RGB 245, 245, 245` beside `Hex #1BB0A7` on the
-last swatch. Those are two different colours. The hex matches the printed swatch
-and is what is used; worth raising with them.
+That also removed the parts built to make the colours safe: the split gradient
+for a record spanning two regions, the contrast test behind using dots rather
+than filled chips, and the rule about setting the colour inline because
+`postcss-css-variables` resolves custom properties at build time.
 
 ### Analytics
 

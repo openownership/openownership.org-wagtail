@@ -550,7 +550,7 @@ def test_two_icons_on_one_page_keep_their_own_class_names(bot_centre):
 
 
 ####################################################################################################
-# Region colours
+# The edge of a card
 ####################################################################################################
 
 
@@ -569,57 +569,48 @@ def with_region(notion_id, description, country_name, region_names):
     return entry
 
 
-def test_a_card_carries_its_region_colour(bot_centre):
-    with_region("e1", "A European case", "Somewhere", ["Europe"])
-
-    rendered = client.get(bot_centre.url).rendered_content
-
-    assert "#009BFE" in rendered
-
-
-def test_a_two_region_card_splits_the_bar(bot_centre):
-    """Fourteen published records span two regions. Showing one region's colour
-    would misreport the record.
+def test_every_card_carries_the_same_edge(bot_centre):
+    """One colour for every record. Open Ownership found a colour per region
+    more confusing than useful, so the edge no longer says anything.
     """
-    with_region("e1", "A cross-border case", "Somewhere", ["Asia", "Europe"])
+    with_region("e1", "A European case", "Somewhere", ["Europe and Central Asia"])
+    make_entry("e2", "A record with no region at all")
 
     rendered = client.get(bot_centre.url).rendered_content
 
-    assert "linear-gradient" in rendered
-    assert "#7F12E0" in rendered
-    assert "#009BFE" in rendered
+    assert rendered.count("evidence-card__edge") == 2
 
 
-def test_a_card_with_no_region_has_no_bar(bot_centre):
-    """A record can reach no region at all, and no colour is invented for it."""
-    make_entry("e1", "A worldwide case")
-
-    rendered = client.get(bot_centre.url).rendered_content
-
-    assert "evidence-card__region-bar" not in rendered
-
-
-def test_the_region_name_is_shown_beside_its_colour(bot_centre):
-    """Colour is never the only signal, which is what was promised on
-    accessibility grounds when this was agreed (A-S8).
+def test_the_edge_colour_comes_from_the_stylesheet(bot_centre):
+    """It is the same on every card, so there is nothing for a template to say
+    about it and no inline style to say it with.
     """
-    with_region("e1", "A European case", "Somewhere", ["Europe"])
+    with_region("e1", "A European case", "Somewhere", ["Europe and Central Asia"])
 
     rendered = client.get(bot_centre.url).rendered_content
 
-    assert "region-tag__dot" in rendered
-    assert "Europe" in rendered
+    assert "evidence-card__edge" in rendered
+    assert 'class="evidence-card__edge" style' not in rendered
 
 
-def test_the_colour_is_not_set_through_a_css_variable(bot_centre):
-    """`postcss-css-variables` resolves custom properties at build time, so one
-    set from a template arrives in the stylesheet as `undefined`.
-    """
-    with_region("e1", "A European case", "Somewhere", ["Europe"])
+def test_a_region_is_named_without_a_colour_beside_it(bot_centre):
+    with_region("e1", "A European case", "Somewhere", ["Europe and Central Asia"])
 
     rendered = client.get(bot_centre.url).rendered_content
 
-    assert "--region-bar" not in rendered
+    assert "Europe and Central Asia" in rendered
+    assert "region-tag__dot" not in rendered
+
+
+def test_no_region_colour_is_left_anywhere_on_the_page(bot_centre):
+    """The old palette was set inline, so a leftover would show up as a hex."""
+    with_region("e1", "A European case", "Somewhere", ["Europe and Central Asia"])
+    with_region("e2", "An African case", "Somewhere", ["Africa"])
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert "#DB00C9" not in rendered
+    assert "linear-gradient" not in rendered
 
 
 ####################################################################################################

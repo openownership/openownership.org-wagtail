@@ -47,17 +47,12 @@ appear here; the tracker's internal columns are synced but stay out.
             {% endif %}
         {% endwith %}
 
-        {% if entry.display_region_colours|length %}
+        {% if entry.display_regions|length %}
             <div class="evidence-detail__fact">
                 <dt>{% trans %}Region{% endtrans %}</dt>
                 <dd class="evidence-detail__regions">
-                    {% for name, colour in entry.display_region_colours %}
-                        <span class="region-tag">
-                            {% if colour %}
-                                <span class="region-tag__dot" style="background: {{ colour }}"></span>
-                            {% endif %}
-                            {{ name }}
-                        </span>
+                    {% for name in entry.display_regions %}
+                        <span class="region-tag">{{ name }}</span>
                     {% endfor %}
                 </dd>
             </div>

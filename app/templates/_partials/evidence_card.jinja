@@ -13,11 +13,10 @@ into an in-place swap, so the listing still works with JavaScript off.
 
     <div class="card-group__card-decoration">
 
-        {# The region's colour down the side of the card. A record spanning
-           two regions gets a split bar rather than one region's colour. #}
-        {% if entry.region_bar %}
-            <span class="evidence-card__region-bar" style="background: {{ entry.region_bar }}"></span>
-        {% endif %}
+        {# A plain edge down the side of every card. It marks a record out from
+           the page rather than standing for anything, so its colour is the
+           stylesheet's business. #}
+        <span class="evidence-card__edge"></span>
 
         {# Collapsed cards show description, jurisdiction, topic and year only.
            Everything else appears when the record is expanded.
@@ -64,15 +63,8 @@ into an in-place swap, so the listing still works with JavaScript off.
                     {% endif %}
                 {% endwith %}
 
-                {# The dot repeats the bar's colour next to the region's name, so
-                   the colour is never the only thing carrying the meaning. #}
-                {% for name, colour in entry.display_card_regions %}
-                    <span class="region-tag">
-                        {% if colour %}
-                            <span class="region-tag__dot" style="background: {{ colour }}"></span>
-                        {% endif %}
-                        {{ name }}
-                    </span>
+                {% for name in entry.display_card_regions %}
+                    <span class="region-tag">{{ name }}</span>
                 {% endfor %}
             </p>
 

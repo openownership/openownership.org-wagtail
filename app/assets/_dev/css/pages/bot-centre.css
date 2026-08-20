@@ -163,33 +163,20 @@
 /* Regions                                                                                        */
 /**************************************************************************************************/
 
-/* The bar down the side of a card, in the region's brand colour.
-
-   The colour is set inline on a real element rather than through a CSS custom
-   property, because `postcss-css-variables` in this project's build resolves
-   custom properties at compile time: one set from a template reaches the
-   stylesheet as `undefined`. A record with no region renders no bar element at
-   all, so there is nothing to hide here. */
+/* The edge down the side of a card. One colour on every record: a colour per
+   region was tried and Open Ownership found it more confusing than useful. */
 .evidence-card .card-group__card-decoration {
     @apply relative;
 }
 
-.evidence-card__region-bar {
+.evidence-card__edge {
     @apply absolute left-0 top-0 bottom-0;
+    @apply bg-blue-medium;
     width: 6px;
 }
 
-/* The colour is never the only signal: the region's name is always beside it.
-   None of this palette reaches AA contrast behind text, which is why these are
-   dots rather than filled chips like the topics. */
 .region-tag {
-    @apply inline-flex items-center gap-2;
-}
-
-.region-tag__dot {
-    @apply inline-block shrink-0 rounded-full;
-    width: 10px;
-    height: 10px;
+    @apply inline-flex items-center;
 }
 
 .evidence-detail__regions {

@@ -181,7 +181,7 @@ def test_an_ordinary_records_card_keeps_every_region():
     entry = make_entry()
     entry.countries.add(country("Ukraine", "Europe and Central Asia"))
 
-    assert [name for name, _ in entry.display_card_regions] == ["Europe and Central Asia"]
+    assert entry.display_card_regions == ["Europe and Central Asia"]
 
 
 def test_a_worldwide_records_card_leaves_the_region_to_the_jurisdiction():

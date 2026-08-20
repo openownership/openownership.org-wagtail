@@ -28,7 +28,7 @@ from config.template import commitment_summary
 
 # Project
 from modules.content.blocks import TAG_PAGE_BODY_BLOCKS
-from modules.notion import colours, icons
+from modules.notion import icons
 from modules.notion.data import CAPITALS
 from modules.notion.report import SyncReport, describe, notion_url
 from modules.taxonomy.models.core import BaseTag
@@ -940,15 +940,6 @@ class Region(ClusterableModel):
         features=settings.RICHTEXT_INLINE_FEATURES,
     )
 
-    @property
-    def colour(self) -> Optional[str]:
-        """This region's colour from Open Ownership's secondary palette.
-
-        Decoration beside the region's name, never a background behind text.
-        See `modules.notion.colours`.
-        """
-        return colours.region_colour(self.name)
-
     def __str__(self):
         return self.name
 
@@ -1290,33 +1281,16 @@ class ImpactEntry(NotionModel):
         return sorted(name for name in names if name)
 
     @cached_property
-    def display_region_colours(self) -> list:
-        """The regions as `(name, colour)`, for a name with a dot beside it.
-
-        The colour can be `None` for a region we hold no colour for, which is
-        the template's cue to show the name on its own rather than invent one.
-        """
-        return [(name, colours.region_colour(name)) for name in self.display_regions]
-
-    @cached_property
     def display_card_regions(self) -> list:
-        """`display_region_colours` for the shut card, which labels nothing.
+        """`display_regions` for the shut card, which labels nothing.
 
         A worldwide record reports "Global" as both its jurisdiction and its
         region. The record's own page labels the two, but on a shut card they sit
         side by side unlabelled, where the same word twice reads as a mistake.
         """
         if self.display_jurisdictions == self.WORLDWIDE_LABEL:
-            return [item for item in self.display_region_colours if item[0] != self.WORLDWIDE_LABEL]
-        return self.display_region_colours
-
-    @cached_property
-    def region_bar(self) -> str:
-        """A CSS background for the bar down the side of this record's card.
-
-        Empty for a record with no region, which leaves the bar off.
-        """
-        return colours.region_bar(self.display_regions)
+            return [name for name in self.display_regions if name != self.WORLDWIDE_LABEL]
+        return self.display_regions
 
     @cached_property
     def display_attachments(self):
