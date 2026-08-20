@@ -294,6 +294,11 @@ def test_every_facet_points_at_a_filterable_attribute():
         assert facet.attribute in search.FILTERABLE_ATTRIBUTES
 
 
+def test_jurisdictions_are_listed_alphabetically():
+    """The reader looks a country up by name, so the count is not the order."""
+    assert evidence.FACETS_BY_PARAM["jurisdiction"].order == evidence.ORDER_ALPHA
+
+
 def test_only_jurisdiction_collapses():
     """48 values, against 16 or fewer everywhere else."""
     collapsing = [f.param for f in evidence.FACETS if f.collapse_after is not None]

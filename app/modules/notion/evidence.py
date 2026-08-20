@@ -40,7 +40,6 @@ EARLIEST_YEAR = 1900
 LATEST_YEAR = 2200
 
 ORDER_ALPHA = "alpha"
-ORDER_COUNT = "count"
 ORDER_YEAR = "year"
 
 PREFETCH = ("countries", "policy_areas", "data_users", "resource_types")
@@ -99,13 +98,7 @@ class Facet:
 
 FACETS = (
     Facet("year", "year", _("Year"), order=ORDER_YEAR, coerce=as_year),
-    Facet(
-        "jurisdiction",
-        "jurisdictions",
-        _("Jurisdiction"),
-        order=ORDER_COUNT,
-        collapse_after=8,
-    ),
+    Facet("jurisdiction", "jurisdictions", _("Jurisdiction"), collapse_after=8),
     Facet("region", "regions", _("Region")),
     Facet("topic", "policy_areas", _("Topic")),
     Facet("type", "data_users", _("Type")),
@@ -341,8 +334,6 @@ def _ordered(values: list, facet: Facet) -> list:
     """Order a facet's values explicitly rather than trusting the response."""
     if facet.order == ORDER_YEAR:
         return sorted(values, key=lambda item: as_year(item.value) or 0, reverse=True)
-    if facet.order == ORDER_COUNT:
-        return sorted(values, key=lambda item: (-item.count, item.label))
     return sorted(values, key=lambda item: item.label)
 
 

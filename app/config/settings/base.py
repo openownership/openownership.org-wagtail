@@ -230,6 +230,8 @@ AUTHENTICATION_BACKENDS = [
 
 AXES_ENABLE_ACCESS_FAILURE_LOG = True
 AXES_USERNAME_FORM_FIELD = "username"
+AXES_FAILURE_LIMIT = 10
+AXES_COOLOFF_TIME = timedelta(minutes=3)
 
 ####################################################################################################
 # Core Django config

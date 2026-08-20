@@ -220,6 +220,13 @@
    a reader's eye does not have to hunt for where the record continues. */
 .evidence-card--expanded {
     @apply col-span-full;
+
+    /* The record's own page keeps the larger lead paragraph. In the listing the
+       card is read next to shut cards, so the summary stays the size it was
+       before the reader opened it. */
+    .evidence-detail__summary {
+        @apply text-16;
+    }
 }
 
 
