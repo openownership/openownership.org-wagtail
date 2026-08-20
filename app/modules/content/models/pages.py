@@ -1047,11 +1047,11 @@ class BotCentrePage(IndexPageType):
     objects_per_page = 12
 
     before_listing = fields.StreamField(HYBRID_PAGE_BLOCKS, blank=True, use_json_field=True)
-    after_listing = fields.StreamField(ADDITIONAL_CONTENT_BLOCKS, blank=True, use_json_field=True)
+    after_listing = fields.StreamField(HYBRID_PAGE_BLOCKS, blank=True, use_json_field=True)
 
     content_panels = BasePage.content_panels + [
         FieldPanel("before_listing"),
-        # FieldPanel("after_listing"),  # Not sure we actually need this
+        FieldPanel("after_listing"),
     ]
 
     def get_queryset(self, request):  # noqa: ARG002
