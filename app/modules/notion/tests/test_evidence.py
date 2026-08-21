@@ -241,6 +241,22 @@ def test_a_chosen_sort_is_written_into_the_url():
     assert "sort=oldest" in evidence.parse(params("sort=oldest")).querystring()
 
 
+def test_without_terms_drops_the_keyword_and_keeps_everything_else():
+    query = evidence.parse(params("q=tax&topic=Tax&sort=oldest"))
+
+    remaining = evidence.parse(params(query.without_terms()))
+
+    assert remaining.terms == ""
+    assert remaining.selected["topic"] == ("Tax",)
+    assert remaining.sort.key == "oldest"
+
+
+def test_without_terms_sends_the_reader_back_to_page_one():
+    query = evidence.parse(params("q=tax&page=4"))
+
+    assert "page" not in query.without_terms()
+
+
 def test_the_querystring_is_empty_for_a_bare_page():
     assert evidence.parse(params("")).querystring() == ""
 

@@ -268,6 +268,21 @@ all work with JavaScript off. There is deliberately no hidden `page` field:
 unchecked boxes submit nothing, so changing a filter starts again at page one
 without a line of code.
 
+**Clearing a keyword takes one click.** A `type="search"` field gets an "x" from
+the browser which empties the box and submits nothing, so dropping a search used
+to mean pressing Apply as well. A "Clear search" link sits under the field
+whenever there is a keyword, pointing at `Query.without_terms()`: the keyword
+goes, the filters and the sort stay. It is a plain link, so it needs no
+JavaScript, and its label is fixed because a keyword can run to `MAX_TERMS`, 200
+characters, and would be no use as the text of a control.
+
+`components/evidence-search.js` then makes the browser's own "x" follow that
+same link, so the reader's instinct is right rather than fought. It listens for
+the `search` event and acts only when the box is empty, since that event also
+fires on Enter, which the form already handles. Firefox draws no clear button at
+all, which is the other reason the link is the real fix and the script only
+polish.
+
 **The values shown on a record are filters.** The year, a topic tag, a
 jurisdiction, a region and a type of resource each set the same thing as their
 box in the filter panel, so a click adds

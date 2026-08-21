@@ -26,6 +26,17 @@ submit to the record instead of the listing.
             name="q"
             value="{{ evidence.query.terms }}"
             placeholder="{% trans %}Search by keyword{% endtrans %}">
+
+        {# The browser's own "x" empties the box without submitting anything, so
+           this is what actually drops the keyword. A plain link, so it takes one
+           click with no JavaScript, and a fixed label, because a keyword can run
+           to 200 characters and is no use as the text of a control. #}
+        {% if evidence.query.terms %}
+            <a class="evidence-filters__clear-search"
+               href="{{ page.url }}?{{ evidence.query.without_terms() }}">
+                {% trans %}Clear search{% endtrans %}
+            </a>
+        {% endif %}
     </div>
 
     <div class="evidence-filters__sort">

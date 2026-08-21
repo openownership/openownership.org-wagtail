@@ -97,6 +97,13 @@
     @apply text-14 underline;
 }
 
+/* Sits under the search box rather than beside it, so a long field and a small
+   screen do not push it onto its own line unevenly. */
+.evidence-filters__clear-search {
+    @apply text-14 underline;
+    @apply inline-block mt-2;
+}
+
 
 /**************************************************************************************************/
 /* Results                                                                                        */

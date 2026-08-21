@@ -477,6 +477,26 @@ def test_the_sort_control_offers_the_two_date_orders_only(stocked):
     assert 'value="za"' not in rendered
 
 
+def test_a_keyword_can_be_cleared_in_one_click(stocked):
+    """The browser's own "x" empties the box without submitting, so clearing a
+    search used to mean pressing Apply as well.
+    """
+    rendered = client.get(f"{stocked.url}?q=tax").rendered_content
+
+    assert "Clear search" in rendered
+    assert f'href="{stocked.url}?"' in rendered
+
+
+def test_clearing_a_search_keeps_the_filters(stocked):
+    rendered = client.get(f"{stocked.url}?q=tax&topic=Tax").rendered_content
+
+    assert f'href="{stocked.url}?topic=Tax"' in rendered
+
+
+def test_there_is_nothing_to_clear_without_a_keyword(stocked):
+    assert "Clear search" not in client.get(stocked.url).rendered_content
+
+
 def test_a_clear_link_appears_only_when_something_is_filtered(stocked):
     assert "evidence-filters__clear" not in client.get(stocked.url).rendered_content
     assert "evidence-filters__clear" in client.get(f"{stocked.url}?topic=Tax").rendered_content

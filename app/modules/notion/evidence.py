@@ -250,6 +250,15 @@ class Query:
             page=1,
         ).querystring()
 
+    def without_terms(self) -> str:
+        """A query string with the keyword dropped, back at page one.
+
+        What the "Clear search" control links to. The filters and the sort are
+        kept, so a reader drops the words they typed without losing the rest of
+        what they set up.
+        """
+        return replace(self, terms="", page=1).querystring()
+
     def cleared(self) -> str:
         """A query string with every filter dropped, keeping the keyword and sort."""
         empty = dict.fromkeys(self.selected, ())
