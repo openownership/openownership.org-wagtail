@@ -1,6 +1,3 @@
-{# Extends the bare base rather than base_without_sidebar, which reserves a
-   300px right-hand column for an aside this page does not have. The filter
-   column is on the left, so that space was simply lost from the cards. #}
 {% extends 'base.jinja' %}
 
 
@@ -8,17 +5,6 @@
 <div class="evidence-page">
 
     <h1 class="heading-xl evidence-page__title">{{ page.title }}</h1>
-
-    {# How current the tracker is, in its own line rather than buried in the
-       body copy. The date is the newest row in Notion, so it moves when Open
-       Ownership change something rather than every time the sync runs. #}
-    {% if last_updated %}
-        <p class="evidence-page__updated">
-            {% trans %}The BOT Evidence Centre is updated on an ongoing basis.{% endtrans %}
-            {% trans %}Last updated{% endtrans %}:
-            <time datetime="{{ last_updated.strftime('%Y-%m-%d') }}">{{ last_updated|nicedate }}</time>
-        </p>
-    {% endif %}
 
     {% if page.intro %}
         <div class="intro">
@@ -31,6 +17,13 @@
         <div class="intro">
             {{render_stream(page.before_listing)}}
         </div>
+        {% if last_updated %}
+            <p class="evidence-page__updated">
+                {% trans %}The BOT Evidence Centre is updated on an ongoing basis.{% endtrans %}
+                {% trans %}Last updated{% endtrans %}:
+                <time datetime="{{ last_updated.strftime('%Y-%m-%d') }}">{{ last_updated|nicedate }}</time>
+            </p>
+        {% endif %}
         {% endif %}
     {% endif %}
 
@@ -50,7 +43,7 @@
         {% endif %}
 
         {# `data-evidence-total` is read by the analytics component, so a search
-           event can report how many results the term returned. #}
+           event can report how many results the term returned. DO NOT REMOVE #}
         <div class="evidence-layout__results"
              data-evidence-total="{{ evidence.total }}"
              data-evidence-record-terms="{{ 'true' if record_search_terms else 'false' }}">
