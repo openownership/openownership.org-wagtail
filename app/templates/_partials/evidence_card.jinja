@@ -70,6 +70,8 @@ via HTMX.
                    hx-push-url="true">
                     {% trans %}Read more{% endtrans %}
                     <span class="sr-only">{% trans %}about{% endtrans %} {{ entry.description }}</span>
+                    {# Decorative: the word beside it already says what happens. #}
+                    {% include "svg/expand.jinja" %}
                 </a>
             </p>
         </div>

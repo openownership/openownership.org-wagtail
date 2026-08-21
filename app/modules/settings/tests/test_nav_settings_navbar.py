@@ -66,6 +66,22 @@ def test_stale_empty_nav_cache_is_not_served(home_page, nav_settings, monkeypatc
     assert "Find a centre" in rv.rendered_content
 
 
+def test_the_navs_icons_carry_no_xml_declaration(home_page, nav_settings):
+    """An SVG file starts with one, and it is meaningless once the file is
+    inlined into a page, where a browser parses it as a stray comment. The
+    expand and collapse icons only appear on a menu with something under it.
+    """
+    data = MEGA_MENU
+    data['value']['nav_item']['link_page'] = home_page.id
+    nav_settings.navbar_blocks = json.dumps([data])
+    nav_settings.save()
+
+    rendered = client.get(home_page.url).rendered_content
+
+    assert "expand-icon" in rendered
+    assert "<?xml" not in rendered
+
+
 def test_meganav(home_page, nav_settings):
     p = home_page
     data = MEGA_MENU

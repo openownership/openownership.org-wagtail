@@ -1,3 +1,5 @@
+import re
+
 import pytest
 from django.test import Client
 from django.urls import reverse
@@ -138,15 +140,29 @@ def test_an_htmx_request_can_ask_for_the_collapsed_card():
 def test_the_expanded_card_shows_detail_the_collapsed_card_hides():
     """Open Ownership asked for description, jurisdiction, topic and year while
     a record is shut, and everything public once it is open.
+
+    The type of resource stands for the rest. The data user is not checked here
+    because its row is commented out in `evidence_detail_body.jinja`, so this
+    test keeps working whichever way that goes.
     """
     entry = make_entry()
     entry.resource_types.add(ResourceTypeTag.objects.get_or_create(name="Media article")[0])
-    entry.data_users.add(DataUserTag.objects.get_or_create(name="Journalist")[0])
 
     body = client.get(detail_url(entry), headers={"HX-Request": "true"}).content.decode()
 
     assert "Media article" in body
-    assert "Journalist" in body
+
+
+def test_the_close_control_carries_a_chevron(bot_centre):  # noqa: ARG001
+    """The same mark as "Read more", turned over by the stylesheet so it points
+    the way the record will move.
+    """
+    entry = make_entry()
+
+    body = client.get(detail_url(entry), headers={"HX-Request": "true"}).content.decode()
+    toggle = re.search(r'<p class="evidence-card__toggle">.*?</p>', body, re.S).group(0)
+
+    assert "<svg" in toggle
 
 
 def test_an_opened_record_offers_the_source():

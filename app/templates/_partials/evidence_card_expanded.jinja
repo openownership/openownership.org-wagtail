@@ -13,14 +13,8 @@ still has somewhere to go.
     id="evidence-{{ entry.notion_id }}">
 
     <div class="card-group__card-decoration">
-
-        {# A plain edge down the side of every card. It marks a record out from
-           the page rather than standing for anything, so its colour is the
-           stylesheet's business. #}
         <span class="evidence-card__edge"></span>
 
-        {# The icon sits beside the topic name, never instead of it, so a topic
-           we have not drawn yet costs a reader nothing. #}
         <div class="card-group__meta">
             {% with tags = entry.policy_areas.all() %}
                 {% include "_partials/topic_tags.jinja" %}
@@ -28,10 +22,13 @@ still has somewhere to go.
         </div>
 
         <div class="card-group__text">
-            {# `h3`, because this sits inside the results section headed by
-               "Evidence records". `tabindex` so focus can be moved here when
-               the record is opened, which is what tells a screen reader
-               reader something happened. #}
+            {#
+                `h3`, because this sits inside the results section headed by
+                "Evidence records".
+                `tabindex` so focus can be moved here when
+                the record is opened, which is what tells a screen reader
+                reader something happened.
+            #}
             <h3 class="card-group__title" tabindex="-1">{{ entry.description }}</h3>
 
             {% include "_partials/evidence_detail_body.jinja" %}
@@ -44,6 +41,7 @@ still has somewhere to go.
                        hx-swap="outerHTML"
                        hx-push-url="{{ listing_page.url }}">
                         {% trans %}Close{% endtrans %}
+                        {% include "svg/expand.jinja" %}
                     </a>
                 </p>
             {% endif %}

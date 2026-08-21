@@ -342,7 +342,11 @@ what lets one URL serve the page and both halves of the toggle.
 
 The expand control on a card is an ordinary link to that URL, upgraded with
 `hx-get` into an in-place swap of the card, and `hx-push-url` puts the record's
-URL in the address bar so it stays shareable. Close does the reverse. With
+URL in the address bar so it stays shareable. It carries a chevron,
+`svg/expand.jinja`, because "Read more" on its own does not say which way the
+record is about to move. The same chevron sits on "Close" and the stylesheet
+turns it over, so one asset covers both directions. It is `aria-hidden`: the word
+beside it already says what happens. Close does the reverse. With
 JavaScript off both are just links, one to the record's page and one back to the
 listing. That is the whole of what Open Ownership asked for in A-S9: the record
 opens where it sits, and it still has a URL a reader can send to someone.
@@ -350,6 +354,11 @@ opens where it sits, and it still has a URL a reader can send to someone.
 `_partials/evidence_detail_body.jinja` holds the record's fields and is included
 by both the page and the open card, so the two cannot show different things. A
 shut card shows description, jurisdiction, topic and year only.
+
+Two rows in that partial, Topic and Type, are commented out at the moment. A
+record's own page therefore lists no topics; the open card still shows its topic
+chips beside the title, because those are in the card rather than in this
+partial.
 
 **The link to the source is not on a shut card.** Open Ownership asked for it to
 wait until a reader opens the record, so a card carries one control rather than

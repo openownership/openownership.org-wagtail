@@ -233,6 +233,20 @@ a.resource-tag {
 
 .evidence-card__toggle {
     @apply text-16 font-bold mt-2;
+
+    a {
+        @apply inline-flex items-center gap-2;
+    }
+
+    svg {
+        @apply shrink-0;
+    }
+}
+
+/* The same chevron turned over once the record is open, so the control always
+   points the way the record is about to move. */
+.evidence-card--expanded .evidence-card__toggle svg {
+    transform: rotate(180deg);
 }
 
 /* An open card is the width of the results column rather than a grid cell, so

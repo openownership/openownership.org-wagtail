@@ -4,9 +4,7 @@ Expects:
 
 * entry - An ImpactEntry
 
-Shared by the expanded card and the record's own page, so the two can never
-show different things. Only the fields Open Ownership cleared for publication
-appear here; the tracker's internal columns are synced but stay out.
+Shared by the expanded card and the record's own page
 #}
 <div class="evidence-detail">
 
@@ -71,6 +69,7 @@ appear here; the tracker's internal columns are synced but stay out.
             </div>
         {% endif %}
 
+        {#
         {% with topics = entry.policy_areas.all() %}
             {% if topics|length %}
                 <div class="evidence-detail__fact">
@@ -84,6 +83,7 @@ appear here; the tracker's internal columns are synced but stay out.
             {% endif %}
         {% endwith %}
 
+
         {% with types = entry.data_users.all() %}
             {% if types|length %}
                 <div class="evidence-detail__fact">
@@ -96,6 +96,7 @@ appear here; the tracker's internal columns are synced but stay out.
                 </div>
             {% endif %}
         {% endwith %}
+        #}
 
         {% with resources = entry.resource_types.all() %}
             {% if resources|length %}
@@ -141,8 +142,12 @@ appear here; the tracker's internal columns are synced but stay out.
 
     {% if entry.source_url %}
         <p class="evidence-detail__source">
-            {# The data attributes are what an outbound click reports to
-               Plausible, so OO can break the clicks down. #}
+            {#
+                IMPORTANT:
+                The data attributes are what an outbound click reports to
+                Plausible. Any changes to this bit might break anlytics, so
+                be extra careful.
+            #}
             <a href="{{ entry.source_url }}"
                rel="noopener"
                target="_blank"
