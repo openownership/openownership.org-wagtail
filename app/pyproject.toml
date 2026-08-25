@@ -11,9 +11,9 @@ dependencies = [
     "boto3~=1.26.54",
     "click~=8.1.8",
     "consoler~=0.1.4",
-    "django>=5.2,<6",
+    "django==5.2.15",
     "django-axes>=8.3.1,<9.0.0",
-    "django-cacheops~=7.1",
+    "django-cacheops~=7.2",
     "django-dbbackup~=4.1.0",
     "django-extensions~=3.2.3",
     "django-filter~=24.3",
@@ -72,6 +72,7 @@ dev = [
 [tool.uv]
 add-bounds = "major"
 exclude-newer = "7 days"  # grace period to help avoid supply chain attacks
+exclude-newer-package = { wagtools = false, phaser = false, benzo = false, wagtail-2fa = false, wagtail-reports = false }
 
 [[tool.uv.index]]
 name = "hacnet"
