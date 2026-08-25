@@ -148,12 +148,12 @@ Shared by the expanded card and the record's own page
                 Plausible. Any changes to this bit might break anlytics, so
                 be extra careful.
             #}
-            <a href="{{ entry.source_url }}"
-               rel="noopener"
-               target="_blank"
-               data-topic="{{ entry.display_topics }}"
-               data-jurisdiction="{{ entry.display_jurisdictions }}"
-               data-region="{{ entry.display_region_names }}">
+            <a href="{{ entry.source_url }}" class="btn" 
+                rel="noopener"
+                target="_blank"
+                data-topic="{{ entry.display_topics }}"
+                data-jurisdiction="{{ entry.display_jurisdictions }}"
+                data-region="{{ entry.display_region_names }}">
                 {% trans %}View source{% endtrans %}
                 {% include "svg/external-link.jinja" %}
             </a>

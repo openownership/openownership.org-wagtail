@@ -318,3 +318,7 @@ a.resource-tag {
     justify-content: space-between;
     align-content: center;
 }
+
+.evidence-detail__source svg {
+    fill: white;
+}
