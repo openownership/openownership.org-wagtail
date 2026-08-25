@@ -21,10 +21,6 @@ via HTMX.
         <div class="card-group__text">
             <h3 class="card-group__title" tabindex="-1">{{ entry.description }}</h3>
 
-            {% if entry.summary %}
-                <p class="card-group__blurb">{{ entry.display_summary }}</p>
-            {% endif %}
-
             <p class="card-group__date evidence-card__facts">
                 {% if entry.year %}
                     <span class="evidence-card__year">
