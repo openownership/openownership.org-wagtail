@@ -307,3 +307,14 @@ a.resource-tag {
 .evidence-detail-page__title {
     @apply mt-4 mb-8;
 }
+
+/* .bot-centre-page {
+    width: 1368px;
+    padding: 0;
+} */
+
+.evidence-layout__filters-layout {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}

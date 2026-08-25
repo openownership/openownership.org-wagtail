@@ -1,5 +1,5 @@
+{% set main_classes = "bot-centre-page" %}
 {% extends 'base.jinja' %}
-
 
 {% block main_inner %}
 <div class="evidence-page">
@@ -11,6 +11,9 @@
             {{ page.intro|richtext }}
         </div>
     {% endif %}
+
+
+
 
     {% if page and page.before_listing %}
         {% if page_obj.number == 1 %}
@@ -33,11 +36,16 @@
         </p>
     {% endif %}
 
+
     <div class="evidence-layout">
 
         {% if not evidence.degraded %}
             <div class="evidence-layout__filters">
-                <h2 class="evidence-layout__filters-title">{% trans %}Refine{% endtrans %}</h2>
+
+                <div class="evidence-layout__filters-layout">
+                    <h2 class="evidence-layout__filters-title">{% trans %}Refine{% endtrans %}</h2>
+                    <a href="{{ page.url }}?">Clear all filters</a>
+                </div>
                 {% include "_partials/evidence_filters.jinja" %}
             </div>
         {% endif %}
