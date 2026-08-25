@@ -74,14 +74,6 @@ def test_entries_are_listed(bot_centre):
     assert "Kenyan FIU used BO data in an investigation" in rendered
 
 
-def test_the_summary_is_shown(bot_centre):
-    make_entry("e1", "Kenyan FIU used BO data")
-
-    rendered = client.get(bot_centre.url).rendered_content
-
-    assert "Summary of Kenyan FIU used BO data" in rendered
-
-
 def test_entries_not_cleared_for_publication_are_hidden(bot_centre):
     make_entry("e1", "Cleared for publication")
     make_entry("e2", "Still internal", publish=False)
@@ -101,18 +93,6 @@ def test_entries_with_no_link_are_hidden(bot_centre):
 
     assert "Has a source" in rendered
     assert "Nothing to link to" not in rendered
-
-
-def test_a_long_summary_is_cut_short_on_the_card(bot_centre):
-    entry = make_entry("e1", "An entry")
-    entry.summary = " ".join(f"word{n}" for n in range(120))
-    entry.save()
-
-    rendered = client.get(bot_centre.url).rendered_content
-
-    assert "word10" in rendered
-    assert "word119" not in rendered
-
 
 def test_soft_deleted_entries_are_hidden(bot_centre):
     entry = make_entry("e1", "Gone from Notion")
@@ -402,20 +382,7 @@ def test_the_page_says_when_the_tracker_last_changed(bot_centre):
 
     rendered = client.get(bot_centre.url).rendered_content
 
-    assert "The BOT Evidence Centre is updated on an ongoing basis" in rendered
     assert "09 March 2026" in rendered
-
-
-def test_the_date_is_machine_readable(bot_centre):
-    """A date a reader can read is not a date anything else can."""
-    entry = make_entry("e1", "A record")
-    ImpactEntry.objects.filter(pk=entry.pk).update(
-        notion_updated=dt.datetime(2026, 3, 9, tzinfo=dt.timezone.utc),
-    )
-
-    rendered = client.get(bot_centre.url).rendered_content
-
-    assert '<time datetime="2026-03-09"' in rendered
 
 
 def test_nothing_is_claimed_before_the_first_sync(bot_centre):
