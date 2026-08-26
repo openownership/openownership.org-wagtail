@@ -24,13 +24,11 @@ stays the plain label it was before.
         <a class="topic-tag"
            rel="nofollow"
            href="{{ listing.url }}?{{ facet_query(evidence_query|default(none), 'topic', tag.name) }}">
-            <span class="topic-tag__icon">{% include tag.icon %}</span>
-            <span class="sr-only">{% trans %}Show records tagged{% endtrans %}</span>
+            <span class="sr-only">{% trans %}Show records tagged: {% endtrans %}</span>
             {{ tag.name }}
         </a>
     {% else %}
         <span class="topic-tag">
-            <span class="topic-tag__icon">{% include tag.icon %}</span>
             {{ tag.name }}
         </span>
     {% endif %}
