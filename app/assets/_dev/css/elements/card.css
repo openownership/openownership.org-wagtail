@@ -27,12 +27,16 @@
 
 .card-group__title {
     @apply font-display text-blue-medium font-bold text-21 mb-4;
-    @apply flex items-center; 
+    @apply flex items-center;
 
     svg {
         @apply ml-2;
     }
 
+    &:focus {
+        outline: 3px solid #3C31D5;
+        outline-offset: 4px;
+    }
 }
 
 .card-group__blurb {
