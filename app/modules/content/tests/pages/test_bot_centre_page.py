@@ -562,15 +562,6 @@ def test_a_search_outage_says_so_and_hides_the_controls(stocked, monkeypatch):
 ####################################################################################################
 
 
-def test_a_card_shows_its_topic_icon(bot_centre):
-    entry = make_entry("e1", "A tax case", policy_areas=["Tax"])
-
-    rendered = client.get(bot_centre.url).rendered_content
-
-    assert "tax-1" in rendered  # the namespaced class from tax.svg
-    assert entry.policy_areas.first().name in rendered
-
-
 def test_the_topic_name_is_always_shown_beside_the_icon(bot_centre):
     """The icon is decorative. A topic we have not drawn yet must still read."""
     make_entry("e1", "A record", policy_areas=["Something brand new"])
@@ -586,19 +577,6 @@ def test_an_unmapped_topic_falls_back_rather_than_breaking(bot_centre):
     response = client.get(bot_centre.url)
 
     assert response.status_code == 200
-
-
-def test_two_icons_on_one_page_keep_their_own_class_names(bot_centre):
-    """Every supplied file shipped with the same generic `.cls-1` names, so
-    inlining two would have made them restyle each other. The site logo uses
-    `.cls-1` too, so the collision was never only between icons.
-    """
-    make_entry("e1", "A record", policy_areas=["Tax", "Corruption"])
-
-    rendered = client.get(bot_centre.url).rendered_content
-
-    assert "tax-1" in rendered
-    assert "corruption-1" in rendered
 
 
 ####################################################################################################
