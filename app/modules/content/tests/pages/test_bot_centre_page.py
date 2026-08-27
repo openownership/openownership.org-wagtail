@@ -642,9 +642,9 @@ def test_a_jurisdiction_links_to_the_listing_filtered_by_it(bot_centre):
     assert f"{bot_centre.url}?jurisdiction=Kenya" in facet_hrefs(rendered, "jurisdiction-tag")
 
 
-def test_two_jurisdictions_are_separated_by_a_comma_and_nothing_else(bot_centre):
-    """Each name is its own link now, so the markup between them decides whether
-    a reader sees "Kenya, Nigeria" or "Kenya , Nigeria".
+def test_two_jurisdictions_have_nothing_between_them_but_space(bot_centre):
+    """Each name is its own pill now, so a comma between them would read as
+    part of the tag rather than punctuation between two of them.
     """
     entry = make_entry("e1", "A case in two countries")
     for notion_id, name in (("c-ke", "Kenya"), ("c-ng", "Nigeria")):
@@ -656,7 +656,7 @@ def test_two_jurisdictions_are_separated_by_a_comma_and_nothing_else(bot_centre)
 
     rendered = client.get(bot_centre.url).rendered_content
 
-    assert "Kenya</a>, <a" in re.sub(r"\s+", " ", rendered)
+    assert "Kenya</a> <a" in re.sub(r"\s+", " ", rendered)
 
 
 def test_a_region_links_to_the_listing_filtered_by_it(bot_centre):
