@@ -167,7 +167,7 @@
 }
 
 .evidence-list__count {
-    @apply text-16 text-text-secondary;
+    @apply text-16 text-text-secondary font-bold;
 }
 
 .evidence-list__export {
