@@ -44,13 +44,11 @@
 /**************************************************************************************************/
 
 .evidence-filters__keyword,
-.evidence-filters__sort,
-.evidence-filters__group {
+.evidence-filters__sort {
     @apply mb-6;
 }
 
-.evidence-filters__label,
-.evidence-filters__legend {
+.evidence-filters__label {
     @apply block font-bold text-16 mb-2;
 }
 
@@ -62,6 +60,52 @@
 .evidence-filters__group {
     border: 0;
     padding: 0;
+}
+
+/* The toggle for the `<details>` each filter group. styles copied from `.accordion__button` from glossary.css. todo: replace that accordion with details summary too */
+.evidence-filters__toggle {
+    @apply relative block w-full text-left;
+    @apply border-t-2 border-grey-medium;
+    @apply text-16 font-bold;
+    @apply py-4 pr-8;
+    cursor: pointer;
+    list-style: none;
+    text-decoration-line: none;
+
+    &::-webkit-details-marker {
+        display: none;
+    }
+
+    &::marker {
+        content: '';
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background-image: url('/static/images/icons/plus.svg');
+        background-size: 15px 15px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    &:hover,
+    &:focus {
+        @apply bg-blue-light;
+    }
+}
+
+.evidence-filters__panel[open] > .evidence-filters__toggle::after {
+    background-image: url('/static/images/icons/minus.svg');
+}
+
+.evidence-filters__panel-body {
+    @apply pt-4;
 }
 
 .evidence-filters__chosen {
@@ -90,11 +134,20 @@
 }
 
 .evidence-filters__actions {
-    @apply flex items-center gap-4;
+    @apply flex items-center gap-4 mt-4;
+}
+
+.evidence-filters__actions--top {
+    @apply mb-6 pb-6;
+    @apply border-b border-black/50;
 }
 
 .evidence-filters__clear {
     @apply text-14 underline;
+}
+
+.evidence-filters__panel, .evidence-filters__toggle {
+    margin: 0;
 }
 
 /* Sits under the search box rather than beside it, so a long field and a small
@@ -159,28 +212,17 @@
    the keyboard. */
 a.topic-tag {
     @apply no-underline;
+    @apply bg-grey-light;
+    @apply text-grey-darker;
+    @apply border border-grey-dark;
 
-    &, &:hover, &:focus, &:active, &:visited {
-        @apply text-white;
+    &:active, &:visited {
+        @apply bg-white;
+        @apply text-blue-medium;
     }
 
     &:hover, &:focus {
-        @apply bg-text-main;
-    }
-}
-
-/* The icons are 720 square with no width or height of their own, so they take
-   whatever this box gives them. `currentColor` is not used: the artwork carries
-   the brand purple, which needs a light background to stay legible. */
-.topic-tag__icon {
-    @apply inline-flex items-center justify-center shrink-0;
-    @apply bg-white rounded-full;
-    width: 22px;
-    height: 22px;
-
-    svg {
-        width: 16px;
-        height: 16px;
+        @apply bg-grey-medium;
     }
 }
 
@@ -239,7 +281,7 @@ a.resource-tag {
 }
 
 .evidence-card__toggle {
-    @apply text-16 font-bold mt-2;
+    @apply text-16 font-bold;
 
     a {
         @apply inline-flex items-center gap-2;

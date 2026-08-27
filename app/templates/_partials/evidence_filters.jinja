@@ -54,42 +54,48 @@ submit to the record instead of the listing.
     {% for group in evidence.facets %}
         {% if group.values %}
             <fieldset class="evidence-filters__group">
-                <legend class="evidence-filters__legend">
-                    {{ group.label }}
-                    {% if group.selected_count %}
-                        <span class="evidence-filters__chosen">({{ group.selected_count }})</span>
-                    {% endif %}
-                </legend>
+                <legend class="sr-only">{{ group.label }}</legend>
 
-                <ul class="evidence-filters__values">
-                    {% for item in group.visible %}
-                        <li>
-                            <label class="evidence-filters__value">
-                                <input type="checkbox" name="{{ group.param }}" value="{{ item.value }}"{% if item.selected %} checked{% endif %}>
-                                {{ item.label }}
-                                <span class="evidence-filters__count">{{ item.count }}</span>
-                            </label>
-                        </li>
-                    {% endfor %}
-                </ul>
+                <details class="evidence-filters__panel"{% if group.selected_count %} open{% endif %}>
+                    <summary class="evidence-filters__toggle">
+                        {{ group.label }}
+                        {% if group.selected_count %}
+                            <span class="evidence-filters__chosen">({{ group.selected_count }})</span>
+                        {% endif %}
+                    </summary>
 
-                {% if group.hidden %}
-                    {# A native disclosure, so the long lists collapse without JavaScript. #}
-                    <details class="evidence-filters__more">
-                        <summary>{% trans count=group.hidden|length %}Show {{ count }} more{% endtrans %}</summary>
+                    <div class="evidence-filters__panel-body">
                         <ul class="evidence-filters__values">
-                            {% for item in group.hidden %}
+                            {% for item in group.visible %}
                                 <li>
                                     <label class="evidence-filters__value">
-                                        <input type="checkbox" name="{{ group.param }}" value="{{ item.value }}">
+                                        <input type="checkbox" name="{{ group.param }}" value="{{ item.value }}"{% if item.selected %} checked{% endif %}>
                                         {{ item.label }}
                                         <span class="evidence-filters__count">{{ item.count }}</span>
                                     </label>
                                 </li>
                             {% endfor %}
                         </ul>
-                    </details>
-                {% endif %}
+
+                        {% if group.hidden %}
+                            {# A native disclosure, so the long lists collapse without JavaScript. #}
+                            <details class="evidence-filters__more">
+                                <summary>{% trans count=group.hidden|length %}Show {{ count }} more{% endtrans %}</summary>
+                                <ul class="evidence-filters__values">
+                                    {% for item in group.hidden %}
+                                        <li>
+                                            <label class="evidence-filters__value">
+                                                <input type="checkbox" name="{{ group.param }}" value="{{ item.value }}">
+                                                {{ item.label }}
+                                                <span class="evidence-filters__count">{{ item.count }}</span>
+                                            </label>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </details>
+                        {% endif %}
+                    </div>
+                </details>
             </fieldset>
         {% endif %}
     {% endfor %}
