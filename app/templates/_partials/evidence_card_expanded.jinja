@@ -37,7 +37,7 @@ still has somewhere to go.
 
             {% if listing_page %}
                 <p class="evidence-card__toggle">
-                    <a href="{{ listing_page.url }}" class="ghost-link"
+                    <a href="{{ listing_page.url }}" 
                        aria-controls="evidence-{{ entry.notion_id }}-detail"
                        hx-get="{{ entry.get_absolute_url() }}?collapsed=1{% with query = evidence_query.querystring() if evidence_query else '' %}{% if query %}&{{ query }}{% endif %}{% endwith %}"
                        hx-target="closest .evidence-card"

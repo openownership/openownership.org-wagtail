@@ -59,7 +59,7 @@ via HTMX.
             </p>
 
             <p class="evidence-card__toggle">
-                <a href="{{ entry.get_absolute_url() }}" class="ghost-link"
+                <a href="{{ entry.get_absolute_url() }}" 
                    aria-controls="evidence-{{ entry.notion_id }}-detail"
                    hx-get="{{ entry.get_absolute_url() }}{% with query = evidence_query.querystring() if evidence_query else '' %}{% if query %}?{{ query }}{% endif %}{% endwith %}"
                    hx-target="closest .evidence-card"
