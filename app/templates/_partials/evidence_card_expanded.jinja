@@ -44,8 +44,6 @@ still has somewhere to go.
                        hx-swap="outerHTML"
                        hx-push-url="{{ listing_page.url }}">
                         {% trans %}Close{% endtrans %}
-                        <span class="sr-only">{% trans %}about{% endtrans %} {{ entry.description }}</span>
-                        {% include "svg/expand.jinja" %}
                     </a>
                 </p>
             {% endif %}
