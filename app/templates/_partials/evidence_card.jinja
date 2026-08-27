@@ -12,11 +12,6 @@ via HTMX.
 
     <div class="card-group__card-decoration">
         <span class="evidence-card__edge"></span>
-        <div class="card-group__meta">
-            {% with tags = entry.policy_areas.all() %}
-                {% include "_partials/topic_tags.jinja" %}
-            {% endwith %}
-        </div>
 
         <div class="card-group__text">
             <h3 class="card-group__title" tabindex="-1">{{ entry.description }}</h3>
@@ -24,7 +19,7 @@ via HTMX.
             <p class="card-group__date evidence-card__facts">
                 {% if entry.year %}
                     <span class="evidence-card__year">
-                        {%- with param = "year", value = entry.year, css_class = "year-tag",
+                        {%- with param = "year", value = entry.year, css_class = "topic-tag",
                                  prefix = _("Show records from") -%}
                             {%- include "_partials/facet_link.jinja" -%}
                         {%- endwith -%}
@@ -36,7 +31,7 @@ via HTMX.
                         <span class="evidence-card__jurisdictions">
                             {% for country in countries %}
                                 {%- with param = "jurisdiction", value = country.name,
-                                         css_class = "jurisdiction-tag",
+                                         css_class = "topic-tag",
                                          prefix = _("Show records from") -%}
                                     {%- include "_partials/facet_link.jinja" -%}
                                 {%- endwith -%}
@@ -44,19 +39,25 @@ via HTMX.
                             {% endfor %}
                         </span>
                     {% elif entry.worldwide %}
-                        <span class="evidence-card__jurisdictions">{% trans %}Global{% endtrans %}</span>
+                        <span class="evidence-card__jurisdictions topic-tag">{% trans %}Global{% endtrans %}</span>
                     {% elif entry.international %}
-                        <span class="evidence-card__jurisdictions">{% trans %}International{% endtrans %}</span>
+                        <span class="evidence-card__jurisdictions topic-tag">{% trans %}International{% endtrans %}</span>
                     {% endif %}
                 {% endwith %}
 
                 {% for name in entry.display_card_regions %}
-                    {% with param = "region", value = name, css_class = "region-tag",
+                    {% with param = "region", value = name, css_class = "topic-tag",
                             prefix = _("Show records in") %}
                         {% include "_partials/facet_link.jinja" %}
                     {% endwith %}
                 {% endfor %}
             </p>
+
+            <div class="card-group__meta">
+                {% with tags = entry.policy_areas.all() %}
+                    {% include "_partials/topic_tags.jinja" %}
+                {% endwith %}
+            </div>
 
             <p class="evidence-card__toggle">
                 <a href="{{ entry.get_absolute_url() }}" 

@@ -3,9 +3,12 @@
 Expects:
 
 * entry - An ImpactEntry
+* close_page (optional) - The BotCentrePage, set only when this is rendered
+  inside the expanded card, so a "Close" toggle can sit next to "View source"
 
 Shared by the expanded card and the record's own page
 #}
+{% set close_page = close_page|default(none) %}
 <div class="evidence-detail">
 
     {% if entry.summary %}
@@ -140,24 +143,41 @@ Shared by the expanded card and the record's own page
         </ul>
     {% endif %}
 
-    {% if entry.source_url %}
-        <p class="evidence-detail__source">
-            {#
-                IMPORTANT:
-                The data attributes are what an outbound click reports to
-                Plausible. Any changes to this bit might break anlytics, so
-                be extra careful.
-            #}
-            <a href="{{ entry.source_url }}" class="btn" 
-                rel="noopener"
-                target="_blank"
-                data-topic="{{ entry.display_topics }}"
-                data-jurisdiction="{{ entry.display_jurisdictions }}"
-                data-region="{{ entry.display_region_names }}">
-                {% trans %}View source{% endtrans %}
-                {% include "svg/external-link.jinja" %}
-            </a>
-        </p>
+    {% if entry.source_url or close_page %}
+        <div class="evidence-detail__actions">
+            {% if entry.source_url %}
+                <p class="evidence-detail__source">
+                    {#
+                        IMPORTANT:
+                        The data attributes are what an outbound click reports to
+                        Plausible. Any changes to this bit might break anlytics, so
+                        be extra careful.
+                    #}
+                    <a href="{{ entry.source_url }}" class="btn"
+                        rel="noopener"
+                        target="_blank"
+                        data-topic="{{ entry.display_topics }}"
+                        data-jurisdiction="{{ entry.display_jurisdictions }}"
+                        data-region="{{ entry.display_region_names }}">
+                        {% trans %}View source{% endtrans %}
+                        {% include "svg/external-link.jinja" %}
+                    </a>
+                </p>
+            {% endif %}
+
+            {% if close_page %}
+                <p class="evidence-card__toggle">
+                    <a href="{{ close_page.url }}"
+                        aria-controls="evidence-{{ entry.notion_id }}-detail"
+                        hx-get="{{ entry.get_absolute_url() }}?collapsed=1{% with query = evidence_query.querystring() if evidence_query else '' %}{% if query %}&{{ query }}{% endif %}{% endwith %}"
+                        hx-target="closest .evidence-card"
+                        hx-swap="outerHTML"
+                        hx-push-url="{{ close_page.url }}">
+                        {% trans %}Close{% endtrans %}
+                    </a>
+                </p>
+            {% endif %}
+        </div>
     {% endif %}
 
 </div>

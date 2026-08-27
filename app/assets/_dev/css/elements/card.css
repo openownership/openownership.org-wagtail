@@ -136,14 +136,8 @@
     .card-group__card-decoration {
         @apply flex flex-col;
     }
-    
-
-    .card-group__meta {
-        @apply order-2;
-    }
 
     .card-group__text {
-        @apply order-1;
 
         p:first-child {
             @apply mr-4;

@@ -188,7 +188,7 @@
 }
 
 .evidence-card__facts {
-    @apply flex flex-wrap gap-4;
+    @apply flex flex-wrap gap-2;
 }
 
 /* The shared card styles the topic pills as `.card-group__meta a span`, because
@@ -281,7 +281,7 @@ a.resource-tag {
 }
 
 .evidence-card__toggle {
-    @apply text-16 font-bold;
+    @apply text-16 font-bold mt-4;
 
     a {
         @apply inline-flex items-center gap-2;
@@ -344,6 +344,14 @@ a.resource-tag {
 
 .evidence-detail__source {
     @apply text-16;
+}
+
+.evidence-detail__actions {
+    @apply flex flex-wrap items-center gap-4;
+
+    .evidence-card__toggle {
+        @apply mt-0;
+    }
 }
 
 .evidence-detail-page__title {

@@ -15,12 +15,6 @@ still has somewhere to go.
     <div class="card-group__card-decoration">
         <span class="evidence-card__edge"></span>
 
-        <div class="card-group__meta">
-            {% with tags = entry.policy_areas.all() %}
-                {% include "_partials/topic_tags.jinja" %}
-            {% endwith %}
-        </div>
-
         <div class="card-group__text">
             {#
                 `h3`, because this sits inside the results section headed by
@@ -31,22 +25,17 @@ still has somewhere to go.
             #}
             <h3 class="card-group__title" tabindex="-1">{{ entry.description }}</h3>
 
-            <div id="evidence-{{ entry.notion_id }}-detail" role="region" aria-label="{{ entry.description }}">
-                {% include "_partials/evidence_detail_body.jinja" %}
+            <div class="card-group__meta">
+                {% with tags = entry.policy_areas.all() %}
+                    {% include "_partials/topic_tags.jinja" %}
+                {% endwith %}
             </div>
 
-            {% if listing_page %}
-                <p class="evidence-card__toggle">
-                    <a href="{{ listing_page.url }}" 
-                       aria-controls="evidence-{{ entry.notion_id }}-detail"
-                       hx-get="{{ entry.get_absolute_url() }}?collapsed=1{% with query = evidence_query.querystring() if evidence_query else '' %}{% if query %}&{{ query }}{% endif %}{% endwith %}"
-                       hx-target="closest .evidence-card"
-                       hx-swap="outerHTML"
-                       hx-push-url="{{ listing_page.url }}">
-                        {% trans %}Close{% endtrans %}
-                    </a>
-                </p>
-            {% endif %}
+            <div id="evidence-{{ entry.notion_id }}-detail" role="region" aria-label="{{ entry.description }}">
+                {% with close_page = listing_page %}
+                    {% include "_partials/evidence_detail_body.jinja" %}
+                {% endwith %}
+            </div>
         </div>
     </div>
 </li>
