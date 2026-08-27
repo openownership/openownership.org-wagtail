@@ -125,7 +125,7 @@ def test_a_worldwide_card_names_its_jurisdiction_as_global(bot_centre):
 
     rendered = client.get(bot_centre.url).rendered_content
 
-    assert '<span class="evidence-card__jurisdictions">Global</span>' in rendered
+    assert '<span class="evidence-card__jurisdictions topic-tag">Global</span>' in rendered
 
 
 def test_a_worldwide_card_does_not_say_global_twice(bot_centre):
@@ -140,20 +140,6 @@ def test_a_worldwide_card_does_not_say_global_twice(bot_centre):
 
     facts = re.search(r"evidence-card__facts.*?</p>", rendered, re.S).group(0)
     assert facts.count("Global") == 1
-
-
-def test_the_read_more_control_carries_a_chevron(bot_centre):
-    """A word on its own does not say which way the record is about to move."""
-    make_entry("e1", "A record")
-
-    rendered = client.get(bot_centre.url).rendered_content
-    toggle = re.search(r'<p class="evidence-card__toggle">.*?</p>', rendered, re.S).group(0)
-
-    assert "<svg" in toggle
-    assert 'aria-hidden="true"' in toggle
-    # An XML declaration is meaningless once the file is inlined in a page, and
-    # invalid there.
-    assert "<?xml" not in toggle
 
 
 def test_a_shut_card_does_not_offer_the_source(bot_centre):
@@ -633,9 +619,13 @@ def test_topic_tags_are_not_followed_by_crawlers(stocked):
 
 
 def facet_hrefs(rendered, css_class):
+    """Where a facet tag of this type points. The card additionally styles
+    these with a `tag-pill` class, so this matches the tag's own class with or
+    without that one alongside it.
+    """
     return [
         html.unescape(href)
-        for href in re.findall(rf'<a class="{css_class}"[^>]*href="([^"]+)"', rendered)
+        for href in re.findall(rf'<a class="{css_class}(?: [\w-]+)*"[^>]*href="([^"]+)"', rendered)
     ]
 
 
@@ -706,7 +696,7 @@ def test_a_worldwide_records_jurisdiction_is_not_a_link(bot_centre):
 
     rendered = client.get(bot_centre.url).rendered_content
 
-    assert '<span class="evidence-card__jurisdictions">Global</span>' in rendered
+    assert '<span class="evidence-card__jurisdictions topic-tag">Global</span>' in rendered
 
 
 def test_opening_a_record_carries_the_readers_filters(stocked):

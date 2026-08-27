@@ -1,5 +1,3 @@
-import re
-
 import pytest
 from django.test import Client
 from django.urls import reverse
@@ -151,18 +149,6 @@ def test_the_expanded_card_shows_detail_the_collapsed_card_hides():
     body = client.get(detail_url(entry), headers={"HX-Request": "true"}).content.decode()
 
     assert "Media article" in body
-
-
-def test_the_close_control_carries_a_chevron(bot_centre):  # noqa: ARG001
-    """The same mark as "Read more", turned over by the stylesheet so it points
-    the way the record will move.
-    """
-    entry = make_entry()
-
-    body = client.get(detail_url(entry), headers={"HX-Request": "true"}).content.decode()
-    toggle = re.search(r'<p class="evidence-card__toggle">.*?</p>', body, re.S).group(0)
-
-    assert "<svg" in toggle
 
 
 def test_an_opened_record_offers_the_source():

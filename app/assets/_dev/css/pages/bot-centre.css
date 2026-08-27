@@ -251,9 +251,6 @@ a.topic-tag {
     @apply inline-flex items-center;
 }
 
-/* The card takes underlines off its links, which suits a card title but not
-   these: they sit inline among plain text, where colour on its own is not
-   enough to tell a reader that something is clickable. */
 a.jurisdiction-tag,
 a.region-tag,
 a.year-tag,
@@ -265,8 +262,34 @@ a.resource-tag {
     }
 }
 
+.tag-pill {
+    @apply inline-flex items-center gap-2;
+    @apply bg-text-secondary text-white text-14 font-bold;
+    padding: 5px 8px;
+}
+
+a.tag-pill {
+    @apply no-underline;
+    @apply bg-grey-light;
+    @apply text-grey-darker;
+    @apply border border-grey-dark;
+
+    &:active, &:visited {
+        @apply bg-white;
+        @apply text-blue-medium;
+    }
+
+    &:hover, &:focus {
+        @apply bg-grey-medium;
+    }
+}
+
 .evidence-detail__regions {
     @apply flex flex-wrap gap-x-4 gap-y-1;
+}
+
+.evidence-card__jurisdictions {
+    @apply flex flex-wrap gap-2;
 }
 
 /* The external link icon is a 24px SVG, so it needs holding on the text's line

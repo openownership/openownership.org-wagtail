@@ -19,7 +19,7 @@ via HTMX.
             <p class="card-group__date evidence-card__facts">
                 {% if entry.year %}
                     <span class="evidence-card__year">
-                        {%- with param = "year", value = entry.year, css_class = "topic-tag",
+                        {%- with param = "year", value = entry.year, css_class = "year-tag tag-pill",
                                  prefix = _("Show records from") -%}
                             {%- include "_partials/facet_link.jinja" -%}
                         {%- endwith -%}
@@ -31,11 +31,11 @@ via HTMX.
                         <span class="evidence-card__jurisdictions">
                             {% for country in countries %}
                                 {%- with param = "jurisdiction", value = country.name,
-                                         css_class = "topic-tag",
+                                         css_class = "jurisdiction-tag tag-pill",
                                          prefix = _("Show records from") -%}
                                     {%- include "_partials/facet_link.jinja" -%}
                                 {%- endwith -%}
-                                {%- if not loop.last %}, {% endif -%}
+                                {%- if not loop.last %} {% endif -%}
                             {% endfor %}
                         </span>
                     {% elif entry.worldwide %}
@@ -46,7 +46,7 @@ via HTMX.
                 {% endwith %}
 
                 {% for name in entry.display_card_regions %}
-                    {% with param = "region", value = name, css_class = "topic-tag",
+                    {% with param = "region", value = name, css_class = "region-tag tag-pill",
                             prefix = _("Show records in") %}
                         {% include "_partials/facet_link.jinja" %}
                     {% endwith %}
