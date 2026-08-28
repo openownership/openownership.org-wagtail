@@ -125,7 +125,7 @@ def test_a_worldwide_card_names_its_jurisdiction_as_global(bot_centre):
 
     rendered = client.get(bot_centre.url).rendered_content
 
-    assert '<span class="evidence-card__jurisdictions topic-tag">Global</span>' in rendered
+    assert '<span class="evidence-card__jurisdictions generic-tag">Global</span>' in rendered
 
 
 def test_a_worldwide_card_does_not_say_global_twice(bot_centre):
@@ -574,7 +574,7 @@ def topic_hrefs(rendered):
     """Where a record's topic tags point, unescaped as a browser would read them."""
     return [
         html.unescape(href)
-        for href in re.findall(r'<a class="topic-tag"[^>]*href="([^"]+)"', rendered)
+        for href in re.findall(r'<a class="generic-tag"[^>]*href="([^"]+)"', rendered)
     ]
 
 
@@ -696,7 +696,7 @@ def test_a_worldwide_records_jurisdiction_is_not_a_link(bot_centre):
 
     rendered = client.get(bot_centre.url).rendered_content
 
-    assert '<span class="evidence-card__jurisdictions topic-tag">Global</span>' in rendered
+    assert '<span class="evidence-card__jurisdictions generic-tag">Global</span>' in rendered
 
 
 def test_opening_a_record_carries_the_readers_filters(stocked):

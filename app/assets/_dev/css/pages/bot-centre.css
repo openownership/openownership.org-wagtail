@@ -199,7 +199,7 @@
     @apply gap-1;
 }
 
-.topic-tag {
+.generic-tag {
     @apply inline-flex items-center gap-2;
     @apply bg-text-secondary text-white text-14 font-bold;
     padding: 5px 8px;
@@ -210,7 +210,7 @@
    otherwise underline it and recolour it on hover and once it has been visited.
    The background darkens instead, so the tag still answers to a pointer and to
    the keyboard. */
-a.topic-tag {
+a.generic-tag {
     @apply no-underline;
     @apply bg-grey-light;
     @apply text-grey-darker;
@@ -254,7 +254,8 @@ a.topic-tag {
 a.jurisdiction-tag,
 a.region-tag,
 a.year-tag,
-a.resource-tag {
+a.resource-tag,
+a.topic-tag {
     @apply underline decoration-2;
 
     &:hover, &:focus {

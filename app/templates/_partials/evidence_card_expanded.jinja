@@ -25,12 +25,6 @@ still has somewhere to go.
             #}
             <h3 class="card-group__title" tabindex="-1">{{ entry.description }}</h3>
 
-            <div class="card-group__meta">
-                {% with tags = entry.policy_areas.all() %}
-                    {% include "_partials/topic_tags.jinja" %}
-                {% endwith %}
-            </div>
-
             <div id="evidence-{{ entry.notion_id }}-detail" role="region" aria-label="{{ entry.description }}">
                 {% with close_page = listing_page %}
                     {% include "_partials/evidence_detail_body.jinja" %}

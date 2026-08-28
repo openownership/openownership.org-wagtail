@@ -39,9 +39,9 @@ via HTMX.
                             {% endfor %}
                         </span>
                     {% elif entry.worldwide %}
-                        <span class="evidence-card__jurisdictions topic-tag">{% trans %}Global{% endtrans %}</span>
+                        <span class="evidence-card__jurisdictions generic-tag">{% trans %}Global{% endtrans %}</span>
                     {% elif entry.international %}
-                        <span class="evidence-card__jurisdictions topic-tag">{% trans %}International{% endtrans %}</span>
+                        <span class="evidence-card__jurisdictions generic-tag">{% trans %}International{% endtrans %}</span>
                     {% endif %}
                 {% endwith %}
 

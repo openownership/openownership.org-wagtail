@@ -72,6 +72,31 @@ Shared by the expanded card and the record's own page
             </div>
         {% endif %}
 
+        <div class="evidence-detail__fact">
+            <dt>{% trans %}Topics{% endtrans %}</dt>
+            <dd class="evidence-detail__regions">
+                {% with tags = entry.policy_areas.all() %}
+                    {% set listing = listing_page|default(none) %}
+                    {% for tag in tags %}
+                        {% if listing %}
+                            <a class="topic-tag"
+                            rel="nofollow"
+                            href="{{ listing.url }}?{{ facet_query(evidence_query|default(none), 'topic', tag.name) }}">
+                                <span class="sr-only">{% trans %}Show records tagged: {% endtrans %}</span>
+                                {{ tag.name }}
+                            </a>
+                        {% else %}
+                            <span class="">
+                                {{ tag.name }}
+                            </span>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
+            </dd>
+        </div>
+
+
+
         {#
         {% with topics = entry.policy_areas.all() %}
             {% if topics|length %}
