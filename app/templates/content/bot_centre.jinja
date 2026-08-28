@@ -44,7 +44,7 @@
 
                 <div class="evidence-layout__filters-layout">
                     <h2 class="evidence-layout__filters-title">{% trans %}Refine{% endtrans %}</h2>
-                    <a href="{{ page.url }}?">Clear all filters</a>
+                    <a href="{{ page.url }}?{{ evidence.query.cleared() }}">Clear all filters</a>
                 </div>
                 {% include "_partials/evidence_filters.jinja" %}
             </div>
