@@ -635,7 +635,7 @@ class EvidenceExportView(View):
         "Topic",
         # "Type",  # Disable "Type"
         "Type of resource",
-        "Link",
+        "Source",
         "Record URL",
     )
 
