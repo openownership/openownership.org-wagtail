@@ -16,15 +16,16 @@ are in the markup and the stylesheet shows whichever fits the state.
 <a name="{{value.config.anchor}}"></a>
 {% endif %}
 <div class="expanding-richtext">
-    <div class="expanding-richtext__intro">
-        {{ value.intro|rich_text }}
-    </div>
 
     <details class="expanding-richtext__more">
         <summary class="expanding-richtext__toggle">
-            <span class="expanding-richtext__label expanding-richtext__label--shut">{% trans %}Read more{% endtrans %}</span>
-            <span class="expanding-richtext__label expanding-richtext__label--open">{% trans %}Show less{% endtrans %}</span>
+            <span class="expanding-richtext__label expanding-richtext__label--shut">{{ value.title }}</span>
+            <span class="expanding-richtext__label expanding-richtext__label--open">{{ value.title }}</span>
         </summary>
+
+        {#<div class="expanding-richtext__intro">
+            {{ value.intro|rich_text }}
+        </div>#}
 
         <div class="expanding-richtext__extra">
             {{ value.extra|rich_text }}

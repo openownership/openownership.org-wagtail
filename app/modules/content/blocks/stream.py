@@ -1541,10 +1541,16 @@ class ExpandingRichTextBlock(blocks.StructBlock):
         template = "blocks/expanding_richtext.jinja"
 
     config = ExpandingRichTextSettingsBlock()
-    intro = blocks.RichTextBlock(
+
+    title = blocks.CharBlock(
         required=True,
-        features=settings.RICHTEXT_SUMMARY_FEATURES,
+        default="Read more",
+        help_text="""The title is the clickable element for expanding the text.""",
     )
+    # intro = blocks.RichTextBlock(
+    #     required=True,
+    #     features=settings.RICHTEXT_SUMMARY_FEATURES,
+    # )
     extra = blocks.RichTextBlock(
         required=True,
         features=settings.RICHTEXT_SUMMARY_FEATURES,
