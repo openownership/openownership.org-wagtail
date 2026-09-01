@@ -465,7 +465,8 @@ class SearchView(TemplateView):
                 for tag in f["principle_tags"]:
                     ids = list(
                         tag.principle_tag_related_pages.values_list(
-                            "content_object__id", flat=True
+                            "content_object__id",
+                            flat=True,
                         ),
                     )
                     page_ids = add_ids(page_ids, ids)
@@ -632,7 +633,7 @@ class EvidenceExportView(View):
         "Jurisdiction",
         "Region",
         "Topic",
-        "Type",
+        # "Type",  # Disable "Type"
         "Type of resource",
         "Link",
         "Record URL",
@@ -659,7 +660,7 @@ class EvidenceExportView(View):
             entry.display_jurisdictions,
             entry.display_region_names,
             entry.display_topics,
-            entry.display_data_users,
+            # entry.display_data_users,  # Disable "Type"
             entry.display_resource_types,
             entry.source_url,
             f"{root_url}{entry.get_absolute_url()}",
@@ -684,4 +685,3 @@ class EvidenceExportView(View):
         if evidence.parse(request.GET).is_narrowed:
             return "bot-evidence-filtered.csv"
         return "bot-evidence.csv"
-

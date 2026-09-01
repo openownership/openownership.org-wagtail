@@ -13,6 +13,8 @@ from django.utils.translation import gettext_lazy as _
 from loguru import logger as guru
 from phaser import secrets  # noqa
 
+SILENCED_SYSTEM_CHECKS = ["treebeard.E001"]
+
 SHELL_PLUS = "ipython"
 PROJECT_DIR_NAME = "app"
 BENZO_API_KEY = os.environ.get("BENZO_API_KEY", "")
