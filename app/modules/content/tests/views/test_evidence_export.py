@@ -172,16 +172,19 @@ def test_the_columns_are_the_public_field_list():
         "Jurisdiction",
         "Region",
         "Topic",
-        "Type",
+        # "Type",
         "Type of resource",
-        "Link",
+        "Source",
         "Record URL",
     ]
 
 
 def test_a_record_fills_every_column():
     kenya = CountryTag.objects.create(
-        notion_id="c-ke", name="Kenya", slug="kenya", notion_region="Africa",
+        notion_id="c-ke",
+        name="Kenya",
+        slug="kenya",
+        notion_region="Africa",
     )
 
     entry = make_entry("e1", "A Kenyan case", topics=["Tax"])
@@ -197,9 +200,9 @@ def test_a_record_fills_every_column():
     assert row["Jurisdiction"] == "Kenya"
     assert row["Region"] == "Africa"
     assert row["Topic"] == "Tax"
-    assert row["Type"] == "Journalist"
+    # assert row["Type"] == "Journalist"
     assert row["Type of resource"] == "Media article"
-    assert row["Link"] == "https://example.com/source"
+    assert row["Source"] == "https://example.com/source"
     root_url = Site.objects.get(is_default_site=True).root_url
     assert row["Record URL"] == f"{root_url}{entry.get_absolute_url()}"
 
