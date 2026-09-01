@@ -19,7 +19,7 @@ Shared by the expanded card and the record's own page
 
         {% if entry.year %}
             <div class="evidence-detail__fact">
-                <dt>{% trans %}Year{% endtrans %}</dt>
+                <dt>{% trans %}Year published{% endtrans %}</dt>
                 <dd>
                     {%- with param = "year", value = entry.year, css_class = "year-tag",
                              prefix = _("Show records from") -%}

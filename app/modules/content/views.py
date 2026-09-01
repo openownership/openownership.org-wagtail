@@ -629,7 +629,7 @@ class EvidenceExportView(View):
     COLUMNS = (
         "Description",
         "Summary",
-        "Year",
+        "Year published",
         "Jurisdiction",
         "Region",
         "Topic",

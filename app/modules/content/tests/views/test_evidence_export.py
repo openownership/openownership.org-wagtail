@@ -168,7 +168,7 @@ def test_the_columns_are_the_public_field_list():
     assert next(reader) == [
         "Description",
         "Summary",
-        "Year",
+        "Year published",
         "Jurisdiction",
         "Region",
         "Topic",
@@ -196,7 +196,7 @@ def test_a_record_fills_every_column():
 
     assert row["Description"] == "A Kenyan case"
     assert row["Summary"] == "Summary of A Kenyan case"
-    assert row["Year"] == "2024"
+    assert row["Year published"] == "2024"
     assert row["Jurisdiction"] == "Kenya"
     assert row["Region"] == "Africa"
     assert row["Topic"] == "Tax"
@@ -224,7 +224,7 @@ def test_several_values_in_one_column_are_separated():
 def test_a_record_with_no_year_exports_a_blank():
     make_entry("e1", "A record", year=None)
 
-    assert rows(client.get(URL))[0]["Year"] == ""
+    assert rows(client.get(URL))[0]["Year published"] == ""
 
 
 def test_a_record_with_no_jurisdiction_but_international_says_so():

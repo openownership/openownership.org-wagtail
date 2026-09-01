@@ -98,7 +98,7 @@ class Facet:
 
 
 FACETS = (
-    Facet("year", "year", _("Year"), order=ORDER_YEAR, coerce=as_year),
+    Facet("year", "year", _("Year published"), order=ORDER_YEAR, coerce=as_year),
     Facet("jurisdiction", "jurisdictions", _("Jurisdiction"), collapse_after=8),
     Facet("region", "regions", _("Region")),
     Facet("topic", "policy_areas", _("Topic")),
