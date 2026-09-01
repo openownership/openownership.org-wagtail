@@ -1543,9 +1543,9 @@ class ExpandingRichTextBlock(blocks.StructBlock):
     config = ExpandingRichTextSettingsBlock()
     intro = blocks.RichTextBlock(
         required=True,
-        features=settings.RICHTEXT_INLINE_FEATURES,
+        features=settings.RICHTEXT_SUMMARY_FEATURES,
     )
     extra = blocks.RichTextBlock(
         required=True,
-        features=settings.RICHTEXT_INLINE_FEATURES,
+        features=settings.RICHTEXT_SUMMARY_FEATURES,
     )
