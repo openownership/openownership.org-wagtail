@@ -55,6 +55,7 @@
 .evidence-filters__input,
 .evidence-filters__select {
     @apply w-full;
+    padding: 0.5rem;
 }
 
 .evidence-filters__group {
