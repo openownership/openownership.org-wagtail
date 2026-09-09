@@ -22,7 +22,6 @@
 
     .expanding-richtext__extra {
         @apply mt-2;
-        @apply text-16;
     }
 }
 
