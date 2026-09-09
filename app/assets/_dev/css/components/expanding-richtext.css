@@ -12,7 +12,7 @@
     }
 
     .expanding-richtext__toggle {
-        @apply font-bold;
+        @apply font-bold text-16;
         cursor: pointer;
     }
 
@@ -22,6 +22,7 @@
 
     .expanding-richtext__extra {
         @apply mt-2;
+        @apply text-16;
     }
 }
 
