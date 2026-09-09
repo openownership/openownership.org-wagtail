@@ -17,7 +17,7 @@
 
     {% if page and page.before_listing %}
         {% if page_obj.number == 1 %}
-        <div class="intro">
+        <div class="intro rich-text">
             {{render_stream(page.before_listing)}}
         </div>
         {% if last_updated %}
