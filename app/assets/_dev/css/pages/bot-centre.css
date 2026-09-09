@@ -202,8 +202,10 @@
 
 .generic-tag {
     @apply inline-flex items-center gap-2;
-    @apply bg-text-secondary text-white text-14 font-bold;
-    padding: 5px 8px;
+    @apply bg-text-secondary text-white font-bold;
+
+    padding: 4px 8px;
+    font-size: 0.75rem;
 }
 
 /* A tag is a link: clicking one filters the listing by that topic. The chip's
@@ -266,8 +268,10 @@ a.topic-tag {
 
 .tag-pill {
     @apply inline-flex items-center gap-2;
-    @apply bg-text-secondary text-white text-14 font-bold;
-    padding: 5px 8px;
+    @apply bg-text-secondary text-white font-bold;
+
+    padding-inline: 8px;
+    font-size: 0.75rem;
 }
 
 a.tag-pill {
