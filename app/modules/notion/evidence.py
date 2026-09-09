@@ -373,6 +373,7 @@ def _facet_groups(distributions: dict, query: Query) -> tuple:
             )
             for raw, count in counts.items()
         ]
+        values.extend(_missing_selections(counts, selected, facet))
         groups.append(
             FacetGroup(
                 param=facet.param,
@@ -382,6 +383,16 @@ def _facet_groups(distributions: dict, query: Query) -> tuple:
             ),
         )
     return tuple(groups)
+
+
+def _missing_selections(counts: dict, selected: tuple, facet: Facet) -> list:
+    """A reader's chosen values that the index did not report, counted as zero."""
+    counted = {facet.coerce(raw) for raw in counts}
+    return [
+        FacetValue(value=str(value), label=str(value), count=0, selected=True)
+        for value in selected
+        if value not in counted
+    ]
 
 
 def _ordered(values: list, facet: Facet) -> list:

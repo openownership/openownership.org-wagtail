@@ -1,5 +1,4 @@
 # stdlib
-import datetime as dt
 import html
 import re
 
@@ -93,6 +92,7 @@ def test_entries_with_no_link_are_hidden(bot_centre):
 
     assert "Has a source" in rendered
     assert "Nothing to link to" not in rendered
+
 
 def test_soft_deleted_entries_are_hidden(bot_centre):
     entry = make_entry("e1", "Gone from Notion")
@@ -633,7 +633,10 @@ def test_a_jurisdiction_links_to_the_listing_filtered_by_it(bot_centre):
     entry = make_entry("e1", "A Kenyan case")
     entry.countries.add(
         CountryTag.objects.create(
-            notion_id="c-ke", name="Kenya", slug="kenya", notion_region="Africa",
+            notion_id="c-ke",
+            name="Kenya",
+            slug="kenya",
+            notion_region="Africa",
         ),
     )
 
@@ -650,7 +653,10 @@ def test_two_jurisdictions_have_nothing_between_them_but_space(bot_centre):
     for notion_id, name in (("c-ke", "Kenya"), ("c-ng", "Nigeria")):
         entry.countries.add(
             CountryTag.objects.create(
-                notion_id=notion_id, name=name, slug=name.lower(), notion_region="Africa",
+                notion_id=notion_id,
+                name=name,
+                slug=name.lower(),
+                notion_region="Africa",
             ),
         )
 
@@ -664,10 +670,7 @@ def test_a_region_links_to_the_listing_filtered_by_it(bot_centre):
 
     rendered = client.get(bot_centre.url).rendered_content
 
-    assert (
-        f"{bot_centre.url}?region=Europe+and+Central+Asia"
-        in facet_hrefs(rendered, "region-tag")
-    )
+    assert f"{bot_centre.url}?region=Europe+and+Central+Asia" in facet_hrefs(rendered, "region-tag")
 
 
 def test_a_year_links_to_the_listing_filtered_by_it(bot_centre):
@@ -687,7 +690,7 @@ def test_a_chosen_years_link_takes_it_off_again(bot_centre):
 
 
 def test_a_worldwide_records_jurisdiction_is_not_a_link(bot_centre):
-    """"Global" is what the tracker calls these records, not a jurisdiction
+    """'Global' is what the tracker calls these records, not a jurisdiction
     anyone can filter by, so there is nowhere for it to go.
     """
     entry = make_entry("e1", "A worldwide case")
@@ -930,3 +933,58 @@ def test_only_the_chosen_value_is_marked_active(stocked):
 
     assert classes
     assert not any("tag-active" in item for item in classes)
+
+
+####################################################################################################
+# A filter combination that matches nothing
+####################################################################################################
+
+IMPOSSIBLE = "topic=Tax&year=2023"
+
+
+def chips(rendered):
+    """The text of each chip above the results."""
+    return [
+        " ".join(html.unescape(text).split())
+        for text in re.findall(
+            r'<a class="evidence-chips__chip"[^>]*>(.*?)</a>',
+            rendered,
+            re.DOTALL,
+        )
+    ]
+
+
+def test_a_combination_that_matches_nothing_returns_no_records(stocked):
+    """The premise of the tests below."""
+    response = client.get(f"{stocked.url}?{IMPOSSIBLE}")
+
+    assert listed(response) == []
+
+
+def test_every_chosen_filter_is_still_shown_when_nothing_matches(stocked):
+    rendered = client.get(f"{stocked.url}?{IMPOSSIBLE}").rendered_content
+
+    shown = chips(rendered)
+
+    assert any("Tax" in chip for chip in shown)
+    assert any("2023" in chip for chip in shown)
+
+
+def test_a_chip_removes_only_its_own_filter_when_nothing_matches(stocked):
+    """Clicking the topic chip leaves the year on, rather than clearing both."""
+    rendered = client.get(f"{stocked.url}?{IMPOSSIBLE}").rendered_content
+
+    assert f'href="{stocked.url}?year=2023"' in rendered
+
+
+def test_the_chosen_boxes_are_still_ticked_when_nothing_matches(stocked):
+    rendered = client.get(f"{stocked.url}?{IMPOSSIBLE}").rendered_content
+
+    assert 'name="topic" value="Tax" checked' in rendered
+    assert 'name="year" value="2023" checked' in rendered
+
+
+def test_a_filter_that_matches_nothing_shows_a_count_of_zero(stocked):
+    rendered = client.get(f"{stocked.url}?{IMPOSSIBLE}").rendered_content
+
+    assert re.search(r'value="Tax" checked>\s*Tax\s*<span[^>]*>0</span>', rendered)

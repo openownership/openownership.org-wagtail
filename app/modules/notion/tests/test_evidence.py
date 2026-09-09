@@ -449,6 +449,63 @@ def test_a_group_counts_its_selections():
     assert built.selected_count == 1
 
 
+def test_a_chosen_value_stays_in_its_group_when_nothing_matches():
+    """Without this the reader loses the checkbox and the chip and can
+    only start again.
+    """
+    query = evidence.parse(params("jurisdiction=Azerbaijan"))
+
+    groups = {g.param: g for g in evidence._facet_groups({"jurisdiction": {}}, query)}
+
+    assert [item.value for item in groups["jurisdiction"].values] == ["Azerbaijan"]
+
+
+def test_a_chosen_value_that_matches_nothing_is_counted_as_zero():
+    query = evidence.parse(params("jurisdiction=Azerbaijan"))
+
+    groups = {g.param: g for g in evidence._facet_groups({"jurisdiction": {}}, query)}
+
+    assert groups["jurisdiction"].values[0].count == 0
+
+
+def test_a_chosen_value_that_matches_nothing_is_still_marked_chosen():
+    query = evidence.parse(params("jurisdiction=Azerbaijan"))
+
+    groups = {g.param: g for g in evidence._facet_groups({"jurisdiction": {}}, query)}
+
+    assert groups["jurisdiction"].values[0].selected is True
+
+
+def test_a_chosen_value_is_not_listed_twice():
+    query = evidence.parse(params("jurisdiction=Kenya"))
+
+    groups = {g.param: g for g in evidence._facet_groups({"jurisdiction": {"Kenya": 3}}, query)}
+
+    assert [item.value for item in groups["jurisdiction"].values] == ["Kenya"]
+
+
+def test_a_chosen_value_added_back_keeps_the_group_in_order():
+    query = evidence.parse(params("jurisdiction=Azerbaijan"))
+    counts = {"jurisdiction": {"Kenya": 3, "Angola": 1}}
+
+    groups = {g.param: g for g in evidence._facet_groups(counts, query)}
+
+    assert [item.value for item in groups["jurisdiction"].values] == [
+        "Angola",
+        "Azerbaijan",
+        "Kenya",
+    ]
+
+
+def test_a_chosen_year_that_matches_nothing_is_added_back_as_text():
+    """A year is held as a number and rendered as the value of a checkbox."""
+    query = evidence.parse(params("year=2018"))
+
+    groups = {g.param: g for g in evidence._facet_groups({"year": {}}, query)}
+
+    assert [item.value for item in groups["year"].values] == ["2018"]
+
+
 ####################################################################################################
 # Running a query end to end
 ####################################################################################################
@@ -469,7 +526,10 @@ def corpus():
     from modules.notion.tests.fakes import FakeClient
 
     kenya = CountryTag.objects.create(
-        notion_id="c-ke", name="Kenya", slug="kenya", notion_region="Africa",
+        notion_id="c-ke",
+        name="Kenya",
+        slug="kenya",
+        notion_region="Africa",
     )
     uk = CountryTag.objects.create(
         notion_id="c-uk",
@@ -702,9 +762,7 @@ def test_the_fallback_keeps_the_sort_order(monkeypatch, corpus):  # noqa: ARG001
 def test_the_fallback_orders_the_same_way_the_index_would(corpus):
     """Both paths must agree, or the page reshuffles during an outage."""
     indexed = ids_of(run("", corpus))
-    from_database = [
-        entry.notion_id for entry in evidence.fallback_queryset(evidence.DEFAULT_SORT)
-    ]
+    from_database = [entry.notion_id for entry in evidence.fallback_queryset(evidence.DEFAULT_SORT)]
 
     assert indexed == from_database
 

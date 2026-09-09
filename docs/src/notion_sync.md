@@ -321,6 +321,14 @@ one could never be chosen. Each ticked facet is queried again with its own filte
 dropped. That is what keeps "filter by multiple topics" usable, and it is the
 first thing to check if the facet lists ever start collapsing.
 
+**A chosen value is put back when it counts nothing.** The recount above still
+runs against the other facets' filters, so a combination that matches nothing at
+all comes back with no values for any facet. That would take the reader's own
+choices off the screen, leaving them with no chip to remove one and no ticked box
+to untick, and nothing to do but clear everything and start again.
+`evidence._missing_selections` adds each chosen value back with a count of zero,
+so every filter stays removable one at a time.
+
 Filtered views are served `noindex` and `no-cache`. Five facets over 48
 jurisdictions is an unbounded crawl space, and wagtail-cache keys on the full URL,
 so caching the combinations would let anyone fill Redis with `?anything=1`.
