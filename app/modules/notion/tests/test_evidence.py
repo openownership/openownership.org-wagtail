@@ -807,3 +807,33 @@ def test_sorting_alone_does_not_restrict_the_results():
 
 def test_paging_alone_does_not_restrict_the_results():
     assert evidence.parse(params("page=3")).is_restricted is False
+
+
+def test_facet_is_active_is_false_without_a_query():
+    """A record's own page has no listing state, so nothing on it is active."""
+    assert evidence.facet_is_active(None, "topic", "Tax") is False
+
+
+def test_facet_is_active_when_the_value_is_selected():
+    query = evidence.parse(params("topic=Tax&region=Africa"))
+
+    assert evidence.facet_is_active(query, "topic", "Tax") is True
+
+
+def test_facet_is_active_is_false_for_a_value_the_reader_has_not_chosen():
+    query = evidence.parse(params("topic=Tax"))
+
+    assert evidence.facet_is_active(query, "topic", "Corruption") is False
+
+
+def test_facet_is_active_handles_a_year_given_as_text():
+    """A template hands over text, while a selected year is an int."""
+    query = evidence.parse(params("year=2024"))
+
+    assert evidence.facet_is_active(query, "year", "2024") is True
+
+
+def test_facet_is_active_ignores_an_unknown_facet():
+    query = evidence.parse(params("topic=Tax"))
+
+    assert evidence.facet_is_active(query, "nonsense", "Tax") is False

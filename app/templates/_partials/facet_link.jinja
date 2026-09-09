@@ -11,8 +11,9 @@ Expects:
 
 #}
 {%- set listing = listing_page|default(none) -%}
+{%- set active = " tag-active" if facet_active(evidence_query|default(none), param, value) else "" -%}
 {%- if listing -%}
-<a class="{{ css_class }}" rel="nofollow" href="{{ listing.url }}?{{ facet_query(evidence_query|default(none), param, value) }}"><span class="sr-only">{{ prefix }} </span>{{ value }}</a>
+<a class="{{ css_class }}{{ active }}" rel="nofollow" href="{{ listing.url }}?{{ facet_query(evidence_query|default(none), param, value) }}"><span class="sr-only">{{ prefix }} </span>{{ value }}</a>
 {%- else -%}
-<span class="{{ css_class }}">{{ value }}</span>
+<span class="{{ css_class }}{{ active }}">{{ value }}</span>
 {%- endif -%}
