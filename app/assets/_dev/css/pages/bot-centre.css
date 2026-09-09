@@ -184,12 +184,14 @@
 }
 
 .evidence-chips {
-    @apply list-none p-0 mb-6 flex flex-wrap gap-2;
+    @apply list-none p-0 mb-6 flex flex-wrap gap-x-2 gap-y-1;
 }
 
 .evidence-chips__chip {
     @apply inline-flex items-center gap-2 text-14 px-3 py-1;
     @apply bg-grey-light no-underline;
+
+    line-height: 1;
 }
 
 .evidence-card__facts {
@@ -223,13 +225,10 @@ a.generic-tag {
     @apply text-grey-darker;
     @apply border border-grey-dark;
 
-    &:active, &:visited {
-        @apply bg-white;
-        @apply text-blue-medium;
-    }
-
     &:hover, &:focus {
         @apply bg-grey-medium;
+        @apply text-black;
+        @apply border-grey-dark;
     }
 }
 
@@ -284,14 +283,17 @@ a.tag-pill {
     @apply text-grey-darker;
     @apply border border-grey-dark;
 
-    &:active, &:visited {
-        @apply bg-white;
-        @apply text-blue-medium;
-    }
-
     &:hover, &:focus {
         @apply bg-grey-medium;
+        @apply text-black;
+        @apply border-grey-dark;
     }
+}
+
+a.tag-active {
+    @apply bg-blue-medium;
+    @apply text-white;
+    @apply border-blue-medium;
 }
 
 .evidence-detail__regions {
