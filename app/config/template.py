@@ -224,6 +224,18 @@ def facet_query(query, param: str, value) -> str:
     return evidence.facet_query(query, param, value)
 
 
+def facet_active(query, param: str, value) -> bool:
+    """Whether a filterable value on an evidence card is one the listing is
+    filtered by, so the card can mark it as active.
+
+    Imported here rather than at module level for the same reason as
+    `facet_query`.
+    """
+    from modules.notion import evidence
+
+    return evidence.facet_is_active(query, param, value)
+
+
 def commitment_summary(commitment_type: str, country) -> SafeString:
     """Ported from the old map generator.
 
@@ -377,5 +389,6 @@ class TemplateGlobalsExtension(Extension):
             'get_top_level_navpage': get_top_level_navpage,
             'pagination_query': pagination_query,
             'facet_query': facet_query,
+            'facet_active': facet_active,
         })
         environment.install_gettext_translations(translation)

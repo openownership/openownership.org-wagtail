@@ -276,6 +276,20 @@ def facet_query(query: Optional[Query], param: str, value) -> str:
     return (query or Query()).toggled(param, value)
 
 
+def facet_is_active(query: Optional[Query], param: str, value) -> bool:
+    """Whether a value shown on a card is one the listing is filtered by.
+
+    The value comes from a template as text, while a selected year is an int, so
+    it is coerced the same way the URL is read before the two are compared.
+    """
+    if query is None:
+        return False
+    facet = FACETS_BY_PARAM.get(param)
+    if facet is None:
+        return False
+    return facet.coerce(value) in query.selected.get(param, ())
+
+
 def parse(params) -> Query:
     """Read a query out of GET parameters, ignoring anything unrecognised.
 

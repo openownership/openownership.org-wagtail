@@ -574,7 +574,7 @@ def topic_hrefs(rendered):
     """Where a record's topic tags point, unescaped as a browser would read them."""
     return [
         html.unescape(href)
-        for href in re.findall(r'<a class="generic-tag"[^>]*href="([^"]+)"', rendered)
+        for href in re.findall(r'<a class="generic-tag[^"]*"[^>]*href="([^"]+)"', rendered)
     ]
 
 
@@ -888,3 +888,45 @@ def test_nothing_to_download_means_no_download_link(bot_centre):
     rendered = client.get(bot_centre.url).rendered_content
 
     assert "evidence-list__export" not in rendered
+
+
+def tag_classes(rendered, name):
+    """The class attribute of every tag on a card that reads as this value."""
+    return re.findall(
+        rf'class="([^"]*)"[^>]*>(?:\s*<span class="sr-only">[^<]*</span>)?\s*{name}\s*<',
+        rendered,
+    )
+
+
+def test_a_topic_tag_is_marked_active_when_the_listing_is_filtered_by_it(stocked):
+    rendered = client.get(f"{stocked.url}?topic=Tax").rendered_content
+
+    classes = tag_classes(rendered, "Tax")
+
+    assert classes
+    assert all("tag-active" in item for item in classes)
+
+
+def test_a_topic_tag_is_not_marked_active_when_the_listing_is_unfiltered(stocked):
+    rendered = client.get(stocked.url).rendered_content
+
+    assert "tag-active" not in rendered
+
+
+def test_a_year_tag_is_marked_active_when_the_listing_is_filtered_by_it(stocked):
+    """A year arrives from the template as text and is held as a number."""
+    rendered = client.get(f"{stocked.url}?year=2024").rendered_content
+
+    classes = tag_classes(rendered, "2024")
+
+    assert classes
+    assert all("tag-active" in item for item in classes)
+
+
+def test_only_the_chosen_value_is_marked_active(stocked):
+    rendered = client.get(f"{stocked.url}?year=2024").rendered_content
+
+    classes = tag_classes(rendered, "Tax")
+
+    assert classes
+    assert not any("tag-active" in item for item in classes)
