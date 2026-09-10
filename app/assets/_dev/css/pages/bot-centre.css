@@ -16,10 +16,6 @@
    the listing rather than as part of the introduction. */
 .evidence-page__updated {
     @apply text-16 text-text-secondary mb-6;
-    
-    span {
-        display: inline-block;
-    }
 }
 
 .evidence-layout {
