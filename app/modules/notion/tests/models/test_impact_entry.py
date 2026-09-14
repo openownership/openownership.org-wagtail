@@ -144,26 +144,30 @@ def test_a_country_with_no_region_adds_nothing():
 ####################################################################################################
 
 
-def test_a_worldwide_record_is_in_the_global_region():
-    """The tracker groups these under "Global", so the listing does too."""
+def test_a_worldwide_record_is_in_the_international_region():
+    """The tracker groups these under "International", so the listing does too."""
     entry = make_entry(worldwide=True)
 
-    assert entry.display_regions == ["Global"]
+    assert entry.display_regions == ["International"]
 
 
-def test_a_worldwide_record_reads_as_global_rather_than_empty():
+def test_a_worldwide_record_reads_as_international_rather_than_empty():
     entry = make_entry(worldwide=True)
 
-    assert entry.display_jurisdictions == "Global"
+    assert entry.display_jurisdictions == "International"
 
 
-def test_global_is_preferred_to_the_international_flag():
-    """Both mean worldwide. "Global" is what the tracker shows in the
-    jurisdiction column, so it is what a reader comparing the two sees.
+def test_the_two_ways_of_saying_international_read_the_same():
+    """The tracker's row and its older checkbox both mean the same thing, so a
+    record carrying either reads the same way.
     """
-    entry = make_entry(worldwide=True, international=True)
+    row = make_entry(notion_id="e1", worldwide=True)
+    checkbox = make_entry(notion_id="e2", international=True)
+    both = make_entry(notion_id="e3", worldwide=True, international=True)
 
-    assert entry.display_jurisdictions == "Global"
+    assert row.display_jurisdictions == "International"
+    assert checkbox.display_jurisdictions == "International"
+    assert both.display_jurisdictions == "International"
 
 
 def test_a_record_with_a_jurisdiction_is_unaffected():

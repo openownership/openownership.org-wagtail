@@ -161,14 +161,14 @@ def test_an_opened_record_offers_the_source():
     assert entry.source_url in body
 
 
-def test_a_worldwide_record_names_its_jurisdiction_as_global():
+def test_a_worldwide_record_names_its_jurisdiction_as_international():
     entry = make_entry()
     entry.worldwide = True
     entry.save()
 
     body = client.get(detail_url(entry)).content.decode()
 
-    assert "<dd>Global</dd>" in body
+    assert "<dd>International</dd>" in body
 
 
 def test_the_records_values_link_back_to_a_filtered_listing(bot_centre):  # noqa: ARG001

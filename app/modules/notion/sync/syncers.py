@@ -50,9 +50,9 @@ class CountrySyncer(BaseSyncer):
     def excluded(self, row):
         """Leave out rows that sit in the countries database but are not countries.
 
-        "Global" is the one in use today. The impact tracker points at it to mean
-        worldwide, and letting it through would put a country with no ISO2,
-        region or map position into the country lists and the CSV exports.
+        "International" is the one in use today. The impact tracker points at it
+        to mean worldwide, and letting it through would put a country with no
+        ISO2, region or map position into the country lists and the CSV exports.
         """
         return row.notion_id in settings.NOTION_NON_COUNTRY_ROWS
 
@@ -237,7 +237,8 @@ class ImpactSyncer(BaseSyncer):
 
     @staticmethod
     def _is_worldwide(row) -> bool:
-        """Whether the tracker gave this entry the "Global" row as a jurisdiction.
+        """Whether the tracker gave this entry the "International" row as a
+        jurisdiction.
 
         That row is excluded from the country sync, so without this the record
         would arrive with no jurisdiction and no region at all.
@@ -247,9 +248,9 @@ class ImpactSyncer(BaseSyncer):
     def _set_relations(self, obj, row):
         """Point the entry at the countries and regimes we hold.
 
-        Ids we do not hold are left out. That covers "Global", which is excluded
-        from the country sync on purpose, and anything added to Notion since the
-        last run of the syncers above.
+        Ids we do not hold are left out. That covers "International", which is
+        excluded from the country sync on purpose, and anything added to Notion
+        since the last run of the syncers above.
         """
         country_ids = [
             item for item in row.country_ids if item not in settings.NOTION_NON_COUNTRY_ROWS

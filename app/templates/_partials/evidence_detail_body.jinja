@@ -44,15 +44,11 @@ Shared by the expanded card and the record's own page
                         {% endfor %}
                     </dd>
                 </div>
-            {% elif entry.worldwide %}
+            {% elif entry.worldwide or entry.international %}
                 <div class="evidence-detail__fact">
                     <dt>{% trans %}Jurisdiction{% endtrans %}</dt>
-                    {# What the tracker itself shows for a worldwide record. #}
-                    <dd>{% trans %}Global{% endtrans %}</dd>
-                </div>
-            {% elif entry.international %}
-                <div class="evidence-detail__fact">
-                    <dt>{% trans %}Jurisdiction{% endtrans %}</dt>
+                    {# What the tracker itself shows for a worldwide record. Its
+                       own row and its older checkbox both mean this. #}
                     <dd>{% trans %}International{% endtrans %}</dd>
                 </div>
             {% endif %}

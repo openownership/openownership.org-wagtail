@@ -115,9 +115,9 @@ def test_the_card_shows_description_jurisdiction_topic_and_year(bot_centre):
     assert "2019" in rendered
 
 
-def test_a_worldwide_card_names_its_jurisdiction_as_global(bot_centre):
-    """The tracker gives these records the "Global" row rather than a country,
-    so a shut card would otherwise show no jurisdiction at all.
+def test_a_worldwide_card_names_its_jurisdiction_as_international(bot_centre):
+    """The tracker gives these records the "International" row rather than a
+    country, so a shut card would otherwise show no jurisdiction at all.
     """
     entry = make_entry("e1", "A worldwide case")
     entry.worldwide = True
@@ -125,10 +125,21 @@ def test_a_worldwide_card_names_its_jurisdiction_as_global(bot_centre):
 
     rendered = client.get(bot_centre.url).rendered_content
 
-    assert '<span class="evidence-card__jurisdictions tag-pill">Global</span>' in rendered
+    assert '<span class="evidence-card__jurisdictions tag-pill">International</span>' in rendered
 
 
-def test_a_worldwide_card_does_not_say_global_twice(bot_centre):
+def test_a_card_marked_with_the_older_checkbox_reads_the_same(bot_centre):
+    """The tracker's row and its older checkbox mean the same thing."""
+    entry = make_entry("e1", "An international case")
+    entry.international = True
+    entry.save()
+
+    rendered = client.get(bot_centre.url).rendered_content
+
+    assert '<span class="evidence-card__jurisdictions tag-pill">International</span>' in rendered
+
+
+def test_a_worldwide_card_does_not_say_international_twice(bot_centre):
     """The shut card labels neither the jurisdiction nor the region, so the same
     word in both places reads as a mistake.
     """
@@ -139,7 +150,7 @@ def test_a_worldwide_card_does_not_say_global_twice(bot_centre):
     rendered = client.get(bot_centre.url).rendered_content
 
     facts = re.search(r"evidence-card__facts.*?</p>", rendered, re.S).group(0)
-    assert facts.count("Global") == 1
+    assert facts.count("International") == 1
 
 
 def test_a_shut_card_does_not_offer_the_source(bot_centre):
@@ -690,8 +701,8 @@ def test_a_chosen_years_link_takes_it_off_again(bot_centre):
 
 
 def test_a_worldwide_records_jurisdiction_is_not_a_link(bot_centre):
-    """'Global' is what the tracker calls these records, not a jurisdiction
-    anyone can filter by, so there is nowhere for it to go.
+    """"International" is what the tracker calls these records, not a
+    jurisdiction anyone can filter by, so there is nowhere for it to go.
     """
     entry = make_entry("e1", "A worldwide case")
     entry.worldwide = True
@@ -699,7 +710,7 @@ def test_a_worldwide_records_jurisdiction_is_not_a_link(bot_centre):
 
     rendered = client.get(bot_centre.url).rendered_content
 
-    assert '<span class="evidence-card__jurisdictions tag-pill">Global</span>' in rendered
+    assert '<span class="evidence-card__jurisdictions tag-pill">International</span>' in rendered
 
 
 def test_opening_a_record_carries_the_readers_filters(stocked):

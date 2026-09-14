@@ -38,9 +38,8 @@ via HTMX.
                                 {%- if not loop.last %} {% endif -%}
                             {% endfor %}
                         </span>
-                    {% elif entry.worldwide %}
-                        <span class="evidence-card__jurisdictions tag-pill">{% trans %}Global{% endtrans %}</span>
-                    {% elif entry.international %}
+                    {% elif entry.worldwide or entry.international %}
+                        {# The tracker's own row and its older checkbox both mean this. #}
                         <span class="evidence-card__jurisdictions tag-pill">{% trans %}International{% endtrans %}</span>
                     {% endif %}
                 {% endwith %}

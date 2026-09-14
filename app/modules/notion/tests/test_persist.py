@@ -452,16 +452,21 @@ def test_impact_row_without_a_description_is_reported(no_downloads):  # noqa: AR
 
 
 ####################################################################################################
-# The "Global" pseudo-country
+# The non-country row
 ####################################################################################################
+
+# One row of the countries database is not a country. The tracker points at it
+# to mean worldwide, and Open Ownership renamed it from "Global" to
+# "International" in September 2026. Everything here matches it by id, so the
+# name it happens to carry makes no difference.
 
 
 GLOBAL_ID = settings.NOTION_NON_COUNTRY_ROWS[0]
 
 
-def test_global_is_not_created_as_a_country():
+def test_the_non_country_row_is_not_created_as_a_country():
     res = CountrySyncer(None).run(
-        pages=[country_page("c1", "Kenya"), country_page(GLOBAL_ID, "Global")],
+        pages=[country_page("c1", "Kenya"), country_page(GLOBAL_ID, "International")],
     )
 
     assert res.created == 1
@@ -469,15 +474,23 @@ def test_global_is_not_created_as_a_country():
     assert CountryTag.objects.filter(notion_id=GLOBAL_ID).count() == 0
 
 
-def test_global_already_held_is_soft_deleted():
-    CountryTag.objects.create(notion_id=GLOBAL_ID, name="Global", slug="global")
+def test_renaming_the_non_country_row_does_not_let_it_through():
+    """It is matched by id, so a rename in Notion cannot turn it into a country."""
+    res = CountrySyncer(None).run(pages=[country_page(GLOBAL_ID, "Something else entirely")])
 
-    CountrySyncer(None).run(pages=[country_page(GLOBAL_ID, "Global")])
+    assert res.excluded == 1
+    assert CountryTag.objects.filter(notion_id=GLOBAL_ID).count() == 0
+
+
+def test_the_non_country_row_already_held_is_soft_deleted():
+    CountryTag.objects.create(notion_id=GLOBAL_ID, name="International", slug="international")
+
+    CountrySyncer(None).run(pages=[country_page(GLOBAL_ID, "International")])
 
     assert CountryTag.objects.get(notion_id=GLOBAL_ID).deleted is True
 
 
-def test_impact_entry_ignores_a_global_jurisdiction(no_downloads):  # noqa: ARG001
+def test_impact_entry_ignores_the_non_country_jurisdiction(no_downloads):  # noqa: ARG001
     CountrySyncer(None).run(pages=[country_page("c1", "Kenya")])
 
     ImpactSyncer(None).run(pages=[impact_page("i1", countries=[GLOBAL_ID, "c1"])])
@@ -486,8 +499,8 @@ def test_impact_entry_ignores_a_global_jurisdiction(no_downloads):  # noqa: ARG0
     assert list(entry.countries.values_list("notion_id", flat=True)) == ["c1"]
 
 
-def test_a_global_jurisdiction_marks_the_entry_worldwide(no_downloads):  # noqa: ARG001
-    """"Global" is not a country here, so the entry has to remember that its
+def test_the_non_country_jurisdiction_marks_the_entry_worldwide(no_downloads):  # noqa: ARG001
+    """That row is not a country here, so the entry has to remember that its
     jurisdiction was worldwide or the record loses it entirely.
     """
     ImpactSyncer(None).run(pages=[impact_page("i1", countries=[GLOBAL_ID])])

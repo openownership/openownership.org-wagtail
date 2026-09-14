@@ -1127,11 +1127,13 @@ class ImpactEntry(NotionModel):
         default=False,
     )
 
-    # The tracker gives a worldwide record the "Global" row of the countries
-    # database as its jurisdiction. That row is not a country and is kept out of
-    # the country lists, so the fact is recorded here instead of being lost.
+    # The tracker gives a worldwide record the "International" row of the
+    # countries database as its jurisdiction. That row is not a country and is
+    # kept out of the country lists, so the fact is recorded here instead of
+    # being lost. Separate from `international` above, which is the tracker's
+    # older checkbox. The two mean the same thing and read the same way.
     worldwide = models.BooleanField(
-        _("Global"),
+        _("International (from the countries database)"),
         blank=False,
         null=False,
         default=False,
@@ -1233,8 +1235,9 @@ class ImpactEntry(NotionModel):
         return self._joined(tag.name for tag in self.policy_areas.all())
 
     # What the tracker calls a worldwide record, in its jurisdiction column and
-    # in the region it rolls up to.
-    WORLDWIDE_LABEL = "Global"
+    # in the region it rolls up to. Written here because the row it comes from
+    # is deliberately not imported, so there is no synced name to read.
+    WORLDWIDE_LABEL = "International"
 
     @cached_property
     def display_jurisdictions(self) -> str:
@@ -1242,16 +1245,14 @@ class ImpactEntry(NotionModel):
 
         Worldwide records carry no country at all, so without this they would
         report an empty jurisdiction rather than the thing they actually are.
-        "Global" is what the tracker shows for them; the older `International`
-        checkbox is the fallback for a record marked that way and nothing else.
+        The tracker's row and its older `International` checkbox both mean the
+        same thing, so either one reads the same way.
         """
         names = self._joined(tag.name for tag in self.countries.all())
         if names:
             return names
-        if self.worldwide:
+        if self.worldwide or self.international:
             return self.WORLDWIDE_LABEL
-        if self.international:
-            return "International"
         return names
 
     @cached_property
@@ -1283,7 +1284,7 @@ class ImpactEntry(NotionModel):
         the tracker should see the tracker's names.
 
         A worldwide record has no country to reach a region through, and the
-        tracker rolls it up to "Global", so that is what it reports.
+        tracker rolls it up to "International", so that is what it reports.
         """
         names = {country.notion_region for country in self.countries.all()}
         if self.worldwide:
@@ -1294,9 +1295,10 @@ class ImpactEntry(NotionModel):
     def display_card_regions(self) -> list:
         """`display_regions` for the shut card, which labels nothing.
 
-        A worldwide record reports "Global" as both its jurisdiction and its
-        region. The record's own page labels the two, but on a shut card they sit
-        side by side unlabelled, where the same word twice reads as a mistake.
+        A worldwide record reports "International" as both its jurisdiction and
+        its region. The record's own page labels the two, but on a shut card they
+        sit side by side unlabelled, where the same word twice reads as a
+        mistake.
         """
         if self.display_jurisdictions == self.WORLDWIDE_LABEL:
             return [name for name in self.display_regions if name != self.WORLDWIDE_LABEL]

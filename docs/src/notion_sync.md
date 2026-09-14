@@ -157,17 +157,18 @@ Two things about the impact tracker are worth knowing:
   has `publishable()` for the rule and `withheld_for_no_link()` for the ones it
   drops, and the indexer reports how many were held back.
 
-The countries database also holds a row called "Global", which the impact
+The countries database also holds a row called "International", which the impact
 tracker uses to mean worldwide. It is listed in `NOTION_NON_COUNTRY_ROWS` and
 excluded from the sync, so it never becomes a country on the site. An entry
 pointing at it is marked `worldwide` instead, which is what lets the record still
-report a jurisdiction and a region of "Global" rather than nothing at all. Six
-published records are like this.
+report a jurisdiction and a region of "International" rather than nothing at all.
 
-`worldwide` is not the same as the tracker's older `International` checkbox,
-which is synced to `international` and used only for a record marked that way and
-nothing else. Where both are set, "Global" wins, because that is what the tracker
-itself shows in the jurisdiction column.
+
+
+`worldwide` is not the same field as the tracker's older `International`
+checkbox, which is synced to `international`. Since the rename the two mean the
+same thing and read the same way, so a record carrying either shows
+"International". They are still stored separately, because they're separate in the tracker.
 
 
 ## Evidence search
@@ -300,8 +301,8 @@ themselves alone.
 
 Each link carries hidden text saying what it does, because "Kenya" on its own
 reads as a label rather than as something that will change the page. Two things
-on a record are deliberately not links: "Global" and "International", which are
-what the tracker calls a worldwide record rather than values anyone can filter a
+on a record are deliberately not links: "International", which is what the
+tracker calls a worldwide record rather than a value anyone can filter a
 jurisdiction by, and "Type", the data user, which is no longer a facet.
 
 The card takes underlines off its links, which suits a card title but not these:
@@ -430,7 +431,7 @@ The columns are the public field list and nothing else:
 | Description | `description` |
 | Summary | `summary`, whole, not the card's trimmed version |
 | Year | `year` |
-| Jurisdiction | `countries`, or "Global" for a worldwide record |
+| Jurisdiction | `countries`, or "International" for a worldwide record |
 | Region | `display_regions`, the tracker's region for each jurisdiction |
 | Topic | `policy_areas` |
 | Type | `data_users` |
@@ -442,20 +443,8 @@ Several values in one cell are separated by `; ` rather than a comma, because ta
 names carry commas of their own and a reader splitting a cell should not have to
 guess. The file is named `bot-evidence.csv`, or `bot-evidence-filtered.csv` when
 the reader has narrowed it, so two downloads do not collide on disk. The whole
-file is English, including "Global", because its columns are named after
+file is English, including "International", because its columns are named after
 the Notion tracker and a half-translated data file is harder to work with.
-
-Two things worth knowing:
-
-* **The record URL is built from Wagtail's site record**, not from
-  `request.build_absolute_uri`. Both give an https URL now that
-  `SECURE_PROXY_SSL_HEADER` is set, but the site record gives the canonical
-  address rather than whichever hostname the reader happened to arrive on, and
-  this is a file Open Ownership may hand out.
-* **The download link is hidden while search is degraded.** With Meilisearch
-  down there are no filters to carry, so the file would quietly be the whole
-  dataset whatever the reader had asked for. Hitting the URL directly in that
-  state still returns everything.
 
 ### Topic icons
 
@@ -538,11 +527,6 @@ Ownership asked for. The two lists genuinely disagree: Notion puts Ukraine in
 The value is stored as the tracker's own text rather than matched to a record on
 this side, so a region added or renamed in Notion arrives with the next sync and
 needs no work here.
-
-Worldwide records have no country to reach a region through, so they report
-"Global", the region the tracker rolls them up to. On a record's own page that
-sits under a "Region" label beside its "Global" jurisdiction. A shut card labels
-neither, so `display_card_regions` drops the repeat and the word appears once.
 
 **A row the sync has already seen is skipped unless Notion has changed it**, so
 both `notion_region` and `worldwide` start empty on an existing database. Fill
