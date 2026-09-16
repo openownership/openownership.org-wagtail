@@ -1,0 +1,18 @@
+{% extends 'wagtailadmin/reports/base_report_results.html' %}
+{% load i18n %}
+
+{% comment %}The table itself. Rendered inside `#listing-results`, which Wagtail replaces
+   on its own when a filter or a page link is followed, so nothing here should
+   describe anything but the current result set.{% endcomment %}
+
+{% block results %}
+    {% if object_list %}
+        <div class="nice-padding">
+            {% include "reports/listing/_list_notion_sync.html" %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block no_results_message %}
+    <p>{% trans "No sync runs match what you asked for." %}</p>
+{% endblock %}

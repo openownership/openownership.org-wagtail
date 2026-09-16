@@ -1,0 +1,48 @@
+<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+  <defs>
+    <style>
+      .transparency-and-oversight-1 {
+        fill: none;
+      }
+
+      .transparency-and-oversight-1, .transparency-and-oversight-2 {
+        stroke: #3d30d4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 24px;
+      }
+
+      .transparency-and-oversight-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="transparency-and-oversight-1" d="M476.49,708.05H12.58V12.18h347.93c45.29,45.29,70.69,70.69,115.98,115.98v579.89Z"/>
+    <g>
+      <line class="transparency-and-oversight-1" x1="408.84" y1="360.12" x2="128.56" y2="360.12"/>
+      <line class="transparency-and-oversight-1" x1="360.52" y1="640.39" x2="128.56" y2="640.39"/>
+      <line class="transparency-and-oversight-1" x1="408.84" y1="570.32" x2="128.56" y2="570.32"/>
+      <line class="transparency-and-oversight-1" x1="408.84" y1="500.25" x2="128.56" y2="500.25"/>
+      <line class="transparency-and-oversight-1" x1="408.84" y1="430.18" x2="128.56" y2="430.18"/>
+    </g>
+    <g>
+      <line class="transparency-and-oversight-1" x1="80.24" y1="360.12" x2="80.24" y2="360.12"/>
+      <line class="transparency-and-oversight-1" x1="80.24" y1="640.4" x2="80.24" y2="640.4"/>
+      <line class="transparency-and-oversight-1" x1="80.24" y1="570.33" x2="80.24" y2="570.33"/>
+      <line class="transparency-and-oversight-1" x1="80.24" y1="500.26" x2="80.24" y2="500.26"/>
+      <line class="transparency-and-oversight-1" x1="80.24" y1="430.19" x2="80.24" y2="430.19"/>
+    </g>
+    <polygon class="transparency-and-oversight-1" points="80.24 282.8 80.24 79.84 176.89 79.84 176.89 157.16 244.54 157.16 244.54 282.8 80.24 282.8"/>
+  </g>
+  <circle class="transparency-and-oversight-2" cx="466.93" cy="350.56" r="241.73"/>
+  <g>
+    <rect class="transparency-and-oversight-1" x="693.89" y="537.97" width="85.46" height="164.56" transform="translate(-222.83 702.54) rotate(-45)"/>
+    <polyline class="transparency-and-oversight-1" points="624.06 543.94 660.31 580.2 696.57 543.94 660.31 507.68"/>
+  </g>
+  <g>
+    <path class="transparency-and-oversight-1" d="M466.9,463.9c-117.57,0-183.11-92.06-194.27-109.16,11.16-17.1,76.66-109.15,194.18-109.15h.14c117.59.05,183.12,92.05,194.29,109.15-11.16,17.14-76.57,109.16-194.33,109.16h0Z"/>
+    <path class="transparency-and-oversight-1" d="M466.68,447.14c-52.09,0-94.48-41.48-94.48-92.44s42.39-92.43,94.48-92.43,94.5,41.46,94.5,92.43-42.39,92.44-94.5,92.44h0Z"/>
+    <path class="transparency-and-oversight-1" d="M466.68,393.3c-21.75,0-39.45-17.32-39.45-38.6s17.7-38.59,39.45-38.59,39.46,17.31,39.46,38.59-17.7,38.6-39.46,38.6h0Z"/>
+  </g>
+</svg>

@@ -1,0 +1,40 @@
+<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+  <defs>
+    <style>
+      .real-estate-and-property-1, .real-estate-and-property-2 {
+        stroke-linejoin: round;
+      }
+
+      .real-estate-and-property-1, .real-estate-and-property-2, .real-estate-and-property-3 {
+        fill: none;
+        stroke: #3d30d4;
+        stroke-linecap: round;
+      }
+
+      .real-estate-and-property-1, .real-estate-and-property-3 {
+        stroke-width: 24px;
+      }
+
+      .real-estate-and-property-2 {
+        stroke-width: 26.9px;
+      }
+
+      .real-estate-and-property-3 {
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="real-estate-and-property-2" d="M594.45,706.43H134.12V13.58h345.05l115.28,115.28v577.57Z"/>
+    <polyline class="real-estate-and-property-2" points="594.45 129.06 479.37 129.06 479.37 13.58"/>
+  </g>
+  <line class="real-estate-and-property-3" x1="187.29" y1="366" x2="541.29" y2="366"/>
+  <line class="real-estate-and-property-3" x1="187.29" y1="450" x2="541.29" y2="450"/>
+  <line class="real-estate-and-property-3" x1="187.29" y1="534" x2="541.29" y2="534"/>
+  <line class="real-estate-and-property-3" x1="187.29" y1="618" x2="541.29" y2="618"/>
+  <g>
+    <polyline class="real-estate-and-property-1" points="434.74 171.89 434.74 289.19 292.9 289.19 292.9 171.89"/>
+    <polyline class="real-estate-and-property-1" points="258.62 203.46 363.82 98.25 469.03 203.46"/>
+    <polyline class="real-estate-and-property-1" points="340.44 289.19 340.44 217.15 387.21 217.15 387.21 286.52"/>
+  </g>
+</svg>

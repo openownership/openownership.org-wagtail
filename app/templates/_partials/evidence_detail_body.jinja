@@ -1,0 +1,204 @@
+{# Everything public about one evidence record.
+
+Expects:
+
+* entry - An ImpactEntry
+* close_page (optional) - The BotCentrePage, set only when this is rendered
+  inside the expanded card, so a "Close" toggle can sit next to "View source"
+
+Shared by the expanded card and the record's own page
+#}
+{% set close_page = close_page|default(none) %}
+<div class="evidence-detail">
+
+    {% if entry.summary %}
+        <p class="evidence-detail__summary">{{ entry.summary }}</p>
+    {% endif %}
+
+    <dl class="evidence-detail__facts">
+
+        {% if entry.year %}
+            <div class="evidence-detail__fact">
+                <dt>{% trans %}Year published{% endtrans %}</dt>
+                <dd>
+                    {%- with param = "year", value = entry.year, css_class = "year-tag",
+                             prefix = _("Show records from") -%}
+                        {%- include "_partials/facet_link.jinja" -%}
+                    {%- endwith -%}
+                </dd>
+            </div>
+        {% endif %}
+
+        {% with countries = entry.countries.all() %}
+            {% if countries|length %}
+                <div class="evidence-detail__fact">
+                    <dt>{% trans %}Jurisdiction{% endtrans %}</dt>
+                    <dd>
+                        {% for country in countries %}
+                            {%- with param = "jurisdiction", value = country.name,
+                                     css_class = "jurisdiction-tag",
+                                     prefix = _("Show records from") -%}
+                                {%- include "_partials/facet_link.jinja" -%}
+                            {%- endwith -%}
+                            {%- if not loop.last %}, {% endif -%}
+                        {% endfor %}
+                    </dd>
+                </div>
+            {% elif entry.worldwide or entry.international %}
+                <div class="evidence-detail__fact">
+                    <dt>{% trans %}Jurisdiction{% endtrans %}</dt>
+                    {# What the tracker itself shows for a worldwide record. Its
+                       own row and its older checkbox both mean this. #}
+                    <dd>{% trans %}International{% endtrans %}</dd>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% if entry.display_regions|length %}
+            <div class="evidence-detail__fact">
+                <dt>{% trans %}Region{% endtrans %}</dt>
+                <dd class="evidence-detail__regions">
+                    {% for name in entry.display_regions %}
+                        {% with param = "region", value = name, css_class = "region-tag",
+                                prefix = _("Show records in") %}
+                            {% include "_partials/facet_link.jinja" %}
+                        {% endwith %}
+                    {% endfor %}
+                </dd>
+            </div>
+        {% endif %}
+
+        <div class="evidence-detail__fact">
+            <dt>{% trans %}Topics{% endtrans %}</dt>
+            <dd class="evidence-detail__regions">
+                {% with tags = entry.policy_areas.all() %}
+                    {% set listing = listing_page|default(none) %}
+                    {% for tag in tags %}
+                        {% if listing %}
+                            <a class="topic-tag"
+                            rel="nofollow"
+                            href="{{ listing.url }}?{{ facet_query(evidence_query|default(none), 'topic', tag.name) }}">
+                                <span class="sr-only">{% trans %}Show records tagged: {% endtrans %}</span>
+                                {{ tag.name }}
+                            </a>
+                        {% else %}
+                            <span class="">
+                                {{ tag.name }}
+                            </span>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
+            </dd>
+        </div>
+
+
+
+        {#
+        {% with topics = entry.policy_areas.all() %}
+            {% if topics|length %}
+                <div class="evidence-detail__fact">
+                    <dt>{% trans %}Topic{% endtrans %}</dt>
+                    <dd class="evidence-detail__topics">
+                        {% with tags = topics %}
+                            {% include "_partials/topic_tags.jinja" %}
+                        {% endwith %}
+                    </dd>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+
+        {% with types = entry.data_users.all() %}
+            {% if types|length %}
+                <div class="evidence-detail__fact">
+                    <dt>{% trans %}Type{% endtrans %}</dt>
+                    <dd>
+                        {% for item in types %}
+                            {{ item.name }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </dd>
+                </div>
+            {% endif %}
+        {% endwith %}
+        #}
+
+        {% with resources = entry.resource_types.all() %}
+            {% if resources|length %}
+                <div class="evidence-detail__fact">
+                    <dt>{% trans %}Type of resource{% endtrans %}</dt>
+                    <dd>
+                        {% for item in resources %}
+                            {%- with param = "resource", value = item.name,
+                                     css_class = "resource-tag",
+                                     prefix = _("Show records of type") -%}
+                                {%- include "_partials/facet_link.jinja" -%}
+                            {%- endwith -%}
+                            {%- if not loop.last %}, {% endif -%}
+                        {% endfor %}
+                    </dd>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+    </dl>
+
+    {% if entry.display_attachments|length %}
+        <ul class="evidence-detail__attachments">
+            {% for attachment in entry.display_attachments %}
+                <li>
+                    {% if attachment.kind == 'document' %}
+                        <a href="{{ attachment.document.url }}">
+                            {% include "svg/download-document.jinja" %}
+                            {{ attachment.display_label }}
+                        </a>
+                    {% elif attachment.kind == 'image' %}
+                        {{ picture(attachment.image, 640, 360) }}
+                    {% else %}
+                        <a href="{{ attachment.url }}" rel="noopener" target="_blank">
+                            {{ attachment.display_label }}
+                            {% include "svg/external-link.jinja" %}
+                        </a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if entry.source_url or close_page %}
+        <div class="evidence-detail__actions">
+            {% if entry.source_url %}
+                <p class="evidence-detail__source">
+                    {#
+                        IMPORTANT:
+                        The data attributes are what an outbound click reports to
+                        Plausible. Any changes to this bit might break anlytics, so
+                        be extra careful.
+                    #}
+                    <a href="{{ entry.source_url }}" class="btn"
+                        rel="noopener"
+                        target="_blank"
+                        data-topic="{{ entry.display_topics }}"
+                        data-jurisdiction="{{ entry.display_jurisdictions }}"
+                        data-region="{{ entry.display_region_names }}">
+                        {% trans %}View source{% endtrans %}
+                        {% include "svg/external-link.jinja" %}
+                    </a>
+                </p>
+            {% endif %}
+
+            {% if close_page %}
+                <p class="evidence-card__toggle">
+                    <a href="{{ close_page.url }}"
+                        aria-controls="evidence-{{ entry.notion_id }}-detail"
+                        hx-get="{{ entry.get_absolute_url() }}?collapsed=1{% with query = evidence_query.querystring() if evidence_query else '' %}{% if query %}&{{ query }}{% endif %}{% endwith %}"
+                        hx-target="closest .evidence-card"
+                        hx-swap="outerHTML"
+                        hx-push-url="{{ close_page.url }}">
+                        {% trans %}Close{% endtrans %}
+                    </a>
+                </p>
+            {% endif %}
+        </div>
+    {% endif %}
+
+</div>

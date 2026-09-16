@@ -1,0 +1,73 @@
+{# One evidence record as a card.
+
+Expects:
+
+* entry - An ImpactEntry
+
+Reuses the card-group classes so it picks up the existing card styling. Expands
+via HTMX.
+#}
+<li class="card-group__card card-group__card--without-thumbnail evidence-card"
+    id="evidence-{{ entry.notion_id }}">
+
+    <div class="card-group__card-decoration">
+        <span class="evidence-card__edge"></span>
+
+        <div class="card-group__text">
+            <h3 class="card-group__title" tabindex="-1">{{ entry.description }}</h3>
+
+            <p class="card-group__date evidence-card__facts">
+                {% if entry.year %}
+                    <span class="evidence-card__year">
+                        {%- with param = "year", value = entry.year, css_class = "year-tag tag-pill",
+                                 prefix = _("Show records from") -%}
+                            {%- include "_partials/facet_link.jinja" -%}
+                        {%- endwith -%}
+                    </span>
+                {% endif %}
+
+                {% with countries = entry.countries.all() %}
+                    {% if countries|length %}
+                        <span class="evidence-card__jurisdictions">
+                            {% for country in countries %}
+                                {%- with param = "jurisdiction", value = country.name,
+                                         css_class = "jurisdiction-tag tag-pill",
+                                         prefix = _("Show records from") -%}
+                                    {%- include "_partials/facet_link.jinja" -%}
+                                {%- endwith -%}
+                                {%- if not loop.last %} {% endif -%}
+                            {% endfor %}
+                        </span>
+                    {% elif entry.worldwide or entry.international %}
+                        {# The tracker's own row and its older checkbox both mean this. #}
+                        <span class="evidence-card__jurisdictions tag-pill">{% trans %}International{% endtrans %}</span>
+                    {% endif %}
+                {% endwith %}
+
+                {% for name in entry.display_card_regions %}
+                    {% with param = "region", value = name, css_class = "region-tag tag-pill",
+                            prefix = _("Show records in") %}
+                        {% include "_partials/facet_link.jinja" %}
+                    {% endwith %}
+                {% endfor %}
+            </p>
+
+            <div class="card-group__meta">
+                {% with tags = entry.policy_areas.all() %}
+                    {% include "_partials/topic_tags.jinja" %}
+                {% endwith %}
+            </div>
+
+            <p class="evidence-card__toggle">
+                <a href="{{ entry.get_absolute_url() }}" 
+                   aria-controls="evidence-{{ entry.notion_id }}-detail"
+                   hx-get="{{ entry.get_absolute_url() }}{% with query = evidence_query.querystring() if evidence_query else '' %}{% if query %}?{{ query }}{% endif %}{% endwith %}"
+                   hx-target="closest .evidence-card"
+                   hx-swap="outerHTML"
+                   hx-push-url="true">
+                    {% trans %}Read more{% endtrans %}
+                </a>
+            </p>
+        </div>
+    </div>
+</li>

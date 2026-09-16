@@ -4,16 +4,16 @@ version = "0.1.0"
 description = "openownership.org"
 authors = [{ name = "Hactar", email = "systems@hactar.is" }]
 readme = "README.md"
-requires-python = ">=3.12,<3.13"
+requires-python = ">=3.13,<3.14"
 dependencies = [
-    "beautifulsoup4~=4.12.3",
+    "beautifulsoup4>=4.15.0,<5.0",
     "benzo>=1.1.1",
     "boto3~=1.26.54",
     "click~=8.1.8",
     "consoler~=0.1.4",
-    "django>=5.0.8,<5.1.0",
+    "django>=5.2,<6",
+    "django-axes>=8.3.1,<9.0.0",
     "django-cacheops~=7.1",
-    "django-cron~=0.6.0",
     "django-dbbackup~=4.1.0",
     "django-extensions~=3.2.3",
     "django-filter~=24.3",
@@ -22,6 +22,7 @@ dependencies = [
     "django-storages~=1.14.4",
     "django-taggit~=5.0",
     "gunicorn~=23.0.0",
+    "hypercorn>=0.18.0",
     "ipdb~=0.13.13",
     "ipython~=8.8.0",
     "jedi~=0.19.1",
@@ -32,19 +33,24 @@ dependencies = [
     "phaser>=1.0.1",
     "pillow~=10.4.0",
     "psycopg2-binary~=2.9.10",
+    "pydantic>=2.13.4",
     "python-dotenv>=1.0.1",
     "python-gnupg~=0.5.0",
+    "python-ipware>=3.0.0,<4.0.0",
     "sentry-sdk~=2.13.0",
     "setuptools~=72.2.0",
     "sqlparse~=0.5.1",
+    "statham>=1.0.8,<2.0.0",
     "toml~=0.10.2",
-    "wagtail~=6.2",
+    "wagtail>=7.4.2,<8",
     "wagtail-autocomplete~=0.11.0",
-    "wagtail-cache~=2.5.0",
+    "wagtail-cache>=3.0,<4",
     "wagtail-font-awesome-svg~=1.0.1",
     "wagtail-localize~=1.7",
-    "wagtail-modeladmin~=2.0.0",
+    "wagtail-meilisearch>=1.1.1,<2.0.0",
+    "wagtail-modeladmin>=2.4.0,<3.0",
     "wagtail-modelchooser~=4.0.1",
+    "wagtail-reports>=1.6.0rc1",
     "wagtools>=1.2.0",
     "whitenoise~=6.5.0",
 ]
@@ -63,6 +69,17 @@ dev = [
     "wat-inspector>=0.4.0",
 ]
 
+[tool.uv]
+add-bounds = "major"
+exclude-newer = "7 days"  # grace period to help avoid supply chain attacks
+
+[[tool.uv.index]]
+name = "hacnet"
+url = "https://pypi.hacnet.dev/"
+explicit = true
+exclude-newer = false
+
+
 ####################################################################################################
 # Sources
 ####################################################################################################
@@ -71,30 +88,54 @@ dev = [
 benzo = { index = "hacnet" }
 phaser = { index = "hacnet" }
 wagtools = { index = "hacnet" }
-
-[[tool.uv.index]]
-name = "hacnet"
-url = "https://pypi.hacnet.dev/"
+wagtail-reports = { index = "hacnet" }
+statham = { index = "hacnet" }
 
 ####################################################################################################
 # Ruff etc.
 ####################################################################################################
 
+
 [tool.ruff]
-target-version = "py312"  # Change this to match the project
+target-version = "py313"  # Change this to match the project
 line-length = 100
-extend-exclude = ["tests", "*/migrations/*", '*/samples/*.py']
+extend-exclude = ["*/migrations/*", "*/conftest.py"]
 
 [tool.ruff.lint]
 select = [
     "E", "F", "B", "DJ", "C90", "S", "COM", "DTZ", "EM",
     "PT", "RET", "SIM", "TCH", "ARG", "PTH", "PERF"
 ]
-extend-ignore = ["E402", "RET504", "S101", "DJ012"]
+ignore = ["E402", "RET504", "S101", "DJ012"]
 
-[tool.ruff.lint.isort]
+[tool.ruff.lint.isort]  # noqa
 combine-as-imports = true
 force-wrap-aliases = true
 
-[tool.basedpyright]
-basedpyright.disableLanguageServices = true
+[tool.ruff.lint.flake8-unused-arguments]
+ignore-variadic-names = true
+
+[tool.ty.environment]
+extra-paths = [
+    "../docker/web/venv",
+]
+
+[tool.ty.rules]
+unresolved-import = "ignore"
+inconsistent-mro = "ignore"
+invalid-method-override = "ignore"
+# unused-ignore-comment = "warn"
+# redundant-cast = "ignore"
+# no-matching-overload = "ignore"
+
+[tool.mypy]
+strict_optional = true
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+django_settings_module = "config.settings.development"
+
+[tool.pyrefly]
+project-includes = ["../docker/web/venv"]
+search-path = "./"
+disable-search-path-heuristics = true

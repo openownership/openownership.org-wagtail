@@ -8,6 +8,8 @@ ANSIBLE_HOST_KEY_CHECKING = false
 ANSIBLE_LOOKUP_PLUGINS = "./devops/roles/hactar.envkey/lookup_plugins/"
 # Docker
 COMPOSE_BAKE=true
+# Docs
+DOCS_FOLDER = "open-ownership"
 
 [tools]
 watchexec = "latest"
@@ -30,14 +32,49 @@ description = "Install githooks"
 quiet = true
 run = "hk install && echo '✅ Githooks installed'"
 
-[tasks.dcup]
-description = "Bring up the docker containers"
-run = "phase run docker compose pull && docker compose up -d && fab docker.fish"
+[tasks.venv]
+description = "Create a local venv at docker/web/venv for type checking"
+run = "UV_PROJECT_ENVIRONMENT=$PWD/docker/web/venv uv sync --project app --python 3.13"
+sources = ['app/uv.lock', 'app/pyproject.toml']
 
-[tasks.dcdown]
-description = "Tear down the docker containers"
-run = "phase run docker compose down"
+
+####################################################################################################
+# Docker stuff.
+####################################################################################################
 
 [tasks.bake]
 description = 'Bake a new docker cache image'
-run = "docker buildx bake -f docker-compose.test.yml web --set web.platform=linux/amd64,linux/arm64 --push"
+depends = ["builder:ensure"]
+run = "docker buildx bake --builder hactar-multiplatform -f docker-compose.test.yml web --set web.platform=linux/amd64,linux/arm64 --push"
+
+[tasks."builder:ensure"]
+description = "Ensure the multi-platform builder exists and is running"
+hide = true
+run = """
+if ! docker buildx inspect hactar-multiplatform >/dev/null 2>&1; then
+  echo "Creating builder 'hactar-multiplatform'..."
+  docker buildx create --name hactar-multiplatform --driver docker-container --bootstrap
+else
+  STATUS=$(docker buildx inspect hactar-multiplatform 2>/dev/null | grep -i status | head -1 | awk '{print $2}')
+  if [ "$STATUS" != "running" ]; then
+    echo "Builder 'hactar-multiplatform' exists but is $STATUS, bootstrapping..."
+    docker buildx inspect --bootstrap hactar-multiplatform >/dev/null 2>&1
+  fi
+fi
+echo "Builder 'hactar-multiplatform' is ready."
+"""
+
+[tasks."builder:cleanup"]
+description = "Remove all inactive/orphaned buildx builders"
+run = """
+echo "Current builders:"
+docker buildx ls
+echo ""
+docker buildx ls | awk '/^[a-zA-Z]/ && !/^NAME/ && !/^default/ && !/^orbstack/ {print $1}' | grep -v "hactar-multiplatform" | while read builder; do
+  echo "Removing orphaned builder: $builder"
+  docker buildx rm "$builder" 2>/dev/null || true
+done
+echo ""
+echo "Remaining builders:"
+docker buildx ls
+"""

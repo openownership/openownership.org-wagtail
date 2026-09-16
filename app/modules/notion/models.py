@@ -1,3 +1,6 @@
+# stdlib
+from typing import Optional
+
 # 3rd party
 from consoler import console
 from django.conf import settings
@@ -5,6 +8,8 @@ from django.db import models
 from django.forms import CheckboxSelectMultiple
 from django.shortcuts import reverse
 from django.utils.functional import cached_property
+from django.utils import timezone
+from django.utils.text import Truncator
 from django.utils.translation import gettext_lazy as _
 from django_extensions.db.fields import AutoSlugField
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
@@ -23,7 +28,9 @@ from config.template import commitment_summary
 
 # Project
 from modules.content.blocks import TAG_PAGE_BODY_BLOCKS
+from modules.notion import icons
 from modules.notion.data import CAPITALS
+from modules.notion.report import SyncReport, describe, notion_url
 from modules.taxonomy.models.core import BaseTag
 
 
@@ -137,6 +144,9 @@ class Commitment(NotionModel):
             return self.summary_text
         return commitment_summary(self.commitment_type_name, self.country)
 
+    def __str__(self):
+        return f"Commitment {self.id}"
+
 
 class DisclosureRegime(NotionModel):
     class Meta:
@@ -243,39 +253,34 @@ class DisclosureRegime(NotionModel):
         max_length=255,
     )
 
-    structured_data = models.CharField(  # 6.1 Structured data
+    structured_data = models.BooleanField(  # 6.1 Structured data
         _("Structured data"),
         blank=True,
-        default="",
-        max_length=255,
+        null=True,
     )
 
-    api_available = models.CharField(  # API available
+    api_available = models.BooleanField(  # API available
         _("API available"),
         blank=True,
-        default="",
-        max_length=255,
+        null=True,
     )
 
-    bulk_data_available = models.CharField(  # Bulk data available
+    bulk_data_available = models.BooleanField(  # Bulk data available
         _("Bulk data available"),
         blank=True,
-        default="",
-        max_length=255,
+        null=True,
     )
 
-    data_in_bods = models.CharField(  # 6.4 Data published in BODS
+    data_in_bods = models.BooleanField(  # 6.4 Data published in BODS
         _("Data published in BODS"),
         blank=True,
-        default="",
-        max_length=255,
+        null=True,
     )
 
-    on_oo_register = models.CharField(  # Used to be bool, now str
+    on_oo_register = models.BooleanField(  # 6.5 Data on OO Register
         _("On OO Register"),
         blank=True,
-        default="",
-        max_length=255,
+        null=True,
     )
 
     legislation_url = models.TextField(  # 8.4 Legislation URL
@@ -299,11 +304,12 @@ class DisclosureRegime(NotionModel):
 
     # New fields needed as of 21/03/22
 
-    threshold = models.CharField(  # 1.2 Threshold
+    threshold = models.DecimalField(  # 1.2 Threshold (a percentage)
         _("Threshold"),
         blank=True,
-        default="",
-        max_length=255,
+        null=True,
+        max_digits=5,
+        decimal_places=2,
     )
 
     # New fields needed as of 23/07/24
@@ -341,9 +347,7 @@ class DisclosureRegime(NotionModel):
         Full-economy tag present.
         """
         scopes = self.coverage_scope.values_list("slug", flat=True)
-        if "full-economy" in scopes:
-            return True
-        return False
+        return "full-economy" in scopes
 
     @cached_property
     def implementation_public(self) -> bool:
@@ -351,9 +355,7 @@ class DisclosureRegime(NotionModel):
         has the General public tag present
         """
         access = self.who_can_access.values_list("slug", flat=True)
-        if "general-public" in access:
-            return True
-        return False
+        return "general-public" in access
 
     @cached_property
     def display_scope(self):
@@ -386,39 +388,19 @@ class DisclosureRegime(NotionModel):
 
     @cached_property
     def display_structured_data(self):
-        try:
-            return self.structured_data
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No structured_data for {self.name}")
-            return None
+        return self.structured_data
 
     @cached_property
     def display_data_in_bods(self):
-        try:
-            return self.data_in_bods
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No data_in_bods for {self.name}")
-            return None
+        return self.data_in_bods
 
     @cached_property
     def display_api(self):
-        try:
-            return self.api_available
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No api_available for {self.name}")
-            return None
+        return self.api_available
 
     @cached_property
     def display_oo_register(self):
-        try:
-            return self.on_oo_register
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No on_oo_register for {self.name}")
-            return None
+        return self.on_oo_register
 
     @cached_property
     def display_central_register(self):
@@ -449,18 +431,15 @@ class DisclosureRegime(NotionModel):
 
     @cached_property
     def display_threshold(self):
-        if not self.threshold or self.threshold == "None":
+        if self.threshold is None:
             return ""
-        try:
-            if self.threshold:
-                if "%" not in self.threshold:
-                    return f"{self.threshold}%"
-                return self.threshold
-        except Exception as e:
-            console.warn(e)
-            console.warn(f"No threshold for {self.name}")
-            return ""
-        return ""
+        value = self.threshold.normalize()
+        if value == value.to_integral_value():
+            return f"{value:.0f}%"
+        return f"{value}%"
+
+    def __str__(self):
+        return self.title
 
 
 class CountryTag(NotionModel, BaseTag):
@@ -544,6 +523,16 @@ class CountryTag(NotionModel, BaseTag):
         max_length=10,
     )
 
+    # The impact tracker groups its records by this, which is a different list
+    # from the site's own `Region` records. Kept as the tracker's own text so a
+    # region added in Notion needs no work here.
+    notion_region = models.CharField(
+        _("Region (impact tracker)"),
+        blank=True,
+        default="",
+        max_length=255,
+    )
+
     main_panels = [
         FieldPanel("name"),
         FieldPanel("blurb"),
@@ -558,6 +547,7 @@ class CountryTag(NotionModel, BaseTag):
 
     notion_panels = [
         FieldPanel("oo_support"),
+        FieldPanel("notion_region", read_only=True),
         # InlinePanel('disclosure_regimes'),
     ]
 
@@ -573,17 +563,15 @@ class CountryTag(NotionModel, BaseTag):
         dates = [self.notion_updated]
         for item in self.regimes:
             if item is not None and item.notion_updated is not None:
-                dates.append(item.notion_updated)
+                dates.append(item.notion_updated)  # noqa: PERF401
         for item in self.all_commitments:
             if item is not None and item.notion_updated is not None:
-                dates.append(item.notion_updated)
+                dates.append(item.notion_updated)  # noqa: PERF401
         return max(dates)
 
     @cached_property
     def committed(self):
-        if len(self.all_commitments):
-            return True
-        return False
+        return bool(len(self.all_commitments))
 
     @cached_property
     def involved(self):
@@ -666,7 +654,7 @@ class CountryTag(NotionModel, BaseTag):
 
         # Any "publish" implementations at all?
         for item in disclosure_regimes:
-            if item.stage and "Publish" in item.stage:
+            if item.stage and "Publish" in item.stage:  # noqa: SIM102
                 if subnational not in item.coverage_scope.all():
                     category = "liveregister"
                     break
@@ -700,10 +688,7 @@ class CountryTag(NotionModel, BaseTag):
         field is ticked for a country if the Central register field in any commitments
         for that country listed on the Commitment tracker = ticked.
         """
-        for item in self.commitments.all():
-            if item.central_register is True:
-                return True
-        return False
+        return any(item.central_register is True for item in self.commitments.all())
 
     @cached_property
     def committed_public(self):
@@ -711,10 +696,7 @@ class CountryTag(NotionModel, BaseTag):
         field is ticked for a country if the Central register field in any commitments
         for that country listed on the Commitment tracker = ticked.
         """
-        for item in self.commitments.all():
-            if item.public_register is True:
-                return True
-        return False
+        return any(item.public_register is True for item in self.commitments.all())
 
     @cached_property
     def implementation_central(self):
@@ -725,7 +707,7 @@ class CountryTag(NotionModel, BaseTag):
         """
         subnational = CoverageScope.objects.get(name="Subnational")
         for item in self.disclosure_regimes.all():
-            if item.central_register == "Yes" and item.stage and "Publish" in item.stage:
+            if item.central_register == "Yes" and item.stage and "Publish" in item.stage:  # noqa: SIM102
                 if subnational not in item.coverage_scope.all():
                     return True
         return False
@@ -738,7 +720,7 @@ class CountryTag(NotionModel, BaseTag):
         """
         subnational = CoverageScope.objects.get(name="Subnational")
         for item in self.disclosure_regimes.all():
-            if item.public_access == "Yes" and item.stage and "Publish" in item.stage:
+            if item.public_access == "Yes" and item.stage and "Publish" in item.stage:  # noqa: SIM102
                 if subnational not in item.coverage_scope.all():
                     return True
         return False
@@ -801,11 +783,12 @@ class CountryTag(NotionModel, BaseTag):
         rv = {}
         for item in self.regimes.filter(stage__icontains="Publish"):
             scope_names = [scope.name for scope in item.coverage_scope.all()]
-            if "Subnational" not in scope_names:
+            if "Subnational" not in scope_names:  # noqa: SIM102
                 if item.title and item.public_access_register_url:
                     rv["title"] = item.title
                     rv["url"] = item.public_access_register_url
                     return rv
+        return ""
 
     @cached_property
     def first_central_regime(self):
@@ -873,7 +856,7 @@ class CountryTag(NotionModel, BaseTag):
         else:
             return pages
 
-    def latest_related(self, count):
+    def latest_related(self, count):  # noqa: ARG002
         if self.display_date_related_pages:
             try:
                 return self.display_date_related_pages[:3]
@@ -901,6 +884,9 @@ class CountryTag(NotionModel, BaseTag):
     @cached_property
     def is_engaged(self):
         return self.oo_support in self.OO_ENGAGED_VALUES
+
+    def __str__(self):
+        return self.name
 
 
 class CountryTaggedPage(ItemBase):
@@ -956,3 +942,721 @@ class Region(ClusterableModel):
 
     def __str__(self):
         return self.name
+
+
+####################################################################################################
+# BOT impact tracker vocabularies
+####################################################################################################
+
+
+class ImpactTagBase(ClusterableModel):
+    """Shared shape for the tracker's multi-select vocabularies.
+
+    Options are created from whatever Notion sends, so the option lists on this
+    side are only ever as tidy as the ones in the source database.
+    """
+
+    class Meta:
+        abstract = True
+        ordering = ("name",)
+
+    name = models.CharField(blank=False, null=False, max_length=255, unique=True)
+    slug = AutoSlugField(populate_from="name")
+
+    def __str__(self):
+        return self.name
+
+
+class DataUserTag(ImpactTagBase):
+    class Meta(ImpactTagBase.Meta):
+        verbose_name = _("Data User")
+        verbose_name_plural = _("Data Users")
+
+
+class UsabilityThemeTag(ImpactTagBase):
+    class Meta(ImpactTagBase.Meta):
+        verbose_name = _("Usability Theme")
+        verbose_name_plural = _("Usability Themes")
+
+
+class ImpactTypeTag(ImpactTagBase):
+    class Meta(ImpactTagBase.Meta):
+        verbose_name = _("Impact Type")
+        verbose_name_plural = _("Impact Types")
+
+
+class ResourceTypeTag(ImpactTagBase):
+    class Meta(ImpactTagBase.Meta):
+        verbose_name = _("Resource Type")
+        verbose_name_plural = _("Resource Types")
+
+
+class PolicyAreaTag(ImpactTagBase):
+    class Meta(ImpactTagBase.Meta):
+        verbose_name = _("Policy Area")
+        verbose_name_plural = _("Policy Areas")
+
+    @property
+    def icon(self) -> str:
+        """This topic's icon, for `include` in a template.
+
+        Mapped in code rather than held in Notion, so a topic added there gets a
+        generic icon rather than a broken one. See `modules.notion.icons`.
+        """
+        return icons.topic_icon(self.name)
+
+
+####################################################################################################
+# BOT impact tracker
+####################################################################################################
+
+
+class ImpactEntryQuerySet(models.QuerySet):
+    def publishable(self):
+        """Entries that may appear publicly.
+
+        Three conditions: Open Ownership cleared it, it still exists in Notion,
+        and it has a link. Open Ownership asked for records with no link to be
+        left out entirely, since the point of a record is to send a reader to
+        its source.
+        """
+        return self.filter(publish=True, deleted=False).exclude(source_url="")
+
+    def withheld_for_no_link(self):
+        """Cleared for publication, but with nothing to point a reader at."""
+        return self.filter(publish=True, deleted=False, source_url="")
+
+    def last_updated(self):
+        """When the tracker last changed, or `None` before the first sync.
+
+        Every row counts, not only the ones a reader can see: the listing tells
+        a reader how current the tracker is, and Open Ownership edit rows that
+        are not published yet. It is the tracker's own timestamp rather than the
+        time of the last sync, which runs whether anything changed or not.
+        """
+        return self.aggregate(models.Max("notion_updated"))["notion_updated__max"]
+
+
+class ImpactEntry(NotionModel):
+    """A single recorded use or impact of beneficial ownership data.
+
+    Sourced from the `BOT impact tracker` Notion database. Only entries with
+    `publish` set are cleared by Open Ownership for display on the site; the
+    rest are synced so the record stays complete but should stay hidden.
+    """
+
+    objects = ImpactEntryQuerySet.as_manager()
+
+    # Open Ownership aim for summaries of about this length. Notion cannot
+    # enforce it, so it is applied here at display time rather than relied on.
+    SUMMARY_WORDS = 50
+
+    class Meta:
+        verbose_name = _("Impact Entry")
+        verbose_name_plural = _("Impact Entries")
+        ordering = ("-year", "description")
+
+    description = models.TextField(  # One sentence description (P)
+        _("Description"),
+        blank=False,
+        default="",
+    )
+
+    summary = models.TextField(  # Short summary (P)
+        _("Short summary"),
+        blank=True,
+        default="",
+    )
+
+    lessons = models.TextField(  # Lessons
+        _("Lessons"),
+        blank=True,
+        default="",
+    )
+
+    oo_outputs_used_in = models.TextField(  # OO outputs used in
+        _("OO outputs used in"),
+        blank=True,
+        default="",
+    )
+
+    presentations_used_in = models.TextField(  # Presentations/slide decks used in
+        _("Presentations used in"),
+        blank=True,
+        default="",
+    )
+
+    source_url = models.URLField(  # Source URL (P)
+        _("Source URL"),
+        blank=True,
+        default="",
+        max_length=1000,
+    )
+
+    year = models.PositiveIntegerField(  # Year (P)
+        _("Year"),
+        blank=True,
+        null=True,
+    )
+
+    publish = models.BooleanField(  # Publish?
+        _("Cleared for publication"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    oo_influence = models.BooleanField(  # OO's influence
+        _("OO influence"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    tangible_impact = models.BooleanField(  # Tangible impact
+        _("Tangible impact"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    international = models.BooleanField(  # International
+        _("International"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    # The tracker gives a worldwide record the "International" row of the
+    # countries database as its jurisdiction. That row is not a country and is
+    # kept out of the country lists, so the fact is recorded here instead of
+    # being lost. Separate from `international` above, which is the tracker's
+    # older checkbox. The two mean the same thing and read the same way.
+    worldwide = models.BooleanField(
+        _("International (from the countries database)"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    # Housekeeping flags Open Ownership use while they tidy the tracker. Synced
+    # so the record matches Notion, but nothing on this side acts on them.
+    source_archived = models.BooleanField(  # Archive
+        _("Archived in Notion"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    source_marked_old = models.BooleanField(  # [TEMP] Old?
+        _("Marked old in Notion"),
+        blank=False,
+        null=False,
+        default=False,
+    )
+
+    archived_types = models.CharField(  # [Archive]
+        _("Archived types"),
+        blank=True,
+        default="",
+        max_length=1000,
+    )
+
+    countries = models.ManyToManyField(  # Jurisdiction(s) (P)
+        "notion.CountryTag",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    regimes = models.ManyToManyField(  # Disclosure regime(s)
+        "notion.DisclosureRegime",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    data_users = models.ManyToManyField(  # Data user
+        "notion.DataUserTag",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    usability_themes = models.ManyToManyField(  # Usability theme(s)
+        "notion.UsabilityThemeTag",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    impact_types = models.ManyToManyField(  # Type
+        "notion.ImpactTypeTag",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    resource_types = models.ManyToManyField(  # Type of resource (P)
+        "notion.ResourceTypeTag",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    policy_areas = models.ManyToManyField(  # Policy area (P)
+        "notion.PolicyAreaTag",
+        related_name="impact_entries",
+        blank=True,
+    )
+
+    def __str__(self):
+        return self.description[:100]
+
+    def get_absolute_url(self) -> str:
+        """The record's own page.
+
+        Keyed on the Notion id because a record has no title to build a slug
+        from. It is a UUID, so one record's URL gives no clue to the next.
+        """
+        return reverse("evidence-detail", kwargs={"notion_id": self.notion_id})
+
+    @cached_property
+    def display_summary(self) -> str:
+        """The summary cut to a card-sized length.
+
+        Trimmed on words rather than characters: a character count behaves
+        differently at every font width, so it is not something an editor can
+        write to.
+        """
+        return Truncator(self.summary).words(self.SUMMARY_WORDS, truncate="…")
+
+    # Several values in one string. A semicolon rather than a comma, because tag
+    # names carry commas of their own and whatever reads this back, a person or
+    # a spreadsheet, should not have to guess where one value ends.
+    LIST_SEPARATOR = "; "
+
+    @cached_property
+    def display_topics(self) -> str:
+        return self._joined(tag.name for tag in self.policy_areas.all())
+
+    # What the tracker calls a worldwide record, in its jurisdiction column and
+    # in the region it rolls up to. Written here because the row it comes from
+    # is deliberately not imported, so there is no synced name to read.
+    WORLDWIDE_LABEL = "International"
+
+    @cached_property
+    def display_jurisdictions(self) -> str:
+        """The jurisdictions, or a worldwide record's own name for itself.
+
+        Worldwide records carry no country at all, so without this they would
+        report an empty jurisdiction rather than the thing they actually are.
+        The tracker's row and its older `International` checkbox both mean the
+        same thing, so either one reads the same way.
+        """
+        names = self._joined(tag.name for tag in self.countries.all())
+        if names:
+            return names
+        if self.worldwide or self.international:
+            return self.WORLDWIDE_LABEL
+        return names
+
+    @cached_property
+    def display_region_names(self) -> str:
+        """`display_regions` as one string, for a CSV cell or a data attribute."""
+        return self._joined(self.display_regions)
+
+    @cached_property
+    def display_data_users(self) -> str:
+        return self._joined(tag.name for tag in self.data_users.all())
+
+    @cached_property
+    def display_resource_types(self) -> str:
+        return self._joined(tag.name for tag in self.resource_types.all())
+
+    @classmethod
+    def _joined(cls, values) -> str:
+        return cls.LIST_SEPARATOR.join(sorted(values))
+
+    @cached_property
+    def display_regions(self) -> list:
+        """Region names, reached through the entry's jurisdictions.
+
+        An entry has no region of its own. Several jurisdictions can share one,
+        so the names are deduplicated before display.
+
+        The tracker's own region is used, not the site's `Region` records: the
+        two group the world differently, and a reader comparing the listing with
+        the tracker should see the tracker's names.
+
+        A worldwide record has no country to reach a region through, and the
+        tracker rolls it up to "International", so that is what it reports.
+        """
+        names = {country.notion_region for country in self.countries.all()}
+        if self.worldwide:
+            names.add(self.WORLDWIDE_LABEL)
+        return sorted(name for name in names if name)
+
+    @cached_property
+    def display_card_regions(self) -> list:
+        """`display_regions` for the shut card, which labels nothing.
+
+        A worldwide record reports "International" as both its jurisdiction and
+        its region. The record's own page labels the two, but on a shut card they
+        sit side by side unlabelled, where the same word twice reads as a
+        mistake.
+        """
+        if self.display_jurisdictions == self.WORLDWIDE_LABEL:
+            return [name for name in self.display_regions if name != self.WORLDWIDE_LABEL]
+        return self.display_regions
+
+    @cached_property
+    def display_attachments(self):
+        """Attachments worth showing: anything we hold or can link to."""
+        return [item for item in self.attachments.all() if item.is_resolved]
+
+
+class ImpactAttachment(models.Model):
+    """One item from an impact entry's Notion files column.
+
+    A single entry can carry several attachments of mixed types, so each one is
+    its own row rather than a field on the entry. `fingerprint` is what makes a
+    re-sync idempotent: Notion re-signs its file URLs on every fetch, so the
+    query string changes each time while the path stays put.
+    """
+
+    class Meta:
+        verbose_name = _("Impact Attachment")
+        verbose_name_plural = _("Impact Attachments")
+        ordering = ("sort_order", "pk")
+        constraints = [
+            models.UniqueConstraint(
+                fields=["entry", "fingerprint"],
+                name="unique_attachment_per_entry",
+            ),
+        ]
+
+    KIND_DOCUMENT = "document"
+    KIND_IMAGE = "image"
+    KIND_LINK = "link"
+    KIND_CHOICES = [
+        (KIND_DOCUMENT, _("Document")),
+        (KIND_IMAGE, _("Image")),
+        (KIND_LINK, _("Link")),
+    ]
+
+    entry = models.ForeignKey(
+        "notion.ImpactEntry",
+        related_name="attachments",
+        on_delete=models.CASCADE,
+    )
+
+    sort_order = models.PositiveIntegerField(
+        _("Sort order"),
+        blank=False,
+        null=False,
+        default=0,
+    )
+
+    kind = models.CharField(
+        _("Kind"),
+        blank=False,
+        null=False,
+        max_length=20,
+        choices=KIND_CHOICES,
+    )
+
+    # Notion's own label for the item. Usually a filename or a URL, but authors
+    # sometimes type a human label instead, so it is never assumed to be either.
+    label = models.CharField(
+        _("Label"),
+        blank=True,
+        default="",
+        max_length=500,
+    )
+
+    fingerprint = models.CharField(
+        _("Fingerprint"),
+        blank=False,
+        null=False,
+        max_length=1000,
+    )
+
+    url = models.URLField(
+        _("URL"),
+        blank=True,
+        default="",
+        max_length=2000,
+    )
+
+    document = models.ForeignKey(
+        settings.WAGTAILDOCS_DOCUMENT_MODEL,
+        related_name="impact_attachments",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+
+    image = models.ForeignKey(
+        settings.WAGTAILIMAGES_IMAGE_MODEL,
+        related_name="impact_attachments",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+
+    fetch_error = models.TextField(
+        _("Fetch error"),
+        blank=True,
+        default="",
+    )
+
+    def __str__(self):
+        return self.label or self.url or self.fingerprint
+
+    @property
+    def is_resolved(self) -> bool:
+        """Whether this attachment has something we can actually show."""
+        if self.kind == self.KIND_DOCUMENT:
+            return self.document_id is not None
+        if self.kind == self.KIND_IMAGE:
+            return self.image_id is not None
+        return bool(self.url)
+
+    @property
+    def display_label(self) -> str:
+        """A label safe to put in front of a reader."""
+        if self.label and not self.label.startswith(("http://", "https://")):
+            return self.label
+        if self.kind == self.KIND_DOCUMENT and self.document_id:
+            return self.document.title
+        if self.kind == self.KIND_IMAGE and self.image_id:
+            return self.image.title
+        return self.label or self.url
+
+
+####################################################################################################
+# Sync history
+####################################################################################################
+
+
+class SyncRunQuerySet(models.QuerySet):
+    def full(self):
+        """Runs that covered everything for real: not a dry run, not `--only`."""
+        return self.filter(dry_run=False, only=[])
+
+    def last_completed_full(self) -> Optional["SyncRun"]:
+        """The run the staleness warning is measured from.
+
+        Completed, not perfect. A run that rejected a few rows still worked: it
+        reached Notion, fetched everything and wrote what it could, and a row
+        Notion holds badly is data for Open Ownership to fix rather than a
+        broken sync. Counting those as failures would leave the warning on
+        permanently while one bad row sat in the tracker, and nobody reads a
+        banner that is always red. Only a run that did not finish is excluded.
+        """
+        return self.full().filter(
+            status__in=(SyncRun.Status.SUCCESS, SyncRun.Status.FAILURES),
+        ).first()
+
+    def reap_stale(self, older_than=None) -> int:
+        """Close off runs that started and never finished.
+
+        A process killed by a deploy or the OOM killer leaves a `running` row
+        behind forever. Left alone, "the sync has been hanging for three days"
+        reads exactly like "the sync never fired". Called at the start of the
+        next run, so this needs no schedule of its own.
+        """
+        older_than = older_than or settings.NOTION_SYNC_STALE_AFTER
+        return self.filter(
+            status=SyncRun.Status.RUNNING,
+            started_at__lt=timezone.now() - older_than,
+        ).update(
+            status=SyncRun.Status.ERROR,
+            finished_at=timezone.now(),
+            error="The run started but never finished.",
+        )
+
+    def prune(self, keep: Optional[int] = None) -> int:
+        """Drop all but the most recent runs.
+
+        Counted rather than aged, because keeping a fixed number of runs
+        survives the sync being switched off for a fortnight, which is precisely
+        the situation this history exists to reveal. The last good full sync is
+        always kept whatever its age: it is what the staleness warning is
+        measured against, so losing it would make a working sync look stopped.
+        """
+        keep = keep or settings.NOTION_SYNC_RUN_HISTORY
+        recent = list(self.values_list("pk", flat=True)[:keep])
+
+        last_good = self.last_completed_full()
+        if last_good:
+            recent.append(last_good.pk)
+
+        return self.exclude(pk__in=recent).delete()[0]
+
+
+class SyncRun(models.Model):
+    """One run of the Notion sync, kept so the admin can show whether it works.
+
+    Before this the only record was a Slack message, which Open Ownership cannot
+    see and which scrolls away. The counters are stored alongside the full report
+    so the listing, the ordering and the spreadsheet export all stay in SQL,
+    while the per-row failure detail stays as JSON it is only ever read whole.
+    """
+
+    class Meta:
+        verbose_name = _("Notion sync run")
+        verbose_name_plural = _("Notion sync runs")
+        ordering = ("-started_at",)
+        indexes = [
+            models.Index(fields=["-started_at"]),
+            models.Index(fields=["status", "-started_at"]),
+        ]
+
+    class Status(models.TextChoices):
+        RUNNING = "running", _("Running")
+        SUCCESS = "success", _("Succeeded")
+        FAILURES = "failures", _("Completed with failures")
+        ERROR = "error", _("Did not finish")
+
+    objects = SyncRunQuerySet.as_manager()
+
+    started_at = models.DateTimeField(_("Started"), default=timezone.now, db_index=True)
+    finished_at = models.DateTimeField(_("Finished"), blank=True, null=True)
+    status = models.CharField(
+        _("Status"),
+        max_length=20,
+        choices=Status.choices,
+        default=Status.RUNNING,
+    )
+
+    dry_run = models.BooleanField(_("Dry run"), default=False)
+    forced = models.BooleanField(_("Forced"), default=False)
+    only = models.JSONField(_("Databases"), default=list, blank=True)
+    trigger = models.CharField(_("Triggered by"), max_length=20, blank=True, default="")
+
+    fetched = models.PositiveIntegerField(default=0)
+    created = models.PositiveIntegerField(default=0)
+    updated = models.PositiveIntegerField(default=0)
+    skipped = models.PositiveIntegerField(default=0)
+    missing_parent = models.PositiveIntegerField(default=0)
+    deleted = models.PositiveIntegerField(default=0)
+    validated = models.PositiveIntegerField(default=0)
+    excluded = models.PositiveIntegerField(default=0)
+    invalid_count = models.PositiveIntegerField(default=0)
+    missing_column_count = models.PositiveIntegerField(default=0)
+
+    results = models.JSONField(default=list, blank=True)
+    error = models.TextField(blank=True, default="")
+
+    def __str__(self):
+        return f"Notion sync {self.started_at:%Y-%m-%d %H:%M}"
+
+    ################################################################################################
+    # Recording a run
+    ################################################################################################
+
+    @classmethod
+    def start(cls, only=None, forced: bool = False, dry_run: bool = False, trigger: str = ""):
+        """Open a run before the work begins.
+
+        Written up front, and not only at the end, because a run that dies
+        halfway leaves nothing otherwise.
+        """
+        return cls.objects.create(
+            only=list(only or []),
+            forced=forced,
+            dry_run=dry_run,
+            trigger=trigger,
+        )
+
+    def finish(self, report, error: Optional[Exception] = None) -> "SyncRun":
+        """Close a run off with whatever the report gathered.
+
+        Args:
+            report: The run's `SyncReport`, however far it got.
+            error: The exception that stopped the run, if one did.
+        """
+        totals = report.totals()
+        for name, value in totals.items():
+            setattr(self, name, value)
+
+        self.results = report.as_dict()["results"]
+        self.finished_at = timezone.now()
+
+        if error is not None:
+            self.status = self.Status.ERROR
+            self.error = describe(error)
+        elif totals["invalid_count"] or totals["missing_column_count"]:
+            self.status = self.Status.FAILURES
+        else:
+            self.status = self.Status.SUCCESS
+
+        self.save()
+        return self
+
+    ################################################################################################
+    # What a reader sees
+    ################################################################################################
+
+    @cached_property
+    def report(self):
+        """The stored results as real `SyncResult` objects, so a template can
+        reuse `summary()` rather than reimplement it.
+        """
+        return SyncReport.from_dict({"results": self.results})
+
+    @property
+    def duration(self):
+        if not self.finished_at:
+            return None
+        return self.finished_at - self.started_at
+
+    @property
+    def duration_display(self) -> str:
+        """How long the run took. A run that suddenly takes ten times longer is
+        a signal nothing else on this page gives.
+        """
+        if self.duration is None:
+            return ""
+        seconds = int(self.duration.total_seconds())
+        if seconds < 60:
+            return f"{seconds}s"
+        return f"{seconds // 60}m {seconds % 60}s"
+
+    @property
+    def mode(self) -> str:
+        if self.dry_run:
+            return _("Dry run")
+        if self.forced:
+            return _("Forced")
+        return _("Sync")
+
+    @property
+    def scope(self) -> str:
+        """Which databases the run covered, so a partial run is never misread as
+        a full one.
+        """
+        if not self.only:
+            return _("All databases")
+        return ", ".join(self.only)
+
+    @property
+    def is_full(self) -> bool:
+        return not self.dry_run and not self.only
+
+    @property
+    def has_failures(self) -> bool:
+        return bool(self.invalid_count or self.missing_column_count or self.error)
+
+    def failures(self):
+        """Every problem in this run as `(database, notion_url, message)`.
+
+        Built here rather than in the template so `notion_url` keeps one
+        definition and the markup stays dumb.
+        """
+        for result in self.report.results:
+            if result.missing_properties:
+                columns = ", ".join(repr(name) for name in result.missing_properties)
+                yield (
+                    result.name,
+                    "",
+                    f"Notion is no longer sending: {columns}. Renamed or deleted?",
+                )
+            for notion_id, message in result.invalid:
+                yield (result.name, notion_url(notion_id), message)

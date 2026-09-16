@@ -46,6 +46,7 @@
 @import "components/share-page";
 @import "components/summary-box";
 @import "components/details";
+@import "components/expanding-richtext";
 @import "components/glossary";
 @import "components/key-learning-outcomes";
 @import "components/visualisation-tool";
@@ -62,6 +63,7 @@
 @import "pages/country-page";
 @import "pages/search-page";
 @import "pages/map-page";
+@import "pages/bot-centre";
 
 /*------------------------------------*\
   #TAILWIND-IMPORTS

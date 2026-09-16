@@ -13,6 +13,7 @@ docker/db/**/*
 docker/redis/**/*
 docker/web/atuin/**/*
 docker/web/ipython/**/*
+docker/meilisearch/**/*
 *.sql
 *.sql.zip
 
@@ -48,6 +49,15 @@ app/media/**/*
 redirects.csv
 app/countries.csv
 app/capitals.csv
+CLAUDE.md
+.claude/
+.claude/*
+docs/site/
+docs/site/**/*
+docs/tmp/
+docs/tmp/**/*
+
+
 
 # This file is just for me, too dangerous to have on the servers
 app/modules/notion/management/commands/wipe_notion.py

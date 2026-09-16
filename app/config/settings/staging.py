@@ -22,7 +22,7 @@ DOMAIN_NAME = "openownership.hactar.work"
 DEFAULT_FILE_STORAGE is now defined in base.py / STORAGES
 """
 
-AWS_S3_CUSTOM_DOMAIN = "oo.cdn.ngo"
+AWS_S3_CUSTOM_DOMAIN = "oo.hacdn.io"
 AWS_STORAGE_BUCKET_NAME = "openownership"
 
 MEDIA_ROOT = "staging/media/"

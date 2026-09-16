@@ -1,6 +1,9 @@
 import json
 import pytest
+from cacheops import CacheMiss, cache
 from django.test import Client
+from wagtail.models import Site
+from modules.settings.models import NavigationSettings
 from modules.settings.tests.blocks import NAV_ITEM_PAGE, NAV_ITEM_URL, MEGA_MENU
 
 
@@ -32,6 +35,51 @@ def test_nav_item_url(home_page, nav_settings):
     rv = client.get(p.url)
     assert rv.status_code == 200
     assert "Find a centre" in rv.rendered_content
+
+
+def test_stale_empty_nav_cache_is_not_served(home_page, nav_settings, monkeypatch):
+    from modules.settings.models import navigation_settings as ns_mod
+
+    p = home_page
+    data = NAV_ITEM_URL
+    nav_settings.navbar_blocks = json.dumps([
+        data
+    ])
+    nav_settings.save()
+
+    # Simulate a poisoned cache holding an empty menu, as happens when it was
+    # first built before the nav was configured. The configured menu must still
+    # render rather than the stale empty one.
+    key = NavigationSettings.get_cache_key_nav(Site.objects.first().pk)
+    poison = {'navbar_blocks': [], 'footer_nav': [], 'footer_nav2': []}
+
+    def fake_get(k):
+        if k == key:
+            return poison
+        raise CacheMiss
+
+    monkeypatch.setattr(ns_mod.cache, 'get', fake_get)
+    monkeypatch.setattr(ns_mod.cache, 'set', lambda *a, **k: None)
+
+    rv = client.get(p.url)
+    assert rv.status_code == 200
+    assert "Find a centre" in rv.rendered_content
+
+
+def test_the_navs_icons_carry_no_xml_declaration(home_page, nav_settings):
+    """An SVG file starts with one, and it is meaningless once the file is
+    inlined into a page, where a browser parses it as a stray comment. The
+    expand and collapse icons only appear on a menu with something under it.
+    """
+    data = MEGA_MENU
+    data['value']['nav_item']['link_page'] = home_page.id
+    nav_settings.navbar_blocks = json.dumps([data])
+    nav_settings.save()
+
+    rendered = client.get(home_page.url).rendered_content
+
+    assert "expand-icon" in rendered
+    assert "<?xml" not in rendered
 
 
 def test_meganav(home_page, nav_settings):

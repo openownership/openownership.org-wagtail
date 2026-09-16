@@ -1,0 +1,111 @@
+{# Keyword, facets and sort for the Evidence Centre.
+
+Expects:
+
+* evidence - an `evidence.Results`
+* page - the BotCentrePage
+
+One plain GET form, so filtering, searching and sorting all work with no
+JavaScript. There is deliberately no hidden `page` field: unchecked boxes submit
+nothing, so changing a filter naturally starts again at page one.
+
+`action` is set rather than left to default to the current URL. Opening a record
+puts that record's URL in the address bar, and without this the form would then
+submit to the record instead of the listing.
+#}
+<form method="get" action="{{ page.url }}" class="evidence-filters" role="search">
+
+    <div class="evidence-filters__keyword">
+        <label class="evidence-filters__label" for="evidence-q">
+            {% trans %}Search{% endtrans %}
+        </label>
+        <input
+            class="evidence-filters__input"
+            type="search"
+            id="evidence-q"
+            name="q"
+            value="{{ evidence.query.terms }}"
+            placeholder="{% trans %}Search by keyword{% endtrans %}">
+
+        {# The browser's own "x" empties the box without submitting anything, so
+           this is what actually drops the keyword. A plain link, so it takes one
+           click with no JavaScript, and a fixed label, because a keyword can run
+           to 200 characters and is no use as the text of a control. #}
+        {% if evidence.query.terms %}
+            <a class="evidence-filters__clear-search"
+               href="{{ page.url }}?{{ evidence.query.without_terms() }}">
+                {% trans %}Clear search{% endtrans %}
+            </a>
+        {% endif %}
+    </div>
+
+    <div class="evidence-filters__sort">
+        <label class="evidence-filters__label" for="evidence-sort">
+            {% trans %}Sort by{% endtrans %}
+        </label>
+        <select class="evidence-filters__select" id="evidence-sort" name="sort">
+            {% for option in evidence.sort_options %}
+                <option
+                    value="{{ '' if option.key == 'newest' else option.key }}"{% if evidence.query.sort.key == option.key %} selected{% endif %}>{{ option.label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    {% for group in evidence.facets %}
+        {% if group.values %}
+            <fieldset class="evidence-filters__group">
+                <legend class="sr-only">{{ group.label }}</legend>
+
+                <details class="evidence-filters__panel"{% if group.selected_count %} open{% endif %}>
+                    <summary class="evidence-filters__toggle">
+                        {{ group.label }}
+                        {% if group.selected_count %}
+                            <span class="evidence-filters__chosen">({{ group.selected_count }})</span>
+                        {% endif %}
+                    </summary>
+
+                    <div class="evidence-filters__panel-body">
+                        <ul class="evidence-filters__values">
+                            {% for item in group.visible %}
+                                <li>
+                                    <label class="evidence-filters__value">
+                                        <input type="checkbox" name="{{ group.param }}" value="{{ item.value }}"{% if item.selected %} checked{% endif %}>
+                                        {{ item.label }}
+                                        <span class="evidence-filters__count">{{ item.count }}</span>
+                                    </label>
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                        {% if group.hidden %}
+                            {# A native disclosure, so the long lists collapse without JavaScript. #}
+                            <details class="evidence-filters__more">
+                                <summary>{% trans count=group.hidden|length %}Show {{ count }} more{% endtrans %}</summary>
+                                <ul class="evidence-filters__values">
+                                    {% for item in group.hidden %}
+                                        <li>
+                                            <label class="evidence-filters__value">
+                                                <input type="checkbox" name="{{ group.param }}" value="{{ item.value }}">
+                                                {{ item.label }}
+                                                <span class="evidence-filters__count">{{ item.count }}</span>
+                                            </label>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </details>
+                        {% endif %}
+                    </div>
+                </details>
+            </fieldset>
+        {% endif %}
+    {% endfor %}
+
+    <div class="evidence-filters__actions">
+        <button class="btn" type="submit">{% trans %}Apply{% endtrans %}</button>
+        {% if evidence.query.is_filtered %}
+            <a class="evidence-filters__clear" href="{{ page.url }}?{{ evidence.query.cleared() }}">
+                {% trans %}Clear filters{% endtrans %}
+            </a>
+        {% endif %}
+    </div>
+</form>

@@ -1,0 +1,35 @@
+{# One evidence record as an open card.
+
+Expects:
+
+* entry - An ImpactEntry
+* listing_page - The BotCentrePage, for the close link's no-JavaScript fallback
+
+This is what htmx swaps in when a reader opens a record in the listing. The
+close link is a real link to the listing first, so a reader without JavaScript
+still has somewhere to go.
+#}
+<li class="card-group__card card-group__card--without-thumbnail evidence-card evidence-card--expanded"
+    id="evidence-{{ entry.notion_id }}">
+
+    <div class="card-group__card-decoration">
+        <span class="evidence-card__edge"></span>
+
+        <div class="card-group__text">
+            {#
+                `h3`, because this sits inside the results section headed by
+                "Evidence records".
+                `tabindex` so focus can be moved here when
+                the record is opened, which is what tells a screen reader
+                reader something happened.
+            #}
+            <h3 class="card-group__title" tabindex="-1">{{ entry.description }}</h3>
+
+            <div id="evidence-{{ entry.notion_id }}-detail" role="region" aria-label="{{ entry.description }}">
+                {% with close_page = listing_page %}
+                    {% include "_partials/evidence_detail_body.jinja" %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</li>

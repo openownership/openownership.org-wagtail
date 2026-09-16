@@ -1,0 +1,12 @@
+<!-- Shown for any topic with no icon of its own.
+
+     Open Ownership add topics to the tracker without a code change, so this
+     exists to keep a new one looking deliberate rather than broken until its
+     artwork is drawn and mapped in `modules/notion/icons.py`.
+
+     Drawn to match the supplied set: 720 square, brand purple, round caps and
+     the same stroke weight. -->
+<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+  <circle cx="360" cy="360" r="280" fill="none" stroke="#3d30d4" stroke-width="26.9"/>
+  <circle cx="360" cy="360" r="72" fill="#3d30d4"/>
+</svg>

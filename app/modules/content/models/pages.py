@@ -41,6 +41,7 @@ from modules.content.blocks import (
     ADDITIONAL_CONTENT_BLOCKS,
     ARTICLE_PAGE_BODY_BLOCKS,
     HOME_PAGE_BLOCKS,
+    HYBRID_PAGE_BLOCKS,
     SECTION_PAGE_BLOCKS,
     TAG_PAGE_BODY_BLOCKS,
     TEAM_PROFILE_PAGE_BODY_BLOCKS,
@@ -48,8 +49,9 @@ from modules.content.blocks import (
 )
 from modules.content.blocks.stream import FootnoteBlock, GlossaryItemBlock
 from modules.feedback.models import FeedbackMixin
+from modules.notion import evidence
 from modules.notion.helpers import countries_json, map_json
-from modules.notion.models import CountryTag, Region
+from modules.notion.models import CountryTag, ImpactEntry, Region
 from modules.stats.mixins import Countable
 from modules.taxonomy.edit_handlers import PublicationTypeFieldPanel
 from modules.taxonomy.models import PublicationType
@@ -82,6 +84,7 @@ class HomePage(PageHeroMixin, LandingPageType):
         "content.TaxonomyPage",
         "content.PublicationsIndexPage",
         "content.PressLinksPage",
+        "content.BotCentrePage",
     ]
     max_count = 1
 
@@ -365,6 +368,7 @@ class JobPage(TaggedPageMixin, ContentPageType):
     def human_application_deadline(self):
         if self.application_deadline:
             return self.application_deadline.strftime("%d %B %Y")
+        return ""
 
     def get_publication_type_choices(self):
         """We now allow any publication type category on these pages."""
@@ -413,8 +417,6 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, FeedbackMixin, Bas
     parent_page_types: list = ["content.PublicationsIndexPage"]
     subpage_types: list = ["content.PublicationInnerPage"]
 
-    search_fields = ContentPageType.search_fields + TaggedAuthorsPageMixin.search_fields
-
     cached_title = ""
 
     page_title = models.CharField(
@@ -431,7 +433,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, FeedbackMixin, Bas
         related_name="+",
     )
 
-    external_link = models.URLField(
+    external_link = models.URLField(  # noqa: DJ001
         blank=True,
         null=True,
         help_text="Use document download OR external link",
@@ -540,7 +542,23 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, FeedbackMixin, Bas
         index.SearchField("summary"),
         index.SearchField("outcomes"),
         index.SearchField("impact"),
+        index.SearchField("get_inner_search_content"),
     ]
+
+    def get_inner_search_content(self) -> str:
+        """Searchable text gathered from this publication's inner pages.
+
+        Indexed on the front page so a search matching content that lives on a
+        child `PublicationInnerPage` surfaces this front page rather than the
+        child itself.
+        """
+        parts = []
+        inner_pages = PublicationInnerPage.objects.live().child_of(self).specific()
+        for inner in inner_pages:
+            parts.append(inner.title)
+            for bound_block in inner.body:
+                parts.extend(bound_block.block.get_searchable_content(bound_block.value))
+        return " ".join(part for part in parts if part)
 
     @property
     def date(self):
@@ -606,7 +624,7 @@ class PublicationFrontPage(TaggedAuthorsPageMixin, Countable, FeedbackMixin, Bas
         menu_pages = [first_page]
         children = self.get_children().live().public().filter(locale=Locale.get_active())
         for child in children:
-            menu_pages.append(child)
+            menu_pages.append(child)  # noqa: PERF402
         return menu_pages
 
 
@@ -773,7 +791,7 @@ class PublicationInnerPage(ContentPageType):
         menu_pages = [first_page]
         siblings = first_page.get_children().live().public().filter(locale=Locale.get_active())
         for sibling in siblings:
-            menu_pages.append(sibling)
+            menu_pages.append(sibling)  # noqa: PERF402
         return menu_pages
 
 
@@ -924,6 +942,7 @@ class TeamProfilePage(BasePage):
         for item in all_locales:
             if item.authorship is not None:
                 return item.authorship
+        return None
 
 
 ####################################################################################################
@@ -996,7 +1015,7 @@ class TeamPage(IndexPageType):
     subpage_types: list = ["content.TeamProfilePage"]
     max_count = 1
 
-    def get_queryset(self, request):
+    def get_queryset(self, request):  # noqa: ARG002
         """
         This returns the queryset needed to paginate the objects on the page. It pulls all the
         valid filters from get_filter_options and carries out the respective logic on the queryset.
@@ -1008,6 +1027,74 @@ class TeamPage(IndexPageType):
     def get_order_by(self):
         "Order by the order that's been set in Wagtail Admin"
         return ["path"]
+
+
+class BotCentrePage(IndexPageType):
+    """BOT Evidence Centre.
+
+    Lists the recorded uses of beneficial ownership data that come from the
+    Notion impact tracker. The entries are not child pages, so the queryset is
+    built here rather than walked from the page tree.
+    """
+
+    objects_model = ImpactEntry
+
+    template = "content/bot_centre.jinja"
+    parent_page_types: list = ["content.HomePage"]
+    subpage_types: list = []
+    max_count = 1
+
+    objects_per_page = 12
+
+    before_listing = fields.StreamField(HYBRID_PAGE_BLOCKS, blank=True, use_json_field=True)
+    after_listing = fields.StreamField(HYBRID_PAGE_BLOCKS, blank=True, use_json_field=True)
+
+    content_panels = BasePage.content_panels + [
+        FieldPanel("before_listing"),
+        FieldPanel("after_listing"),
+    ]
+
+    def get_queryset(self, request):  # noqa: ARG002
+        """Every publishable entry, in the reader's chosen order.
+
+        Only used when Meilisearch is unreachable. `evidence` owns the ordering
+        so the indexed and database listings cannot drift apart.
+        """
+        return evidence.fallback_queryset(evidence.DEFAULT_SORT)
+
+    def get_context(self, request, *args, **kwargs) -> dict:
+        # Skip IndexPageType's paginator: the results come from the search
+        # index, not from a queryset it could paginate.
+        ctx = super(IndexPageType, self).get_context(request, *args, **kwargs)
+
+        found = evidence.results(request.GET, per_page=self.objects_per_page)
+        ctx["page_obj"] = found.page_obj
+        ctx["evidence"] = found
+        # What a topic tag on a card links to. Named separately from `evidence`
+        # because the cards are also rendered by `EvidenceDetailView`, which has
+        # no results, and `listing_page` because that is what the card partials
+        # call this page when they are rendered from there.
+        ctx["evidence_query"] = found.query
+        ctx["listing_page"] = self
+        # When the tracker itself last changed, which is not the same as when
+        # the sync last ran. `None` before the first sync, which is the
+        # template's cue to claim nothing.
+        ctx["last_updated"] = ImpactEntry.objects.last_updated()
+        ctx["record_search_terms"] = settings.EVIDENCE_RECORD_SEARCH_TERMS
+
+        if found.query.is_narrowed:
+            # A filtered view is one of thousands of combinations and is not
+            # what should turn up in a search engine. Set in memory only.
+            self.no_index = True
+            # wagtail-cache keys on the full url, so caching every combination
+            # would let anyone fill Redis with `?anything=1`. The query itself
+            # costs less than the cache lookup at this size.
+            self.cache_control = "no-cache"
+
+        if found.degraded:
+            self.cache_control = "no-cache"
+
+        return ctx
 
 
 ####################################################################################################
@@ -1058,14 +1145,14 @@ class SearchPageSuggestedSearch(Orderable):
         related_name="suggested_for_search",
     )
 
-    link_url = models.CharField(
+    link_url = models.CharField(  # noqa: DJ001
         help_text=_("Link to an external URL"),
         null=True,
         blank=True,
         max_length=255,
     )
 
-    text = models.CharField(
+    text = models.CharField(  # noqa: DJ001
         null=True,
         blank=False,
         max_length=255,
@@ -1092,7 +1179,6 @@ class SearchPage(BasePage):
     objects_per_page = 10
 
     suggested_searches_title = models.CharField(
-        null=True,
         blank=False,
         max_length=255,
         default=_("People commonly search for"),
@@ -1286,7 +1372,7 @@ class TagPage(IndexPageType):
         features=settings.RICHTEXT_BODY_FEATURES,
     )
 
-    video = models.URLField(blank=True, null=True)
+    video = models.URLField(blank=True, null=True)  # noqa: DJ001
 
     body = fields.StreamField(TAG_PAGE_BODY_BLOCKS, blank=True, use_json_field=True)
 

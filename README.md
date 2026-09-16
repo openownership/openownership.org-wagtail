@@ -4,29 +4,14 @@
 
 This is a Wagtail site.
 
-[Sprint planner](https://github.com/hactar-is/openownership.org/projects/1)
-
-
-## First run
-
-You'll probably want to do `sudo nano /etc/hosts` and add:
-
-`0.0.0.0    openownership.test`
-
-
-1. `git submodule update --init --recursive`
-2. `goenv`
-3. `gofab` (and then probably `cd ..`)
-4. `docker pull ghcr.io/hactar-is/openownership:latest`
-5. `docker-compose up --build -d`
-6. `fab docker.fish` to get a shell inside the running web container
+[Sprint planner](https://github.com/orgs/openownership/projects/13)
 
 
 ### If you don't have access to Hactar tooling...
 
 You'll need all the project's environment variables in a .env file expanded into the shell session.
 
-1. `docker-compose up --build -d`
+1. `docker compose up --build -d`
 2. `docker exec -it openownership_web_1 fish` or `docker exec -it openownership_web_1 zsh` depending on your preference
 
 ### Once you have a shell inside the web container
@@ -34,9 +19,14 @@ You'll need all the project's environment variables in a .env file expanded into
 1. `manpy migrate`
 2. `manpy createsuperuser`
 3. `manpy populate_taxonomies`  # To create tags
-4. `runserver`
+4. `manpy sync_notion`  # Sync data from Notion
+5. `manpy index_evidence`  # Update the custom search index used on BOT Evidence Centre
+6. `manpy update_index`  # Update the search index
+6. `runserver`
 
-Site should now be accessible at `http://openownership.org.test:5000` (or http://0.0.0.0.test:5000)
+Site should now be accessible at `https://openownership.test` (or http://127.0.0.1:5000)
+
+The https domain is provided by localias which is managed by `mise`.
 
 ## Static assets
 

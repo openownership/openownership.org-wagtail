@@ -2,7 +2,6 @@ volumes:
   media: {}
 
 services:
-
   # NOTE: DB ISN'T ACTUALLY NEEDED FOR TESTS
 
   # Postgres
@@ -27,6 +26,17 @@ services:
       - ./docker/redis:/var/lib/redis:delegated
     environment:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
+
+  # meilisearch
+  meilisearch:
+    image: getmeili/meilisearch:v1.18.0
+    ports:
+      - "7700:7700"
+    volumes:
+      - ./docker/meilisearch/:/usr/local/share/:delegated
+    environment:
+      - MEILI_DB_PATH=/usr/local/share/data.ms
+      - MEILI_NO_ANALYTICS=true
 
   # Application
   web:

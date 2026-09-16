@@ -1,0 +1,27 @@
+{# One evidence record on a page of its own.
+
+Served to anyone arriving from a shared link, a bookmark or a search engine.
+The listing swaps the same record open in place instead, so this page is the
+safety net rather than the usual route in.
+#}
+{% set body_classes = "evidence-detail-page" %}
+{% extends 'base.jinja' %}
+
+
+{% block main_inner %}
+<article class="evidence-detail-page__record">
+
+    {% if listing_page %}
+        <div class="breadcrumbs">
+            <a class="reverse-underline" href="{{ listing_page.url }}">
+                <span aria-hidden="true"> &lt; </span>{% trans %}Back to{% endtrans %} {{ listing_page.title }}
+            </a>
+        </div>
+    {% endif %}
+
+    <h1 class="heading-l evidence-detail-page__title">{{ entry.description }}</h1>
+
+    {% include "_partials/evidence_detail_body.jinja" %}
+
+</article>
+{% endblock main_inner %}

@@ -1,0 +1,405 @@
+/*
+ * BOT Evidence Centre
+ *
+ * Deliberately plain. Open Ownership have not settled the brand direction for
+ * this tool yet, so this is structure and spacing only, ready to be dressed.
+ */
+
+/* Matches the heading treatment the other index pages get from
+   .aside-layout__no-header, without borrowing a class that implies a sidebar. */
+.evidence-page__title {
+    @apply border-b border-black/50;
+    @apply pb-10 mt-0 mb-10;
+}
+
+/* Sits between the title and the page's own copy, so it reads as a fact about
+   the listing rather than as part of the introduction. */
+.evidence-page__updated {
+    @apply text-16 text-text-secondary mb-6;
+}
+
+.evidence-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+
+    @include min-width(md) {
+        grid-template-columns: 300px minmax(10px, 1fr);
+    }
+}
+
+/* The filter column stays visible on small screens, above the results, rather
+   than being hidden the way the page menu is. */
+.evidence-layout__filters-title {
+    @apply text-19 font-bold mb-4;
+}
+
+.evidence-notice {
+    @apply bg-grey-light p-4 mb-6 text-16;
+}
+
+
+/**************************************************************************************************/
+/* Filters                                                                                        */
+/**************************************************************************************************/
+
+.evidence-filters__keyword,
+.evidence-filters__sort {
+    @apply mb-6;
+}
+
+.evidence-filters__label {
+    @apply block font-bold text-16 mb-2;
+}
+
+.evidence-filters__input,
+.evidence-filters__select {
+    @apply w-full;
+    padding: 0.5rem;
+}
+
+.evidence-filters__group {
+    border: 0;
+    padding: 0;
+}
+
+/* The toggle for the `<details>` each filter group. styles copied from `.accordion__button` from glossary.css. todo: replace that accordion with details summary too */
+.evidence-filters__toggle {
+    @apply relative block w-full text-left;
+    @apply border-t-2 border-grey-medium;
+    @apply text-16 font-bold;
+    @apply py-4 pr-8;
+    cursor: pointer;
+    list-style: none;
+    text-decoration-line: none;
+
+    &::-webkit-details-marker {
+        display: none;
+    }
+
+    &::marker {
+        content: '';
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background-image: url('/static/images/icons/plus.svg');
+        background-size: 15px 15px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    &:hover,
+    &:focus {
+        @apply bg-blue-light;
+    }
+}
+
+.evidence-filters__panel[open] > .evidence-filters__toggle::after {
+    background-image: url('/static/images/icons/minus.svg');
+}
+
+.evidence-filters__panel-body {
+    @apply pt-4;
+}
+
+.evidence-filters__chosen {
+    @apply font-normal text-text-secondary;
+}
+
+.evidence-filters__values {
+    @apply list-none p-0 m-0;
+}
+
+.evidence-filters__value {
+    @apply flex items-baseline gap-2 text-16 py-1;
+    cursor: pointer;
+}
+
+.evidence-filters__count {
+    @apply text-text-secondary text-14 ml-auto;
+}
+
+.evidence-filters__more {
+    @apply mt-2;
+
+    summary {
+        @apply text-14 cursor-pointer;
+    }
+}
+
+.evidence-filters__actions {
+    @apply flex items-center gap-4 mt-4;
+}
+
+.evidence-filters__actions--top {
+    @apply mb-6 pb-6;
+    @apply border-b border-black/50;
+}
+
+.evidence-filters__clear {
+    @apply text-14 underline;
+}
+
+.evidence-filters__panel, .evidence-filters__toggle {
+    margin: 0;
+}
+
+/* Sits under the search box rather than beside it, so a long field and a small
+   screen do not push it onto its own line unevenly. */
+.evidence-filters__clear-search {
+    @apply text-14 underline;
+    @apply inline-block mt-2;
+}
+
+
+/**************************************************************************************************/
+/* Results                                                                                        */
+/**************************************************************************************************/
+
+.evidence-list__header {
+    @apply flex flex-wrap items-baseline justify-between gap-4 mb-4;
+}
+
+.evidence-list__count {
+    @apply text-16 text-text-secondary font-bold;
+}
+
+.evidence-list__export {
+    @apply text-14;
+}
+
+.evidence-list__empty {
+    @apply text-19 py-8;
+}
+
+.evidence-chips {
+    @apply list-none p-0 mb-6 flex flex-wrap gap-x-2 gap-y-1;
+}
+
+.evidence-chips__chip {
+    @apply inline-flex items-center gap-2 text-14 px-3 py-1;
+    @apply bg-grey-light no-underline;
+
+    line-height: 1;
+}
+
+.evidence-card__facts {
+    @apply flex flex-wrap gap-2;
+}
+
+/* The shared card styles the topic pills as `.card-group__meta a span`, because
+   on every other card type a tag links to its own page. Topics have no page to
+   link to, so the same look is restated here for a plain span. Without it the
+   topics fall through as unspaced body text. */
+.evidence-card .card-group__meta {
+    @apply gap-1;
+}
+
+.generic-tag {
+    @apply inline-flex items-center gap-2;
+    @apply bg-text-secondary text-white font-bold;
+
+    padding: 4px 8px;
+    font-size: 0.75rem;
+}
+
+/* A tag is a link: clicking one filters the listing by that topic. The chip's
+   own colours have to be held against the site's link styles, which would
+   otherwise underline it and recolour it on hover and once it has been visited.
+   The background darkens instead, so the tag still answers to a pointer and to
+   the keyboard. */
+a.generic-tag {
+    @apply no-underline;
+    @apply bg-grey-light;
+    @apply text-grey-darker;
+    @apply border border-grey-dark;
+
+    &:hover, &:focus {
+        @apply bg-grey-medium;
+        @apply text-black;
+        @apply border-grey-dark;
+    }
+}
+
+.evidence-detail__topics {
+    @apply flex flex-wrap gap-1;
+}
+
+
+/**************************************************************************************************/
+/* Regions                                                                                        */
+/**************************************************************************************************/
+
+/* The edge down the side of a card. One colour on every record: a colour per
+   region was tried and Open Ownership found it more confusing than useful. */
+.evidence-card .card-group__card-decoration {
+    @apply relative;
+}
+
+.evidence-card__edge {
+    @apply absolute left-0 top-0 bottom-0;
+    @apply bg-blue-medium;
+    width: 6px;
+}
+
+.region-tag {
+    @apply inline-flex items-center;
+}
+
+a.jurisdiction-tag,
+a.region-tag,
+a.year-tag,
+a.resource-tag,
+a.topic-tag {
+    @apply underline decoration-2;
+
+    &:hover, &:focus {
+        @apply no-underline;
+    }
+}
+
+.tag-pill {
+    @apply inline-flex items-center gap-2;
+    @apply bg-text-secondary text-white font-bold;
+
+    padding-inline: 8px;
+    font-size: 0.75rem;
+}
+
+a.tag-pill {
+    @apply no-underline;
+    @apply bg-grey-light;
+    @apply text-grey-darker;
+    @apply border border-grey-dark;
+
+    &:hover, &:focus {
+        @apply bg-grey-medium;
+        @apply text-black;
+        @apply border-grey-dark;
+    }
+}
+
+a.tag-active {
+    @apply bg-blue-medium;
+    @apply text-white;
+    @apply border-blue-medium;
+}
+
+.evidence-detail__regions {
+    @apply flex flex-wrap gap-x-4 gap-y-1;
+}
+
+.evidence-card__jurisdictions {
+    @apply flex flex-wrap gap-2;
+}
+
+/* The external link icon is a 24px SVG, so it needs holding on the text's line
+   rather than being left to wrap onto its own. */
+.evidence-detail__source a,
+.evidence-detail__attachments a {
+    @apply inline-flex items-center gap-1;
+
+    svg {
+        @apply w-4 h-4 shrink-0;
+    }
+}
+
+.evidence-card__toggle {
+    @apply text-16 font-bold mt-4;
+
+    a {
+        @apply inline-flex items-center gap-2;
+    }
+
+    svg {
+        @apply shrink-0;
+    }
+}
+
+/* The same chevron turned over once the record is open, so the control always
+   points the way the record is about to move. */
+.evidence-card--expanded .evidence-card__toggle svg {
+    transform: rotate(180deg);
+}
+
+/* An open card is the width of the results column rather than a grid cell, so
+   a reader's eye does not have to hunt for where the record continues. */
+.evidence-card--expanded {
+    @apply col-span-full;
+
+    /* The record's own page keeps the larger lead paragraph. In the listing the
+       card is read next to shut cards, so the summary stays the size it was
+       before the reader opened it. */
+    .evidence-detail__summary {
+        @apply text-16;
+    }
+}
+
+
+/**************************************************************************************************/
+/* One record                                                                                     */
+/**************************************************************************************************/
+
+.evidence-detail__summary {
+    @apply text-19 mb-6;
+}
+
+.evidence-detail__facts {
+    @apply grid gap-4 mb-6;
+
+    @include min-width(sm) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.evidence-detail__fact {
+    dt {
+        @apply font-bold text-14 uppercase text-text-secondary;
+    }
+
+    dd {
+        @apply m-0 text-16;
+    }
+}
+
+.evidence-detail__attachments {
+    @apply list-none p-0 mb-6 flex flex-col gap-2 text-16;
+}
+
+.evidence-detail__source {
+    @apply text-16;
+}
+
+.evidence-detail__actions {
+    @apply flex flex-wrap items-center gap-4;
+
+    .evidence-card__toggle {
+        @apply mt-0;
+    }
+}
+
+.evidence-detail-page__title {
+    @apply mt-4 mb-8;
+}
+
+/* .bot-centre-page {
+    width: 1368px;
+    padding: 0;
+} */
+
+.evidence-layout__filters-layout {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.evidence-detail__source svg {
+    fill: white;
+}

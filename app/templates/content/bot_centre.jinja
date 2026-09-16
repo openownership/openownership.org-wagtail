@@ -1,0 +1,133 @@
+{% set main_classes = "bot-centre-page" %}
+{% extends 'base.jinja' %}
+
+{% block main_inner %}
+<div class="evidence-page">
+
+    <h1 class="heading-xl evidence-page__title">{{ page.title }}</h1>
+
+    {% if page.intro %}
+        <div class="intro rich-text">
+            {{ page.intro|richtext }}
+        </div>
+    {% endif %}
+
+
+
+
+    {% if page and page.before_listing %}
+        {% if page_obj.number == 1 %}
+        <div class="intro rich-text">
+            {{render_stream(page.before_listing)}}
+        </div>
+        {% if last_updated %}
+            <p class="evidence-page__updated">
+                {% trans %}The BOT Evidence Centre is updated on an ongoing basis.{% endtrans %}
+                {% trans %}Last updated{% endtrans %}:
+                <time datetime="{{ last_updated.strftime('%Y-%m-%d') }}">{{ last_updated|nicedate }}</time>
+            </p>
+        {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {% if evidence.degraded %}
+        <p class="evidence-notice" role="status">
+            {% trans %}Filtering and search are temporarily unavailable. Showing all records.{% endtrans %}
+        </p>
+    {% endif %}
+
+
+    <div class="evidence-layout">
+
+        {% if not evidence.degraded %}
+            <div class="evidence-layout__filters">
+
+                <div class="evidence-layout__filters-layout">
+                    <h2 class="evidence-layout__filters-title">{% trans %}Refine{% endtrans %}</h2>
+                    <a href="{{ page.url }}?{{ evidence.query.cleared() }}">Clear all filters</a>
+                </div>
+                {% include "_partials/evidence_filters.jinja" %}
+            </div>
+        {% endif %}
+
+        {# `data-evidence-total` is read by the analytics component, so a search
+           event can report how many results the term returned. DO NOT REMOVE #}
+        <div class="evidence-layout__results"
+             data-evidence-total="{{ evidence.total }}"
+             data-evidence-record-terms="{{ 'true' if record_search_terms else 'false' }}">
+            <h2 class="sr-only">{% trans %}Evidence records{% endtrans %}</h2>
+
+            <div class="evidence-list__header">
+                <p class="evidence-list__count" role="status">
+                    {% trans count=evidence.total %}{{ count }} records{% endtrans %}
+                </p>
+
+                {# The listing's own query goes with it, so the download matches
+                   what is on screen. Hidden while degraded, because with search
+                   down there are no filters to carry and the file would quietly
+                   be the whole dataset, and hidden with no results because a
+                   file of nothing but column headings helps no one. #}
+                {% if evidence.total and not evidence.degraded %}
+                    {% with query = evidence.query.querystring() %}
+                        <a class="evidence-list__export"
+                           href="{{ url('evidence-export') }}{% if query %}?{{ query }}{% endif %}"
+                           download>
+                            {% if evidence.query.is_narrowed %}
+                                {% trans %}Download these records (CSV){% endtrans %}
+                            {% else %}
+                                {% trans %}Download all records (CSV){% endtrans %}
+                            {% endif %}
+                        </a>
+                    {% endwith %}
+                {% endif %}
+            </div>
+
+            {% if evidence.query.is_filtered and not evidence.degraded %}
+                <ul class="evidence-chips">
+                    {% for group in evidence.facets %}
+                        {% for item in group.values if item.selected %}
+                            <li>
+                                <a class="evidence-chips__chip"
+                                   href="{{ page.url }}?{{ evidence.query.without(group.param, item.value) }}">
+                                    <span class="sr-only">{% trans %}Remove filter{% endtrans %}</span>
+                                    {{ group.label }}: {{ item.label }}
+                                    <span aria-hidden="true">&times;</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if evidence.total %}
+                <ul class="card-group evidence-list grid-cols grid--1-col landscape">
+                    {% for entry in page_obj %}
+                        {% include "_partials/evidence_card.jinja" %}
+                    {% endfor %}
+                </ul>
+
+                {% set pagination_base = page.url %}
+                {% include "_partials/pagination.jinja" %}
+            {% elif evidence.query.is_restricted %}
+                {# The reader asked for something and it matched nothing. #}
+                <p class="evidence-list__empty">
+                    {% trans %}There are no records matching what you asked for. Try removing a filter, or searching for something broader.{% endtrans %}
+                </p>
+            {% else %}
+                {# Nothing published at all, so there is no filter to remove. A
+                   reader sees this before the first sync, or if Open Ownership
+                   untick every record. #}
+                <p class="evidence-list__empty">
+                    {% trans %}There are no records here yet. Please check back later.{% endtrans %}
+                </p>
+            {% endif %}
+        {% if page and page.after_listing %}
+            <div class="additional-content">
+                {{render_stream(page.after_listing)}}
+            </div>
+        {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock main_inner %}

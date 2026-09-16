@@ -5,12 +5,15 @@ Django settings for the openownership.org project.
 """
 
 import os
+from datetime import timedelta
 from pathlib import Path
 
 import arrow
 from django.utils.translation import gettext_lazy as _
 from loguru import logger as guru
 from phaser import secrets  # noqa
+
+SILENCED_SYSTEM_CHECKS = ["treebeard.E001"]
 
 SHELL_PLUS = "ipython"
 PROJECT_DIR_NAME = "app"
@@ -55,6 +58,32 @@ TESTING = False
 
 CSRF_USE_SESSIONS = True
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 1500
+
+####################################################################################################
+# Statham SEO
+####################################################################################################
+
+STATHAM_SEO = {
+    # Feature switches
+    "ENABLE_META_TAGS": True,
+    "ENABLE_TITLE": True,  # emit the <title> tag (off = the project owns it)
+    "ENABLE_OPENGRAPH": True,
+    "ENABLE_TWITTER_CARDS": True,
+    "ENABLE_JSON_LD": True,
+    "USE_GRAPH": True,  # one @graph vs. separate <script> blocks
+    "STRICT_VALIDATION": None,  # None = raise in DEBUG, drop-and-log in production
+    # Defaults & formatting
+    "DEFAULT_TITLE_FORMAT": "{page} | {site_name}",
+    "TITLE_OVERRIDE": "title_override",  # context var that overrides the title verbatim
+    "DEFAULT_OG_TYPE": "website",
+    "DEFAULT_TWITTER_CARD": "summary_large_image",
+    "IMAGE_RENDITION_SPEC": "fill-1200x630",
+    # Code-level Organization defaults - used before anything is set in the admin
+    "ORGANIZATION_DEFAULTS": {"name": "Open Ownership"},
+    # Site-data sourcing (see below)
+    "SITE_SOURCE": "config.seo.ProjectSeoSource",
+    # "MANAGED_ELSEWHERE": ["social_profiles", "default_image", "default_description"],
+}
 
 
 ####################################################################################################
@@ -115,9 +144,9 @@ DJANGO_APPS = [
     "taggit",
     "storages",
     "django.contrib.staticfiles",
-    "django_cron",
     "dbbackup",
     "cacheops",
+    "axes",
 ]
 
 WAGTAIL_APPS = [
@@ -147,6 +176,10 @@ WAGTAIL_APPS = [
     "wagtail.contrib.styleguide",
     "wagtailfontawesomesvg",
     "wagtailmodelchooser",
+    "wagtools",
+    "wagtail_reports",
+    "wagtail_meilisearch",
+    "statham",
 ]
 
 SITE_APPS = [
@@ -185,8 +218,24 @@ MIDDLEWARE = [
     "middleware.locale.LocaleMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
     "wagtailcache.cache.FetchFromCacheMiddleware",
+    "axes.middleware.AxesMiddleware",  # must be last
 ]
 
+####################################################################################################
+# Django Axes
+####################################################################################################
+
+AUTHENTICATION_BACKENDS = [
+    "axes.backends.AxesStandaloneBackend",  # must be first
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+AXES_ENABLE_ACCESS_FAILURE_LOG = True
+AXES_USERNAME_FORM_FIELD = "username"
+AXES_FAILURE_LIMIT = 10
+AXES_COOLOFF_TIME = timedelta(minutes=3)
+AXES_IPWARE_META_PRECEDENCE_ORDER = ("HTTP_CF_CONNECTING_IP", "REMOTE_ADDR")
+AXES_IPWARE_PROXY_COUNT = None
 
 ####################################################################################################
 # Core Django config
@@ -196,6 +245,14 @@ ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
 BASE_URL = "https://openownership.org"
 WAGTAILADMIN_BASE_URL = "https://openownership.org"
+
+# Whether a reader's search term is sent to Plausible alongside the search count.
+# Open Ownership were asked, because it is a privacy call rather than a technical
+# one (A-S6 in the sprint brief), and chose to record them: what people search
+# for and do not find is the most useful thing this tool can report. The term is
+# already capped and trimmed by `evidence.parse` before it reaches the page.
+# Search counts are unaffected if this is turned back off.
+EVIDENCE_RECORD_SEARCH_TERMS = True
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 INTERNAL_IPS = ["127.0.0.1"]
 APPEND_SLASH = True
@@ -306,12 +363,13 @@ CACHEOPS_DEGRADE_ON_FAILURE = True
 # Search
 ####################################################################################################
 
-
 WAGTAILSEARCH_BACKENDS = {
     "default": {
-        "BACKEND": "wagtail.search.backends.database",
-        "SEARCH_CONFIG": "english",
-        "AUTO_UPDATE": True,
+        "BACKEND": "wagtail_meilisearch.backend",
+        "HOST": os.environ.get("MEILISEARCH_HOST"),
+        "PORT": os.environ.get("MEILISEARCH_PORT"),
+        "MASTER_KEY": os.environ.get("MEILI_MASTER_KEY", ""),
+        "QUERY_LIMIT": 1000,
     },
 }
 
@@ -330,6 +388,7 @@ JINJA2_EXTENSIONS = [
     "jinja2.ext.do",
     "jinja2.ext.loopcontrols",
     "cacheops.jinja2.cache",
+    "statham.jinja2.SEOExtension",
 ]
 
 DEFAULT_JINJA2_TEMPLATE_EXTENSION = ".jinja"
@@ -667,3 +726,41 @@ TRANS_STRINGS = [
 
 SLACK_HOOK_WAGBOT = os.environ.get("SLACK_HOOK_WAGBOT")
 SLACK_HOOK_NOTIONBOT = os.environ.get("SLACK_HOOK_NOTIONBOT")
+
+
+####################################################################################################
+# Notion sync
+####################################################################################################
+
+
+NOTION_WAGTAIL_TOKEN = os.environ.get("NOTION_WAGTAIL_TOKEN", "")
+
+# Source database ids. These are not secret, so they default to the live values
+# and can be overridden per environment.
+# How long without a successful full sync before the admin report warns that it
+# has stopped. The schedule is an external cron that this repo does not hold, so
+# set this to comfortably more than one cycle. 36 hours suits a daily sync.
+NOTION_SYNC_STALE_AFTER = timedelta(hours=36)
+
+# How many sync runs to keep. Counted rather than aged, so the history
+# survives the sync being switched off for a fortnight, which is exactly the
+# situation the report exists to reveal.
+NOTION_SYNC_RUN_HISTORY = 200
+
+NOTION_DATABASES = {
+    "countries": os.environ.get("NOTION_DB_COUNTRIES", "a7d0fc79-decf-4851-a8f7-8916e23862ba"),
+    "commitments": os.environ.get("NOTION_DB_COMMITMENTS", "995e7787-e85f-45df-8fa5-68684f30d16b"),
+    "regimes": os.environ.get("NOTION_DB_REGIMES", "85e52f2f-03c5-4d2a-b93f-1acbee5918f1"),
+    "regimes_sub": os.environ.get("NOTION_DB_REGIMES_SUB", "4e596712-c912-4821-8ecd-1e272f781d0b"),
+    "bot": os.environ.get("NOTION_DB_BOT", "7111bc1e-d10d-4882-8e04-d7f639297c75"),
+}
+
+# Rows in the countries database that are not countries. One row, called
+# "International", is used on the impact tracker to mean worldwide, so it must
+# never become a country on the site; impact entries carry their own `worldwide`
+# flag for that instead. Matched by id, so the row can be renamed in Notion
+# without breaking the match. The environment variable keeps its original name,
+# because deployments already set it.
+NOTION_NON_COUNTRY_ROWS = [
+    os.environ.get("NOTION_ROW_GLOBAL", "3b2880fb-edf9-80d8-a9b6-c21b95ff791f"),
+]

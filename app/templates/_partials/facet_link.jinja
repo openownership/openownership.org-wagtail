@@ -1,0 +1,19 @@
+{# Shared template for the clickable tags on a card
+
+Expects:
+
+* param - The facet's URL parameter, eg "jurisdiction"
+* value - The value, which is also what a reader reads
+* css_class - The class to put on it
+* prefix - Hidden text saying what the link does, eg "Show records from"
+* listing_page - The BotCentrePage
+* evidence_query - The listing's current query, if the reader has one
+
+#}
+{%- set listing = listing_page|default(none) -%}
+{%- set active = " tag-active" if facet_active(evidence_query|default(none), param, value) else "" -%}
+{%- if listing -%}
+<a class="{{ css_class }}{{ active }}" rel="nofollow" href="{{ listing.url }}?{{ facet_query(evidence_query|default(none), param, value) }}"><span class="sr-only">{{ prefix }} </span>{{ value }}</a>
+{%- else -%}
+<span class="{{ css_class }}{{ active }}">{{ value }}</span>
+{%- endif -%}

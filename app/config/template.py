@@ -199,6 +199,43 @@ def url_from_path(value):
     return value.replace('/home', '', 1)
 
 
+def pagination_query(request) -> str:
+    """The current query string with the page number taken out.
+
+    Pagination links append their own `page`, so everything else - filters,
+    keyword, sort order - has to be carried across by hand or it is lost on the
+    click through to page two.
+    """
+    if request is None:
+        return ''
+    params = request.GET.copy()
+    params.pop('page', None)
+    return params.urlencode()
+
+
+def facet_query(query, param: str, value) -> str:
+    """The query string a filterable value on an evidence card links to.
+
+    Imported here rather than at module level because `modules.notion` pulls in
+    models, and this module is loaded while the template engine is built.
+    """
+    from modules.notion import evidence
+
+    return evidence.facet_query(query, param, value)
+
+
+def facet_active(query, param: str, value) -> bool:
+    """Whether a filterable value on an evidence card is one the listing is
+    filtered by, so the card can mark it as active.
+
+    Imported here rather than at module level for the same reason as
+    `facet_query`.
+    """
+    from modules.notion import evidence
+
+    return evidence.facet_is_active(query, param, value)
+
+
 def commitment_summary(commitment_type: str, country) -> SafeString:
     """Ported from the old map generator.
 
@@ -350,5 +387,8 @@ class TemplateGlobalsExtension(Extension):
             'picture': picture,
             'routablepageurl': jinja2.pass_context(routablepageurl),
             'get_top_level_navpage': get_top_level_navpage,
+            'pagination_query': pagination_query,
+            'facet_query': facet_query,
+            'facet_active': facet_active,
         })
         environment.install_gettext_translations(translation)
