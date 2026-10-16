@@ -753,6 +753,8 @@ class HighlightPagesBlock(blocks.StructBlock):
         pages = []
         for struct_value in value.get("pages"):
             page = struct_value.get("page")
+            if page is None:
+                continue
             page.specific.card_format = struct_value.get("card_format")
             embed_url = getattr(struct_value.get("embed"), "url", None)
             if embed_url:
@@ -1513,6 +1515,8 @@ class EditorsPicksBlock(blocks.StructBlock):
         pages = []
         for struct_value in value.get("pages"):
             page = struct_value.get("page")
+            if page is None:
+                continue
             pages.append(page.specific)
 
         context.update(
