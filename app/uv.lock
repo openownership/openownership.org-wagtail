@@ -151,7 +151,7 @@ requires-dist = [
     { name = "wagtail-meilisearch", specifier = ">=1.1.1,<2.0.0" },
     { name = "wagtail-modeladmin", specifier = ">=2.4.0,<3.0" },
     { name = "wagtail-modelchooser", specifier = "~=4.0.1" },
-    { name = "wagtail-reports", specifier = ">=1.6.0rc1", index = "https://pypi.hacnet.dev/" },
+    { name = "wagtail-reports", specifier = ">=1.7.0", index = "https://pypi.hacnet.dev/" },
     { name = "wagtools", specifier = ">=1.2.0", index = "https://pypi.hacnet.dev/" },
     { name = "whitenoise", specifier = "~=6.5.0" },
 ]
@@ -1672,16 +1672,16 @@ wheels = [
 
 [[package]]
 name = "wagtail-reports"
-version = "1.6.0rc1"
+version = "1.7.0"
 source = { registry = "https://pypi.hacnet.dev/" }
 dependencies = [
     { name = "httpx" },
     { name = "loguru" },
     { name = "wagtail" },
 ]
-sdist = { url = "https://pypi.hacnet.dev/packages/wagtail_reports-1.6.0rc1.tar.gz", hash = "sha256:eb7b60cce7fe9ec2ab4bd1d36188820bd1672030c1ac4eae9687099be997b155" }
+sdist = { url = "https://pypi.hacnet.dev/packages/wagtail_reports-1.7.0.tar.gz", hash = "sha256:2ada4c2579e6dc60d8fec0ed73e726fd79613b165ae5d4f0715031fb8a1b4ff1" }
 wheels = [
-    { url = "https://pypi.hacnet.dev/packages/wagtail_reports-1.6.0rc1-py3-none-any.whl", hash = "sha256:19487ba63acdaa83c1d087c11220129cb0dcd54e744b6754238da362a920f02e" },
+    { url = "https://pypi.hacnet.dev/packages/wagtail_reports-1.7.0-py3-none-any.whl", hash = "sha256:20b3f6d45b86618e4e078a39f57ecd39eafbf7d227797a434b6476faedf3bf6d" },
 ]
 
 [[package]]

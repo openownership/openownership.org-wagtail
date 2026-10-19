@@ -50,7 +50,7 @@ dependencies = [
     "wagtail-meilisearch>=1.1.1,<2.0.0",
     "wagtail-modeladmin>=2.4.0,<3.0",
     "wagtail-modelchooser~=4.0.1",
-    "wagtail-reports>=1.6.0rc1",
+    "wagtail-reports>=1.7.0",
     "wagtools>=1.2.0",
     "whitenoise~=6.5.0",
 ]

@@ -1,3 +1,5 @@
+import logging
+
 from django.conf import settings
 from consoler import console
 from cacheops import cached
@@ -5,8 +7,10 @@ from wagtail.models import Site
 from wagtail.models import Locale
 from modules.settings.models import NavigationSettings, SiteSettings
 
+logger = logging.getLogger(__name__)
 
-def _locales_context(context: dict = {}) -> dict:
+
+def _locales_context(context: dict | None = None) -> dict:
     """Context helper in case you need a list of all available locales in your page
 
     Args:
@@ -15,6 +19,8 @@ def _locales_context(context: dict = {}) -> dict:
     Returns:
         dict: The context with locales added
     """
+    if context is None:
+        context = {}
     locales = Locale.objects.all()
     response = []
     for locale in locales:
@@ -31,13 +37,15 @@ def _locales_context(context: dict = {}) -> dict:
     return context
 
 
-def global_context(context: dict = {}) -> dict:
+def global_context(context: dict | None = None) -> dict:
     """Update your context with things needed globally that are often only available on
     a Page model, but using this you can add them to views too.
 
     Returns:
         dict: Updated context
     """
+    if context is None:
+        context = {}
     try:
         site = Site.objects.get(is_default_site=True)
         ctx = _locales_context(context)
@@ -46,9 +54,9 @@ def global_context(context: dict = {}) -> dict:
         ctx.update(**NavigationSettings.get_nav_context(site)),
         ctx['press_links_page_url'] = _get_press_links_page_url()
         ctx['fflags'] = settings.FFLAGS
-    except Exception as e:
-        console.error(e)
-        return {}
+    except Exception:
+        logger.exception("Could not build global context")
+        return context
     else:
         context.update({
             'site_name': site.site_name
