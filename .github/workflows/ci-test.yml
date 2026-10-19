@@ -15,7 +15,12 @@ on:
   pull_request:
     branches:
       - main
-      - staging
+
+# Cancel superseded runs on the same ref. Only PR runs are cancelled — push
+# runs (which deploy) always run to completion so a deploy is never interrupted.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 ####################################################################################################
 # SET THESE VARIABLES FOR YOUR PROJECT
