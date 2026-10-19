@@ -46,6 +46,7 @@ sources = ['app/uv.lock', 'app/pyproject.toml']
 description = 'Bake a new docker cache image'
 depends = ["builder:ensure"]
 run = "docker buildx bake --builder hactar-multiplatform -f docker-compose.test.yml web --set web.platform=linux/amd64,linux/arm64 --push"
+raw = true
 
 [tasks."builder:ensure"]
 description = "Ensure the multi-platform builder exists and is running"
